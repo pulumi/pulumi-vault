@@ -177,66 +177,66 @@ export interface SecretBackendCrlConfigState {
     /**
      * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
      */
-    autoRebuild?: pulumi.Input<boolean>;
+    autoRebuild?: pulumi.Input<boolean | undefined>;
     /**
      * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
      */
-    autoRebuildGracePeriod?: pulumi.Input<string>;
+    autoRebuildGracePeriod?: pulumi.Input<string | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Enable cross-cluster revocation request queues. **Vault 1.13+**
      */
-    crossClusterRevocation?: pulumi.Input<boolean>;
+    crossClusterRevocation?: pulumi.Input<boolean | undefined>;
     /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      */
-    deltaRebuildInterval?: pulumi.Input<string>;
+    deltaRebuildInterval?: pulumi.Input<string | undefined>;
     /**
      * Disables or enables CRL building.
      */
-    disable?: pulumi.Input<boolean>;
+    disable?: pulumi.Input<boolean | undefined>;
     /**
      * Enables building of delta CRLs with up-to-date revocation information, 
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
-    enableDelta?: pulumi.Input<boolean>;
+    enableDelta?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the time until expiration.
      */
-    expiry?: pulumi.Input<string>;
+    expiry?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of entries a CRL can contain. This option exists to prevent 
      * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
      */
-    maxCrlEntries?: pulumi.Input<number>;
+    maxCrlEntries?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Disables the OCSP responder in Vault. **Vault 1.12+**
      */
-    ocspDisable?: pulumi.Input<boolean>;
+    ocspDisable?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
      * refresh durations. **Vault 1.12+**
      */
-    ocspExpiry?: pulumi.Input<string>;
+    ocspExpiry?: pulumi.Input<string | undefined>;
     /**
      * Enables unified CRL and OCSP building. **Vault 1.13+**
      */
-    unifiedCrl?: pulumi.Input<boolean>;
+    unifiedCrl?: pulumi.Input<boolean | undefined>;
     /**
      * Enables serving the unified CRL and OCSP on the existing, previously
      * cluster-local paths. **Vault 1.13+**
      */
-    unifiedCrlOnExistingPaths?: pulumi.Input<boolean>;
+    unifiedCrlOnExistingPaths?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -246,11 +246,11 @@ export interface SecretBackendCrlConfigArgs {
     /**
      * Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
      */
-    autoRebuild?: pulumi.Input<boolean>;
+    autoRebuild?: pulumi.Input<boolean | undefined>;
     /**
      * Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
      */
-    autoRebuildGracePeriod?: pulumi.Input<string>;
+    autoRebuildGracePeriod?: pulumi.Input<string | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -258,52 +258,52 @@ export interface SecretBackendCrlConfigArgs {
     /**
      * Enable cross-cluster revocation request queues. **Vault 1.13+**
      */
-    crossClusterRevocation?: pulumi.Input<boolean>;
+    crossClusterRevocation?: pulumi.Input<boolean | undefined>;
     /**
      * Interval to check for new revocations on, to regenerate the delta CRL.
      */
-    deltaRebuildInterval?: pulumi.Input<string>;
+    deltaRebuildInterval?: pulumi.Input<string | undefined>;
     /**
      * Disables or enables CRL building.
      */
-    disable?: pulumi.Input<boolean>;
+    disable?: pulumi.Input<boolean | undefined>;
     /**
      * Enables building of delta CRLs with up-to-date revocation information, 
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
-    enableDelta?: pulumi.Input<boolean>;
+    enableDelta?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the time until expiration.
      */
-    expiry?: pulumi.Input<string>;
+    expiry?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of entries a CRL can contain. This option exists to prevent 
      * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
      */
-    maxCrlEntries?: pulumi.Input<number>;
+    maxCrlEntries?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Disables the OCSP responder in Vault. **Vault 1.12+**
      */
-    ocspDisable?: pulumi.Input<boolean>;
+    ocspDisable?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
      * refresh durations. **Vault 1.12+**
      */
-    ocspExpiry?: pulumi.Input<string>;
+    ocspExpiry?: pulumi.Input<string | undefined>;
     /**
      * Enables unified CRL and OCSP building. **Vault 1.13+**
      */
-    unifiedCrl?: pulumi.Input<boolean>;
+    unifiedCrl?: pulumi.Input<boolean | undefined>;
     /**
      * Enables serving the unified CRL and OCSP on the existing, previously
      * cluster-local paths. **Vault 1.13+**
      */
-    unifiedCrlOnExistingPaths?: pulumi.Input<boolean>;
+    unifiedCrlOnExistingPaths?: pulumi.Input<boolean | undefined>;
 }

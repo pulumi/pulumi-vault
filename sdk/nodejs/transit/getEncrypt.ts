@@ -70,9 +70,9 @@ export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.Invok
  */
 export interface GetEncryptOutputArgs {
     backend: pulumi.Input<string>;
-    context?: pulumi.Input<string>;
+    context?: pulumi.Input<string | undefined>;
     key: pulumi.Input<string>;
-    keyVersion?: pulumi.Input<number>;
-    namespace?: pulumi.Input<string>;
+    keyVersion?: pulumi.Input<number | undefined>;
+    namespace?: pulumi.Input<string | undefined>;
     plaintext: pulumi.Input<string>;
 }

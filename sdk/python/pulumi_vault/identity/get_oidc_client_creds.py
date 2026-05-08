@@ -143,8 +143,8 @@ def get_oidc_client_creds(name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         namespace=pulumi.get(__ret__, 'namespace'))
-def get_oidc_client_creds_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                 namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_oidc_client_creds_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                                 namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOidcClientCredsResult]:
     """
     Reads client credentials from an OIDC Client provisioned in Vault.

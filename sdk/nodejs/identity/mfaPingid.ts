@@ -174,63 +174,63 @@ export interface MfaPingidState {
     /**
      * The admin URL, derived from "settingsFileBase64"
      */
-    adminUrl?: pulumi.Input<string>;
+    adminUrl?: pulumi.Input<string | undefined>;
     /**
      * A unique identifier of the organization, derived from "settingsFileBase64"
      */
-    authenticatorUrl?: pulumi.Input<string>;
+    authenticatorUrl?: pulumi.Input<string | undefined>;
     /**
      * The IDP URL, derived from "settingsFileBase64"
      */
-    idpUrl?: pulumi.Input<string>;
+    idpUrl?: pulumi.Input<string | undefined>;
     /**
      * Method ID.
      */
-    methodId?: pulumi.Input<string>;
+    methodId?: pulumi.Input<string | undefined>;
     /**
      * Mount accessor.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * Method name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace path.
      */
-    namespacePath?: pulumi.Input<string>;
+    namespacePath?: pulumi.Input<string | undefined>;
     /**
      * The name of the PingID client organization, derived from "settingsFileBase64"
      */
-    orgAlias?: pulumi.Input<string>;
+    orgAlias?: pulumi.Input<string | undefined>;
     /**
      * A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
      */
-    settingsFileBase64?: pulumi.Input<string>;
+    settingsFileBase64?: pulumi.Input<string | undefined>;
     /**
      * MFA type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Use signature value, derived from "settingsFileBase64"
      */
-    useSignature?: pulumi.Input<boolean>;
+    useSignature?: pulumi.Input<boolean | undefined>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
     /**
      * Resource UUID.
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -240,7 +240,7 @@ export interface MfaPingidArgs {
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A base64-encoded third-party settings contents as retrieved from PingID's configuration page.
      */
@@ -248,5 +248,5 @@ export interface MfaPingidArgs {
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }

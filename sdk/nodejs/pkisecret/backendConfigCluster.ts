@@ -124,22 +124,22 @@ export interface BackendConfigClusterState {
     /**
      * Specifies the path to this performance replication cluster's AIA distribution point.
      */
-    aiaPath?: pulumi.Input<string>;
+    aiaPath?: pulumi.Input<string | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the path to this performance replication cluster's API mount path.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -149,7 +149,7 @@ export interface BackendConfigClusterArgs {
     /**
      * Specifies the path to this performance replication cluster's AIA distribution point.
      */
-    aiaPath?: pulumi.Input<string>;
+    aiaPath?: pulumi.Input<string | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -160,9 +160,9 @@ export interface BackendConfigClusterArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the path to this performance replication cluster's API mount path.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
 }

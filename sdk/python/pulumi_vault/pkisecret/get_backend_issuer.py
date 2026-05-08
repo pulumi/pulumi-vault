@@ -267,7 +267,7 @@ def get_backend_issuer(backend: Optional[_builtins.str] = None,
         common_name="example",
         ttl="86400",
         issuer_name="example")
-    example = root.issuer_id.apply(lambda issuer_id: vault.pkiSecret.get_backend_issuer_output(backend=root.path,
+    example = root.issuer_id.apply(lambda issuer_id: vault.pkisecret.get_backend_issuer_output(backend=root.path,
         issuer_ref=issuer_id))
     ```
 
@@ -323,13 +323,13 @@ def get_backend_issuer(backend: Optional[_builtins.str] = None,
         manual_chains=pulumi.get(__ret__, 'manual_chains'),
         namespace=pulumi.get(__ret__, 'namespace'),
         usage=pulumi.get(__ret__, 'usage'))
-def get_backend_issuer_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                              disable_critical_extension_checks: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                              disable_name_checks: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                              disable_name_constraint_checks: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                              disable_path_length_checks: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                              issuer_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                              namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backend_issuer_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                              disable_critical_extension_checks: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                              disable_name_checks: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                              disable_name_constraint_checks: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                              disable_path_length_checks: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                              issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                              namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendIssuerResult]:
     """
     Reads issuer data from Vault.
@@ -358,7 +358,7 @@ def get_backend_issuer_output(backend: Optional[pulumi.Input[_builtins.str]] = N
         common_name="example",
         ttl="86400",
         issuer_name="example")
-    example = root.issuer_id.apply(lambda issuer_id: vault.pkiSecret.get_backend_issuer_output(backend=root.path,
+    example = root.issuer_id.apply(lambda issuer_id: vault.pkisecret.get_backend_issuer_output(backend=root.path,
         issuer_ref=issuer_id))
     ```
 

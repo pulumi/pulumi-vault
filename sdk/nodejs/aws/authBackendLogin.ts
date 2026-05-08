@@ -245,99 +245,99 @@ export interface AuthBackendLoginState {
     /**
      * The token's accessor.
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * The authentication type used to generate this token.
      */
-    authType?: pulumi.Input<string>;
+    authType?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the AWS auth backend. Defaults to
      * 'aws'.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The token returned by Vault.
      */
-    clientToken?: pulumi.Input<string>;
+    clientToken?: pulumi.Input<string | undefined>;
     /**
      * The HTTP method used in the signed IAM
      * request.
      */
-    iamHttpRequestMethod?: pulumi.Input<string>;
+    iamHttpRequestMethod?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded body of the signed
      * request.
      */
-    iamRequestBody?: pulumi.Input<string>;
+    iamRequestBody?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded, JSON serialized
      * representation of the GetCallerIdentity HTTP request headers.
      */
-    iamRequestHeaders?: pulumi.Input<string>;
+    iamRequestHeaders?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded HTTP URL used in the signed
      * request.
      */
-    iamRequestUrl?: pulumi.Input<string>;
+    iamRequestUrl?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded EC2 instance identity document to
      * authenticate with. Can be retrieved from the EC2 metadata server.
      */
-    identity?: pulumi.Input<string>;
+    identity?: pulumi.Input<string | undefined>;
     /**
      * The duration in seconds the token will be valid, relative
      * to the time in `leaseStartTime`.
      */
-    leaseDuration?: pulumi.Input<number>;
+    leaseDuration?: pulumi.Input<number | undefined>;
     /**
      * The approximate time at which the token was created,
      * using the clock of the system where Terraform was running.
      */
-    leaseStartTime?: pulumi.Input<string>;
+    leaseStartTime?: pulumi.Input<string | undefined>;
     /**
      * A map of information returned by the Vault server about the
      * authentication used to generate this token.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value
      * once a token is issued. EC2 instances can only acquire a single token until
      * the whitelist is tidied again unless they keep track of this nonce.
      */
-    nonce?: pulumi.Input<string>;
+    nonce?: pulumi.Input<string | undefined>;
     /**
      * The PKCS#7 signature of the identity document to
      * authenticate with, with all newline characters removed. Can be retrieved from
      * the EC2 metadata server.
      */
-    pkcs7?: pulumi.Input<string>;
+    pkcs7?: pulumi.Input<string | undefined>;
     /**
      * The Vault policies assigned to this token.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set to true if the token can be extended through renewal.
      */
-    renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the AWS auth backend role to create tokens
      * against.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded SHA256 RSA signature of the
      * instance identity document to authenticate with, with all newline characters
      * removed. Can be retrieved from the EC2 metadata server.
      */
-    signature?: pulumi.Input<string>;
+    signature?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -348,61 +348,61 @@ export interface AuthBackendLoginArgs {
      * The unique name of the AWS auth backend. Defaults to
      * 'aws'.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The HTTP method used in the signed IAM
      * request.
      */
-    iamHttpRequestMethod?: pulumi.Input<string>;
+    iamHttpRequestMethod?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded body of the signed
      * request.
      */
-    iamRequestBody?: pulumi.Input<string>;
+    iamRequestBody?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded, JSON serialized
      * representation of the GetCallerIdentity HTTP request headers.
      */
-    iamRequestHeaders?: pulumi.Input<string>;
+    iamRequestHeaders?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded HTTP URL used in the signed
      * request.
      */
-    iamRequestUrl?: pulumi.Input<string>;
+    iamRequestUrl?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded EC2 instance identity document to
      * authenticate with. Can be retrieved from the EC2 metadata server.
      */
-    identity?: pulumi.Input<string>;
+    identity?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The unique nonce to be used for login requests. Can be
      * set to a user-specified value, or will contain the server-generated value
      * once a token is issued. EC2 instances can only acquire a single token until
      * the whitelist is tidied again unless they keep track of this nonce.
      */
-    nonce?: pulumi.Input<string>;
+    nonce?: pulumi.Input<string | undefined>;
     /**
      * The PKCS#7 signature of the identity document to
      * authenticate with, with all newline characters removed. Can be retrieved from
      * the EC2 metadata server.
      */
-    pkcs7?: pulumi.Input<string>;
+    pkcs7?: pulumi.Input<string | undefined>;
     /**
      * The name of the AWS auth backend role to create tokens
      * against.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The base64-encoded SHA256 RSA signature of the
      * instance identity document to authenticate with, with all newline characters
      * removed. Can be retrieved from the EC2 metadata server.
      */
-    signature?: pulumi.Input<string>;
+    signature?: pulumi.Input<string | undefined>;
 }

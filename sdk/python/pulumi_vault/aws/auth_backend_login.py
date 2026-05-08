@@ -19,17 +19,17 @@ __all__ = ['AuthBackendLoginArgs', 'AuthBackendLogin']
 @pulumi.input_type
 class AuthBackendLoginArgs:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_http_request_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_body: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_headers: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 nonce: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs7: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_http_request_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_body: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_headers: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 nonce: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs7: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendLogin resource.
 
@@ -87,7 +87,7 @@ class AuthBackendLoginArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the AWS auth backend. Defaults to
         'aws'.
@@ -95,12 +95,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="iamHttpRequestMethod")
-    def iam_http_request_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_http_request_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP method used in the signed IAM
         request.
@@ -108,12 +108,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "iam_http_request_method")
 
     @iam_http_request_method.setter
-    def iam_http_request_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_http_request_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_http_request_method", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRequestBody")
-    def iam_request_body(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_request_body(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded body of the signed
         request.
@@ -121,12 +121,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "iam_request_body")
 
     @iam_request_body.setter
-    def iam_request_body(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_request_body(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_request_body", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRequestHeaders")
-    def iam_request_headers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_request_headers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded, JSON serialized
         representation of the GetCallerIdentity HTTP request headers.
@@ -134,12 +134,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "iam_request_headers")
 
     @iam_request_headers.setter
-    def iam_request_headers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_request_headers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_request_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRequestUrl")
-    def iam_request_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_request_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded HTTP URL used in the signed
         request.
@@ -147,12 +147,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "iam_request_url")
 
     @iam_request_url.setter
-    def iam_request_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_request_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_request_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded EC2 instance identity document to
         authenticate with. Can be retrieved from the EC2 metadata server.
@@ -160,12 +160,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "identity")
 
     @identity.setter
-    def identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -175,12 +175,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def nonce(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nonce(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique nonce to be used for login requests. Can be
         set to a user-specified value, or will contain the server-generated value
@@ -190,12 +190,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "nonce")
 
     @nonce.setter
-    def nonce(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nonce(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nonce", value)
 
     @_builtins.property
     @pulumi.getter
-    def pkcs7(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pkcs7(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PKCS#7 signature of the identity document to
         authenticate with, with all newline characters removed. Can be retrieved from
@@ -204,12 +204,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "pkcs7")
 
     @pkcs7.setter
-    def pkcs7(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pkcs7(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pkcs7", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the AWS auth backend role to create tokens
         against.
@@ -217,12 +217,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter
-    def signature(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signature(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded SHA256 RSA signature of the
         instance identity document to authenticate with, with all newline characters
@@ -231,32 +231,32 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "signature")
 
     @signature.setter
-    def signature(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signature(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signature", value)
 
 
 @pulumi.input_type
 class _AuthBackendLoginState:
     def __init__(__self__, *,
-                 accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_http_request_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_body: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_headers: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 lease_duration: Optional[pulumi.Input[_builtins.int]] = None,
-                 lease_start_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 nonce: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs7: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature: Optional[pulumi.Input[_builtins.str]] = None):
+                 accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_http_request_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_body: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_headers: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+                 lease_start_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 nonce: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs7: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendLogin resources.
 
@@ -341,31 +341,31 @@ class _AuthBackendLoginState:
 
     @_builtins.property
     @pulumi.getter
-    def accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token's accessor.
         """
         return pulumi.get(self, "accessor")
 
     @accessor.setter
-    def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication type used to generate this token.
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the AWS auth backend. Defaults to
         'aws'.
@@ -373,24 +373,24 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="clientToken")
-    def client_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token returned by Vault.
         """
         return pulumi.get(self, "client_token")
 
     @client_token.setter
-    def client_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_token", value)
 
     @_builtins.property
     @pulumi.getter(name="iamHttpRequestMethod")
-    def iam_http_request_method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_http_request_method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The HTTP method used in the signed IAM
         request.
@@ -398,12 +398,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "iam_http_request_method")
 
     @iam_http_request_method.setter
-    def iam_http_request_method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_http_request_method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_http_request_method", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRequestBody")
-    def iam_request_body(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_request_body(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded body of the signed
         request.
@@ -411,12 +411,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "iam_request_body")
 
     @iam_request_body.setter
-    def iam_request_body(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_request_body(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_request_body", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRequestHeaders")
-    def iam_request_headers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_request_headers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded, JSON serialized
         representation of the GetCallerIdentity HTTP request headers.
@@ -424,12 +424,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "iam_request_headers")
 
     @iam_request_headers.setter
-    def iam_request_headers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_request_headers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_request_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRequestUrl")
-    def iam_request_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_request_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded HTTP URL used in the signed
         request.
@@ -437,12 +437,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "iam_request_url")
 
     @iam_request_url.setter
-    def iam_request_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_request_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_request_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def identity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded EC2 instance identity document to
         authenticate with. Can be retrieved from the EC2 metadata server.
@@ -450,12 +450,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "identity")
 
     @identity.setter
-    def identity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity", value)
 
     @_builtins.property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def lease_duration(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The duration in seconds the token will be valid, relative
         to the time in `lease_start_time`.
@@ -463,12 +463,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "lease_duration")
 
     @lease_duration.setter
-    def lease_duration(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def lease_duration(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "lease_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="leaseStartTime")
-    def lease_start_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def lease_start_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The approximate time at which the token was created,
         using the clock of the system where Terraform was running.
@@ -476,12 +476,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "lease_start_time")
 
     @lease_start_time.setter
-    def lease_start_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def lease_start_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "lease_start_time", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of information returned by the Vault server about the
         authentication used to generate this token.
@@ -489,12 +489,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -504,12 +504,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def nonce(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def nonce(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique nonce to be used for login requests. Can be
         set to a user-specified value, or will contain the server-generated value
@@ -519,12 +519,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "nonce")
 
     @nonce.setter
-    def nonce(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def nonce(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "nonce", value)
 
     @_builtins.property
     @pulumi.getter
-    def pkcs7(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pkcs7(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PKCS#7 signature of the identity document to
         authenticate with, with all newline characters removed. Can be retrieved from
@@ -533,36 +533,36 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "pkcs7")
 
     @pkcs7.setter
-    def pkcs7(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pkcs7(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pkcs7", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The Vault policies assigned to this token.
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter
-    def renewable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def renewable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true if the token can be extended through renewal.
         """
         return pulumi.get(self, "renewable")
 
     @renewable.setter
-    def renewable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def renewable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "renewable", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the AWS auth backend role to create tokens
         against.
@@ -570,12 +570,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter
-    def signature(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def signature(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base64-encoded SHA256 RSA signature of the
         instance identity document to authenticate with, with all newline characters
@@ -584,7 +584,7 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "signature")
 
     @signature.setter
-    def signature(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def signature(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "signature", value)
 
 
@@ -594,17 +594,17 @@ class AuthBackendLogin(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_http_request_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_body: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_headers: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 nonce: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs7: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_http_request_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_body: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_headers: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 nonce: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs7: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Logs into a Vault server using an AWS auth backend. Login can be
@@ -746,17 +746,17 @@ class AuthBackendLogin(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_http_request_method: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_body: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_headers: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_request_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 nonce: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs7: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_http_request_method: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_body: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_headers: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_request_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 nonce: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs7: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -797,25 +797,25 @@ class AuthBackendLogin(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            client_token: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_http_request_method: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_request_body: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_request_headers: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_request_url: Optional[pulumi.Input[_builtins.str]] = None,
-            identity: Optional[pulumi.Input[_builtins.str]] = None,
-            lease_duration: Optional[pulumi.Input[_builtins.int]] = None,
-            lease_start_time: Optional[pulumi.Input[_builtins.str]] = None,
-            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            nonce: Optional[pulumi.Input[_builtins.str]] = None,
-            pkcs7: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            signature: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendLogin':
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            client_token: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_http_request_method: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_request_body: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_request_headers: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_request_url: pulumi.Input[Optional[_builtins.str]] = None,
+            identity: pulumi.Input[Optional[_builtins.str]] = None,
+            lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+            lease_start_time: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            nonce: pulumi.Input[Optional[_builtins.str]] = None,
+            pkcs7: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            signature: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendLogin':
         """
         Get an existing AuthBackendLogin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

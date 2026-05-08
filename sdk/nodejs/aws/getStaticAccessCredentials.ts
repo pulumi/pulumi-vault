@@ -51,5 +51,5 @@ export function getStaticAccessCredentialsOutput(args: GetStaticAccessCredential
 export interface GetStaticAccessCredentialsOutputArgs {
     backend: pulumi.Input<string>;
     name: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

@@ -426,217 +426,217 @@ export interface AuthBackendState {
     /**
      * The accessor for this auth mount.
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Allows anonymous group searches.
      */
-    anonymousGroupSearch?: pulumi.Input<boolean>;
+    anonymousGroupSearch?: pulumi.Input<boolean | undefined>;
     /**
      * DN of object to bind when performing user search
      */
-    binddn?: pulumi.Input<string>;
+    binddn?: pulumi.Input<string | undefined>;
     /**
      * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      */
-    bindpass?: pulumi.Input<string>;
+    bindpass?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only bind password to use for LDAP authentication.
      */
-    bindpassWo?: pulumi.Input<string>;
+    bindpassWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for write-only bind password.
      * Required when using `bindpassWo`. For more information about write-only attributes, see
      * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
      */
-    bindpassWoVersion?: pulumi.Input<number>;
+    bindpassWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
      */
-    caseSensitiveNames?: pulumi.Input<boolean>;
+    caseSensitiveNames?: pulumi.Input<boolean | undefined>;
     /**
      * Trusted CA to validate TLS certificate
      */
-    certificate?: pulumi.Input<string>;
-    clientTlsCert?: pulumi.Input<string>;
-    clientTlsKey?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
+    clientTlsCert?: pulumi.Input<string | undefined>;
+    clientTlsKey?: pulumi.Input<string | undefined>;
     /**
      * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
      */
-    connectionTimeout?: pulumi.Input<number>;
+    connectionTimeout?: pulumi.Input<number | undefined>;
     /**
      * Prevents users from bypassing authentication when providing an empty password.
      */
-    denyNullBind?: pulumi.Input<boolean>;
+    denyNullBind?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
      */
-    dereferenceAliases?: pulumi.Input<string>;
+    dereferenceAliases?: pulumi.Input<string | undefined>;
     /**
      * Description for the LDAP auth backend mount
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Use anonymous bind to discover the bind DN of a user.
      */
-    discoverdn?: pulumi.Input<boolean>;
+    discoverdn?: pulumi.Input<boolean | undefined>;
     /**
      * Enables login using the sAMAccountName attribute.
      */
-    enableSamaccountnameLogin?: pulumi.Input<boolean>;
+    enableSamaccountnameLogin?: pulumi.Input<boolean | undefined>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
-    groupattr?: pulumi.Input<string>;
+    groupattr?: pulumi.Input<string | undefined>;
     /**
      * Base DN under which to perform group search
      */
-    groupdn?: pulumi.Input<string>;
+    groupdn?: pulumi.Input<string | undefined>;
     /**
      * Go template used to construct group membership query
      */
-    groupfilter?: pulumi.Input<string>;
+    groupfilter?: pulumi.Input<string | undefined>;
     /**
      * Control whether or TLS certificates must be validated
      */
-    insecureTls?: pulumi.Input<boolean>;
+    insecureTls?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Sets the max page size for LDAP lookups, by default it's set to -1.
      * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
      */
-    maxPageSize?: pulumi.Input<number>;
+    maxPageSize?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to mount the LDAP auth backend under
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The timeout(in sec) for requests to the LDAP server.
      */
-    requestTimeout?: pulumi.Input<number>;
+    requestTimeout?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Control use of TLS when conecting to LDAP
      */
-    starttls?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum acceptable version of TLS
      */
-    tlsMaxVersion?: pulumi.Input<string>;
+    tlsMaxVersion?: pulumi.Input<string | undefined>;
     /**
      * Minimum acceptable version of TLS
      */
-    tlsMinVersion?: pulumi.Input<string>;
+    tlsMinVersion?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies the type of tokens that should be returned by
      * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.ldap.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.ldap.AuthBackendTune | undefined>;
     /**
      * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
-    upndomain?: pulumi.Input<string>;
+    upndomain?: pulumi.Input<string | undefined>;
     /**
      * The URL of the LDAP server
      */
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
      */
-    useTokenGroups?: pulumi.Input<boolean>;
+    useTokenGroups?: pulumi.Input<boolean | undefined>;
     /**
      * Attribute on user object matching username passed in
      */
-    userattr?: pulumi.Input<string>;
+    userattr?: pulumi.Input<string | undefined>;
     /**
      * Base DN under which to perform user search
      */
-    userdn?: pulumi.Input<string>;
+    userdn?: pulumi.Input<string | undefined>;
     /**
      * LDAP user search filter
      */
-    userfilter?: pulumi.Input<string>;
+    userfilter?: pulumi.Input<string | undefined>;
     /**
      * Force the auth method to use the username passed by the user as the alias name.
      */
-    usernameAsAlias?: pulumi.Input<boolean>;
+    usernameAsAlias?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -647,188 +647,188 @@ export interface AuthBackendArgs {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Allows anonymous group searches.
      */
-    anonymousGroupSearch?: pulumi.Input<boolean>;
+    anonymousGroupSearch?: pulumi.Input<boolean | undefined>;
     /**
      * DN of object to bind when performing user search
      */
-    binddn?: pulumi.Input<string>;
+    binddn?: pulumi.Input<string | undefined>;
     /**
      * Password to use with `binddn` when performing user search. Conflicts with `bindpassWo`.
      */
-    bindpass?: pulumi.Input<string>;
+    bindpass?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only bind password to use for LDAP authentication.
      */
-    bindpassWo?: pulumi.Input<string>;
+    bindpassWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for write-only bind password.
      * Required when using `bindpassWo`. For more information about write-only attributes, see
      * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
      */
-    bindpassWoVersion?: pulumi.Input<number>;
+    bindpassWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Control case senstivity of objects fetched from LDAP, this is used for object matching in vault
      */
-    caseSensitiveNames?: pulumi.Input<boolean>;
+    caseSensitiveNames?: pulumi.Input<boolean | undefined>;
     /**
      * Trusted CA to validate TLS certificate
      */
-    certificate?: pulumi.Input<string>;
-    clientTlsCert?: pulumi.Input<string>;
-    clientTlsKey?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
+    clientTlsCert?: pulumi.Input<string | undefined>;
+    clientTlsKey?: pulumi.Input<string | undefined>;
     /**
      * Timeout in seconds when connecting to LDAP before attempting to connect to the next server in the URL provided in `url` (integer: 30)
      */
-    connectionTimeout?: pulumi.Input<number>;
+    connectionTimeout?: pulumi.Input<number | undefined>;
     /**
      * Prevents users from bypassing authentication when providing an empty password.
      */
-    denyNullBind?: pulumi.Input<boolean>;
+    denyNullBind?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies how aliases are dereferenced during LDAP searches. Valid values are 'never','searching','finding', and 'always'.
      */
-    dereferenceAliases?: pulumi.Input<string>;
+    dereferenceAliases?: pulumi.Input<string | undefined>;
     /**
      * Description for the LDAP auth backend mount
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Use anonymous bind to discover the bind DN of a user.
      */
-    discoverdn?: pulumi.Input<boolean>;
+    discoverdn?: pulumi.Input<boolean | undefined>;
     /**
      * Enables login using the sAMAccountName attribute.
      */
-    enableSamaccountnameLogin?: pulumi.Input<boolean>;
+    enableSamaccountnameLogin?: pulumi.Input<boolean | undefined>;
     /**
      * LDAP attribute to follow on objects returned by groupfilter
      */
-    groupattr?: pulumi.Input<string>;
+    groupattr?: pulumi.Input<string | undefined>;
     /**
      * Base DN under which to perform group search
      */
-    groupdn?: pulumi.Input<string>;
+    groupdn?: pulumi.Input<string | undefined>;
     /**
      * Go template used to construct group membership query
      */
-    groupfilter?: pulumi.Input<string>;
+    groupfilter?: pulumi.Input<string | undefined>;
     /**
      * Control whether or TLS certificates must be validated
      */
-    insecureTls?: pulumi.Input<boolean>;
+    insecureTls?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Sets the max page size for LDAP lookups, by default it's set to -1.
      * *Available only for Vault 1.11.11+, 1.12.7+, and 1.13.3+*.
      */
-    maxPageSize?: pulumi.Input<number>;
+    maxPageSize?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to mount the LDAP auth backend under
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The timeout(in sec) for requests to the LDAP server.
      */
-    requestTimeout?: pulumi.Input<number>;
+    requestTimeout?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Control use of TLS when conecting to LDAP
      */
-    starttls?: pulumi.Input<boolean>;
+    starttls?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum acceptable version of TLS
      */
-    tlsMaxVersion?: pulumi.Input<string>;
+    tlsMaxVersion?: pulumi.Input<string | undefined>;
     /**
      * Minimum acceptable version of TLS
      */
-    tlsMinVersion?: pulumi.Input<string>;
+    tlsMinVersion?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies the type of tokens that should be returned by
      * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.ldap.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.ldap.AuthBackendTune | undefined>;
     /**
      * The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
      */
-    upndomain?: pulumi.Input<string>;
+    upndomain?: pulumi.Input<string | undefined>;
     /**
      * The URL of the LDAP server
      */
@@ -836,21 +836,21 @@ export interface AuthBackendArgs {
     /**
      * Use the Active Directory tokenGroups constructed attribute of the user to find the group memberships
      */
-    useTokenGroups?: pulumi.Input<boolean>;
+    useTokenGroups?: pulumi.Input<boolean | undefined>;
     /**
      * Attribute on user object matching username passed in
      */
-    userattr?: pulumi.Input<string>;
+    userattr?: pulumi.Input<string | undefined>;
     /**
      * Base DN under which to perform user search
      */
-    userdn?: pulumi.Input<string>;
+    userdn?: pulumi.Input<string | undefined>;
     /**
      * LDAP user search filter
      */
-    userfilter?: pulumi.Input<string>;
+    userfilter?: pulumi.Input<string | undefined>;
     /**
      * Force the auth method to use the username passed by the user as the alias name.
      */
-    usernameAsAlias?: pulumi.Input<boolean>;
+    usernameAsAlias?: pulumi.Input<boolean | undefined>;
 }

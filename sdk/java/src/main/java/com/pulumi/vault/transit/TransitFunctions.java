@@ -41,8 +41,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetCmacArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -83,8 +83,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetCmacArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -125,8 +125,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetCmacArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -167,8 +167,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetCmacArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -209,8 +209,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetCmacArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -251,8 +251,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetDecryptArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -293,8 +293,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetDecryptArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -335,8 +335,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetDecryptArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -377,8 +377,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetDecryptArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -419,8 +419,8 @@ public final class TransitFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.transit.TransitFunctions;
      * import com.pulumi.vault.transit.inputs.GetDecryptArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

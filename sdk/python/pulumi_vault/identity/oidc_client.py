@@ -19,14 +19,14 @@ __all__ = ['OidcClientArgs', 'OidcClient']
 @pulumi.input_type
 class OidcClientArgs:
     def __init__(__self__, *,
-                 access_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 assignments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 client_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 access_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 assignments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 client_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OidcClient resource.
 
@@ -67,31 +67,31 @@ class OidcClientArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessTokenTtl")
-    def access_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def access_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The time-to-live for access tokens obtained by the client.
         """
         return pulumi.get(self, "access_token_ttl")
 
     @access_token_ttl.setter
-    def access_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def access_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "access_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def assignments(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of assignment resources associated with the client.
         """
         return pulumi.get(self, "assignments")
 
     @assignments.setter
-    def assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def assignments(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "assignments", value)
 
     @_builtins.property
     @pulumi.getter(name="clientType")
-    def client_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client type based on its ability to maintain confidentiality of credentials.
         The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
@@ -99,12 +99,12 @@ class OidcClientArgs:
         return pulumi.get(self, "client_type")
 
     @client_type.setter
-    def client_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_type", value)
 
     @_builtins.property
     @pulumi.getter(name="idTokenTtl")
-    def id_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The time-to-live for ID tokens obtained by the client. 
         The value should be less than the `verification_ttl` on the key.
@@ -112,12 +112,12 @@ class OidcClientArgs:
         return pulumi.get(self, "id_token_ttl")
 
     @id_token_ttl.setter
-    def id_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A reference to a named key resource in Vault.
         This cannot be modified after creation. If not provided, the `default`
@@ -126,24 +126,24 @@ class OidcClientArgs:
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the client.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -153,12 +153,12 @@ class OidcClientArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="redirectUris")
-    def redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Redirection URI values used by the client. 
         One of these values must exactly match the `redirect_uri` parameter value
@@ -167,23 +167,23 @@ class OidcClientArgs:
         return pulumi.get(self, "redirect_uris")
 
     @redirect_uris.setter
-    def redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "redirect_uris", value)
 
 
 @pulumi.input_type
 class _OidcClientState:
     def __init__(__self__, *,
-                 access_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 assignments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 access_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 assignments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering OidcClient resources.
 
@@ -231,43 +231,43 @@ class _OidcClientState:
 
     @_builtins.property
     @pulumi.getter(name="accessTokenTtl")
-    def access_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def access_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The time-to-live for access tokens obtained by the client.
         """
         return pulumi.get(self, "access_token_ttl")
 
     @access_token_ttl.setter
-    def access_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def access_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "access_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def assignments(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of assignment resources associated with the client.
         """
         return pulumi.get(self, "assignments")
 
     @assignments.setter
-    def assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def assignments(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "assignments", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID returned by Vault.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client Secret Key returned by Vault.
         For public OpenID Clients `client_secret` is set to an empty string `""`
@@ -275,12 +275,12 @@ class _OidcClientState:
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientType")
-    def client_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client type based on its ability to maintain confidentiality of credentials.
         The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
@@ -288,12 +288,12 @@ class _OidcClientState:
         return pulumi.get(self, "client_type")
 
     @client_type.setter
-    def client_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_type", value)
 
     @_builtins.property
     @pulumi.getter(name="idTokenTtl")
-    def id_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The time-to-live for ID tokens obtained by the client. 
         The value should be less than the `verification_ttl` on the key.
@@ -301,12 +301,12 @@ class _OidcClientState:
         return pulumi.get(self, "id_token_ttl")
 
     @id_token_ttl.setter
-    def id_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A reference to a named key resource in Vault.
         This cannot be modified after creation. If not provided, the `default`
@@ -315,24 +315,24 @@ class _OidcClientState:
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the client.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -342,12 +342,12 @@ class _OidcClientState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="redirectUris")
-    def redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Redirection URI values used by the client. 
         One of these values must exactly match the `redirect_uri` parameter value
@@ -356,7 +356,7 @@ class _OidcClientState:
         return pulumi.get(self, "redirect_uris")
 
     @redirect_uris.setter
-    def redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "redirect_uris", value)
 
 
@@ -366,14 +366,14 @@ class OidcClient(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 assignments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 client_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 access_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 assignments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 client_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Manages OIDC Clients in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)
@@ -486,14 +486,14 @@ class OidcClient(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 assignments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 client_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 access_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 assignments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 client_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -525,16 +525,16 @@ class OidcClient(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            assignments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            client_type: Optional[pulumi.Input[_builtins.str]] = None,
-            id_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            key: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'OidcClient':
+            access_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            assignments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_type: pulumi.Input[Optional[_builtins.str]] = None,
+            id_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'OidcClient':
         """
         Get an existing OidcClient resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

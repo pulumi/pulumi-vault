@@ -20,34 +20,34 @@ __all__ = ['AuthBackendRoleArgs', 'AuthBackendRole']
 class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ami_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ec2_instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_instance_profile_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_principal_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_vpc_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inferred_aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 inferred_entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 resolve_aws_unique_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_tag: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_account_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ami_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ec2_instance_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_instance_profile_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_principal_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_vpc_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inferred_aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 inferred_entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 resolve_aws_unique_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_tag: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
 
@@ -208,7 +208,7 @@ class AuthBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -216,12 +216,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowInstanceMigration")
-    def allow_instance_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_instance_migration(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, allows migration of
         the underlying instance where the client resides.
@@ -229,12 +229,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "allow_instance_migration")
 
     @allow_instance_migration.setter
-    def allow_instance_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_instance_migration(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_instance_migration", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The auth type permitted for this role. Valid choices
         are `ec2` and `iam`. Defaults to `iam`.
@@ -242,24 +242,24 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted aws auth backend.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAccountIds")
-    def bound_account_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_account_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2
         instances that can perform the login operation that they should be using the
@@ -269,12 +269,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_account_ids")
 
     @bound_account_ids.setter
-    def bound_account_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_account_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_account_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAmiIds")
-    def bound_ami_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_ami_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2 instances
         that can perform the login operation that they should be using the AMI ID
@@ -284,24 +284,24 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_ami_ids")
 
     @bound_ami_ids.setter
-    def bound_ami_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_ami_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_ami_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundEc2InstanceIds")
-    def bound_ec2_instance_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_ec2_instance_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Only EC2 instances that match this instance ID will be permitted to log in.
         """
         return pulumi.get(self, "bound_ec2_instance_ids")
 
     @bound_ec2_instance_ids.setter
-    def bound_ec2_instance_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_ec2_instance_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_ec2_instance_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundIamInstanceProfileArns")
-    def bound_iam_instance_profile_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_iam_instance_profile_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on
         the EC2 instances that can perform the login operation that they must be
@@ -313,12 +313,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_iam_instance_profile_arns")
 
     @bound_iam_instance_profile_arns.setter
-    def bound_iam_instance_profile_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_iam_instance_profile_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_iam_instance_profile_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="boundIamPrincipalArns")
-    def bound_iam_principal_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_iam_principal_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines the IAM principal that
         must be authenticated when `auth_type` is set to `iam`. Wildcards are
@@ -327,12 +327,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_iam_principal_arns")
 
     @bound_iam_principal_arns.setter
-    def bound_iam_principal_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_iam_principal_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_iam_principal_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="boundIamRoleArns")
-    def bound_iam_role_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_iam_role_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2
         instances that can perform the login operation that they must match the IAM
@@ -342,12 +342,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_iam_role_arns")
 
     @bound_iam_role_arns.setter
-    def bound_iam_role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_iam_role_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_iam_role_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="boundRegions")
-    def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2 instances
         that can perform the login operation that the region in their identity
@@ -358,12 +358,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_regions")
 
     @bound_regions.setter
-    def bound_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_regions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="boundSubnetIds")
-    def bound_subnet_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_subnet_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2
         instances that can perform the login operation that they be associated with
@@ -374,12 +374,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_subnet_ids")
 
     @bound_subnet_ids.setter
-    def bound_subnet_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_subnet_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_subnet_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundVpcIds")
-    def bound_vpc_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_vpc_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2 instances
         that can perform the login operation that they be associated with the VPC ID
@@ -390,12 +390,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_vpc_ids")
 
     @bound_vpc_ids.setter
-    def bound_vpc_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_vpc_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_vpc_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="disallowReauthentication")
-    def disallow_reauthentication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disallow_reauthentication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         IF set to `true`, only allows a
         single token to be granted per instance ID. This can only be set when
@@ -404,12 +404,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "disallow_reauthentication")
 
     @disallow_reauthentication.setter
-    def disallow_reauthentication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disallow_reauthentication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disallow_reauthentication", value)
 
     @_builtins.property
     @pulumi.getter(name="inferredAwsRegion")
-    def inferred_aws_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def inferred_aws_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When `inferred_entity_type` is set, this
         is the region to search for the inferred entities. Required if
@@ -419,12 +419,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "inferred_aws_region")
 
     @inferred_aws_region.setter
-    def inferred_aws_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def inferred_aws_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "inferred_aws_region", value)
 
     @_builtins.property
     @pulumi.getter(name="inferredEntityType")
-    def inferred_entity_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def inferred_entity_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, instructs Vault to turn on
         inferencing. The only valid value is `ec2_instance`, which instructs Vault to
@@ -434,12 +434,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "inferred_entity_type")
 
     @inferred_entity_type.setter
-    def inferred_entity_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def inferred_entity_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "inferred_entity_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -449,12 +449,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="resolveAwsUniqueIds")
-    def resolve_aws_unique_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def resolve_aws_unique_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Only valid when
         `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
@@ -471,12 +471,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "resolve_aws_unique_ids")
 
     @resolve_aws_unique_ids.setter
-    def resolve_aws_unique_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def resolve_aws_unique_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "resolve_aws_unique_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="roleTag")
-    def role_tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_tag(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, enable role tags for this role. The value set
         for this field should be the key of the tag on the EC2 instance. `auth_type`
@@ -486,151 +486,151 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "role_tag")
 
     @role_tag.setter
-    def role_tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_tag(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_tag", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ami_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ec2_instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_instance_profile_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_principal_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_vpc_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inferred_aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 inferred_entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 resolve_aws_unique_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_tag: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_account_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ami_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ec2_instance_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_instance_profile_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_principal_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_vpc_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inferred_aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 inferred_entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 resolve_aws_unique_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_tag: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
 
@@ -783,7 +783,7 @@ class _AuthBackendRoleState:
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -791,12 +791,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowInstanceMigration")
-    def allow_instance_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_instance_migration(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, allows migration of
         the underlying instance where the client resides.
@@ -804,12 +804,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "allow_instance_migration")
 
     @allow_instance_migration.setter
-    def allow_instance_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_instance_migration(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_instance_migration", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The auth type permitted for this role. Valid choices
         are `ec2` and `iam`. Defaults to `iam`.
@@ -817,24 +817,24 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted aws auth backend.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAccountIds")
-    def bound_account_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_account_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2
         instances that can perform the login operation that they should be using the
@@ -844,12 +844,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_account_ids")
 
     @bound_account_ids.setter
-    def bound_account_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_account_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_account_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAmiIds")
-    def bound_ami_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_ami_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2 instances
         that can perform the login operation that they should be using the AMI ID
@@ -859,24 +859,24 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_ami_ids")
 
     @bound_ami_ids.setter
-    def bound_ami_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_ami_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_ami_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundEc2InstanceIds")
-    def bound_ec2_instance_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_ec2_instance_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Only EC2 instances that match this instance ID will be permitted to log in.
         """
         return pulumi.get(self, "bound_ec2_instance_ids")
 
     @bound_ec2_instance_ids.setter
-    def bound_ec2_instance_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_ec2_instance_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_ec2_instance_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundIamInstanceProfileArns")
-    def bound_iam_instance_profile_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_iam_instance_profile_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on
         the EC2 instances that can perform the login operation that they must be
@@ -888,12 +888,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_iam_instance_profile_arns")
 
     @bound_iam_instance_profile_arns.setter
-    def bound_iam_instance_profile_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_iam_instance_profile_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_iam_instance_profile_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="boundIamPrincipalArns")
-    def bound_iam_principal_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_iam_principal_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines the IAM principal that
         must be authenticated when `auth_type` is set to `iam`. Wildcards are
@@ -902,12 +902,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_iam_principal_arns")
 
     @bound_iam_principal_arns.setter
-    def bound_iam_principal_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_iam_principal_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_iam_principal_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="boundIamRoleArns")
-    def bound_iam_role_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_iam_role_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2
         instances that can perform the login operation that they must match the IAM
@@ -917,12 +917,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_iam_role_arns")
 
     @bound_iam_role_arns.setter
-    def bound_iam_role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_iam_role_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_iam_role_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="boundRegions")
-    def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2 instances
         that can perform the login operation that the region in their identity
@@ -933,12 +933,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_regions")
 
     @bound_regions.setter
-    def bound_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_regions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="boundSubnetIds")
-    def bound_subnet_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_subnet_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2
         instances that can perform the login operation that they be associated with
@@ -949,12 +949,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_subnet_ids")
 
     @bound_subnet_ids.setter
-    def bound_subnet_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_subnet_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_subnet_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="boundVpcIds")
-    def bound_vpc_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_vpc_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, defines a constraint on the EC2 instances
         that can perform the login operation that they be associated with the VPC ID
@@ -965,12 +965,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_vpc_ids")
 
     @bound_vpc_ids.setter
-    def bound_vpc_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_vpc_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_vpc_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="disallowReauthentication")
-    def disallow_reauthentication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disallow_reauthentication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         IF set to `true`, only allows a
         single token to be granted per instance ID. This can only be set when
@@ -979,12 +979,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "disallow_reauthentication")
 
     @disallow_reauthentication.setter
-    def disallow_reauthentication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disallow_reauthentication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disallow_reauthentication", value)
 
     @_builtins.property
     @pulumi.getter(name="inferredAwsRegion")
-    def inferred_aws_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def inferred_aws_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When `inferred_entity_type` is set, this
         is the region to search for the inferred entities. Required if
@@ -994,12 +994,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "inferred_aws_region")
 
     @inferred_aws_region.setter
-    def inferred_aws_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def inferred_aws_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "inferred_aws_region", value)
 
     @_builtins.property
     @pulumi.getter(name="inferredEntityType")
-    def inferred_entity_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def inferred_entity_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, instructs Vault to turn on
         inferencing. The only valid value is `ec2_instance`, which instructs Vault to
@@ -1009,12 +1009,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "inferred_entity_type")
 
     @inferred_entity_type.setter
-    def inferred_entity_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def inferred_entity_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "inferred_entity_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -1024,12 +1024,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="resolveAwsUniqueIds")
-    def resolve_aws_unique_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def resolve_aws_unique_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Only valid when
         `auth_type` is `iam`. If set to `true`, the `bound_iam_principal_arns` are
@@ -1046,36 +1046,36 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "resolve_aws_unique_ids")
 
     @resolve_aws_unique_ids.setter
-    def resolve_aws_unique_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def resolve_aws_unique_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "resolve_aws_unique_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the role.
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Vault generated role ID.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleTag")
-    def role_tag(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_tag(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, enable role tags for this role. The value set
         for this field should be the key of the tag on the EC2 instance. `auth_type`
@@ -1085,115 +1085,115 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "role_tag")
 
     @role_tag.setter
-    def role_tag(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_tag(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_tag", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 
@@ -1203,35 +1203,35 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ami_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ec2_instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_instance_profile_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_principal_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_vpc_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inferred_aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 inferred_entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 resolve_aws_unique_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_tag: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_account_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ami_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ec2_instance_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_instance_profile_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_principal_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_vpc_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inferred_aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 inferred_entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 resolve_aws_unique_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_tag: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an AWS auth backend role in a Vault server. Roles constrain the
@@ -1429,35 +1429,35 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ami_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_ec2_instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_instance_profile_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_principal_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_iam_role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_vpc_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 inferred_aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 inferred_entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 resolve_aws_unique_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_tag: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_account_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ami_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_ec2_instance_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_instance_profile_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_principal_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_iam_role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_vpc_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 inferred_aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 inferred_entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 resolve_aws_unique_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_tag: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1509,36 +1509,36 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-            auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            bound_account_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_ami_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_ec2_instance_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_iam_instance_profile_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_iam_principal_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_iam_role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_vpc_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-            inferred_aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-            inferred_entity_type: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            resolve_aws_unique_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            role_id: Optional[pulumi.Input[_builtins.str]] = None,
-            role_tag: Optional[pulumi.Input[_builtins.str]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-            token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-            token_period: Optional[pulumi.Input[_builtins.int]] = None,
-            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendRole':
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_account_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_ami_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_ec2_instance_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_iam_instance_profile_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_iam_principal_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_iam_role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_vpc_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+            inferred_aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+            inferred_entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            resolve_aws_unique_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_tag: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendRole':
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

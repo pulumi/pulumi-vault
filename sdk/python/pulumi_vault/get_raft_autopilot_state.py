@@ -234,7 +234,7 @@ def get_raft_autopilot_state(namespace: Optional[_builtins.str] = None,
         upgrade_info=pulumi.get(__ret__, 'upgrade_info'),
         upgrade_info_json=pulumi.get(__ret__, 'upgrade_info_json'),
         voters=pulumi.get(__ret__, 'voters'))
-def get_raft_autopilot_state_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_raft_autopilot_state_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRaftAutopilotStateResult]:
     """
     Displays the state of the raft cluster under integrated storage as seen by

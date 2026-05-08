@@ -26,22 +26,22 @@ __all__ = [
 ]
 
 class AuthBackendCustomEndpointArgsDict(TypedDict):
-    api: NotRequired[pulumi.Input[_builtins.str]]
+    api: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
     """
-    compute: NotRequired[pulumi.Input[_builtins.str]]
+    compute: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
 
     The endpoint value provided for a given key has the form of `scheme://host:port`.
     The `scheme://` and `:port` portions of the endpoint value are optional.
     """
-    crm: NotRequired[pulumi.Input[_builtins.str]]
+    crm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
     """
-    iam: NotRequired[pulumi.Input[_builtins.str]]
+    iam: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
     """
@@ -49,10 +49,10 @@ class AuthBackendCustomEndpointArgsDict(TypedDict):
 @pulumi.input_type
 class AuthBackendCustomEndpointArgs:
     def __init__(__self__, *,
-                 api: Optional[pulumi.Input[_builtins.str]] = None,
-                 compute: Optional[pulumi.Input[_builtins.str]] = None,
-                 crm: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam: Optional[pulumi.Input[_builtins.str]] = None):
+                 api: pulumi.Input[Optional[_builtins.str]] = None,
+                 compute: pulumi.Input[Optional[_builtins.str]] = None,
+                 crm: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] api: Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
         :param pulumi.Input[_builtins.str] compute: Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
@@ -73,19 +73,19 @@ class AuthBackendCustomEndpointArgs:
 
     @_builtins.property
     @pulumi.getter
-    def api(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
         """
         return pulumi.get(self, "api")
 
     @api.setter
-    def api(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api", value)
 
     @_builtins.property
     @pulumi.getter
-    def compute(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compute(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
 
@@ -95,73 +95,73 @@ class AuthBackendCustomEndpointArgs:
         return pulumi.get(self, "compute")
 
     @compute.setter
-    def compute(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compute(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compute", value)
 
     @_builtins.property
     @pulumi.getter
-    def crm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def crm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
         """
         return pulumi.get(self, "crm")
 
     @crm.setter
-    def crm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def crm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "crm", value)
 
     @_builtins.property
     @pulumi.getter
-    def iam(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
         """
         return pulumi.get(self, "iam")
 
     @iam.setter
-    def iam(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam", value)
 
 
 class AuthBackendTuneArgsDict(TypedDict):
-    allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_response_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of headers to whitelist and allowing
     a plugin to include them in the response.
     """
-    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies the list of keys that will
     not be HMAC'd by audit devices in the request data object.
     """
-    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies the list of keys that will
     not be HMAC'd by audit devices in the response data object.
     """
-    default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    default_lease_ttl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the default time-to-live.
     If set, this overrides the global default.
     Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
     """
-    listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
+    listing_visibility: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies whether to show this mount in
     the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
     """
-    max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    max_lease_ttl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the maximum time-to-live.
     If set, this overrides the global default.
     Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
     """
-    passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    passthrough_request_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of headers to whitelist and
     pass from the request to the backend.
     """
-    token_type: NotRequired[pulumi.Input[_builtins.str]]
+    token_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the type of tokens that should be returned by
     the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -173,14 +173,14 @@ class AuthBackendTuneArgsDict(TypedDict):
 @pulumi.input_type
 class AuthBackendTuneArgs:
     def __init__(__self__, *,
-                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_lease_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_lease_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_lease_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_lease_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to whitelist and allowing
                a plugin to include them in the response.
@@ -223,7 +223,7 @@ class AuthBackendTuneArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_response_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to whitelist and allowing
         a plugin to include them in the response.
@@ -231,12 +231,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "allowed_response_headers")
 
     @allowed_response_headers.setter
-    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_response_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_response_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_request_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the request data object.
@@ -244,12 +244,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_request_keys")
 
     @audit_non_hmac_request_keys.setter
-    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_request_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_request_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_response_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the response data object.
@@ -257,12 +257,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @audit_non_hmac_response_keys.setter
-    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_response_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtl")
-    def default_lease_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_lease_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default time-to-live.
         If set, this overrides the global default.
@@ -271,12 +271,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "default_lease_ttl")
 
     @default_lease_ttl.setter
-    def default_lease_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_lease_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_lease_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="listingVisibility")
-    def listing_visibility(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def listing_visibility(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies whether to show this mount in
         the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
@@ -284,12 +284,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "listing_visibility")
 
     @listing_visibility.setter
-    def listing_visibility(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def listing_visibility(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "listing_visibility", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLeaseTtl")
-    def max_lease_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_lease_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the maximum time-to-live.
         If set, this overrides the global default.
@@ -298,12 +298,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "max_lease_ttl")
 
     @max_lease_ttl.setter
-    def max_lease_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_lease_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_lease_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def passthrough_request_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to whitelist and
         pass from the request to the backend.
@@ -311,12 +311,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "passthrough_request_headers")
 
     @passthrough_request_headers.setter
-    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def passthrough_request_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "passthrough_request_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of tokens that should be returned by
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -327,7 +327,7 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 

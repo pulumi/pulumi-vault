@@ -19,21 +19,21 @@ __all__ = ['TokenArgs', 'Token']
 @pulumi.input_type
 class TokenArgs:
     def __init__(__self__, *,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 no_parent: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 period: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 renew_increment: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_min_lease: Optional[pulumi.Input[_builtins.int]] = None,
-                 renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 no_parent: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 period: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 renew_increment: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_min_lease: pulumi.Input[Optional[_builtins.int]] = None,
+                 renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Token resource.
 
@@ -89,43 +89,43 @@ class TokenArgs:
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String containing the token display name
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter(name="explicitMaxTtl")
-    def explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "explicit_max_ttl")
 
     @explicit_max_ttl.setter
-    def explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Metadata to be set on this token
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -135,165 +135,165 @@ class TokenArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="noDefaultPolicy")
-    def no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to not attach the default policy to this token
         """
         return pulumi.get(self, "no_default_policy")
 
     @no_default_policy.setter
-    def no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="noParent")
-    def no_parent(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_parent(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to create a token without parent
         """
         return pulumi.get(self, "no_parent")
 
     @no_parent.setter
-    def no_parent(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_parent(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_parent", value)
 
     @_builtins.property
     @pulumi.getter(name="numUses")
-    def num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of allowed uses of this token
         """
         return pulumi.get(self, "num_uses")
 
     @num_uses.setter
-    def num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_uses", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of policies to attach to this token
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter(name="renewIncrement")
-    def renew_increment(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def renew_increment(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The renew increment. This is specified in seconds
         """
         return pulumi.get(self, "renew_increment")
 
     @renew_increment.setter
-    def renew_increment(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def renew_increment(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "renew_increment", value)
 
     @_builtins.property
     @pulumi.getter(name="renewMinLease")
-    def renew_min_lease(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def renew_min_lease(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimal lease to renew this token
         """
         return pulumi.get(self, "renew_min_lease")
 
     @renew_min_lease.setter
-    def renew_min_lease(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def renew_min_lease(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "renew_min_lease", value)
 
     @_builtins.property
     @pulumi.getter
-    def renewable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def renewable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to allow to renew this token
         """
         return pulumi.get(self, "renewable")
 
     @renewable.setter
-    def renewable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def renewable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "renewable", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token role name
         """
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappingTtl")
-    def wrapping_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapping_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TTL period of the wrapped token.
         """
         return pulumi.get(self, "wrapping_ttl")
 
     @wrapping_ttl.setter
-    def wrapping_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapping_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapping_ttl", value)
 
 
 @pulumi.input_type
 class _TokenState:
     def __init__(__self__, *,
-                 client_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 lease_duration: Optional[pulumi.Input[_builtins.int]] = None,
-                 lease_started: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 no_parent: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 period: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 renew_increment: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_min_lease: Optional[pulumi.Input[_builtins.int]] = None,
-                 renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapped_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapping_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+                 lease_started: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 no_parent: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 period: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 renew_increment: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_min_lease: pulumi.Input[Optional[_builtins.int]] = None,
+                 renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapped_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapping_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Token resources.
 
@@ -364,79 +364,79 @@ class _TokenState:
 
     @_builtins.property
     @pulumi.getter(name="clientToken")
-    def client_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String containing the client token if stored in present file
         """
         return pulumi.get(self, "client_token")
 
     @client_token.setter
-    def client_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_token", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String containing the token display name
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter(name="explicitMaxTtl")
-    def explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "explicit_max_ttl")
 
     @explicit_max_ttl.setter
-    def explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def lease_duration(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         String containing the token lease duration if present in state file
         """
         return pulumi.get(self, "lease_duration")
 
     @lease_duration.setter
-    def lease_duration(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def lease_duration(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "lease_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="leaseStarted")
-    def lease_started(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def lease_started(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String containing the token lease started time if present in state file
         """
         return pulumi.get(self, "lease_started")
 
     @lease_started.setter
-    def lease_started(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def lease_started(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "lease_started", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Metadata to be set on this token
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -446,163 +446,163 @@ class _TokenState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="noDefaultPolicy")
-    def no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to not attach the default policy to this token
         """
         return pulumi.get(self, "no_default_policy")
 
     @no_default_policy.setter
-    def no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="noParent")
-    def no_parent(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_parent(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to create a token without parent
         """
         return pulumi.get(self, "no_parent")
 
     @no_parent.setter
-    def no_parent(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_parent(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_parent", value)
 
     @_builtins.property
     @pulumi.getter(name="numUses")
-    def num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of allowed uses of this token
         """
         return pulumi.get(self, "num_uses")
 
     @num_uses.setter
-    def num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_uses", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of policies to attach to this token
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter(name="renewIncrement")
-    def renew_increment(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def renew_increment(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The renew increment. This is specified in seconds
         """
         return pulumi.get(self, "renew_increment")
 
     @renew_increment.setter
-    def renew_increment(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def renew_increment(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "renew_increment", value)
 
     @_builtins.property
     @pulumi.getter(name="renewMinLease")
-    def renew_min_lease(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def renew_min_lease(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimal lease to renew this token
         """
         return pulumi.get(self, "renew_min_lease")
 
     @renew_min_lease.setter
-    def renew_min_lease(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def renew_min_lease(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "renew_min_lease", value)
 
     @_builtins.property
     @pulumi.getter
-    def renewable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def renewable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to allow to renew this token
         """
         return pulumi.get(self, "renewable")
 
     @renewable.setter
-    def renewable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def renewable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "renewable", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token role name
         """
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappedToken")
-    def wrapped_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapped_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client wrapped token.
         """
         return pulumi.get(self, "wrapped_token")
 
     @wrapped_token.setter
-    def wrapped_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapped_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapped_token", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappingAccessor")
-    def wrapping_accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapping_accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client wrapping accessor.
         """
         return pulumi.get(self, "wrapping_accessor")
 
     @wrapping_accessor.setter
-    def wrapping_accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapping_accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapping_accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappingTtl")
-    def wrapping_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapping_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TTL period of the wrapped token.
         """
         return pulumi.get(self, "wrapping_ttl")
 
     @wrapping_ttl.setter
-    def wrapping_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapping_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapping_ttl", value)
 
 
@@ -612,21 +612,21 @@ class Token(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 no_parent: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 period: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 renew_increment: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_min_lease: Optional[pulumi.Input[_builtins.int]] = None,
-                 renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 no_parent: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 period: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 renew_increment: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_min_lease: pulumi.Input[Optional[_builtins.int]] = None,
+                 renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to generate a vault token with its options. The token renewing is supported through optional
@@ -746,21 +746,21 @@ class Token(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 no_parent: Optional[pulumi.Input[_builtins.bool]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 period: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 renew_increment: Optional[pulumi.Input[_builtins.int]] = None,
-                 renew_min_lease: Optional[pulumi.Input[_builtins.int]] = None,
-                 renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 no_parent: pulumi.Input[Optional[_builtins.bool]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 period: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 renew_increment: pulumi.Input[Optional[_builtins.int]] = None,
+                 renew_min_lease: pulumi.Input[Optional[_builtins.int]] = None,
+                 renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -802,26 +802,26 @@ class Token(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_token: Optional[pulumi.Input[_builtins.str]] = None,
-            display_name: Optional[pulumi.Input[_builtins.str]] = None,
-            explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            lease_duration: Optional[pulumi.Input[_builtins.int]] = None,
-            lease_started: Optional[pulumi.Input[_builtins.str]] = None,
-            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-            no_parent: Optional[pulumi.Input[_builtins.bool]] = None,
-            num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-            period: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            renew_increment: Optional[pulumi.Input[_builtins.int]] = None,
-            renew_min_lease: Optional[pulumi.Input[_builtins.int]] = None,
-            renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-            role_name: Optional[pulumi.Input[_builtins.str]] = None,
-            ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            wrapped_token: Optional[pulumi.Input[_builtins.str]] = None,
-            wrapping_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None) -> 'Token':
+            client_token: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+            lease_started: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            no_parent: pulumi.Input[Optional[_builtins.bool]] = None,
+            num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            period: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            renew_increment: pulumi.Input[Optional[_builtins.int]] = None,
+            renew_min_lease: pulumi.Input[Optional[_builtins.int]] = None,
+            renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapped_token: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None) -> 'Token':
         """
         Get an existing Token resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

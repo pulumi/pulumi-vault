@@ -50,8 +50,8 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
      * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -136,8 +136,8 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
      * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -222,8 +222,8 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
      * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -308,8 +308,8 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
      * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -394,8 +394,8 @@ public final class AwsFunctions {
      * import com.pulumi.vault.aws.SecretBackendRoleArgs;
      * import com.pulumi.vault.aws.AwsFunctions;
      * import com.pulumi.vault.aws.inputs.GetAccessCredentialsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

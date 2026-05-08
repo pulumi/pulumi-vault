@@ -128,15 +128,15 @@ export interface PluginPinnedVersionState {
     /**
      * Name of the plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Type of plugin; one of "auth", "secret", or "database".
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Semantic version of the plugin to pin.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -146,7 +146,7 @@ export interface PluginPinnedVersionArgs {
     /**
      * Name of the plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Type of plugin; one of "auth", "secret", or "database".
      */

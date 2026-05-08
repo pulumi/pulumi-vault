@@ -20,24 +20,24 @@ __all__ = ['SecretBackendKeyArgs', 'SecretBackendKey']
 class SecretBackendKeyArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 context: Optional[pulumi.Input[_builtins.str]] = None,
-                 convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 derived: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exportable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
-                 hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameter_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_plaintext_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rotate_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 context: pulumi.Input[Optional[_builtins.str]] = None,
+                 convergent_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 derived: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exportable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hybrid_key_type_ec: pulumi.Input[Optional[_builtins.str]] = None,
+                 hybrid_key_type_pqc: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_decryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_encryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendKey resource.
 
@@ -126,7 +126,7 @@ class SecretBackendKeyArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowPlaintextBackup")
-    def allow_plaintext_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_plaintext_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
         * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
@@ -134,12 +134,12 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "allow_plaintext_backup")
 
     @allow_plaintext_backup.setter
-    def allow_plaintext_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_plaintext_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_plaintext_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="autoRotatePeriod")
-    def auto_rotate_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def auto_rotate_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Amount of seconds the key should live before being automatically rotated.
         A value of 0 disables automatic rotation for the key.
@@ -147,72 +147,72 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "auto_rotate_period")
 
     @auto_rotate_period.setter
-    def auto_rotate_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def auto_rotate_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "auto_rotate_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def context(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def context(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         """
         return pulumi.get(self, "context")
 
     @context.setter
-    def context(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def context(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "context", value)
 
     @_builtins.property
     @pulumi.getter(name="convergentEncryption")
-    def convergent_encryption(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def convergent_encryption(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         """
         return pulumi.get(self, "convergent_encryption")
 
     @convergent_encryption.setter
-    def convergent_encryption(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def convergent_encryption(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "convergent_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="deletionAllowed")
-    def deletion_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deletion_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         """
         return pulumi.get(self, "deletion_allowed")
 
     @deletion_allowed.setter
-    def deletion_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deletion_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deletion_allowed", value)
 
     @_builtins.property
     @pulumi.getter
-    def derived(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def derived(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         """
         return pulumi.get(self, "derived")
 
     @derived.setter
-    def derived(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def derived(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "derived", value)
 
     @_builtins.property
     @pulumi.getter
-    def exportable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exportable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         """
         return pulumi.get(self, "exportable")
 
     @exportable.setter
-    def exportable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exportable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exportable", value)
 
     @_builtins.property
     @pulumi.getter(name="hybridKeyTypeEc")
-    def hybrid_key_type_ec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hybrid_key_type_ec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The elliptic curve algorithm to use for hybrid signatures.
         Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
@@ -220,12 +220,12 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "hybrid_key_type_ec")
 
     @hybrid_key_type_ec.setter
-    def hybrid_key_type_ec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hybrid_key_type_ec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hybrid_key_type_ec", value)
 
     @_builtins.property
     @pulumi.getter(name="hybridKeyTypePqc")
-    def hybrid_key_type_pqc(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hybrid_key_type_pqc(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The post-quantum algorithm to use for hybrid signatures.
         Currently, ML-DSA is the only supported key type.
@@ -233,84 +233,84 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "hybrid_key_type_pqc")
 
     @hybrid_key_type_pqc.setter
-    def hybrid_key_type_pqc(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hybrid_key_type_pqc(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hybrid_key_type_pqc", value)
 
     @_builtins.property
     @pulumi.getter(name="keySize")
-    def key_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         """
         return pulumi.get(self, "key_size")
 
     @key_size.setter
-    def key_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_size", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         """
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         """
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="minDecryptionVersion")
-    def min_decryption_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_decryption_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum key version to use for decryption.
         """
         return pulumi.get(self, "min_decryption_version")
 
     @min_decryption_version.setter
-    def min_decryption_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_decryption_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_decryption_version", value)
 
     @_builtins.property
     @pulumi.getter(name="minEncryptionVersion")
-    def min_encryption_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_encryption_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum key version to use for encryption
         """
         return pulumi.get(self, "min_encryption_version")
 
     @min_encryption_version.setter
-    def min_encryption_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_encryption_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_encryption_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this key within the backend. Must be unique within the backend.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -320,12 +320,12 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="parameterSet")
-    def parameter_set(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The parameter set to use for ML-DSA or SLH-DSA. Required for
         ML-DSA, hybrid, and SLH-DSA keys.
@@ -337,12 +337,12 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "parameter_set")
 
     @parameter_set.setter
-    def parameter_set(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "parameter_set", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
@@ -350,39 +350,39 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _SecretBackendKeyState:
     def __init__(__self__, *,
-                 allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 context: Optional[pulumi.Input[_builtins.str]] = None,
-                 convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 derived: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exportable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
-                 hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
-                 latest_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_available_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameter_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 supports_decryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 supports_derivation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 supports_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 supports_signing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_plaintext_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rotate_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 context: pulumi.Input[Optional[_builtins.str]] = None,
+                 convergent_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 derived: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exportable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hybrid_key_type_ec: pulumi.Input[Optional[_builtins.str]] = None,
+                 hybrid_key_type_pqc: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 keys: pulumi.Input[Optional[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
+                 latest_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_available_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_decryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_encryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 supports_decryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 supports_derivation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 supports_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 supports_signing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendKey resources.
 
@@ -483,7 +483,7 @@ class _SecretBackendKeyState:
 
     @_builtins.property
     @pulumi.getter(name="allowPlaintextBackup")
-    def allow_plaintext_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_plaintext_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
         * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
@@ -491,12 +491,12 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "allow_plaintext_backup")
 
     @allow_plaintext_backup.setter
-    def allow_plaintext_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_plaintext_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_plaintext_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="autoRotatePeriod")
-    def auto_rotate_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def auto_rotate_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Amount of seconds the key should live before being automatically rotated.
         A value of 0 disables automatic rotation for the key.
@@ -504,84 +504,84 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "auto_rotate_period")
 
     @auto_rotate_period.setter
-    def auto_rotate_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def auto_rotate_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "auto_rotate_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the transit secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def context(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def context(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
         """
         return pulumi.get(self, "context")
 
     @context.setter
-    def context(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def context(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "context", value)
 
     @_builtins.property
     @pulumi.getter(name="convergentEncryption")
-    def convergent_encryption(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def convergent_encryption(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
         """
         return pulumi.get(self, "convergent_encryption")
 
     @convergent_encryption.setter
-    def convergent_encryption(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def convergent_encryption(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "convergent_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="deletionAllowed")
-    def deletion_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deletion_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
         """
         return pulumi.get(self, "deletion_allowed")
 
     @deletion_allowed.setter
-    def deletion_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deletion_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deletion_allowed", value)
 
     @_builtins.property
     @pulumi.getter
-    def derived(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def derived(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
         """
         return pulumi.get(self, "derived")
 
     @derived.setter
-    def derived(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def derived(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "derived", value)
 
     @_builtins.property
     @pulumi.getter
-    def exportable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exportable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
         """
         return pulumi.get(self, "exportable")
 
     @exportable.setter
-    def exportable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exportable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exportable", value)
 
     @_builtins.property
     @pulumi.getter(name="hybridKeyTypeEc")
-    def hybrid_key_type_ec(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hybrid_key_type_ec(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The elliptic curve algorithm to use for hybrid signatures.
         Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
@@ -589,12 +589,12 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "hybrid_key_type_ec")
 
     @hybrid_key_type_ec.setter
-    def hybrid_key_type_ec(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hybrid_key_type_ec(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hybrid_key_type_ec", value)
 
     @_builtins.property
     @pulumi.getter(name="hybridKeyTypePqc")
-    def hybrid_key_type_pqc(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hybrid_key_type_pqc(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The post-quantum algorithm to use for hybrid signatures.
         Currently, ML-DSA is the only supported key type.
@@ -602,24 +602,24 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "hybrid_key_type_pqc")
 
     @hybrid_key_type_pqc.setter
-    def hybrid_key_type_pqc(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hybrid_key_type_pqc(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hybrid_key_type_pqc", value)
 
     @_builtins.property
     @pulumi.getter(name="keySize")
-    def key_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
         """
         return pulumi.get(self, "key_size")
 
     @key_size.setter
-    def key_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
+    def keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]:
         """
         List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
         * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
@@ -628,96 +628,96 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "keys")
 
     @keys.setter
-    def keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]):
+    def keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]]):
         pulumi.set(self, "keys", value)
 
     @_builtins.property
     @pulumi.getter(name="latestVersion")
-    def latest_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def latest_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Latest key version available. This value is 1-indexed, so if `latest_version` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
         """
         return pulumi.get(self, "latest_version")
 
     @latest_version.setter
-    def latest_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def latest_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "latest_version", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The UUID of the managed key to use when the key `type` is `managed_key`. This is the unique identifier of a previously configured managed key. When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         """
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the managed key to use when the key `type` is `managed_key`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managed_key`, either `managed_key_name` or `managed_key_id` must be specified.
         """
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="minAvailableVersion")
-    def min_available_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_available_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum key version available for use. If keys have been archived by increasing `min_decryption_version`, this attribute will reflect that change.
         """
         return pulumi.get(self, "min_available_version")
 
     @min_available_version.setter
-    def min_available_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_available_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_available_version", value)
 
     @_builtins.property
     @pulumi.getter(name="minDecryptionVersion")
-    def min_decryption_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_decryption_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum key version to use for decryption.
         """
         return pulumi.get(self, "min_decryption_version")
 
     @min_decryption_version.setter
-    def min_decryption_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_decryption_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_decryption_version", value)
 
     @_builtins.property
     @pulumi.getter(name="minEncryptionVersion")
-    def min_encryption_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_encryption_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum key version to use for encryption
         """
         return pulumi.get(self, "min_encryption_version")
 
     @min_encryption_version.setter
-    def min_encryption_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_encryption_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_encryption_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this key within the backend. Must be unique within the backend.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -727,12 +727,12 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="parameterSet")
-    def parameter_set(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The parameter set to use for ML-DSA or SLH-DSA. Required for
         ML-DSA, hybrid, and SLH-DSA keys.
@@ -744,60 +744,60 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "parameter_set")
 
     @parameter_set.setter
-    def parameter_set(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "parameter_set", value)
 
     @_builtins.property
     @pulumi.getter(name="supportsDecryption")
-    def supports_decryption(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def supports_decryption(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not the key supports decryption, based on key type.
         """
         return pulumi.get(self, "supports_decryption")
 
     @supports_decryption.setter
-    def supports_decryption(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def supports_decryption(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "supports_decryption", value)
 
     @_builtins.property
     @pulumi.getter(name="supportsDerivation")
-    def supports_derivation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def supports_derivation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not the key supports derivation, based on key type.
         """
         return pulumi.get(self, "supports_derivation")
 
     @supports_derivation.setter
-    def supports_derivation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def supports_derivation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "supports_derivation", value)
 
     @_builtins.property
     @pulumi.getter(name="supportsEncryption")
-    def supports_encryption(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def supports_encryption(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not the key supports encryption, based on key type.
         """
         return pulumi.get(self, "supports_encryption")
 
     @supports_encryption.setter
-    def supports_encryption(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def supports_encryption(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "supports_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="supportsSigning")
-    def supports_signing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def supports_signing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether or not the key supports signing, based on key type.
         """
         return pulumi.get(self, "supports_signing")
 
     @supports_signing.setter
-    def supports_signing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def supports_signing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "supports_signing", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managed_key`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
         * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
@@ -805,7 +805,7 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -815,25 +815,25 @@ class SecretBackendKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 context: Optional[pulumi.Input[_builtins.str]] = None,
-                 convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 derived: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exportable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
-                 hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameter_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_plaintext_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rotate_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 context: pulumi.Input[Optional[_builtins.str]] = None,
+                 convergent_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 derived: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exportable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hybrid_key_type_ec: pulumi.Input[Optional[_builtins.str]] = None,
+                 hybrid_key_type_pqc: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_decryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_encryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates an Encryption Keyring on a Transit Secret Backend for Vault.
@@ -1035,25 +1035,25 @@ class SecretBackendKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 context: Optional[pulumi.Input[_builtins.str]] = None,
-                 convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 derived: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exportable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
-                 hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameter_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_plaintext_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rotate_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 context: pulumi.Input[Optional[_builtins.str]] = None,
+                 convergent_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 derived: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exportable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hybrid_key_type_ec: pulumi.Input[Optional[_builtins.str]] = None,
+                 hybrid_key_type_pqc: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_decryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_encryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1101,32 +1101,32 @@ class SecretBackendKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_plaintext_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-            auto_rotate_period: Optional[pulumi.Input[_builtins.int]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            context: Optional[pulumi.Input[_builtins.str]] = None,
-            convergent_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-            deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            derived: Optional[pulumi.Input[_builtins.bool]] = None,
-            exportable: Optional[pulumi.Input[_builtins.bool]] = None,
-            hybrid_key_type_ec: Optional[pulumi.Input[_builtins.str]] = None,
-            hybrid_key_type_pqc: Optional[pulumi.Input[_builtins.str]] = None,
-            key_size: Optional[pulumi.Input[_builtins.int]] = None,
-            keys: Optional[pulumi.Input[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
-            latest_version: Optional[pulumi.Input[_builtins.int]] = None,
-            managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-            min_available_version: Optional[pulumi.Input[_builtins.int]] = None,
-            min_decryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-            min_encryption_version: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            parameter_set: Optional[pulumi.Input[_builtins.str]] = None,
-            supports_decryption: Optional[pulumi.Input[_builtins.bool]] = None,
-            supports_derivation: Optional[pulumi.Input[_builtins.bool]] = None,
-            supports_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-            supports_signing: Optional[pulumi.Input[_builtins.bool]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendKey':
+            allow_plaintext_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_rotate_period: pulumi.Input[Optional[_builtins.int]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            context: pulumi.Input[Optional[_builtins.str]] = None,
+            convergent_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            derived: pulumi.Input[Optional[_builtins.bool]] = None,
+            exportable: pulumi.Input[Optional[_builtins.bool]] = None,
+            hybrid_key_type_ec: pulumi.Input[Optional[_builtins.str]] = None,
+            hybrid_key_type_pqc: pulumi.Input[Optional[_builtins.str]] = None,
+            key_size: pulumi.Input[Optional[_builtins.int]] = None,
+            keys: pulumi.Input[Optional[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
+            latest_version: pulumi.Input[Optional[_builtins.int]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            min_available_version: pulumi.Input[Optional[_builtins.int]] = None,
+            min_decryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+            min_encryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+            supports_decryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            supports_derivation: pulumi.Input[Optional[_builtins.bool]] = None,
+            supports_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            supports_signing: pulumi.Input[Optional[_builtins.bool]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendKey':
         """
         Get an existing SecretBackendKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

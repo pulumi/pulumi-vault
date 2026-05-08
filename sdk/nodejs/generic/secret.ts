@@ -182,32 +182,32 @@ export interface SecretState {
      * represent string data, so any non-string values returned from Vault are
      * serialized as JSON.
      */
-    data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * String containing a JSON-encoded object that will be
      * written as the secret data at the given path.
      */
-    dataJson?: pulumi.Input<string>;
+    dataJson?: pulumi.Input<string | undefined>;
     /**
      * true/false.  Only applicable for kv-v2 stores.
      * If set to `true`, permanently deletes all versions for
      * the specified key. The default behavior is to only delete the latest version of the
      * secret.
      */
-    deleteAllVersions?: pulumi.Input<boolean>;
+    deleteAllVersions?: pulumi.Input<boolean | undefined>;
     /**
      * true/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */
-    disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,
@@ -215,7 +215,7 @@ export interface SecretState {
      * resource is possible; consult each backend's documentation to see which
      * endpoints support the `PUT` and `DELETE` methods.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -233,20 +233,20 @@ export interface SecretArgs {
      * the specified key. The default behavior is to only delete the latest version of the
      * secret.
      */
-    deleteAllVersions?: pulumi.Input<boolean>;
+    deleteAllVersions?: pulumi.Input<boolean | undefined>;
     /**
      * true/false. Set this to true if your vault
      * authentication is not able to read the data. Setting this to `true` will
      * break drift detection. Defaults to false.
      */
-    disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The full logical path at which to write the given data.
      * To write data into the "generic" secret backend mounted in Vault by default,

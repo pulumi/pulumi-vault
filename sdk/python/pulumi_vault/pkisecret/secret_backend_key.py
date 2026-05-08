@@ -21,12 +21,12 @@ class SecretBackendKeyArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendKey resource.
 
@@ -87,7 +87,7 @@ class SecretBackendKeyArgs:
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of bits to use for the generated keys. 
         Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
@@ -97,12 +97,12 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="keyName")
-    def key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When a new key is created with this request, optionally specifies the name for this. 
         The global ref `default` may not be used as a name.
@@ -110,48 +110,48 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "key_name")
 
     @key_name.setter
-    def key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed key's UUID.
         """
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed key's configured name.
         """
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -161,22 +161,22 @@ class SecretBackendKeyArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _SecretBackendKeyState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendKey resources.
 
@@ -218,19 +218,19 @@ class _SecretBackendKeyState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the number of bits to use for the generated keys. 
         Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
@@ -240,24 +240,24 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="keyId")
-    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the generated key.
         """
         return pulumi.get(self, "key_id")
 
     @key_id.setter
-    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="keyName")
-    def key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When a new key is created with this request, optionally specifies the name for this. 
         The global ref `default` may not be used as a name.
@@ -265,48 +265,48 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "key_name")
 
     @key_name.setter
-    def key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed key's UUID.
         """
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The managed key's configured name.
         """
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -316,19 +316,19 @@ class _SecretBackendKeyState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -338,14 +338,14 @@ class SecretBackendKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a key on a PKI Secret Backend for Vault.
@@ -448,14 +448,14 @@ class SecretBackendKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -488,15 +488,15 @@ class SecretBackendKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-            key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            key_name: Optional[pulumi.Input[_builtins.str]] = None,
-            key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendKey':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendKey':
         """
         Get an existing SecretBackendKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

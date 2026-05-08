@@ -20,17 +20,17 @@ __all__ = ['AuthBackendConfigArgs', 'AuthBackendConfig']
 class AuthBackendConfigArgs:
     def __init__(__self__, *,
                  kubernetes_host: pulumi.Input[_builtins.str],
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_iss_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_iss_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_local_ca_jwt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_reviewer_jwt: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 use_annotations_as_alias_metadata: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
 
@@ -89,67 +89,67 @@ class AuthBackendConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the kubernetes backend to configure.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disableIssValidation")
-    def disable_iss_validation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_iss_validation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         """
         return pulumi.get(self, "disable_iss_validation")
 
     @disable_iss_validation.setter
-    def disable_iss_validation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_iss_validation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_iss_validation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableLocalCaJwt")
-    def disable_local_ca_jwt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_local_ca_jwt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         """
         return pulumi.get(self, "disable_local_ca_jwt")
 
     @disable_local_ca_jwt.setter
-    def disable_local_ca_jwt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_local_ca_jwt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_local_ca_jwt", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="kubernetesCaCert")
-    def kubernetes_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kubernetes_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         """
         return pulumi.get(self, "kubernetes_ca_cert")
 
     @kubernetes_ca_cert.setter
-    def kubernetes_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kubernetes_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kubernetes_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -159,36 +159,36 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pemKeys")
-    def pem_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def pem_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         """
         return pulumi.get(self, "pem_keys")
 
     @pem_keys.setter
-    def pem_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def pem_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "pem_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenReviewerJwt")
-    def token_reviewer_jwt(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_reviewer_jwt(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
         """
         return pulumi.get(self, "token_reviewer_jwt")
 
     @token_reviewer_jwt.setter
-    def token_reviewer_jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_reviewer_jwt(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_reviewer_jwt", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenReviewerJwtWo")
-    def token_reviewer_jwt_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_reviewer_jwt_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
@@ -196,49 +196,49 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "token_reviewer_jwt_wo")
 
     @token_reviewer_jwt_wo.setter
-    def token_reviewer_jwt_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_reviewer_jwt_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_reviewer_jwt_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenReviewerJwtWoVersion")
-    def token_reviewer_jwt_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_reviewer_jwt_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
         """
         return pulumi.get(self, "token_reviewer_jwt_wo_version")
 
     @token_reviewer_jwt_wo_version.setter
-    def token_reviewer_jwt_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_reviewer_jwt_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_reviewer_jwt_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="useAnnotationsAsAliasMetadata")
-    def use_annotations_as_alias_metadata(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_annotations_as_alias_metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         return pulumi.get(self, "use_annotations_as_alias_metadata")
 
     @use_annotations_as_alias_metadata.setter
-    def use_annotations_as_alias_metadata(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_annotations_as_alias_metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_annotations_as_alias_metadata", value)
 
 
 @pulumi.input_type
 class _AuthBackendConfigState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_iss_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_iss_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_local_ca_jwt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_reviewer_jwt: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 use_annotations_as_alias_metadata: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfig resources.
 
@@ -286,79 +286,79 @@ class _AuthBackendConfigState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the kubernetes backend to configure.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disableIssValidation")
-    def disable_iss_validation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_iss_validation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         """
         return pulumi.get(self, "disable_iss_validation")
 
     @disable_iss_validation.setter
-    def disable_iss_validation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_iss_validation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_iss_validation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableLocalCaJwt")
-    def disable_local_ca_jwt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_local_ca_jwt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
         """
         return pulumi.get(self, "disable_local_ca_jwt")
 
     @disable_local_ca_jwt.setter
-    def disable_local_ca_jwt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_local_ca_jwt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_local_ca_jwt", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="kubernetesCaCert")
-    def kubernetes_ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kubernetes_ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
         """
         return pulumi.get(self, "kubernetes_ca_cert")
 
     @kubernetes_ca_cert.setter
-    def kubernetes_ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kubernetes_ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kubernetes_ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="kubernetesHost")
-    def kubernetes_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kubernetes_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
         """
         return pulumi.get(self, "kubernetes_host")
 
     @kubernetes_host.setter
-    def kubernetes_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kubernetes_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kubernetes_host", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -368,36 +368,36 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pemKeys")
-    def pem_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def pem_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
         """
         return pulumi.get(self, "pem_keys")
 
     @pem_keys.setter
-    def pem_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def pem_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "pem_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenReviewerJwt")
-    def token_reviewer_jwt(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_reviewer_jwt(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `token_reviewer_jwt_wo`.
         """
         return pulumi.get(self, "token_reviewer_jwt")
 
     @token_reviewer_jwt.setter
-    def token_reviewer_jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_reviewer_jwt(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_reviewer_jwt", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenReviewerJwtWo")
-    def token_reviewer_jwt_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_reviewer_jwt_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
@@ -405,31 +405,31 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "token_reviewer_jwt_wo")
 
     @token_reviewer_jwt_wo.setter
-    def token_reviewer_jwt_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_reviewer_jwt_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_reviewer_jwt_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenReviewerJwtWoVersion")
-    def token_reviewer_jwt_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_reviewer_jwt_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of `token_reviewer_jwt_wo` to use during write operations. Required with `token_reviewer_jwt_wo`. For more info see updating write-only attributes.
         """
         return pulumi.get(self, "token_reviewer_jwt_wo_version")
 
     @token_reviewer_jwt_wo_version.setter
-    def token_reviewer_jwt_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_reviewer_jwt_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_reviewer_jwt_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="useAnnotationsAsAliasMetadata")
-    def use_annotations_as_alias_metadata(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_annotations_as_alias_metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
         """
         return pulumi.get(self, "use_annotations_as_alias_metadata")
 
     @use_annotations_as_alias_metadata.setter
-    def use_annotations_as_alias_metadata(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_annotations_as_alias_metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_annotations_as_alias_metadata", value)
 
 
@@ -439,18 +439,18 @@ class AuthBackendConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_iss_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_iss_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_local_ca_jwt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_reviewer_jwt: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 use_annotations_as_alias_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Manages an Kubernetes auth backend config in a Vault server. See the [Vault
@@ -612,18 +612,18 @@ class AuthBackendConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_iss_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_iss_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_local_ca_jwt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_reviewer_jwt: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_reviewer_jwt_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 use_annotations_as_alias_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -659,18 +659,18 @@ class AuthBackendConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_iss_validation: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_local_ca_jwt: Optional[pulumi.Input[_builtins.bool]] = None,
-            issuer: Optional[pulumi.Input[_builtins.str]] = None,
-            kubernetes_ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-            kubernetes_host: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            pem_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_reviewer_jwt: Optional[pulumi.Input[_builtins.str]] = None,
-            token_reviewer_jwt_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            token_reviewer_jwt_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            use_annotations_as_alias_metadata: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackendConfig':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_iss_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_local_ca_jwt: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_host: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            pem_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_reviewer_jwt: pulumi.Input[Optional[_builtins.str]] = None,
+            token_reviewer_jwt_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            token_reviewer_jwt_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            use_annotations_as_alias_metadata: pulumi.Input[Optional[_builtins.bool]] = None) -> 'AuthBackendConfig':
         """
         Get an existing AuthBackendConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -20,16 +20,16 @@ __all__ = [
 ]
 
 class SyncAssociationMetadataArgsDict(TypedDict):
-    sub_key: NotRequired[pulumi.Input[_builtins.str]]
+    sub_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Subkey of the associated secret.
     """
-    sync_status: NotRequired[pulumi.Input[_builtins.str]]
+    sync_status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A map of sync statuses for each subkey of the associated secret
     (for ex. `{kv_624bea/aws-token/dev: "SYNCED", kv_624bea/aws-token/prod: "SYNCED"}`).
     """
-    updated_at: NotRequired[pulumi.Input[_builtins.str]]
+    updated_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A map of duration strings specifying when each subkey of the associated
     secret was last updated.
@@ -41,9 +41,9 @@ class SyncAssociationMetadataArgsDict(TypedDict):
 @pulumi.input_type
 class SyncAssociationMetadataArgs:
     def __init__(__self__, *,
-                 sub_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sync_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_at: Optional[pulumi.Input[_builtins.str]] = None):
+                 sub_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sync_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_at: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] sub_key: Subkey of the associated secret.
         :param pulumi.Input[_builtins.str] sync_status: A map of sync statuses for each subkey of the associated secret
@@ -63,19 +63,19 @@ class SyncAssociationMetadataArgs:
 
     @_builtins.property
     @pulumi.getter(name="subKey")
-    def sub_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sub_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Subkey of the associated secret.
         """
         return pulumi.get(self, "sub_key")
 
     @sub_key.setter
-    def sub_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sub_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sub_key", value)
 
     @_builtins.property
     @pulumi.getter(name="syncStatus")
-    def sync_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sync_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A map of sync statuses for each subkey of the associated secret
         (for ex. `{kv_624bea/aws-token/dev: "SYNCED", kv_624bea/aws-token/prod: "SYNCED"}`).
@@ -83,12 +83,12 @@ class SyncAssociationMetadataArgs:
         return pulumi.get(self, "sync_status")
 
     @sync_status.setter
-    def sync_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sync_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sync_status", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A map of duration strings specifying when each subkey of the associated
         secret was last updated.
@@ -99,7 +99,7 @@ class SyncAssociationMetadataArgs:
         return pulumi.get(self, "updated_at")
 
     @updated_at.setter
-    def updated_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_at", value)
 
 

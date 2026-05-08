@@ -130,8 +130,8 @@ def get_auth_backends(namespace: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         paths=pulumi.get(__ret__, 'paths'),
         type=pulumi.get(__ret__, 'type'))
-def get_auth_backends_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_auth_backends_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthBackendsResult]:
     """
     ## Example Usage

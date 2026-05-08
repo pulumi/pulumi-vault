@@ -386,192 +386,192 @@ export interface SecretBackendRootCertState {
     /**
      * List of alternative names
      */
-    altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The certificate.
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * CN of intermediate to create
      */
-    commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string | undefined>;
     /**
      * The country
      */
-    country?: pulumi.Input<string>;
+    country?: pulumi.Input<string | undefined>;
     /**
      * Flag to exclude CN from SANs
      */
-    excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean | undefined>;
     /**
      * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedDnsDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedEmailAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The format of data
      */
-    format?: pulumi.Input<string>;
+    format?: pulumi.Input<string | undefined>;
     /**
      * List of alternative IPs
      */
-    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The ID of the generated issuer.
      */
-    issuerId?: pulumi.Input<string>;
+    issuerId?: pulumi.Input<string | undefined>;
     /**
      * Provides a name to the specified issuer. The name must be unique
      * across all issuers and not be the reserved value `default`
      */
-    issuerName?: pulumi.Input<string>;
+    issuerName?: pulumi.Input<string | undefined>;
     /**
      * The issuing CA certificate.
      */
-    issuingCa?: pulumi.Input<string>;
+    issuingCa?: pulumi.Input<string | undefined>;
     /**
      * The number of bits to use
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * The ID of the generated key.
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * When a new key is created with this request, optionally specifies
      * the name for this. The global ref `default` may not be used as a name.
      */
-    keyName?: pulumi.Input<string>;
+    keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
      * for generating this request. Only suitable for `type=existing` requests.
      */
-    keyRef?: pulumi.Input<string>;
+    keyRef?: pulumi.Input<string | undefined>;
     /**
      * The desired key type
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
      */
-    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The locality
      */
-    locality?: pulumi.Input<string>;
+    locality?: pulumi.Input<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
      * required if `type` is `kms` and it conflicts with `managedKeyName`
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the previously configured managed key. This field is
      * required if `type` is `kms`  and it conflicts with `managedKeyId`
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The maximum path length to encode in the generated certificate
      */
-    maxPathLength?: pulumi.Input<number>;
+    maxPathLength?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * Specifies the duration by which to backdate the NotBefore property.
      */
-    notBeforeDuration?: pulumi.Input<string>;
+    notBeforeDuration?: pulumi.Input<string | undefined>;
     /**
      * The organization
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * List of other SANs
      */
-    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The organization unit
      */
-    ou?: pulumi.Input<string>;
+    ou?: pulumi.Input<string | undefined>;
     /**
      * List of domains for which certificates are allowed to be issued
      */
-    permittedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedDnsDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    permittedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedEmailAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    permittedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    permittedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The postal code
      */
-    postalCode?: pulumi.Input<string>;
+    postalCode?: pulumi.Input<string | undefined>;
     /**
      * The private key format
      */
-    privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string | undefined>;
     /**
      * The province
      */
-    province?: pulumi.Input<string>;
+    province?: pulumi.Input<string | undefined>;
     /**
      * The certificate's serial number, hex formatted.
      */
-    serialNumber?: pulumi.Input<string>;
+    serialNumber?: pulumi.Input<string | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    signatureBits?: pulumi.Input<number>;
+    signatureBits?: pulumi.Input<number | undefined>;
     /**
      * The street address
      */
-    streetAddress?: pulumi.Input<string>;
+    streetAddress?: pulumi.Input<string | undefined>;
     /**
      * Time to live
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\", \"internal\"
      * or \"kms\"
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * List of alternative URIs
      */
-    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
      */
-    usePss?: pulumi.Input<boolean>;
+    usePss?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -581,7 +581,7 @@ export interface SecretBackendRootCertArgs {
     /**
      * List of alternative names
      */
-    altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
@@ -593,147 +593,147 @@ export interface SecretBackendRootCertArgs {
     /**
      * The country
      */
-    country?: pulumi.Input<string>;
+    country?: pulumi.Input<string | undefined>;
     /**
      * Flag to exclude CN from SANs
      */
-    excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean | undefined>;
     /**
      * List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedDnsDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedEmailAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
      */
-    excludedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    excludedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The format of data
      */
-    format?: pulumi.Input<string>;
+    format?: pulumi.Input<string | undefined>;
     /**
      * List of alternative IPs
      */
-    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Provides a name to the specified issuer. The name must be unique
      * across all issuers and not be the reserved value `default`
      */
-    issuerName?: pulumi.Input<string>;
+    issuerName?: pulumi.Input<string | undefined>;
     /**
      * The number of bits to use
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * When a new key is created with this request, optionally specifies
      * the name for this. The global ref `default` may not be used as a name.
      */
-    keyName?: pulumi.Input<string>;
+    keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
      * for generating this request. Only suitable for `type=existing` requests.
      */
-    keyRef?: pulumi.Input<string>;
+    keyRef?: pulumi.Input<string | undefined>;
     /**
      * The desired key type
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
      */
-    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The locality
      */
-    locality?: pulumi.Input<string>;
+    locality?: pulumi.Input<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
      * required if `type` is `kms` and it conflicts with `managedKeyName`
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the previously configured managed key. This field is
      * required if `type` is `kms`  and it conflicts with `managedKeyId`
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The maximum path length to encode in the generated certificate
      */
-    maxPathLength?: pulumi.Input<number>;
+    maxPathLength?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * Specifies the duration by which to backdate the NotBefore property.
      */
-    notBeforeDuration?: pulumi.Input<string>;
+    notBeforeDuration?: pulumi.Input<string | undefined>;
     /**
      * The organization
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * List of other SANs
      */
-    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The organization unit
      */
-    ou?: pulumi.Input<string>;
+    ou?: pulumi.Input<string | undefined>;
     /**
      * List of domains for which certificates are allowed to be issued
      */
-    permittedDnsDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedDnsDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    permittedEmailAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedEmailAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    permittedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
-    permittedUriDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    permittedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The postal code
      */
-    postalCode?: pulumi.Input<string>;
+    postalCode?: pulumi.Input<string | undefined>;
     /**
      * The private key format
      */
-    privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string | undefined>;
     /**
      * The province
      */
-    province?: pulumi.Input<string>;
+    province?: pulumi.Input<string | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    signatureBits?: pulumi.Input<number>;
+    signatureBits?: pulumi.Input<number | undefined>;
     /**
      * The street address
      */
-    streetAddress?: pulumi.Input<string>;
+    streetAddress?: pulumi.Input<string | undefined>;
     /**
      * Time to live
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\", \"internal\"
      * or \"kms\"
@@ -742,9 +742,9 @@ export interface SecretBackendRootCertArgs {
     /**
      * List of alternative URIs
      */
-    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
      */
-    usePss?: pulumi.Input<boolean>;
+    usePss?: pulumi.Input<boolean | undefined>;
 }

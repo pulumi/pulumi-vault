@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+//			aws2, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
 //				Path: pulumi.String("%s"),
 //				Type: pulumi.String("aws"),
 //			})
@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			role, err := aws.NewAuthBackendRole(ctx, "role", &aws.AuthBackendRoleArgs{
-//				Backend:        aws.Path,
+//				Backend:        aws2.Path,
 //				Role:           pulumi.String("%s"),
 //				AuthType:       pulumi.String("ec2"),
 //				BoundAccountId: "123456789012",
@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			_, err = aws.NewAuthBackendRoleTag(ctx, "test", &aws.AuthBackendRoleTagArgs{
-//				Backend: aws.Path,
+//				Backend: aws2.Path,
 //				Role:    role.Role,
 //				Policies: pulumi.StringArray{
 //					pulumi.String("prod"),

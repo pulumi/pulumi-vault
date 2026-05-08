@@ -161,40 +161,40 @@ export interface TemplateState {
     /**
      * The alphabet to use for this template. This is only used during FPE transformations.
      */
-    alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string | undefined>;
     /**
      * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
-    decodeFormats?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    decodeFormats?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
-    encodeFormat?: pulumi.Input<string>;
+    encodeFormat?: pulumi.Input<string | undefined>;
     /**
      * The name of the template.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The pattern used for matching. Currently, only regular expression pattern is supported.
      */
-    pattern?: pulumi.Input<string>;
+    pattern?: pulumi.Input<string | undefined>;
     /**
      * The pattern type to use for match detection. Currently, only regex is supported.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -204,28 +204,28 @@ export interface TemplateArgs {
     /**
      * The alphabet to use for this template. This is only used during FPE transformations.
      */
-    alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string | undefined>;
     /**
      * Optional mapping of name to regular expression template, used to customize
      * the decoded output. (requires Vault Enterprise 1.9+)
      */
-    decodeFormats?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    decodeFormats?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The regular expression template used to format encoded values.
      * (requires Vault Enterprise 1.9+)
      */
-    encodeFormat?: pulumi.Input<string>;
+    encodeFormat?: pulumi.Input<string | undefined>;
     /**
      * The name of the template.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -233,9 +233,9 @@ export interface TemplateArgs {
     /**
      * The pattern used for matching. Currently, only regular expression pattern is supported.
      */
-    pattern?: pulumi.Input<string>;
+    pattern?: pulumi.Input<string | undefined>;
     /**
      * The pattern type to use for match detection. Currently, only regex is supported.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

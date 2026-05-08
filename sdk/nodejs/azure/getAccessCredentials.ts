@@ -272,32 +272,32 @@ export interface GetAccessCredentialsOutputArgs {
      * Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
      * *See the caveats section for more information on this field.*
      */
-    environment?: pulumi.Input<string>;
+    environment?: pulumi.Input<string | undefined>;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds after which to give up validating credentials. Defaults
      * to 300.
      */
-    maxCredValidationSeconds?: pulumi.Input<number>;
+    maxCredValidationSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * If 'validate_creds' is true, 
      * the number of seconds to wait between each test of generated credentials.
      * Defaults to 1.
      */
-    numSecondsBetweenTests?: pulumi.Input<number>;
+    numSecondsBetweenTests?: pulumi.Input<number | undefined>;
     /**
      * If 'validate_creds' is true, 
      * the number of sequential successes required to validate generated
      * credentials. Defaults to 8.
      */
-    numSequentialSuccesses?: pulumi.Input<number>;
+    numSequentialSuccesses?: pulumi.Input<number | undefined>;
     /**
      * The name of the Azure secret backend role to read
      * credentials from, with no leading or trailing `/`s.
@@ -308,18 +308,18 @@ export interface GetAccessCredentialsOutputArgs {
      * validation. Defaults to the subscription ID configured in the Vault `backend`.
      * *See the caveats section for more information on this field.*
      */
-    subscriptionId?: pulumi.Input<string>;
+    subscriptionId?: pulumi.Input<string | undefined>;
     /**
      * The tenant ID to use during credential validation.
      * Defaults to the tenant ID configured in the Vault `backend`.
      * *See the caveats section for more information on this field.*
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * Whether generated credentials should be 
      * validated before being returned. Defaults to `false`, which returns
      * credentials without checking whether they have fully propagated throughout
      * Azure Active Directory. Designating `true` activates testing.
      */
-    validateCreds?: pulumi.Input<boolean>;
+    validateCreds?: pulumi.Input<boolean | undefined>;
 }

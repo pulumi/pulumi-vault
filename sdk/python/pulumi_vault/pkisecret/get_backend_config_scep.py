@@ -201,7 +201,7 @@ def get_backend_config_scep(backend: Optional[_builtins.str] = None,
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    scep_config = vault.pkiSecret.get_backend_config_scep_output(backend=pki.path)
+    scep_config = vault.pkisecret.get_backend_config_scep_output(backend=pki.path)
     ```
 
 
@@ -233,9 +233,9 @@ def get_backend_config_scep(backend: Optional[_builtins.str] = None,
         log_level=pulumi.get(__ret__, 'log_level'),
         namespace=pulumi.get(__ret__, 'namespace'),
         restrict_ca_chain_to_issuer=pulumi.get(__ret__, 'restrict_ca_chain_to_issuer'))
-def get_backend_config_scep_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                   log_level: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                   namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backend_config_scep_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                   log_level: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                   namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendConfigScepResult]:
     """
     Reads the PKI SCEP configuration from Vault Enterprise.
@@ -258,7 +258,7 @@ def get_backend_config_scep_output(backend: Optional[pulumi.Input[_builtins.str]
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    scep_config = vault.pkiSecret.get_backend_config_scep_output(backend=pki.path)
+    scep_config = vault.pkisecret.get_backend_config_scep_output(backend=pki.path)
     ```
 
 

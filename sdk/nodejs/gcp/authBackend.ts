@@ -308,30 +308,30 @@ export interface AuthBackendState {
     /**
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * The clients email associated with the credentials
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * The Client ID of the credentials
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
      */
-    credentialsWo?: pulumi.Input<string>;
+    credentialsWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
      * For more information about write-only attributes, see
      * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
      */
-    credentialsWoVersion?: pulumi.Input<number>;
+    credentialsWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Specifies overrides to
      * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
@@ -341,103 +341,103 @@ export interface AuthBackendState {
      *
      * Overrides are set at the subdomain level using the following keys:
      */
-    customEndpoint?: pulumi.Input<inputs.gcp.AuthBackendCustomEndpoint>;
+    customEndpoint?: pulumi.Input<inputs.gcp.AuthBackendCustomEndpoint | undefined>;
     /**
      * A description of the auth method.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
      */
-    gceAlias?: pulumi.Input<string>;
+    gceAlias?: pulumi.Input<string | undefined>;
     /**
      * Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
      */
-    gceMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    gceMetadatas?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
      */
-    iamAlias?: pulumi.Input<string>;
+    iamAlias?: pulumi.Input<string | undefined>;
     /**
      * Controls the metadata to include on the token returned by the login endpoint.
      */
-    iamMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    iamMetadatas?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The key to use for signing plugin identity
      * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated tokens. Defaults to
      * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The path to mount the auth method — this defaults to 'gcp'.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The ID of the private key from the credentials
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * The GCP Project ID
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.gcp.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.gcp.AuthBackendTune | undefined>;
 }
 
 /**
@@ -447,26 +447,26 @@ export interface AuthBackendArgs {
     /**
      * The clients email associated with the credentials
      */
-    clientEmail?: pulumi.Input<string>;
+    clientEmail?: pulumi.Input<string | undefined>;
     /**
      * The Client ID of the credentials
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentialsWo`.
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
      */
-    credentialsWo?: pulumi.Input<string>;
+    credentialsWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentialsWo`.
      * For more information about write-only attributes, see
      * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
      */
-    credentialsWoVersion?: pulumi.Input<number>;
+    credentialsWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Specifies overrides to
      * [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
@@ -476,101 +476,101 @@ export interface AuthBackendArgs {
      *
      * Overrides are set at the subdomain level using the following keys:
      */
-    customEndpoint?: pulumi.Input<inputs.gcp.AuthBackendCustomEndpoint>;
+    customEndpoint?: pulumi.Input<inputs.gcp.AuthBackendCustomEndpoint | undefined>;
     /**
      * A description of the auth method.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
      */
-    gceAlias?: pulumi.Input<string>;
+    gceAlias?: pulumi.Input<string | undefined>;
     /**
      * Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
      */
-    gceMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    gceMetadatas?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
      */
-    iamAlias?: pulumi.Input<string>;
+    iamAlias?: pulumi.Input<string | undefined>;
     /**
      * Controls the metadata to include on the token returned by the login endpoint.
      */
-    iamMetadatas?: pulumi.Input<pulumi.Input<string>[]>;
+    iamMetadatas?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The audience claim value for plugin identity
      * tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
      * Mutually exclusive with `credentials`.  Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The key to use for signing plugin identity
      * tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated tokens. Defaults to
      * 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      * Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The path to mount the auth method — this defaults to 'gcp'.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The ID of the private key from the credentials
      */
-    privateKeyId?: pulumi.Input<string>;
+    privateKeyId?: pulumi.Input<string | undefined>;
     /**
      * The GCP Project ID
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Service Account to impersonate for plugin workload identity federation.
      * Required with `identityTokenAudience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
      */
-    serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.gcp.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.gcp.AuthBackendTune | undefined>;
 }

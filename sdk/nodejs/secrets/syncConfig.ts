@@ -107,17 +107,17 @@ export interface SyncConfigState {
     /**
      * Disables the syncing process between Vault and external destinations. Defaults to `false`.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * This resource can only be configured in the root namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.
      */
-    queueCapacity?: pulumi.Input<number>;
+    queueCapacity?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -127,15 +127,15 @@ export interface SyncConfigArgs {
     /**
      * Disables the syncing process between Vault and external destinations. Defaults to `false`.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * This resource can only be configured in the root namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.
      */
-    queueCapacity?: pulumi.Input<number>;
+    queueCapacity?: pulumi.Input<number | undefined>;
 }

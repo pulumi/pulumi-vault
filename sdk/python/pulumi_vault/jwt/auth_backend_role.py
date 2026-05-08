@@ -21,34 +21,34 @@ class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  role_name: pulumi.Input[_builtins.str],
                  user_claim: pulumi.Input[_builtins.str],
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_subject: Optional[pulumi.Input[_builtins.str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 clock_skew_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_bound_claims_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiration_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim_json_pointer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_oidc_logging: Optional[pulumi.Input[_builtins.bool]] = None):
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_subject: pulumi.Input[Optional[_builtins.str]] = None,
+                 claim_mappings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_bound_claims_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiration_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 oidc_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim_json_pointer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_oidc_logging: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
 
@@ -201,7 +201,7 @@ class AuthBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -209,12 +209,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedRedirectUris")
-    def allowed_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of allowed values for redirect_uri during OIDC logins.
         Required for OIDC roles
@@ -222,12 +222,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "allowed_redirect_uris")
 
     @allowed_redirect_uris.setter
-    def allowed_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_redirect_uris", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the auth backend to configure.
         Defaults to `jwt`.
@@ -235,12 +235,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAudiences")
-    def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_audiences(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         (Required for roles of type `jwt`, optional for roles of
         type `oidc`) List of `aud` claims to match against. Any match is sufficient.
@@ -248,12 +248,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_audiences")
 
     @bound_audiences.setter
-    def bound_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_audiences(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_audiences", value)
 
     @_builtins.property
     @pulumi.getter(name="boundClaims")
-    def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def bound_claims(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         If set, a map of claims to values to match against.
         A claim's value must be a string, which may contain one value or multiple
@@ -262,12 +262,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_claims")
 
     @bound_claims.setter
-    def bound_claims(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def bound_claims(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_claims", value)
 
     @_builtins.property
     @pulumi.getter(name="boundClaimsType")
-    def bound_claims_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bound_claims_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to interpret values in the claims/values
         map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
@@ -276,12 +276,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_claims_type")
 
     @bound_claims_type.setter
-    def bound_claims_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bound_claims_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bound_claims_type", value)
 
     @_builtins.property
     @pulumi.getter(name="boundSubject")
-    def bound_subject(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bound_subject(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, requires that the `sub` claim matches
         this value.
@@ -289,12 +289,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "bound_subject")
 
     @bound_subject.setter
-    def bound_subject(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bound_subject(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bound_subject", value)
 
     @_builtins.property
     @pulumi.getter(name="claimMappings")
-    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def claim_mappings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         If set, a map of claims (keys) to be copied
         to specified metadata fields (values).
@@ -302,12 +302,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "claim_mappings")
 
     @claim_mappings.setter
-    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def claim_mappings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "claim_mappings", value)
 
     @_builtins.property
     @pulumi.getter(name="clockSkewLeeway")
-    def clock_skew_leeway(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def clock_skew_leeway(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of leeway to add to all claims to account for clock skew, in
         seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -316,24 +316,24 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "clock_skew_leeway")
 
     @clock_skew_leeway.setter
-    def clock_skew_leeway(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def clock_skew_leeway(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "clock_skew_leeway", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBoundClaimsParsing")
-    def disable_bound_claims_parsing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_bound_claims_parsing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable bound claim value parsing. Useful when values contain commas.
         """
         return pulumi.get(self, "disable_bound_claims_parsing")
 
     @disable_bound_claims_parsing.setter
-    def disable_bound_claims_parsing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_bound_claims_parsing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_bound_claims_parsing", value)
 
     @_builtins.property
     @pulumi.getter(name="expirationLeeway")
-    def expiration_leeway(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiration_leeway(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of leeway to add to expiration (`exp`) claims to account for
         clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
@@ -342,12 +342,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "expiration_leeway")
 
     @expiration_leeway.setter
-    def expiration_leeway(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiration_leeway(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiration_leeway", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsClaim")
-    def groups_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The claim to use to uniquely identify
         the set of groups to which the user belongs; this will be used as the names
@@ -357,12 +357,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "groups_claim")
 
     @groups_claim.setter
-    def groups_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_age(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the allowable elapsed time in seconds since the last time 
         the user was actively authenticated with the OIDC provider.
@@ -370,12 +370,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_age(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_age", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -385,12 +385,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="notBeforeLeeway")
-    def not_before_leeway(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def not_before_leeway(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of leeway to add to not before (`nbf`) claims to account for
         clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
@@ -399,12 +399,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "not_before_leeway")
 
     @not_before_leeway.setter
-    def not_before_leeway(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def not_before_leeway(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "not_before_leeway", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcScopes")
-    def oidc_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def oidc_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, a list of OIDC scopes to be used with an OIDC role.
         The standard scope "openid" is automatically included and need not be specified.
@@ -412,132 +412,132 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "oidc_scopes")
 
     @oidc_scopes.setter
-    def oidc_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def oidc_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "oidc_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="roleType")
-    def role_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of role, either "oidc" (default) or "jwt".
         """
         return pulumi.get(self, "role_type")
 
     @role_type.setter
-    def role_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_type", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
     @_builtins.property
     @pulumi.getter(name="userClaimJsonPointer")
-    def user_claim_json_pointer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def user_claim_json_pointer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the `user_claim` value uses
         [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
@@ -547,12 +547,12 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "user_claim_json_pointer")
 
     @user_claim_json_pointer.setter
-    def user_claim_json_pointer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def user_claim_json_pointer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "user_claim_json_pointer", value)
 
     @_builtins.property
     @pulumi.getter(name="verboseOidcLogging")
-    def verbose_oidc_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verbose_oidc_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Log received OIDC tokens and claims when debug-level
         logging is active. Not recommended in production since sensitive information may be present
@@ -561,43 +561,43 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "verbose_oidc_logging")
 
     @verbose_oidc_logging.setter
-    def verbose_oidc_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verbose_oidc_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verbose_oidc_logging", value)
 
 
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_subject: Optional[pulumi.Input[_builtins.str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 clock_skew_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_bound_claims_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiration_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim_json_pointer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_oidc_logging: Optional[pulumi.Input[_builtins.bool]] = None):
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_subject: pulumi.Input[Optional[_builtins.str]] = None,
+                 claim_mappings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_bound_claims_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiration_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 oidc_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim_json_pointer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_oidc_logging: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
 
@@ -726,7 +726,7 @@ class _AuthBackendRoleState:
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -734,12 +734,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedRedirectUris")
-    def allowed_redirect_uris(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_redirect_uris(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of allowed values for redirect_uri during OIDC logins.
         Required for OIDC roles
@@ -747,12 +747,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "allowed_redirect_uris")
 
     @allowed_redirect_uris.setter
-    def allowed_redirect_uris(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_redirect_uris(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_redirect_uris", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the auth backend to configure.
         Defaults to `jwt`.
@@ -760,12 +760,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="boundAudiences")
-    def bound_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_audiences(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         (Required for roles of type `jwt`, optional for roles of
         type `oidc`) List of `aud` claims to match against. Any match is sufficient.
@@ -773,12 +773,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_audiences")
 
     @bound_audiences.setter
-    def bound_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_audiences(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_audiences", value)
 
     @_builtins.property
     @pulumi.getter(name="boundClaims")
-    def bound_claims(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def bound_claims(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         If set, a map of claims to values to match against.
         A claim's value must be a string, which may contain one value or multiple
@@ -787,12 +787,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_claims")
 
     @bound_claims.setter
-    def bound_claims(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def bound_claims(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_claims", value)
 
     @_builtins.property
     @pulumi.getter(name="boundClaimsType")
-    def bound_claims_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bound_claims_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to interpret values in the claims/values
         map (`bound_claims`): can be either `string` (exact match) or `glob` (wildcard
@@ -801,12 +801,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_claims_type")
 
     @bound_claims_type.setter
-    def bound_claims_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bound_claims_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bound_claims_type", value)
 
     @_builtins.property
     @pulumi.getter(name="boundSubject")
-    def bound_subject(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bound_subject(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, requires that the `sub` claim matches
         this value.
@@ -814,12 +814,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "bound_subject")
 
     @bound_subject.setter
-    def bound_subject(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bound_subject(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bound_subject", value)
 
     @_builtins.property
     @pulumi.getter(name="claimMappings")
-    def claim_mappings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def claim_mappings(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         If set, a map of claims (keys) to be copied
         to specified metadata fields (values).
@@ -827,12 +827,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "claim_mappings")
 
     @claim_mappings.setter
-    def claim_mappings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def claim_mappings(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "claim_mappings", value)
 
     @_builtins.property
     @pulumi.getter(name="clockSkewLeeway")
-    def clock_skew_leeway(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def clock_skew_leeway(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of leeway to add to all claims to account for clock skew, in
         seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
@@ -841,24 +841,24 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "clock_skew_leeway")
 
     @clock_skew_leeway.setter
-    def clock_skew_leeway(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def clock_skew_leeway(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "clock_skew_leeway", value)
 
     @_builtins.property
     @pulumi.getter(name="disableBoundClaimsParsing")
-    def disable_bound_claims_parsing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_bound_claims_parsing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable bound claim value parsing. Useful when values contain commas.
         """
         return pulumi.get(self, "disable_bound_claims_parsing")
 
     @disable_bound_claims_parsing.setter
-    def disable_bound_claims_parsing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_bound_claims_parsing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_bound_claims_parsing", value)
 
     @_builtins.property
     @pulumi.getter(name="expirationLeeway")
-    def expiration_leeway(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expiration_leeway(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of leeway to add to expiration (`exp`) claims to account for
         clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
@@ -867,12 +867,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "expiration_leeway")
 
     @expiration_leeway.setter
-    def expiration_leeway(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expiration_leeway(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expiration_leeway", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsClaim")
-    def groups_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The claim to use to uniquely identify
         the set of groups to which the user belongs; this will be used as the names
@@ -882,12 +882,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "groups_claim")
 
     @groups_claim.setter
-    def groups_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="maxAge")
-    def max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_age(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the allowable elapsed time in seconds since the last time 
         the user was actively authenticated with the OIDC provider.
@@ -895,12 +895,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "max_age")
 
     @max_age.setter
-    def max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_age(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_age", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -910,12 +910,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="notBeforeLeeway")
-    def not_before_leeway(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def not_before_leeway(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of leeway to add to not before (`nbf`) claims to account for
         clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
@@ -924,12 +924,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "not_before_leeway")
 
     @not_before_leeway.setter
-    def not_before_leeway(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def not_before_leeway(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "not_before_leeway", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcScopes")
-    def oidc_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def oidc_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, a list of OIDC scopes to be used with an OIDC role.
         The standard scope "openid" is automatically included and need not be specified.
@@ -937,144 +937,144 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "oidc_scopes")
 
     @oidc_scopes.setter
-    def oidc_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def oidc_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "oidc_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the role.
         """
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
     @_builtins.property
     @pulumi.getter(name="roleType")
-    def role_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of role, either "oidc" (default) or "jwt".
         """
         return pulumi.get(self, "role_type")
 
     @role_type.setter
-    def role_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_type", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
     @_builtins.property
     @pulumi.getter(name="userClaim")
-    def user_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The claim to use to uniquely identify
         the user; this will be used as the name for the Identity entity alias created
@@ -1083,12 +1083,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "user_claim")
 
     @user_claim.setter
-    def user_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="userClaimJsonPointer")
-    def user_claim_json_pointer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def user_claim_json_pointer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the `user_claim` value uses
         [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
@@ -1098,12 +1098,12 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "user_claim_json_pointer")
 
     @user_claim_json_pointer.setter
-    def user_claim_json_pointer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def user_claim_json_pointer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "user_claim_json_pointer", value)
 
     @_builtins.property
     @pulumi.getter(name="verboseOidcLogging")
-    def verbose_oidc_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verbose_oidc_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Log received OIDC tokens and claims when debug-level
         logging is active. Not recommended in production since sensitive information may be present
@@ -1112,7 +1112,7 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "verbose_oidc_logging")
 
     @verbose_oidc_logging.setter
-    def verbose_oidc_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verbose_oidc_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verbose_oidc_logging", value)
 
 
@@ -1122,36 +1122,36 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_subject: Optional[pulumi.Input[_builtins.str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 clock_skew_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_bound_claims_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiration_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim_json_pointer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_oidc_logging: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_subject: pulumi.Input[Optional[_builtins.str]] = None,
+                 claim_mappings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_bound_claims_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiration_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 oidc_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim_json_pointer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_oidc_logging: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Manages an JWT/OIDC auth backend role in a Vault server. See the [Vault
@@ -1360,36 +1360,36 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 bound_claims_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_subject: Optional[pulumi.Input[_builtins.str]] = None,
-                 claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 clock_skew_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_bound_claims_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiration_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-                 oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim_json_pointer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_oidc_logging: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 bound_claims_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_subject: pulumi.Input[Optional[_builtins.str]] = None,
+                 claim_mappings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_bound_claims_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiration_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+                 oidc_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim_json_pointer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_oidc_logging: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1443,36 +1443,36 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            allowed_redirect_uris: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            bound_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_claims: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            bound_claims_type: Optional[pulumi.Input[_builtins.str]] = None,
-            bound_subject: Optional[pulumi.Input[_builtins.str]] = None,
-            claim_mappings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            clock_skew_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-            disable_bound_claims_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-            expiration_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-            groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-            max_age: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            not_before_leeway: Optional[pulumi.Input[_builtins.int]] = None,
-            oidc_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            role_name: Optional[pulumi.Input[_builtins.str]] = None,
-            role_type: Optional[pulumi.Input[_builtins.str]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-            token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-            token_period: Optional[pulumi.Input[_builtins.int]] = None,
-            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_type: Optional[pulumi.Input[_builtins.str]] = None,
-            user_claim: Optional[pulumi.Input[_builtins.str]] = None,
-            user_claim_json_pointer: Optional[pulumi.Input[_builtins.bool]] = None,
-            verbose_oidc_logging: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackendRole':
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allowed_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_claims: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            bound_claims_type: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_subject: pulumi.Input[Optional[_builtins.str]] = None,
+            claim_mappings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+            disable_bound_claims_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+            expiration_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+            groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            max_age: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+            oidc_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            role_type: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            user_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            user_claim_json_pointer: pulumi.Input[Optional[_builtins.bool]] = None,
+            verbose_oidc_logging: pulumi.Input[Optional[_builtins.bool]] = None) -> 'AuthBackendRole':
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

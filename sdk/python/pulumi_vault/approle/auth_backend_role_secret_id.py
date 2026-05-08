@@ -20,16 +20,16 @@ __all__ = ['AuthBackendRoleSecretIdArgs', 'AuthBackendRoleSecretId']
 class AuthBackendRoleSecretIdArgs:
     def __init__(__self__, *,
                  role_name: pulumi.Input[_builtins.str],
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 with_wrapped_accessor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 with_wrapped_accessor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendRoleSecretId resource.
 
@@ -94,19 +94,19 @@ class AuthBackendRoleSecretIdArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the auth backend to configure.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="cidrLists")
-    def cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def cidr_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, specifies blocks of IP addresses which can
         perform the login operation using this SecretID.
@@ -114,12 +114,12 @@ class AuthBackendRoleSecretIdArgs:
         return pulumi.get(self, "cidr_lists")
 
     @cidr_lists.setter
-    def cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def cidr_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "cidr_lists", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def metadata(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON-encoded string containing metadata in
         key-value pairs to be set on tokens issued with this SecretID.
@@ -127,12 +127,12 @@ class AuthBackendRoleSecretIdArgs:
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def metadata(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -142,24 +142,24 @@ class AuthBackendRoleSecretIdArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="numUses")
-    def num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of uses for the secret-id.
         """
         return pulumi.get(self, "num_uses")
 
     @num_uses.setter
-    def num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SecretID to be created. If set, uses "Push"
         mode.  Defaults to Vault auto-generating SecretIDs.
@@ -167,12 +167,12 @@ class AuthBackendRoleSecretIdArgs:
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, specifies blocks of IP addresses which
         can use the auth tokens generated by this SecretID. Overrides any role-set
@@ -181,24 +181,24 @@ class AuthBackendRoleSecretIdArgs:
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL duration of the SecretID.
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="withWrappedAccessor")
-    def with_wrapped_accessor(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def with_wrapped_accessor(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to `true` to use the wrapped secret-id accessor as the resource ID.
         If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
@@ -207,12 +207,12 @@ class AuthBackendRoleSecretIdArgs:
         return pulumi.get(self, "with_wrapped_accessor")
 
     @with_wrapped_accessor.setter
-    def with_wrapped_accessor(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def with_wrapped_accessor(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "with_wrapped_accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappingTtl")
-    def wrapping_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapping_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, the SecretID response will be
         [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
@@ -222,27 +222,27 @@ class AuthBackendRoleSecretIdArgs:
         return pulumi.get(self, "wrapping_ttl")
 
     @wrapping_ttl.setter
-    def wrapping_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapping_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapping_ttl", value)
 
 
 @pulumi.input_type
 class _AuthBackendRoleSecretIdState:
     def __init__(__self__, *,
-                 accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 with_wrapped_accessor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 wrapping_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapping_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 with_wrapped_accessor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 wrapping_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapping_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRoleSecretId resources.
 
@@ -306,31 +306,31 @@ class _AuthBackendRoleSecretIdState:
 
     @_builtins.property
     @pulumi.getter
-    def accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for this SecretID that can be safely logged.
         """
         return pulumi.get(self, "accessor")
 
     @accessor.setter
-    def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accessor", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the auth backend to configure.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="cidrLists")
-    def cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def cidr_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, specifies blocks of IP addresses which can
         perform the login operation using this SecretID.
@@ -338,12 +338,12 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "cidr_lists")
 
     @cidr_lists.setter
-    def cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def cidr_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "cidr_lists", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def metadata(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON-encoded string containing metadata in
         key-value pairs to be set on tokens issued with this SecretID.
@@ -351,12 +351,12 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def metadata(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -366,36 +366,36 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="numUses")
-    def num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of uses for the secret-id.
         """
         return pulumi.get(self, "num_uses")
 
     @num_uses.setter
-    def num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the role to create the SecretID for.
         """
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SecretID to be created. If set, uses "Push"
         mode.  Defaults to Vault auto-generating SecretIDs.
@@ -403,12 +403,12 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         If set, specifies blocks of IP addresses which
         can use the auth tokens generated by this SecretID. Overrides any role-set
@@ -417,24 +417,24 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL duration of the SecretID.
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="withWrappedAccessor")
-    def with_wrapped_accessor(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def with_wrapped_accessor(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to `true` to use the wrapped secret-id accessor as the resource ID.
         If `false` (default value), a fresh secret ID will be regenerated whenever the wrapping token is expired or
@@ -443,12 +443,12 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "with_wrapped_accessor")
 
     @with_wrapped_accessor.setter
-    def with_wrapped_accessor(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def with_wrapped_accessor(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "with_wrapped_accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappingAccessor")
-    def wrapping_accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapping_accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the response-wrapped SecretID that can
         be safely logged.
@@ -456,24 +456,24 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "wrapping_accessor")
 
     @wrapping_accessor.setter
-    def wrapping_accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapping_accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapping_accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappingToken")
-    def wrapping_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapping_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The token used to retrieve a response-wrapped SecretID.
         """
         return pulumi.get(self, "wrapping_token")
 
     @wrapping_token.setter
-    def wrapping_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapping_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapping_token", value)
 
     @_builtins.property
     @pulumi.getter(name="wrappingTtl")
-    def wrapping_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def wrapping_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set, the SecretID response will be
         [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping)
@@ -483,7 +483,7 @@ class _AuthBackendRoleSecretIdState:
         return pulumi.get(self, "wrapping_ttl")
 
     @wrapping_ttl.setter
-    def wrapping_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def wrapping_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "wrapping_ttl", value)
 
 
@@ -493,17 +493,17 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 with_wrapped_accessor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 with_wrapped_accessor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an AppRole auth backend SecretID in a Vault server. See the [Vault
@@ -613,17 +613,17 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 with_wrapped_accessor: Optional[pulumi.Input[_builtins.bool]] = None,
-                 wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 with_wrapped_accessor: pulumi.Input[Optional[_builtins.bool]] = None,
+                 wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -663,20 +663,20 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            metadata: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-            role_name: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            with_wrapped_accessor: Optional[pulumi.Input[_builtins.bool]] = None,
-            wrapping_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            wrapping_token: Optional[pulumi.Input[_builtins.str]] = None,
-            wrapping_ttl: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendRoleSecretId':
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            metadata: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            with_wrapped_accessor: pulumi.Input[Optional[_builtins.bool]] = None,
+            wrapping_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_token: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendRoleSecretId':
         """
         Get an existing AuthBackendRoleSecretId resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

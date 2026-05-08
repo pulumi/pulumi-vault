@@ -296,135 +296,135 @@ export interface SecretBackendRoleState {
     /**
      * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
      */
-    algorithmSigner?: pulumi.Input<string>;
+    algorithmSigner?: pulumi.Input<string | undefined>;
     /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
-    allowBareDomains?: pulumi.Input<boolean>;
+    allowBareDomains?: pulumi.Input<boolean | undefined>;
     /**
      * Allow signing certificates with no
      * valid principals (e.g. any valid principal). For backwards compatibility
      * only. The default of false is highly recommended.
      */
-    allowEmptyPrincipals?: pulumi.Input<boolean>;
+    allowEmptyPrincipals?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
      */
-    allowHostCertificates?: pulumi.Input<boolean>;
+    allowHostCertificates?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
      */
-    allowSubdomains?: pulumi.Input<boolean>;
+    allowSubdomains?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'user'.
      */
-    allowUserCertificates?: pulumi.Input<boolean>;
+    allowUserCertificates?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if users can override the key ID for a signed certificate with the `keyId` field.
      */
-    allowUserKeyIds?: pulumi.Input<boolean>;
+    allowUserKeyIds?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies a comma-separated list of critical options that certificates can have when signed.
      */
-    allowedCriticalOptions?: pulumi.Input<string>;
+    allowedCriticalOptions?: pulumi.Input<string | undefined>;
     /**
      * The list of domains for which a client can request a host certificate.
      */
-    allowedDomains?: pulumi.Input<string>;
+    allowedDomains?: pulumi.Input<string | undefined>;
     /**
      * Specifies if `allowedDomains` can be declared using
      * identity template policies. Non-templated domains are also permitted.
      */
-    allowedDomainsTemplate?: pulumi.Input<boolean>;
+    allowedDomainsTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
-    allowedExtensions?: pulumi.Input<string>;
+    allowedExtensions?: pulumi.Input<string | undefined>;
     /**
      * Set of configuration blocks to define allowed  
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      */
-    allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
+    allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[] | undefined>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
-    allowedUsers?: pulumi.Input<string>;
+    allowedUsers?: pulumi.Input<string | undefined>;
     /**
      * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
      */
-    allowedUsersTemplate?: pulumi.Input<boolean>;
+    allowedUsersTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * The path where the SSH secret backend is mounted.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The comma-separated string of CIDR blocks for which this role is applicable.
      */
-    cidrList?: pulumi.Input<string>;
+    cidrList?: pulumi.Input<string | undefined>;
     /**
      * Specifies a map of critical options that certificates have when signed.
      */
-    defaultCriticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    defaultCriticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies a map of extensions that certificates have when signed.
      */
-    defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies if the `defaultExtensions` field supports templating.
      * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
      */
-    defaultExtensionsTemplate?: pulumi.Input<boolean>;
+    defaultExtensionsTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the default username for which a credential will be generated.
      */
-    defaultUser?: pulumi.Input<string>;
+    defaultUser?: pulumi.Input<string | undefined>;
     /**
      * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      */
-    defaultUserTemplate?: pulumi.Input<boolean>;
+    defaultUserTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
      * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
      */
-    excludeCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
+    excludeCidrLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */
-    keyIdFormat?: pulumi.Input<string>;
+    keyIdFormat?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Specifies the maximum Time To Live value.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the role to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the duration by which to backdate the ValidAfter property.
      * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
-    notBeforeDuration?: pulumi.Input<string>;
+    notBeforeDuration?: pulumi.Input<string | undefined>;
     /**
      * Specifies the port number for SSH connections. Defaults to `22`.
      * This is primarily used with OTP key types to specify the SSH port on target hosts.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Specifies the Time To Live value.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -434,64 +434,64 @@ export interface SecretBackendRoleArgs {
     /**
      * When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
      */
-    algorithmSigner?: pulumi.Input<string>;
+    algorithmSigner?: pulumi.Input<string | undefined>;
     /**
      * Specifies if host certificates that are requested are allowed to use the base domains listed in `allowedDomains`.
      */
-    allowBareDomains?: pulumi.Input<boolean>;
+    allowBareDomains?: pulumi.Input<boolean | undefined>;
     /**
      * Allow signing certificates with no
      * valid principals (e.g. any valid principal). For backwards compatibility
      * only. The default of false is highly recommended.
      */
-    allowEmptyPrincipals?: pulumi.Input<boolean>;
+    allowEmptyPrincipals?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'host'.
      */
-    allowHostCertificates?: pulumi.Input<boolean>;
+    allowHostCertificates?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowedDomains`.
      */
-    allowSubdomains?: pulumi.Input<boolean>;
+    allowSubdomains?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if certificates are allowed to be signed for use as a 'user'.
      */
-    allowUserCertificates?: pulumi.Input<boolean>;
+    allowUserCertificates?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if users can override the key ID for a signed certificate with the `keyId` field.
      */
-    allowUserKeyIds?: pulumi.Input<boolean>;
+    allowUserKeyIds?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies a comma-separated list of critical options that certificates can have when signed.
      */
-    allowedCriticalOptions?: pulumi.Input<string>;
+    allowedCriticalOptions?: pulumi.Input<string | undefined>;
     /**
      * The list of domains for which a client can request a host certificate.
      */
-    allowedDomains?: pulumi.Input<string>;
+    allowedDomains?: pulumi.Input<string | undefined>;
     /**
      * Specifies if `allowedDomains` can be declared using
      * identity template policies. Non-templated domains are also permitted.
      */
-    allowedDomainsTemplate?: pulumi.Input<boolean>;
+    allowedDomainsTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies a comma-separated list of extensions that certificates can have when signed.
      */
-    allowedExtensions?: pulumi.Input<string>;
+    allowedExtensions?: pulumi.Input<string | undefined>;
     /**
      * Set of configuration blocks to define allowed  
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      */
-    allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[]>;
+    allowedUserKeyConfigs?: pulumi.Input<pulumi.Input<inputs.ssh.SecretBackendRoleAllowedUserKeyConfig>[] | undefined>;
     /**
      * Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
      */
-    allowedUsers?: pulumi.Input<string>;
+    allowedUsers?: pulumi.Input<string | undefined>;
     /**
      * Specifies if `allowedUsers` can be declared using identity template policies. Non-templated users are also permitted.
      */
-    allowedUsersTemplate?: pulumi.Input<boolean>;
+    allowedUsersTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * The path where the SSH secret backend is mounted.
      */
@@ -499,37 +499,37 @@ export interface SecretBackendRoleArgs {
     /**
      * The comma-separated string of CIDR blocks for which this role is applicable.
      */
-    cidrList?: pulumi.Input<string>;
+    cidrList?: pulumi.Input<string | undefined>;
     /**
      * Specifies a map of critical options that certificates have when signed.
      */
-    defaultCriticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    defaultCriticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies a map of extensions that certificates have when signed.
      */
-    defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    defaultExtensions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies if the `defaultExtensions` field supports templating.
      * When set to `true`, the extension values can use identity template policies. Defaults to `false`.
      */
-    defaultExtensionsTemplate?: pulumi.Input<boolean>;
+    defaultExtensionsTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the default username for which a credential will be generated.
      */
-    defaultUser?: pulumi.Input<string>;
+    defaultUser?: pulumi.Input<string | undefined>;
     /**
      * If set, `defaultUsers` can be specified using identity template values. A non-templated user is also permitted.
      */
-    defaultUserTemplate?: pulumi.Input<boolean>;
+    defaultUserTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
      * This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
      */
-    excludeCidrLists?: pulumi.Input<pulumi.Input<string>[]>;
+    excludeCidrLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies a custom format for the key id of a signed certificate.
      */
-    keyIdFormat?: pulumi.Input<string>;
+    keyIdFormat?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
      */
@@ -537,30 +537,30 @@ export interface SecretBackendRoleArgs {
     /**
      * Specifies the maximum Time To Live value.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the role to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the duration by which to backdate the ValidAfter property.
      * Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      */
-    notBeforeDuration?: pulumi.Input<string>;
+    notBeforeDuration?: pulumi.Input<string | undefined>;
     /**
      * Specifies the port number for SSH connections. Defaults to `22`.
      * This is primarily used with OTP key types to specify the SSH port on target hosts.
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * Specifies the Time To Live value.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
 }

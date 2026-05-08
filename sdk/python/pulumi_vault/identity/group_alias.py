@@ -22,7 +22,7 @@ class GroupAliasArgs:
                  canonical_id: pulumi.Input[_builtins.str],
                  mount_accessor: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupAlias resource.
 
@@ -78,7 +78,7 @@ class GroupAliasArgs:
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -88,17 +88,17 @@ class GroupAliasArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _GroupAliasState:
     def __init__(__self__, *,
-                 canonical_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupAlias resources.
 
@@ -121,43 +121,43 @@ class _GroupAliasState:
 
     @_builtins.property
     @pulumi.getter(name="canonicalId")
-    def canonical_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def canonical_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the group to which this is an alias.
         """
         return pulumi.get(self, "canonical_id")
 
     @canonical_id.setter
-    def canonical_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def canonical_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "canonical_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")
-    def mount_accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount_accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Mount accessor of the authentication backend to which this alias belongs to.
         """
         return pulumi.get(self, "mount_accessor")
 
     @mount_accessor.setter
-    def mount_accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount_accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount_accessor", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the group alias to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -167,7 +167,7 @@ class _GroupAliasState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -177,10 +177,10 @@ class GroupAlias(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 canonical_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates an Identity Group Alias for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -291,10 +291,10 @@ class GroupAlias(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 canonical_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -324,10 +324,10 @@ class GroupAlias(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            canonical_id: Optional[pulumi.Input[_builtins.str]] = None,
-            mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'GroupAlias':
+            canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'GroupAlias':
         """
         Get an existing GroupAlias resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

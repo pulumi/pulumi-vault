@@ -19,45 +19,45 @@ __all__ = ['SecretBackendArgs', 'SecretBackend']
 @pulumi.input_type
 class SecretBackendArgs:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_managed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_fallback_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_fallback_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackend resource.
 
@@ -216,7 +216,7 @@ class SecretBackendArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS Access Key ID this backend should use to
         issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
@@ -224,108 +224,108 @@ class SecretBackendArgs:
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedManagedKeys")
-    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_managed_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of managed key registry entry names that the mount in question is allowed to access
         """
         return pulumi.get(self, "allowed_managed_keys")
 
     @allowed_managed_keys.setter
-    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_managed_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_response_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to allow and pass from the request to the plugin
         """
         return pulumi.get(self, "allowed_response_headers")
 
     @allowed_response_headers.setter
-    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_response_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_response_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_request_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         """
         return pulumi.get(self, "audit_non_hmac_request_keys")
 
     @audit_non_hmac_request_keys.setter
-    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_request_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_request_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_response_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         """
         return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @audit_non_hmac_response_keys.setter
-    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_response_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_lease_ttl_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default lease duration for secrets in seconds
         """
         return pulumi.get(self, "default_lease_ttl_seconds")
 
     @default_lease_ttl_seconds.setter
-    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_lease_ttl_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_lease_ttl_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="delegatedAuthAccessors")
-    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def delegated_auth_accessors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to allow and pass from the request to the plugin
         """
         return pulumi.get(self, "delegated_auth_accessors")
 
     @delegated_auth_accessors.setter
-    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def delegated_auth_accessors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "delegated_auth_accessors", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-friendly description of the mount for the backend.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -333,132 +333,132 @@ class SecretBackendArgs:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter(name="externalEntropyAccess")
-    def external_entropy_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_entropy_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable the secrets engine to access Vault's external entropy source
         """
         return pulumi.get(self, "external_entropy_access")
 
     @external_entropy_access.setter
-    def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_entropy_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_entropy_access", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNoCache")
-    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_no_cache(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables caching.
         """
         return pulumi.get(self, "force_no_cache")
 
     @force_no_cache.setter
-    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_no_cache(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_no_cache", value)
 
     @_builtins.property
     @pulumi.getter(name="iamEndpoint")
-    def iam_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a custom HTTP IAM endpoint to use.
         """
         return pulumi.get(self, "iam_endpoint")
 
     @iam_endpoint.setter
-    def iam_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value. Requires Vault 1.16+.
         """
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
-    def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key to use for signing identity tokens.
         """
         return pulumi.get(self, "identity_token_key")
 
     @identity_token_key.setter
-    def identity_token_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_key", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
         """
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="listingVisibility")
-    def listing_visibility(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def listing_visibility(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies whether to show this mount in the UI-specific listing endpoint
         """
         return pulumi.get(self, "listing_visibility")
 
     @listing_visibility.setter
-    def listing_visibility(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def listing_visibility(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "listing_visibility", value)
 
     @_builtins.property
     @pulumi.getter
-    def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the secret backend is local only
         """
         return pulumi.get(self, "local")
 
     @local.setter
-    def local(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_lease_ttl_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum possible lease duration for secrets in seconds
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
 
     @max_lease_ttl_seconds.setter
-    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_lease_ttl_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of max retries the client should use for recoverable errors.
         """
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -468,36 +468,36 @@ class SecretBackendArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def options(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def options(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def passthrough_request_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to allow and pass from the request to the plugin
         """
         return pulumi.get(self, "passthrough_request_headers")
 
     @passthrough_request_headers.setter
-    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def passthrough_request_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "passthrough_request_headers", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `aws`.
@@ -505,24 +505,24 @@ class SecretBackendArgs:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region for API calls. Defaults to `us-east-1`.
 
@@ -534,24 +534,24 @@ class SecretBackendArgs:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
-    def role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
-    def role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential. 
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -559,12 +559,12 @@ class SecretBackendArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -572,12 +572,12 @@ class SecretBackendArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -586,24 +586,24 @@ class SecretBackendArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="sealWrap")
-    def seal_wrap(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def seal_wrap(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         return pulumi.get(self, "seal_wrap")
 
     @seal_wrap.setter
-    def seal_wrap(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def seal_wrap(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "seal_wrap", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS Secret Key this backend should use to
         issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
@@ -619,12 +619,12 @@ class SecretBackendArgs:
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWo")
-    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
@@ -632,72 +632,72 @@ class SecretBackendArgs:
         return pulumi.get(self, "secret_key_wo")
 
     @secret_key_wo.setter
-    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWoVersion")
-    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
         """
         return pulumi.get(self, "secret_key_wo_version")
 
     @secret_key_wo_version.setter
-    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")
-    def sts_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a custom HTTP STS endpoint to use.
         """
         return pulumi.get(self, "sts_endpoint")
 
     @sts_endpoint.setter
-    def sts_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="stsFallbackEndpoints")
-    def sts_fallback_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def sts_fallback_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
         """
         return pulumi.get(self, "sts_fallback_endpoints")
 
     @sts_fallback_endpoints.setter
-    def sts_fallback_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def sts_fallback_endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "sts_fallback_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="stsFallbackRegions")
-    def sts_fallback_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def sts_fallback_regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
         """
         return pulumi.get(self, "sts_fallback_regions")
 
     @sts_fallback_regions.setter
-    def sts_fallback_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def sts_fallback_regions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "sts_fallback_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="stsRegion")
-    def sts_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
         """
         return pulumi.get(self, "sts_region")
 
     @sts_region.setter
-    def sts_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_region", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
 
@@ -713,53 +713,53 @@ class SecretBackendArgs:
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 @pulumi.input_type
 class _SecretBackendState:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_managed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_fallback_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_fallback_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackend resources.
 
@@ -921,7 +921,7 @@ class _SecretBackendState:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS Access Key ID this backend should use to
         issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.
@@ -929,120 +929,120 @@ class _SecretBackendState:
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Accessor of the mount
         """
         return pulumi.get(self, "accessor")
 
     @accessor.setter
-    def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedManagedKeys")
-    def allowed_managed_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_managed_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of managed key registry entry names that the mount in question is allowed to access
         """
         return pulumi.get(self, "allowed_managed_keys")
 
     @allowed_managed_keys.setter
-    def allowed_managed_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_managed_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_managed_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_response_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to allow and pass from the request to the plugin
         """
         return pulumi.get(self, "allowed_response_headers")
 
     @allowed_response_headers.setter
-    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_response_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_response_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_request_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         """
         return pulumi.get(self, "audit_non_hmac_request_keys")
 
     @audit_non_hmac_request_keys.setter
-    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_request_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_request_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_response_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         """
         return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @audit_non_hmac_response_keys.setter
-    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_response_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtlSeconds")
-    def default_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_lease_ttl_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default lease duration for secrets in seconds
         """
         return pulumi.get(self, "default_lease_ttl_seconds")
 
     @default_lease_ttl_seconds.setter
-    def default_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_lease_ttl_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_lease_ttl_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="delegatedAuthAccessors")
-    def delegated_auth_accessors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def delegated_auth_accessors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to allow and pass from the request to the plugin
         """
         return pulumi.get(self, "delegated_auth_accessors")
 
     @delegated_auth_accessors.setter
-    def delegated_auth_accessors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def delegated_auth_accessors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "delegated_auth_accessors", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-friendly description of the mount for the backend.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -1050,132 +1050,132 @@ class _SecretBackendState:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter(name="externalEntropyAccess")
-    def external_entropy_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_entropy_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable the secrets engine to access Vault's external entropy source
         """
         return pulumi.get(self, "external_entropy_access")
 
     @external_entropy_access.setter
-    def external_entropy_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_entropy_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_entropy_access", value)
 
     @_builtins.property
     @pulumi.getter(name="forceNoCache")
-    def force_no_cache(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def force_no_cache(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables caching.
         """
         return pulumi.get(self, "force_no_cache")
 
     @force_no_cache.setter
-    def force_no_cache(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def force_no_cache(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "force_no_cache", value)
 
     @_builtins.property
     @pulumi.getter(name="iamEndpoint")
-    def iam_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a custom HTTP IAM endpoint to use.
         """
         return pulumi.get(self, "iam_endpoint")
 
     @iam_endpoint.setter
-    def iam_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value. Requires Vault 1.16+.
         """
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
-    def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key to use for signing identity tokens.
         """
         return pulumi.get(self, "identity_token_key")
 
     @identity_token_key.setter
-    def identity_token_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_key", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds. Requires Vault 1.16+.
         """
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="listingVisibility")
-    def listing_visibility(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def listing_visibility(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies whether to show this mount in the UI-specific listing endpoint
         """
         return pulumi.get(self, "listing_visibility")
 
     @listing_visibility.setter
-    def listing_visibility(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def listing_visibility(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "listing_visibility", value)
 
     @_builtins.property
     @pulumi.getter
-    def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the secret backend is local only
         """
         return pulumi.get(self, "local")
 
     @local.setter
-    def local(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_lease_ttl_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum possible lease duration for secrets in seconds
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
 
     @max_lease_ttl_seconds.setter
-    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_lease_ttl_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of max retries the client should use for recoverable errors.
         """
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -1185,36 +1185,36 @@ class _SecretBackendState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def options(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies mount type specific options that are passed to the backend
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def options(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def passthrough_request_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to allow and pass from the request to the plugin
         """
         return pulumi.get(self, "passthrough_request_headers")
 
     @passthrough_request_headers.setter
-    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def passthrough_request_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "passthrough_request_headers", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `aws`.
@@ -1222,24 +1222,24 @@ class _SecretBackendState:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region for API calls. Defaults to `us-east-1`.
 
@@ -1251,24 +1251,24 @@ class _SecretBackendState:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
-    def role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
         """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
-    def role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential. 
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -1276,12 +1276,12 @@ class _SecretBackendState:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -1289,12 +1289,12 @@ class _SecretBackendState:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -1303,24 +1303,24 @@ class _SecretBackendState:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="sealWrap")
-    def seal_wrap(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def seal_wrap(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         return pulumi.get(self, "seal_wrap")
 
     @seal_wrap.setter
-    def seal_wrap(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def seal_wrap(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "seal_wrap", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS Secret Key this backend should use to
         issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials. Conflicts with `secret_key_wo`.
@@ -1336,12 +1336,12 @@ class _SecretBackendState:
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWo")
-    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The AWS Secret Access Key to use when generating new credentials. This is a write-only field and will not be read back from Vault.
@@ -1349,72 +1349,72 @@ class _SecretBackendState:
         return pulumi.get(self, "secret_key_wo")
 
     @secret_key_wo.setter
-    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWoVersion")
-    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A version counter for the write-only secret_key_wo field. Incrementing this value will trigger an update to the secret_key.
         """
         return pulumi.get(self, "secret_key_wo_version")
 
     @secret_key_wo_version.setter
-    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")
-    def sts_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a custom HTTP STS endpoint to use.
         """
         return pulumi.get(self, "sts_endpoint")
 
     @sts_endpoint.setter
-    def sts_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="stsFallbackEndpoints")
-    def sts_fallback_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def sts_fallback_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Ordered list of `sts_endpoint`s to try if the defined one fails. Requires Vault 1.19+
         """
         return pulumi.get(self, "sts_fallback_endpoints")
 
     @sts_fallback_endpoints.setter
-    def sts_fallback_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def sts_fallback_endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "sts_fallback_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="stsFallbackRegions")
-    def sts_fallback_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def sts_fallback_regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Ordered list of `sts_region`s matching the fallback endpoints. Should correspond in order with those endpoints. Requires Vault 1.19+
         """
         return pulumi.get(self, "sts_fallback_regions")
 
     @sts_fallback_regions.setter
-    def sts_fallback_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def sts_fallback_regions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "sts_fallback_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="stsRegion")
-    def sts_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the region of the STS endpoint. Should be included if `sts_endpoint` is supplied. Requires Vault 1.19+
         """
         return pulumi.get(self, "sts_region")
 
     @sts_region.setter
-    def sts_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_region", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated. The username template is used to generate both IAM usernames (capped at 64 characters) and STS usernames (capped at 32 characters). If no template is provided the field defaults to the template:
 
@@ -1430,7 +1430,7 @@ class _SecretBackendState:
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
@@ -1440,45 +1440,45 @@ class SecretBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_managed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_fallback_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_fallback_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates an AWS Secret Backend for Vault. AWS secret backends can then issue AWS
@@ -1543,7 +1543,7 @@ class SecretBackend(pulumi.CustomResource):
 
         aws = vault.aws.SecretBackend("aws",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             role_arn="<AWS_ROLE_ARN>",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
@@ -1721,7 +1721,7 @@ class SecretBackend(pulumi.CustomResource):
 
         aws = vault.aws.SecretBackend("aws",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             role_arn="<AWS_ROLE_ARN>",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
@@ -1769,45 +1769,45 @@ class SecretBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_managed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_fallback_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_fallback_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1869,46 +1869,46 @@ class SecretBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_managed_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            default_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-            delegated_auth_accessors: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-            external_entropy_access: Optional[pulumi.Input[_builtins.bool]] = None,
-            force_no_cache: Optional[pulumi.Input[_builtins.bool]] = None,
-            iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-            local: Optional[pulumi.Input[_builtins.bool]] = None,
-            max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-            max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-            rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-            seal_wrap: Optional[pulumi.Input[_builtins.bool]] = None,
-            secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            sts_fallback_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            sts_fallback_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-            username_template: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackend':
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_managed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
+            iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            sts_fallback_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            sts_fallback_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+            username_template: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackend':
         """
         Get an existing SecretBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

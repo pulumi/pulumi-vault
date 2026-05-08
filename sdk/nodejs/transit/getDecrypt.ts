@@ -93,7 +93,7 @@ export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.Invok
 export interface GetDecryptOutputArgs {
     backend: pulumi.Input<string>;
     ciphertext: pulumi.Input<string>;
-    context?: pulumi.Input<string>;
+    context?: pulumi.Input<string | undefined>;
     key: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

@@ -203,55 +203,55 @@ export interface AuthBackendConfigState {
     /**
      * Unique name of the kubernetes backend to configure.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    disableIssValidation?: pulumi.Input<boolean>;
+    disableIssValidation?: pulumi.Input<boolean | undefined>;
     /**
      * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    disableLocalCaJwt?: pulumi.Input<boolean>;
+    disableLocalCaJwt?: pulumi.Input<boolean | undefined>;
     /**
      * JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
-    kubernetesCaCert?: pulumi.Input<string>;
+    kubernetesCaCert?: pulumi.Input<string | undefined>;
     /**
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
-    kubernetesHost?: pulumi.Input<string>;
+    kubernetesHost?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
-    pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    pemKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
      */
-    tokenReviewerJwt?: pulumi.Input<string>;
+    tokenReviewerJwt?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
-    tokenReviewerJwtWo?: pulumi.Input<string>;
+    tokenReviewerJwtWo?: pulumi.Input<string | undefined>;
     /**
      * The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
      */
-    tokenReviewerJwtWoVersion?: pulumi.Input<number>;
+    tokenReviewerJwtWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
      */
-    useAnnotationsAsAliasMetadata?: pulumi.Input<boolean>;
+    useAnnotationsAsAliasMetadata?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -261,23 +261,23 @@ export interface AuthBackendConfigArgs {
     /**
      * Unique name of the kubernetes backend to configure.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Disable JWT issuer validation. Allows to skip ISS validation. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    disableIssValidation?: pulumi.Input<boolean>;
+    disableIssValidation?: pulumi.Input<boolean | undefined>;
     /**
      * Disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod. Requires Vault `v1.5.4+` or Vault auth kubernetes plugin `v0.7.1+`
      */
-    disableLocalCaJwt?: pulumi.Input<boolean>;
+    disableLocalCaJwt?: pulumi.Input<boolean | undefined>;
     /**
      * JWT issuer. If no issuer is specified, `kubernetes.io/serviceaccount` will be used as the default issuer.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
      */
-    kubernetesCaCert?: pulumi.Input<string>;
+    kubernetesCaCert?: pulumi.Input<string | undefined>;
     /**
      * Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
      */
@@ -288,26 +288,26 @@ export interface AuthBackendConfigArgs {
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * List of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
      */
-    pemKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    pemKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API. Conflicts with `tokenReviewerJwtWo`.
      */
-    tokenReviewerJwt?: pulumi.Input<string>;
+    tokenReviewerJwt?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * A write-only service account JWT (or other token) used as a bearer token to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
      */
-    tokenReviewerJwtWo?: pulumi.Input<string>;
+    tokenReviewerJwtWo?: pulumi.Input<string | undefined>;
     /**
      * The version of `tokenReviewerJwtWo` to use during write operations. Required with `tokenReviewerJwtWo`. For more info see updating write-only attributes.
      */
-    tokenReviewerJwtWoVersion?: pulumi.Input<number>;
+    tokenReviewerJwtWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Use annotations from the client token's associated service account as alias metadata for the Vault entity. Requires Vault `v1.16+` or Vault auth kubernetes plugin `v0.18.0+`
      */
-    useAnnotationsAsAliasMetadata?: pulumi.Input<boolean>;
+    useAnnotationsAsAliasMetadata?: pulumi.Input<boolean | undefined>;
 }

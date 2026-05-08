@@ -155,7 +155,7 @@ export interface GetNomadAccessTokenOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name of the Nomad secret backend role to generate
      * a token for, with no leading or trailing `/`s.

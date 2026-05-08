@@ -133,29 +133,29 @@ export function getVerifyOutput(args: GetVerifyOutputArgs, opts?: pulumi.InvokeO
  * A collection of arguments for invoking getVerify.
  */
 export interface GetVerifyOutputArgs {
-    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * The results returned from Vault if using `batchInput`
      */
-    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
-    cmac?: pulumi.Input<string>;
-    context?: pulumi.Input<string>;
-    hashAlgorithm?: pulumi.Input<string>;
-    hmac?: pulumi.Input<string>;
-    input?: pulumi.Input<string>;
-    macLength?: pulumi.Input<number>;
-    marshalingAlgorithm?: pulumi.Input<string>;
+    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
+    cmac?: pulumi.Input<string | undefined>;
+    context?: pulumi.Input<string | undefined>;
+    hashAlgorithm?: pulumi.Input<string | undefined>;
+    hmac?: pulumi.Input<string | undefined>;
+    input?: pulumi.Input<string | undefined>;
+    macLength?: pulumi.Input<number | undefined>;
+    marshalingAlgorithm?: pulumi.Input<string | undefined>;
     name: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     path: pulumi.Input<string>;
-    prehashed?: pulumi.Input<boolean>;
-    reference?: pulumi.Input<string>;
-    saltLength?: pulumi.Input<string>;
-    signature?: pulumi.Input<string>;
-    signatureAlgorithm?: pulumi.Input<string>;
-    signatureContext?: pulumi.Input<string>;
+    prehashed?: pulumi.Input<boolean | undefined>;
+    reference?: pulumi.Input<string | undefined>;
+    saltLength?: pulumi.Input<string | undefined>;
+    signature?: pulumi.Input<string | undefined>;
+    signatureAlgorithm?: pulumi.Input<string | undefined>;
+    signatureContext?: pulumi.Input<string | undefined>;
     /**
      * Returns `true` if the signature verification succeeded and `false` otherwise
      */
-    valid?: pulumi.Input<boolean>;
+    valid?: pulumi.Input<boolean | undefined>;
 }

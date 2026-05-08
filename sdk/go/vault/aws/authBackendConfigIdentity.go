@@ -30,14 +30,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+//			aws2, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
 //				Type: pulumi.String("aws"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = aws.NewAuthBackendConfigIdentity(ctx, "example", &aws.AuthBackendConfigIdentityArgs{
-//				Backend:  aws.Path,
+//				Backend:  aws2.Path,
 //				IamAlias: pulumi.String("full_arn"),
 //				IamMetadatas: pulumi.StringArray{
 //					pulumi.String("canonical_arn"),

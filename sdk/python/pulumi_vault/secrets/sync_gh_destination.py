@@ -19,21 +19,21 @@ __all__ = ['SyncGhDestinationArgs', 'SyncGhDestination']
 @pulumi.input_type
 class SyncGhDestinationArgs:
     def __init__(__self__, *,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 app_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_owner: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 secrets_location: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 app_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 secrets_location: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncGhDestination resource.
 
@@ -106,7 +106,7 @@ class SyncGhDestinationArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessToken")
-    def access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Fine-grained or personal access token.
         Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
@@ -115,12 +115,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "access_token")
 
     @access_token.setter
-    def access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv4Addresses")
-    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
         for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
@@ -129,12 +129,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "allowed_ipv4_addresses")
 
     @allowed_ipv4_addresses.setter
-    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv4_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv6Addresses")
-    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
         for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
@@ -143,12 +143,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "allowed_ipv6_addresses")
 
     @allowed_ipv6_addresses.setter
-    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv6_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedPorts")
-    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def allowed_ports(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         Set of allowed ports for outbound connections from Vault to the
         destination. If not set, all ports are allowed. Requires Vault 1.19+.
@@ -156,12 +156,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "allowed_ports")
 
     @allowed_ports.setter
-    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def allowed_ports(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter(name="appName")
-    def app_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def app_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user-defined name of the GitHub App configuration. This is a reference to the name used   
         on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
@@ -170,12 +170,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "app_name")
 
     @app_name.setter
-    def app_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def app_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "app_name", value)
 
     @_builtins.property
     @pulumi.getter(name="disableStrictNetworking")
-    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_strict_networking(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, disables strict networking enforcement
         for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
@@ -184,24 +184,24 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "disable_strict_networking")
 
     @disable_strict_networking.setter
-    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_strict_networking(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentName")
-    def environment_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Environment name for the destination. Requires Vault 1.18+.
         """
         return pulumi.get(self, "environment_name")
 
     @environment_name.setter
-    def environment_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def granularity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def granularity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines what level of information is synced as a distinct resource
         at the destination. Supports `secret-path` and `secret-key`.
@@ -209,12 +209,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "granularity")
 
     @granularity.setter
-    def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def granularity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
     @pulumi.getter(name="installationId")
-    def installation_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def installation_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the installation generated by GitHub when the app referenced by the `app_name` 
         was installed in the user's GitHub account. Can be modified. Necessary if the `app_name` field is also provided.
@@ -222,24 +222,24 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "installation_id")
 
     @installation_id.setter
-    def installation_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def installation_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "installation_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the GitHub destination.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -248,12 +248,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="repositoryName")
-    def repository_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def repository_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the repository.
         Can be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_NAME` environment
@@ -262,12 +262,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "repository_name")
 
     @repository_name.setter
-    def repository_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def repository_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "repository_name", value)
 
     @_builtins.property
     @pulumi.getter(name="repositoryOwner")
-    def repository_owner(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def repository_owner(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         GitHub organization or username that owns the repository.
         Can be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_OWNER` environment
@@ -276,12 +276,12 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "repository_owner")
 
     @repository_owner.setter
-    def repository_owner(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def repository_owner(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "repository_owner", value)
 
     @_builtins.property
     @pulumi.getter(name="secretNameTemplate")
-    def secret_name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_name_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how to generate external secret names.
         Supports a subset of the Go Template syntax.
@@ -289,41 +289,41 @@ class SyncGhDestinationArgs:
         return pulumi.get(self, "secret_name_template")
 
     @secret_name_template.setter
-    def secret_name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_name_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_name_template", value)
 
     @_builtins.property
     @pulumi.getter(name="secretsLocation")
-    def secrets_location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secrets_location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Location where secrets are stored in the destination. Requires Vault 1.18+.
         """
         return pulumi.get(self, "secrets_location")
 
     @secrets_location.setter
-    def secrets_location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secrets_location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secrets_location", value)
 
 
 @pulumi.input_type
 class _SyncGhDestinationState:
     def __init__(__self__, *,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 app_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_owner: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 secrets_location: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 app_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 secrets_location: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncGhDestination resources.
 
@@ -399,7 +399,7 @@ class _SyncGhDestinationState:
 
     @_builtins.property
     @pulumi.getter(name="accessToken")
-    def access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Fine-grained or personal access token.
         Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment
@@ -408,12 +408,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "access_token")
 
     @access_token.setter
-    def access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv4Addresses")
-    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
         for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
@@ -422,12 +422,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "allowed_ipv4_addresses")
 
     @allowed_ipv4_addresses.setter
-    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv4_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv6Addresses")
-    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
         for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
@@ -436,12 +436,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "allowed_ipv6_addresses")
 
     @allowed_ipv6_addresses.setter
-    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv6_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedPorts")
-    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def allowed_ports(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         Set of allowed ports for outbound connections from Vault to the
         destination. If not set, all ports are allowed. Requires Vault 1.19+.
@@ -449,12 +449,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "allowed_ports")
 
     @allowed_ports.setter
-    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def allowed_ports(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter(name="appName")
-    def app_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def app_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user-defined name of the GitHub App configuration. This is a reference to the name used   
         on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
@@ -463,12 +463,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "app_name")
 
     @app_name.setter
-    def app_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def app_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "app_name", value)
 
     @_builtins.property
     @pulumi.getter(name="disableStrictNetworking")
-    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_strict_networking(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, disables strict networking enforcement
         for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
@@ -477,24 +477,24 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "disable_strict_networking")
 
     @disable_strict_networking.setter
-    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_strict_networking(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter(name="environmentName")
-    def environment_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Environment name for the destination. Requires Vault 1.18+.
         """
         return pulumi.get(self, "environment_name")
 
     @environment_name.setter
-    def environment_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def granularity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def granularity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines what level of information is synced as a distinct resource
         at the destination. Supports `secret-path` and `secret-key`.
@@ -502,12 +502,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "granularity")
 
     @granularity.setter
-    def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def granularity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
     @pulumi.getter(name="installationId")
-    def installation_id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def installation_id(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The ID of the installation generated by GitHub when the app referenced by the `app_name` 
         was installed in the user's GitHub account. Can be modified. Necessary if the `app_name` field is also provided.
@@ -515,24 +515,24 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "installation_id")
 
     @installation_id.setter
-    def installation_id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def installation_id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "installation_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the GitHub destination.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -541,12 +541,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="repositoryName")
-    def repository_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def repository_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the repository.
         Can be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_NAME` environment
@@ -555,12 +555,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "repository_name")
 
     @repository_name.setter
-    def repository_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def repository_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "repository_name", value)
 
     @_builtins.property
     @pulumi.getter(name="repositoryOwner")
-    def repository_owner(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def repository_owner(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         GitHub organization or username that owns the repository.
         Can be omitted and directly provided to Vault using the `GITHUB_REPOSITORY_OWNER` environment
@@ -569,12 +569,12 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "repository_owner")
 
     @repository_owner.setter
-    def repository_owner(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def repository_owner(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "repository_owner", value)
 
     @_builtins.property
     @pulumi.getter(name="secretNameTemplate")
-    def secret_name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_name_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how to generate external secret names.
         Supports a subset of the Go Template syntax.
@@ -582,31 +582,31 @@ class _SyncGhDestinationState:
         return pulumi.get(self, "secret_name_template")
 
     @secret_name_template.setter
-    def secret_name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_name_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_name_template", value)
 
     @_builtins.property
     @pulumi.getter(name="secretsLocation")
-    def secrets_location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secrets_location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Location where secrets are stored in the destination. Requires Vault 1.18+.
         """
         return pulumi.get(self, "secrets_location")
 
     @secrets_location.setter
-    def secrets_location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secrets_location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secrets_location", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the secrets destination (`gh`).
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -616,21 +616,21 @@ class SyncGhDestination(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 app_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_owner: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 secrets_location: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 app_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 secrets_location: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a GitHub destination to synchronize secrets in Vault. Requires Vault 1.16+.
@@ -791,21 +791,21 @@ class SyncGhDestination(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 app_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 repository_owner: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 secrets_location: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 app_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 repository_owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 secrets_location: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -843,22 +843,22 @@ class SyncGhDestination(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_token: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            app_name: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-            environment_name: Optional[pulumi.Input[_builtins.str]] = None,
-            granularity: Optional[pulumi.Input[_builtins.str]] = None,
-            installation_id: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            repository_name: Optional[pulumi.Input[_builtins.str]] = None,
-            repository_owner: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-            secrets_location: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'SyncGhDestination':
+            access_token: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            app_name: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment_name: pulumi.Input[Optional[_builtins.str]] = None,
+            granularity: pulumi.Input[Optional[_builtins.str]] = None,
+            installation_id: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            repository_name: pulumi.Input[Optional[_builtins.str]] = None,
+            repository_owner: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+            secrets_location: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'SyncGhDestination':
         """
         Get an existing SyncGhDestination resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

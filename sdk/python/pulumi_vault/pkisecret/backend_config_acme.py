@@ -21,14 +21,14 @@ class BackendConfigAcmeArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  enabled: pulumi.Input[_builtins.bool],
-                 allow_role_ext_key_usage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_directory_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_resolver: Optional[pulumi.Input[_builtins.str]] = None,
-                 eab_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_role_ext_key_usage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
+                 eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendConfigAcme resource.
 
@@ -94,43 +94,43 @@ class BackendConfigAcmeArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowRoleExtKeyUsage")
-    def allow_role_ext_key_usage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_role_ext_key_usage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
         """
         return pulumi.get(self, "allow_role_ext_key_usage")
 
     @allow_role_ext_key_usage.setter
-    def allow_role_ext_key_usage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_role_ext_key_usage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_role_ext_key_usage", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIssuers")
-    def allowed_issuers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_issuers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies which issuers are allowed for use with ACME.
         """
         return pulumi.get(self, "allowed_issuers")
 
     @allowed_issuers.setter
-    def allowed_issuers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_issuers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_issuers", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies which roles are allowed for use with ACME.
         """
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultDirectoryPolicy")
-    def default_directory_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_directory_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the policy to be used for non-role-qualified ACME requests.
         Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
@@ -138,12 +138,12 @@ class BackendConfigAcmeArgs:
         return pulumi.get(self, "default_directory_policy")
 
     @default_directory_policy.setter
-    def default_directory_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_directory_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_directory_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsResolver")
-    def dns_resolver(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_resolver(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DNS resolver to use for domain resolution on this mount.
         Must be in the format `<host>:<port>`, with both parts mandatory.
@@ -151,12 +151,12 @@ class BackendConfigAcmeArgs:
         return pulumi.get(self, "dns_resolver")
 
     @dns_resolver.setter
-    def dns_resolver(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_resolver(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_resolver", value)
 
     @_builtins.property
     @pulumi.getter(name="eabPolicy")
-    def eab_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def eab_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the policy to use for external account binding behaviour.
         Allowed values are `not-required`, `new-account-required` or `always-required`.
@@ -164,24 +164,24 @@ class BackendConfigAcmeArgs:
         return pulumi.get(self, "eab_policy")
 
     @eab_policy.setter
-    def eab_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def eab_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "eab_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -191,23 +191,23 @@ class BackendConfigAcmeArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _BackendConfigAcmeState:
     def __init__(__self__, *,
-                 allow_role_ext_key_usage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_directory_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_resolver: Optional[pulumi.Input[_builtins.str]] = None,
-                 eab_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_role_ext_key_usage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
+                 eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendConfigAcme resources.
 
@@ -251,55 +251,55 @@ class _BackendConfigAcmeState:
 
     @_builtins.property
     @pulumi.getter(name="allowRoleExtKeyUsage")
-    def allow_role_ext_key_usage(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_role_ext_key_usage(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
         """
         return pulumi.get(self, "allow_role_ext_key_usage")
 
     @allow_role_ext_key_usage.setter
-    def allow_role_ext_key_usage(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_role_ext_key_usage(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_role_ext_key_usage", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIssuers")
-    def allowed_issuers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_issuers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies which issuers are allowed for use with ACME.
         """
         return pulumi.get(self, "allowed_issuers")
 
     @allowed_issuers.setter
-    def allowed_issuers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_issuers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_issuers", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies which roles are allowed for use with ACME.
         """
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultDirectoryPolicy")
-    def default_directory_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_directory_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the policy to be used for non-role-qualified ACME requests.
         Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
@@ -307,12 +307,12 @@ class _BackendConfigAcmeState:
         return pulumi.get(self, "default_directory_policy")
 
     @default_directory_policy.setter
-    def default_directory_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_directory_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_directory_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsResolver")
-    def dns_resolver(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dns_resolver(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         DNS resolver to use for domain resolution on this mount.
         Must be in the format `<host>:<port>`, with both parts mandatory.
@@ -320,12 +320,12 @@ class _BackendConfigAcmeState:
         return pulumi.get(self, "dns_resolver")
 
     @dns_resolver.setter
-    def dns_resolver(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dns_resolver(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dns_resolver", value)
 
     @_builtins.property
     @pulumi.getter(name="eabPolicy")
-    def eab_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def eab_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the policy to use for external account binding behaviour.
         Allowed values are `not-required`, `new-account-required` or `always-required`.
@@ -333,36 +333,36 @@ class _BackendConfigAcmeState:
         return pulumi.get(self, "eab_policy")
 
     @eab_policy.setter
-    def eab_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def eab_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "eab_policy", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether ACME is enabled.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -372,7 +372,7 @@ class _BackendConfigAcmeState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -382,16 +382,16 @@ class BackendConfigAcme(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_role_ext_key_usage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_directory_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_resolver: Optional[pulumi.Input[_builtins.str]] = None,
-                 eab_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_role_ext_key_usage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
+                 eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows setting the ACME server configuration used by specified mount.
@@ -513,16 +513,16 @@ class BackendConfigAcme(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_role_ext_key_usage: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_directory_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 dns_resolver: Optional[pulumi.Input[_builtins.str]] = None,
-                 eab_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_role_ext_key_usage: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
+                 eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -556,16 +556,16 @@ class BackendConfigAcme(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_role_ext_key_usage: Optional[pulumi.Input[_builtins.bool]] = None,
-            allowed_issuers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            default_directory_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            dns_resolver: Optional[pulumi.Input[_builtins.str]] = None,
-            eab_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'BackendConfigAcme':
+            allow_role_ext_key_usage: pulumi.Input[Optional[_builtins.bool]] = None,
+            allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
+            eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'BackendConfigAcme':
         """
         Get an existing BackendConfigAcme resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

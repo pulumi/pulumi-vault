@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as vault from "@pulumi/vault";
  *
  * export = async () => {
- *     const role = await vault.appRole.getAuthBackendRoleId({
+ *     const role = await vault.approle.getAuthBackendRoleId({
  *         backend: "my-approle-backend",
  *         roleName: "my-role",
  *     });
@@ -81,7 +81,7 @@ export interface GetAuthBackendRoleIdResult {
  * import * as vault from "@pulumi/vault";
  *
  * export = async () => {
- *     const role = await vault.appRole.getAuthBackendRoleId({
+ *     const role = await vault.approle.getAuthBackendRoleId({
  *         backend: "my-approle-backend",
  *         roleName: "my-role",
  *     });
@@ -108,14 +108,14 @@ export interface GetAuthBackendRoleIdOutputArgs {
      * The unique name for the AppRole backend the role to
      * retrieve a RoleID for resides in. Defaults to "approle".
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name of the role to retrieve the Role ID for.
      */

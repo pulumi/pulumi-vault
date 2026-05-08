@@ -22,15 +22,15 @@ class SecretBackendRoleArgs:
                  backend: pulumi.Input[_builtins.str],
                  creation_statements: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  db_name: pulumi.Input[_builtins.str],
-                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 credential_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 renew_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rollback_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
 
@@ -124,7 +124,7 @@ class SecretBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="credentialConfig")
-    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def credential_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies the configuration
         for the given `credential_type`.
@@ -134,12 +134,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "credential_config")
 
     @credential_config.setter
-    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def credential_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "credential_config", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialType")
-    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credential_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of credential that
         will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
@@ -148,12 +148,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "credential_type")
 
     @credential_type.setter
-    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credential_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credential_type", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default number of seconds for leases for this
         role.
@@ -161,12 +161,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "default_ttl")
 
     @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of seconds for leases for this
         role.
@@ -174,24 +174,24 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A unique name to give the role.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -201,12 +201,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="renewStatements")
-    def renew_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def renew_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The database statements to execute when
         renewing a user.
@@ -214,12 +214,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "renew_statements")
 
     @renew_statements.setter
-    def renew_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def renew_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "renew_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="revocationStatements")
-    def revocation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def revocation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The database statements to execute when
         revoking a user.
@@ -227,12 +227,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "revocation_statements")
 
     @revocation_statements.setter
-    def revocation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def revocation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "revocation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rollbackStatements")
-    def rollback_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def rollback_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The database statements to execute when
         rolling back creation due to an error.
@@ -240,25 +240,25 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "rollback_statements")
 
     @rollback_statements.setter
-    def rollback_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def rollback_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "rollback_statements", value)
 
 
 @pulumi.input_type
 class _SecretBackendRoleState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 db_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 creation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 credential_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 db_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 renew_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rollback_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
 
@@ -317,19 +317,19 @@ class _SecretBackendRoleState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the Vault mount to configure.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="creationStatements")
-    def creation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def creation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The database statements to execute when
         creating a user.
@@ -337,12 +337,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "creation_statements")
 
     @creation_statements.setter
-    def creation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def creation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "creation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialConfig")
-    def credential_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def credential_config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies the configuration
         for the given `credential_type`.
@@ -352,12 +352,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "credential_config")
 
     @credential_config.setter
-    def credential_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def credential_config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "credential_config", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialType")
-    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credential_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of credential that
         will be generated for the role. Options include: `password`, `rsa_private_key`, `client_certificate`.
@@ -366,12 +366,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "credential_type")
 
     @credential_type.setter
-    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credential_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credential_type", value)
 
     @_builtins.property
     @pulumi.getter(name="dbName")
-    def db_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def db_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique name of the database connection to use for
         the role.
@@ -379,12 +379,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "db_name")
 
     @db_name.setter
-    def db_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def db_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "db_name", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default number of seconds for leases for this
         role.
@@ -392,12 +392,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "default_ttl")
 
     @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of seconds for leases for this
         role.
@@ -405,24 +405,24 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A unique name to give the role.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -432,12 +432,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="renewStatements")
-    def renew_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def renew_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The database statements to execute when
         renewing a user.
@@ -445,12 +445,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "renew_statements")
 
     @renew_statements.setter
-    def renew_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def renew_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "renew_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="revocationStatements")
-    def revocation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def revocation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The database statements to execute when
         revoking a user.
@@ -458,12 +458,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "revocation_statements")
 
     @revocation_statements.setter
-    def revocation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def revocation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "revocation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rollbackStatements")
-    def rollback_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def rollback_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The database statements to execute when
         rolling back creation due to an error.
@@ -471,7 +471,7 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "rollback_statements")
 
     @rollback_statements.setter
-    def rollback_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def rollback_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "rollback_statements", value)
 
 
@@ -481,18 +481,18 @@ class SecretBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 db_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 creation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 credential_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 db_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 renew_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rollback_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Creates a Database Secret Backend role in Vault. Database secret backend
@@ -637,18 +637,18 @@ class SecretBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 db_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 creation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 credential_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 db_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 renew_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rollback_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -686,18 +686,18 @@ class SecretBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            creation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            credential_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-            db_name: Optional[pulumi.Input[_builtins.str]] = None,
-            default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            renew_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            revocation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            rollback_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'SecretBackendRole':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            creation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            credential_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+            db_name: pulumi.Input[Optional[_builtins.str]] = None,
+            default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            renew_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            revocation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            rollback_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

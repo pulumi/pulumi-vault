@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+//			transit2, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
 //				Path:                   pulumi.String("transit"),
 //				Type:                   pulumi.String("transit"),
 //				Description:            pulumi.String("Example description"),
@@ -40,7 +40,7 @@ import (
 //				return err
 //			}
 //			_, err = transit.NewSecretCacheConfig(ctx, "cfg", &transit.SecretCacheConfigArgs{
-//				Backend: transit.Path,
+//				Backend: transit2.Path,
 //				Size:    pulumi.Int(500),
 //			})
 //			if err != nil {

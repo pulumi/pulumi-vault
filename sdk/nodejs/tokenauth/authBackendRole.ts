@@ -226,88 +226,88 @@ export interface AuthBackendRoleState {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of allowed entity aliases.
      */
-    allowedEntityAliases?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedEntityAliases?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of allowed policies for given role.
      */
-    allowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed policies with glob match for given role.
      */
-    allowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of disallowed policies for given role.
      */
-    disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    disallowedPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of disallowed policies with glob match for given role.
      */
-    disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
-    orphan?: pulumi.Input<boolean>;
+    orphan?: pulumi.Input<boolean | undefined>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
      *
      * > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
-    pathSuffix?: pulumi.Input<string>;
+    pathSuffix?: pulumi.Input<string | undefined>;
     /**
      * Whether to disable the ability of the token to be renewed past its initial TTL.
      */
-    renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the role.
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -318,48 +318,48 @@ export interface AuthBackendRoleArgs {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of allowed entity aliases.
      */
-    allowedEntityAliases?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedEntityAliases?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of allowed policies for given role.
      */
-    allowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed policies with glob match for given role.
      */
-    allowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of disallowed policies for given role.
      */
-    disallowedPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    disallowedPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of disallowed policies with glob match for given role.
      */
-    disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[]>;
+    disallowedPoliciesGlobs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * If true, tokens created against this policy will be orphan tokens.
      */
-    orphan?: pulumi.Input<boolean>;
+    orphan?: pulumi.Input<boolean | undefined>;
     /**
      * Tokens created against this role will have the given suffix as part of their path in addition to the role name.
      *
      * > Due to a [bug](https://github.com/hashicorp/vault/issues/6296) with Vault, updating `pathSuffix` or `boundCidrs` to an empty string or list respectively will not actually update the value in Vault. Upgrade to Vault 1.1 and above to fix this, or `taint` the resource. This *will* cause all existing tokens issued by this role to be revoked.
      */
-    pathSuffix?: pulumi.Input<string>;
+    pathSuffix?: pulumi.Input<string | undefined>;
     /**
      * Whether to disable the ability of the token to be renewed past its initial TTL.
      */
-    renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the role.
      */
@@ -367,37 +367,37 @@ export interface AuthBackendRoleArgs {
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }

@@ -230,91 +230,91 @@ export interface SecretBackendIssuerState {
      * The path the PKI secret backend is mounted at, with no
      * leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL values for the CRL
      * Distribution Points field.
      */
-    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
+    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * issued certificate) contain critical extensions not processed by Vault.
      */
-    disableCriticalExtensionChecks?: pulumi.Input<boolean>;
+    disableCriticalExtensionChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this issuer is able
      * to issue certificates where the chain of trust (including the final issued
      * certificate) contains a link in which the subject of the issuing certificate
      * does not match the named issuer of the certificate it signed.
      */
-    disableNameChecks?: pulumi.Input<boolean>;
+    disableNameChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * final issued certificate) violates the name constraints critical extension of
      * one of the issuer certificates in the chain.
      */
-    disableNameConstraintChecks?: pulumi.Input<boolean>;
+    disableNameConstraintChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this issuer
      * is able to issue certificates where the chain of trust (including the final
      * issued certificate) is longer than allowed by a certificate authority in that
      * chain.
      */
-    disablePathLengthChecks?: pulumi.Input<boolean>;
+    disablePathLengthChecks?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies that the AIA URL values should
      * be templated.
      */
-    enableAiaUrlTemplating?: pulumi.Input<boolean>;
+    enableAiaUrlTemplating?: pulumi.Input<boolean | undefined>;
     /**
      * ID of the issuer.
      */
-    issuerId?: pulumi.Input<string>;
+    issuerId?: pulumi.Input<string | undefined>;
     /**
      * Name of the issuer.
      */
-    issuerName?: pulumi.Input<string>;
+    issuerName?: pulumi.Input<string | undefined>;
     /**
      * Reference to an existing issuer.
      */
-    issuerRef?: pulumi.Input<string>;
+    issuerRef?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL values for the Issuing
      * Certificate field.
      */
-    issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    issuingCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Behavior of a leaf's NotAfter field during
      * issuance.
      */
-    leafNotAfterBehavior?: pulumi.Input<string>;
+    leafNotAfterBehavior?: pulumi.Input<string | undefined>;
     /**
      * Chain of issuer references to build this issuer's
      * computed CAChain field from, when non-empty.
      */
-    manualChains?: pulumi.Input<pulumi.Input<string>[]>;
+    manualChains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */
-    ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Which signature algorithm to use
      * when building CRLs.
      */
-    revocationSignatureAlgorithm?: pulumi.Input<string>;
+    revocationSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * Allowed usages for this issuer.
      */
-    usage?: pulumi.Input<string>;
+    usage?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -330,43 +330,43 @@ export interface SecretBackendIssuerArgs {
      * Specifies the URL values for the CRL
      * Distribution Points field.
      */
-    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
+    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * issued certificate) contain critical extensions not processed by Vault.
      */
-    disableCriticalExtensionChecks?: pulumi.Input<boolean>;
+    disableCriticalExtensionChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this issuer is able
      * to issue certificates where the chain of trust (including the final issued
      * certificate) contains a link in which the subject of the issuing certificate
      * does not match the named issuer of the certificate it signed.
      */
-    disableNameChecks?: pulumi.Input<boolean>;
+    disableNameChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * final issued certificate) violates the name constraints critical extension of
      * one of the issuer certificates in the chain.
      */
-    disableNameConstraintChecks?: pulumi.Input<boolean>;
+    disableNameConstraintChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this issuer
      * is able to issue certificates where the chain of trust (including the final
      * issued certificate) is longer than allowed by a certificate authority in that
      * chain.
      */
-    disablePathLengthChecks?: pulumi.Input<boolean>;
+    disablePathLengthChecks?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies that the AIA URL values should
      * be templated.
      */
-    enableAiaUrlTemplating?: pulumi.Input<boolean>;
+    enableAiaUrlTemplating?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the issuer.
      */
-    issuerName?: pulumi.Input<string>;
+    issuerName?: pulumi.Input<string | undefined>;
     /**
      * Reference to an existing issuer.
      */
@@ -375,35 +375,35 @@ export interface SecretBackendIssuerArgs {
      * Specifies the URL values for the Issuing
      * Certificate field.
      */
-    issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    issuingCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Behavior of a leaf's NotAfter field during
      * issuance.
      */
-    leafNotAfterBehavior?: pulumi.Input<string>;
+    leafNotAfterBehavior?: pulumi.Input<string | undefined>;
     /**
      * Chain of issuer references to build this issuer's
      * computed CAChain field from, when non-empty.
      */
-    manualChains?: pulumi.Input<pulumi.Input<string>[]>;
+    manualChains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */
-    ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Which signature algorithm to use
      * when building CRLs.
      */
-    revocationSignatureAlgorithm?: pulumi.Input<string>;
+    revocationSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * Allowed usages for this issuer.
      */
-    usage?: pulumi.Input<string>;
+    usage?: pulumi.Input<string | undefined>;
 }

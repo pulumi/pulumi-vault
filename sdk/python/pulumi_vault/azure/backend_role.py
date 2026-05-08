@@ -22,19 +22,19 @@ __all__ = ['BackendRoleArgs', 'BackendRole']
 class BackendRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 application_object_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]] = None,
-                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 application_object_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_groups: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]] = None,
+                 azure_roles: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sign_in_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendRole resource.
 
@@ -103,7 +103,7 @@ class BackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="applicationObjectId")
-    def application_object_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_object_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Application Object ID for an existing service principal that will
         be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
@@ -111,72 +111,72 @@ class BackendRoleArgs:
         return pulumi.get(self, "application_object_id")
 
     @application_object_id.setter
-    def application_object_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_object_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_object_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureGroups")
-    def azure_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]:
+    def azure_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]:
         """
         List of Azure groups to be assigned to the generated service principal.
         """
         return pulumi.get(self, "azure_groups")
 
     @azure_groups.setter
-    def azure_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]):
+    def azure_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]):
         pulumi.set(self, "azure_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="azureRoles")
-    def azure_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]:
+    def azure_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]:
         """
         List of Azure roles to be assigned to the generated service principal.
         """
         return pulumi.get(self, "azure_roles")
 
     @azure_roles.setter
-    def azure_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]):
+    def azure_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]):
         pulumi.set(self, "azure_roles", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted Azure auth backend
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-friendly description of the mount for the backend.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="explicitMaxTtl")
-    def explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         """
         return pulumi.get(self, "explicit_max_ttl")
 
     @explicit_max_ttl.setter
-    def explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the maximum TTL for service principals generated using this role. Accepts time
         suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
@@ -184,12 +184,12 @@ class BackendRoleArgs:
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -199,12 +199,12 @@ class BackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="permanentlyDelete")
-    def permanently_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def permanently_delete(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the applications and service principals created by Vault will be permanently
         deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
@@ -212,24 +212,24 @@ class BackendRoleArgs:
         return pulumi.get(self, "permanently_delete")
 
     @permanently_delete.setter
-    def permanently_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def permanently_delete(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "permanently_delete", value)
 
     @_builtins.property
     @pulumi.getter(name="persistApp")
-    def persist_app(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def persist_app(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, persists the created service principal and application for the lifetime of the role
         """
         return pulumi.get(self, "persist_app")
 
     @persist_app.setter
-    def persist_app(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def persist_app(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "persist_app", value)
 
     @_builtins.property
     @pulumi.getter(name="signInAudience")
-    def sign_in_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sign_in_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the security principal types that are allowed to sign in to the application.
         Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
@@ -237,24 +237,24 @@ class BackendRoleArgs:
         return pulumi.get(self, "sign_in_audience")
 
     @sign_in_audience.setter
-    def sign_in_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sign_in_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sign_in_audience", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of Azure tags to attach to an application. Requires Vault 1.16+.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default TTL for service principals generated using this role.
         Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -262,27 +262,27 @@ class BackendRoleArgs:
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
 
 @pulumi.input_type
 class _BackendRoleState:
     def __init__(__self__, *,
-                 application_object_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]] = None,
-                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 application_object_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_groups: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]] = None,
+                 azure_roles: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 sign_in_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendRole resources.
 
@@ -340,7 +340,7 @@ class _BackendRoleState:
 
     @_builtins.property
     @pulumi.getter(name="applicationObjectId")
-    def application_object_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def application_object_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Application Object ID for an existing service principal that will
         be used instead of creating dynamic service principals. If present, `azure_roles` and `permanently_delete` will be ignored.
@@ -348,72 +348,72 @@ class _BackendRoleState:
         return pulumi.get(self, "application_object_id")
 
     @application_object_id.setter
-    def application_object_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def application_object_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "application_object_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureGroups")
-    def azure_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]:
+    def azure_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]:
         """
         List of Azure groups to be assigned to the generated service principal.
         """
         return pulumi.get(self, "azure_groups")
 
     @azure_groups.setter
-    def azure_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]):
+    def azure_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureGroupArgs']]]]):
         pulumi.set(self, "azure_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="azureRoles")
-    def azure_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]:
+    def azure_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]:
         """
         List of Azure roles to be assigned to the generated service principal.
         """
         return pulumi.get(self, "azure_roles")
 
     @azure_roles.setter
-    def azure_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]):
+    def azure_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackendRoleAzureRoleArgs']]]]):
         pulumi.set(self, "azure_roles", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted Azure auth backend
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-friendly description of the mount for the backend.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="explicitMaxTtl")
-    def explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         """
         return pulumi.get(self, "explicit_max_ttl")
 
     @explicit_max_ttl.setter
-    def explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the maximum TTL for service principals generated using this role. Accepts time
         suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
@@ -421,12 +421,12 @@ class _BackendRoleState:
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -436,12 +436,12 @@ class _BackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="permanentlyDelete")
-    def permanently_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def permanently_delete(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the applications and service principals created by Vault will be permanently
         deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
@@ -449,36 +449,36 @@ class _BackendRoleState:
         return pulumi.get(self, "permanently_delete")
 
     @permanently_delete.setter
-    def permanently_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def permanently_delete(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "permanently_delete", value)
 
     @_builtins.property
     @pulumi.getter(name="persistApp")
-    def persist_app(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def persist_app(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, persists the created service principal and application for the lifetime of the role
         """
         return pulumi.get(self, "persist_app")
 
     @persist_app.setter
-    def persist_app(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def persist_app(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "persist_app", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Azure role
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="signInAudience")
-    def sign_in_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sign_in_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the security principal types that are allowed to sign in to the application.
         Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
@@ -486,24 +486,24 @@ class _BackendRoleState:
         return pulumi.get(self, "sign_in_audience")
 
     @sign_in_audience.setter
-    def sign_in_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sign_in_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sign_in_audience", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of Azure tags to attach to an application. Requires Vault 1.16+.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default TTL for service principals generated using this role.
         Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
@@ -511,7 +511,7 @@ class _BackendRoleState:
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
 
@@ -521,20 +521,20 @@ class BackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 application_object_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
-                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 application_object_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
+                 azure_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 sign_in_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates an Azure Secret Backend Role for Vault.
@@ -674,20 +674,20 @@ class BackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 application_object_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
-                 azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 application_object_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
+                 azure_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 sign_in_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -723,20 +723,20 @@ class BackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            application_object_id: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
-            azure_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            explicit_max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            permanently_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-            persist_app: Optional[pulumi.Input[_builtins.bool]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            sign_in_audience: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ttl: Optional[pulumi.Input[_builtins.str]] = None) -> 'BackendRole':
+            application_object_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict']]]]] = None,
+            azure_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict']]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+            persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            sign_in_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None) -> 'BackendRole':
         """
         Get an existing BackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -36,7 +36,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//			aws2, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
 //				AccessKey: pulumi.String("AKIA....."),
 //				SecretKey: pulumi.String("AWS secret key"),
 //			})
@@ -44,7 +44,7 @@ import (
 //				return err
 //			}
 //			_, err = aws.NewSecretBackendRole(ctx, "role", &aws.SecretBackendRoleArgs{
-//				Backend:        aws.Path,
+//				Backend:        aws2.Path,
 //				Name:           pulumi.String("deploy"),
 //				CredentialType: pulumi.String("iam_user"),
 //				PolicyDocument: pulumi.String(`{

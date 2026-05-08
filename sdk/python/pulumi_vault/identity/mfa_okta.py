@@ -21,10 +21,10 @@ class MfaOktaArgs:
     def __init__(__self__, *,
                  api_token: pulumi.Input[_builtins.str],
                  org_name: pulumi.Input[_builtins.str],
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaOkta resource.
 
@@ -72,69 +72,69 @@ class MfaOktaArgs:
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base domain to use for API requests.
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target namespace. (requires Enterprise)
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryEmail")
-    def primary_email(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def primary_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Only match the primary email for the account.
         """
         return pulumi.get(self, "primary_email")
 
     @primary_email.setter
-    def primary_email(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def primary_email(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "primary_email", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameFormat")
-    def username_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A template string for mapping Identity names to MFA methods.
         """
         return pulumi.get(self, "username_format")
 
     @username_format.setter
-    def username_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_format", value)
 
 
 @pulumi.input_type
 class _MfaOktaState:
     def __init__(__self__, *,
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 method_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 method_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 uuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaOkta resources.
 
@@ -181,158 +181,158 @@ class _MfaOktaState:
 
     @_builtins.property
     @pulumi.getter(name="apiToken")
-    def api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Okta API token.
         """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
-    def api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The base domain to use for API requests.
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="methodId")
-    def method_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Method ID.
         """
         return pulumi.get(self, "method_id")
 
     @method_id.setter
-    def method_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")
-    def mount_accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount_accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Mount accessor.
         """
         return pulumi.get(self, "mount_accessor")
 
     @mount_accessor.setter
-    def mount_accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount_accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount_accessor", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Method name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target namespace. (requires Enterprise)
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="namespaceId")
-    def namespace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Method's namespace ID.
         """
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
-    def namespace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace_id", value)
 
     @_builtins.property
     @pulumi.getter(name="namespacePath")
-    def namespace_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Method's namespace path.
         """
         return pulumi.get(self, "namespace_path")
 
     @namespace_path.setter
-    def namespace_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace_path", value)
 
     @_builtins.property
     @pulumi.getter(name="orgName")
-    def org_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the organization to be used in the Okta API.
         """
         return pulumi.get(self, "org_name")
 
     @org_name.setter
-    def org_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_name", value)
 
     @_builtins.property
     @pulumi.getter(name="primaryEmail")
-    def primary_email(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def primary_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Only match the primary email for the account.
         """
         return pulumi.get(self, "primary_email")
 
     @primary_email.setter
-    def primary_email(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def primary_email(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "primary_email", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MFA type.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameFormat")
-    def username_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A template string for mapping Identity names to MFA methods.
         """
         return pulumi.get(self, "username_format")
 
     @username_format.setter
-    def username_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Resource UUID.
         """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
-    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uuid", value)
 
 
@@ -342,12 +342,12 @@ class MfaOkta(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Resource for configuring the okta MFA method.
@@ -427,12 +427,12 @@ class MfaOkta(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 primary_email: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_email: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -471,19 +471,19 @@ class MfaOkta(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_token: Optional[pulumi.Input[_builtins.str]] = None,
-            base_url: Optional[pulumi.Input[_builtins.str]] = None,
-            method_id: Optional[pulumi.Input[_builtins.str]] = None,
-            mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace_path: Optional[pulumi.Input[_builtins.str]] = None,
-            org_name: Optional[pulumi.Input[_builtins.str]] = None,
-            primary_email: Optional[pulumi.Input[_builtins.bool]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            username_format: Optional[pulumi.Input[_builtins.str]] = None,
-            uuid: Optional[pulumi.Input[_builtins.str]] = None) -> 'MfaOkta':
+            api_token: pulumi.Input[Optional[_builtins.str]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            method_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_path: pulumi.Input[Optional[_builtins.str]] = None,
+            org_name: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            username_format: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> 'MfaOkta':
         """
         Get an existing MfaOkta resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

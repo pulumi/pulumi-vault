@@ -188,54 +188,54 @@ export interface BackendConfigScepState {
     /**
      * List of allowed digest algorithms for SCEP requests.
      */
-    allowedDigestAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedDigestAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of allowed encryption algorithms for SCEP requests.
      */
-    allowedEncryptionAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedEncryptionAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
      */
-    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigScepAuthenticators>;
+    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigScepAuthenticators | undefined>;
     /**
      * The path to the PKI secret backend to
      * read the SCEP configuration from, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or "role:<role_name>" to specify a role to use as this policy.
      */
-    defaultPathPolicy?: pulumi.Input<string>;
+    defaultPathPolicy?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether SCEP is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Lists the 3rd party validation of SCEP requests (see below for nested schema).
      */
-    externalValidations?: pulumi.Input<pulumi.Input<inputs.pkiSecret.BackendConfigScepExternalValidation>[]>;
+    externalValidations?: pulumi.Input<pulumi.Input<inputs.pkiSecret.BackendConfigScepExternalValidation>[] | undefined>;
     /**
      * A read-only timestamp representing the last time the configuration was updated.
      */
-    lastUpdated?: pulumi.Input<string>;
+    lastUpdated?: pulumi.Input<string | undefined>;
     /**
      * The level of logging verbosity, affects only SCEP logs on this mount.
      *
      *
      * <a id="nestedatt--authenticators"></a>
      */
-    logLevel?: pulumi.Input<string>;
+    logLevel?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
      */
-    restrictCaChainToIssuer?: pulumi.Input<boolean>;
+    restrictCaChainToIssuer?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -245,15 +245,15 @@ export interface BackendConfigScepArgs {
     /**
      * List of allowed digest algorithms for SCEP requests.
      */
-    allowedDigestAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedDigestAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of allowed encryption algorithms for SCEP requests.
      */
-    allowedEncryptionAlgorithms?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedEncryptionAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
      */
-    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigScepAuthenticators>;
+    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigScepAuthenticators | undefined>;
     /**
      * The path to the PKI secret backend to
      * read the SCEP configuration from, with no leading or trailing `/`s.
@@ -262,31 +262,31 @@ export interface BackendConfigScepArgs {
     /**
      * Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or "role:<role_name>" to specify a role to use as this policy.
      */
-    defaultPathPolicy?: pulumi.Input<string>;
+    defaultPathPolicy?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether SCEP is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Lists the 3rd party validation of SCEP requests (see below for nested schema).
      */
-    externalValidations?: pulumi.Input<pulumi.Input<inputs.pkiSecret.BackendConfigScepExternalValidation>[]>;
+    externalValidations?: pulumi.Input<pulumi.Input<inputs.pkiSecret.BackendConfigScepExternalValidation>[] | undefined>;
     /**
      * The level of logging verbosity, affects only SCEP logs on this mount.
      *
      *
      * <a id="nestedatt--authenticators"></a>
      */
-    logLevel?: pulumi.Input<string>;
+    logLevel?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * If true, only return the issuer CA, otherwise the entire CA certificate chain will be returned if available from the PKI mount.
      */
-    restrictCaChainToIssuer?: pulumi.Input<boolean>;
+    restrictCaChainToIssuer?: pulumi.Input<boolean | undefined>;
 }

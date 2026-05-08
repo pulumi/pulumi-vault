@@ -23,10 +23,10 @@ class MfaDuoArgs:
                  integration_key: pulumi.Input[_builtins.str],
                  mount_accessor: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_info: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_info: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaDuo resource.
 
@@ -109,19 +109,19 @@ class MfaDuoArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -131,24 +131,24 @@ class MfaDuoArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pushInfo")
-    def push_info(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def push_info(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - Push information for Duo.
         """
         return pulumi.get(self, "push_info")
 
     @push_info.setter
-    def push_info(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def push_info(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "push_info", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameFormat")
-    def username_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -159,21 +159,21 @@ class MfaDuoArgs:
         return pulumi.get(self, "username_format")
 
     @username_format.setter
-    def username_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_format", value)
 
 
 @pulumi.input_type
 class _MfaDuoState:
     def __init__(__self__, *,
-                 api_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 integration_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_info: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_info: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaDuo resources.
 
@@ -212,55 +212,55 @@ class _MfaDuoState:
 
     @_builtins.property
     @pulumi.getter(name="apiHostname")
-    def api_hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - API hostname for Duo.
         """
         return pulumi.get(self, "api_hostname")
 
     @api_hostname.setter
-    def api_hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationKey")
-    def integration_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integration_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - Integration key for Duo.
         """
         return pulumi.get(self, "integration_key")
 
     @integration_key.setter
-    def integration_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integration_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integration_key", value)
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")
-    def mount_accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount_accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
 
     @mount_accessor.setter
-    def mount_accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount_accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount_accessor", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -270,36 +270,36 @@ class _MfaDuoState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pushInfo")
-    def push_info(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def push_info(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - Push information for Duo.
         """
         return pulumi.get(self, "push_info")
 
     @push_info.setter
-    def push_info(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def push_info(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "push_info", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - Secret key for Duo.
         """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameFormat")
-    def username_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -310,7 +310,7 @@ class _MfaDuoState:
         return pulumi.get(self, "username_format")
 
     @username_format.setter
-    def username_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_format", value)
 
 
@@ -320,14 +320,14 @@ class MfaDuo(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 integration_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_info: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_info: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to manage [Duo MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-duo.html).
@@ -430,14 +430,14 @@ class MfaDuo(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 integration_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 push_info: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 push_info: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -475,14 +475,14 @@ class MfaDuo(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            integration_key: Optional[pulumi.Input[_builtins.str]] = None,
-            mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            push_info: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-            username_format: Optional[pulumi.Input[_builtins.str]] = None) -> 'MfaDuo':
+            api_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            push_info: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            username_format: pulumi.Input[Optional[_builtins.str]] = None) -> 'MfaDuo':
         """
         Get an existing MfaDuo resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

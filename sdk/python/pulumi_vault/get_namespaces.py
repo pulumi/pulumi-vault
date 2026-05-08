@@ -128,8 +128,8 @@ def get_namespaces(namespace: Optional[_builtins.str] = None,
     import pulumi_vault as vault
 
     children = vault.get_namespaces(namespace="parent")
-    child = {__key: vault.get_namespace(namespace=children.namespace,
-        path=__key) for __key, __value in enumerate(children.paths)}
+    child = {str(__key): vault.get_namespace(namespace=children.namespace,
+        path=str(__key)) for __key, __value in enumerate(children.paths)}
     ```
 
 
@@ -150,8 +150,8 @@ def get_namespaces(namespace: Optional[_builtins.str] = None,
         paths=pulumi.get(__ret__, 'paths'),
         paths_fqs=pulumi.get(__ret__, 'paths_fqs'),
         recursive=pulumi.get(__ret__, 'recursive'))
-def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          recursive: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_namespaces_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          recursive: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespacesResult]:
     """
     Lists all child [Namespaces](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) in Vault.
@@ -187,8 +187,8 @@ def get_namespaces_output(namespace: Optional[pulumi.Input[Optional[_builtins.st
     import pulumi_vault as vault
 
     children = vault.get_namespaces(namespace="parent")
-    child = {__key: vault.get_namespace(namespace=children.namespace,
-        path=__key) for __key, __value in enumerate(children.paths)}
+    child = {str(__key): vault.get_namespace(namespace=children.namespace,
+        path=str(__key)) for __key, __value in enumerate(children.paths)}
     ```
 
 

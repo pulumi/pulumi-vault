@@ -326,12 +326,12 @@ def get_entity(alias_id: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         namespace_id=pulumi.get(__ret__, 'namespace_id'),
         policies=pulumi.get(__ret__, 'policies'))
-def get_entity_output(alias_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      alias_mount_accessor: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      alias_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      entity_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      entity_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_entity_output(alias_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      alias_mount_accessor: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      alias_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      entity_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      entity_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEntityResult]:
     """
     Lookup an Identity Entity for Vault. The Identity secrets engine is the identity management solution

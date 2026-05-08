@@ -176,29 +176,29 @@ export interface SecretBackendIntermediateSetSignedState {
     /**
      * The PKI secret backend the resource belongs to.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the PEM encoded certificate. May optionally append additional
      * CA certificates to populate the whole chain, which will then enable returning the full chain from
      * issue and sign operations.
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * The imported issuers indicating which issuers were created as part of
      * this request.
      */
-    importedIssuers?: pulumi.Input<pulumi.Input<string>[]>;
+    importedIssuers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The imported keys indicating which keys were created as part of this request.
      */
-    importedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    importedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -221,5 +221,5 @@ export interface SecretBackendIntermediateSetSignedArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

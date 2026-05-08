@@ -19,12 +19,12 @@ __all__ = ['OidcProviderArgs', 'OidcProvider']
 @pulumi.input_type
 class OidcProviderArgs:
     def __init__(__self__, *,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes_supporteds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a OidcProvider resource.
 
@@ -54,7 +54,7 @@ class OidcProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedClientIds")
-    def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_client_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The client IDs that are permitted to use the provider. 
         If empty, no clients are allowed. If `*`, all clients are allowed.
@@ -62,48 +62,48 @@ class OidcProviderArgs:
         return pulumi.get(self, "allowed_client_ids")
 
     @allowed_client_ids.setter
-    def allowed_client_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_client_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_client_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEnabled")
-    def https_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def https_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true if the issuer endpoint uses HTTPS.
         """
         return pulumi.get(self, "https_enabled")
 
     @https_enabled.setter
-    def https_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def https_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "https_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerHost")
-    def issuer_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The host for the issuer. Can be either host or host:port.
         """
         return pulumi.get(self, "issuer_host")
 
     @issuer_host.setter
-    def issuer_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_host", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the provider.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -113,32 +113,32 @@ class OidcProviderArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="scopesSupporteds")
-    def scopes_supporteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def scopes_supporteds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The scopes available for requesting on the provider.
         """
         return pulumi.get(self, "scopes_supporteds")
 
     @scopes_supporteds.setter
-    def scopes_supporteds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def scopes_supporteds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "scopes_supporteds", value)
 
 
 @pulumi.input_type
 class _OidcProviderState:
     def __init__(__self__, *,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes_supporteds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering OidcProvider resources.
 
@@ -173,7 +173,7 @@ class _OidcProviderState:
 
     @_builtins.property
     @pulumi.getter(name="allowedClientIds")
-    def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_client_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The client IDs that are permitted to use the provider. 
         If empty, no clients are allowed. If `*`, all clients are allowed.
@@ -181,24 +181,24 @@ class _OidcProviderState:
         return pulumi.get(self, "allowed_client_ids")
 
     @allowed_client_ids.setter
-    def allowed_client_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_client_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_client_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="httpsEnabled")
-    def https_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def https_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true if the issuer endpoint uses HTTPS.
         """
         return pulumi.get(self, "https_enabled")
 
     @https_enabled.setter
-    def https_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def https_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "https_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies what will be used as the `scheme://host:port`
         component for the `iss` claim of ID tokens. This value is computed using the
@@ -207,36 +207,36 @@ class _OidcProviderState:
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerHost")
-    def issuer_host(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_host(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The host for the issuer. Can be either host or host:port.
         """
         return pulumi.get(self, "issuer_host")
 
     @issuer_host.setter
-    def issuer_host(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_host(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_host", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the provider.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -246,19 +246,19 @@ class _OidcProviderState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="scopesSupporteds")
-    def scopes_supporteds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def scopes_supporteds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The scopes available for requesting on the provider.
         """
         return pulumi.get(self, "scopes_supporteds")
 
     @scopes_supporteds.setter
-    def scopes_supporteds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def scopes_supporteds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "scopes_supporteds", value)
 
 
@@ -268,12 +268,12 @@ class OidcProvider(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes_supporteds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Manages OIDC Providers in a Vault server. See the [Vault documentation](https://www.vaultproject.io/api-docs/secret/identity/oidc-provider#create-or-update-an-assignment)
@@ -417,12 +417,12 @@ class OidcProvider(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer_host: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer_host: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes_supporteds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -449,13 +449,13 @@ class OidcProvider(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            https_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            issuer: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer_host: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            scopes_supporteds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'OidcProvider':
+            allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_host: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes_supporteds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'OidcProvider':
         """
         Get an existing OidcProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

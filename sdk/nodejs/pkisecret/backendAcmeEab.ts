@@ -153,39 +153,39 @@ export interface BackendAcmeEabState {
     /**
      * The ACME directory to which the key belongs
      */
-    acmeDirectory?: pulumi.Input<string>;
+    acmeDirectory?: pulumi.Input<string | undefined>;
     /**
      * The path to the PKI secret backend to
      * create the EAB token within, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * An RFC3339 formatted date time when the EAB token was created
      */
-    createdOn?: pulumi.Input<string>;
+    createdOn?: pulumi.Input<string | undefined>;
     /**
      * The identifier of a specific ACME EAB token
      */
-    eabId?: pulumi.Input<string>;
+    eabId?: pulumi.Input<string | undefined>;
     /**
      * Create an EAB token that is specific to an issuer's ACME directory.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * The EAB token
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The key type of the EAB key
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Create an EAB token that is specific to a role's ACME directory.
      *
@@ -196,7 +196,7 @@ export interface BackendAcmeEabState {
      * 3. Role specific (`pki/roles/:role/acme/`) - Specify a value for the role parameter
      * 4. Issuer and Role specific (`pki/issuer/:issuer_ref/roles/:role/acme/`) - Specify a value for both the issuer and role parameters
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -211,14 +211,14 @@ export interface BackendAcmeEabArgs {
     /**
      * Create an EAB token that is specific to an issuer's ACME directory.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Create an EAB token that is specific to a role's ACME directory.
      *
@@ -229,5 +229,5 @@ export interface BackendAcmeEabArgs {
      * 3. Role specific (`pki/roles/:role/acme/`) - Specify a value for the role parameter
      * 4. Issuer and Role specific (`pki/issuer/:issuer_ref/roles/:role/acme/`) - Specify a value for both the issuer and role parameters
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }

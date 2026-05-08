@@ -189,56 +189,56 @@ export interface MfaPingidState {
     /**
      * `(string)` – Admin URL computed by Vault
      */
-    adminUrl?: pulumi.Input<string>;
+    adminUrl?: pulumi.Input<string | undefined>;
     /**
      * `(string)` – Authenticator URL computed by Vault
      */
-    authenticatorUrl?: pulumi.Input<string>;
+    authenticatorUrl?: pulumi.Input<string | undefined>;
     /**
      * `(string)` – IDP URL computed by Vault
      */
-    idpUrl?: pulumi.Input<string>;
+    idpUrl?: pulumi.Input<string | undefined>;
     /**
      * `(string)` – ID computed by Vault
      */
-    mfaPingidId?: pulumi.Input<string>;
+    mfaPingidId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string)` – Namespace ID computed by Vault
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * `(string)` – Org Alias computed by Vault
      */
-    orgAlias?: pulumi.Input<string>;
+    orgAlias?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A base64-encoded third-party settings file retrieved
      * from PingID's configuration page.
      */
-    settingsFileBase64?: pulumi.Input<string>;
+    settingsFileBase64?: pulumi.Input<string | undefined>;
     /**
      * `(string)` – Type of configuration computed by Vault
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * `(string)` – If set to true, enables use of PingID signature. Computed by Vault
      */
-    useSignature?: pulumi.Input<boolean>;
+    useSignature?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names. 
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -248,7 +248,7 @@ export interface MfaPingidState {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -258,7 +258,7 @@ export interface MfaPingidArgs {
     /**
      * `(string)` – ID computed by Vault
      */
-    mfaPingidId?: pulumi.Input<string>;
+    mfaPingidId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -267,14 +267,14 @@ export interface MfaPingidArgs {
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - A base64-encoded third-party settings file retrieved
      * from PingID's configuration page.
@@ -289,5 +289,5 @@ export interface MfaPingidArgs {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }

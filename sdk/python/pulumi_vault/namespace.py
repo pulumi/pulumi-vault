@@ -20,9 +20,9 @@ __all__ = ['NamespaceArgs', 'Namespace']
 class NamespaceArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[_builtins.str],
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_fq: Optional[pulumi.Input[_builtins.str]] = None):
+                 custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_fq: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Namespace resource.
 
@@ -58,7 +58,7 @@ class NamespaceArgs:
 
     @_builtins.property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def custom_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Custom metadata describing this namespace. Value type
         is `map[string]string`. Requires Vault version 1.12+.
@@ -66,12 +66,12 @@ class NamespaceArgs:
         return pulumi.get(self, "custom_metadata")
 
     @custom_metadata.setter
-    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def custom_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -81,12 +81,12 @@ class NamespaceArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pathFq")
-    def path_fq(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path_fq(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
         The path is relative to the provider's `namespace` argument.
@@ -94,18 +94,18 @@ class NamespaceArgs:
         return pulumi.get(self, "path_fq")
 
     @path_fq.setter
-    def path_fq(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path_fq(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path_fq", value)
 
 
 @pulumi.input_type
 class _NamespaceState:
     def __init__(__self__, *,
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_fq: Optional[pulumi.Input[_builtins.str]] = None):
+                 custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_fq: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Namespace resources.
 
@@ -133,7 +133,7 @@ class _NamespaceState:
 
     @_builtins.property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def custom_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Custom metadata describing this namespace. Value type
         is `map[string]string`. Requires Vault version 1.12+.
@@ -141,12 +141,12 @@ class _NamespaceState:
         return pulumi.get(self, "custom_metadata")
 
     @custom_metadata.setter
-    def custom_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def custom_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -156,36 +156,36 @@ class _NamespaceState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="namespaceId")
-    def namespace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Vault server's internal ID of the namespace.
         """
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
-    def namespace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path of the namespace. Must not have a trailing `/`.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter(name="pathFq")
-    def path_fq(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path_fq(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
         The path is relative to the provider's `namespace` argument.
@@ -193,7 +193,7 @@ class _NamespaceState:
         return pulumi.get(self, "path_fq")
 
     @path_fq.setter
-    def path_fq(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path_fq(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path_fq", value)
 
 
@@ -203,10 +203,10 @@ class Namespace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_fq: Optional[pulumi.Input[_builtins.str]] = None,
+                 custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_fq: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).
@@ -228,6 +228,7 @@ class Namespace(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import json
         import pulumi_vault as vault
 
@@ -240,12 +241,12 @@ class Namespace(pulumi.CustomResource):
                 "child_2",
             ]
         parent = vault.Namespace("parent", path="parent")
-        children = []
+        children: list[Any] = []
         for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
             children.append(vault.Namespace(f"children-{range['key']}",
                 namespace=parent.path,
-                path=range["key"]))
-        children_mount = []
+                path=str(range["key"])))
+        children_mount: list[Any] = []
         def create_children(range_body):
             for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
                 children_mount.append(vault.Mount(f"children-{range['key']}",
@@ -257,7 +258,7 @@ class Namespace(pulumi.CustomResource):
                     }))
 
         children.apply(create_children)
-        children_secret = []
+        children_secret: list[Any] = []
         def create_children(range_body):
             for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
                 children_secret.append(vault.generic.Secret(f"children-{range['key']}",
@@ -344,6 +345,7 @@ class Namespace(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import json
         import pulumi_vault as vault
 
@@ -356,12 +358,12 @@ class Namespace(pulumi.CustomResource):
                 "child_2",
             ]
         parent = vault.Namespace("parent", path="parent")
-        children = []
+        children: list[Any] = []
         for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
             children.append(vault.Namespace(f"children-{range['key']}",
                 namespace=parent.path,
-                path=range["key"]))
-        children_mount = []
+                path=str(range["key"])))
+        children_mount: list[Any] = []
         def create_children(range_body):
             for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
                 children_mount.append(vault.Mount(f"children-{range['key']}",
@@ -373,7 +375,7 @@ class Namespace(pulumi.CustomResource):
                     }))
 
         children.apply(create_children)
-        children_secret = []
+        children_secret: list[Any] = []
         def create_children(range_body):
             for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
                 children_secret.append(vault.generic.Secret(f"children-{range['key']}",
@@ -437,10 +439,10 @@ class Namespace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_fq: Optional[pulumi.Input[_builtins.str]] = None,
+                 custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_fq: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -467,11 +469,11 @@ class Namespace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            custom_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            path_fq: Optional[pulumi.Input[_builtins.str]] = None) -> 'Namespace':
+            custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            path_fq: pulumi.Input[Optional[_builtins.str]] = None) -> 'Namespace':
         """
         Get an existing Namespace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

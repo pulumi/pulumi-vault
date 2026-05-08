@@ -99,15 +99,15 @@ export interface AuditRequestHeaderState {
     /**
      * Whether this header's value should be HMAC'd in the audit logs.
      */
-    hmac?: pulumi.Input<boolean>;
+    hmac?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the request header to audit.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -117,13 +117,13 @@ export interface AuditRequestHeaderArgs {
     /**
      * Whether this header's value should be HMAC'd in the audit logs.
      */
-    hmac?: pulumi.Input<boolean>;
+    hmac?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the request header to audit.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

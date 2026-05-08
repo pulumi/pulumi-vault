@@ -45,8 +45,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -83,8 +83,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -121,8 +121,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -159,8 +159,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -197,8 +197,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -235,8 +235,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -265,8 +265,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -303,8 +303,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -333,8 +333,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -371,8 +371,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -401,8 +401,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -439,8 +439,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -469,8 +469,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -507,8 +507,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -537,8 +537,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -575,8 +575,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -605,8 +605,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -643,8 +643,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -673,8 +673,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetAuthBackendsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -717,8 +717,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -749,8 +749,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -782,8 +782,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -832,8 +832,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -864,8 +864,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -897,8 +897,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -947,8 +947,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -979,8 +979,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1012,8 +1012,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1062,8 +1062,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1094,8 +1094,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1127,8 +1127,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1177,8 +1177,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1209,8 +1209,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1242,8 +1242,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1292,8 +1292,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1324,8 +1324,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1357,8 +1357,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1407,8 +1407,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1439,8 +1439,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1472,8 +1472,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1522,8 +1522,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1554,8 +1554,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1602,8 +1602,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1634,8 +1634,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1682,8 +1682,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1714,8 +1714,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1762,8 +1762,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1794,8 +1794,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1842,8 +1842,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1874,8 +1874,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1922,8 +1922,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1954,8 +1954,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2002,8 +2002,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2034,8 +2034,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNamespacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2090,8 +2090,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.NomadSecretRoleArgs;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2163,8 +2163,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.NomadSecretRoleArgs;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2236,8 +2236,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.NomadSecretRoleArgs;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2309,8 +2309,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.NomadSecretRoleArgs;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2382,8 +2382,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.NomadSecretRoleArgs;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2445,8 +2445,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2501,8 +2501,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2557,8 +2557,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2613,8 +2613,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2669,8 +2669,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2725,8 +2725,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2781,8 +2781,8 @@ public final class VaultFunctions {
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2839,8 +2839,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2883,8 +2883,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2927,8 +2927,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2971,8 +2971,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3015,8 +3015,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3059,8 +3059,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3103,8 +3103,8 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

@@ -362,27 +362,27 @@ export interface SecretBackendState {
     /**
      * Accessor of the mount
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Denotes that the resource is used to bootstrap the Consul ACL system.
      *
@@ -390,105 +390,105 @@ export interface SecretBackendState {
      * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
      * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
      */
-    bootstrap?: pulumi.Input<boolean>;
+    bootstrap?: pulumi.Input<boolean | undefined>;
     /**
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      */
-    caCert?: pulumi.Input<string>;
+    caCert?: pulumi.Input<string | undefined>;
     /**
      * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
      * this is set you need to also set client_key.
      */
-    clientCert?: pulumi.Input<string>;
+    clientCert?: pulumi.Input<string | undefined>;
     /**
      * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
      * you need to also set client_cert. Mutually exclusive with `clientKeyWo`. **Note:** This field will be stored in
      * Terraform state. Consider using `clientKeyWo` instead for enhanced security.
      */
-    clientKey?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
      */
-    clientKeyWo?: pulumi.Input<string>;
+    clientKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only client key. Increment this value to trigger 
      * an update of the client key in Vault. Required when using `clientKeyWo`.
      */
-    clientKeyWoVersion?: pulumi.Input<number>;
+    clientKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Default lease duration for secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A human-friendly description for this backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the secret backend is local only
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
      * to `consul`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL scheme to use. Defaults to `http`.
      */
-    scheme?: pulumi.Input<string>;
+    scheme?: pulumi.Input<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * The Consul management token this backend should use to issue new tokens. This field is required
      * when `bootstrap` is false. Mutually exclusive with `tokenWo`. **Note:** This field will be stored in Terraform state.
@@ -497,17 +497,17 @@ export interface SecretBackendState {
      * > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
      * and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only token. Increment this value to trigger an update 
      * of the token in Vault. Required when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -521,19 +521,19 @@ export interface SecretBackendArgs {
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Denotes that the resource is used to bootstrap the Consul ACL system.
      *
@@ -541,105 +541,105 @@ export interface SecretBackendArgs {
      * this operation will only ever be known to Vault. If the resource is ever destroyed, the bootstrap token will be lost
      * and a [Consul reset may be required.](https://learn.hashicorp.com/tutorials/consul/access-control-troubleshoot#reset-the-acl-system)
      */
-    bootstrap?: pulumi.Input<boolean>;
+    bootstrap?: pulumi.Input<boolean | undefined>;
     /**
      * CA certificate to use when verifying Consul server certificate, must be x509 PEM encoded.
      */
-    caCert?: pulumi.Input<string>;
+    caCert?: pulumi.Input<string | undefined>;
     /**
      * Client certificate used for Consul's TLS communication, must be x509 PEM encoded and if
      * this is set you need to also set client_key.
      */
-    clientCert?: pulumi.Input<string>;
+    clientCert?: pulumi.Input<string | undefined>;
     /**
      * Client key used for Consul's TLS communication, must be x509 PEM encoded and if this is set
      * you need to also set client_cert. Mutually exclusive with `clientKeyWo`. **Note:** This field will be stored in
      * Terraform state. Consider using `clientKeyWo` instead for enhanced security.
      */
-    clientKey?: pulumi.Input<string>;
+    clientKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
      */
-    clientKeyWo?: pulumi.Input<string>;
+    clientKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only client key. Increment this value to trigger 
      * an update of the client key in Vault. Required when using `clientKeyWo`.
      */
-    clientKeyWoVersion?: pulumi.Input<number>;
+    clientKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Default lease duration for secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A human-friendly description for this backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the secret backend is local only
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique location this backend should be mounted at. Must not begin or end with a `/`. Defaults
      * to `consul`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL scheme to use. Defaults to `http`.
      */
-    scheme?: pulumi.Input<string>;
+    scheme?: pulumi.Input<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * The Consul management token this backend should use to issue new tokens. This field is required
      * when `bootstrap` is false. Mutually exclusive with `tokenWo`. **Note:** This field will be stored in Terraform state.
@@ -648,15 +648,15 @@ export interface SecretBackendArgs {
      * > **Important** Because Vault does not support reading the configured token back from the API, Terraform cannot detect
      * and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
      */
-    tokenWo?: pulumi.Input<string>;
+    tokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only token. Increment this value to trigger an update 
      * of the token in Vault. Required when using `tokenWo`.
      */
-    tokenWoVersion?: pulumi.Input<number>;
+    tokenWoVersion?: pulumi.Input<number | undefined>;
 }

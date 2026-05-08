@@ -19,16 +19,16 @@ __all__ = ['GroupArgs', 'Group']
 @pulumi.input_type
 class GroupArgs:
     def __init__(__self__, *,
-                 external_member_entity_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_member_group_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_policies: Optional[pulumi.Input[_builtins.bool]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 external_member_entity_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_member_group_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_policies: pulumi.Input[Optional[_builtins.bool]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 member_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Group resource.
 
@@ -77,7 +77,7 @@ class GroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="externalMemberEntityIds")
-    def external_member_entity_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_member_entity_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `false` by default. If set to `true`, this resource will ignore any Entity IDs
         returned from Vault or specified in the resource. You can use
@@ -87,12 +87,12 @@ class GroupArgs:
         return pulumi.get(self, "external_member_entity_ids")
 
     @external_member_entity_ids.setter
-    def external_member_entity_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_member_entity_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_member_entity_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="externalMemberGroupIds")
-    def external_member_group_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_member_group_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `false` by default. If set to `true`, this resource will ignore any Group IDs
         returned from Vault or specified in the resource. You can use
@@ -102,12 +102,12 @@ class GroupArgs:
         return pulumi.get(self, "external_member_group_ids")
 
     @external_member_group_ids.setter
-    def external_member_group_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_member_group_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_member_group_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="externalPolicies")
-    def external_policies(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_policies(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `false` by default. If set to `true`, this resource will ignore any policies returned from
         Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
@@ -116,60 +116,60 @@ class GroupArgs:
         return pulumi.get(self, "external_policies")
 
     @external_policies.setter
-    def external_policies(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_policies(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="memberEntityIds")
-    def member_entity_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def member_entity_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
         """
         return pulumi.get(self, "member_entity_ids")
 
     @member_entity_ids.setter
-    def member_entity_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def member_entity_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "member_entity_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="memberGroupIds")
-    def member_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def member_group_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         """
         return pulumi.get(self, "member_group_ids")
 
     @member_group_ids.setter
-    def member_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def member_group_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "member_group_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A Map of additional metadata to associate with the group.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the identity group to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -179,47 +179,47 @@ class GroupArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of policies to apply to the group.
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of the group, internal or external. Defaults to `internal`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _GroupState:
     def __init__(__self__, *,
-                 external_member_entity_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_member_group_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_policies: Optional[pulumi.Input[_builtins.bool]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 external_member_entity_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_member_group_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_policies: pulumi.Input[Optional[_builtins.bool]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 member_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Group resources.
 
@@ -268,7 +268,7 @@ class _GroupState:
 
     @_builtins.property
     @pulumi.getter(name="externalMemberEntityIds")
-    def external_member_entity_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_member_entity_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `false` by default. If set to `true`, this resource will ignore any Entity IDs
         returned from Vault or specified in the resource. You can use
@@ -278,12 +278,12 @@ class _GroupState:
         return pulumi.get(self, "external_member_entity_ids")
 
     @external_member_entity_ids.setter
-    def external_member_entity_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_member_entity_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_member_entity_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="externalMemberGroupIds")
-    def external_member_group_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_member_group_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `false` by default. If set to `true`, this resource will ignore any Group IDs
         returned from Vault or specified in the resource. You can use
@@ -293,12 +293,12 @@ class _GroupState:
         return pulumi.get(self, "external_member_group_ids")
 
     @external_member_group_ids.setter
-    def external_member_group_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_member_group_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_member_group_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="externalPolicies")
-    def external_policies(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def external_policies(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `false` by default. If set to `true`, this resource will ignore any policies returned from
         Vault or specified in the resource. You can use `identity.GroupPolicies` to manage
@@ -307,60 +307,60 @@ class _GroupState:
         return pulumi.get(self, "external_policies")
 
     @external_policies.setter
-    def external_policies(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def external_policies(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "external_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="memberEntityIds")
-    def member_entity_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def member_entity_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
         """
         return pulumi.get(self, "member_entity_ids")
 
     @member_entity_ids.setter
-    def member_entity_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def member_entity_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "member_entity_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="memberGroupIds")
-    def member_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def member_group_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
         """
         return pulumi.get(self, "member_group_ids")
 
     @member_group_ids.setter
-    def member_group_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def member_group_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "member_group_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A Map of additional metadata to associate with the group.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the identity group to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -370,31 +370,31 @@ class _GroupState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of policies to apply to the group.
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of the group, internal or external. Defaults to `internal`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -404,16 +404,16 @@ class Group(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 external_member_entity_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_member_group_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_policies: Optional[pulumi.Input[_builtins.bool]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_member_entity_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_member_group_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_policies: pulumi.Input[Optional[_builtins.bool]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 member_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -622,16 +622,16 @@ class Group(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 external_member_entity_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_member_group_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 external_policies: Optional[pulumi.Input[_builtins.bool]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_member_entity_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_member_group_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 external_policies: pulumi.Input[Optional[_builtins.bool]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 member_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -661,16 +661,16 @@ class Group(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            external_member_entity_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-            external_member_group_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-            external_policies: Optional[pulumi.Input[_builtins.bool]] = None,
-            member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            member_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Group':
+            external_member_entity_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_member_group_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_policies: pulumi.Input[Optional[_builtins.bool]] = None,
+            member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            member_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Group':
         """
         Get an existing Group resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

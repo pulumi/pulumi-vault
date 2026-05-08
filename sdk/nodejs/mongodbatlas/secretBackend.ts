@@ -184,37 +184,37 @@ export interface SecretBackendState {
     /**
      * Path where the MongoDB Atlas Secrets Engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path where MongoDB Atlas configuration is located
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the Private API Key used to authenticate with the MongoDB Atlas API. Mutually exclusive
      * with `privateKeyWo`. **Note:** This field will be stored in Terraform state. Consider using `privateKeyWo` instead for enhanced security.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * An incrementing version counter. Increment this value to force an update 
      * to the private key. Required when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
      */
-    publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -231,22 +231,22 @@ export interface SecretBackendArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the Private API Key used to authenticate with the MongoDB Atlas API. Mutually exclusive
      * with `privateKeyWo`. **Note:** This field will be stored in Terraform state. Consider using `privateKeyWo` instead for enhanced security.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
      */
-    privateKeyWo?: pulumi.Input<string>;
+    privateKeyWo?: pulumi.Input<string | undefined>;
     /**
      * An incrementing version counter. Increment this value to force an update 
      * to the private key. Required when using `privateKeyWo`.
      */
-    privateKeyWoVersion?: pulumi.Input<number>;
+    privateKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
      */

@@ -101,7 +101,7 @@ def get_auth_backend_role_id(backend: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_vault as vault
 
-    role = vault.appRole.get_auth_backend_role_id(backend="my-approle-backend",
+    role = vault.approle.get_auth_backend_role_id(backend="my-approle-backend",
         role_name="my-role")
     pulumi.export("role-id", role.role_id)
     ```
@@ -128,9 +128,9 @@ def get_auth_backend_role_id(backend: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         role_id=pulumi.get(__ret__, 'role_id'),
         role_name=pulumi.get(__ret__, 'role_name'))
-def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                    namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                    role_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_auth_backend_role_id_output(backend: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                    namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                    role_name: pulumi.Input[Optional[_builtins.str]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuthBackendRoleIdResult]:
     """
     Reads the Role ID of an AppRole from a Vault server.
@@ -141,7 +141,7 @@ def get_auth_backend_role_id_output(backend: Optional[pulumi.Input[Optional[_bui
     import pulumi
     import pulumi_vault as vault
 
-    role = vault.appRole.get_auth_backend_role_id(backend="my-approle-backend",
+    role = vault.approle.get_auth_backend_role_id(backend="my-approle-backend",
         role_name="my-role")
     pulumi.export("role-id", role.role_id)
     ```

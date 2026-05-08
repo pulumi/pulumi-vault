@@ -179,23 +179,23 @@ export interface KeysState {
     /**
      * Configuration block for AWS Managed Keys
      */
-    aws?: pulumi.Input<pulumi.Input<inputs.managed.KeysAw>[]>;
+    aws?: pulumi.Input<pulumi.Input<inputs.managed.KeysAw>[] | undefined>;
     /**
      * Configuration block for Azure Managed Keys
      */
-    azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[]>;
+    azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[] | undefined>;
     /**
      * Configuration block for GCP Cloud KMS Managed Keys
      */
-    gcps?: pulumi.Input<pulumi.Input<inputs.managed.KeysGcp>[]>;
+    gcps?: pulumi.Input<pulumi.Input<inputs.managed.KeysGcp>[] | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Configuration block for PKCS Managed Keys
      */
-    pkcs?: pulumi.Input<pulumi.Input<inputs.managed.KeysPkc>[]>;
+    pkcs?: pulumi.Input<pulumi.Input<inputs.managed.KeysPkc>[] | undefined>;
 }
 
 /**
@@ -205,21 +205,21 @@ export interface KeysArgs {
     /**
      * Configuration block for AWS Managed Keys
      */
-    aws?: pulumi.Input<pulumi.Input<inputs.managed.KeysAw>[]>;
+    aws?: pulumi.Input<pulumi.Input<inputs.managed.KeysAw>[] | undefined>;
     /**
      * Configuration block for Azure Managed Keys
      */
-    azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[]>;
+    azures?: pulumi.Input<pulumi.Input<inputs.managed.KeysAzure>[] | undefined>;
     /**
      * Configuration block for GCP Cloud KMS Managed Keys
      */
-    gcps?: pulumi.Input<pulumi.Input<inputs.managed.KeysGcp>[]>;
+    gcps?: pulumi.Input<pulumi.Input<inputs.managed.KeysGcp>[] | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Configuration block for PKCS Managed Keys
      */
-    pkcs?: pulumi.Input<pulumi.Input<inputs.managed.KeysPkc>[]>;
+    pkcs?: pulumi.Input<pulumi.Input<inputs.managed.KeysPkc>[] | undefined>;
 }

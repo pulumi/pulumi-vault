@@ -22,7 +22,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var root = new Vault.Index.Mount("root", new()
+    ///     var root = new Vault.Mount("root", new()
     ///     {
     ///         Path = "pki-root",
     ///         Type = "pki",

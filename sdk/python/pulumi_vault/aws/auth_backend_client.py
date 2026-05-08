@@ -19,27 +19,27 @@ __all__ = ['AuthBackendClientArgs', 'AuthBackendClient']
 @pulumi.input_type
 class AuthBackendClientArgs:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_server_id_header_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_sts_header_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ec2_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_server_id_header_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_sts_region_from_client: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackendClient resource.
 
@@ -140,7 +140,7 @@ class AuthBackendClientArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS access key that Vault should use for the
         auth backend. Mutually exclusive with `identity_token_audience`.
@@ -148,12 +148,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedStsHeaderValues")
-    def allowed_sts_header_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_sts_header_values(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of additional headers that are allowed to be in STS request headers.
         The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
@@ -162,12 +162,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "allowed_sts_header_values")
 
     @allowed_sts_header_values.setter
-    def allowed_sts_header_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_sts_header_values(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_sts_header_values", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS auth backend being configured was
         mounted at.  Defaults to `aws`.
@@ -175,24 +175,24 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="ec2Endpoint")
-    def ec2_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ec2_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the URL Vault uses when making EC2 API
         calls.
@@ -200,12 +200,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "ec2_endpoint")
 
     @ec2_endpoint.setter
-    def ec2_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ec2_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ec2_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="iamEndpoint")
-    def iam_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the URL Vault uses when making IAM API
         calls.
@@ -213,12 +213,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "iam_endpoint")
 
     @iam_endpoint.setter
-    def iam_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="iamServerIdHeaderValue")
-    def iam_server_id_header_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_server_id_header_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value to require in the
         `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
@@ -227,12 +227,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "iam_server_id_header_value")
 
     @iam_server_id_header_value.setter
-    def iam_server_id_header_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_server_id_header_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_server_id_header_value", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value. Mutually exclusive with `access_key`. 
         Requires Vault 1.17+. *Available only for Vault Enterprise*
@@ -240,12 +240,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
         *Available only for Vault Enterprise*
@@ -253,12 +253,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of max retries the client should use for recoverable errors. 
         The default `-1` falls back to the AWS SDK's default behavior.
@@ -266,12 +266,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -281,12 +281,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
-    def role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
         *Available only for Vault Enterprise*
@@ -294,12 +294,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
-    def role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -307,12 +307,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -320,12 +320,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -334,12 +334,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS secret key that Vault should use for the
         auth backend. Mutually exclusive with `secret_key_wo`.
@@ -349,12 +349,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWo")
-    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
@@ -362,12 +362,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "secret_key_wo")
 
     @secret_key_wo.setter
-    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWoVersion")
-    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the write-only `secret_key_wo` field.
         Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
@@ -375,12 +375,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "secret_key_wo_version")
 
     @secret_key_wo_version.setter
-    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")
-    def sts_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the URL Vault uses when making STS API
         calls.
@@ -388,12 +388,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "sts_endpoint")
 
     @sts_endpoint.setter
-    def sts_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="stsRegion")
-    def sts_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the default region when making STS API 
         calls. The `sts_endpoint` argument must be set when using `sts_region`.
@@ -401,12 +401,12 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "sts_region")
 
     @sts_region.setter
-    def sts_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_region", value)
 
     @_builtins.property
     @pulumi.getter(name="useStsRegionFromClient")
-    def use_sts_region_from_client(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_sts_region_from_client(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Available in Vault v1.15+. If set, 
         overrides both `sts_endpoint` and `sts_region` to instead use the region
@@ -417,34 +417,34 @@ class AuthBackendClientArgs:
         return pulumi.get(self, "use_sts_region_from_client")
 
     @use_sts_region_from_client.setter
-    def use_sts_region_from_client(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_sts_region_from_client(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_sts_region_from_client", value)
 
 
 @pulumi.input_type
 class _AuthBackendClientState:
     def __init__(__self__, *,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_server_id_header_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None):
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_sts_header_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ec2_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_server_id_header_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_sts_region_from_client: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackendClient resources.
 
@@ -545,7 +545,7 @@ class _AuthBackendClientState:
 
     @_builtins.property
     @pulumi.getter(name="accessKey")
-    def access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS access key that Vault should use for the
         auth backend. Mutually exclusive with `identity_token_audience`.
@@ -553,12 +553,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "access_key")
 
     @access_key.setter
-    def access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedStsHeaderValues")
-    def allowed_sts_header_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_sts_header_values(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of additional headers that are allowed to be in STS request headers.
         The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
@@ -567,12 +567,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "allowed_sts_header_values")
 
     @allowed_sts_header_values.setter
-    def allowed_sts_header_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_sts_header_values(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_sts_header_values", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS auth backend being configured was
         mounted at.  Defaults to `aws`.
@@ -580,24 +580,24 @@ class _AuthBackendClientState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="ec2Endpoint")
-    def ec2_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ec2_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the URL Vault uses when making EC2 API
         calls.
@@ -605,12 +605,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "ec2_endpoint")
 
     @ec2_endpoint.setter
-    def ec2_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ec2_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ec2_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="iamEndpoint")
-    def iam_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the URL Vault uses when making IAM API
         calls.
@@ -618,12 +618,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "iam_endpoint")
 
     @iam_endpoint.setter
-    def iam_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="iamServerIdHeaderValue")
-    def iam_server_id_header_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_server_id_header_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value to require in the
         `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
@@ -632,12 +632,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "iam_server_id_header_value")
 
     @iam_server_id_header_value.setter
-    def iam_server_id_header_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_server_id_header_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_server_id_header_value", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value. Mutually exclusive with `access_key`. 
         Requires Vault 1.17+. *Available only for Vault Enterprise*
@@ -645,12 +645,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
         *Available only for Vault Enterprise*
@@ -658,12 +658,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of max retries the client should use for recoverable errors. 
         The default `-1` falls back to the AWS SDK's default behavior.
@@ -671,12 +671,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -686,12 +686,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
-    def role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
         *Available only for Vault Enterprise*
@@ -699,12 +699,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
-    def role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -712,12 +712,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -725,12 +725,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -739,12 +739,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKey")
-    def secret_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS secret key that Vault should use for the
         auth backend. Mutually exclusive with `secret_key_wo`.
@@ -754,12 +754,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
-    def secret_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWo")
-    def secret_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secret_key for enhanced security.
@@ -767,12 +767,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "secret_key_wo")
 
     @secret_key_wo.setter
-    def secret_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="secretKeyWoVersion")
-    def secret_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the write-only `secret_key_wo` field.
         Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
@@ -780,12 +780,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "secret_key_wo_version")
 
     @secret_key_wo_version.setter
-    def secret_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="stsEndpoint")
-    def sts_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the URL Vault uses when making STS API
         calls.
@@ -793,12 +793,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "sts_endpoint")
 
     @sts_endpoint.setter
-    def sts_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="stsRegion")
-    def sts_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sts_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the default region when making STS API 
         calls. The `sts_endpoint` argument must be set when using `sts_region`.
@@ -806,12 +806,12 @@ class _AuthBackendClientState:
         return pulumi.get(self, "sts_region")
 
     @sts_region.setter
-    def sts_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sts_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sts_region", value)
 
     @_builtins.property
     @pulumi.getter(name="useStsRegionFromClient")
-    def use_sts_region_from_client(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_sts_region_from_client(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Available in Vault v1.15+. If set, 
         overrides both `sts_endpoint` and `sts_region` to instead use the region
@@ -822,7 +822,7 @@ class _AuthBackendClientState:
         return pulumi.get(self, "use_sts_region_from_client")
 
     @use_sts_region_from_client.setter
-    def use_sts_region_from_client(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_sts_region_from_client(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_sts_region_from_client", value)
 
 
@@ -832,27 +832,27 @@ class AuthBackendClient(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_server_id_header_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_sts_header_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ec2_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_server_id_header_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_sts_region_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Configures the client used by an AWS Auth Backend in Vault.
@@ -899,7 +899,7 @@ class AuthBackendClient(pulumi.CustomResource):
         example = vault.AuthBackend("example", type="aws")
         example_auth_backend_client = vault.aws.AuthBackendClient("example",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             role_arn="<AWS_ROLE_ARN>",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
@@ -1048,7 +1048,7 @@ class AuthBackendClient(pulumi.CustomResource):
         example = vault.AuthBackend("example", type="aws")
         example_auth_backend_client = vault.aws.AuthBackendClient("example",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             role_arn="<AWS_ROLE_ARN>",
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
@@ -1107,27 +1107,27 @@ class AuthBackendClient(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_server_id_header_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None,
+                 access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_sts_header_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ec2_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_server_id_header_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_sts_region_from_client: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1170,27 +1170,27 @@ class AuthBackendClient(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_sts_header_values: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-            ec2_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_server_id_header_value: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-            rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-            secret_key: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            sts_region: Optional[pulumi.Input[_builtins.str]] = None,
-            use_sts_region_from_client: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackendClient':
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_sts_header_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            ec2_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_server_id_header_value: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+            use_sts_region_from_client: pulumi.Input[Optional[_builtins.bool]] = None) -> 'AuthBackendClient':
         """
         Get an existing AuthBackendClient resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

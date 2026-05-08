@@ -290,121 +290,121 @@ export interface SecretBackendState {
     /**
      * Accessor of the mount
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Disable defaulting to the local CA certificate and 
      * service account JWT when Vault is running in a Kubernetes pod.
      */
-    disableLocalCaJwt?: pulumi.Input<boolean>;
+    disableLocalCaJwt?: pulumi.Input<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * A PEM-encoded CA certificate used by the 
      * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
-    kubernetesCaCert?: pulumi.Input<string>;
+    kubernetesCaCert?: pulumi.Input<string | undefined>;
     /**
      * The Kubernetes API URL to connect to. Required if the 
      * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
      * are not set on the host that Vault is running on.
      */
-    kubernetesHost?: pulumi.Input<string>;
+    kubernetesHost?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Where the secret backend will be mounted
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * The JSON web token of the service account used by the
      * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
      * is running in Kubernetes.
      */
-    serviceAccountJwt?: pulumi.Input<string>;
+    serviceAccountJwt?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
      */
-    serviceAccountJwtWo?: pulumi.Input<string>;
+    serviceAccountJwtWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for `serviceAccountJwtWo`. Increment to force an update.
      * For more information about write-only attributes, see
      * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
      */
-    serviceAccountJwtWoVersion?: pulumi.Input<number>;
+    serviceAccountJwtWoVersion?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -414,88 +414,88 @@ export interface SecretBackendArgs {
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Disable defaulting to the local CA certificate and 
      * service account JWT when Vault is running in a Kubernetes pod.
      */
-    disableLocalCaJwt?: pulumi.Input<boolean>;
+    disableLocalCaJwt?: pulumi.Input<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * A PEM-encoded CA certificate used by the 
      * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
-    kubernetesCaCert?: pulumi.Input<string>;
+    kubernetesCaCert?: pulumi.Input<string | undefined>;
     /**
      * The Kubernetes API URL to connect to. Required if the 
      * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
      * are not set on the host that Vault is running on.
      */
-    kubernetesHost?: pulumi.Input<string>;
+    kubernetesHost?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Where the secret backend will be mounted
      */
@@ -503,26 +503,26 @@ export interface SecretBackendArgs {
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * The JSON web token of the service account used by the
      * secrets engine to manage Kubernetes credentials. Defaults to the local pod’s JWT if Vault
      * is running in Kubernetes.
      */
-    serviceAccountJwt?: pulumi.Input<string>;
+    serviceAccountJwt?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only JSON web token of the service account used by the secrets engine to manage Kubernetes credentials. This value will not be stored in state.
      */
-    serviceAccountJwtWo?: pulumi.Input<string>;
+    serviceAccountJwtWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for `serviceAccountJwtWo`. Increment to force an update.
      * For more information about write-only attributes, see
      * [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
      */
-    serviceAccountJwtWoVersion?: pulumi.Input<number>;
+    serviceAccountJwtWoVersion?: pulumi.Input<number | undefined>;
 }

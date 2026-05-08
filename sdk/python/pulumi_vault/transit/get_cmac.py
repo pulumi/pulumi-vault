@@ -200,16 +200,16 @@ def get_cmac(batch_inputs: Optional[Sequence[Mapping[str, _builtins.str]]] = Non
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'),
         url_mac_length=pulumi.get(__ret__, 'url_mac_length'))
-def get_cmac_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
-                    batch_results: Optional[pulumi.Input[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
-                    cmac: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    input: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    key_version: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                    mac_length: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                    name: Optional[pulumi.Input[_builtins.str]] = None,
-                    namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    path: Optional[pulumi.Input[_builtins.str]] = None,
-                    url_mac_length: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_cmac_output(batch_inputs: pulumi.Input[Optional[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
+                    batch_results: pulumi.Input[Optional[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
+                    cmac: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    input: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    key_version: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                    mac_length: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                    name: pulumi.Input[Optional[_builtins.str]] = None,
+                    namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    path: pulumi.Input[Optional[_builtins.str]] = None,
+                    url_mac_length: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCmacResult]:
     """
     This is a data source which can be used to generate a CMAC using a Vault Transit key.

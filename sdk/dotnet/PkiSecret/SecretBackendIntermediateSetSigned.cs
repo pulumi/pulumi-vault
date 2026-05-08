@@ -33,7 +33,7 @@ namespace Pulumi.Vault.PkiSecret
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var root = new Vault.Index.Mount("root", new()
+    ///     var root = new Vault.Mount("root", new()
     ///     {
     ///         Path = "pki-root",
     ///         Type = "pki",
@@ -42,7 +42,7 @@ namespace Pulumi.Vault.PkiSecret
     ///         MaxLeaseTtlSeconds = 8640000,
     ///     });
     /// 
-    ///     var intermediate = new Vault.Index.Mount("intermediate", new()
+    ///     var intermediate = new Vault.Mount("intermediate", new()
     ///     {
     ///         Path = "pki-int",
     ///         Type = root.Type,

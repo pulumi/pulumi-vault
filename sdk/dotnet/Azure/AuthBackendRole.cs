@@ -26,7 +26,7 @@ namespace Pulumi.Vault.Azure
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var azure = new Vault.Index.AuthBackend("azure", new()
+    ///     var azure = new Vault.AuthBackend("azure", new()
     ///     {
     ///         Type = "azure",
     ///     });

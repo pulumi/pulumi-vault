@@ -223,47 +223,47 @@ export interface BackendConfigEstState {
      *
      * <a id="nestedatt--authenticators"></a>
      */
-    auditFields?: pulumi.Input<pulumi.Input<string>[]>;
+    auditFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Lists the mount accessors EST should delegate authentication requests towards (see below for nested schema).
      */
-    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigEstAuthenticators>;
+    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigEstAuthenticators | undefined>;
     /**
      * The path to the PKI secret backend to
      * read the EST configuration from, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * If set, this mount will register the default `.well-known/est` URL path. Only a single mount can enable this across a Vault cluster.
      */
-    defaultMount?: pulumi.Input<boolean>;
+    defaultMount?: pulumi.Input<boolean | undefined>;
     /**
      * Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:<role_name>.
      */
-    defaultPathPolicy?: pulumi.Input<string>;
+    defaultPathPolicy?: pulumi.Input<string | undefined>;
     /**
      * If set, parse out fields from the provided CSR making them available for Sentinel policies.
      */
-    enableSentinelParsing?: pulumi.Input<boolean>;
+    enableSentinelParsing?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether EST is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
      */
-    labelToPathPolicy?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labelToPathPolicy?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A read-only timestamp representing the last time the configuration was updated.
      */
-    lastUpdated?: pulumi.Input<string>;
+    lastUpdated?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -275,11 +275,11 @@ export interface BackendConfigEstArgs {
      *
      * <a id="nestedatt--authenticators"></a>
      */
-    auditFields?: pulumi.Input<pulumi.Input<string>[]>;
+    auditFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Lists the mount accessors EST should delegate authentication requests towards (see below for nested schema).
      */
-    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigEstAuthenticators>;
+    authenticators?: pulumi.Input<inputs.pkiSecret.BackendConfigEstAuthenticators | undefined>;
     /**
      * The path to the PKI secret backend to
      * read the EST configuration from, with no leading or trailing `/`s.
@@ -288,28 +288,28 @@ export interface BackendConfigEstArgs {
     /**
      * If set, this mount will register the default `.well-known/est` URL path. Only a single mount can enable this across a Vault cluster.
      */
-    defaultMount?: pulumi.Input<boolean>;
+    defaultMount?: pulumi.Input<boolean | undefined>;
     /**
      * Required to be set if defaultMount is enabled. Specifies the behavior for requests using the default EST label. Can be sign-verbatim or a role given by role:<role_name>.
      */
-    defaultPathPolicy?: pulumi.Input<string>;
+    defaultPathPolicy?: pulumi.Input<string | undefined>;
     /**
      * If set, parse out fields from the provided CSR making them available for Sentinel policies.
      */
-    enableSentinelParsing?: pulumi.Input<boolean>;
+    enableSentinelParsing?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether EST is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Configures a pairing of an EST label with the redirected behavior for requests hitting that role. The path policy can be sign-verbatim or a role given by role:<role_name>. Labels must be unique across Vault cluster, and will register .well-known/est/<label> URL paths.
      */
-    labelToPathPolicy?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    labelToPathPolicy?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

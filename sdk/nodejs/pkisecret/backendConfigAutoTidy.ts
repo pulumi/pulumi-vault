@@ -249,116 +249,116 @@ export interface BackendConfigAutoTidyState {
     /**
      * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      */
-    acmeAccountSafetyBuffer?: pulumi.Input<string>;
+    acmeAccountSafetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * The path to the PKI secret backend to
      * read the configuration from, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether automatic tidy is enabled or not.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Interval at which to run an auto-tidy operation. This is the time
      * between tidy invocations (after one finishes to the start of the next).
      */
-    intervalDuration?: pulumi.Input<string>;
+    intervalDuration?: pulumi.Input<string | undefined>;
     /**
      * The amount of extra time that must have passed beyond issuer's
      * expiration before it is removed from the backend storage.
      */
-    issuerSafetyBuffer?: pulumi.Input<string>;
+    issuerSafetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * This configures whether stored certificate are
      * counted upon initialization of the backend, and whether during normal operation, a running count
      * of certificates stored is maintained.
      */
-    maintainStoredCertificateCounts?: pulumi.Input<boolean>;
+    maintainStoredCertificateCounts?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum amount of time auto-tidy will be delayed
      * after startup.
      */
-    maxStartupBackoffDuration?: pulumi.Input<string>;
+    maxStartupBackoffDuration?: pulumi.Input<string | undefined>;
     /**
      * The minimum amount of time auto-tidy will be delayed
      * after startup.
      */
-    minStartupBackoffDuration?: pulumi.Input<string>;
+    minStartupBackoffDuration?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The amount of time to wait between processing certificates.
      */
-    pauseDuration?: pulumi.Input<string>;
+    pauseDuration?: pulumi.Input<string | undefined>;
     /**
      * This configures whether the stored
      * certificate count is published to the metrics consumer.
      */
-    publishStoredCertificateCountMetrics?: pulumi.Input<boolean>;
+    publishStoredCertificateCountMetrics?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of time that must pass from the
      * cross-cluster revocation request being initiated to when it will be slated for removal.
      */
-    revocationQueueSafetyBuffer?: pulumi.Input<string>;
+    revocationQueueSafetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * The amount of extra time that must have passed beyond certificate
      * expiration before it is removed from the backend storage and/or revocation list.
      */
-    safetyBuffer?: pulumi.Input<string>;
+    safetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * Set to true to enable tidying ACME accounts, orders and authorizations.
      */
-    tidyAcme?: pulumi.Input<boolean>;
+    tidyAcme?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up certificate metadata.
      */
-    tidyCertMetadata?: pulumi.Input<boolean>;
+    tidyCertMetadata?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up the certificate store
      */
-    tidyCertStore?: pulumi.Input<boolean>;
+    tidyCertStore?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up the CMPv2 nonce store.
      */
-    tidyCmpv2NonceStore?: pulumi.Input<boolean>;
+    tidyCmpv2NonceStore?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up the cross-cluster
      * revoked certificate store.
      */
-    tidyCrossClusterRevokedCerts?: pulumi.Input<boolean>;
+    tidyCrossClusterRevokedCerts?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to automatically remove expired issuers past the
      * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
      */
-    tidyExpiredIssuers?: pulumi.Input<boolean>;
+    tidyExpiredIssuers?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to move the legacy `caBundle` from
      * `/config/ca_bundle` to `/config/ca_bundle.bak`.
      */
-    tidyMoveLegacyCaBundle?: pulumi.Input<boolean>;
+    tidyMoveLegacyCaBundle?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to remove stale revocation queue entries that
      * haven't been confirmed by any active cluster.
      */
-    tidyRevocationQueue?: pulumi.Input<boolean>;
+    tidyRevocationQueue?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to validate issuer associations
      * on revocation entries. This helps increase the performance of CRL building and OCSP responses.
      */
-    tidyRevokedCertIssuerAssociations?: pulumi.Input<boolean>;
+    tidyRevokedCertIssuerAssociations?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to remove all invalid and expired certificates from
      * storage. A revoked storage entry is considered invalid if the entry is empty, or the value within
      * the entry is empty. If a certificate is removed due to expiry, the entry will also be removed from
      * the CRL, and the CRL will be rotated.
      */
-    tidyRevokedCerts?: pulumi.Input<boolean>;
+    tidyRevokedCerts?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -368,7 +368,7 @@ export interface BackendConfigAutoTidyArgs {
     /**
      * The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
      */
-    acmeAccountSafetyBuffer?: pulumi.Input<string>;
+    acmeAccountSafetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * The path to the PKI secret backend to
      * read the configuration from, with no leading or trailing `/`s.
@@ -382,100 +382,100 @@ export interface BackendConfigAutoTidyArgs {
      * Interval at which to run an auto-tidy operation. This is the time
      * between tidy invocations (after one finishes to the start of the next).
      */
-    intervalDuration?: pulumi.Input<string>;
+    intervalDuration?: pulumi.Input<string | undefined>;
     /**
      * The amount of extra time that must have passed beyond issuer's
      * expiration before it is removed from the backend storage.
      */
-    issuerSafetyBuffer?: pulumi.Input<string>;
+    issuerSafetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * This configures whether stored certificate are
      * counted upon initialization of the backend, and whether during normal operation, a running count
      * of certificates stored is maintained.
      */
-    maintainStoredCertificateCounts?: pulumi.Input<boolean>;
+    maintainStoredCertificateCounts?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum amount of time auto-tidy will be delayed
      * after startup.
      */
-    maxStartupBackoffDuration?: pulumi.Input<string>;
+    maxStartupBackoffDuration?: pulumi.Input<string | undefined>;
     /**
      * The minimum amount of time auto-tidy will be delayed
      * after startup.
      */
-    minStartupBackoffDuration?: pulumi.Input<string>;
+    minStartupBackoffDuration?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The amount of time to wait between processing certificates.
      */
-    pauseDuration?: pulumi.Input<string>;
+    pauseDuration?: pulumi.Input<string | undefined>;
     /**
      * This configures whether the stored
      * certificate count is published to the metrics consumer.
      */
-    publishStoredCertificateCountMetrics?: pulumi.Input<boolean>;
+    publishStoredCertificateCountMetrics?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of time that must pass from the
      * cross-cluster revocation request being initiated to when it will be slated for removal.
      */
-    revocationQueueSafetyBuffer?: pulumi.Input<string>;
+    revocationQueueSafetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * The amount of extra time that must have passed beyond certificate
      * expiration before it is removed from the backend storage and/or revocation list.
      */
-    safetyBuffer?: pulumi.Input<string>;
+    safetyBuffer?: pulumi.Input<string | undefined>;
     /**
      * Set to true to enable tidying ACME accounts, orders and authorizations.
      */
-    tidyAcme?: pulumi.Input<boolean>;
+    tidyAcme?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up certificate metadata.
      */
-    tidyCertMetadata?: pulumi.Input<boolean>;
+    tidyCertMetadata?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up the certificate store
      */
-    tidyCertStore?: pulumi.Input<boolean>;
+    tidyCertStore?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up the CMPv2 nonce store.
      */
-    tidyCmpv2NonceStore?: pulumi.Input<boolean>;
+    tidyCmpv2NonceStore?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to enable tidying up the cross-cluster
      * revoked certificate store.
      */
-    tidyCrossClusterRevokedCerts?: pulumi.Input<boolean>;
+    tidyCrossClusterRevokedCerts?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to automatically remove expired issuers past the
      * `issuerSafetyBuffer`. No keys will be removed as part of this operation.
      */
-    tidyExpiredIssuers?: pulumi.Input<boolean>;
+    tidyExpiredIssuers?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to move the legacy `caBundle` from
      * `/config/ca_bundle` to `/config/ca_bundle.bak`.
      */
-    tidyMoveLegacyCaBundle?: pulumi.Input<boolean>;
+    tidyMoveLegacyCaBundle?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to remove stale revocation queue entries that
      * haven't been confirmed by any active cluster.
      */
-    tidyRevocationQueue?: pulumi.Input<boolean>;
+    tidyRevocationQueue?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to validate issuer associations
      * on revocation entries. This helps increase the performance of CRL building and OCSP responses.
      */
-    tidyRevokedCertIssuerAssociations?: pulumi.Input<boolean>;
+    tidyRevokedCertIssuerAssociations?: pulumi.Input<boolean | undefined>;
     /**
      * Set to true to remove all invalid and expired certificates from
      * storage. A revoked storage entry is considered invalid if the entry is empty, or the value within
      * the entry is empty. If a certificate is removed due to expiry, the entry will also be removed from
      * the CRL, and the CRL will be rotated.
      */
-    tidyRevokedCerts?: pulumi.Input<boolean>;
+    tidyRevokedCerts?: pulumi.Input<boolean | undefined>;
 }

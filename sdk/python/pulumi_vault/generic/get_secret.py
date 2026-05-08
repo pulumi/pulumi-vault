@@ -260,10 +260,10 @@ def get_secret(namespace: Optional[_builtins.str] = None,
         path=pulumi.get(__ret__, 'path'),
         version=pulumi.get(__ret__, 'version'),
         with_lease_start_time=pulumi.get(__ret__, 'with_lease_start_time'))
-def get_secret_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      path: Optional[pulumi.Input[_builtins.str]] = None,
-                      version: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                      with_lease_start_time: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_secret_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      path: pulumi.Input[Optional[_builtins.str]] = None,
+                      version: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                      with_lease_start_time: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretResult]:
     """
     Reads arbitrary data from a given path in Vault.

@@ -314,91 +314,91 @@ export interface SecretBackendKeyState {
      * Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
-    allowPlaintextBackup?: pulumi.Input<boolean>;
+    allowPlaintextBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
-    autoRotatePeriod?: pulumi.Input<number>;
+    autoRotatePeriod?: pulumi.Input<number | undefined>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
      */
-    context?: pulumi.Input<string>;
+    context?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      */
-    convergentEncryption?: pulumi.Input<boolean>;
+    convergentEncryption?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
      */
-    deletionAllowed?: pulumi.Input<boolean>;
+    deletionAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
      */
-    derived?: pulumi.Input<boolean>;
+    derived?: pulumi.Input<boolean | undefined>;
     /**
      * Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
      */
-    exportable?: pulumi.Input<boolean>;
+    exportable?: pulumi.Input<boolean | undefined>;
     /**
      * The elliptic curve algorithm to use for hybrid signatures.
      * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
      */
-    hybridKeyTypeEc?: pulumi.Input<string>;
+    hybridKeyTypeEc?: pulumi.Input<string | undefined>;
     /**
      * The post-quantum algorithm to use for hybrid signatures.
      * Currently, ML-DSA is the only supported key type.
      */
-    hybridKeyTypePqc?: pulumi.Input<string>;
+    hybridKeyTypePqc?: pulumi.Input<string | undefined>;
     /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      */
-    keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number | undefined>;
     /**
      * List of key versions in the keyring. This attribute is zero-indexed and will contain a map of values depending on the `type` of the encryption key.
      * * for key types `aes128-gcm96`, `aes256-gcm96` and `chacha20-poly1305`, each key version will be a map of a single value `id` which is just a hash of the key's metadata.
      * * for key types `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `rsa-2048`, `rsa-3072` and `rsa-4096`, each key version will be a map of the following:
      */
-    keys?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    keys?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * Latest key version available. This value is 1-indexed, so if `latestVersion` is `1`, then the key's information can be referenced from `keys` by selecting element `0`
      */
-    latestVersion?: pulumi.Input<number>;
+    latestVersion?: pulumi.Input<number | undefined>;
     /**
      * The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * Minimum key version available for use. If keys have been archived by increasing `minDecryptionVersion`, this attribute will reflect that change.
      */
-    minAvailableVersion?: pulumi.Input<number>;
+    minAvailableVersion?: pulumi.Input<number | undefined>;
     /**
      * Minimum key version to use for decryption.
      */
-    minDecryptionVersion?: pulumi.Input<number>;
+    minDecryptionVersion?: pulumi.Input<number | undefined>;
     /**
      * Minimum key version to use for encryption
      */
-    minEncryptionVersion?: pulumi.Input<number>;
+    minEncryptionVersion?: pulumi.Input<number | undefined>;
     /**
      * The name to identify this key within the backend. Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The parameter set to use for ML-DSA or SLH-DSA. Required for
      * ML-DSA, hybrid, and SLH-DSA keys.
@@ -407,28 +407,28 @@ export interface SecretBackendKeyState {
      * `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
      * `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
      */
-    parameterSet?: pulumi.Input<string>;
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * Whether or not the key supports decryption, based on key type.
      */
-    supportsDecryption?: pulumi.Input<boolean>;
+    supportsDecryption?: pulumi.Input<boolean | undefined>;
     /**
      * Whether or not the key supports derivation, based on key type.
      */
-    supportsDerivation?: pulumi.Input<boolean>;
+    supportsDerivation?: pulumi.Input<boolean | undefined>;
     /**
      * Whether or not the key supports encryption, based on key type.
      */
-    supportsEncryption?: pulumi.Input<boolean>;
+    supportsEncryption?: pulumi.Input<boolean | undefined>;
     /**
      * Whether or not the key supports signing, based on key type.
      */
-    supportsSigning?: pulumi.Input<boolean>;
+    supportsSigning?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -439,12 +439,12 @@ export interface SecretBackendKeyArgs {
      * Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
      * * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)
      */
-    allowPlaintextBackup?: pulumi.Input<boolean>;
+    allowPlaintextBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Amount of seconds the key should live before being automatically rotated.
      * A value of 0 disables automatic rotation for the key.
      */
-    autoRotatePeriod?: pulumi.Input<number>;
+    autoRotatePeriod?: pulumi.Input<number | undefined>;
     /**
      * The path the transit secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -452,64 +452,64 @@ export interface SecretBackendKeyArgs {
     /**
      * Base64 encoded context for key derivation. Required if `derived` is set to `true`. This provides additional entropy for key derivation and should be consistent across operations that need to use the same derived key.
      */
-    context?: pulumi.Input<string>;
+    context?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to support convergent encryption, where the same plaintext creates the same ciphertext. This requires `derived` to be set to `true`.
      */
-    convergentEncryption?: pulumi.Input<boolean>;
+    convergentEncryption?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if the keyring is allowed to be deleted. Must be set to 'true' before terraform will be able to destroy keys.
      */
-    deletionAllowed?: pulumi.Input<boolean>;
+    deletionAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies if key derivation is to be used. If enabled, all encrypt/decrypt requests to this key must provide a context which is used for key derivation.
      */
-    derived?: pulumi.Input<boolean>;
+    derived?: pulumi.Input<boolean | undefined>;
     /**
      * Enables keys to be exportable. This allows for all valid private keys in the keyring to be exported. Once set, this cannot be disabled.
      */
-    exportable?: pulumi.Input<boolean>;
+    exportable?: pulumi.Input<boolean | undefined>;
     /**
      * The elliptic curve algorithm to use for hybrid signatures.
      * Supported key types are `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, and `ed25519`.
      */
-    hybridKeyTypeEc?: pulumi.Input<string>;
+    hybridKeyTypeEc?: pulumi.Input<string | undefined>;
     /**
      * The post-quantum algorithm to use for hybrid signatures.
      * Currently, ML-DSA is the only supported key type.
      */
-    hybridKeyTypePqc?: pulumi.Input<string>;
+    hybridKeyTypePqc?: pulumi.Input<string | undefined>;
     /**
      * The key size in bytes for algorithms that allow variable key sizes. Currently only applicable to HMAC, where it must be between 32 and 512 bytes.
      */
-    keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number | undefined>;
     /**
      * The UUID of the managed key to use when the key `type` is `managedKey`. This is the unique identifier of a previously configured managed key. When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the managed key to use when the key `type` is `managedKey`. This references a previously configured managed key in Vault (e.g., AWS KMS, Azure Key Vault, PKCS#11, etc.). When `type` is `managedKey`, either `managedKeyName` or `managedKeyId` must be specified.
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * Minimum key version to use for decryption.
      */
-    minDecryptionVersion?: pulumi.Input<number>;
+    minDecryptionVersion?: pulumi.Input<number | undefined>;
     /**
      * Minimum key version to use for encryption
      */
-    minEncryptionVersion?: pulumi.Input<number>;
+    minEncryptionVersion?: pulumi.Input<number | undefined>;
     /**
      * The name to identify this key within the backend. Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The parameter set to use for ML-DSA or SLH-DSA. Required for
      * ML-DSA, hybrid, and SLH-DSA keys.
@@ -518,10 +518,10 @@ export interface SecretBackendKeyArgs {
      * `slh-dsa-shake-192s`, `slh-dsa-sha2-192f`, `slh-dsa-shake-192f`, `slh-dsa-sha2-256s`, `slh-dsa-shake-256s`,
      * `slh-dsa-sha2-256f`, and `slh-dsa-shake-256f`.
      */
-    parameterSet?: pulumi.Input<string>;
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of key to create. The currently-supported types are: `aes128-gcm96`, `aes256-gcm96` (default), `chacha20-poly1305`, `ed25519`, `ecdsa-p256`, `ecdsa-p384`, `ecdsa-p521`, `hmac`, `rsa-2048`, `rsa-3072`, `rsa-4096`, `managedKey`, `aes128-cmac`, `aes192-cmac`, `aes256-cmac`, `ml-dsa`, `hybrid`, and `slh-dsa`.
      * * Refer to the Vault documentation on transit key types for more information: [Key Types](https://www.vaultproject.io/docs/secrets/transit#key-types)
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

@@ -206,11 +206,11 @@ export interface SecretBackendDynamicRoleState {
      * entries in `rollbackLdif` will be executed. See `rollbackLdif` for more
      * details. This field may optionally be provided as a base64 encoded string.
      */
-    creationLdif?: pulumi.Input<string>;
+    creationLdif?: pulumi.Input<string | undefined>;
     /**
      * Specifies the TTL for the leases associated with this role.
      */
-    defaultTtl?: pulumi.Input<number>;
+    defaultTtl?: pulumi.Input<number | undefined>;
     /**
      * A templatized LDIF string used to delete the
      * user account once its TTL has expired. This may contain multiple LDIF
@@ -219,27 +219,27 @@ export interface SecretBackendDynamicRoleState {
      * continue executing any remaining entries. This field may optionally be
      * provided as a base64 encoded string.
      */
-    deletionLdif?: pulumi.Input<string>;
+    deletionLdif?: pulumi.Input<string | undefined>;
     /**
      * Specifies the maximum TTL for the leases associated with this role.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ldap`.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the role.
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
     /**
      * A templatized LDIF string used to attempt to
      * rollback any changes in the event that execution of the `creationLdif` results
@@ -248,13 +248,13 @@ export interface SecretBackendDynamicRoleState {
      * the `rollbackLdif` it will attempt to continue executing any remaining
      * entries. This field may optionally be provided as a base64 encoded string.
      */
-    rollbackLdif?: pulumi.Input<string>;
+    rollbackLdif?: pulumi.Input<string | undefined>;
     /**
      * A template used to generate a dynamic
      * username. This will be used to fill in the `.Username` field within the
      * `creationLdif` string.
      */
-    usernameTemplate?: pulumi.Input<string>;
+    usernameTemplate?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -275,7 +275,7 @@ export interface SecretBackendDynamicRoleArgs {
     /**
      * Specifies the TTL for the leases associated with this role.
      */
-    defaultTtl?: pulumi.Input<number>;
+    defaultTtl?: pulumi.Input<number | undefined>;
     /**
      * A templatized LDIF string used to delete the
      * user account once its TTL has expired. This may contain multiple LDIF
@@ -288,19 +288,19 @@ export interface SecretBackendDynamicRoleArgs {
     /**
      * Specifies the maximum TTL for the leases associated with this role.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `ldap`.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the role.
      */
@@ -313,11 +313,11 @@ export interface SecretBackendDynamicRoleArgs {
      * the `rollbackLdif` it will attempt to continue executing any remaining
      * entries. This field may optionally be provided as a base64 encoded string.
      */
-    rollbackLdif?: pulumi.Input<string>;
+    rollbackLdif?: pulumi.Input<string | undefined>;
     /**
      * A template used to generate a dynamic
      * username. This will be used to fill in the `.Username` field within the
      * `creationLdif` string.
      */
-    usernameTemplate?: pulumi.Input<string>;
+    usernameTemplate?: pulumi.Input<string | undefined>;
 }

@@ -22,12 +22,12 @@ class SecretBackendDynamicRoleArgs:
                  creation_ldif: pulumi.Input[_builtins.str],
                  deletion_ldif: pulumi.Input[_builtins.str],
                  role_name: pulumi.Input[_builtins.str],
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rollback_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendDynamicRole resource.
 
@@ -130,31 +130,31 @@ class SecretBackendDynamicRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the TTL for the leases associated with this role.
         """
         return pulumi.get(self, "default_ttl")
 
     @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the maximum TTL for the leases associated with this role.
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `ldap`.
@@ -162,12 +162,12 @@ class SecretBackendDynamicRoleArgs:
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -177,12 +177,12 @@ class SecretBackendDynamicRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="rollbackLdif")
-    def rollback_ldif(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rollback_ldif(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A templatized LDIF string used to attempt to
         rollback any changes in the event that execution of the `creation_ldif` results
@@ -194,12 +194,12 @@ class SecretBackendDynamicRoleArgs:
         return pulumi.get(self, "rollback_ldif")
 
     @rollback_ldif.setter
-    def rollback_ldif(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rollback_ldif(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rollback_ldif", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A template used to generate a dynamic
         username. This will be used to fill in the `.Username` field within the
@@ -208,22 +208,22 @@ class SecretBackendDynamicRoleArgs:
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 @pulumi.input_type
 class _SecretBackendDynamicRoleState:
     def __init__(__self__, *,
-                 creation_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 deletion_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rollback_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 creation_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 deletion_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendDynamicRole resources.
 
@@ -281,7 +281,7 @@ class _SecretBackendDynamicRoleState:
 
     @_builtins.property
     @pulumi.getter(name="creationLdif")
-    def creation_ldif(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def creation_ldif(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A templatized LDIF string used to create a user
         account. This may contain multiple LDIF entries. The `creation_ldif` can also
@@ -295,24 +295,24 @@ class _SecretBackendDynamicRoleState:
         return pulumi.get(self, "creation_ldif")
 
     @creation_ldif.setter
-    def creation_ldif(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def creation_ldif(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "creation_ldif", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultTtl")
-    def default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the TTL for the leases associated with this role.
         """
         return pulumi.get(self, "default_ttl")
 
     @default_ttl.setter
-    def default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="deletionLdif")
-    def deletion_ldif(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def deletion_ldif(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A templatized LDIF string used to delete the
         user account once its TTL has expired. This may contain multiple LDIF
@@ -324,24 +324,24 @@ class _SecretBackendDynamicRoleState:
         return pulumi.get(self, "deletion_ldif")
 
     @deletion_ldif.setter
-    def deletion_ldif(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def deletion_ldif(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "deletion_ldif", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the maximum TTL for the leases associated with this role.
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `ldap`.
@@ -349,12 +349,12 @@ class _SecretBackendDynamicRoleState:
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -364,24 +364,24 @@ class _SecretBackendDynamicRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the role.
         """
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
     @_builtins.property
     @pulumi.getter(name="rollbackLdif")
-    def rollback_ldif(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rollback_ldif(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A templatized LDIF string used to attempt to
         rollback any changes in the event that execution of the `creation_ldif` results
@@ -393,12 +393,12 @@ class _SecretBackendDynamicRoleState:
         return pulumi.get(self, "rollback_ldif")
 
     @rollback_ldif.setter
-    def rollback_ldif(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rollback_ldif(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rollback_ldif", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A template used to generate a dynamic
         username. This will be used to fill in the `.Username` field within the
@@ -407,7 +407,7 @@ class _SecretBackendDynamicRoleState:
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
@@ -417,15 +417,15 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 creation_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 deletion_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rollback_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 creation_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 deletion_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a dynamic role for LDAP Secret Backend for Vault.
@@ -585,15 +585,15 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 creation_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 deletion_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rollback_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
+                 creation_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 deletion_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -628,15 +628,15 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            creation_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-            default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            deletion_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-            max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            mount: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            role_name: Optional[pulumi.Input[_builtins.str]] = None,
-            rollback_ldif: Optional[pulumi.Input[_builtins.str]] = None,
-            username_template: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendDynamicRole':
+            creation_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+            default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            deletion_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+            username_template: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendDynamicRole':
         """
         Get an existing SecretBackendDynamicRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

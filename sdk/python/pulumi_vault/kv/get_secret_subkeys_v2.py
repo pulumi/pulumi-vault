@@ -215,11 +215,11 @@ def get_secret_subkeys_v2(depth: Optional[_builtins.int] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'),
         version=pulumi.get(__ret__, 'version'))
-def get_secret_subkeys_v2_output(depth: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                                 namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 version: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_secret_subkeys_v2_output(depth: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                                 namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 version: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretSubkeysV2Result]:
     """
     Reads the subkeys for a KV-V2 secret written to Vault.

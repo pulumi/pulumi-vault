@@ -120,8 +120,8 @@ def get_policy_document(namespace: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         namespace=pulumi.get(__ret__, 'namespace'),
         rules=pulumi.get(__ret__, 'rules'))
-def get_policy_document_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               rules: Optional[pulumi.Input[Optional[Sequence[Union['GetPolicyDocumentRuleArgs', 'GetPolicyDocumentRuleArgsDict']]]]] = None,
+def get_policy_document_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               rules: pulumi.Input[Optional[Optional[Sequence[Union['GetPolicyDocumentRuleArgs', 'GetPolicyDocumentRuleArgsDict']]]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPolicyDocumentResult]:
     """
     This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `Policy` resource.

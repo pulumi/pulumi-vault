@@ -150,32 +150,32 @@ export interface SecretImpersonatedAccountState {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Name of the Impersonated Account to create
      */
-    impersonatedAccount?: pulumi.Input<string>;
+    impersonatedAccount?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Email of the GCP service account to impersonate.
      */
-    serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string | undefined>;
     /**
      * Project the service account belongs to.
      */
-    serviceAccountProject?: pulumi.Input<string>;
+    serviceAccountProject?: pulumi.Input<string | undefined>;
     /**
      * List of OAuth scopes to assign to access tokens generated under this impersonated account.
      */
-    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -193,7 +193,7 @@ export interface SecretImpersonatedAccountArgs {
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Email of the GCP service account to impersonate.
      */
@@ -201,10 +201,10 @@ export interface SecretImpersonatedAccountArgs {
     /**
      * List of OAuth scopes to assign to access tokens generated under this impersonated account.
      */
-    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
 }

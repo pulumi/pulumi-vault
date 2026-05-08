@@ -231,13 +231,13 @@ export interface EndpointState {
      * String containing a JSON-encoded object that will be
      * written to the given path as the secret data.
      */
-    dataJson?: pulumi.Input<string>;
+    dataJson?: pulumi.Input<string | undefined>;
     /**
      * - (Optional) True/false. Set this to true if your
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      */
-    disableDelete?: pulumi.Input<boolean>;
+    disableDelete?: pulumi.Input<boolean | undefined>;
     /**
      * True/false. Set this to true if your vault
      * authentication is not able to read the data or if the endpoint does
@@ -245,7 +245,7 @@ export interface EndpointState {
      * detection. You should set this to `true` for endpoints that are
      * write-only. Defaults to false.
      */
-    disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean | undefined>;
     /**
      * - (Optional) True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
@@ -255,21 +255,21 @@ export interface EndpointState {
      * different set of fields from the ones you wrote, as is common with
      * many configuration endpoints. Defaults to false.
      */
-    ignoreAbsentFields?: pulumi.Input<boolean>;
+    ignoreAbsentFields?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints
      * support the `PUT` methods and to determine whether they also support
      * `DELETE` and `GET`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * - A map whose keys are the top-level data keys
      * returned from Vault by the write operation and whose values are the
@@ -277,12 +277,12 @@ export interface EndpointState {
      * any non-string values returned from Vault are serialized as JSON.
      * Only fields set in `writeFields` are present in the JSON data.
      */
-    writeData?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    writeData?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * - The JSON data returned by the write operation.
      * Only fields set in `writeFields` are present in the JSON data.
      */
-    writeDataJson?: pulumi.Input<string>;
+    writeDataJson?: pulumi.Input<string | undefined>;
     /**
      * - (Optional). A list of fields that should be returned
      * in `writeDataJson` and `writeData`. If omitted, data returned by
@@ -292,7 +292,7 @@ export interface EndpointState {
      * data from writing to an endpoint rather than reading it. You should
      * use `writeFields` if you need information returned in this way.
      */
-    writeFields?: pulumi.Input<pulumi.Input<string>[]>;
+    writeFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -309,7 +309,7 @@ export interface EndpointArgs {
      * vault authentication is not able to delete the data or if the endpoint
      * does not support the `DELETE` method. Defaults to false.
      */
-    disableDelete?: pulumi.Input<boolean>;
+    disableDelete?: pulumi.Input<boolean | undefined>;
     /**
      * True/false. Set this to true if your vault
      * authentication is not able to read the data or if the endpoint does
@@ -317,7 +317,7 @@ export interface EndpointArgs {
      * detection. You should set this to `true` for endpoints that are
      * write-only. Defaults to false.
      */
-    disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean | undefined>;
     /**
      * - (Optional) True/false. If set to true,
      * ignore any fields present when the endpoint is read but that were not
@@ -327,14 +327,14 @@ export interface EndpointArgs {
      * different set of fields from the ones you wrote, as is common with
      * many configuration endpoints. Defaults to false.
      */
-    ignoreAbsentFields?: pulumi.Input<boolean>;
+    ignoreAbsentFields?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The full logical path at which to write the given
      * data. Consult each backend's documentation to see which endpoints
@@ -351,5 +351,5 @@ export interface EndpointArgs {
      * data from writing to an endpoint rather than reading it. You should
      * use `writeFields` if you need information returned in this way.
      */
-    writeFields?: pulumi.Input<pulumi.Input<string>[]>;
+    writeFields?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

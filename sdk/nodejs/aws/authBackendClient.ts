@@ -50,7 +50,7 @@ import * as utilities from "../utilities";
  * const example = new vault.AuthBackend("example", {type: "aws"});
  * const exampleAuthBackendClient = new vault.aws.AuthBackendClient("example", {
  *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
+ *     identityTokenTtl: Number("<TOKEN_TTL>"),
  *     roleArn: "<AWS_ROLE_ARN>",
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,
@@ -311,108 +311,108 @@ export interface AuthBackendClientState {
      * The AWS access key that Vault should use for the
      * auth backend. Mutually exclusive with `identityTokenAudience`.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * List of additional headers that are allowed to be in STS request headers.
      * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
      * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
      */
-    allowedStsHeaderValues?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedStsHeaderValues?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * Override the URL Vault uses when making EC2 API
      * calls.
      */
-    ec2Endpoint?: pulumi.Input<string>;
+    ec2Endpoint?: pulumi.Input<string | undefined>;
     /**
      * Override the URL Vault uses when making IAM API
      * calls.
      */
-    iamEndpoint?: pulumi.Input<string>;
+    iamEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The value to require in the
      * `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
      * that are used in the IAM auth method.
      */
-    iamServerIdHeaderValue?: pulumi.Input<string>;
+    iamServerIdHeaderValue?: pulumi.Input<string | undefined>;
     /**
      * The audience claim value. Mutually exclusive with `accessKey`. 
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Number of max retries the client should use for recoverable errors. 
      * The default `-1` falls back to the AWS SDK's default behavior.
      */
-    maxRetries?: pulumi.Input<number>;
+    maxRetries?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    roleArn?: pulumi.Input<string>;
+    roleArn?: pulumi.Input<string | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * The AWS secret key that Vault should use for the
      * auth backend. Mutually exclusive with `secretKeyWo`.
      * **Note:** This field stores the secret in Terraform state in plain text.
      * Consider using `secretKeyWo` instead for enhanced security.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
      */
-    secretKeyWo?: pulumi.Input<string>;
+    secretKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only `secretKeyWo` field.
      * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
      */
-    secretKeyWoVersion?: pulumi.Input<number>;
+    secretKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.
      */
-    stsEndpoint?: pulumi.Input<string>;
+    stsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Override the default region when making STS API 
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
-    stsRegion?: pulumi.Input<string>;
+    stsRegion?: pulumi.Input<string | undefined>;
     /**
      * Available in Vault v1.15+. If set, 
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
@@ -420,7 +420,7 @@ export interface AuthBackendClientState {
      * This can be useful when you have client requests coming from different
      * regions and want flexibility in which regional STS API is used.
      */
-    useStsRegionFromClient?: pulumi.Input<boolean>;
+    useStsRegionFromClient?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -431,108 +431,108 @@ export interface AuthBackendClientArgs {
      * The AWS access key that Vault should use for the
      * auth backend. Mutually exclusive with `identityTokenAudience`.
      */
-    accessKey?: pulumi.Input<string>;
+    accessKey?: pulumi.Input<string | undefined>;
     /**
      * List of additional headers that are allowed to be in STS request headers.
      * The headers are automatically canonicalized (e.g., `content-type` becomes `Content-Type`). Duplicate values are automatically
      * removed. This can be useful when you need to allow specific headers in STS requests for IAM-based authentication.
      */
-    allowedStsHeaderValues?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedStsHeaderValues?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * Override the URL Vault uses when making EC2 API
      * calls.
      */
-    ec2Endpoint?: pulumi.Input<string>;
+    ec2Endpoint?: pulumi.Input<string | undefined>;
     /**
      * Override the URL Vault uses when making IAM API
      * calls.
      */
-    iamEndpoint?: pulumi.Input<string>;
+    iamEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The value to require in the
      * `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
      * that are used in the IAM auth method.
      */
-    iamServerIdHeaderValue?: pulumi.Input<string>;
+    iamServerIdHeaderValue?: pulumi.Input<string | undefined>;
     /**
      * The audience claim value. Mutually exclusive with `accessKey`. 
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Number of max retries the client should use for recoverable errors. 
      * The default `-1` falls back to the AWS SDK's default behavior.
      */
-    maxRetries?: pulumi.Input<number>;
+    maxRetries?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Role ARN to assume for plugin identity token federation. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    roleArn?: pulumi.Input<string>;
+    roleArn?: pulumi.Input<string | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * The AWS secret key that Vault should use for the
      * auth backend. Mutually exclusive with `secretKeyWo`.
      * **Note:** This field stores the secret in Terraform state in plain text.
      * Consider using `secretKeyWo` instead for enhanced security.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only AWS Secret key with permissions to query AWS APIs. This field is recommended over secretKey for enhanced security.
      */
-    secretKeyWo?: pulumi.Input<string>;
+    secretKeyWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only `secretKeyWo` field.
      * Increment this value to rotate the secret key. Required when `secretKeyWo` is set.
      */
-    secretKeyWoVersion?: pulumi.Input<number>;
+    secretKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Override the URL Vault uses when making STS API
      * calls.
      */
-    stsEndpoint?: pulumi.Input<string>;
+    stsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Override the default region when making STS API 
      * calls. The `stsEndpoint` argument must be set when using `stsRegion`.
      */
-    stsRegion?: pulumi.Input<string>;
+    stsRegion?: pulumi.Input<string | undefined>;
     /**
      * Available in Vault v1.15+. If set, 
      * overrides both `stsEndpoint` and `stsRegion` to instead use the region
@@ -540,5 +540,5 @@ export interface AuthBackendClientArgs {
      * This can be useful when you have client requests coming from different
      * regions and want flexibility in which regional STS API is used.
      */
-    useStsRegionFromClient?: pulumi.Input<boolean>;
+    useStsRegionFromClient?: pulumi.Input<boolean | undefined>;
 }

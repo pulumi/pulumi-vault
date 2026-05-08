@@ -133,7 +133,7 @@ def get_backend_keys(backend: Optional[_builtins.str] = None,
         common_name="example",
         ttl="86400",
         key_name="example")
-    example = vault.pkiSecret.get_backend_keys_output(backend=root.backend)
+    example = vault.pkisecret.get_backend_keys_output(backend=root.backend)
     ```
 
 
@@ -157,8 +157,8 @@ def get_backend_keys(backend: Optional[_builtins.str] = None,
         key_info_json=pulumi.get(__ret__, 'key_info_json'),
         keys=pulumi.get(__ret__, 'keys'),
         namespace=pulumi.get(__ret__, 'namespace'))
-def get_backend_keys_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                            namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backend_keys_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                            namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendKeysResult]:
     """
     Lists all keys under a particular mount.
@@ -187,7 +187,7 @@ def get_backend_keys_output(backend: Optional[pulumi.Input[_builtins.str]] = Non
         common_name="example",
         ttl="86400",
         key_name="example")
-    example = vault.pkiSecret.get_backend_keys_output(backend=root.backend)
+    example = vault.pkisecret.get_backend_keys_output(backend=root.backend)
     ```
 
 

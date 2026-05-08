@@ -207,66 +207,66 @@ export interface BackendRoleState {
      * Application Object ID for an existing service principal that will
      * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      */
-    applicationObjectId?: pulumi.Input<string>;
+    applicationObjectId?: pulumi.Input<string | undefined>;
     /**
      * List of Azure groups to be assigned to the generated service principal.
      */
-    azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[]>;
+    azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[] | undefined>;
     /**
      * List of Azure roles to be assigned to the generated service principal.
      */
-    azureRoles?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureRole>[]>;
+    azureRoles?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureRole>[] | undefined>;
     /**
      * Path to the mounted Azure auth backend
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
      */
-    explicitMaxTtl?: pulumi.Input<string>;
+    explicitMaxTtl?: pulumi.Input<string | undefined>;
     /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the applications and service principals created by Vault will be permanently
      * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
      */
-    permanentlyDelete?: pulumi.Input<boolean>;
+    permanentlyDelete?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, persists the created service principal and application for the lifetime of the role
      */
-    persistApp?: pulumi.Input<boolean>;
+    persistApp?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the Azure role
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Specifies the security principal types that are allowed to sign in to the application.
      * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
      */
-    signInAudience?: pulumi.Input<string>;
+    signInAudience?: pulumi.Input<string | undefined>;
     /**
      * A list of Azure tags to attach to an application. Requires Vault 1.16+.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -277,48 +277,48 @@ export interface BackendRoleArgs {
      * Application Object ID for an existing service principal that will
      * be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.
      */
-    applicationObjectId?: pulumi.Input<string>;
+    applicationObjectId?: pulumi.Input<string | undefined>;
     /**
      * List of Azure groups to be assigned to the generated service principal.
      */
-    azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[]>;
+    azureGroups?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureGroup>[] | undefined>;
     /**
      * List of Azure roles to be assigned to the generated service principal.
      */
-    azureRoles?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureRole>[]>;
+    azureRoles?: pulumi.Input<pulumi.Input<inputs.azure.BackendRoleAzureRole>[] | undefined>;
     /**
      * Path to the mounted Azure auth backend
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
      */
-    explicitMaxTtl?: pulumi.Input<string>;
+    explicitMaxTtl?: pulumi.Input<string | undefined>;
     /**
      * Specifies the maximum TTL for service principals generated using this role. Accepts time
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the applications and service principals created by Vault will be permanently
      * deleted when the corresponding leases expire. Defaults to `false`. For Vault v1.12+.
      */
-    permanentlyDelete?: pulumi.Input<boolean>;
+    permanentlyDelete?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, persists the created service principal and application for the lifetime of the role
      */
-    persistApp?: pulumi.Input<boolean>;
+    persistApp?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the Azure role
      */
@@ -327,14 +327,14 @@ export interface BackendRoleArgs {
      * Specifies the security principal types that are allowed to sign in to the application.
      * Valid values are: AzureADMyOrg, AzureADMultipleOrgs, AzureADandPersonalMicrosoftAccount, PersonalMicrosoftAccount. Requires Vault 1.16+.
      */
-    signInAudience?: pulumi.Input<string>;
+    signInAudience?: pulumi.Input<string | undefined>;
     /**
      * A list of Azure tags to attach to an application. Requires Vault 1.16+.
      */
-    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    tags?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default TTL for service principals generated using this role.
      * Accepts time suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine default TTL time.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
 }

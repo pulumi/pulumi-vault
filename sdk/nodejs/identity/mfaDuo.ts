@@ -180,59 +180,59 @@ export interface MfaDuoState {
     /**
      * API hostname for Duo
      */
-    apiHostname?: pulumi.Input<string>;
+    apiHostname?: pulumi.Input<string | undefined>;
     /**
      * Integration key for Duo
      */
-    integrationKey?: pulumi.Input<string>;
+    integrationKey?: pulumi.Input<string | undefined>;
     /**
      * Method ID.
      */
-    methodId?: pulumi.Input<string>;
+    methodId?: pulumi.Input<string | undefined>;
     /**
      * Mount accessor.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * Method name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace path.
      */
-    namespacePath?: pulumi.Input<string>;
+    namespacePath?: pulumi.Input<string | undefined>;
     /**
      * Push information for Duo.
      */
-    pushInfo?: pulumi.Input<string>;
+    pushInfo?: pulumi.Input<string | undefined>;
     /**
      * Secret key for Duo
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * MFA type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Require passcode upon MFA validation.
      */
-    usePasscode?: pulumi.Input<boolean>;
+    usePasscode?: pulumi.Input<boolean | undefined>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
     /**
      * Resource UUID.
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -250,11 +250,11 @@ export interface MfaDuoArgs {
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Push information for Duo.
      */
-    pushInfo?: pulumi.Input<string>;
+    pushInfo?: pulumi.Input<string | undefined>;
     /**
      * Secret key for Duo
      */
@@ -262,9 +262,9 @@ export interface MfaDuoArgs {
     /**
      * Require passcode upon MFA validation.
      */
-    usePasscode?: pulumi.Input<boolean>;
+    usePasscode?: pulumi.Input<boolean | undefined>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }

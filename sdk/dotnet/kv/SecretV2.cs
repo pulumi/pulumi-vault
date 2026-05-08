@@ -26,7 +26,7 @@ namespace Pulumi.Vault.kv
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var kvv2 = new Vault.Index.Mount("kvv2", new()
+    ///     var kvv2 = new Vault.Mount("kvv2", new()
     ///     {
     ///         Path = "kvv2",
     ///         Type = "kv",

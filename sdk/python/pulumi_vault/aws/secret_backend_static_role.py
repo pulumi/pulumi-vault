@@ -21,12 +21,12 @@ class SecretBackendStaticRoleArgs:
     def __init__(__self__, *,
                  rotation_period: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
-                 assume_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 assume_role_session_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 assume_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 assume_role_session_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
 
@@ -91,7 +91,7 @@ class SecretBackendStaticRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="assumeRoleArn")
-    def assume_role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assume_role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the ARN of the role that Vault should assume.
         When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
@@ -101,12 +101,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "assume_role_arn")
 
     @assume_role_arn.setter
-    def assume_role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assume_role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assume_role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="assumeRoleSessionName")
-    def assume_role_session_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assume_role_session_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the session name to use when assuming the role.
         If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
@@ -115,12 +115,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "assume_role_session_name")
 
     @assume_role_session_name.setter
-    def assume_role_session_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assume_role_session_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assume_role_session_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `aws`
@@ -128,12 +128,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the external ID to use when assuming the role.
         Requires Vault 1.19+. *Available only for Vault Enterprise*.
@@ -141,12 +141,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this role within the backend.
         Must be unique within the backend.
@@ -154,12 +154,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -169,21 +169,21 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _SecretBackendStaticRoleState:
     def __init__(__self__, *,
-                 assume_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 assume_role_session_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 assume_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 assume_role_session_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
 
@@ -226,7 +226,7 @@ class _SecretBackendStaticRoleState:
 
     @_builtins.property
     @pulumi.getter(name="assumeRoleArn")
-    def assume_role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assume_role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the ARN of the role that Vault should assume.
         When provided, Vault will use AWS STS to assume this role and generate temporary credentials.
@@ -236,12 +236,12 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "assume_role_arn")
 
     @assume_role_arn.setter
-    def assume_role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assume_role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assume_role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="assumeRoleSessionName")
-    def assume_role_session_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def assume_role_session_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the session name to use when assuming the role.
         If `assume_role_session_name` is provided, `assume_role_arn` must also be provided.
@@ -250,12 +250,12 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "assume_role_session_name")
 
     @assume_role_session_name.setter
-    def assume_role_session_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def assume_role_session_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "assume_role_session_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `aws`
@@ -263,12 +263,12 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the external ID to use when assuming the role.
         Requires Vault 1.19+. *Available only for Vault Enterprise*.
@@ -276,12 +276,12 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this role within the backend.
         Must be unique within the backend.
@@ -289,12 +289,12 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -304,31 +304,31 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How often Vault should rotate the password of the user entry.
         """
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username of the existing AWS IAM to manage password rotation for.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -338,14 +338,14 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 assume_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 assume_role_session_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 assume_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 assume_role_session_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a static role for AWS Secret Backend for Vault.
@@ -496,14 +496,14 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 assume_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 assume_role_session_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 assume_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 assume_role_session_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -535,14 +535,14 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            assume_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-            assume_role_session_name: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            external_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendStaticRole':
+            assume_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            assume_role_session_name: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendStaticRole':
         """
         Get an existing SecretBackendStaticRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

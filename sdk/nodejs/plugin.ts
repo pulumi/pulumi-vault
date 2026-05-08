@@ -170,41 +170,41 @@ export interface PluginState {
     /**
      * List of additional args to pass to the plugin.
      */
-    args?: pulumi.Input<pulumi.Input<string>[]>;
+    args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Command to execute the plugin, relative to the server's configured `pluginDirectory`.
      */
-    command?: pulumi.Input<string>;
+    command?: pulumi.Input<string | undefined>;
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */
-    envs?: pulumi.Input<pulumi.Input<string>[]>;
+    envs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Specifies OCI image to run. If specified, setting
      * `command`, `args`, and `env` will update the container's entrypoint, args, and
      * environment variables (append-only) respectively.
      */
-    ociImage?: pulumi.Input<string>;
+    ociImage?: pulumi.Input<string | undefined>;
     /**
      * Vault plugin runtime to use if `ociImage` is specified.
      */
-    runtime?: pulumi.Input<string>;
+    runtime?: pulumi.Input<string | undefined>;
     /**
      * SHA256 sum of the plugin binary.
      */
-    sha256?: pulumi.Input<string>;
+    sha256?: pulumi.Input<string | undefined>;
     /**
      * Type of plugin; one of "auth", "secret", or "database".
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Semantic version of the plugin.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -214,7 +214,7 @@ export interface PluginArgs {
     /**
      * List of additional args to pass to the plugin.
      */
-    args?: pulumi.Input<pulumi.Input<string>[]>;
+    args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Command to execute the plugin, relative to the server's configured `pluginDirectory`.
      */
@@ -222,21 +222,21 @@ export interface PluginArgs {
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */
-    envs?: pulumi.Input<pulumi.Input<string>[]>;
+    envs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the plugin.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Specifies OCI image to run. If specified, setting
      * `command`, `args`, and `env` will update the container's entrypoint, args, and
      * environment variables (append-only) respectively.
      */
-    ociImage?: pulumi.Input<string>;
+    ociImage?: pulumi.Input<string | undefined>;
     /**
      * Vault plugin runtime to use if `ociImage` is specified.
      */
-    runtime?: pulumi.Input<string>;
+    runtime?: pulumi.Input<string | undefined>;
     /**
      * SHA256 sum of the plugin binary.
      */
@@ -248,5 +248,5 @@ export interface PluginArgs {
     /**
      * Semantic version of the plugin.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }

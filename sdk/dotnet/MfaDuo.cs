@@ -24,13 +24,13 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var userpass = new Vault.Index.AuthBackend("userpass", new()
+    ///     var userpass = new Vault.AuthBackend("userpass", new()
     ///     {
     ///         Type = "userpass",
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myDuo = new Vault.Index.MfaDuo("my_duo", new()
+    ///     var myDuo = new Vault.MfaDuo("my_duo", new()
     ///     {
     ///         Name = "my_duo",
     ///         MountAccessor = userpass.Accessor,

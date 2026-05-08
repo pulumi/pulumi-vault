@@ -112,7 +112,7 @@ export interface GetAccessCredentialsOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name of the AD secret backend role to read
      * credentials from, with no leading or trailing `/`s.

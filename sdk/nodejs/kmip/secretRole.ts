@@ -332,151 +332,151 @@ export interface SecretRoleState {
     /**
      * Name of the ca to use, if absent use legacy ca
      */
-    ca?: pulumi.Input<string>;
+    ca?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Grant permission to use the KMIP Activate operation.
      */
-    operationActivate?: pulumi.Input<boolean>;
+    operationActivate?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Add Attribute operation.
      */
-    operationAddAttribute?: pulumi.Input<boolean>;
+    operationAddAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * Grant all permissions to this role. May not be specified with any other `operation_*` params.
      */
-    operationAll?: pulumi.Input<boolean>;
+    operationAll?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Create operation.
      */
-    operationCreate?: pulumi.Input<boolean>;
+    operationCreate?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Create Key Pair operation.
      */
-    operationCreateKeyPair?: pulumi.Input<boolean>;
+    operationCreateKeyPair?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Decrypt operation.
      */
-    operationDecrypt?: pulumi.Input<boolean>;
+    operationDecrypt?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Delete Attribute operation.
      */
-    operationDeleteAttribute?: pulumi.Input<boolean>;
+    operationDeleteAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Destroy operation.
      */
-    operationDestroy?: pulumi.Input<boolean>;
+    operationDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Discover Version operation.
      */
-    operationDiscoverVersions?: pulumi.Input<boolean>;
+    operationDiscoverVersions?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Encrypt operation.
      */
-    operationEncrypt?: pulumi.Input<boolean>;
+    operationEncrypt?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get operation.
      */
-    operationGet?: pulumi.Input<boolean>;
+    operationGet?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get Atrribute List operation.
      */
-    operationGetAttributeList?: pulumi.Input<boolean>;
+    operationGetAttributeList?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get Atrributes operation.
      */
-    operationGetAttributes?: pulumi.Input<boolean>;
+    operationGetAttributes?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Import operation.
      */
-    operationImport?: pulumi.Input<boolean>;
+    operationImport?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get Locate operation.
      */
-    operationLocate?: pulumi.Input<boolean>;
+    operationLocate?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP MAC operation.
      */
-    operationMac?: pulumi.Input<boolean>;
+    operationMac?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP MAC Verify operation.
      */
-    operationMacVerify?: pulumi.Input<boolean>;
+    operationMacVerify?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Modify Attribute operation.
      */
-    operationModifyAttribute?: pulumi.Input<boolean>;
+    operationModifyAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      */
-    operationNone?: pulumi.Input<boolean>;
+    operationNone?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Query operation.
      */
-    operationQuery?: pulumi.Input<boolean>;
+    operationQuery?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Register operation.
      */
-    operationRegister?: pulumi.Input<boolean>;
+    operationRegister?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Rekey operation.
      */
-    operationRekey?: pulumi.Input<boolean>;
+    operationRekey?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Rekey Key Pair operation.
      */
-    operationRekeyKeyPair?: pulumi.Input<boolean>;
+    operationRekeyKeyPair?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Revoke operation.
      */
-    operationRevoke?: pulumi.Input<boolean>;
+    operationRevoke?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP RNG Retrieve operation.
      */
-    operationRngRetrieve?: pulumi.Input<boolean>;
+    operationRngRetrieve?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP RNG Seed operation.
      */
-    operationRngSeed?: pulumi.Input<boolean>;
+    operationRngSeed?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Sign operation.
      */
-    operationSign?: pulumi.Input<boolean>;
+    operationSign?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Signature Verify operation.
      */
-    operationSignatureVerify?: pulumi.Input<boolean>;
+    operationSignatureVerify?: pulumi.Input<boolean | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Name of the role.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Name of the scope.
      */
-    scope?: pulumi.Input<string>;
+    scope?: pulumi.Input<string | undefined>;
     /**
      * Client certificate key bits, valid values depend on key type.
      */
-    tlsClientKeyBits?: pulumi.Input<number>;
+    tlsClientKeyBits?: pulumi.Input<number | undefined>;
     /**
      * Client certificate key type, `rsa` or `ec`.
      */
-    tlsClientKeyType?: pulumi.Input<string>;
+    tlsClientKeyType?: pulumi.Input<string | undefined>;
     /**
      * Client certificate TTL in seconds.
      */
-    tlsClientTtl?: pulumi.Input<number>;
+    tlsClientTtl?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -486,126 +486,126 @@ export interface SecretRoleArgs {
     /**
      * Name of the ca to use, if absent use legacy ca
      */
-    ca?: pulumi.Input<string>;
+    ca?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Grant permission to use the KMIP Activate operation.
      */
-    operationActivate?: pulumi.Input<boolean>;
+    operationActivate?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Add Attribute operation.
      */
-    operationAddAttribute?: pulumi.Input<boolean>;
+    operationAddAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * Grant all permissions to this role. May not be specified with any other `operation_*` params.
      */
-    operationAll?: pulumi.Input<boolean>;
+    operationAll?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Create operation.
      */
-    operationCreate?: pulumi.Input<boolean>;
+    operationCreate?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Create Key Pair operation.
      */
-    operationCreateKeyPair?: pulumi.Input<boolean>;
+    operationCreateKeyPair?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Decrypt operation.
      */
-    operationDecrypt?: pulumi.Input<boolean>;
+    operationDecrypt?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Delete Attribute operation.
      */
-    operationDeleteAttribute?: pulumi.Input<boolean>;
+    operationDeleteAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Destroy operation.
      */
-    operationDestroy?: pulumi.Input<boolean>;
+    operationDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Discover Version operation.
      */
-    operationDiscoverVersions?: pulumi.Input<boolean>;
+    operationDiscoverVersions?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Encrypt operation.
      */
-    operationEncrypt?: pulumi.Input<boolean>;
+    operationEncrypt?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get operation.
      */
-    operationGet?: pulumi.Input<boolean>;
+    operationGet?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get Atrribute List operation.
      */
-    operationGetAttributeList?: pulumi.Input<boolean>;
+    operationGetAttributeList?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get Atrributes operation.
      */
-    operationGetAttributes?: pulumi.Input<boolean>;
+    operationGetAttributes?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Import operation.
      */
-    operationImport?: pulumi.Input<boolean>;
+    operationImport?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Get Locate operation.
      */
-    operationLocate?: pulumi.Input<boolean>;
+    operationLocate?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP MAC operation.
      */
-    operationMac?: pulumi.Input<boolean>;
+    operationMac?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP MAC Verify operation.
      */
-    operationMacVerify?: pulumi.Input<boolean>;
+    operationMacVerify?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Modify Attribute operation.
      */
-    operationModifyAttribute?: pulumi.Input<boolean>;
+    operationModifyAttribute?: pulumi.Input<boolean | undefined>;
     /**
      * Remove all permissions from this role. May not be specified with any other `operation_*` params.
      */
-    operationNone?: pulumi.Input<boolean>;
+    operationNone?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Query operation.
      */
-    operationQuery?: pulumi.Input<boolean>;
+    operationQuery?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Register operation.
      */
-    operationRegister?: pulumi.Input<boolean>;
+    operationRegister?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Rekey operation.
      */
-    operationRekey?: pulumi.Input<boolean>;
+    operationRekey?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Rekey Key Pair operation.
      */
-    operationRekeyKeyPair?: pulumi.Input<boolean>;
+    operationRekeyKeyPair?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Revoke operation.
      */
-    operationRevoke?: pulumi.Input<boolean>;
+    operationRevoke?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP RNG Retrieve operation.
      */
-    operationRngRetrieve?: pulumi.Input<boolean>;
+    operationRngRetrieve?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP RNG Seed operation.
      */
-    operationRngSeed?: pulumi.Input<boolean>;
+    operationRngSeed?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Sign operation.
      */
-    operationSign?: pulumi.Input<boolean>;
+    operationSign?: pulumi.Input<boolean | undefined>;
     /**
      * Grant permission to use the KMIP Signature Verify operation.
      */
-    operationSignatureVerify?: pulumi.Input<boolean>;
+    operationSignatureVerify?: pulumi.Input<boolean | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `kmip`.
@@ -622,13 +622,13 @@ export interface SecretRoleArgs {
     /**
      * Client certificate key bits, valid values depend on key type.
      */
-    tlsClientKeyBits?: pulumi.Input<number>;
+    tlsClientKeyBits?: pulumi.Input<number | undefined>;
     /**
      * Client certificate key type, `rsa` or `ec`.
      */
-    tlsClientKeyType?: pulumi.Input<string>;
+    tlsClientKeyType?: pulumi.Input<string | undefined>;
     /**
      * Client certificate TTL in seconds.
      */
-    tlsClientTtl?: pulumi.Input<number>;
+    tlsClientTtl?: pulumi.Input<number | undefined>;
 }

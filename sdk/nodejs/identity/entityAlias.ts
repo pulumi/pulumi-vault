@@ -131,26 +131,26 @@ export interface EntityAliasState {
     /**
      * Entity ID to which this alias belongs to.
      */
-    canonicalId?: pulumi.Input<string>;
+    canonicalId?: pulumi.Input<string | undefined>;
     /**
      * Custom metadata to be associated with this alias.
      */
-    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -164,7 +164,7 @@ export interface EntityAliasArgs {
     /**
      * Custom metadata to be associated with this alias.
      */
-    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */
@@ -172,12 +172,12 @@ export interface EntityAliasArgs {
     /**
      * Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

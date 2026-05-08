@@ -21,7 +21,7 @@ class SecretBackendConfigCaArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  pem_bundle: pulumi.Input[_builtins.str],
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigCa resource.
 
@@ -63,7 +63,7 @@ class SecretBackendConfigCaArgs:
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -73,16 +73,16 @@ class SecretBackendConfigCaArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _SecretBackendConfigCaState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_bundle: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_bundle: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigCa resources.
 
@@ -102,19 +102,19 @@ class _SecretBackendConfigCaState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PKI secret backend the resource belongs to.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -124,19 +124,19 @@ class _SecretBackendConfigCaState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pemBundle")
-    def pem_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_bundle(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key and certificate PEM bundle
         """
         return pulumi.get(self, "pem_bundle")
 
     @pem_bundle.setter
-    def pem_bundle(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_bundle(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_bundle", value)
 
 
@@ -146,9 +146,9 @@ class SecretBackendConfigCa(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_bundle: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Submits the CA information to a PKI Secret Backend.
@@ -322,9 +322,9 @@ class SecretBackendConfigCa(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_bundle: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -353,9 +353,9 @@ class SecretBackendConfigCa(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            pem_bundle: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendConfigCa':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            pem_bundle: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendConfigCa':
         """
         Get an existing SecretBackendConfigCa resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

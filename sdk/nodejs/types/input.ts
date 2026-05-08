@@ -10,44 +10,44 @@ export interface AuthBackendTune {
      * List of headers to whitelist and allowing
      * a plugin to include them in the response.
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will
      * not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will
      * not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default time-to-live.
      * If set, this overrides the global default.
      * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
      */
-    defaultLeaseTtl?: pulumi.Input<string>;
+    defaultLeaseTtl?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in
      * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Specifies the maximum time-to-live.
      * If set, this overrides the global default.
      * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
      */
-    maxLeaseTtl?: pulumi.Input<string>;
+    maxLeaseTtl?: pulumi.Input<string | undefined>;
     /**
      * List of headers to whitelist and
      * pass from the request to the backend.
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the type of tokens that should be returned by
      * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }
 
 export interface GetPolicyDocumentRule {
@@ -93,7 +93,7 @@ export interface GetPolicyDocumentRuleArgs {
     /**
      * Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
      */
-    allowedParameters?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleAllowedParameterArgs>[]>;
+    allowedParameters?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleAllowedParameterArgs>[] | undefined>;
     /**
      * A list of capabilities that this rule apply to `path`. For example, ["read", "write"].
      */
@@ -101,19 +101,19 @@ export interface GetPolicyDocumentRuleArgs {
     /**
      * Blacklists a list of parameter and values. Any values specified here take precedence over `allowedParameter`. See Parameters below.
      */
-    deniedParameters?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleDeniedParameterArgs>[]>;
+    deniedParameters?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleDeniedParameterArgs>[] | undefined>;
     /**
      * Description of the rule. Will be added as a comment to rendered rule.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The maximum allowed TTL that clients can specify for a wrapped response.
      */
-    maxWrappingTtl?: pulumi.Input<string>;
+    maxWrappingTtl?: pulumi.Input<string | undefined>;
     /**
      * The minimum allowed TTL that clients can specify for a wrapped response.
      */
-    minWrappingTtl?: pulumi.Input<string>;
+    minWrappingTtl?: pulumi.Input<string | undefined>;
     /**
      * A path in Vault that this rule applies to.
      */
@@ -121,11 +121,11 @@ export interface GetPolicyDocumentRuleArgs {
     /**
      * A list of parameters that must be specified.
      */
-    requiredParameters?: pulumi.Input<pulumi.Input<string>[]>;
+    requiredParameters?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of event types to subscribe to when using `subscribe` capability.
      */
-    subscribeEventTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    subscribeEventTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface GetPolicyDocumentRuleAllowedParameter {
@@ -177,39 +177,39 @@ export interface OciAuthBackendTune {
      * List of headers to whitelist and allowing
      * a plugin to include them in the response.
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will
      * not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will
      * not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default time-to-live.
      * If set, this overrides the global default.
      * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
      */
-    defaultLeaseTtl?: pulumi.Input<string>;
+    defaultLeaseTtl?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in
      * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Specifies the maximum time-to-live.
      * If set, this overrides the global default.
      * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
      */
-    maxLeaseTtl?: pulumi.Input<string>;
+    maxLeaseTtl?: pulumi.Input<string | undefined>;
     /**
      * List of headers to whitelist and
      * pass from the request to the backend.
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the type of tokens that should be returned by
      * the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -217,80 +217,80 @@ export interface OciAuthBackendTune {
      *
      * For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }
 
 export interface ProviderAuthLogin {
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
-    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    namespace?: pulumi.Input<string | undefined>;
+    parameters?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     path: pulumi.Input<string>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginAws {
     /**
      * The AWS access key ID.
      */
-    awsAccessKeyId?: pulumi.Input<string>;
+    awsAccessKeyId?: pulumi.Input<string | undefined>;
     /**
      * The IAM endpoint URL.
      */
-    awsIamEndpoint?: pulumi.Input<string>;
+    awsIamEndpoint?: pulumi.Input<string | undefined>;
     /**
      * The name of the AWS profile.
      */
-    awsProfile?: pulumi.Input<string>;
+    awsProfile?: pulumi.Input<string | undefined>;
     /**
      * The AWS region.
      */
-    awsRegion?: pulumi.Input<string>;
+    awsRegion?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the AWS Role to assume.Used during STS AssumeRole
      */
-    awsRoleArn?: pulumi.Input<string>;
+    awsRoleArn?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name to attach to the AWS role session. Used during STS AssumeRole
      */
-    awsRoleSessionName?: pulumi.Input<string>;
+    awsRoleSessionName?: pulumi.Input<string | undefined>;
     /**
      * The AWS secret access key.
      */
-    awsSecretAccessKey?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * The AWS session token.
      */
-    awsSessionToken?: pulumi.Input<string>;
+    awsSessionToken?: pulumi.Input<string | undefined>;
     /**
      * Path to the AWS shared credentials file.
      */
-    awsSharedCredentialsFile?: pulumi.Input<string>;
+    awsSharedCredentialsFile?: pulumi.Input<string | undefined>;
     /**
      * The STS endpoint URL.
      */
-    awsStsEndpoint?: pulumi.Input<string>;
+    awsStsEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
      */
-    awsWebIdentityTokenFile?: pulumi.Input<string>;
+    awsWebIdentityTokenFile?: pulumi.Input<string | undefined>;
     /**
      * The Vault header value to include in the STS signing request.
      */
-    headerValue?: pulumi.Input<string>;
+    headerValue?: pulumi.Input<string | undefined>;
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The Vault role to use when logging into Vault.
      */
@@ -298,26 +298,26 @@ export interface ProviderAuthLoginAws {
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginAzure {
     /**
      * The identity's client ID.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * A signed JSON Web Token. If not specified on will be created automatically
      */
-    jwt?: pulumi.Input<string>;
+    jwt?: pulumi.Input<string | undefined>;
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
      */
@@ -329,7 +329,7 @@ export interface ProviderAuthLoginAzure {
     /**
      * The scopes to include in the token request.
      */
-    scope?: pulumi.Input<string>;
+    scope?: pulumi.Input<string | undefined>;
     /**
      * The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
      */
@@ -337,19 +337,19 @@ export interface ProviderAuthLoginAzure {
     /**
      * Provides the tenant ID to use in a multi-tenant authentication scenario.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
     /**
      * The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
      */
-    vmName?: pulumi.Input<string>;
+    vmName?: pulumi.Input<string | undefined>;
     /**
      * The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
      */
-    vmssName?: pulumi.Input<string>;
+    vmssName?: pulumi.Input<string | undefined>;
 }
 
 export interface ProviderAuthLoginCert {
@@ -364,38 +364,38 @@ export interface ProviderAuthLoginCert {
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * Name of the certificate's role
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginGcp {
     /**
      * Path to the Google Cloud credentials file.
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * A signed JSON Web Token.
      */
-    jwt?: pulumi.Input<string>;
+    jwt?: pulumi.Input<string | undefined>;
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the login role.
      */
@@ -403,30 +403,30 @@ export interface ProviderAuthLoginGcp {
     /**
      * IAM service account.
      */
-    serviceAccount?: pulumi.Input<string>;
+    serviceAccount?: pulumi.Input<string | undefined>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginJwt {
     /**
      * An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
      */
-    distributedClaimAccessToken?: pulumi.Input<string>;
+    distributedClaimAccessToken?: pulumi.Input<string | undefined>;
     /**
      * A signed JSON Web Token.
      */
-    jwt?: pulumi.Input<string>;
+    jwt?: pulumi.Input<string | undefined>;
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the login role.
      */
@@ -434,54 +434,54 @@ export interface ProviderAuthLoginJwt {
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginKerberos {
     /**
      * Disable the Kerberos FAST negotiation.
      */
-    disableFastNegotiation?: pulumi.Input<boolean>;
+    disableFastNegotiation?: pulumi.Input<boolean | undefined>;
     /**
      * The Kerberos keytab file containing the entry of the login entity.
      */
-    keytabPath?: pulumi.Input<string>;
+    keytabPath?: pulumi.Input<string | undefined>;
     /**
      * A valid Kerberos configuration file e.g. /etc/krb5.conf.
      */
-    krb5confPath?: pulumi.Input<string>;
+    krb5confPath?: pulumi.Input<string | undefined>;
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The Kerberos server's authoritative authentication domain
      */
-    realm?: pulumi.Input<string>;
+    realm?: pulumi.Input<string | undefined>;
     /**
      * Strip the host from the username found in the keytab.
      */
-    removeInstanceName?: pulumi.Input<boolean>;
+    removeInstanceName?: pulumi.Input<boolean | undefined>;
     /**
      * The service principle name.
      */
-    service?: pulumi.Input<string>;
+    service?: pulumi.Input<string | undefined>;
     /**
      * Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
     /**
      * The username to login into Kerberos with.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ProviderAuthLoginOci {
@@ -492,11 +492,11 @@ export interface ProviderAuthLoginOci {
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the login role.
      */
@@ -504,26 +504,26 @@ export interface ProviderAuthLoginOci {
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginOidc {
     /**
      * The callback address. Must be a valid URI without the path.
      */
-    callbackAddress?: pulumi.Input<string>;
+    callbackAddress?: pulumi.Input<string | undefined>;
     /**
      * The callback listener's address. Must be a valid URI without the path.
      */
-    callbackListenerAddress?: pulumi.Input<string>;
+    callbackListenerAddress?: pulumi.Input<string | undefined>;
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the login role.
      */
@@ -531,72 +531,72 @@ export interface ProviderAuthLoginOidc {
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginRadius {
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The Radius password for username.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
     /**
      * The Radius username.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ProviderAuthLoginTokenFile {
     /**
      * The name of a file containing a single line that is a valid Vault token
      */
-    filename?: pulumi.Input<string>;
+    filename?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ProviderAuthLoginUserpass {
     /**
      * The path where the authentication engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The authentication engine's namespace. Conflicts with use_root_namespace
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Login with password
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Login with password from a file
      */
-    passwordFile?: pulumi.Input<string>;
+    passwordFile?: pulumi.Input<string | undefined>;
     /**
      * Authenticate to the root Vault namespace. Conflicts with namespace
      */
-    useRootNamespace?: pulumi.Input<boolean>;
+    useRootNamespace?: pulumi.Input<boolean | undefined>;
     /**
      * Login with username
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface ProviderClientAuth {
@@ -623,12 +623,12 @@ export interface ProviderHeader {
 export namespace azure {
     export interface BackendRoleAzureGroup {
         groupName: pulumi.Input<string>;
-        objectId?: pulumi.Input<string>;
+        objectId?: pulumi.Input<string | undefined>;
     }
 
     export interface BackendRoleAzureRole {
-        roleId?: pulumi.Input<string>;
-        roleName?: pulumi.Input<string>;
+        roleId?: pulumi.Input<string | undefined>;
+        roleName?: pulumi.Input<string | undefined>;
         scope: pulumi.Input<string>;
     }
 }
@@ -651,78 +651,78 @@ export namespace database {
         /**
          * The number of seconds to use as a connection timeout.
          */
-        connectTimeout?: pulumi.Input<number>;
+        connectTimeout?: pulumi.Input<number | undefined>;
         /**
          * Cassandra consistency level.
          */
-        consistency?: pulumi.Input<string>;
+        consistency?: pulumi.Input<string | undefined>;
         /**
          * Cassandra hosts to connect to.
          */
-        hosts?: pulumi.Input<pulumi.Input<string>[]>;
+        hosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Cassandra local datacenter name.
          */
-        localDatacenter?: pulumi.Input<string>;
+        localDatacenter?: pulumi.Input<string | undefined>;
         /**
          * The password to use when authenticating with Cassandra.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemBundle?: pulumi.Input<string>;
+        pemBundle?: pulumi.Input<string | undefined>;
         /**
          * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemJson?: pulumi.Input<string>;
+        pemJson?: pulumi.Input<string | undefined>;
         /**
          * The transport port to use to connect to Cassandra.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * The CQL protocol version to use.
          */
-        protocolVersion?: pulumi.Input<number>;
+        protocolVersion?: pulumi.Input<number | undefined>;
         /**
          * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
          */
-        skipVerification?: pulumi.Input<boolean>;
+        skipVerification?: pulumi.Input<boolean | undefined>;
         /**
          * Enable TCP keepalive for Cassandra connections.
          */
-        socketKeepAlive?: pulumi.Input<string>;
+        socketKeepAlive?: pulumi.Input<string | undefined>;
         /**
          * Whether to use TLS when connecting to Cassandra.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * SNI host for TLS connections.
          */
-        tlsServerName?: pulumi.Input<string>;
+        tlsServerName?: pulumi.Input<string | undefined>;
         /**
          * The username to use when authenticating with Cassandra.
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Template for dynamic Cassandra usernames.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionCouchbase {
         /**
          * Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
          */
-        base64Pem?: pulumi.Input<string>;
+        base64Pem?: pulumi.Input<string | undefined>;
         /**
          * Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
          */
-        bucketName?: pulumi.Input<string>;
+        bucketName?: pulumi.Input<string | undefined>;
         /**
          * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
@@ -730,7 +730,7 @@ export namespace database {
         /**
          * Specifies whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the password corresponding to the given username.
          */
@@ -738,7 +738,7 @@ export namespace database {
         /**
          * Specifies whether to use TLS when connecting to Couchbase.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the username for Vault to use.
          */
@@ -746,30 +746,30 @@ export namespace database {
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionElasticsearch {
         /**
          * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
          */
-        caCert?: pulumi.Input<string>;
+        caCert?: pulumi.Input<string | undefined>;
         /**
          * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
          */
-        caPath?: pulumi.Input<string>;
+        caPath?: pulumi.Input<string | undefined>;
         /**
          * The path to the certificate for the Elasticsearch client to present for communication
          */
-        clientCert?: pulumi.Input<string>;
+        clientCert?: pulumi.Input<string | undefined>;
         /**
          * The path to the key for the Elasticsearch client to use for communication
          */
-        clientKey?: pulumi.Input<string>;
+        clientKey?: pulumi.Input<string | undefined>;
         /**
          * Whether to disable certificate verification
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * The password to be used in the connection URL
          */
@@ -777,7 +777,7 @@ export namespace database {
         /**
          * This, if set, is used to set the SNI host when connecting via TLS
          */
-        tlsServerName?: pulumi.Input<string>;
+        tlsServerName?: pulumi.Input<string | undefined>;
         /**
          * The URL for Elasticsearch's API
          */
@@ -789,58 +789,58 @@ export namespace database {
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionHana {
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionInfluxdb {
         /**
          * The number of seconds to use as a connection timeout.
          */
-        connectTimeout?: pulumi.Input<number>;
+        connectTimeout?: pulumi.Input<number | undefined>;
         /**
          * Influxdb host to connect to.
          */
@@ -848,7 +848,7 @@ export namespace database {
         /**
          * Whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the password corresponding to the given username.
          */
@@ -856,19 +856,19 @@ export namespace database {
         /**
          * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemBundle?: pulumi.Input<string>;
+        pemBundle?: pulumi.Input<string | undefined>;
         /**
          * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemJson?: pulumi.Input<string>;
+        pemJson?: pulumi.Input<string | undefined>;
         /**
          * The transport port to use to connect to Influxdb.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Whether to use TLS when connecting to Influxdb.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the username to use for superuser access.
          */
@@ -876,59 +876,59 @@ export namespace database {
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionMongodb {
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Specifies the MongoDB write concern for Vault management operations.
          */
-        writeConcern?: pulumi.Input<string>;
+        writeConcern?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionMongodbatlas {
@@ -947,410 +947,410 @@ export namespace database {
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionMssql {
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Set to true when the target is a Contained Database, e.g. AzureSQL.
          */
-        containedDb?: pulumi.Input<boolean>;
+        containedDb?: pulumi.Input<boolean | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionMysql {
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionMysqlAurora {
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionMysqlLegacy {
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionMysqlRds {
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionOracle {
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Set to true to disconnect any open sessions prior to running the revocation statements.
          */
-        disconnectSessions?: pulumi.Input<boolean>;
+        disconnectSessions?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * If set, allows onboarding static roles with a rootless connection configuration.
          */
-        selfManaged?: pulumi.Input<boolean>;
+        selfManaged?: pulumi.Input<boolean | undefined>;
         /**
          * Set to true in order to split statements after semi-colons.
          */
-        splitStatements?: pulumi.Input<boolean>;
+        splitStatements?: pulumi.Input<boolean | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionPostgresql {
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
-        passwordAuthentication?: pulumi.Input<string>;
+        passwordAuthentication?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * The secret key used for the x509 client certificate. Must be PEM encoded.
          */
-        privateKey?: pulumi.Input<string>;
+        privateKey?: pulumi.Input<string | undefined>;
         /**
          * If set, allows onboarding static roles with a rootless connection configuration.
          */
-        selfManaged?: pulumi.Input<boolean>;
+        selfManaged?: pulumi.Input<boolean | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * The x509 client certificate for connecting to the database. Must be PEM encoded.
          */
-        tlsCertificate?: pulumi.Input<string>;
+        tlsCertificate?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionRedis {
         /**
          * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
          */
-        caCert?: pulumi.Input<string>;
+        caCert?: pulumi.Input<string | undefined>;
         /**
          * Specifies the host to connect to
          */
@@ -1358,7 +1358,7 @@ export namespace database {
         /**
          * Specifies whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the password corresponding to the given username.
          */
@@ -1366,11 +1366,11 @@ export namespace database {
         /**
          * The transport port to use to connect to Redis.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * Specifies whether to use TLS when connecting to Redis.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the username for Vault to use.
          */
@@ -1381,11 +1381,11 @@ export namespace database {
         /**
          * The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
          */
-        region?: pulumi.Input<string>;
+        region?: pulumi.Input<string | undefined>;
         /**
          * The configuration endpoint for the ElastiCache cluster to connect to.
          */
@@ -1393,102 +1393,102 @@ export namespace database {
         /**
          * The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionRedshift {
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretBackendConnectionSnowflake {
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * The root credential password used in the connection URL
          *
          * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The private key configured for the admin user in Snowflake.
          */
-        privateKeyWo?: pulumi.Input<string>;
+        privateKeyWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for the private key key-pair credentials write-only field
          */
-        privateKeyWoVersion?: pulumi.Input<number>;
+        privateKeyWoVersion?: pulumi.Input<number | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretsMountCassandra {
@@ -1496,37 +1496,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The number of seconds to use as a connection timeout.
          */
-        connectTimeout?: pulumi.Input<number>;
+        connectTimeout?: pulumi.Input<number | undefined>;
         /**
          * Cassandra consistency level.
          */
-        consistency?: pulumi.Input<string>;
+        consistency?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Cassandra hosts to connect to.
          */
-        hosts?: pulumi.Input<pulumi.Input<string>[]>;
+        hosts?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Cassandra local datacenter name.
          */
-        localDatacenter?: pulumi.Input<string>;
+        localDatacenter?: pulumi.Input<string | undefined>;
         /**
          * Name of the database connection.
          */
@@ -1534,88 +1534,88 @@ export namespace database {
         /**
          * The password to use when authenticating with Cassandra.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemBundle?: pulumi.Input<string>;
+        pemBundle?: pulumi.Input<string | undefined>;
         /**
          * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemJson?: pulumi.Input<string>;
+        pemJson?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * The transport port to use to connect to Cassandra.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * The CQL protocol version to use.
          */
-        protocolVersion?: pulumi.Input<number>;
+        protocolVersion?: pulumi.Input<number | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
          */
-        skipVerification?: pulumi.Input<boolean>;
+        skipVerification?: pulumi.Input<boolean | undefined>;
         /**
          * Enable TCP keepalive for Cassandra connections.
          */
-        socketKeepAlive?: pulumi.Input<string>;
+        socketKeepAlive?: pulumi.Input<string | undefined>;
         /**
          * Whether to use TLS when connecting to Cassandra.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * SNI host for TLS connections.
          */
-        tlsServerName?: pulumi.Input<string>;
+        tlsServerName?: pulumi.Input<string | undefined>;
         /**
          * The username to use when authenticating with Cassandra.
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Template for dynamic Cassandra usernames.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountCouchbase {
@@ -1623,25 +1623,25 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
          */
-        base64Pem?: pulumi.Input<string>;
+        base64Pem?: pulumi.Input<string | undefined>;
         /**
          * Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
          */
-        bucketName?: pulumi.Input<string>;
+        bucketName?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
          */
@@ -1649,7 +1649,7 @@ export namespace database {
         /**
          * Specifies whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Name of the database connection.
          */
@@ -1661,43 +1661,43 @@ export namespace database {
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies whether to use TLS when connecting to Couchbase.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the username for Vault to use.
          */
@@ -1705,12 +1705,12 @@ export namespace database {
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountElasticsearch {
@@ -1718,37 +1718,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
          */
-        caCert?: pulumi.Input<string>;
+        caCert?: pulumi.Input<string | undefined>;
         /**
          * The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
          */
-        caPath?: pulumi.Input<string>;
+        caPath?: pulumi.Input<string | undefined>;
         /**
          * The path to the certificate for the Elasticsearch client to present for communication
          */
-        clientCert?: pulumi.Input<string>;
+        clientCert?: pulumi.Input<string | undefined>;
         /**
          * The path to the key for the Elasticsearch client to use for communication
          */
-        clientKey?: pulumi.Input<string>;
+        clientKey?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Whether to disable certificate verification
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Name of the database connection.
          */
@@ -1760,43 +1760,43 @@ export namespace database {
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * This, if set, is used to set the SNI host when connecting via TLS
          */
-        tlsServerName?: pulumi.Input<string>;
+        tlsServerName?: pulumi.Input<string | undefined>;
         /**
          * The URL for Elasticsearch's API
          */
@@ -1808,12 +1808,12 @@ export namespace database {
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountHana {
@@ -1821,37 +1821,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -1859,65 +1859,65 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountInfluxdb {
@@ -1925,21 +1925,21 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The number of seconds to use as a connection timeout.
          */
-        connectTimeout?: pulumi.Input<number>;
+        connectTimeout?: pulumi.Input<number | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Influxdb host to connect to.
          */
@@ -1947,7 +1947,7 @@ export namespace database {
         /**
          * Whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Name of the database connection.
          */
@@ -1959,55 +1959,55 @@ export namespace database {
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemBundle?: pulumi.Input<string>;
+        pemBundle?: pulumi.Input<string | undefined>;
         /**
          * Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
          */
-        pemJson?: pulumi.Input<string>;
+        pemJson?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * The transport port to use to connect to Influxdb.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Whether to use TLS when connecting to Influxdb.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the username to use for superuser access.
          */
@@ -2015,12 +2015,12 @@ export namespace database {
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountMongodb {
@@ -2028,33 +2028,33 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2062,77 +2062,77 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the MongoDB write concern for Vault management operations.
          */
-        writeConcern?: pulumi.Input<string>;
+        writeConcern?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretsMountMongodbatla {
@@ -2140,17 +2140,17 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2158,15 +2158,15 @@ export namespace database {
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * The Private Programmatic API Key used to connect with MongoDB Atlas API.
          */
@@ -2182,36 +2182,36 @@ export namespace database {
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Template describing how dynamic usernames are generated.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountMssql {
@@ -2219,41 +2219,41 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * Set to true when the target is a Contained Database, e.g. AzureSQL.
          */
-        containedDb?: pulumi.Input<boolean>;
+        containedDb?: pulumi.Input<boolean | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2261,65 +2261,65 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountMysql {
@@ -2327,37 +2327,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2365,77 +2365,77 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountMysqlAurora {
@@ -2443,37 +2443,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2481,77 +2481,77 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountMysqlLegacy {
@@ -2559,37 +2559,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2597,77 +2597,77 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountMysqlRd {
@@ -2675,37 +2675,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2713,77 +2713,77 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
          */
-        tlsCertificateKey?: pulumi.Input<string>;
+        tlsCertificateKey?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountOracle {
@@ -2791,37 +2791,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Set to true to disconnect any open sessions prior to running the revocation statements.
          */
-        disconnectSessions?: pulumi.Input<boolean>;
+        disconnectSessions?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2829,73 +2829,73 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * If set, allows onboarding static roles with a rootless connection configuration.
          */
-        selfManaged?: pulumi.Input<boolean>;
+        selfManaged?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Set to true in order to split statements after semi-colons.
          */
-        splitStatements?: pulumi.Input<boolean>;
+        splitStatements?: pulumi.Input<boolean | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountPostgresql {
@@ -2903,41 +2903,41 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
          */
-        authType?: pulumi.Input<string>;
+        authType?: pulumi.Input<string | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -2945,89 +2945,89 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
          */
-        passwordAuthentication?: pulumi.Input<string>;
+        passwordAuthentication?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * The secret key used for the x509 client certificate. Must be PEM encoded.
          */
-        privateKey?: pulumi.Input<string>;
+        privateKey?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * If set, allows onboarding static roles with a rootless connection configuration.
          */
-        selfManaged?: pulumi.Input<boolean>;
+        selfManaged?: pulumi.Input<boolean | undefined>;
         /**
          * A JSON encoded credential for use with IAM authorization
          */
-        serviceAccountJson?: pulumi.Input<string>;
+        serviceAccountJson?: pulumi.Input<string | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
          */
-        tlsCa?: pulumi.Input<string>;
+        tlsCa?: pulumi.Input<string | undefined>;
         /**
          * The x509 client certificate for connecting to the database. Must be PEM encoded.
          */
-        tlsCertificate?: pulumi.Input<string>;
+        tlsCertificate?: pulumi.Input<string | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountRedi {
@@ -3035,21 +3035,21 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
          */
-        caCert?: pulumi.Input<string>;
+        caCert?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the host to connect to
          */
@@ -3057,7 +3057,7 @@ export namespace database {
         /**
          * Specifies whether to skip verification of the server certificate when using TLS.
          */
-        insecureTls?: pulumi.Input<boolean>;
+        insecureTls?: pulumi.Input<boolean | undefined>;
         /**
          * Name of the database connection.
          */
@@ -3069,47 +3069,47 @@ export namespace database {
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * The transport port to use to connect to Redis.
          */
-        port?: pulumi.Input<number>;
+        port?: pulumi.Input<number | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies whether to use TLS when connecting to Redis.
          */
-        tls?: pulumi.Input<boolean>;
+        tls?: pulumi.Input<boolean | undefined>;
         /**
          * Specifies the username for Vault to use.
          */
@@ -3118,7 +3118,7 @@ export namespace database {
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountRedisElasticache {
@@ -3126,17 +3126,17 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Name of the database connection.
          */
@@ -3144,47 +3144,47 @@ export namespace database {
         /**
          * The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
          */
-        region?: pulumi.Input<string>;
+        region?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * The configuration endpoint for the ElastiCache cluster to connect to.
          */
@@ -3192,12 +3192,12 @@ export namespace database {
         /**
          * The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountRedshift {
@@ -3205,37 +3205,37 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Disable special character escaping in username and password
          */
-        disableEscaping?: pulumi.Input<boolean>;
+        disableEscaping?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -3243,65 +3243,65 @@ export namespace database {
         /**
          * The root credential password used in the connection URL
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 
     export interface SecretsMountSnowflake {
@@ -3309,33 +3309,33 @@ export namespace database {
          * A list of roles that are allowed to use this
          * connection.
          */
-        allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Connection string to use to connect to the database.
          */
-        connectionUrl?: pulumi.Input<string>;
+        connectionUrl?: pulumi.Input<string | undefined>;
         /**
          * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
          *
          * Supported list of database secrets engines that can be configured:
          */
-        disableAutomatedRotation?: pulumi.Input<boolean>;
+        disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
         /**
          * Maximum number of seconds a connection may be reused.
          */
-        maxConnectionLifetime?: pulumi.Input<number>;
+        maxConnectionLifetime?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of idle connections to the database.
          */
-        maxIdleConnections?: pulumi.Input<number>;
+        maxIdleConnections?: pulumi.Input<number | undefined>;
         /**
          * Maximum number of open connections to the database.
          */
-        maxOpenConnections?: pulumi.Input<number>;
+        maxOpenConnections?: pulumi.Input<number | undefined>;
         /**
          * Name of the database connection.
          */
@@ -3345,74 +3345,74 @@ export namespace database {
          *
          * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
          */
-        password?: pulumi.Input<string>;
+        password?: pulumi.Input<string | undefined>;
         /**
          * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
          */
-        passwordPolicy?: pulumi.Input<string>;
+        passwordPolicy?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Write-only field for the root credential password used in the connection URL
          */
-        passwordWo?: pulumi.Input<string>;
+        passwordWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for root credential password write-only field
          */
-        passwordWoVersion?: pulumi.Input<number>;
+        passwordWoVersion?: pulumi.Input<number | undefined>;
         /**
          * Specifies the name of the plugin to use.
          */
-        pluginName?: pulumi.Input<string>;
+        pluginName?: pulumi.Input<string | undefined>;
         /**
          * Specifies the semantic version of the plugin to use for this connection.
          */
-        pluginVersion?: pulumi.Input<string>;
+        pluginVersion?: pulumi.Input<string | undefined>;
         /**
          * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * The private key configured for the admin user in Snowflake.
          */
-        privateKeyWo?: pulumi.Input<string>;
+        privateKeyWo?: pulumi.Input<string | undefined>;
         /**
          * Version counter for the private key key-pair credentials write-only field
          */
-        privateKeyWoVersion?: pulumi.Input<number>;
+        privateKeyWoVersion?: pulumi.Input<number | undefined>;
         /**
          * A list of database statements to be executed to rotate the root user's credentials.
          */
-        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+        rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * The amount of time in seconds Vault should wait before rotating the root credential.
          * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
          */
-        rotationPeriod?: pulumi.Input<number>;
+        rotationPeriod?: pulumi.Input<number | undefined>;
         /**
          * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
          * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
          */
-        rotationSchedule?: pulumi.Input<string>;
+        rotationSchedule?: pulumi.Input<string | undefined>;
         /**
          * The maximum amount of time in seconds allowed to complete
          * a rotation when a scheduled token rotation occurs. The default rotation window is
          * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
          */
-        rotationWindow?: pulumi.Input<number>;
+        rotationWindow?: pulumi.Input<number | undefined>;
         /**
          * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
          */
-        skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+        skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
         /**
          * The root credential username used in the connection URL
          */
-        username?: pulumi.Input<string>;
+        username?: pulumi.Input<string | undefined>;
         /**
          * Username generation template.
          */
-        usernameTemplate?: pulumi.Input<string>;
+        usernameTemplate?: pulumi.Input<string | undefined>;
         /**
          * Whether the connection should be verified on
          * initial configuration or not.
          */
-        verifyConnection?: pulumi.Input<boolean>;
+        verifyConnection?: pulumi.Input<boolean | undefined>;
     }
 }
 
@@ -3421,22 +3421,22 @@ export namespace gcp {
         /**
          * Replaces the service endpoint used in API requests to `https://www.googleapis.com`.
          */
-        api?: pulumi.Input<string>;
+        api?: pulumi.Input<string | undefined>;
         /**
          * Replaces the service endpoint used in API requests to `https://compute.googleapis.com`.
          *
          * The endpoint value provided for a given key has the form of `scheme://host:port`.
          * The `scheme://` and `:port` portions of the endpoint value are optional.
          */
-        compute?: pulumi.Input<string>;
+        compute?: pulumi.Input<string | undefined>;
         /**
          * Replaces the service endpoint used in API requests to `https://cloudresourcemanager.googleapis.com`.
          */
-        crm?: pulumi.Input<string>;
+        crm?: pulumi.Input<string | undefined>;
         /**
          * Replaces the service endpoint used in API requests to `https://iam.googleapis.com`.
          */
-        iam?: pulumi.Input<string>;
+        iam?: pulumi.Input<string | undefined>;
     }
 
     export interface AuthBackendTune {
@@ -3444,39 +3444,39 @@ export namespace gcp {
          * List of headers to whitelist and allowing
          * a plugin to include them in the response.
          */
-        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the request data object.
          */
-        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the response data object.
          */
-        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the default time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        defaultLeaseTtl?: pulumi.Input<string>;
+        defaultLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether to show this mount in
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
-        listingVisibility?: pulumi.Input<string>;
+        listingVisibility?: pulumi.Input<string | undefined>;
         /**
          * Specifies the maximum time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        maxLeaseTtl?: pulumi.Input<string>;
+        maxLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * List of headers to whitelist and
          * pass from the request to the backend.
          */
-        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the type of tokens that should be returned by
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -3484,7 +3484,7 @@ export namespace gcp {
          *
          * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
          */
-        tokenType?: pulumi.Input<string>;
+        tokenType?: pulumi.Input<string | undefined>;
     }
 
     export interface SecretRolesetBinding {
@@ -3516,44 +3516,44 @@ export namespace github {
          * List of headers to whitelist and allowing
          * a plugin to include them in the response.
          */
-        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the request data object.
          */
-        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the response data object.
          */
-        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the default time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        defaultLeaseTtl?: pulumi.Input<string>;
+        defaultLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether to show this mount in
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
-        listingVisibility?: pulumi.Input<string>;
+        listingVisibility?: pulumi.Input<string | undefined>;
         /**
          * Specifies the maximum time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        maxLeaseTtl?: pulumi.Input<string>;
+        maxLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * List of headers to whitelist and
          * pass from the request to the backend.
          */
-        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the type of tokens that should be returned by
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          */
-        tokenType?: pulumi.Input<string>;
+        tokenType?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -3566,44 +3566,44 @@ export namespace jwt {
          * List of headers to whitelist and allowing
          * a plugin to include them in the response.
          */
-        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the request data object.
          */
-        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the response data object.
          */
-        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the default time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        defaultLeaseTtl?: pulumi.Input<string>;
+        defaultLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether to show this mount in
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
-        listingVisibility?: pulumi.Input<string>;
+        listingVisibility?: pulumi.Input<string | undefined>;
         /**
          * Specifies the maximum time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        maxLeaseTtl?: pulumi.Input<string>;
+        maxLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * List of headers to whitelist and
          * pass from the request to the backend.
          */
-        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the type of tokens that should be returned by
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          */
-        tokenType?: pulumi.Input<string>;
+        tokenType?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -3612,22 +3612,22 @@ export namespace kv {
         /**
          * If true, all keys will require the cas parameter to be set on all write requests.
          */
-        casRequired?: pulumi.Input<boolean>;
+        casRequired?: pulumi.Input<boolean | undefined>;
         /**
          * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
          * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
          * Vault and whose values are the corresponding values. This map can only represent string data,
          * so any non-string values returned from Vault are serialized as JSON.
          */
-        data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * If set, specifies the length of time before a version is deleted.
          */
-        deleteVersionAfter?: pulumi.Input<number>;
+        deleteVersionAfter?: pulumi.Input<number | undefined>;
         /**
          * The number of versions to keep per key.
          */
-        maxVersions?: pulumi.Input<number>;
+        maxVersions?: pulumi.Input<number | undefined>;
     }
 }
 
@@ -3637,44 +3637,44 @@ export namespace ldap {
          * List of headers to whitelist and allowing
          * a plugin to include them in the response.
          */
-        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the request data object.
          */
-        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the response data object.
          */
-        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the default time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        defaultLeaseTtl?: pulumi.Input<string>;
+        defaultLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether to show this mount in
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
-        listingVisibility?: pulumi.Input<string>;
+        listingVisibility?: pulumi.Input<string | undefined>;
         /**
          * Specifies the maximum time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        maxLeaseTtl?: pulumi.Input<string>;
+        maxLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * List of headers to whitelist and
          * pass from the request to the backend.
          */
-        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the type of tokens that should be returned by
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          */
-        tokenType?: pulumi.Input<string>;
+        tokenType?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -3687,27 +3687,27 @@ export namespace managed {
         /**
          * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          */
-        allowGenerateKey?: pulumi.Input<boolean>;
+        allowGenerateKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          */
-        allowReplaceKey?: pulumi.Input<boolean>;
+        allowReplaceKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
          */
-        allowStoreKey?: pulumi.Input<boolean>;
+        allowStoreKey?: pulumi.Input<boolean | undefined>;
         /**
          * Allow usage from any mount point within the namespace if 'true'
          */
-        anyMount?: pulumi.Input<boolean>;
+        anyMount?: pulumi.Input<boolean | undefined>;
         /**
          * The curve to use for an ECDSA key. Used when keyType is 'ECDSA'. Required if 'allow_generate_key' is true
          */
-        curve?: pulumi.Input<string>;
+        curve?: pulumi.Input<string | undefined>;
         /**
          * Used to specify a custom AWS endpoint
          */
-        endpoint?: pulumi.Input<string>;
+        endpoint?: pulumi.Input<string | undefined>;
         /**
          * The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
          */
@@ -3727,7 +3727,7 @@ export namespace managed {
         /**
          * The AWS region where the keys are stored (or will be stored)
          */
-        region?: pulumi.Input<string>;
+        region?: pulumi.Input<string | undefined>;
         /**
          * The AWS secret key to use
          */
@@ -3735,26 +3735,26 @@ export namespace managed {
         /**
          * ID of the managed key read from Vault
          */
-        uuid?: pulumi.Input<string>;
+        uuid?: pulumi.Input<string | undefined>;
     }
 
     export interface KeysAzure {
         /**
          * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          */
-        allowGenerateKey?: pulumi.Input<boolean>;
+        allowGenerateKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          */
-        allowReplaceKey?: pulumi.Input<boolean>;
+        allowReplaceKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
          */
-        allowStoreKey?: pulumi.Input<boolean>;
+        allowStoreKey?: pulumi.Input<boolean | undefined>;
         /**
          * Allow usage from any mount point within the namespace if 'true'
          */
-        anyMount?: pulumi.Input<boolean>;
+        anyMount?: pulumi.Input<boolean | undefined>;
         /**
          * The client id for credentials to query the Azure APIs
          */
@@ -3766,11 +3766,11 @@ export namespace managed {
         /**
          * The Azure Cloud environment API endpoints to use
          */
-        environment?: pulumi.Input<string>;
+        environment?: pulumi.Input<string | undefined>;
         /**
          * The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
          */
-        keyBits?: pulumi.Input<string>;
+        keyBits?: pulumi.Input<string | undefined>;
         /**
          * The Key Vault key to use for encryption and decryption
          */
@@ -3786,7 +3786,7 @@ export namespace managed {
         /**
          * The Azure Key Vault resource's DNS Suffix to connect to
          */
-        resource?: pulumi.Input<string>;
+        resource?: pulumi.Input<string | undefined>;
         /**
          * The tenant id for the Azure Active Directory organization
          */
@@ -3794,7 +3794,7 @@ export namespace managed {
         /**
          * ID of the managed key read from Vault
          */
-        uuid?: pulumi.Input<string>;
+        uuid?: pulumi.Input<string | undefined>;
         /**
          * The Key Vault vault to use the encryption keys for encryption and decryption
          */
@@ -3809,19 +3809,19 @@ export namespace managed {
         /**
          * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          */
-        allowGenerateKey?: pulumi.Input<boolean>;
+        allowGenerateKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          */
-        allowReplaceKey?: pulumi.Input<boolean>;
+        allowReplaceKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
          */
-        allowStoreKey?: pulumi.Input<boolean>;
+        allowStoreKey?: pulumi.Input<boolean | undefined>;
         /**
          * Allow usage from any mount point within the namespace if 'true'
          */
-        anyMount?: pulumi.Input<boolean>;
+        anyMount?: pulumi.Input<boolean | undefined>;
         /**
          * The GCP service account credentials JSON to use for authenticating to GCP.
          */
@@ -3833,7 +3833,7 @@ export namespace managed {
         /**
          * The version of the key to use. (Default: 1)
          */
-        cryptoKeyVersion?: pulumi.Input<string>;
+        cryptoKeyVersion?: pulumi.Input<string | undefined>;
         /**
          * The name of the key ring in GCP Cloud KMS. This needs to be created prior to key creation
          */
@@ -3853,46 +3853,46 @@ export namespace managed {
         /**
          * ID of the managed key read from Vault
          */
-        uuid?: pulumi.Input<string>;
+        uuid?: pulumi.Input<string | undefined>;
     }
 
     export interface KeysPkc {
         /**
          * If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
          */
-        allowGenerateKey?: pulumi.Input<boolean>;
+        allowGenerateKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
          */
-        allowReplaceKey?: pulumi.Input<boolean>;
+        allowReplaceKey?: pulumi.Input<boolean | undefined>;
         /**
          * Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
          */
-        allowStoreKey?: pulumi.Input<boolean>;
+        allowStoreKey?: pulumi.Input<boolean | undefined>;
         /**
          * Allow usage from any mount point within the namespace if 'true'
          */
-        anyMount?: pulumi.Input<boolean>;
+        anyMount?: pulumi.Input<boolean | undefined>;
         /**
          * Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
          */
-        curve?: pulumi.Input<string>;
+        curve?: pulumi.Input<string | undefined>;
         /**
          * Force all operations to open up a read-write session to the HSM
          */
-        forceRwSession?: pulumi.Input<string>;
+        forceRwSession?: pulumi.Input<string | undefined>;
         /**
          * Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
          */
-        keyBits?: pulumi.Input<string>;
+        keyBits?: pulumi.Input<string | undefined>;
         /**
          * The id of a PKCS#11 key to use
          */
-        keyId?: pulumi.Input<string>;
+        keyId?: pulumi.Input<string | undefined>;
         /**
          * The label of the key to use
          */
-        keyLabel?: pulumi.Input<string>;
+        keyLabel?: pulumi.Input<string | undefined>;
         /**
          * The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
          */
@@ -3912,15 +3912,15 @@ export namespace managed {
         /**
          * The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
          */
-        slot?: pulumi.Input<string>;
+        slot?: pulumi.Input<string | undefined>;
         /**
          * The slot token label to use
          */
-        tokenLabel?: pulumi.Input<string>;
+        tokenLabel?: pulumi.Input<string | undefined>;
         /**
          * ID of the managed key read from Vault
          */
-        uuid?: pulumi.Input<string>;
+        uuid?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -3940,46 +3940,46 @@ export namespace okta {
         /**
          * List of headers to whitelist and allowing a plugin to include them in the response.
          */
-        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
          */
-        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
          */
-        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the default time-to-live duration. This overrides the global default. A value of 0 is equivalent to the system default TTL
          */
-        defaultLeaseTtl?: pulumi.Input<string>;
+        defaultLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether to show this mount in the UI-specific listing endpoint. Valid values are "unauth" or "hidden". If not set, behaves like "hidden".
          */
-        listingVisibility?: pulumi.Input<string>;
+        listingVisibility?: pulumi.Input<string | undefined>;
         /**
          * Specifies the maximum time-to-live duration. This overrides the global default. A value of 0 are equivalent and set to the system max TTL.
          */
-        maxLeaseTtl?: pulumi.Input<string>;
+        maxLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * List of headers to whitelist and pass from the request to the backend.
          */
-        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the type of tokens that should be returned by the mount.
          */
-        tokenType?: pulumi.Input<string>;
+        tokenType?: pulumi.Input<string | undefined>;
     }
 
     export interface AuthBackendUser {
         /**
          * Groups within the Okta auth backend to associate with this user
          */
-        groups?: pulumi.Input<pulumi.Input<string>[]>;
+        groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Policies to associate with this user
          */
-        policies?: pulumi.Input<pulumi.Input<string>[]>;
+        policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Name of the user within Okta
          */
@@ -3992,47 +3992,47 @@ export namespace pkiSecret {
         /**
          * "The accessor (required) and certRole (optional) properties for cert auth backends".
          */
-        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface BackendConfigEstAuthenticators {
         /**
          * The accessor (required) and certRole (optional) properties for cert auth backends.
          */
-        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The accessor (required) property for user pass auth backends.
          */
-        userpass?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        userpass?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface BackendConfigScepAuthenticators {
         /**
          * The accessor and certRole properties for cert auth backends
          */
-        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        cert?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
         /**
          * The accessor property for SCEP auth backends
          */
-        scep?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        scep?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface BackendConfigScepExternalValidation {
         /**
          * The credentials to enable Microsoft Intune validation of SCEP requests
          */
-        intune?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        intune?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface SecretBackendRolePolicyIdentifier {
         /**
          * The URL of the CPS for the policy identifier
          */
-        cps?: pulumi.Input<string>;
+        cps?: pulumi.Input<string | undefined>;
         /**
          * A notice for the policy identifier
          */
-        notice?: pulumi.Input<string>;
+        notice?: pulumi.Input<string | undefined>;
         /**
          * The OID for the policy identifier
          */
@@ -4068,7 +4068,7 @@ export namespace rabbitMq {
         /**
          * Specifies a map of virtual hosts to permissions.
          */
-        vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopicVhost>[]>;
+        vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopicVhost>[] | undefined>;
     }
 
     export interface SecretBackendRoleVhostTopicVhost {
@@ -4093,44 +4093,44 @@ export namespace saml {
          * List of headers to whitelist and allowing
          * a plugin to include them in the response.
          */
-        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the request data object.
          */
-        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the list of keys that will
          * not be HMAC'd by audit devices in the response data object.
          */
-        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+        auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the default time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        defaultLeaseTtl?: pulumi.Input<string>;
+        defaultLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * Specifies whether to show this mount in
          * the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
          */
-        listingVisibility?: pulumi.Input<string>;
+        listingVisibility?: pulumi.Input<string | undefined>;
         /**
          * Specifies the maximum time-to-live.
          * If set, this overrides the global default.
          * Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
          */
-        maxLeaseTtl?: pulumi.Input<string>;
+        maxLeaseTtl?: pulumi.Input<string | undefined>;
         /**
          * List of headers to whitelist and
          * pass from the request to the backend.
          */
-        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+        passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * Specifies the type of tokens that should be returned by
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          */
-        tokenType?: pulumi.Input<string>;
+        tokenType?: pulumi.Input<string | undefined>;
     }
 }
 
@@ -4139,12 +4139,12 @@ export namespace secrets {
         /**
          * Subkey of the associated secret.
          */
-        subKey?: pulumi.Input<string>;
+        subKey?: pulumi.Input<string | undefined>;
         /**
          * A map of sync statuses for each subkey of the associated secret
          * (for ex. `{kv_624bea/aws-token/dev: "SYNCED", kv_624bea/aws-token/prod: "SYNCED"}`).
          */
-        syncStatus?: pulumi.Input<string>;
+        syncStatus?: pulumi.Input<string | undefined>;
         /**
          * A map of duration strings specifying when each subkey of the associated
          * secret was last updated.
@@ -4152,7 +4152,7 @@ export namespace secrets {
          * `{kv_624bea/aws-token/dev: "2024-03-21T12:42:02.558533-07:00",
          * kv_624bea/aws-token/prod: "2024-03-21T12:42:02.558533-07:00"}`).
          */
-        updatedAt?: pulumi.Input<string>;
+        updatedAt?: pulumi.Input<string | undefined>;
     }
 }
 

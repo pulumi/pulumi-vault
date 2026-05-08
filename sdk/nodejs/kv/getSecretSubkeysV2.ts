@@ -190,7 +190,7 @@ export interface GetSecretSubkeysV2OutputArgs {
      * artificially treated as leaves and will thus be `null` even if further
      * underlying sub-keys exist.
      */
-    depth?: pulumi.Input<number>;
+    depth?: pulumi.Input<number | undefined>;
     /**
      * Path where KV-V2 engine is mounted.
      */
@@ -208,10 +208,10 @@ export interface GetSecretSubkeysV2OutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the version to return. If not 
      * set the latest version is returned.
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
 }

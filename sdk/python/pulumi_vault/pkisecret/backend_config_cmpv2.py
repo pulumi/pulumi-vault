@@ -22,13 +22,13 @@ __all__ = ['BackendConfigCmpv2Args', 'BackendConfigCmpv2']
 class BackendConfigCmpv2Args:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 audit_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']] = None,
-                 default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_sentinel_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authenticators: pulumi.Input[Optional['BackendConfigCmpv2AuthenticatorsArgs']] = None,
+                 default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_sentinel_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendConfigCmpv2 resource.
 
@@ -78,43 +78,43 @@ class BackendConfigCmpv2Args:
 
     @_builtins.property
     @pulumi.getter(name="auditFields")
-    def audit_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
         """
         return pulumi.get(self, "audit_fields")
 
     @audit_fields.setter
-    def audit_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_fields(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def authenticators(self) -> Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']]:
+    def authenticators(self) -> pulumi.Input[Optional['BackendConfigCmpv2AuthenticatorsArgs']]:
         """
         Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         """
         return pulumi.get(self, "authenticators")
 
     @authenticators.setter
-    def authenticators(self, value: Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']]):
+    def authenticators(self, value: pulumi.Input[Optional['BackendConfigCmpv2AuthenticatorsArgs']]):
         pulumi.set(self, "authenticators", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultPathPolicy")
-    def default_path_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_path_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
         """
         return pulumi.get(self, "default_path_policy")
 
     @default_path_policy.setter
-    def default_path_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_path_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_path_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="disabledValidations")
-    def disabled_validations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def disabled_validations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A comma-separated list of validations not to perform on CMPv2 messages.
 
@@ -123,36 +123,36 @@ class BackendConfigCmpv2Args:
         return pulumi.get(self, "disabled_validations")
 
     @disabled_validations.setter
-    def disabled_validations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def disabled_validations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "disabled_validations", value)
 
     @_builtins.property
     @pulumi.getter(name="enableSentinelParsing")
-    def enable_sentinel_parsing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_sentinel_parsing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, parse out fields from the provided CSR making them available for Sentinel policies.
         """
         return pulumi.get(self, "enable_sentinel_parsing")
 
     @enable_sentinel_parsing.setter
-    def enable_sentinel_parsing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_sentinel_parsing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_sentinel_parsing", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether CMPv2 is enabled.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace of the target resource.
         The value should not contain leading or trailing forward slashes.
@@ -162,22 +162,22 @@ class BackendConfigCmpv2Args:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _BackendConfigCmpv2State:
     def __init__(__self__, *,
-                 audit_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_sentinel_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 last_updated: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authenticators: pulumi.Input[Optional['BackendConfigCmpv2AuthenticatorsArgs']] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_sentinel_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 last_updated: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendConfigCmpv2 resources.
 
@@ -218,31 +218,31 @@ class _BackendConfigCmpv2State:
 
     @_builtins.property
     @pulumi.getter(name="auditFields")
-    def audit_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
         """
         return pulumi.get(self, "audit_fields")
 
     @audit_fields.setter
-    def audit_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_fields(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def authenticators(self) -> Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']]:
+    def authenticators(self) -> pulumi.Input[Optional['BackendConfigCmpv2AuthenticatorsArgs']]:
         """
         Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         """
         return pulumi.get(self, "authenticators")
 
     @authenticators.setter
-    def authenticators(self, value: Optional[pulumi.Input['BackendConfigCmpv2AuthenticatorsArgs']]):
+    def authenticators(self, value: pulumi.Input[Optional['BackendConfigCmpv2AuthenticatorsArgs']]):
         pulumi.set(self, "authenticators", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the PKI secret backend to
         read the CMPv2 configuration from, with no leading or trailing `/`s.
@@ -250,24 +250,24 @@ class _BackendConfigCmpv2State:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultPathPolicy")
-    def default_path_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_path_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
         """
         return pulumi.get(self, "default_path_policy")
 
     @default_path_policy.setter
-    def default_path_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_path_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_path_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="disabledValidations")
-    def disabled_validations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def disabled_validations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A comma-separated list of validations not to perform on CMPv2 messages.
 
@@ -276,48 +276,48 @@ class _BackendConfigCmpv2State:
         return pulumi.get(self, "disabled_validations")
 
     @disabled_validations.setter
-    def disabled_validations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def disabled_validations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "disabled_validations", value)
 
     @_builtins.property
     @pulumi.getter(name="enableSentinelParsing")
-    def enable_sentinel_parsing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_sentinel_parsing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, parse out fields from the provided CSR making them available for Sentinel policies.
         """
         return pulumi.get(self, "enable_sentinel_parsing")
 
     @enable_sentinel_parsing.setter
-    def enable_sentinel_parsing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_sentinel_parsing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_sentinel_parsing", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether CMPv2 is enabled.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUpdated")
-    def last_updated(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_updated(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A read-only timestamp representing the last time the configuration was updated.
         """
         return pulumi.get(self, "last_updated")
 
     @last_updated.setter
-    def last_updated(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_updated(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_updated", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace of the target resource.
         The value should not contain leading or trailing forward slashes.
@@ -327,7 +327,7 @@ class _BackendConfigCmpv2State:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -337,14 +337,14 @@ class BackendConfigCmpv2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 audit_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: Optional[pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_sentinel_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_sentinel_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows setting the CMPv2 configuration on a PKI Secret Backend
@@ -532,14 +532,14 @@ class BackendConfigCmpv2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 audit_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: Optional[pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_sentinel_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_sentinel_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -570,15 +570,15 @@ class BackendConfigCmpv2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            audit_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            authenticators: Optional[pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            default_path_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            disabled_validations: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            enable_sentinel_parsing: Optional[pulumi.Input[_builtins.bool]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            last_updated: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'BackendConfigCmpv2':
+            audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            enable_sentinel_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_updated: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'BackendConfigCmpv2':
         """
         Get an existing BackendConfigCmpv2 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

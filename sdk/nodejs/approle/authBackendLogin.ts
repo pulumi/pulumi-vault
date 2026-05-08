@@ -211,60 +211,60 @@ export interface AuthBackendLoginState {
     /**
      * The accessor for the token.
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * The unique path of the Vault backend to log in with.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The Vault token created.
      */
-    clientToken?: pulumi.Input<string>;
+    clientToken?: pulumi.Input<string | undefined>;
     /**
      * How long the token is valid for, in seconds.
      */
-    leaseDuration?: pulumi.Input<number>;
+    leaseDuration?: pulumi.Input<number | undefined>;
     /**
      * The date and time the lease started, in RFC 3339 format.
      */
-    leaseStarted?: pulumi.Input<string>;
+    leaseStarted?: pulumi.Input<string | undefined>;
     /**
      * The metadata associated with the token.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A list of policies applied to the token.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Whether the token is renewable or not.
      */
-    renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the role to log in with.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * The secret ID of the role to log in with. Required
      * unless `bindSecretId` is set to false on the role.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
      */
-    secretIdWo?: pulumi.Input<string>;
+    secretIdWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the `secretIdWo`. For more info see updating write-only attributes.
      */
-    secretIdWoVersion?: pulumi.Input<number>;
+    secretIdWoVersion?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -274,14 +274,14 @@ export interface AuthBackendLoginArgs {
     /**
      * The unique path of the Vault backend to log in with.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The ID of the role to log in with.
      */
@@ -290,14 +290,14 @@ export interface AuthBackendLoginArgs {
      * The secret ID of the role to log in with. Required
      * unless `bindSecretId` is set to false on the role.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bindSecretId` is set to false on the role.
      */
-    secretIdWo?: pulumi.Input<string>;
+    secretIdWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the `secretIdWo`. For more info see updating write-only attributes.
      */
-    secretIdWoVersion?: pulumi.Input<number>;
+    secretIdWoVersion?: pulumi.Input<number | undefined>;
 }

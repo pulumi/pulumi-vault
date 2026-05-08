@@ -153,43 +153,43 @@ export interface MfaLoginEnforcementState {
     /**
      * Set of auth method accessor IDs.
      */
-    authMethodAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    authMethodAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of auth method types.
      */
-    authMethodTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    authMethodTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of identity entity IDs.
      */
-    identityEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    identityEntityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of identity group IDs.
      */
-    identityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    identityGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of MFA method UUIDs.
      */
-    mfaMethodIds?: pulumi.Input<pulumi.Input<string>[]>;
+    mfaMethodIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Login enforcement name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace path.
      */
-    namespacePath?: pulumi.Input<string>;
+    namespacePath?: pulumi.Input<string | undefined>;
     /**
      * Resource UUID.
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -199,19 +199,19 @@ export interface MfaLoginEnforcementArgs {
     /**
      * Set of auth method accessor IDs.
      */
-    authMethodAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    authMethodAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of auth method types.
      */
-    authMethodTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    authMethodTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of identity entity IDs.
      */
-    identityEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    identityEntityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of identity group IDs.
      */
-    identityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    identityGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of MFA method UUIDs.
      */
@@ -219,9 +219,9 @@ export interface MfaLoginEnforcementArgs {
     /**
      * Login enforcement name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

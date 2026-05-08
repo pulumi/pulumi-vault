@@ -66,8 +66,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -159,8 +159,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -252,8 +252,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -345,8 +345,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -438,8 +438,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendCertMetadataArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -525,8 +525,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -581,8 +581,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -637,8 +637,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -693,8 +693,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -749,8 +749,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigCmpv2Args;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -805,8 +805,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -861,8 +861,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -917,8 +917,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -973,8 +973,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1029,8 +1029,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigEstArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1085,8 +1085,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigScepArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1141,8 +1141,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigScepArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1197,8 +1197,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigScepArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1253,8 +1253,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigScepArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1309,8 +1309,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.MountArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendConfigScepArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1367,8 +1367,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1434,8 +1434,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1501,8 +1501,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1568,8 +1568,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1635,8 +1635,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1702,8 +1702,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1768,8 +1768,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1834,8 +1834,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1900,8 +1900,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1966,8 +1966,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendIssuersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2032,8 +2032,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2099,8 +2099,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2166,8 +2166,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2233,8 +2233,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2300,8 +2300,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendKeyArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2367,8 +2367,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2433,8 +2433,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2499,8 +2499,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2565,8 +2565,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2631,8 +2631,8 @@ public final class PkiSecretFunctions {
      * import com.pulumi.vault.pkiSecret.SecretBackendRootCertArgs;
      * import com.pulumi.vault.pkiSecret.PkiSecretFunctions;
      * import com.pulumi.vault.pkiSecret.inputs.GetBackendKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

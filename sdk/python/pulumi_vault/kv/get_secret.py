@@ -199,8 +199,8 @@ def get_secret(namespace: Optional[_builtins.str] = None,
         lease_renewable=pulumi.get(__ret__, 'lease_renewable'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-def get_secret_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      path: Optional[pulumi.Input[_builtins.str]] = None,
+def get_secret_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      path: pulumi.Input[Optional[_builtins.str]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretResult]:
     """
     Reads a KV-V1 secret from a given path in Vault.

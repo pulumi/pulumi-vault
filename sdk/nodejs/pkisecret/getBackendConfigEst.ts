@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const estConfig = vault.pkiSecret.getBackendConfigEstOutput({
+ * const estConfig = vault.pkisecret.getBackendConfigEstOutput({
  *     backend: pki.path,
  * });
  * ```
@@ -124,7 +124,7 @@ export interface GetBackendConfigEstResult {
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const estConfig = vault.pkiSecret.getBackendConfigEstOutput({
+ * const estConfig = vault.pkisecret.getBackendConfigEstOutput({
  *     backend: pki.path,
  * });
  * ```
@@ -152,5 +152,5 @@ export interface GetBackendConfigEstOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

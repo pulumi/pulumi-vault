@@ -133,29 +133,29 @@ export interface AuthBackendCertState {
      * the [AWS
      * documentation](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-identity-documents.html).
      */
-    awsPublicCert?: pulumi.Input<string>;
+    awsPublicCert?: pulumi.Input<string | undefined>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The name of the certificate.
      */
-    certName?: pulumi.Input<string>;
+    certName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to
      * "pkcs7".
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,7 +173,7 @@ export interface AuthBackendCertArgs {
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The name of the certificate.
      */
@@ -184,11 +184,11 @@ export interface AuthBackendCertArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Either "pkcs7" or "identity", indicating the type of
      * document which can be verified using the given certificate. Defaults to
      * "pkcs7".
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

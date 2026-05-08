@@ -232,94 +232,94 @@ export interface AuthBackendRoleState {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Unique name of the auth backend to configure.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * If set, defines a constraint on the groups
      * that can perform the login operation that they should be using the group
      * ID specified by this field.
      */
-    boundGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the virtual machines
      * that can perform the login operation that the location in their identity
      * document must match the one specified by this field.
      */
-    boundLocations?: pulumi.Input<pulumi.Input<string>[]>;
+    boundLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the virtual
      * machines that can perform the login operation that they be associated with
      * the resource group that matches the value specified by this field.
      */
-    boundResourceGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    boundResourceGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the virtual
      * machines that can perform the login operation that they must match the scale set
      * specified by this field.
      */
-    boundScaleSets?: pulumi.Input<pulumi.Input<string>[]>;
+    boundScaleSets?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the
      * service principals that can perform the login operation that they should be possess
      * the ids specified by this field.
      */
-    boundServicePrincipalIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundServicePrincipalIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the subscriptions
      * that can perform the login operation to ones which  matches the value specified by this
      * field.
      */
-    boundSubscriptionIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundSubscriptionIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name of the role.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -330,54 +330,54 @@ export interface AuthBackendRoleArgs {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Unique name of the auth backend to configure.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * If set, defines a constraint on the groups
      * that can perform the login operation that they should be using the group
      * ID specified by this field.
      */
-    boundGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the virtual machines
      * that can perform the login operation that the location in their identity
      * document must match the one specified by this field.
      */
-    boundLocations?: pulumi.Input<pulumi.Input<string>[]>;
+    boundLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the virtual
      * machines that can perform the login operation that they be associated with
      * the resource group that matches the value specified by this field.
      */
-    boundResourceGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    boundResourceGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the virtual
      * machines that can perform the login operation that they must match the scale set
      * specified by this field.
      */
-    boundScaleSets?: pulumi.Input<pulumi.Input<string>[]>;
+    boundScaleSets?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the
      * service principals that can perform the login operation that they should be possess
      * the ids specified by this field.
      */
-    boundServicePrincipalIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundServicePrincipalIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, defines a constraint on the subscriptions
      * that can perform the login operation to ones which  matches the value specified by this
      * field.
      */
-    boundSubscriptionIds?: pulumi.Input<pulumi.Input<string>[]>;
+    boundSubscriptionIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name of the role.
      */
@@ -385,37 +385,37 @@ export interface AuthBackendRoleArgs {
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }

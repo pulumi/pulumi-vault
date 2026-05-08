@@ -143,7 +143,7 @@ def get_backend_key(backend: Optional[_builtins.str] = None,
         key_name="example",
         key_type="rsa",
         key_bits=4096)
-    example = key.key_id.apply(lambda key_id: vault.pkiSecret.get_backend_key_output(backend=key_vault_mount["path"],
+    example = key.key_id.apply(lambda key_id: vault.pkisecret.get_backend_key_output(backend=key_vault_mount["path"],
         key_ref=key_id))
     ```
 
@@ -171,9 +171,9 @@ def get_backend_key(backend: Optional[_builtins.str] = None,
         key_ref=pulumi.get(__ret__, 'key_ref'),
         key_type=pulumi.get(__ret__, 'key_type'),
         namespace=pulumi.get(__ret__, 'namespace'))
-def get_backend_key_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                           key_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                           namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backend_key_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                           key_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                           namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendKeyResult]:
     """
     Reads key data from Vault.
@@ -202,7 +202,7 @@ def get_backend_key_output(backend: Optional[pulumi.Input[_builtins.str]] = None
         key_name="example",
         key_type="rsa",
         key_bits=4096)
-    example = key.key_id.apply(lambda key_id: vault.pkiSecret.get_backend_key_output(backend=key_vault_mount["path"],
+    example = key.key_id.apply(lambda key_id: vault.pkisecret.get_backend_key_output(backend=key_vault_mount["path"],
         key_ref=key_id))
     ```
 

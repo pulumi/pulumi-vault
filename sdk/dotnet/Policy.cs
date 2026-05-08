@@ -20,7 +20,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Vault.Index.Policy("example", new()
+    ///     var example = new Vault.Policy("example", new()
     ///     {
     ///         Name = "dev-team",
     ///         PolicyContents = @"path \""secret/my_app\"" {

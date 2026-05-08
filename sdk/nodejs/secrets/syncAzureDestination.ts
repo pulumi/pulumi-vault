@@ -281,97 +281,97 @@ export interface SyncAzureDestinationState {
     /**
      * Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
      */
-    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
      */
-    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
      */
-    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Client ID of an Azure app registration.
      * Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
      * variable.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Client Secret of an Azure app registration.
      * Can be omitted and directly provided to Vault using the `AZURE_CLIENT_SECRET` environment
      * variable.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Specifies a cloud for the client. The default is Azure Public Cloud.
      */
-    cloud?: pulumi.Input<string>;
+    cloud?: pulumi.Input<string | undefined>;
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
      */
-    disableStrictNetworking?: pulumi.Input<boolean>;
+    disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    granularity?: pulumi.Input<string>;
+    granularity?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenAudienceWo?: pulumi.Input<string>;
+    identityTokenAudienceWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
      */
-    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    identityTokenAudienceWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenKeyWo?: pulumi.Input<string>;
+    identityTokenKeyWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
      */
-    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    identityTokenKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The TTL of generated tokens.
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
      * variable.
      */
-    keyVaultUri?: pulumi.Input<string>;
+    keyVaultUri?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the Azure destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    secretNameTemplate?: pulumi.Input<string>;
+    secretNameTemplate?: pulumi.Input<string | undefined>;
     /**
      * ID of the target Azure tenant.
      * Can be omitted and directly provided to Vault using the `AZURE_TENANT_ID` environment
      * variable.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * The type of the secrets destination (`azure-kv`).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -381,91 +381,91 @@ export interface SyncAzureDestinationArgs {
     /**
      * Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
      */
-    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed IPv6 addresses in CIDR notation (e.g., 2001:db8::1/128) for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed. Requires Vault 1.19+.
      */
-    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed ports for outbound connections from Vault to the destination. If not set, all ports are allowed. Requires Vault 1.19+.
      */
-    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Client ID of an Azure app registration.
      * Can be omitted and directly provided to Vault using the `AZURE_CLIENT_ID` environment
      * variable.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Client Secret of an Azure app registration.
      * Can be omitted and directly provided to Vault using the `AZURE_CLIENT_SECRET` environment
      * variable.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Specifies a cloud for the client. The default is Azure Public Cloud.
      */
-    cloud?: pulumi.Input<string>;
+    cloud?: pulumi.Input<string | undefined>;
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * If set to true, disables strict networking enforcement for this destination. When disabled, Vault will not enforce allowed IP addresses and ports. Requires Vault 1.19+.
      */
-    disableStrictNetworking?: pulumi.Input<boolean>;
+    disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    granularity?: pulumi.Input<string>;
+    granularity?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenAudienceWo?: pulumi.Input<string>;
+    identityTokenAudienceWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
      */
-    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    identityTokenAudienceWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenKeyWo?: pulumi.Input<string>;
+    identityTokenKeyWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
      */
-    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    identityTokenKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The TTL of generated tokens.
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * URI of an existing Azure Key Vault instance.
      * Can be omitted and directly provided to Vault using the `KEY_VAULT_URI` environment
      * variable.
      */
-    keyVaultUri?: pulumi.Input<string>;
+    keyVaultUri?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the Azure destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    secretNameTemplate?: pulumi.Input<string>;
+    secretNameTemplate?: pulumi.Input<string | undefined>;
     /**
      * ID of the target Azure tenant.
      * Can be omitted and directly provided to Vault using the `AZURE_TENANT_ID` environment
      * variable.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }

@@ -33,14 +33,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			azure, err := vault.NewAuthBackend(ctx, "azure", &vault.AuthBackendArgs{
+//			azure2, err := vault.NewAuthBackend(ctx, "azure", &vault.AuthBackendArgs{
 //				Type: pulumi.String("azure"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = azure.NewAuthBackendRole(ctx, "example", &azure.AuthBackendRoleArgs{
-//				Backend: azure.Path,
+//				Backend: azure2.Path,
 //				Role:    pulumi.String("test-role"),
 //				BoundSubscriptionIds: pulumi.StringArray{
 //					pulumi.String("11111111-2222-3333-4444-555555555555"),

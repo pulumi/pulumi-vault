@@ -20,36 +20,36 @@ __all__ = ['ProviderArgs', 'Provider']
 @pulumi.input_type
 class ProviderArgs:
     def __init__(__self__, *,
-                 add_address_to_env: Optional[pulumi.Input[_builtins.str]] = None,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 auth_login: Optional[pulumi.Input['ProviderAuthLoginArgs']] = None,
-                 auth_login_aws: Optional[pulumi.Input['ProviderAuthLoginAwsArgs']] = None,
-                 auth_login_azure: Optional[pulumi.Input['ProviderAuthLoginAzureArgs']] = None,
-                 auth_login_cert: Optional[pulumi.Input['ProviderAuthLoginCertArgs']] = None,
-                 auth_login_gcp: Optional[pulumi.Input['ProviderAuthLoginGcpArgs']] = None,
-                 auth_login_jwt: Optional[pulumi.Input['ProviderAuthLoginJwtArgs']] = None,
-                 auth_login_kerberos: Optional[pulumi.Input['ProviderAuthLoginKerberosArgs']] = None,
-                 auth_login_oci: Optional[pulumi.Input['ProviderAuthLoginOciArgs']] = None,
-                 auth_login_oidc: Optional[pulumi.Input['ProviderAuthLoginOidcArgs']] = None,
-                 auth_login_radius: Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']] = None,
-                 auth_login_token_file: Optional[pulumi.Input['ProviderAuthLoginTokenFileArgs']] = None,
-                 auth_login_userpass: Optional[pulumi.Input['ProviderAuthLoginUserpassArgs']] = None,
-                 ca_cert_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_cert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_auth: Optional[pulumi.Input['ProviderClientAuthArgs']] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries_ccc: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 set_namespace_from_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_child_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_get_vault_version: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_tls_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vault_version_override: Optional[pulumi.Input[_builtins.str]] = None):
+                 add_address_to_env: pulumi.Input[Optional[_builtins.str]] = None,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_login: pulumi.Input[Optional['ProviderAuthLoginArgs']] = None,
+                 auth_login_aws: pulumi.Input[Optional['ProviderAuthLoginAwsArgs']] = None,
+                 auth_login_azure: pulumi.Input[Optional['ProviderAuthLoginAzureArgs']] = None,
+                 auth_login_cert: pulumi.Input[Optional['ProviderAuthLoginCertArgs']] = None,
+                 auth_login_gcp: pulumi.Input[Optional['ProviderAuthLoginGcpArgs']] = None,
+                 auth_login_jwt: pulumi.Input[Optional['ProviderAuthLoginJwtArgs']] = None,
+                 auth_login_kerberos: pulumi.Input[Optional['ProviderAuthLoginKerberosArgs']] = None,
+                 auth_login_oci: pulumi.Input[Optional['ProviderAuthLoginOciArgs']] = None,
+                 auth_login_oidc: pulumi.Input[Optional['ProviderAuthLoginOidcArgs']] = None,
+                 auth_login_radius: pulumi.Input[Optional['ProviderAuthLoginRadiusArgs']] = None,
+                 auth_login_token_file: pulumi.Input[Optional['ProviderAuthLoginTokenFileArgs']] = None,
+                 auth_login_userpass: pulumi.Input[Optional['ProviderAuthLoginUserpassArgs']] = None,
+                 ca_cert_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_cert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_auth: pulumi.Input[Optional['ProviderClientAuthArgs']] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input['ProviderHeaderArgs']]]] = None,
+                 max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries_ccc: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 set_namespace_from_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_child_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_get_vault_version: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_tls_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vault_version_override: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Provider resource.
 
@@ -153,362 +153,362 @@ class ProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="addAddressToEnv")
-    def add_address_to_env(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def add_address_to_env(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If true, adds the value of the `address` argument to the Terraform process environment.
         """
         return pulumi.get(self, "add_address_to_env")
 
     @add_address_to_env.setter
-    def add_address_to_env(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def add_address_to_env(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "add_address_to_env", value)
 
     @_builtins.property
     @pulumi.getter
-    def address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         URL of the root of the target Vault server.
         """
         return pulumi.get(self, "address")
 
     @address.setter
-    def address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "address", value)
 
     @_builtins.property
     @pulumi.getter(name="authLogin")
-    def auth_login(self) -> Optional[pulumi.Input['ProviderAuthLoginArgs']]:
+    def auth_login(self) -> pulumi.Input[Optional['ProviderAuthLoginArgs']]:
         """
         Login to vault with an existing auth method using auth/<mount>/login
         """
         return pulumi.get(self, "auth_login")
 
     @auth_login.setter
-    def auth_login(self, value: Optional[pulumi.Input['ProviderAuthLoginArgs']]):
+    def auth_login(self, value: pulumi.Input[Optional['ProviderAuthLoginArgs']]):
         pulumi.set(self, "auth_login", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginAws")
-    def auth_login_aws(self) -> Optional[pulumi.Input['ProviderAuthLoginAwsArgs']]:
+    def auth_login_aws(self) -> pulumi.Input[Optional['ProviderAuthLoginAwsArgs']]:
         """
         Login to vault using the AWS method
         """
         return pulumi.get(self, "auth_login_aws")
 
     @auth_login_aws.setter
-    def auth_login_aws(self, value: Optional[pulumi.Input['ProviderAuthLoginAwsArgs']]):
+    def auth_login_aws(self, value: pulumi.Input[Optional['ProviderAuthLoginAwsArgs']]):
         pulumi.set(self, "auth_login_aws", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginAzure")
-    def auth_login_azure(self) -> Optional[pulumi.Input['ProviderAuthLoginAzureArgs']]:
+    def auth_login_azure(self) -> pulumi.Input[Optional['ProviderAuthLoginAzureArgs']]:
         """
         Login to vault using the azure method
         """
         return pulumi.get(self, "auth_login_azure")
 
     @auth_login_azure.setter
-    def auth_login_azure(self, value: Optional[pulumi.Input['ProviderAuthLoginAzureArgs']]):
+    def auth_login_azure(self, value: pulumi.Input[Optional['ProviderAuthLoginAzureArgs']]):
         pulumi.set(self, "auth_login_azure", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginCert")
-    def auth_login_cert(self) -> Optional[pulumi.Input['ProviderAuthLoginCertArgs']]:
+    def auth_login_cert(self) -> pulumi.Input[Optional['ProviderAuthLoginCertArgs']]:
         """
         Login to vault using the cert method
         """
         return pulumi.get(self, "auth_login_cert")
 
     @auth_login_cert.setter
-    def auth_login_cert(self, value: Optional[pulumi.Input['ProviderAuthLoginCertArgs']]):
+    def auth_login_cert(self, value: pulumi.Input[Optional['ProviderAuthLoginCertArgs']]):
         pulumi.set(self, "auth_login_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginGcp")
-    def auth_login_gcp(self) -> Optional[pulumi.Input['ProviderAuthLoginGcpArgs']]:
+    def auth_login_gcp(self) -> pulumi.Input[Optional['ProviderAuthLoginGcpArgs']]:
         """
         Login to vault using the gcp method
         """
         return pulumi.get(self, "auth_login_gcp")
 
     @auth_login_gcp.setter
-    def auth_login_gcp(self, value: Optional[pulumi.Input['ProviderAuthLoginGcpArgs']]):
+    def auth_login_gcp(self, value: pulumi.Input[Optional['ProviderAuthLoginGcpArgs']]):
         pulumi.set(self, "auth_login_gcp", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginJwt")
-    def auth_login_jwt(self) -> Optional[pulumi.Input['ProviderAuthLoginJwtArgs']]:
+    def auth_login_jwt(self) -> pulumi.Input[Optional['ProviderAuthLoginJwtArgs']]:
         """
         Login to vault using the jwt method
         """
         return pulumi.get(self, "auth_login_jwt")
 
     @auth_login_jwt.setter
-    def auth_login_jwt(self, value: Optional[pulumi.Input['ProviderAuthLoginJwtArgs']]):
+    def auth_login_jwt(self, value: pulumi.Input[Optional['ProviderAuthLoginJwtArgs']]):
         pulumi.set(self, "auth_login_jwt", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginKerberos")
-    def auth_login_kerberos(self) -> Optional[pulumi.Input['ProviderAuthLoginKerberosArgs']]:
+    def auth_login_kerberos(self) -> pulumi.Input[Optional['ProviderAuthLoginKerberosArgs']]:
         """
         Login to vault using the kerberos method
         """
         return pulumi.get(self, "auth_login_kerberos")
 
     @auth_login_kerberos.setter
-    def auth_login_kerberos(self, value: Optional[pulumi.Input['ProviderAuthLoginKerberosArgs']]):
+    def auth_login_kerberos(self, value: pulumi.Input[Optional['ProviderAuthLoginKerberosArgs']]):
         pulumi.set(self, "auth_login_kerberos", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginOci")
-    def auth_login_oci(self) -> Optional[pulumi.Input['ProviderAuthLoginOciArgs']]:
+    def auth_login_oci(self) -> pulumi.Input[Optional['ProviderAuthLoginOciArgs']]:
         """
         Login to vault using the OCI method
         """
         return pulumi.get(self, "auth_login_oci")
 
     @auth_login_oci.setter
-    def auth_login_oci(self, value: Optional[pulumi.Input['ProviderAuthLoginOciArgs']]):
+    def auth_login_oci(self, value: pulumi.Input[Optional['ProviderAuthLoginOciArgs']]):
         pulumi.set(self, "auth_login_oci", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginOidc")
-    def auth_login_oidc(self) -> Optional[pulumi.Input['ProviderAuthLoginOidcArgs']]:
+    def auth_login_oidc(self) -> pulumi.Input[Optional['ProviderAuthLoginOidcArgs']]:
         """
         Login to vault using the oidc method
         """
         return pulumi.get(self, "auth_login_oidc")
 
     @auth_login_oidc.setter
-    def auth_login_oidc(self, value: Optional[pulumi.Input['ProviderAuthLoginOidcArgs']]):
+    def auth_login_oidc(self, value: pulumi.Input[Optional['ProviderAuthLoginOidcArgs']]):
         pulumi.set(self, "auth_login_oidc", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginRadius")
-    def auth_login_radius(self) -> Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']]:
+    def auth_login_radius(self) -> pulumi.Input[Optional['ProviderAuthLoginRadiusArgs']]:
         """
         Login to vault using the radius method
         """
         return pulumi.get(self, "auth_login_radius")
 
     @auth_login_radius.setter
-    def auth_login_radius(self, value: Optional[pulumi.Input['ProviderAuthLoginRadiusArgs']]):
+    def auth_login_radius(self, value: pulumi.Input[Optional['ProviderAuthLoginRadiusArgs']]):
         pulumi.set(self, "auth_login_radius", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginTokenFile")
-    def auth_login_token_file(self) -> Optional[pulumi.Input['ProviderAuthLoginTokenFileArgs']]:
+    def auth_login_token_file(self) -> pulumi.Input[Optional['ProviderAuthLoginTokenFileArgs']]:
         """
         Login to vault using
         """
         return pulumi.get(self, "auth_login_token_file")
 
     @auth_login_token_file.setter
-    def auth_login_token_file(self, value: Optional[pulumi.Input['ProviderAuthLoginTokenFileArgs']]):
+    def auth_login_token_file(self, value: pulumi.Input[Optional['ProviderAuthLoginTokenFileArgs']]):
         pulumi.set(self, "auth_login_token_file", value)
 
     @_builtins.property
     @pulumi.getter(name="authLoginUserpass")
-    def auth_login_userpass(self) -> Optional[pulumi.Input['ProviderAuthLoginUserpassArgs']]:
+    def auth_login_userpass(self) -> pulumi.Input[Optional['ProviderAuthLoginUserpassArgs']]:
         """
         Login to vault using the userpass method
         """
         return pulumi.get(self, "auth_login_userpass")
 
     @auth_login_userpass.setter
-    def auth_login_userpass(self, value: Optional[pulumi.Input['ProviderAuthLoginUserpassArgs']]):
+    def auth_login_userpass(self, value: pulumi.Input[Optional['ProviderAuthLoginUserpassArgs']]):
         pulumi.set(self, "auth_login_userpass", value)
 
     @_builtins.property
     @pulumi.getter(name="caCertDir")
-    def ca_cert_dir(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_cert_dir(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to directory containing CA certificate files to validate the server's certificate.
         """
         return pulumi.get(self, "ca_cert_dir")
 
     @ca_cert_dir.setter
-    def ca_cert_dir(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_cert_dir(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_cert_dir", value)
 
     @_builtins.property
     @pulumi.getter(name="caCertFile")
-    def ca_cert_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_cert_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to a CA certificate file to validate the server's certificate.
         """
         return pulumi.get(self, "ca_cert_file")
 
     @ca_cert_file.setter
-    def ca_cert_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_cert_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_cert_file", value)
 
     @_builtins.property
     @pulumi.getter(name="clientAuth")
-    def client_auth(self) -> Optional[pulumi.Input['ProviderClientAuthArgs']]:
+    def client_auth(self) -> pulumi.Input[Optional['ProviderClientAuthArgs']]:
         """
         Client authentication credentials.
         """
         return pulumi.get(self, "client_auth")
 
     @client_auth.setter
-    def client_auth(self, value: Optional[pulumi.Input['ProviderClientAuthArgs']]):
+    def client_auth(self, value: pulumi.Input[Optional['ProviderClientAuthArgs']]):
         pulumi.set(self, "client_auth", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]]]:
+    def headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProviderHeaderArgs']]]]:
         """
         The headers to send with each Vault request.
         """
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProviderHeaderArgs']]]]):
+    def headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProviderHeaderArgs']]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLeaseTtlSeconds")
-    def max_lease_ttl_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_lease_ttl_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum TTL for secret leases requested by this provider.
         """
         return pulumi.get(self, "max_lease_ttl_seconds")
 
     @max_lease_ttl_seconds.setter
-    def max_lease_ttl_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_lease_ttl_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_lease_ttl_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of retries when a 5xx error code is encountered.
         """
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetriesCcc")
-    def max_retries_ccc(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries_ccc(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of retries for Client Controlled Consistency related operations
         """
         return pulumi.get(self, "max_retries_ccc")
 
     @max_retries_ccc.setter
-    def max_retries_ccc(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries_ccc(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries_ccc", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to use. Available only for Vault Enterprise.
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="setNamespaceFromToken")
-    def set_namespace_from_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def set_namespace_from_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
         """
         return pulumi.get(self, "set_namespace_from_token")
 
     @set_namespace_from_token.setter
-    def set_namespace_from_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def set_namespace_from_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "set_namespace_from_token", value)
 
     @_builtins.property
     @pulumi.getter(name="skipChildToken")
-    def skip_child_token(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_child_token(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set this to true to prevent the creation of ephemeral child token used by this provider.
         """
         return pulumi.get(self, "skip_child_token")
 
     @skip_child_token.setter
-    def skip_child_token(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_child_token(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_child_token", value)
 
     @_builtins.property
     @pulumi.getter(name="skipGetVaultVersion")
-    def skip_get_vault_version(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_get_vault_version(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Skip the dynamic fetching of the Vault server version.
         """
         return pulumi.get(self, "skip_get_vault_version")
 
     @skip_get_vault_version.setter
-    def skip_get_vault_version(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_get_vault_version(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_get_vault_version", value)
 
     @_builtins.property
     @pulumi.getter(name="skipTlsVerify")
-    def skip_tls_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_tls_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set this to true only if the target Vault server is an insecure development instance.
         """
         return pulumi.get(self, "skip_tls_verify")
 
     @skip_tls_verify.setter
-    def skip_tls_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_tls_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_tls_verify", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
-    def tls_server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_server_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name to use as the SNI host when connecting via TLS.
         """
         return pulumi.get(self, "tls_server_name")
 
     @tls_server_name.setter
-    def tls_server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_server_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_server_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Token to use to authenticate to Vault.
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenName")
-    def token_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Token name to use for creating the Vault child token.
         """
         return pulumi.get(self, "token_name")
 
     @token_name.setter
-    def token_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_name", value)
 
     @_builtins.property
     @pulumi.getter(name="vaultVersionOverride")
-    def vault_version_override(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vault_version_override(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Override the Vault server version, which is normally determined dynamically from the target Vault server
         """
         return pulumi.get(self, "vault_version_override")
 
     @vault_version_override.setter
-    def vault_version_override(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vault_version_override(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vault_version_override", value)
 
 
@@ -518,36 +518,36 @@ class Provider(pulumi.ProviderResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_address_to_env: Optional[pulumi.Input[_builtins.str]] = None,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 auth_login: Optional[pulumi.Input[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']]] = None,
-                 auth_login_aws: Optional[pulumi.Input[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']]] = None,
-                 auth_login_azure: Optional[pulumi.Input[Union['ProviderAuthLoginAzureArgs', 'ProviderAuthLoginAzureArgsDict']]] = None,
-                 auth_login_cert: Optional[pulumi.Input[Union['ProviderAuthLoginCertArgs', 'ProviderAuthLoginCertArgsDict']]] = None,
-                 auth_login_gcp: Optional[pulumi.Input[Union['ProviderAuthLoginGcpArgs', 'ProviderAuthLoginGcpArgsDict']]] = None,
-                 auth_login_jwt: Optional[pulumi.Input[Union['ProviderAuthLoginJwtArgs', 'ProviderAuthLoginJwtArgsDict']]] = None,
-                 auth_login_kerberos: Optional[pulumi.Input[Union['ProviderAuthLoginKerberosArgs', 'ProviderAuthLoginKerberosArgsDict']]] = None,
-                 auth_login_oci: Optional[pulumi.Input[Union['ProviderAuthLoginOciArgs', 'ProviderAuthLoginOciArgsDict']]] = None,
-                 auth_login_oidc: Optional[pulumi.Input[Union['ProviderAuthLoginOidcArgs', 'ProviderAuthLoginOidcArgsDict']]] = None,
-                 auth_login_radius: Optional[pulumi.Input[Union['ProviderAuthLoginRadiusArgs', 'ProviderAuthLoginRadiusArgsDict']]] = None,
-                 auth_login_token_file: Optional[pulumi.Input[Union['ProviderAuthLoginTokenFileArgs', 'ProviderAuthLoginTokenFileArgsDict']]] = None,
-                 auth_login_userpass: Optional[pulumi.Input[Union['ProviderAuthLoginUserpassArgs', 'ProviderAuthLoginUserpassArgsDict']]] = None,
-                 ca_cert_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_cert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_auth: Optional[pulumi.Input[Union['ProviderClientAuthArgs', 'ProviderClientAuthArgsDict']]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries_ccc: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 set_namespace_from_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_child_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_get_vault_version: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_tls_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vault_version_override: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_address_to_env: pulumi.Input[Optional[_builtins.str]] = None,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_login: pulumi.Input[Optional[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']]] = None,
+                 auth_login_aws: pulumi.Input[Optional[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']]] = None,
+                 auth_login_azure: pulumi.Input[Optional[Union['ProviderAuthLoginAzureArgs', 'ProviderAuthLoginAzureArgsDict']]] = None,
+                 auth_login_cert: pulumi.Input[Optional[Union['ProviderAuthLoginCertArgs', 'ProviderAuthLoginCertArgsDict']]] = None,
+                 auth_login_gcp: pulumi.Input[Optional[Union['ProviderAuthLoginGcpArgs', 'ProviderAuthLoginGcpArgsDict']]] = None,
+                 auth_login_jwt: pulumi.Input[Optional[Union['ProviderAuthLoginJwtArgs', 'ProviderAuthLoginJwtArgsDict']]] = None,
+                 auth_login_kerberos: pulumi.Input[Optional[Union['ProviderAuthLoginKerberosArgs', 'ProviderAuthLoginKerberosArgsDict']]] = None,
+                 auth_login_oci: pulumi.Input[Optional[Union['ProviderAuthLoginOciArgs', 'ProviderAuthLoginOciArgsDict']]] = None,
+                 auth_login_oidc: pulumi.Input[Optional[Union['ProviderAuthLoginOidcArgs', 'ProviderAuthLoginOidcArgsDict']]] = None,
+                 auth_login_radius: pulumi.Input[Optional[Union['ProviderAuthLoginRadiusArgs', 'ProviderAuthLoginRadiusArgsDict']]] = None,
+                 auth_login_token_file: pulumi.Input[Optional[Union['ProviderAuthLoginTokenFileArgs', 'ProviderAuthLoginTokenFileArgsDict']]] = None,
+                 auth_login_userpass: pulumi.Input[Optional[Union['ProviderAuthLoginUserpassArgs', 'ProviderAuthLoginUserpassArgsDict']]] = None,
+                 ca_cert_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_cert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_auth: pulumi.Input[Optional[Union['ProviderClientAuthArgs', 'ProviderClientAuthArgsDict']]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
+                 max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries_ccc: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 set_namespace_from_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_child_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_get_vault_version: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_tls_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vault_version_override: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         The provider type for the vault package. By default, resources use package-wide configuration
@@ -617,36 +617,36 @@ class Provider(pulumi.ProviderResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_address_to_env: Optional[pulumi.Input[_builtins.str]] = None,
-                 address: Optional[pulumi.Input[_builtins.str]] = None,
-                 auth_login: Optional[pulumi.Input[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']]] = None,
-                 auth_login_aws: Optional[pulumi.Input[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']]] = None,
-                 auth_login_azure: Optional[pulumi.Input[Union['ProviderAuthLoginAzureArgs', 'ProviderAuthLoginAzureArgsDict']]] = None,
-                 auth_login_cert: Optional[pulumi.Input[Union['ProviderAuthLoginCertArgs', 'ProviderAuthLoginCertArgsDict']]] = None,
-                 auth_login_gcp: Optional[pulumi.Input[Union['ProviderAuthLoginGcpArgs', 'ProviderAuthLoginGcpArgsDict']]] = None,
-                 auth_login_jwt: Optional[pulumi.Input[Union['ProviderAuthLoginJwtArgs', 'ProviderAuthLoginJwtArgsDict']]] = None,
-                 auth_login_kerberos: Optional[pulumi.Input[Union['ProviderAuthLoginKerberosArgs', 'ProviderAuthLoginKerberosArgsDict']]] = None,
-                 auth_login_oci: Optional[pulumi.Input[Union['ProviderAuthLoginOciArgs', 'ProviderAuthLoginOciArgsDict']]] = None,
-                 auth_login_oidc: Optional[pulumi.Input[Union['ProviderAuthLoginOidcArgs', 'ProviderAuthLoginOidcArgsDict']]] = None,
-                 auth_login_radius: Optional[pulumi.Input[Union['ProviderAuthLoginRadiusArgs', 'ProviderAuthLoginRadiusArgsDict']]] = None,
-                 auth_login_token_file: Optional[pulumi.Input[Union['ProviderAuthLoginTokenFileArgs', 'ProviderAuthLoginTokenFileArgsDict']]] = None,
-                 auth_login_userpass: Optional[pulumi.Input[Union['ProviderAuthLoginUserpassArgs', 'ProviderAuthLoginUserpassArgsDict']]] = None,
-                 ca_cert_dir: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_cert_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_auth: Optional[pulumi.Input[Union['ProviderClientAuthArgs', 'ProviderClientAuthArgsDict']]] = None,
-                 headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
-                 max_lease_ttl_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries_ccc: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 set_namespace_from_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_child_token: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_get_vault_version: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_tls_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vault_version_override: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_address_to_env: pulumi.Input[Optional[_builtins.str]] = None,
+                 address: pulumi.Input[Optional[_builtins.str]] = None,
+                 auth_login: pulumi.Input[Optional[Union['ProviderAuthLoginArgs', 'ProviderAuthLoginArgsDict']]] = None,
+                 auth_login_aws: pulumi.Input[Optional[Union['ProviderAuthLoginAwsArgs', 'ProviderAuthLoginAwsArgsDict']]] = None,
+                 auth_login_azure: pulumi.Input[Optional[Union['ProviderAuthLoginAzureArgs', 'ProviderAuthLoginAzureArgsDict']]] = None,
+                 auth_login_cert: pulumi.Input[Optional[Union['ProviderAuthLoginCertArgs', 'ProviderAuthLoginCertArgsDict']]] = None,
+                 auth_login_gcp: pulumi.Input[Optional[Union['ProviderAuthLoginGcpArgs', 'ProviderAuthLoginGcpArgsDict']]] = None,
+                 auth_login_jwt: pulumi.Input[Optional[Union['ProviderAuthLoginJwtArgs', 'ProviderAuthLoginJwtArgsDict']]] = None,
+                 auth_login_kerberos: pulumi.Input[Optional[Union['ProviderAuthLoginKerberosArgs', 'ProviderAuthLoginKerberosArgsDict']]] = None,
+                 auth_login_oci: pulumi.Input[Optional[Union['ProviderAuthLoginOciArgs', 'ProviderAuthLoginOciArgsDict']]] = None,
+                 auth_login_oidc: pulumi.Input[Optional[Union['ProviderAuthLoginOidcArgs', 'ProviderAuthLoginOidcArgsDict']]] = None,
+                 auth_login_radius: pulumi.Input[Optional[Union['ProviderAuthLoginRadiusArgs', 'ProviderAuthLoginRadiusArgsDict']]] = None,
+                 auth_login_token_file: pulumi.Input[Optional[Union['ProviderAuthLoginTokenFileArgs', 'ProviderAuthLoginTokenFileArgsDict']]] = None,
+                 auth_login_userpass: pulumi.Input[Optional[Union['ProviderAuthLoginUserpassArgs', 'ProviderAuthLoginUserpassArgsDict']]] = None,
+                 ca_cert_dir: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_cert_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_auth: pulumi.Input[Optional[Union['ProviderClientAuthArgs', 'ProviderClientAuthArgsDict']]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProviderHeaderArgs', 'ProviderHeaderArgsDict']]]]] = None,
+                 max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries_ccc: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 set_namespace_from_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_child_token: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_get_vault_version: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_tls_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vault_version_override: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):

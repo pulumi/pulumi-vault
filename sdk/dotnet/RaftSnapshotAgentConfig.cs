@@ -34,7 +34,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var localBackups = new Vault.Index.RaftSnapshotAgentConfig("local_backups", new()
+    ///     var localBackups = new Vault.RaftSnapshotAgentConfig("local_backups", new()
     ///     {
     ///         Name = "local",
     ///         IntervalSeconds = 86400,
@@ -60,7 +60,7 @@ namespace Pulumi.Vault
     ///     var config = new Config();
     ///     var azureAccountName = config.RequireObject&lt;dynamic&gt;("azureAccountName");
     ///     var azureAccountKey = config.RequireObject&lt;dynamic&gt;("azureAccountKey");
-    ///     var azureBackups = new Vault.Index.RaftSnapshotAgentConfig("azure_backups", new()
+    ///     var azureBackups = new Vault.RaftSnapshotAgentConfig("azure_backups", new()
     ///     {
     ///         Name = "azure_backup",
     ///         IntervalSeconds = 86400,
@@ -90,7 +90,7 @@ namespace Pulumi.Vault
     ///     var config = new Config();
     ///     var azureAccountName = config.RequireObject&lt;dynamic&gt;("azureAccountName");
     ///     var azureClientId = config.RequireObject&lt;dynamic&gt;("azureClientId");
-    ///     var azureManagedIdentity = new Vault.Index.RaftSnapshotAgentConfig("azure_managed_identity", new()
+    ///     var azureManagedIdentity = new Vault.RaftSnapshotAgentConfig("azure_managed_identity", new()
     ///     {
     ///         Name = "azure_managed",
     ///         IntervalSeconds = 86400,

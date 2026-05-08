@@ -125,22 +125,22 @@ export interface OidcAssignmentState {
     /**
      * A set of Vault entity IDs.
      */
-    entityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    entityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A set of Vault group IDs.
      */
-    groupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    groupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the assignment.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -150,20 +150,20 @@ export interface OidcAssignmentArgs {
     /**
      * A set of Vault entity IDs.
      */
-    entityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    entityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A set of Vault group IDs.
      */
-    groupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    groupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the assignment.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

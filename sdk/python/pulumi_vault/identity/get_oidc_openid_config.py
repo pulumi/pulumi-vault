@@ -283,8 +283,8 @@ def get_oidc_openid_config(name: Optional[_builtins.str] = None,
         token_endpoint=pulumi.get(__ret__, 'token_endpoint'),
         token_endpoint_auth_methods_supporteds=pulumi.get(__ret__, 'token_endpoint_auth_methods_supporteds'),
         userinfo_endpoint=pulumi.get(__ret__, 'userinfo_endpoint'))
-def get_oidc_openid_config_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                  namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_oidc_openid_config_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                                  namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOidcOpenidConfigResult]:
     """
     Reads OpenID Configuration from an OIDC Provider provisioned in Vault.

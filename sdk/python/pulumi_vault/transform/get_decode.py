@@ -208,15 +208,15 @@ def get_decode(batch_inputs: Optional[Sequence[Mapping[str, _builtins.str]]] = N
         transformation=pulumi.get(__ret__, 'transformation'),
         tweak=pulumi.get(__ret__, 'tweak'),
         value=pulumi.get(__ret__, 'value'))
-def get_decode_output(batch_inputs: Optional[pulumi.Input[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
-                      batch_results: Optional[pulumi.Input[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
-                      decoded_value: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      path: Optional[pulumi.Input[_builtins.str]] = None,
-                      role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                      transformation: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      tweak: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                      value: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_decode_output(batch_inputs: pulumi.Input[Optional[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
+                      batch_results: pulumi.Input[Optional[Optional[Sequence[Mapping[str, _builtins.str]]]]] = None,
+                      decoded_value: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      path: pulumi.Input[Optional[_builtins.str]] = None,
+                      role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                      transformation: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      tweak: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                      value: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDecodeResult]:
     """
     This data source supports the "/transform/decode/{role_name}" Vault endpoint.

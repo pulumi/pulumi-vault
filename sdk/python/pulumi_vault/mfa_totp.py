@@ -20,16 +20,16 @@ __all__ = ['MfaTotpArgs', 'MfaTotp']
 class MfaTotpArgs:
     def __init__(__self__, *,
                  issuer: pulumi.Input[_builtins.str],
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 digits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_totp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 qr_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 skew: Optional[pulumi.Input[_builtins.int]] = None):
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 digits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_validation_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_totp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 qr_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 skew: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a MfaTotp resource.
 
@@ -87,7 +87,7 @@ class MfaTotpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
         Options include `SHA1`, `SHA256` and `SHA512`
@@ -95,12 +95,12 @@ class MfaTotpArgs:
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def digits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def digits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The number of digits in the generated TOTP token.
         This value can either be 6 or 8.
@@ -108,60 +108,60 @@ class MfaTotpArgs:
         return pulumi.get(self, "digits")
 
     @digits.setter
-    def digits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def digits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "digits", value)
 
     @_builtins.property
     @pulumi.getter(name="keySize")
-    def key_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - Specifies the size in bytes of the generated key.
         """
         return pulumi.get(self, "key_size")
 
     @key_size.setter
-    def key_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxValidationAttempts")
-    def max_validation_attempts(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_validation_attempts(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
         """
         return pulumi.get(self, "max_validation_attempts")
 
     @max_validation_attempts.setter
-    def max_validation_attempts(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_validation_attempts(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_validation_attempts", value)
 
     @_builtins.property
     @pulumi.getter(name="mfaTotpId")
-    def mfa_totp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mfa_totp_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID computed by Vault.
         """
         return pulumi.get(self, "mfa_totp_id")
 
     @mfa_totp_id.setter
-    def mfa_totp_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mfa_totp_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mfa_totp_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -171,36 +171,36 @@ class MfaTotpArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="qrSize")
-    def qr_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def qr_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The pixel size of the generated square QR code.
         """
         return pulumi.get(self, "qr_size")
 
     @qr_size.setter
-    def qr_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def qr_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "qr_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def skew(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def skew(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The number of delay periods that are allowed when validating a TOTP token.
         This value can either be 0 or 1.
@@ -208,24 +208,24 @@ class MfaTotpArgs:
         return pulumi.get(self, "skew")
 
     @skew.setter
-    def skew(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def skew(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "skew", value)
 
 
 @pulumi.input_type
 class _MfaTotpState:
     def __init__(__self__, *,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 digits: Optional[pulumi.Input[_builtins.int]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_totp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 qr_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 skew: Optional[pulumi.Input[_builtins.int]] = None):
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 digits: pulumi.Input[Optional[_builtins.int]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_validation_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_totp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 qr_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 skew: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MfaTotp resources.
 
@@ -272,7 +272,7 @@ class _MfaTotpState:
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
         Options include `SHA1`, `SHA256` and `SHA512`
@@ -280,12 +280,12 @@ class _MfaTotpState:
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def digits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def digits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The number of digits in the generated TOTP token.
         This value can either be 6 or 8.
@@ -293,72 +293,72 @@ class _MfaTotpState:
         return pulumi.get(self, "digits")
 
     @digits.setter
-    def digits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def digits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "digits", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The name of the key's issuing organization.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="keySize")
-    def key_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - Specifies the size in bytes of the generated key.
         """
         return pulumi.get(self, "key_size")
 
     @key_size.setter
-    def key_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_size", value)
 
     @_builtins.property
     @pulumi.getter(name="maxValidationAttempts")
-    def max_validation_attempts(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_validation_attempts(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
         """
         return pulumi.get(self, "max_validation_attempts")
 
     @max_validation_attempts.setter
-    def max_validation_attempts(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_validation_attempts(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_validation_attempts", value)
 
     @_builtins.property
     @pulumi.getter(name="mfaTotpId")
-    def mfa_totp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mfa_totp_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID computed by Vault.
         """
         return pulumi.get(self, "mfa_totp_id")
 
     @mfa_totp_id.setter
-    def mfa_totp_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mfa_totp_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mfa_totp_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -368,36 +368,36 @@ class _MfaTotpState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The length of time used to generate a counter for the TOTP token calculation.
         """
         return pulumi.get(self, "period")
 
     @period.setter
-    def period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "period", value)
 
     @_builtins.property
     @pulumi.getter(name="qrSize")
-    def qr_size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def qr_size(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The pixel size of the generated square QR code.
         """
         return pulumi.get(self, "qr_size")
 
     @qr_size.setter
-    def qr_size(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def qr_size(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "qr_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def skew(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def skew(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `(int)` - The number of delay periods that are allowed when validating a TOTP token.
         This value can either be 0 or 1.
@@ -405,7 +405,7 @@ class _MfaTotpState:
         return pulumi.get(self, "skew")
 
     @skew.setter
-    def skew(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def skew(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "skew", value)
 
 
@@ -415,17 +415,17 @@ class MfaTotp(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 digits: Optional[pulumi.Input[_builtins.int]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_totp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 qr_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 skew: Optional[pulumi.Input[_builtins.int]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 digits: pulumi.Input[Optional[_builtins.int]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_validation_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_totp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 qr_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 skew: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Provides a resource to manage [TOTP MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-totp).
@@ -526,17 +526,17 @@ class MfaTotp(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 digits: Optional[pulumi.Input[_builtins.int]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_totp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 period: Optional[pulumi.Input[_builtins.int]] = None,
-                 qr_size: Optional[pulumi.Input[_builtins.int]] = None,
-                 skew: Optional[pulumi.Input[_builtins.int]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 digits: pulumi.Input[Optional[_builtins.int]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_validation_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_totp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 period: pulumi.Input[Optional[_builtins.int]] = None,
+                 qr_size: pulumi.Input[Optional[_builtins.int]] = None,
+                 skew: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -569,17 +569,17 @@ class MfaTotp(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            digits: Optional[pulumi.Input[_builtins.int]] = None,
-            issuer: Optional[pulumi.Input[_builtins.str]] = None,
-            key_size: Optional[pulumi.Input[_builtins.int]] = None,
-            max_validation_attempts: Optional[pulumi.Input[_builtins.int]] = None,
-            mfa_totp_id: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            period: Optional[pulumi.Input[_builtins.int]] = None,
-            qr_size: Optional[pulumi.Input[_builtins.int]] = None,
-            skew: Optional[pulumi.Input[_builtins.int]] = None) -> 'MfaTotp':
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            digits: pulumi.Input[Optional[_builtins.int]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            key_size: pulumi.Input[Optional[_builtins.int]] = None,
+            max_validation_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+            mfa_totp_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            period: pulumi.Input[Optional[_builtins.int]] = None,
+            qr_size: pulumi.Input[Optional[_builtins.int]] = None,
+            skew: pulumi.Input[Optional[_builtins.int]] = None) -> 'MfaTotp':
         """
         Get an existing MfaTotp resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

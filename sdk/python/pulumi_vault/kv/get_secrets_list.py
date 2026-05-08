@@ -145,8 +145,8 @@ def get_secrets_list(namespace: Optional[_builtins.str] = None,
         names=pulumi.get(__ret__, 'names'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-def get_secrets_list_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                            path: Optional[pulumi.Input[_builtins.str]] = None,
+def get_secrets_list_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                            path: pulumi.Input[Optional[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretsListResult]:
     """
     Lists KV-V1 secrets at a given path in Vault.

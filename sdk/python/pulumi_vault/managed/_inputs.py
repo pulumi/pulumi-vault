@@ -50,35 +50,35 @@ class KeysAwArgsDict(TypedDict):
     """
     The AWS secret key to use
     """
-    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_generate_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
     """
-    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_replace_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
     """
-    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_store_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
     """
-    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    any_mount: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow usage from any mount point within the namespace if 'true'
     """
-    curve: NotRequired[pulumi.Input[_builtins.str]]
+    curve: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
     """
-    endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Used to specify a custom AWS endpoint
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS region where the keys are stored (or will be stored)
     """
-    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    uuid: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the managed key read from Vault
     """
@@ -92,14 +92,14 @@ class KeysAwArgs:
                  kms_key: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  secret_key: pulumi.Input[_builtins.str],
-                 allow_generate_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_replace_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_store_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 any_mount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 curve: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_generate_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_replace_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_store_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 any_mount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 curve: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 uuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key: The AWS access key to use
         :param pulumi.Input[_builtins.str] key_bits: The size in bits for an RSA key. This field is required when 'key_type' is 'RSA'
@@ -213,98 +213,98 @@ class KeysAwArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowGenerateKey")
-    def allow_generate_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_generate_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         """
         return pulumi.get(self, "allow_generate_key")
 
     @allow_generate_key.setter
-    def allow_generate_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_generate_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_generate_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowReplaceKey")
-    def allow_replace_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         """
         return pulumi.get(self, "allow_replace_key")
 
     @allow_replace_key.setter
-    def allow_replace_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowStoreKey")
-    def allow_store_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_store_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         """
         return pulumi.get(self, "allow_store_key")
 
     @allow_store_key.setter
-    def allow_store_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_store_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_store_key", value)
 
     @_builtins.property
     @pulumi.getter(name="anyMount")
-    def any_mount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def any_mount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow usage from any mount point within the namespace if 'true'
         """
         return pulumi.get(self, "any_mount")
 
     @any_mount.setter
-    def any_mount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def any_mount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "any_mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def curve(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def curve(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
         """
         return pulumi.get(self, "curve")
 
     @curve.setter
-    def curve(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def curve(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "curve", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Used to specify a custom AWS endpoint
         """
         return pulumi.get(self, "endpoint")
 
     @endpoint.setter
-    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region where the keys are stored (or will be stored)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the managed key read from Vault
         """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
-    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uuid", value)
 
 
@@ -337,35 +337,35 @@ class KeysAzureArgsDict(TypedDict):
     """
     The Key Vault vault to use the encryption keys for encryption and decryption
     """
-    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_generate_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
     """
-    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_replace_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
     """
-    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_store_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
     """
-    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    any_mount: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow usage from any mount point within the namespace if 'true'
     """
-    environment: NotRequired[pulumi.Input[_builtins.str]]
+    environment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Azure Cloud environment API endpoints to use
     """
-    key_bits: NotRequired[pulumi.Input[_builtins.str]]
+    key_bits: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
     """
-    resource: NotRequired[pulumi.Input[_builtins.str]]
+    resource: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Azure Key Vault resource's DNS Suffix to connect to
     """
-    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    uuid: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the managed key read from Vault
     """
@@ -380,14 +380,14 @@ class KeysAzureArgs:
                  name: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str],
                  vault_name: pulumi.Input[_builtins.str],
-                 allow_generate_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_replace_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_store_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 any_mount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_generate_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_replace_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_store_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 any_mount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 uuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs
         :param pulumi.Input[_builtins.str] client_secret: The client secret for credentials to query the Azure APIs
@@ -515,98 +515,98 @@ class KeysAzureArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowGenerateKey")
-    def allow_generate_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_generate_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         """
         return pulumi.get(self, "allow_generate_key")
 
     @allow_generate_key.setter
-    def allow_generate_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_generate_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_generate_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowReplaceKey")
-    def allow_replace_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         """
         return pulumi.get(self, "allow_replace_key")
 
     @allow_replace_key.setter
-    def allow_replace_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowStoreKey")
-    def allow_store_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_store_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         """
         return pulumi.get(self, "allow_store_key")
 
     @allow_store_key.setter
-    def allow_store_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_store_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_store_key", value)
 
     @_builtins.property
     @pulumi.getter(name="anyMount")
-    def any_mount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def any_mount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow usage from any mount point within the namespace if 'true'
         """
         return pulumi.get(self, "any_mount")
 
     @any_mount.setter
-    def any_mount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def any_mount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "any_mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure Cloud environment API endpoints to use
         """
         return pulumi.get(self, "environment")
 
     @environment.setter
-    def environment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment", value)
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
         """
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter
-    def resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure Key Vault resource's DNS Suffix to connect to
         """
         return pulumi.get(self, "resource")
 
     @resource.setter
-    def resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource", value)
 
     @_builtins.property
     @pulumi.getter
-    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the managed key read from Vault
         """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
-    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uuid", value)
 
 
@@ -639,27 +639,27 @@ class KeysGcpArgsDict(TypedDict):
     """
     The GCP region where the key ring was created.
     """
-    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_generate_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
     """
-    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_replace_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
     """
-    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_store_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
     """
-    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    any_mount: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow usage from any mount point within the namespace if 'true'
     """
-    crypto_key_version: NotRequired[pulumi.Input[_builtins.str]]
+    crypto_key_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The version of the key to use. (Default: 1)
     """
-    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    uuid: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the managed key read from Vault
     """
@@ -674,12 +674,12 @@ class KeysGcpArgs:
                  name: pulumi.Input[_builtins.str],
                  project: pulumi.Input[_builtins.str],
                  region: pulumi.Input[_builtins.str],
-                 allow_generate_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_replace_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_store_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 any_mount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 crypto_key_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_generate_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_replace_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_store_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 any_mount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 crypto_key_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 uuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] algorithm: The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
         :param pulumi.Input[_builtins.str] credentials: The GCP service account credentials JSON to use for authenticating to GCP.
@@ -801,74 +801,74 @@ class KeysGcpArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowGenerateKey")
-    def allow_generate_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_generate_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         """
         return pulumi.get(self, "allow_generate_key")
 
     @allow_generate_key.setter
-    def allow_generate_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_generate_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_generate_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowReplaceKey")
-    def allow_replace_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         """
         return pulumi.get(self, "allow_replace_key")
 
     @allow_replace_key.setter
-    def allow_replace_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowStoreKey")
-    def allow_store_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_store_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         """
         return pulumi.get(self, "allow_store_key")
 
     @allow_store_key.setter
-    def allow_store_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_store_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_store_key", value)
 
     @_builtins.property
     @pulumi.getter(name="anyMount")
-    def any_mount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def any_mount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow usage from any mount point within the namespace if 'true'
         """
         return pulumi.get(self, "any_mount")
 
     @any_mount.setter
-    def any_mount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def any_mount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "any_mount", value)
 
     @_builtins.property
     @pulumi.getter(name="cryptoKeyVersion")
-    def crypto_key_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def crypto_key_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The version of the key to use. (Default: 1)
         """
         return pulumi.get(self, "crypto_key_version")
 
     @crypto_key_version.setter
-    def crypto_key_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def crypto_key_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "crypto_key_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the managed key read from Vault
         """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
-    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uuid", value)
 
 
@@ -889,51 +889,51 @@ class KeysPkcArgsDict(TypedDict):
     """
     The PIN for login
     """
-    allow_generate_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_generate_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
     """
-    allow_replace_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_replace_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
     """
-    allow_store_key: NotRequired[pulumi.Input[_builtins.bool]]
+    allow_store_key: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
     """
-    any_mount: NotRequired[pulumi.Input[_builtins.bool]]
+    any_mount: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Allow usage from any mount point within the namespace if 'true'
     """
-    curve: NotRequired[pulumi.Input[_builtins.str]]
+    curve: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
     """
-    force_rw_session: NotRequired[pulumi.Input[_builtins.str]]
+    force_rw_session: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Force all operations to open up a read-write session to the HSM
     """
-    key_bits: NotRequired[pulumi.Input[_builtins.str]]
+    key_bits: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
     """
-    key_id: NotRequired[pulumi.Input[_builtins.str]]
+    key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The id of a PKCS#11 key to use
     """
-    key_label: NotRequired[pulumi.Input[_builtins.str]]
+    key_label: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The label of the key to use
     """
-    slot: NotRequired[pulumi.Input[_builtins.str]]
+    slot: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
     """
-    token_label: NotRequired[pulumi.Input[_builtins.str]]
+    token_label: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The slot token label to use
     """
-    uuid: NotRequired[pulumi.Input[_builtins.str]]
+    uuid: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ID of the managed key read from Vault
     """
@@ -945,18 +945,18 @@ class KeysPkcArgs:
                  mechanism: pulumi.Input[_builtins.str],
                  name: pulumi.Input[_builtins.str],
                  pin: pulumi.Input[_builtins.str],
-                 allow_generate_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_replace_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_store_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 any_mount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 curve: Optional[pulumi.Input[_builtins.str]] = None,
-                 force_rw_session: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 slot: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_label: Optional[pulumi.Input[_builtins.str]] = None,
-                 uuid: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_generate_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_replace_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_store_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 any_mount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 curve: pulumi.Input[Optional[_builtins.str]] = None,
+                 force_rw_session: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 slot: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_label: pulumi.Input[Optional[_builtins.str]] = None,
+                 uuid: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] library: The name of the kms_library stanza to use from Vault's config to lookup the local library path
         :param pulumi.Input[_builtins.str] mechanism: The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
@@ -1054,146 +1054,146 @@ class KeysPkcArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowGenerateKey")
-    def allow_generate_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_generate_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If no existing key can be found in the referenced backend, instructs Vault to generate a key within the backend
         """
         return pulumi.get(self, "allow_generate_key")
 
     @allow_generate_key.setter
-    def allow_generate_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_generate_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_generate_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowReplaceKey")
-    def allow_replace_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_replace_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         """
         return pulumi.get(self, "allow_replace_key")
 
     @allow_replace_key.setter
-    def allow_replace_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_replace_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_replace_key", value)
 
     @_builtins.property
     @pulumi.getter(name="allowStoreKey")
-    def allow_store_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_store_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         """
         return pulumi.get(self, "allow_store_key")
 
     @allow_store_key.setter
-    def allow_store_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_store_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_store_key", value)
 
     @_builtins.property
     @pulumi.getter(name="anyMount")
-    def any_mount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def any_mount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow usage from any mount point within the namespace if 'true'
         """
         return pulumi.get(self, "any_mount")
 
     @any_mount.setter
-    def any_mount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def any_mount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "any_mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def curve(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def curve(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Supplies the curve value when using the 'CKM_ECDSA' mechanism. Required if 'allow_generate_key' is true
         """
         return pulumi.get(self, "curve")
 
     @curve.setter
-    def curve(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def curve(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "curve", value)
 
     @_builtins.property
     @pulumi.getter(name="forceRwSession")
-    def force_rw_session(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def force_rw_session(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Force all operations to open up a read-write session to the HSM
         """
         return pulumi.get(self, "force_rw_session")
 
     @force_rw_session.setter
-    def force_rw_session(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def force_rw_session(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "force_rw_session", value)
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
         """
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="keyId")
-    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The id of a PKCS#11 key to use
         """
         return pulumi.get(self, "key_id")
 
     @key_id.setter
-    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="keyLabel")
-    def key_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_label(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The label of the key to use
         """
         return pulumi.get(self, "key_label")
 
     @key_label.setter
-    def key_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_label(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_label", value)
 
     @_builtins.property
     @pulumi.getter
-    def slot(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def slot(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
         """
         return pulumi.get(self, "slot")
 
     @slot.setter
-    def slot(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def slot(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "slot", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenLabel")
-    def token_label(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_label(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The slot token label to use
         """
         return pulumi.get(self, "token_label")
 
     @token_label.setter
-    def token_label(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_label(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_label", value)
 
     @_builtins.property
     @pulumi.getter
-    def uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the managed key read from Vault
         """
         return pulumi.get(self, "uuid")
 
     @uuid.setter
-    def uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "uuid", value)
 
 

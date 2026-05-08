@@ -197,73 +197,73 @@ export interface AuthBackendState {
      * The well-formatted URLs of your Assertion Consumer Service (ACS)
      * that should receive a response from the identity provider.
      */
-    acsUrls?: pulumi.Input<pulumi.Input<string>[]>;
+    acsUrls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The role to use if no role is provided during login.
      */
-    defaultRole?: pulumi.Input<string>;
+    defaultRole?: pulumi.Input<string | undefined>;
     /**
      * If set to `true`, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The entity ID of the SAML authentication service provider.
      */
-    entityId?: pulumi.Input<string>;
+    entityId?: pulumi.Input<string | undefined>;
     /**
      * The PEM encoded certificate of the identity provider. Mutually exclusive
      * with `idpMetadataUrl`.
      */
-    idpCert?: pulumi.Input<string>;
+    idpCert?: pulumi.Input<string | undefined>;
     /**
      * The entity ID of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
-    idpEntityId?: pulumi.Input<string>;
+    idpEntityId?: pulumi.Input<string | undefined>;
     /**
      * The metadata URL of the identity provider.
      */
-    idpMetadataUrl?: pulumi.Input<string>;
+    idpMetadataUrl?: pulumi.Input<string | undefined>;
     /**
      * The SSO URL of the identity provider. Mutually exclusive with 
      * `idpMetadataUrl`.
      */
-    idpSsoUrl?: pulumi.Input<string>;
+    idpSsoUrl?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path where the auth backend will be mounted. Defaults to `auth/saml`
      * if not specified.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.saml.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.saml.AuthBackendTune | undefined>;
     /**
      * If set to `true`, validates the signature of 
      * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
      */
-    validateAssertionSignature?: pulumi.Input<boolean>;
+    validateAssertionSignature?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, validates the signature of 
      * the SAML response. Defaults to `false`. Requires Vault 1.19+.
      */
-    validateResponseSignature?: pulumi.Input<boolean>;
+    validateResponseSignature?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
      */
-    verboseLogging?: pulumi.Input<boolean>;
+    verboseLogging?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -278,12 +278,12 @@ export interface AuthBackendArgs {
     /**
      * The role to use if no role is provided during login.
      */
-    defaultRole?: pulumi.Input<string>;
+    defaultRole?: pulumi.Input<string | undefined>;
     /**
      * If set to `true`, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The entity ID of the SAML authentication service provider.
      */
@@ -292,53 +292,53 @@ export interface AuthBackendArgs {
      * The PEM encoded certificate of the identity provider. Mutually exclusive
      * with `idpMetadataUrl`.
      */
-    idpCert?: pulumi.Input<string>;
+    idpCert?: pulumi.Input<string | undefined>;
     /**
      * The entity ID of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
-    idpEntityId?: pulumi.Input<string>;
+    idpEntityId?: pulumi.Input<string | undefined>;
     /**
      * The metadata URL of the identity provider.
      */
-    idpMetadataUrl?: pulumi.Input<string>;
+    idpMetadataUrl?: pulumi.Input<string | undefined>;
     /**
      * The SSO URL of the identity provider. Mutually exclusive with 
      * `idpMetadataUrl`.
      */
-    idpSsoUrl?: pulumi.Input<string>;
+    idpSsoUrl?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path where the auth backend will be mounted. Defaults to `auth/saml`
      * if not specified.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.saml.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.saml.AuthBackendTune | undefined>;
     /**
      * If set to `true`, validates the signature of 
      * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
      */
-    validateAssertionSignature?: pulumi.Input<boolean>;
+    validateAssertionSignature?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, validates the signature of 
      * the SAML response. Defaults to `false`. Requires Vault 1.19+.
      */
-    validateResponseSignature?: pulumi.Input<boolean>;
+    validateResponseSignature?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, logs additional, potentially sensitive
      * information during the SAML exchange according to the current logging level. Not
      * recommended for production.
      */
-    verboseLogging?: pulumi.Input<boolean>;
+    verboseLogging?: pulumi.Input<boolean | undefined>;
 }

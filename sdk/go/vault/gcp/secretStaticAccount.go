@@ -45,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			gcp, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
+//			gcp2, err := gcp.NewSecretBackend(ctx, "gcp", &gcp.SecretBackendArgs{
 //				Path:        pulumi.String("gcp"),
 //				Credentials: pulumi.String(invokeFile.Result),
 //			})
@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			_, err = gcp.NewSecretStaticAccount(ctx, "static_account", &gcp.SecretStaticAccountArgs{
-//				Backend:       gcp.Path,
+//				Backend:       gcp2.Path,
 //				StaticAccount: pulumi.String("project_viewer"),
 //				SecretType:    pulumi.String("access_token"),
 //				TokenScopes: pulumi.StringArray{

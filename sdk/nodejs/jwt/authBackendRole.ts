@@ -342,153 +342,153 @@ export interface AuthBackendRoleState {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      */
-    allowedRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRedirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique name of the auth backend to configure.
      * Defaults to `jwt`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * (Required for roles of type `jwt`, optional for roles of
      * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
-    boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+    boundAudiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, a map of claims to values to match against.
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
-    boundClaims?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    boundClaims?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * How to interpret values in the claims/values
      * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
      * match). Requires Vault 1.4.0 or above.
      */
-    boundClaimsType?: pulumi.Input<string>;
+    boundClaimsType?: pulumi.Input<string | undefined>;
     /**
      * If set, requires that the `sub` claim matches
      * this value.
      */
-    boundSubject?: pulumi.Input<string>;
+    boundSubject?: pulumi.Input<string | undefined>;
     /**
      * If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      */
-    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The amount of leeway to add to all claims to account for clock skew, in
      * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    clockSkewLeeway?: pulumi.Input<number>;
+    clockSkewLeeway?: pulumi.Input<number | undefined>;
     /**
      * Disable bound claim value parsing. Useful when values contain commas.
      */
-    disableBoundClaimsParsing?: pulumi.Input<boolean>;
+    disableBoundClaimsParsing?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
      * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    expirationLeeway?: pulumi.Input<number>;
+    expirationLeeway?: pulumi.Input<number | undefined>;
     /**
      * The claim to use to uniquely identify
      * the set of groups to which the user belongs; this will be used as the names
      * for the Identity group aliases created due to a successful login. The claim
      * value must be a list of strings.
      */
-    groupsClaim?: pulumi.Input<string>;
+    groupsClaim?: pulumi.Input<string | undefined>;
     /**
      * Specifies the allowable elapsed time in seconds since the last time 
      * the user was actively authenticated with the OIDC provider.
      */
-    maxAge?: pulumi.Input<number>;
+    maxAge?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    notBeforeLeeway?: pulumi.Input<number>;
+    notBeforeLeeway?: pulumi.Input<number | undefined>;
     /**
      * If set, a list of OIDC scopes to be used with an OIDC role.
      * The standard scope "openid" is automatically included and need not be specified.
      */
-    oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the role.
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
     /**
      * Type of role, either "oidc" (default) or "jwt".
      */
-    roleType?: pulumi.Input<string>;
+    roleType?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
     /**
      * The claim to use to uniquely identify
      * the user; this will be used as the name for the Identity entity alias created
      * due to a successful login.
      */
-    userClaim?: pulumi.Input<string>;
+    userClaim?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the `userClaim` value uses
      * [JSON pointer](https://www.vaultproject.io/docs/auth/jwt#claim-specifications-and-json-pointer)
      * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      */
-    userClaimJsonPointer?: pulumi.Input<boolean>;
+    userClaimJsonPointer?: pulumi.Input<boolean | undefined>;
     /**
      * Log received OIDC tokens and claims when debug-level
      * logging is active. Not recommended in production since sensitive information may be present
      * in OIDC responses.
      */
-    verboseOidcLogging?: pulumi.Input<boolean>;
+    verboseOidcLogging?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -499,90 +499,90 @@ export interface AuthBackendRoleArgs {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The list of allowed values for redirectUri during OIDC logins.
      * Required for OIDC roles
      */
-    allowedRedirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRedirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique name of the auth backend to configure.
      * Defaults to `jwt`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * (Required for roles of type `jwt`, optional for roles of
      * type `oidc`) List of `aud` claims to match against. Any match is sufficient.
      */
-    boundAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+    boundAudiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set, a map of claims to values to match against.
      * A claim's value must be a string, which may contain one value or multiple
      * comma-separated values, e.g. `"red"` or `"red,green,blue"`.
      */
-    boundClaims?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    boundClaims?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * How to interpret values in the claims/values
      * map (`boundClaims`): can be either `string` (exact match) or `glob` (wildcard
      * match). Requires Vault 1.4.0 or above.
      */
-    boundClaimsType?: pulumi.Input<string>;
+    boundClaimsType?: pulumi.Input<string | undefined>;
     /**
      * If set, requires that the `sub` claim matches
      * this value.
      */
-    boundSubject?: pulumi.Input<string>;
+    boundSubject?: pulumi.Input<string | undefined>;
     /**
      * If set, a map of claims (keys) to be copied
      * to specified metadata fields (values).
      */
-    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    claimMappings?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The amount of leeway to add to all claims to account for clock skew, in
      * seconds. Defaults to `60` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    clockSkewLeeway?: pulumi.Input<number>;
+    clockSkewLeeway?: pulumi.Input<number | undefined>;
     /**
      * Disable bound claim value parsing. Useful when values contain commas.
      */
-    disableBoundClaimsParsing?: pulumi.Input<boolean>;
+    disableBoundClaimsParsing?: pulumi.Input<boolean | undefined>;
     /**
      * The amount of leeway to add to expiration (`exp`) claims to account for
      * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    expirationLeeway?: pulumi.Input<number>;
+    expirationLeeway?: pulumi.Input<number | undefined>;
     /**
      * The claim to use to uniquely identify
      * the set of groups to which the user belongs; this will be used as the names
      * for the Identity group aliases created due to a successful login. The claim
      * value must be a list of strings.
      */
-    groupsClaim?: pulumi.Input<string>;
+    groupsClaim?: pulumi.Input<string | undefined>;
     /**
      * Specifies the allowable elapsed time in seconds since the last time 
      * the user was actively authenticated with the OIDC provider.
      */
-    maxAge?: pulumi.Input<number>;
+    maxAge?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The amount of leeway to add to not before (`nbf`) claims to account for
      * clock skew, in seconds. Defaults to `150` seconds if set to `0` and can be disabled if set to `-1`.
      * Only applicable with "jwt" roles.
      */
-    notBeforeLeeway?: pulumi.Input<number>;
+    notBeforeLeeway?: pulumi.Input<number | undefined>;
     /**
      * If set, a list of OIDC scopes to be used with an OIDC role.
      * The standard scope "openid" is automatically included and need not be specified.
      */
-    oidcScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the role.
      */
@@ -590,43 +590,43 @@ export interface AuthBackendRoleArgs {
     /**
      * Type of role, either "oidc" (default) or "jwt".
      */
-    roleType?: pulumi.Input<string>;
+    roleType?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
     /**
      * The claim to use to uniquely identify
      * the user; this will be used as the name for the Identity entity alias created
@@ -639,11 +639,11 @@ export interface AuthBackendRoleArgs {
      * syntax for referencing claims. By default, the `userClaim` value will not use JSON pointer.
      * Requires Vault 1.11+.
      */
-    userClaimJsonPointer?: pulumi.Input<boolean>;
+    userClaimJsonPointer?: pulumi.Input<boolean | undefined>;
     /**
      * Log received OIDC tokens and claims when debug-level
      * logging is active. Not recommended in production since sensitive information may be present
      * in OIDC responses.
      */
-    verboseOidcLogging?: pulumi.Input<boolean>;
+    verboseOidcLogging?: pulumi.Input<boolean | undefined>;
 }

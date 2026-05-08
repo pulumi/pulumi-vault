@@ -28,7 +28,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke();
+        ///     var children = Vault.GetNamespaces.Invoke();
         /// 
         /// });
         /// ```
@@ -43,7 +43,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke(new()
+        ///     var children = Vault.GetNamespaces.Invoke(new()
         ///     {
         ///         Recursive = true,
         ///     });
@@ -63,7 +63,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke(new()
+        ///     var children = Vault.GetNamespaces.Invoke(new()
         ///     {
         ///         Namespace = "parent",
         ///     });
@@ -73,7 +73,7 @@ namespace Pulumi.Vault
         ///         return __key;
         ///     }, item =&gt; {
         ///         var __key = item.Key;
-        ///         return Vault.Index.GetNamespace.Invoke(new()
+        ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
         ///             Path = __key,
@@ -103,7 +103,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke();
+        ///     var children = Vault.GetNamespaces.Invoke();
         /// 
         /// });
         /// ```
@@ -118,7 +118,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke(new()
+        ///     var children = Vault.GetNamespaces.Invoke(new()
         ///     {
         ///         Recursive = true,
         ///     });
@@ -138,7 +138,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke(new()
+        ///     var children = Vault.GetNamespaces.Invoke(new()
         ///     {
         ///         Namespace = "parent",
         ///     });
@@ -148,7 +148,7 @@ namespace Pulumi.Vault
         ///         return __key;
         ///     }, item =&gt; {
         ///         var __key = item.Key;
-        ///         return Vault.Index.GetNamespace.Invoke(new()
+        ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
         ///             Path = __key,
@@ -178,7 +178,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke();
+        ///     var children = Vault.GetNamespaces.Invoke();
         /// 
         /// });
         /// ```
@@ -193,7 +193,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke(new()
+        ///     var children = Vault.GetNamespaces.Invoke(new()
         ///     {
         ///         Recursive = true,
         ///     });
@@ -213,7 +213,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var children = Vault.Index.GetNamespaces.Invoke(new()
+        ///     var children = Vault.GetNamespaces.Invoke(new()
         ///     {
         ///         Namespace = "parent",
         ///     });
@@ -223,7 +223,7 @@ namespace Pulumi.Vault
         ///         return __key;
         ///     }, item =&gt; {
         ///         var __key = item.Key;
-        ///         return Vault.Index.GetNamespace.Invoke(new()
+        ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
         ///             Path = __key,

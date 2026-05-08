@@ -309,13 +309,13 @@ def get_access_credentials(backend: Optional[_builtins.str] = None,
         security_token=pulumi.get(__ret__, 'security_token'),
         ttl=pulumi.get(__ret__, 'ttl'),
         type=pulumi.get(__ret__, 'type'))
-def get_access_credentials_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                  namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  role: Optional[pulumi.Input[_builtins.str]] = None,
-                                  role_arn: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  ttl: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_access_credentials_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                  namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  region: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  role: pulumi.Input[Optional[_builtins.str]] = None,
+                                  role_arn: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  ttl: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
     Reads AWS credentials from an AWS secret backend in Vault.

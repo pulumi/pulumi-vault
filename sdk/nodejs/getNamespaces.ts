@@ -42,9 +42,9 @@ import * as utilities from "./utilities";
  * const children = vault.getNamespaces({
  *     namespace: "parent",
  * });
- * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: vault.getNamespace({
+ * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
- *     path: __key,
+ *     path: String(__key),
  * }) }), {});
  * ```
  */
@@ -130,9 +130,9 @@ export interface GetNamespacesResult {
  * const children = vault.getNamespaces({
  *     namespace: "parent",
  * });
- * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [__key]: vault.getNamespace({
+ * const child = .reduce((__obj, [__key, __value]) => ({ ...__obj, [String(__key)]: vault.getNamespace({
  *     namespace: _arg0_.namespace,
- *     path: __key,
+ *     path: String(__key),
  * }) }), {});
  * ```
  */
@@ -154,9 +154,9 @@ export interface GetNamespacesOutputArgs {
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * If `true`, it will returns all child namespaces of the given namespace. Defaults to `false`, which returns only direct child namespaces.
      */
-    recursive?: pulumi.Input<boolean>;
+    recursive?: pulumi.Input<boolean | undefined>;
 }

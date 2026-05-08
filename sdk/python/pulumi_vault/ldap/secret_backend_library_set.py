@@ -20,12 +20,12 @@ __all__ = ['SecretBackendLibrarySetArgs', 'SecretBackendLibrarySet']
 class SecretBackendLibrarySetArgs:
     def __init__(__self__, *,
                  service_account_names: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 disable_check_in_enforcement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 disable_check_in_enforcement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackendLibrarySet resource.
 
@@ -73,7 +73,7 @@ class SecretBackendLibrarySetArgs:
 
     @_builtins.property
     @pulumi.getter(name="disableCheckInEnforcement")
-    def disable_check_in_enforcement(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_check_in_enforcement(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable enforcing that service
         accounts must be checked in by the entity or client token that checked them
@@ -82,12 +82,12 @@ class SecretBackendLibrarySetArgs:
         return pulumi.get(self, "disable_check_in_enforcement")
 
     @disable_check_in_enforcement.setter
-    def disable_check_in_enforcement(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_check_in_enforcement(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_check_in_enforcement", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum password time-to-live in seconds. Defaults
         to the configuration max_ttl if not provided.
@@ -95,24 +95,24 @@ class SecretBackendLibrarySetArgs:
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the LDAP secrets backend is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this set of service accounts.
         Must be unique within the backend.
@@ -120,12 +120,12 @@ class SecretBackendLibrarySetArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -135,12 +135,12 @@ class SecretBackendLibrarySetArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The password time-to-live in seconds. Defaults to the configuration
         ttl if not provided.
@@ -148,20 +148,20 @@ class SecretBackendLibrarySetArgs:
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
 
 @pulumi.input_type
 class _SecretBackendLibrarySetState:
     def __init__(__self__, *,
-                 disable_check_in_enforcement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 disable_check_in_enforcement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendLibrarySet resources.
 
@@ -198,7 +198,7 @@ class _SecretBackendLibrarySetState:
 
     @_builtins.property
     @pulumi.getter(name="disableCheckInEnforcement")
-    def disable_check_in_enforcement(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_check_in_enforcement(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable enforcing that service
         accounts must be checked in by the entity or client token that checked them
@@ -207,12 +207,12 @@ class _SecretBackendLibrarySetState:
         return pulumi.get(self, "disable_check_in_enforcement")
 
     @disable_check_in_enforcement.setter
-    def disable_check_in_enforcement(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_check_in_enforcement(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_check_in_enforcement", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum password time-to-live in seconds. Defaults
         to the configuration max_ttl if not provided.
@@ -220,24 +220,24 @@ class _SecretBackendLibrarySetState:
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the LDAP secrets backend is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this set of service accounts.
         Must be unique within the backend.
@@ -245,12 +245,12 @@ class _SecretBackendLibrarySetState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -260,24 +260,24 @@ class _SecretBackendLibrarySetState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountNames")
-    def service_account_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def service_account_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the slice of service accounts mapped to this set.
         """
         return pulumi.get(self, "service_account_names")
 
     @service_account_names.setter
-    def service_account_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def service_account_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "service_account_names", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The password time-to-live in seconds. Defaults to the configuration
         ttl if not provided.
@@ -285,7 +285,7 @@ class _SecretBackendLibrarySetState:
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
 
@@ -295,13 +295,13 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 disable_check_in_enforcement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 disable_check_in_enforcement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Creates a library on an LDAP Secret Backend for Vault. Libraries create
@@ -434,13 +434,13 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 disable_check_in_enforcement: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 disable_check_in_enforcement: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -469,13 +469,13 @@ class SecretBackendLibrarySet(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            disable_check_in_enforcement: Optional[pulumi.Input[_builtins.bool]] = None,
-            max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            mount: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            service_account_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretBackendLibrarySet':
+            disable_check_in_enforcement: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecretBackendLibrarySet':
         """
         Get an existing SecretBackendLibrarySet resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
