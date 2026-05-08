@@ -219,51 +219,51 @@ export interface GroupState {
      * `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
      * decoupled manner.
      */
-    externalMemberEntityIds?: pulumi.Input<boolean>;
+    externalMemberEntityIds?: pulumi.Input<boolean | undefined>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any Group IDs
      * returned from Vault or specified in the resource. You can use
      * `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
      * decoupled manner.
      */
-    externalMemberGroupIds?: pulumi.Input<boolean>;
+    externalMemberGroupIds?: pulumi.Input<boolean | undefined>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies returned from
      * Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
      * policies for this group in a decoupled manner.
      */
-    externalPolicies?: pulumi.Input<boolean>;
+    externalPolicies?: pulumi.Input<boolean | undefined>;
     /**
      * A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A Map of additional metadata to associate with the group.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the identity group to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A list of policies to apply to the group.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Type of the group, internal or external. Defaults to `internal`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -276,49 +276,49 @@ export interface GroupArgs {
      * `vault.identity.GroupMemberEntityIds` to manage Entity IDs for this group in a
      * decoupled manner.
      */
-    externalMemberEntityIds?: pulumi.Input<boolean>;
+    externalMemberEntityIds?: pulumi.Input<boolean | undefined>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any Group IDs
      * returned from Vault or specified in the resource. You can use
      * `vault.identity.GroupMemberGroupIds` to manage Group IDs for this group in a
      * decoupled manner.
      */
-    externalMemberGroupIds?: pulumi.Input<boolean>;
+    externalMemberGroupIds?: pulumi.Input<boolean | undefined>;
     /**
      * `false` by default. If set to `true`, this resource will ignore any policies returned from
      * Vault or specified in the resource. You can use `vault.identity.GroupPolicies` to manage
      * policies for this group in a decoupled manner.
      */
-    externalPolicies?: pulumi.Input<boolean>;
+    externalPolicies?: pulumi.Input<boolean | undefined>;
     /**
      * A list of Entity IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of Group IDs to be assigned as group members. Not allowed on `external` groups.
      */
-    memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A Map of additional metadata to associate with the group.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Name of the identity group to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A list of policies to apply to the group.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Type of the group, internal or external. Defaults to `internal`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

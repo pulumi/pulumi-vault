@@ -119,20 +119,20 @@ export function getCmacOutput(args: GetCmacOutputArgs, opts?: pulumi.InvokeOutpu
  * A collection of arguments for invoking getCmac.
  */
 export interface GetCmacOutputArgs {
-    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * The results returned from Vault if using `batchInput`
      */
-    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * The CMAC returned from Vault if using `input`
      */
-    cmac?: pulumi.Input<string>;
-    input?: pulumi.Input<string>;
-    keyVersion?: pulumi.Input<number>;
-    macLength?: pulumi.Input<number>;
+    cmac?: pulumi.Input<string | undefined>;
+    input?: pulumi.Input<string | undefined>;
+    keyVersion?: pulumi.Input<number | undefined>;
+    macLength?: pulumi.Input<number | undefined>;
     name: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     path: pulumi.Input<string>;
-    urlMacLength?: pulumi.Input<number>;
+    urlMacLength?: pulumi.Input<number | undefined>;
 }

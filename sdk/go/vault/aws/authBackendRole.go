@@ -33,14 +33,14 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
+//			aws2, err := vault.NewAuthBackend(ctx, "aws", &vault.AuthBackendArgs{
 //				Type: pulumi.String("aws"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = aws.NewAuthBackendRole(ctx, "example", &aws.AuthBackendRoleArgs{
-//				Backend:  aws.Path,
+//				Backend:  aws2.Path,
 //				Role:     pulumi.String("test-role"),
 //				AuthType: pulumi.String("iam"),
 //				BoundAmiIds: pulumi.StringArray{

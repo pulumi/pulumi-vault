@@ -34,7 +34,7 @@ import * as utilities from "../utilities";
  *     tenantId: "11111111-2222-3333-4444-222222222222",
  *     clientId: "11111111-2222-3333-4444-333333333333",
  *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
+ *     identityTokenTtl: Number("<TOKEN_TTL>"),
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,
  * });
@@ -373,158 +373,158 @@ export interface BackendState {
     /**
      * Accessor of the mount
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The OAuth2 client id to connect to Azure.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The OAuth2 client secret to connect to Azure.
      * Conflicts with `clientSecretWo`.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The Azure environment.
      */
-    environment?: pulumi.Input<string>;
+    environment?: pulumi.Input<string | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The audience claim value. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The key to use for signing identity tokens.
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique path this backend should be mounted at. Defaults to `azure`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      */
-    rootPasswordTtl?: pulumi.Input<number>;
+    rootPasswordTtl?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * The subscription id for the Azure Active Directory.
      */
-    subscriptionId?: pulumi.Input<string>;
+    subscriptionId?: pulumi.Input<string | undefined>;
     /**
      * The tenant id for the Azure Active Directory.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -534,146 +534,146 @@ export interface BackendArgs {
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The OAuth2 client id to connect to Azure.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The OAuth2 client secret to connect to Azure.
      * Conflicts with `clientSecretWo`.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The client secret for credentials to query the Azure APIs. This is a write-only field and will not be read back from Vault.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only clientSecretWo field. Incrementing this value will trigger an update to the client secret.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The Azure environment.
      */
-    environment?: pulumi.Input<string>;
+    environment?: pulumi.Input<string | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The audience claim value. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The key to use for signing identity tokens.
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique path this backend should be mounted at. Defaults to `azure`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Specifies the TTL of the root password when rotate-root generates a new client secret. Requires Vault 1.15+.
      */
-    rootPasswordTtl?: pulumi.Input<number>;
+    rootPasswordTtl?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * The subscription id for the Azure Active Directory.
      */

@@ -19,12 +19,12 @@ __all__ = ['OidcKeyArgs', 'OidcKey']
 @pulumi.input_type
 class OidcKeyArgs:
     def __init__(__self__, *,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 verification_ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 verification_ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a OidcKey resource.
 
@@ -56,7 +56,7 @@ class OidcKeyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Signing algorithm to use. Signing algorithm to use.
         Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
@@ -64,12 +64,12 @@ class OidcKeyArgs:
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedClientIds")
-    def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_client_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Array of role client ID allowed to use this key for signing. If
         empty, no roles are allowed. If `["*"]`, all roles are allowed.
@@ -77,24 +77,24 @@ class OidcKeyArgs:
         return pulumi.get(self, "allowed_client_ids")
 
     @allowed_client_ids.setter
-    def allowed_client_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_client_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_client_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the OIDC Key to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -104,24 +104,24 @@ class OidcKeyArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How often to generate a new signing key in number of seconds
         """
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="verificationTtl")
-    def verification_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def verification_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         "Controls how long the public portion of a signing key will be
         available for verification after being rotated in seconds.
@@ -129,19 +129,19 @@ class OidcKeyArgs:
         return pulumi.get(self, "verification_ttl")
 
     @verification_ttl.setter
-    def verification_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def verification_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "verification_ttl", value)
 
 
 @pulumi.input_type
 class _OidcKeyState:
     def __init__(__self__, *,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 verification_ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 verification_ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering OidcKey resources.
 
@@ -173,7 +173,7 @@ class _OidcKeyState:
 
     @_builtins.property
     @pulumi.getter
-    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Signing algorithm to use. Signing algorithm to use.
         Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.
@@ -181,12 +181,12 @@ class _OidcKeyState:
         return pulumi.get(self, "algorithm")
 
     @algorithm.setter
-    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedClientIds")
-    def allowed_client_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_client_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Array of role client ID allowed to use this key for signing. If
         empty, no roles are allowed. If `["*"]`, all roles are allowed.
@@ -194,24 +194,24 @@ class _OidcKeyState:
         return pulumi.get(self, "allowed_client_ids")
 
     @allowed_client_ids.setter
-    def allowed_client_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_client_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_client_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the OIDC Key to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -221,24 +221,24 @@ class _OidcKeyState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How often to generate a new signing key in number of seconds
         """
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="verificationTtl")
-    def verification_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def verification_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         "Controls how long the public portion of a signing key will be
         available for verification after being rotated in seconds.
@@ -246,7 +246,7 @@ class _OidcKeyState:
         return pulumi.get(self, "verification_ttl")
 
     @verification_ttl.setter
-    def verification_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def verification_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "verification_ttl", value)
 
 
@@ -256,12 +256,12 @@ class OidcKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 verification_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 verification_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Creates an Identity OIDC Named Key for Vault Identity secrets engine which is used by a role
@@ -389,12 +389,12 @@ class OidcKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 verification_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 verification_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -420,12 +420,12 @@ class OidcKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_client_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-            verification_ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'OidcKey':
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            verification_ttl: pulumi.Input[Optional[_builtins.int]] = None) -> 'OidcKey':
         """
         Get an existing OidcKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

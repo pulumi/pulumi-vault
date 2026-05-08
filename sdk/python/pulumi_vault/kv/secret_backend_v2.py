@@ -20,10 +20,10 @@ __all__ = ['SecretBackendV2Args', 'SecretBackendV2']
 class SecretBackendV2Args:
     def __init__(__self__, *,
                  mount: pulumi.Input[_builtins.str],
-                 cas_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delete_version_after: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_versions: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 cas_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delete_version_after: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_versions: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendV2 resource.
 
@@ -62,7 +62,7 @@ class SecretBackendV2Args:
 
     @_builtins.property
     @pulumi.getter(name="casRequired")
-    def cas_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cas_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, all keys will require the cas
         parameter to be set on all write requests.
@@ -70,12 +70,12 @@ class SecretBackendV2Args:
         return pulumi.get(self, "cas_required")
 
     @cas_required.setter
-    def cas_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cas_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cas_required", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteVersionAfter")
-    def delete_version_after(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def delete_version_after(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         If set, specifies the length of time before
         a version is deleted. Accepts duration in integer seconds.
@@ -83,24 +83,24 @@ class SecretBackendV2Args:
         return pulumi.get(self, "delete_version_after")
 
     @delete_version_after.setter
-    def delete_version_after(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def delete_version_after(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "delete_version_after", value)
 
     @_builtins.property
     @pulumi.getter(name="maxVersions")
-    def max_versions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_versions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of versions to keep per key.
         """
         return pulumi.get(self, "max_versions")
 
     @max_versions.setter
-    def max_versions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_versions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_versions", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -110,18 +110,18 @@ class SecretBackendV2Args:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _SecretBackendV2State:
     def __init__(__self__, *,
-                 cas_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delete_version_after: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_versions: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 cas_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delete_version_after: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_versions: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendV2 resources.
 
@@ -149,7 +149,7 @@ class _SecretBackendV2State:
 
     @_builtins.property
     @pulumi.getter(name="casRequired")
-    def cas_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cas_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, all keys will require the cas
         parameter to be set on all write requests.
@@ -157,12 +157,12 @@ class _SecretBackendV2State:
         return pulumi.get(self, "cas_required")
 
     @cas_required.setter
-    def cas_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cas_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cas_required", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteVersionAfter")
-    def delete_version_after(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def delete_version_after(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         If set, specifies the length of time before
         a version is deleted. Accepts duration in integer seconds.
@@ -170,36 +170,36 @@ class _SecretBackendV2State:
         return pulumi.get(self, "delete_version_after")
 
     @delete_version_after.setter
-    def delete_version_after(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def delete_version_after(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "delete_version_after", value)
 
     @_builtins.property
     @pulumi.getter(name="maxVersions")
-    def max_versions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_versions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of versions to keep per key.
         """
         return pulumi.get(self, "max_versions")
 
     @max_versions.setter
-    def max_versions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_versions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_versions", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path where KV-V2 engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -209,7 +209,7 @@ class _SecretBackendV2State:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -219,11 +219,11 @@ class SecretBackendV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cas_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delete_version_after: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_versions: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 cas_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delete_version_after: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_versions: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Configures KV-V2 backend level settings that are applied to
@@ -347,11 +347,11 @@ class SecretBackendV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cas_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delete_version_after: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_versions: Optional[pulumi.Input[_builtins.int]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 cas_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delete_version_after: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_versions: pulumi.Input[Optional[_builtins.int]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -378,11 +378,11 @@ class SecretBackendV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cas_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            delete_version_after: Optional[pulumi.Input[_builtins.int]] = None,
-            max_versions: Optional[pulumi.Input[_builtins.int]] = None,
-            mount: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendV2':
+            cas_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            delete_version_after: pulumi.Input[Optional[_builtins.int]] = None,
+            max_versions: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendV2':
         """
         Get an existing SecretBackendV2 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

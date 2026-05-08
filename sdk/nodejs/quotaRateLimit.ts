@@ -172,7 +172,7 @@ export interface QuotaRateLimitState {
      * If set, when a client reaches a rate limit threshold, the client will
      * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
      */
-    blockInterval?: pulumi.Input<number>;
+    blockInterval?: pulumi.Input<number | undefined>;
     /**
      * Attribute used to group requests for rate limiting. Limits are enforced independently for each
      * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
@@ -182,26 +182,26 @@ export interface QuotaRateLimitState {
      * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
      * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
      */
-    groupBy?: pulumi.Input<string>;
+    groupBy?: pulumi.Input<string | undefined>;
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
-    inheritable?: pulumi.Input<boolean>;
+    inheritable?: pulumi.Input<boolean | undefined>;
     /**
      * The duration in seconds to enforce rate limiting for.
      */
-    interval?: pulumi.Input<number>;
+    interval?: pulumi.Input<number | undefined>;
     /**
      * Name of the rate limit quota
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -210,22 +210,22 @@ export interface QuotaRateLimitState {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of requests at any given second to be allowed by the quota
      * rule. The `rate` must be positive.
      */
-    rate?: pulumi.Input<number>;
+    rate?: pulumi.Input<number | undefined>;
     /**
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
      * the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
      * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
      */
-    secondaryRate?: pulumi.Input<number>;
+    secondaryRate?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -236,7 +236,7 @@ export interface QuotaRateLimitArgs {
      * If set, when a client reaches a rate limit threshold, the client will
      * be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
      */
-    blockInterval?: pulumi.Input<number>;
+    blockInterval?: pulumi.Input<number | undefined>;
     /**
      * Attribute used to group requests for rate limiting. Limits are enforced independently for each
      * group. Valid `groupBy` modes are: 1) `ip` that groups requests by their source IP address (**`groupBy` defaults to
@@ -246,26 +246,26 @@ export interface QuotaRateLimitArgs {
      * connected to an entity); and 4) `entityThenNone` which also groups requests by their entity ID when available, but
      * the rest is all grouped together (i.e. unauthenticated or with authentication not connected to an entity).
      */
-    groupBy?: pulumi.Input<string>;
+    groupBy?: pulumi.Input<string | undefined>;
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
-    inheritable?: pulumi.Input<boolean>;
+    inheritable?: pulumi.Input<boolean | undefined>;
     /**
      * The duration in seconds to enforce rate limiting for.
      */
-    interval?: pulumi.Input<number>;
+    interval?: pulumi.Input<number | undefined>;
     /**
      * Name of the rate limit quota
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -274,7 +274,7 @@ export interface QuotaRateLimitArgs {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The maximum number of requests at any given second to be allowed by the quota
      * rule. The `rate` must be positive.
@@ -283,11 +283,11 @@ export interface QuotaRateLimitArgs {
     /**
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Can only be set for the `groupBy` modes `entityThenIp` or `entityThenNone`. This is
      * the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
      * that contain an entity ID are subject to the `rate` field instead. Defaults to the same value as `rate`.
      */
-    secondaryRate?: pulumi.Input<number>;
+    secondaryRate?: pulumi.Input<number | undefined>;
 }

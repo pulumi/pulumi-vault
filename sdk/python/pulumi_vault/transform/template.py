@@ -20,13 +20,13 @@ __all__ = ['TemplateArgs', 'Template']
 class TemplateArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[_builtins.str],
-                 alphabet: Optional[pulumi.Input[_builtins.str]] = None,
-                 decode_formats: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 encode_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pattern: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alphabet: pulumi.Input[Optional[_builtins.str]] = None,
+                 decode_formats: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 encode_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pattern: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Template resource.
 
@@ -74,19 +74,19 @@ class TemplateArgs:
 
     @_builtins.property
     @pulumi.getter
-    def alphabet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alphabet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alphabet to use for this template. This is only used during FPE transformations.
         """
         return pulumi.get(self, "alphabet")
 
     @alphabet.setter
-    def alphabet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alphabet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alphabet", value)
 
     @_builtins.property
     @pulumi.getter(name="decodeFormats")
-    def decode_formats(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def decode_formats(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Optional mapping of name to regular expression template, used to customize
         the decoded output. (requires Vault Enterprise 1.9+)
@@ -94,12 +94,12 @@ class TemplateArgs:
         return pulumi.get(self, "decode_formats")
 
     @decode_formats.setter
-    def decode_formats(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def decode_formats(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "decode_formats", value)
 
     @_builtins.property
     @pulumi.getter(name="encodeFormat")
-    def encode_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encode_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The regular expression template used to format encoded values.
         (requires Vault Enterprise 1.9+)
@@ -107,24 +107,24 @@ class TemplateArgs:
         return pulumi.get(self, "encode_format")
 
     @encode_format.setter
-    def encode_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encode_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encode_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the template.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -134,45 +134,45 @@ class TemplateArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def pattern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pattern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pattern used for matching. Currently, only regular expression pattern is supported.
         """
         return pulumi.get(self, "pattern")
 
     @pattern.setter
-    def pattern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pattern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pattern", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pattern type to use for match detection. Currently, only regex is supported.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _TemplateState:
     def __init__(__self__, *,
-                 alphabet: Optional[pulumi.Input[_builtins.str]] = None,
-                 decode_formats: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 encode_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 pattern: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alphabet: pulumi.Input[Optional[_builtins.str]] = None,
+                 decode_formats: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 encode_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 pattern: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Template resources.
 
@@ -209,19 +209,19 @@ class _TemplateState:
 
     @_builtins.property
     @pulumi.getter
-    def alphabet(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def alphabet(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The alphabet to use for this template. This is only used during FPE transformations.
         """
         return pulumi.get(self, "alphabet")
 
     @alphabet.setter
-    def alphabet(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def alphabet(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "alphabet", value)
 
     @_builtins.property
     @pulumi.getter(name="decodeFormats")
-    def decode_formats(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def decode_formats(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Optional mapping of name to regular expression template, used to customize
         the decoded output. (requires Vault Enterprise 1.9+)
@@ -229,12 +229,12 @@ class _TemplateState:
         return pulumi.get(self, "decode_formats")
 
     @decode_formats.setter
-    def decode_formats(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def decode_formats(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "decode_formats", value)
 
     @_builtins.property
     @pulumi.getter(name="encodeFormat")
-    def encode_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encode_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The regular expression template used to format encoded values.
         (requires Vault Enterprise 1.9+)
@@ -242,24 +242,24 @@ class _TemplateState:
         return pulumi.get(self, "encode_format")
 
     @encode_format.setter
-    def encode_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encode_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encode_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the template.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -269,43 +269,43 @@ class _TemplateState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to where the back-end is mounted within Vault.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def pattern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pattern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pattern used for matching. Currently, only regular expression pattern is supported.
         """
         return pulumi.get(self, "pattern")
 
     @pattern.setter
-    def pattern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pattern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pattern", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pattern type to use for match detection. Currently, only regex is supported.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -315,14 +315,14 @@ class Template(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alphabet: Optional[pulumi.Input[_builtins.str]] = None,
-                 decode_formats: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 encode_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 pattern: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 alphabet: pulumi.Input[Optional[_builtins.str]] = None,
+                 decode_formats: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 encode_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 pattern: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource supports the `/transform/template/{name}` Vault endpoint.
@@ -445,14 +445,14 @@ class Template(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alphabet: Optional[pulumi.Input[_builtins.str]] = None,
-                 decode_formats: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 encode_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 pattern: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 alphabet: pulumi.Input[Optional[_builtins.str]] = None,
+                 decode_formats: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 encode_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 pattern: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -482,14 +482,14 @@ class Template(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alphabet: Optional[pulumi.Input[_builtins.str]] = None,
-            decode_formats: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            encode_format: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            pattern: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Template':
+            alphabet: pulumi.Input[Optional[_builtins.str]] = None,
+            decode_formats: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            encode_format: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            pattern: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Template':
         """
         Get an existing Template resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -139,8 +139,8 @@ def get_oidc_public_keys(name: Optional[_builtins.str] = None,
         keys=pulumi.get(__ret__, 'keys'),
         name=pulumi.get(__ret__, 'name'),
         namespace=pulumi.get(__ret__, 'namespace'))
-def get_oidc_public_keys_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_oidc_public_keys_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                                namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOidcPublicKeysResult]:
     """
     Reads well known public keys from an OIDC Provider provisioned in Vault.

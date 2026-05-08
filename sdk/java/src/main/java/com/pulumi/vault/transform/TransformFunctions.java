@@ -40,8 +40,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -110,8 +110,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -180,8 +180,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -250,8 +250,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -320,8 +320,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetDecodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -390,8 +390,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -460,8 +460,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -530,8 +530,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -600,8 +600,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -670,8 +670,8 @@ public final class TransformFunctions {
      * import com.pulumi.vault.transform.RoleArgs;
      * import com.pulumi.vault.transform.TransformFunctions;
      * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * for (const range of childNamespaces.map((v, k) => ({key: k, value: v}))) {
  *     children.push(new vault.Namespace(`children-${range.key}`, {
  *         namespace: parent.path,
- *         path: range.key,
+ *         path: String(range.key),
  *     }));
  * }
  * const childrenMount: vault.Mount[] = [];
@@ -198,27 +198,27 @@ export interface NamespaceState {
      * Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      */
-    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Vault server's internal ID of the namespace.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * The path of the namespace. Must not have a trailing `/`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
      * The path is relative to the provider's `namespace` argument.
      */
-    pathFq?: pulumi.Input<string>;
+    pathFq?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -229,14 +229,14 @@ export interface NamespaceArgs {
      * Custom metadata describing this namespace. Value type
      * is `map[string]string`. Requires Vault version 1.12+.
      */
-    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The path of the namespace. Must not have a trailing `/`.
      */
@@ -245,5 +245,5 @@ export interface NamespaceArgs {
      * The fully qualified path to the namespace. Useful when provisioning resources in a child `namespace`.
      * The path is relative to the provider's `namespace` argument.
      */
-    pathFq?: pulumi.Input<string>;
+    pathFq?: pulumi.Input<string | undefined>;
 }

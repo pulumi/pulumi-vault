@@ -113,22 +113,22 @@ export interface AlphabetState {
     /**
      * A string of characters that contains the alphabet set.
      */
-    alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string | undefined>;
     /**
      * The name of the alphabet.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -138,18 +138,18 @@ export interface AlphabetArgs {
     /**
      * A string of characters that contains the alphabet set.
      */
-    alphabet?: pulumi.Input<string>;
+    alphabet?: pulumi.Input<string | undefined>;
     /**
      * The name of the alphabet.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */

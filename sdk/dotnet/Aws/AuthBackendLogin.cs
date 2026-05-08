@@ -25,7 +25,7 @@ namespace Pulumi.Vault.Aws
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var aws = new Vault.Index.AuthBackend("aws", new()
+    ///     var aws = new Vault.AuthBackend("aws", new()
     ///     {
     ///         Type = "aws",
     ///         Path = "aws",

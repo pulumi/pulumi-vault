@@ -24,7 +24,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myTotp = new Vault.Index.MfaTotp("my_totp", new()
+    ///     var myTotp = new Vault.MfaTotp("my_totp", new()
     ///     {
     ///         Name = "my_totp",
     ///         Issuer = "hashicorp",

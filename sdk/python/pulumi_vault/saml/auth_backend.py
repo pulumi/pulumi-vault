@@ -23,18 +23,18 @@ class AuthBackendArgs:
     def __init__(__self__, *,
                  acs_urls: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  entity_id: pulumi.Input[_builtins.str],
-                 default_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 idp_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_metadata_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
-                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
+                 default_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 idp_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None,
+                 validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
 
@@ -122,19 +122,19 @@ class AuthBackendArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultRole")
-    def default_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The role to use if no role is provided during login.
         """
         return pulumi.get(self, "default_role")
 
     @default_role.setter
-    def default_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_role", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -142,12 +142,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter(name="idpCert")
-    def idp_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PEM encoded certificate of the identity provider. Mutually exclusive
         with `idp_metadata_url`.
@@ -155,12 +155,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "idp_cert")
 
     @idp_cert.setter
-    def idp_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="idpEntityId")
-    def idp_entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The entity ID of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
@@ -168,24 +168,24 @@ class AuthBackendArgs:
         return pulumi.get(self, "idp_entity_id")
 
     @idp_entity_id.setter
-    def idp_entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="idpMetadataUrl")
-    def idp_metadata_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_metadata_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The metadata URL of the identity provider.
         """
         return pulumi.get(self, "idp_metadata_url")
 
     @idp_metadata_url.setter
-    def idp_metadata_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_metadata_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_metadata_url", value)
 
     @_builtins.property
     @pulumi.getter(name="idpSsoUrl")
-    def idp_sso_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSO URL of the identity provider. Mutually exclusive with 
         `idp_metadata_url`.
@@ -193,12 +193,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "idp_sso_url")
 
     @idp_sso_url.setter
-    def idp_sso_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_sso_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_sso_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -208,12 +208,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path where the auth backend will be mounted. Defaults to `auth/saml`
         if not specified.
@@ -221,12 +221,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+    def tune(self) -> pulumi.Input[Optional['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
 
@@ -235,12 +235,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "tune")
 
     @tune.setter
-    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+    def tune(self, value: pulumi.Input[Optional['AuthBackendTuneArgs']]):
         pulumi.set(self, "tune", value)
 
     @_builtins.property
     @pulumi.getter(name="validateAssertionSignature")
-    def validate_assertion_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_assertion_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, validates the signature of 
         the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
@@ -248,12 +248,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "validate_assertion_signature")
 
     @validate_assertion_signature.setter
-    def validate_assertion_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_assertion_signature(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_assertion_signature", value)
 
     @_builtins.property
     @pulumi.getter(name="validateResponseSignature")
-    def validate_response_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_response_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, validates the signature of 
         the SAML response. Defaults to `false`. Requires Vault 1.19+.
@@ -261,12 +261,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "validate_response_signature")
 
     @validate_response_signature.setter
-    def validate_response_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_response_signature(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_response_signature", value)
 
     @_builtins.property
     @pulumi.getter(name="verboseLogging")
-    def verbose_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verbose_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, logs additional, potentially sensitive
         information during the SAML exchange according to the current logging level. Not
@@ -275,27 +275,27 @@ class AuthBackendArgs:
         return pulumi.get(self, "verbose_logging")
 
     @verbose_logging.setter
-    def verbose_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verbose_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verbose_logging", value)
 
 
 @pulumi.input_type
 class _AuthBackendState:
     def __init__(__self__, *,
-                 acs_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_metadata_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
-                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None):
+                 acs_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None,
+                 validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
 
@@ -360,7 +360,7 @@ class _AuthBackendState:
 
     @_builtins.property
     @pulumi.getter(name="acsUrls")
-    def acs_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def acs_urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The well-formatted URLs of your Assertion Consumer Service (ACS)
         that should receive a response from the identity provider.
@@ -368,24 +368,24 @@ class _AuthBackendState:
         return pulumi.get(self, "acs_urls")
 
     @acs_urls.setter
-    def acs_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def acs_urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "acs_urls", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultRole")
-    def default_role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The role to use if no role is provided during login.
         """
         return pulumi.get(self, "default_role")
 
     @default_role.setter
-    def default_role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_role", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -393,24 +393,24 @@ class _AuthBackendState:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The entity ID of the SAML authentication service provider.
         """
         return pulumi.get(self, "entity_id")
 
     @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="idpCert")
-    def idp_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PEM encoded certificate of the identity provider. Mutually exclusive
         with `idp_metadata_url`.
@@ -418,12 +418,12 @@ class _AuthBackendState:
         return pulumi.get(self, "idp_cert")
 
     @idp_cert.setter
-    def idp_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="idpEntityId")
-    def idp_entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The entity ID of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
@@ -431,24 +431,24 @@ class _AuthBackendState:
         return pulumi.get(self, "idp_entity_id")
 
     @idp_entity_id.setter
-    def idp_entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="idpMetadataUrl")
-    def idp_metadata_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_metadata_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The metadata URL of the identity provider.
         """
         return pulumi.get(self, "idp_metadata_url")
 
     @idp_metadata_url.setter
-    def idp_metadata_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_metadata_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_metadata_url", value)
 
     @_builtins.property
     @pulumi.getter(name="idpSsoUrl")
-    def idp_sso_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The SSO URL of the identity provider. Mutually exclusive with 
         `idp_metadata_url`.
@@ -456,12 +456,12 @@ class _AuthBackendState:
         return pulumi.get(self, "idp_sso_url")
 
     @idp_sso_url.setter
-    def idp_sso_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_sso_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_sso_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -471,12 +471,12 @@ class _AuthBackendState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path where the auth backend will be mounted. Defaults to `auth/saml`
         if not specified.
@@ -484,12 +484,12 @@ class _AuthBackendState:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+    def tune(self) -> pulumi.Input[Optional['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
 
@@ -498,12 +498,12 @@ class _AuthBackendState:
         return pulumi.get(self, "tune")
 
     @tune.setter
-    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+    def tune(self, value: pulumi.Input[Optional['AuthBackendTuneArgs']]):
         pulumi.set(self, "tune", value)
 
     @_builtins.property
     @pulumi.getter(name="validateAssertionSignature")
-    def validate_assertion_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_assertion_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, validates the signature of 
         the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
@@ -511,12 +511,12 @@ class _AuthBackendState:
         return pulumi.get(self, "validate_assertion_signature")
 
     @validate_assertion_signature.setter
-    def validate_assertion_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_assertion_signature(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_assertion_signature", value)
 
     @_builtins.property
     @pulumi.getter(name="validateResponseSignature")
-    def validate_response_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def validate_response_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, validates the signature of 
         the SAML response. Defaults to `false`. Requires Vault 1.19+.
@@ -524,12 +524,12 @@ class _AuthBackendState:
         return pulumi.get(self, "validate_response_signature")
 
     @validate_response_signature.setter
-    def validate_response_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def validate_response_signature(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "validate_response_signature", value)
 
     @_builtins.property
     @pulumi.getter(name="verboseLogging")
-    def verbose_logging(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verbose_logging(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, logs additional, potentially sensitive
         information during the SAML exchange according to the current logging level. Not
@@ -538,7 +538,7 @@ class _AuthBackendState:
         return pulumi.get(self, "verbose_logging")
 
     @verbose_logging.setter
-    def verbose_logging(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verbose_logging(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verbose_logging", value)
 
 
@@ -548,20 +548,20 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acs_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_metadata_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None,
+                 acs_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Manages a SAML Auth mount in a Vault server. See the [Vault
@@ -672,20 +672,20 @@ class AuthBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acs_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_role: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_metadata_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-                 validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None,
+                 acs_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_role: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -723,20 +723,20 @@ class AuthBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acs_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            default_role: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-            entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_cert: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_metadata_url: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-            validate_assertion_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-            validate_response_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-            verbose_logging: Optional[pulumi.Input[_builtins.bool]] = None) -> 'AuthBackend':
+            acs_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_role: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_cert: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+            validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+            validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+            verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

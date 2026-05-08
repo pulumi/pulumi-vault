@@ -137,28 +137,28 @@ export interface AuthBackendStsRoleState {
     /**
      * The AWS account ID to configure the STS role for.
      */
-    accountId?: pulumi.Input<string>;
+    accountId?: pulumi.Input<string | undefined>;
     /**
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.
      */
-    stsRole?: pulumi.Input<string>;
+    stsRole?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,18 +173,18 @@ export interface AuthBackendStsRoleArgs {
      * The path the AWS auth backend being configured was
      * mounted at.  Defaults to `aws`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * External ID expected by the STS role. The associated STS role must be configured to require the external ID. Requires Vault 1.17+.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The STS role to assume when verifying requests made
      * by EC2 instances in the account specified by `accountId`.

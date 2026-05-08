@@ -151,32 +151,32 @@ export interface AuditState {
     /**
      * Human-friendly description of the audit device.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Configuration options to pass to the audit device itself.
      *
      * For a reference of the device types and their options, consult the [Vault documentation.](https://www.vaultproject.io/docs/audit/index.html)
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The path to mount the audit device. This defaults to the type.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Type of the audit device, such as 'file'.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -186,18 +186,18 @@ export interface AuditArgs {
     /**
      * Human-friendly description of the audit device.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the audit device is a local only. Local audit devices are not replicated nor (if a secondary) removed by replication.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Configuration options to pass to the audit device itself.
      *
@@ -207,7 +207,7 @@ export interface AuditArgs {
     /**
      * The path to mount the audit device. This defaults to the type.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Type of the audit device, such as 'file'.
      */

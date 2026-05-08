@@ -42,7 +42,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transform, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
+//			transform2, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
 //				Path: pulumi.String("transform"),
 //				Type: pulumi.String("transform"),
 //			})
@@ -50,7 +50,7 @@ import (
 //				return err
 //			}
 //			numerics, err := transform.NewAlphabet(ctx, "numerics", &transform.AlphabetArgs{
-//				Path:     transform.Path,
+//				Path:     transform2.Path,
 //				Name:     pulumi.String("numerics"),
 //				Alphabet: pulumi.String("0123456789"),
 //			})

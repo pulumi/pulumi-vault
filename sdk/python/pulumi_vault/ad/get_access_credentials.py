@@ -155,9 +155,9 @@ def get_access_credentials(backend: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         role=pulumi.get(__ret__, 'role'),
         username=pulumi.get(__ret__, 'username'))
-def get_access_credentials_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                  namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  role: Optional[pulumi.Input[_builtins.str]] = None,
+def get_access_credentials_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                  namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  role: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessCredentialsResult]:
     """
     > **Note** This data source is replaced by "ldap_get_static_credentials" and

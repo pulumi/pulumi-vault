@@ -271,122 +271,122 @@ export interface SecretBackendCertState {
     /**
      * List of alternative names
      */
-    altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      */
-    autoRenew?: pulumi.Input<boolean>;
+    autoRenew?: pulumi.Input<boolean | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The CA chain
      */
-    caChain?: pulumi.Input<string>;
+    caChain?: pulumi.Input<string | undefined>;
     /**
      * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
      */
-    certMetadata?: pulumi.Input<string>;
+    certMetadata?: pulumi.Input<string | undefined>;
     /**
      * The certificate
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * CN of certificate to create
      */
-    commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string | undefined>;
     /**
      * Flag to exclude CN from SANs
      */
-    excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean | undefined>;
     /**
      * The expiration date of the certificate in unix epoch format
      */
-    expiration?: pulumi.Input<number>;
+    expiration?: pulumi.Input<number | undefined>;
     /**
      * The format of data
      */
-    format?: pulumi.Input<string>;
+    format?: pulumi.Input<string | undefined>;
     /**
      * List of alternative IPs
      */
-    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default issuer of this request.
      */
-    issuerRef?: pulumi.Input<string>;
+    issuerRef?: pulumi.Input<string | undefined>;
     /**
      * The issuing CA
      */
-    issuingCa?: pulumi.Input<string>;
+    issuingCa?: pulumi.Input<string | undefined>;
     /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      */
-    minSecondsRemaining?: pulumi.Input<number>;
+    minSecondsRemaining?: pulumi.Input<number | undefined>;
     /**
      * Name of the role to create the certificate against
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * List of other SANs
      */
-    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The private key
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The private key format
      */
-    privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string | undefined>;
     /**
      * The private key type
      */
-    privateKeyType?: pulumi.Input<string>;
+    privateKeyType?: pulumi.Input<string | undefined>;
     /**
      * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
      */
-    removeRootsFromChain?: pulumi.Input<boolean>;
+    removeRootsFromChain?: pulumi.Input<boolean | undefined>;
     /**
      * `true` if the current time (during refresh) is after the start of the early renewal window declared by `minSecondsRemaining`, and `false` otherwise; if `autoRenew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
      */
-    renewPending?: pulumi.Input<boolean>;
+    renewPending?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      */
-    revoke?: pulumi.Input<boolean>;
+    revoke?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
      */
-    revokeWithKey?: pulumi.Input<boolean>;
+    revokeWithKey?: pulumi.Input<boolean | undefined>;
     /**
      * The serial number
      */
-    serialNumber?: pulumi.Input<string>;
+    serialNumber?: pulumi.Input<string | undefined>;
     /**
      * Time to live
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * List of alternative URIs
      */
-    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of Subject User IDs
      */
-    userIds?: pulumi.Input<pulumi.Input<string>[]>;
+    userIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -396,11 +396,11 @@ export interface SecretBackendCertArgs {
     /**
      * List of alternative names
      */
-    altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set to `true`, certs will be renewed if the expiration is within `minSecondsRemaining`. Default `false`
      */
-    autoRenew?: pulumi.Input<boolean>;
+    autoRenew?: pulumi.Input<boolean | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
@@ -408,7 +408,7 @@ export interface SecretBackendCertArgs {
     /**
      * A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's noStoreMetadata must be set to false, otherwise an error is returned when specified.
      */
-    certMetadata?: pulumi.Input<string>;
+    certMetadata?: pulumi.Input<string | undefined>;
     /**
      * CN of certificate to create
      */
@@ -416,68 +416,68 @@ export interface SecretBackendCertArgs {
     /**
      * Flag to exclude CN from SANs
      */
-    excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean | undefined>;
     /**
      * The format of data
      */
-    format?: pulumi.Input<string>;
+    format?: pulumi.Input<string | undefined>;
     /**
      * List of alternative IPs
      */
-    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the default issuer of this request.
      */
-    issuerRef?: pulumi.Input<string>;
+    issuerRef?: pulumi.Input<string | undefined>;
     /**
      * Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
      */
-    minSecondsRemaining?: pulumi.Input<number>;
+    minSecondsRemaining?: pulumi.Input<number | undefined>;
     /**
      * Name of the role to create the certificate against
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * List of other SANs
      */
-    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The private key format
      */
-    privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string | undefined>;
     /**
      * If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
      */
-    removeRootsFromChain?: pulumi.Input<boolean>;
+    removeRootsFromChain?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, the certificate will be revoked on resource destruction using the `revoke` PKI API. Conflicts with `revokeWithKey`. Default `false`.
      */
-    revoke?: pulumi.Input<boolean>;
+    revoke?: pulumi.Input<boolean | undefined>;
     /**
      * If set to `true`, the certificate will be revoked on resource destruction using the `revoke-with-key` PKI API. Conflicts with `revoke`. Default `false`
      */
-    revokeWithKey?: pulumi.Input<boolean>;
+    revokeWithKey?: pulumi.Input<boolean | undefined>;
     /**
      * Time to live
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * List of alternative URIs
      */
-    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of Subject User IDs
      */
-    userIds?: pulumi.Input<pulumi.Input<string>[]>;
+    userIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

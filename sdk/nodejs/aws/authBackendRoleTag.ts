@@ -168,48 +168,48 @@ export interface AuthBackendRoleTagState {
     /**
      * If set, allows migration of the underlying instances where the client resides. Use with caution.
      */
-    allowInstanceMigration?: pulumi.Input<boolean>;
+    allowInstanceMigration?: pulumi.Input<boolean | undefined>;
     /**
      * The path to the AWS auth backend to
      * read role tags from, with no leading or trailing `/`s. Defaults to "aws".
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * If set, only allows a single token to be granted per instance ID.
      */
-    disallowReauthentication?: pulumi.Input<boolean>;
+    disallowReauthentication?: pulumi.Input<boolean | undefined>;
     /**
      * Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * The maximum TTL of the tokens issued using this role.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the AWS auth backend role to read
      * role tags from, with no leading or trailing `/`s.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The key of the role tag.
      */
-    tagKey?: pulumi.Input<string>;
+    tagKey?: pulumi.Input<string | undefined>;
     /**
      * The value to set the role key.
      */
-    tagValue?: pulumi.Input<string>;
+    tagValue?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -219,35 +219,35 @@ export interface AuthBackendRoleTagArgs {
     /**
      * If set, allows migration of the underlying instances where the client resides. Use with caution.
      */
-    allowInstanceMigration?: pulumi.Input<boolean>;
+    allowInstanceMigration?: pulumi.Input<boolean | undefined>;
     /**
      * The path to the AWS auth backend to
      * read role tags from, with no leading or trailing `/`s. Defaults to "aws".
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * If set, only allows a single token to be granted per instance ID.
      */
-    disallowReauthentication?: pulumi.Input<boolean>;
+    disallowReauthentication?: pulumi.Input<boolean | undefined>;
     /**
      * Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
      */
-    instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string | undefined>;
     /**
      * The maximum TTL of the tokens issued using this role.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The policies to be associated with the tag. Must be a subset of the policies associated with the role.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the AWS auth backend role to read
      * role tags from, with no leading or trailing `/`s.

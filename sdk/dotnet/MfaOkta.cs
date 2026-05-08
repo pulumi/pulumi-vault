@@ -24,13 +24,13 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var userpass = new Vault.Index.AuthBackend("userpass", new()
+    ///     var userpass = new Vault.AuthBackend("userpass", new()
     ///     {
     ///         Type = "userpass",
     ///         Path = "userpass",
     ///     });
     /// 
-    ///     var myOkta = new Vault.Index.MfaOkta("my_okta", new()
+    ///     var myOkta = new Vault.MfaOkta("my_okta", new()
     ///     {
     ///         Name = "my_okta",
     ///         MountAccessor = userpass.Accessor,

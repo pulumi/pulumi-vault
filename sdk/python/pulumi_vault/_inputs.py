@@ -56,44 +56,44 @@ __all__ = [
 ]
 
 class AuthBackendTuneArgsDict(TypedDict):
-    allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_response_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of headers to whitelist and allowing
     a plugin to include them in the response.
     """
-    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies the list of keys that will
     not be HMAC'd by audit devices in the request data object.
     """
-    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies the list of keys that will
     not be HMAC'd by audit devices in the response data object.
     """
-    default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    default_lease_ttl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the default time-to-live.
     If set, this overrides the global default.
     Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
     """
-    listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
+    listing_visibility: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies whether to show this mount in
     the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
     """
-    max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    max_lease_ttl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the maximum time-to-live.
     If set, this overrides the global default.
     Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
     """
-    passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    passthrough_request_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of headers to whitelist and
     pass from the request to the backend.
     """
-    token_type: NotRequired[pulumi.Input[_builtins.str]]
+    token_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the type of tokens that should be returned by
     the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -102,14 +102,14 @@ class AuthBackendTuneArgsDict(TypedDict):
 @pulumi.input_type
 class AuthBackendTuneArgs:
     def __init__(__self__, *,
-                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_lease_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_lease_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_lease_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_lease_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to whitelist and allowing
                a plugin to include them in the response.
@@ -149,7 +149,7 @@ class AuthBackendTuneArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_response_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to whitelist and allowing
         a plugin to include them in the response.
@@ -157,12 +157,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "allowed_response_headers")
 
     @allowed_response_headers.setter
-    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_response_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_response_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_request_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the request data object.
@@ -170,12 +170,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_request_keys")
 
     @audit_non_hmac_request_keys.setter
-    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_request_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_request_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_response_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the response data object.
@@ -183,12 +183,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @audit_non_hmac_response_keys.setter
-    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_response_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtl")
-    def default_lease_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_lease_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default time-to-live.
         If set, this overrides the global default.
@@ -197,12 +197,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "default_lease_ttl")
 
     @default_lease_ttl.setter
-    def default_lease_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_lease_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_lease_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="listingVisibility")
-    def listing_visibility(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def listing_visibility(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies whether to show this mount in
         the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
@@ -210,12 +210,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "listing_visibility")
 
     @listing_visibility.setter
-    def listing_visibility(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def listing_visibility(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "listing_visibility", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLeaseTtl")
-    def max_lease_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_lease_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the maximum time-to-live.
         If set, this overrides the global default.
@@ -224,12 +224,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "max_lease_ttl")
 
     @max_lease_ttl.setter
-    def max_lease_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_lease_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_lease_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def passthrough_request_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to whitelist and
         pass from the request to the backend.
@@ -237,12 +237,12 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "passthrough_request_headers")
 
     @passthrough_request_headers.setter
-    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def passthrough_request_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "passthrough_request_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of tokens that should be returned by
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -250,49 +250,49 @@ class AuthBackendTuneArgs:
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 
 class OciAuthBackendTuneArgsDict(TypedDict):
-    allowed_response_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_response_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of headers to whitelist and allowing
     a plugin to include them in the response.
     """
-    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    audit_non_hmac_request_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies the list of keys that will
     not be HMAC'd by audit devices in the request data object.
     """
-    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    audit_non_hmac_response_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies the list of keys that will
     not be HMAC'd by audit devices in the response data object.
     """
-    default_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    default_lease_ttl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the default time-to-live.
     If set, this overrides the global default.
     Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
     """
-    listing_visibility: NotRequired[pulumi.Input[_builtins.str]]
+    listing_visibility: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies whether to show this mount in
     the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
     """
-    max_lease_ttl: NotRequired[pulumi.Input[_builtins.str]]
+    max_lease_ttl: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the maximum time-to-live.
     If set, this overrides the global default.
     Must be a valid [duration string](https://golang.org/pkg/time/#ParseDuration)
     """
-    passthrough_request_headers: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    passthrough_request_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List of headers to whitelist and
     pass from the request to the backend.
     """
-    token_type: NotRequired[pulumi.Input[_builtins.str]]
+    token_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the type of tokens that should be returned by
     the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -304,14 +304,14 @@ class OciAuthBackendTuneArgsDict(TypedDict):
 @pulumi.input_type
 class OciAuthBackendTuneArgs:
     def __init__(__self__, *,
-                 allowed_response_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_request_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audit_non_hmac_response_keys: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_lease_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 listing_visibility: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_lease_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 passthrough_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_lease_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_lease_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to whitelist and allowing
                a plugin to include them in the response.
@@ -354,7 +354,7 @@ class OciAuthBackendTuneArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedResponseHeaders")
-    def allowed_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_response_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to whitelist and allowing
         a plugin to include them in the response.
@@ -362,12 +362,12 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "allowed_response_headers")
 
     @allowed_response_headers.setter
-    def allowed_response_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_response_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_response_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacRequestKeys")
-    def audit_non_hmac_request_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_request_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the request data object.
@@ -375,12 +375,12 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_request_keys")
 
     @audit_non_hmac_request_keys.setter
-    def audit_non_hmac_request_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_request_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_request_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="auditNonHmacResponseKeys")
-    def audit_non_hmac_response_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def audit_non_hmac_response_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the list of keys that will
         not be HMAC'd by audit devices in the response data object.
@@ -388,12 +388,12 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "audit_non_hmac_response_keys")
 
     @audit_non_hmac_response_keys.setter
-    def audit_non_hmac_response_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def audit_non_hmac_response_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLeaseTtl")
-    def default_lease_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_lease_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default time-to-live.
         If set, this overrides the global default.
@@ -402,12 +402,12 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "default_lease_ttl")
 
     @default_lease_ttl.setter
-    def default_lease_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_lease_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_lease_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="listingVisibility")
-    def listing_visibility(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def listing_visibility(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies whether to show this mount in
         the UI-specific listing endpoint. Valid values are "unauth" or "hidden".
@@ -415,12 +415,12 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "listing_visibility")
 
     @listing_visibility.setter
-    def listing_visibility(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def listing_visibility(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "listing_visibility", value)
 
     @_builtins.property
     @pulumi.getter(name="maxLeaseTtl")
-    def max_lease_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_lease_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the maximum time-to-live.
         If set, this overrides the global default.
@@ -429,12 +429,12 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "max_lease_ttl")
 
     @max_lease_ttl.setter
-    def max_lease_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_lease_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_lease_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="passthroughRequestHeaders")
-    def passthrough_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def passthrough_request_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of headers to whitelist and
         pass from the request to the backend.
@@ -442,12 +442,12 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "passthrough_request_headers")
 
     @passthrough_request_headers.setter
-    def passthrough_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def passthrough_request_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "passthrough_request_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of tokens that should be returned by
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
@@ -458,19 +458,19 @@ class OciAuthBackendTuneArgs:
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 
 class ProviderAuthLoginArgsDict(TypedDict):
     path: pulumi.Input[_builtins.str]
-    method: NotRequired[pulumi.Input[_builtins.str]]
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    parameters: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    parameters: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -479,10 +479,10 @@ class ProviderAuthLoginArgsDict(TypedDict):
 class ProviderAuthLoginArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[_builtins.str],
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 parameters: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
         :param pulumi.Input[_builtins.bool] use_root_namespace: Authenticate to the root Vault namespace. Conflicts with namespace
@@ -508,44 +508,44 @@ class ProviderAuthLoginArgs:
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def parameters(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def parameters(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "parameters")
 
     @parameters.setter
-    def parameters(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def parameters(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "parameters", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
@@ -554,63 +554,63 @@ class ProviderAuthLoginAwsArgsDict(TypedDict):
     """
     The Vault role to use when logging into Vault.
     """
-    aws_access_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    aws_access_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS access key ID.
     """
-    aws_iam_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    aws_iam_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The IAM endpoint URL.
     """
-    aws_profile: NotRequired[pulumi.Input[_builtins.str]]
+    aws_profile: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the AWS profile.
     """
-    aws_region: NotRequired[pulumi.Input[_builtins.str]]
+    aws_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS region.
     """
-    aws_role_arn: NotRequired[pulumi.Input[_builtins.str]]
+    aws_role_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ARN of the AWS Role to assume.Used during STS AssumeRole
     """
-    aws_role_session_name: NotRequired[pulumi.Input[_builtins.str]]
+    aws_role_session_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name to attach to the AWS role session. Used during STS AssumeRole
     """
-    aws_secret_access_key: NotRequired[pulumi.Input[_builtins.str]]
+    aws_secret_access_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS secret access key.
     """
-    aws_session_token: NotRequired[pulumi.Input[_builtins.str]]
+    aws_session_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS session token.
     """
-    aws_shared_credentials_file: NotRequired[pulumi.Input[_builtins.str]]
+    aws_shared_credentials_file: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to the AWS shared credentials file.
     """
-    aws_sts_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    aws_sts_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The STS endpoint URL.
     """
-    aws_web_identity_token_file: NotRequired[pulumi.Input[_builtins.str]]
+    aws_web_identity_token_file: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
     """
-    header_value: NotRequired[pulumi.Input[_builtins.str]]
+    header_value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Vault header value to include in the STS signing request.
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -619,21 +619,21 @@ class ProviderAuthLoginAwsArgsDict(TypedDict):
 class ProviderAuthLoginAwsArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_iam_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_profile: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_role_session_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_shared_credentials_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_sts_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_web_identity_token_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 header_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_profile: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_role_session_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_shared_credentials_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_web_identity_token_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 header_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] role: The Vault role to use when logging into Vault.
         :param pulumi.Input[_builtins.str] aws_access_key_id: The AWS access key ID.
@@ -698,182 +698,182 @@ class ProviderAuthLoginAwsArgs:
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
-    def aws_access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS access key ID.
         """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
-    def aws_access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="awsIamEndpoint")
-    def aws_iam_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_iam_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IAM endpoint URL.
         """
         return pulumi.get(self, "aws_iam_endpoint")
 
     @aws_iam_endpoint.setter
-    def aws_iam_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_iam_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_iam_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="awsProfile")
-    def aws_profile(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_profile(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the AWS profile.
         """
         return pulumi.get(self, "aws_profile")
 
     @aws_profile.setter
-    def aws_profile(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_profile(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_profile", value)
 
     @_builtins.property
     @pulumi.getter(name="awsRegion")
-    def aws_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region.
         """
         return pulumi.get(self, "aws_region")
 
     @aws_region.setter
-    def aws_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_region", value)
 
     @_builtins.property
     @pulumi.getter(name="awsRoleArn")
-    def aws_role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the AWS Role to assume.Used during STS AssumeRole
         """
         return pulumi.get(self, "aws_role_arn")
 
     @aws_role_arn.setter
-    def aws_role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="awsRoleSessionName")
-    def aws_role_session_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_role_session_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name to attach to the AWS role session. Used during STS AssumeRole
         """
         return pulumi.get(self, "aws_role_session_name")
 
     @aws_role_session_name.setter
-    def aws_role_session_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_role_session_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_role_session_name", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
-    def aws_secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS secret access key.
         """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
-    def aws_secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSessionToken")
-    def aws_session_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_session_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS session token.
         """
         return pulumi.get(self, "aws_session_token")
 
     @aws_session_token.setter
-    def aws_session_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_session_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_session_token", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSharedCredentialsFile")
-    def aws_shared_credentials_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_shared_credentials_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the AWS shared credentials file.
         """
         return pulumi.get(self, "aws_shared_credentials_file")
 
     @aws_shared_credentials_file.setter
-    def aws_shared_credentials_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_shared_credentials_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_shared_credentials_file", value)
 
     @_builtins.property
     @pulumi.getter(name="awsStsEndpoint")
-    def aws_sts_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_sts_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The STS endpoint URL.
         """
         return pulumi.get(self, "aws_sts_endpoint")
 
     @aws_sts_endpoint.setter
-    def aws_sts_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_sts_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_sts_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="awsWebIdentityTokenFile")
-    def aws_web_identity_token_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_web_identity_token_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the file containing an OAuth 2.0 access token or OpenID Connect ID token.
         """
         return pulumi.get(self, "aws_web_identity_token_file")
 
     @aws_web_identity_token_file.setter
-    def aws_web_identity_token_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_web_identity_token_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_web_identity_token_file", value)
 
     @_builtins.property
     @pulumi.getter(name="headerValue")
-    def header_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def header_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Vault header value to include in the STS signing request.
         """
         return pulumi.get(self, "header_value")
 
     @header_value.setter
-    def header_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def header_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "header_value", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
@@ -890,39 +890,39 @@ class ProviderAuthLoginAzureArgsDict(TypedDict):
     """
     The subscription ID for the machine that generated the MSI token. This information can be obtained through instance metadata.
     """
-    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The identity's client ID.
     """
-    jwt: NotRequired[pulumi.Input[_builtins.str]]
+    jwt: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A signed JSON Web Token. If not specified on will be created automatically
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    scope: NotRequired[pulumi.Input[_builtins.str]]
+    scope: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The scopes to include in the token request.
     """
-    tenant_id: NotRequired[pulumi.Input[_builtins.str]]
+    tenant_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Provides the tenant ID to use in a multi-tenant authentication scenario.
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
-    vm_name: NotRequired[pulumi.Input[_builtins.str]]
+    vm_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
     """
-    vmss_name: NotRequired[pulumi.Input[_builtins.str]]
+    vmss_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
     """
@@ -933,15 +933,15 @@ class ProviderAuthLoginAzureArgs:
                  resource_group_name: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
                  subscription_id: pulumi.Input[_builtins.str],
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 vm_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 vmss_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 vm_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 vmss_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] resource_group_name: The resource group for the machine that generated the MSI token. This information can be obtained through instance metadata.
         :param pulumi.Input[_builtins.str] role: Name of the login role.
@@ -1016,110 +1016,110 @@ class ProviderAuthLoginAzureArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The identity's client ID.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def jwt(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwt(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A signed JSON Web Token. If not specified on will be created automatically
         """
         return pulumi.get(self, "jwt")
 
     @jwt.setter
-    def jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwt(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def scope(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scope(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The scopes to include in the token request.
         """
         return pulumi.get(self, "scope")
 
     @scope.setter
-    def scope(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scope(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scope", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Provides the tenant ID to use in a multi-tenant authentication scenario.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="vmName")
-    def vm_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vm_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The virtual machine name for the machine that generated the MSI token. This information can be obtained through instance metadata.
         """
         return pulumi.get(self, "vm_name")
 
     @vm_name.setter
-    def vm_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vm_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vm_name", value)
 
     @_builtins.property
     @pulumi.getter(name="vmssName")
-    def vmss_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def vmss_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The virtual machine scale set name for the machine that generated the MSI token. This information can be obtained through instance metadata.
         """
         return pulumi.get(self, "vmss_name")
 
     @vmss_name.setter
-    def vmss_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def vmss_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "vmss_name", value)
 
 
@@ -1132,19 +1132,19 @@ class ProviderAuthLoginCertArgsDict(TypedDict):
     """
     Path to a file containing the private key that the certificate was issued for.
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the certificate's role
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -1154,10 +1154,10 @@ class ProviderAuthLoginCertArgs:
     def __init__(__self__, *,
                  cert_file: pulumi.Input[_builtins.str],
                  key_file: pulumi.Input[_builtins.str],
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] cert_file: Path to a file containing the client certificate.
         :param pulumi.Input[_builtins.str] key_file: Path to a file containing the private key that the certificate was issued for.
@@ -1203,50 +1203,50 @@ class ProviderAuthLoginCertArgs:
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the certificate's role
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
@@ -1255,27 +1255,27 @@ class ProviderAuthLoginGcpArgsDict(TypedDict):
     """
     Name of the login role.
     """
-    credentials: NotRequired[pulumi.Input[_builtins.str]]
+    credentials: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Path to the Google Cloud credentials file.
     """
-    jwt: NotRequired[pulumi.Input[_builtins.str]]
+    jwt: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A signed JSON Web Token.
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    service_account: NotRequired[pulumi.Input[_builtins.str]]
+    service_account: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     IAM service account.
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -1284,12 +1284,12 @@ class ProviderAuthLoginGcpArgsDict(TypedDict):
 class ProviderAuthLoginGcpArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Name of the login role.
         :param pulumi.Input[_builtins.str] credentials: Path to the Google Cloud credentials file.
@@ -1327,74 +1327,74 @@ class ProviderAuthLoginGcpArgs:
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the Google Cloud credentials file.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter
-    def jwt(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwt(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A signed JSON Web Token.
         """
         return pulumi.get(self, "jwt")
 
     @jwt.setter
-    def jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwt(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccount")
-    def service_account(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IAM service account.
         """
         return pulumi.get(self, "service_account")
 
     @service_account.setter
-    def service_account(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
@@ -1403,23 +1403,23 @@ class ProviderAuthLoginJwtArgsDict(TypedDict):
     """
     Name of the login role.
     """
-    distributed_claim_access_token: NotRequired[pulumi.Input[_builtins.str]]
+    distributed_claim_access_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
     """
-    jwt: NotRequired[pulumi.Input[_builtins.str]]
+    jwt: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A signed JSON Web Token.
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -1428,11 +1428,11 @@ class ProviderAuthLoginJwtArgsDict(TypedDict):
 class ProviderAuthLoginJwtArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 distributed_claim_access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 jwt: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 distributed_claim_access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwt: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Name of the login role.
         :param pulumi.Input[_builtins.str] distributed_claim_access_token: An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
@@ -1467,107 +1467,107 @@ class ProviderAuthLoginJwtArgs:
 
     @_builtins.property
     @pulumi.getter(name="distributedClaimAccessToken")
-    def distributed_claim_access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def distributed_claim_access_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An optional token used to fetch group memberships specified by the distributed claim source in the jwt. This is supported only on Azure/Entra ID. Requires Vault 1.18+.
         """
         return pulumi.get(self, "distributed_claim_access_token")
 
     @distributed_claim_access_token.setter
-    def distributed_claim_access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def distributed_claim_access_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "distributed_claim_access_token", value)
 
     @_builtins.property
     @pulumi.getter
-    def jwt(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def jwt(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A signed JSON Web Token.
         """
         return pulumi.get(self, "jwt")
 
     @jwt.setter
-    def jwt(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def jwt(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
 class ProviderAuthLoginKerberosArgsDict(TypedDict):
-    disable_fast_negotiation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_fast_negotiation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable the Kerberos FAST negotiation.
     """
-    keytab_path: NotRequired[pulumi.Input[_builtins.str]]
+    keytab_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Kerberos keytab file containing the entry of the login entity.
     """
-    krb5conf_path: NotRequired[pulumi.Input[_builtins.str]]
+    krb5conf_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A valid Kerberos configuration file e.g. /etc/krb5.conf.
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    realm: NotRequired[pulumi.Input[_builtins.str]]
+    realm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Kerberos server's authoritative authentication domain
     """
-    remove_instance_name: NotRequired[pulumi.Input[_builtins.bool]]
+    remove_instance_name: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Strip the host from the username found in the keytab.
     """
-    service: NotRequired[pulumi.Input[_builtins.str]]
+    service: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The service principle name.
     """
-    token: NotRequired[pulumi.Input[_builtins.str]]
+    token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The username to login into Kerberos with.
     """
@@ -1575,17 +1575,17 @@ class ProviderAuthLoginKerberosArgsDict(TypedDict):
 @pulumi.input_type
 class ProviderAuthLoginKerberosArgs:
     def __init__(__self__, *,
-                 disable_fast_negotiation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 keytab_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 krb5conf_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 realm: Optional[pulumi.Input[_builtins.str]] = None,
-                 remove_instance_name: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 disable_fast_negotiation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 keytab_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 krb5conf_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 realm: pulumi.Input[Optional[_builtins.str]] = None,
+                 remove_instance_name: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] disable_fast_negotiation: Disable the Kerberos FAST negotiation.
         :param pulumi.Input[_builtins.str] keytab_path: The Kerberos keytab file containing the entry of the login entity.
@@ -1624,134 +1624,134 @@ class ProviderAuthLoginKerberosArgs:
 
     @_builtins.property
     @pulumi.getter(name="disableFastNegotiation")
-    def disable_fast_negotiation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_fast_negotiation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable the Kerberos FAST negotiation.
         """
         return pulumi.get(self, "disable_fast_negotiation")
 
     @disable_fast_negotiation.setter
-    def disable_fast_negotiation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_fast_negotiation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_fast_negotiation", value)
 
     @_builtins.property
     @pulumi.getter(name="keytabPath")
-    def keytab_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def keytab_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Kerberos keytab file containing the entry of the login entity.
         """
         return pulumi.get(self, "keytab_path")
 
     @keytab_path.setter
-    def keytab_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def keytab_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "keytab_path", value)
 
     @_builtins.property
     @pulumi.getter(name="krb5confPath")
-    def krb5conf_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def krb5conf_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A valid Kerberos configuration file e.g. /etc/krb5.conf.
         """
         return pulumi.get(self, "krb5conf_path")
 
     @krb5conf_path.setter
-    def krb5conf_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def krb5conf_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "krb5conf_path", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def realm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def realm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Kerberos server's authoritative authentication domain
         """
         return pulumi.get(self, "realm")
 
     @realm.setter
-    def realm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def realm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "realm", value)
 
     @_builtins.property
     @pulumi.getter(name="removeInstanceName")
-    def remove_instance_name(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def remove_instance_name(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Strip the host from the username found in the keytab.
         """
         return pulumi.get(self, "remove_instance_name")
 
     @remove_instance_name.setter
-    def remove_instance_name(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def remove_instance_name(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "remove_instance_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def service(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The service principle name.
         """
         return pulumi.get(self, "service")
 
     @service.setter
-    def service(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service", value)
 
     @_builtins.property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Simple and Protected GSSAPI Negotiation Mechanism (SPNEGO) token
         """
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username to login into Kerberos with.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -1764,15 +1764,15 @@ class ProviderAuthLoginOciArgsDict(TypedDict):
     """
     Name of the login role.
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -1782,9 +1782,9 @@ class ProviderAuthLoginOciArgs:
     def __init__(__self__, *,
                  auth_type: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_type: Authentication type to use when getting OCI credentials.
         :param pulumi.Input[_builtins.str] role: Name of the login role.
@@ -1827,38 +1827,38 @@ class ProviderAuthLoginOciArgs:
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
@@ -1867,23 +1867,23 @@ class ProviderAuthLoginOidcArgsDict(TypedDict):
     """
     Name of the login role.
     """
-    callback_address: NotRequired[pulumi.Input[_builtins.str]]
+    callback_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The callback address. Must be a valid URI without the path.
     """
-    callback_listener_address: NotRequired[pulumi.Input[_builtins.str]]
+    callback_listener_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The callback listener's address. Must be a valid URI without the path.
     """
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -1892,11 +1892,11 @@ class ProviderAuthLoginOidcArgsDict(TypedDict):
 class ProviderAuthLoginOidcArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 callback_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 callback_listener_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 callback_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 callback_listener_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] role: Name of the login role.
         :param pulumi.Input[_builtins.str] callback_address: The callback address. Must be a valid URI without the path.
@@ -1931,83 +1931,83 @@ class ProviderAuthLoginOidcArgs:
 
     @_builtins.property
     @pulumi.getter(name="callbackAddress")
-    def callback_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def callback_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The callback address. Must be a valid URI without the path.
         """
         return pulumi.get(self, "callback_address")
 
     @callback_address.setter
-    def callback_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def callback_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "callback_address", value)
 
     @_builtins.property
     @pulumi.getter(name="callbackListenerAddress")
-    def callback_listener_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def callback_listener_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The callback listener's address. Must be a valid URI without the path.
         """
         return pulumi.get(self, "callback_listener_address")
 
     @callback_listener_address.setter
-    def callback_listener_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def callback_listener_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "callback_listener_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
 class ProviderAuthLoginRadiusArgsDict(TypedDict):
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Radius password for username.
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Radius username.
     """
@@ -2015,11 +2015,11 @@ class ProviderAuthLoginRadiusArgsDict(TypedDict):
 @pulumi.input_type
 class ProviderAuthLoginRadiusArgs:
     def __init__(__self__, *,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] mount: The path where the authentication engine is mounted.
         :param pulumi.Input[_builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
@@ -2040,75 +2040,75 @@ class ProviderAuthLoginRadiusArgs:
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Radius password for username.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Radius username.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class ProviderAuthLoginTokenFileArgsDict(TypedDict):
-    filename: NotRequired[pulumi.Input[_builtins.str]]
+    filename: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of a file containing a single line that is a valid Vault token
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
@@ -2116,9 +2116,9 @@ class ProviderAuthLoginTokenFileArgsDict(TypedDict):
 @pulumi.input_type
 class ProviderAuthLoginTokenFileArgs:
     def __init__(__self__, *,
-                 filename: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None):
+                 filename: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] filename: The name of a file containing a single line that is a valid Vault token
         :param pulumi.Input[_builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
@@ -2133,63 +2133,63 @@ class ProviderAuthLoginTokenFileArgs:
 
     @_builtins.property
     @pulumi.getter
-    def filename(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def filename(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of a file containing a single line that is a valid Vault token
         """
         return pulumi.get(self, "filename")
 
     @filename.setter
-    def filename(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def filename(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "filename", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
 
 class ProviderAuthLoginUserpassArgsDict(TypedDict):
-    mount: NotRequired[pulumi.Input[_builtins.str]]
+    mount: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path where the authentication engine is mounted.
     """
-    namespace: NotRequired[pulumi.Input[_builtins.str]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The authentication engine's namespace. Conflicts with use_root_namespace
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Login with password
     """
-    password_file: NotRequired[pulumi.Input[_builtins.str]]
+    password_file: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Login with password from a file
     """
-    use_root_namespace: NotRequired[pulumi.Input[_builtins.bool]]
+    use_root_namespace: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Authenticate to the root Vault namespace. Conflicts with namespace
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Login with username
     """
@@ -2197,12 +2197,12 @@ class ProviderAuthLoginUserpassArgsDict(TypedDict):
 @pulumi.input_type
 class ProviderAuthLoginUserpassArgs:
     def __init__(__self__, *,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_file: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_root_namespace: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_file: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_root_namespace: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] mount: The path where the authentication engine is mounted.
         :param pulumi.Input[_builtins.str] namespace: The authentication engine's namespace. Conflicts with use_root_namespace
@@ -2226,74 +2226,74 @@ class ProviderAuthLoginUserpassArgs:
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the authentication engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The authentication engine's namespace. Conflicts with use_root_namespace
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Login with password
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordFile")
-    def password_file(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_file(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Login with password from a file
         """
         return pulumi.get(self, "password_file")
 
     @password_file.setter
-    def password_file(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_file(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_file", value)
 
     @_builtins.property
     @pulumi.getter(name="useRootNamespace")
-    def use_root_namespace(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_root_namespace(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Authenticate to the root Vault namespace. Conflicts with namespace
         """
         return pulumi.get(self, "use_root_namespace")
 
     @use_root_namespace.setter
-    def use_root_namespace(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_root_namespace(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_root_namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Login with username
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 

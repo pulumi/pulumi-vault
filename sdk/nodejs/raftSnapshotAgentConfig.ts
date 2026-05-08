@@ -359,139 +359,139 @@ export interface RaftSnapshotAgentConfigState {
      *
      * *Requires Vault Enterprise 1.21.0+*.
      */
-    autoloadEnabled?: pulumi.Input<boolean>;
+    autoloadEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * AWS access key ID.
      */
-    awsAccessKeyId?: pulumi.Input<string>;
+    awsAccessKeyId?: pulumi.Input<string | undefined>;
     /**
      * S3 bucket to write snapshots to.
      */
-    awsS3Bucket?: pulumi.Input<string>;
+    awsS3Bucket?: pulumi.Input<string | undefined>;
     /**
      * Disable TLS for the S3 endpoint. This should only be used for testing purposes.
      */
-    awsS3DisableTls?: pulumi.Input<boolean>;
+    awsS3DisableTls?: pulumi.Input<boolean | undefined>;
     /**
      * Use KMS to encrypt bucket contents.
      */
-    awsS3EnableKms?: pulumi.Input<boolean>;
+    awsS3EnableKms?: pulumi.Input<boolean | undefined>;
     /**
      * AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
      */
-    awsS3Endpoint?: pulumi.Input<string>;
+    awsS3Endpoint?: pulumi.Input<string | undefined>;
     /**
      * Use the endpoint/bucket URL style instead of bucket.endpoint.
      */
-    awsS3ForcePathStyle?: pulumi.Input<boolean>;
+    awsS3ForcePathStyle?: pulumi.Input<boolean | undefined>;
     /**
      * Use named KMS key, when aws_s3_enable_kms=true
      */
-    awsS3KmsKey?: pulumi.Input<string>;
+    awsS3KmsKey?: pulumi.Input<string | undefined>;
     /**
      * AWS region bucket is in.
      */
-    awsS3Region?: pulumi.Input<string>;
+    awsS3Region?: pulumi.Input<string | undefined>;
     /**
      * Use AES256 to encrypt bucket contents.
      */
-    awsS3ServerSideEncryption?: pulumi.Input<boolean>;
+    awsS3ServerSideEncryption?: pulumi.Input<boolean | undefined>;
     /**
      * AWS secret access key.
      */
-    awsSecretAccessKey?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * AWS session token.
      */
-    awsSessionToken?: pulumi.Input<string>;
+    awsSessionToken?: pulumi.Input<string | undefined>;
     /**
      * Azure account key. Required when azureAuthMode is 'shared'.
      */
-    azureAccountKey?: pulumi.Input<string>;
+    azureAccountKey?: pulumi.Input<string | undefined>;
     /**
      * Azure account name.
      */
-    azureAccountName?: pulumi.Input<string>;
+    azureAccountName?: pulumi.Input<string | undefined>;
     /**
      * Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
      */
-    azureAuthMode?: pulumi.Input<string>;
+    azureAuthMode?: pulumi.Input<string | undefined>;
     /**
      * Azure blob environment.
      */
-    azureBlobEnvironment?: pulumi.Input<string>;
+    azureBlobEnvironment?: pulumi.Input<string | undefined>;
     /**
      * Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
      */
-    azureClientId?: pulumi.Input<string>;
+    azureClientId?: pulumi.Input<string | undefined>;
     /**
      * Azure container name to write snapshots to.
      */
-    azureContainerName?: pulumi.Input<string>;
+    azureContainerName?: pulumi.Input<string | undefined>;
     /**
      * Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
      */
-    azureEndpoint?: pulumi.Input<string>;
+    azureEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Within the directory or bucket
      * prefix given by `pathPrefix`, the file or object name of snapshot files
      * will start with this string.
      */
-    filePrefix?: pulumi.Input<string>;
+    filePrefix?: pulumi.Input<string | undefined>;
     /**
      * Disable TLS for the GCS endpoint.
      */
-    googleDisableTls?: pulumi.Input<boolean>;
+    googleDisableTls?: pulumi.Input<boolean | undefined>;
     /**
      * GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
      */
-    googleEndpoint?: pulumi.Input<string>;
+    googleEndpoint?: pulumi.Input<string | undefined>;
     /**
      * GCS bucket to write snapshots to.
      */
-    googleGcsBucket?: pulumi.Input<string>;
+    googleGcsBucket?: pulumi.Input<string | undefined>;
     /**
      * Google service account key in JSON format.
      */
-    googleServiceAccountKey?: pulumi.Input<string>;
+    googleServiceAccountKey?: pulumi.Input<string | undefined>;
     /**
      * `<required>` - Time (in seconds) between snapshots.
      */
-    intervalSeconds?: pulumi.Input<number>;
+    intervalSeconds?: pulumi.Input<number | undefined>;
     /**
      * The maximum space, in bytes, to use for snapshots.
      */
-    localMaxSpace?: pulumi.Input<number>;
+    localMaxSpace?: pulumi.Input<number | undefined>;
     /**
      * `<required>` – Name of the configuration to modify.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
      * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
      */
-    pathPrefix?: pulumi.Input<string>;
+    pathPrefix?: pulumi.Input<string | undefined>;
     /**
      * How many snapshots are to be kept; when writing a
      * snapshot, if there are more snapshots already stored than this number, the
      * oldest ones will be deleted.
      */
-    retain?: pulumi.Input<number>;
+    retain?: pulumi.Input<number | undefined>;
     /**
      * `<required>` - One of "local", "azure-blob", "aws-s3",
      * or "google-gcs". The remaining parameters described below are all specific to
      * the selected `storageType` and prefixed accordingly.
      */
-    storageType?: pulumi.Input<string>;
+    storageType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -504,101 +504,101 @@ export interface RaftSnapshotAgentConfigArgs {
      *
      * *Requires Vault Enterprise 1.21.0+*.
      */
-    autoloadEnabled?: pulumi.Input<boolean>;
+    autoloadEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * AWS access key ID.
      */
-    awsAccessKeyId?: pulumi.Input<string>;
+    awsAccessKeyId?: pulumi.Input<string | undefined>;
     /**
      * S3 bucket to write snapshots to.
      */
-    awsS3Bucket?: pulumi.Input<string>;
+    awsS3Bucket?: pulumi.Input<string | undefined>;
     /**
      * Disable TLS for the S3 endpoint. This should only be used for testing purposes.
      */
-    awsS3DisableTls?: pulumi.Input<boolean>;
+    awsS3DisableTls?: pulumi.Input<boolean | undefined>;
     /**
      * Use KMS to encrypt bucket contents.
      */
-    awsS3EnableKms?: pulumi.Input<boolean>;
+    awsS3EnableKms?: pulumi.Input<boolean | undefined>;
     /**
      * AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
      */
-    awsS3Endpoint?: pulumi.Input<string>;
+    awsS3Endpoint?: pulumi.Input<string | undefined>;
     /**
      * Use the endpoint/bucket URL style instead of bucket.endpoint.
      */
-    awsS3ForcePathStyle?: pulumi.Input<boolean>;
+    awsS3ForcePathStyle?: pulumi.Input<boolean | undefined>;
     /**
      * Use named KMS key, when aws_s3_enable_kms=true
      */
-    awsS3KmsKey?: pulumi.Input<string>;
+    awsS3KmsKey?: pulumi.Input<string | undefined>;
     /**
      * AWS region bucket is in.
      */
-    awsS3Region?: pulumi.Input<string>;
+    awsS3Region?: pulumi.Input<string | undefined>;
     /**
      * Use AES256 to encrypt bucket contents.
      */
-    awsS3ServerSideEncryption?: pulumi.Input<boolean>;
+    awsS3ServerSideEncryption?: pulumi.Input<boolean | undefined>;
     /**
      * AWS secret access key.
      */
-    awsSecretAccessKey?: pulumi.Input<string>;
+    awsSecretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * AWS session token.
      */
-    awsSessionToken?: pulumi.Input<string>;
+    awsSessionToken?: pulumi.Input<string | undefined>;
     /**
      * Azure account key. Required when azureAuthMode is 'shared'.
      */
-    azureAccountKey?: pulumi.Input<string>;
+    azureAccountKey?: pulumi.Input<string | undefined>;
     /**
      * Azure account name.
      */
-    azureAccountName?: pulumi.Input<string>;
+    azureAccountName?: pulumi.Input<string | undefined>;
     /**
      * Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
      */
-    azureAuthMode?: pulumi.Input<string>;
+    azureAuthMode?: pulumi.Input<string | undefined>;
     /**
      * Azure blob environment.
      */
-    azureBlobEnvironment?: pulumi.Input<string>;
+    azureBlobEnvironment?: pulumi.Input<string | undefined>;
     /**
      * Azure client ID for authentication. Required when azureAuthMode is 'managed'. Requires Vault Enterprise 1.18.0+.
      */
-    azureClientId?: pulumi.Input<string>;
+    azureClientId?: pulumi.Input<string | undefined>;
     /**
      * Azure container name to write snapshots to.
      */
-    azureContainerName?: pulumi.Input<string>;
+    azureContainerName?: pulumi.Input<string | undefined>;
     /**
      * Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
      */
-    azureEndpoint?: pulumi.Input<string>;
+    azureEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Within the directory or bucket
      * prefix given by `pathPrefix`, the file or object name of snapshot files
      * will start with this string.
      */
-    filePrefix?: pulumi.Input<string>;
+    filePrefix?: pulumi.Input<string | undefined>;
     /**
      * Disable TLS for the GCS endpoint.
      */
-    googleDisableTls?: pulumi.Input<boolean>;
+    googleDisableTls?: pulumi.Input<boolean | undefined>;
     /**
      * GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
      */
-    googleEndpoint?: pulumi.Input<string>;
+    googleEndpoint?: pulumi.Input<string | undefined>;
     /**
      * GCS bucket to write snapshots to.
      */
-    googleGcsBucket?: pulumi.Input<string>;
+    googleGcsBucket?: pulumi.Input<string | undefined>;
     /**
      * Google service account key in JSON format.
      */
-    googleServiceAccountKey?: pulumi.Input<string>;
+    googleServiceAccountKey?: pulumi.Input<string | undefined>;
     /**
      * `<required>` - Time (in seconds) between snapshots.
      */
@@ -606,18 +606,18 @@ export interface RaftSnapshotAgentConfigArgs {
     /**
      * The maximum space, in bytes, to use for snapshots.
      */
-    localMaxSpace?: pulumi.Input<number>;
+    localMaxSpace?: pulumi.Input<number | undefined>;
     /**
      * `<required>` – Name of the configuration to modify.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `<required>` - For `storageType = "local"`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
@@ -630,7 +630,7 @@ export interface RaftSnapshotAgentConfigArgs {
      * snapshot, if there are more snapshots already stored than this number, the
      * oldest ones will be deleted.
      */
-    retain?: pulumi.Input<number>;
+    retain?: pulumi.Input<number | undefined>;
     /**
      * `<required>` - One of "local", "azure-blob", "aws-s3",
      * or "google-gcs". The remaining parameters described below are all specific to

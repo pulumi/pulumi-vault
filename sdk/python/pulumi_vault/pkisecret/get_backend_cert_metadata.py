@@ -186,7 +186,7 @@ def get_backend_cert_metadata(namespace: Optional[_builtins.str] = None,
         ttl="720h",
         min_seconds_remaining=60,
         cert_metadata="dGVzdCBtZXRhZGF0YQ==")
-    test = test_secret_backend_cert.serial_number.apply(lambda serial_number: vault.pkiSecret.get_backend_cert_metadata_output(path=test_root["path"],
+    test = test_secret_backend_cert.serial_number.apply(lambda serial_number: vault.pkisecret.get_backend_cert_metadata_output(path=test_root["path"],
         serial=serial_number))
     ```
 
@@ -216,9 +216,9 @@ def get_backend_cert_metadata(namespace: Optional[_builtins.str] = None,
         role=pulumi.get(__ret__, 'role'),
         serial=pulumi.get(__ret__, 'serial'),
         serial_number=pulumi.get(__ret__, 'serial_number'))
-def get_backend_cert_metadata_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                     path: Optional[pulumi.Input[_builtins.str]] = None,
-                                     serial: Optional[pulumi.Input[_builtins.str]] = None,
+def get_backend_cert_metadata_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                     path: pulumi.Input[Optional[_builtins.str]] = None,
+                                     serial: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendCertMetadataResult]:
     """
     Reads certificate metadata from Vault Enterprise.
@@ -266,7 +266,7 @@ def get_backend_cert_metadata_output(namespace: Optional[pulumi.Input[Optional[_
         ttl="720h",
         min_seconds_remaining=60,
         cert_metadata="dGVzdCBtZXRhZGF0YQ==")
-    test = test_secret_backend_cert.serial_number.apply(lambda serial_number: vault.pkiSecret.get_backend_cert_metadata_output(path=test_root["path"],
+    test = test_secret_backend_cert.serial_number.apply(lambda serial_number: vault.pkisecret.get_backend_cert_metadata_output(path=test_root["path"],
         serial=serial_number))
     ```
 

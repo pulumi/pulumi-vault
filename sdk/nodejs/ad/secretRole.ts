@@ -164,37 +164,37 @@ export interface SecretRoleState {
      * The path the AD secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Timestamp of the last password rotation by Vault.
      */
-    lastVaultRotation?: pulumi.Input<string>;
+    lastVaultRotation?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Timestamp of the last password set by Vault.
      */
-    passwordLastSet?: pulumi.Input<string>;
+    passwordLastSet?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the Active Directory service
      * account mapped to this role.
      */
-    serviceAccountName?: pulumi.Input<string>;
+    serviceAccountName?: pulumi.Input<string | undefined>;
     /**
      * The password time-to-live in seconds. Defaults to the configuration
      * ttl if not provided.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -212,7 +212,7 @@ export interface SecretRoleArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
@@ -227,5 +227,5 @@ export interface SecretRoleArgs {
      * The password time-to-live in seconds. Defaults to the configuration
      * ttl if not provided.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }

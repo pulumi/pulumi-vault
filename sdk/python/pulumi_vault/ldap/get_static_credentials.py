@@ -165,9 +165,9 @@ def get_static_credentials(mount: Optional[_builtins.str] = None,
         rotation_period=pulumi.get(__ret__, 'rotation_period'),
         ttl=pulumi.get(__ret__, 'ttl'),
         username=pulumi.get(__ret__, 'username'))
-def get_static_credentials_output(mount: Optional[pulumi.Input[_builtins.str]] = None,
-                                  namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  role_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_static_credentials_output(mount: pulumi.Input[Optional[_builtins.str]] = None,
+                                  namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStaticCredentialsResult]:
     """
     Use this data source to access information about an existing resource.

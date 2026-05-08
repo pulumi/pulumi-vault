@@ -331,98 +331,98 @@ export interface SyncGcpDestinationState {
     /**
      * Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
      */
-    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
      */
-    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed ports for outbound network connectivity. If not set, all ports are allowed.
      */
-    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * JSON-encoded credentials to use to connect to GCP.
      * Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
      * variable.
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Disable strict networking requirements.
      */
-    disableStrictNetworking?: pulumi.Input<boolean>;
+    disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Global KMS key for encryption.
      */
-    globalKmsKey?: pulumi.Input<string>;
+    globalKmsKey?: pulumi.Input<string | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    granularity?: pulumi.Input<string>;
+    granularity?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenAudienceWo?: pulumi.Input<string>;
+    identityTokenAudienceWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
      */
-    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    identityTokenAudienceWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenKeyWo?: pulumi.Input<string>;
+    identityTokenKeyWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
      */
-    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    identityTokenKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The TTL of generated tokens.
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Locational KMS keys for encryption.
      */
-    locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Unique name of the GCP destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The target project to manage secrets in. If set,
      * overrides the project ID derived from the service account JSON credentials or application
      * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
      * to perform Secret Manager actions in the target project.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Replication locations for secrets.
      */
-    replicationLocations?: pulumi.Input<pulumi.Input<string>[]>;
+    replicationLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    secretNameTemplate?: pulumi.Input<string>;
+    secretNameTemplate?: pulumi.Input<string | undefined>;
     /**
      * Service Account to impersonate for workload identity federation.
      */
-    serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string | undefined>;
     /**
      * The type of the secrets destination (`gcp-sm`).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -432,92 +432,92 @@ export interface SyncGcpDestinationArgs {
     /**
      * Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
      */
-    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed IPv6 addresses for outbound network connectivity in CIDR notation. If not set, all IPv6 addresses are allowed.
      */
-    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed ports for outbound network connectivity. If not set, all ports are allowed.
      */
-    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * JSON-encoded credentials to use to connect to GCP.
      * Can be omitted and directly provided to Vault using the `GOOGLE_APPLICATION_CREDENTIALS` environment
      * variable.
      */
-    credentials?: pulumi.Input<string>;
+    credentials?: pulumi.Input<string | undefined>;
     /**
      * Custom tags to set on the secret managed at the destination.
      */
-    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Disable strict networking requirements.
      */
-    disableStrictNetworking?: pulumi.Input<boolean>;
+    disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Global KMS key for encryption.
      */
-    globalKmsKey?: pulumi.Input<string>;
+    globalKmsKey?: pulumi.Input<string | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    granularity?: pulumi.Input<string>;
+    granularity?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenAudienceWo?: pulumi.Input<string>;
+    identityTokenAudienceWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenAudienceWo field. Incrementing this value will trigger an update.
      */
-    identityTokenAudienceWoVersion?: pulumi.Input<number>;
+    identityTokenAudienceWoVersion?: pulumi.Input<number | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
      */
-    identityTokenKeyWo?: pulumi.Input<string>;
+    identityTokenKeyWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only identityTokenKeyWo field. Incrementing this value will trigger an update.
      */
-    identityTokenKeyWoVersion?: pulumi.Input<number>;
+    identityTokenKeyWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The TTL of generated tokens.
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Locational KMS keys for encryption.
      */
-    locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Unique name of the GCP destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The target project to manage secrets in. If set,
      * overrides the project ID derived from the service account JSON credentials or application
      * default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
      * to perform Secret Manager actions in the target project.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Replication locations for secrets.
      */
-    replicationLocations?: pulumi.Input<pulumi.Input<string>[]>;
+    replicationLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    secretNameTemplate?: pulumi.Input<string>;
+    secretNameTemplate?: pulumi.Input<string | undefined>;
     /**
      * Service Account to impersonate for workload identity federation.
      */
-    serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string | undefined>;
 }

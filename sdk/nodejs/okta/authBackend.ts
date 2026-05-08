@@ -281,73 +281,73 @@ export interface AuthBackendState {
     /**
      * The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
      * Conflicts with `token` and `apiTokenWo`.
      */
-    apiToken?: pulumi.Input<string>;
+    apiToken?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
      */
-    apiTokenWo?: pulumi.Input<string>;
+    apiTokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only `apiTokenWo`.
      * Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
      */
-    apiTokenWoVersion?: pulumi.Input<number>;
+    apiTokenWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
      */
-    bypassOktaMfa?: pulumi.Input<boolean>;
+    bypassOktaMfa?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the auth backend
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Associate Okta groups with policies within Vault.
      * See below for more details.
      */
-    groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
+    groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
      * Exactly one of `orgName` or `organization` must be specified.
      */
-    orgName?: pulumi.Input<string>;
+    orgName?: pulumi.Input<string | undefined>;
     /**
      * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
      * Exactly one of `orgName` or `organization` must be specified.
      *
      * @deprecated Use orgName instead
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * Path to mount the Okta auth backend. Default to path `okta`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
@@ -355,49 +355,49 @@ export interface AuthBackendState {
      *
      * @deprecated Use apiToken instead
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
-    tune?: pulumi.Input<inputs.okta.AuthBackendTune>;
+    tokenType?: pulumi.Input<string | undefined>;
+    tune?: pulumi.Input<inputs.okta.AuthBackendTune | undefined>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
      */
-    users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[]>;
+    users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[] | undefined>;
 }
 
 /**
@@ -408,68 +408,68 @@ export interface AuthBackendArgs {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
      * Conflicts with `token` and `apiTokenWo`.
      */
-    apiToken?: pulumi.Input<string>;
+    apiToken?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
      */
-    apiTokenWo?: pulumi.Input<string>;
+    apiTokenWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only `apiTokenWo`.
      * Increment this value to trigger an update of the write-only token. Required when using `apiTokenWo`.
      */
-    apiTokenWoVersion?: pulumi.Input<number>;
+    apiTokenWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The Okta url. Examples: oktapreview.com, okta.com
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
      */
-    bypassOktaMfa?: pulumi.Input<boolean>;
+    bypassOktaMfa?: pulumi.Input<boolean | undefined>;
     /**
      * The description of the auth backend
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Associate Okta groups with policies within Vault.
      * See below for more details.
      */
-    groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[]>;
+    groups?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendGroup>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
      * Exactly one of `orgName` or `organization` must be specified.
      */
-    orgName?: pulumi.Input<string>;
+    orgName?: pulumi.Input<string | undefined>;
     /**
      * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
      * Exactly one of `orgName` or `organization` must be specified.
      *
      * @deprecated Use orgName instead
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * Path to mount the Okta auth backend. Default to path `okta`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * **Deprecated: Use `apiToken` instead.** The Okta API token. This is required to query Okta for user group membership.
      * If this is not supplied only locally configured groups will be enabled.
@@ -477,47 +477,47 @@ export interface AuthBackendArgs {
      *
      * @deprecated Use apiToken instead
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
-    tune?: pulumi.Input<inputs.okta.AuthBackendTune>;
+    tokenType?: pulumi.Input<string | undefined>;
+    tune?: pulumi.Input<inputs.okta.AuthBackendTune | undefined>;
     /**
      * Associate Okta users with groups or policies within Vault.
      * See below for more details.
      */
-    users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[]>;
+    users?: pulumi.Input<pulumi.Input<inputs.okta.AuthBackendUser>[] | undefined>;
 }

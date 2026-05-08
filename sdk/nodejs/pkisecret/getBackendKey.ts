@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     keyType: "rsa",
  *     keyBits: 4096,
  * });
- * const example = key.keyId.apply(keyId => vault.pkiSecret.getBackendKeyOutput({
+ * const example = key.keyId.apply(keyId => vault.pkisecret.getBackendKeyOutput({
  *     backend: keyVaultMount.path,
  *     keyRef: keyId,
  * }));
@@ -123,7 +123,7 @@ export interface GetBackendKeyResult {
  *     keyType: "rsa",
  *     keyBits: 4096,
  * });
- * const example = key.keyId.apply(keyId => vault.pkiSecret.getBackendKeyOutput({
+ * const example = key.keyId.apply(keyId => vault.pkisecret.getBackendKeyOutput({
  *     backend: keyVaultMount.path,
  *     keyRef: keyId,
  * }));
@@ -157,5 +157,5 @@ export interface GetBackendKeyOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

@@ -145,45 +145,45 @@ export interface SecretBackendCaState {
     /**
      * The path where the SSH secret backend is mounted. Defaults to 'ssh'
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Whether Vault should generate the signing key pair internally. Defaults to true
      */
-    generateSigningKey?: pulumi.Input<boolean>;
+    generateSigningKey?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
      *
      * > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
      * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The public key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -193,43 +193,43 @@ export interface SecretBackendCaArgs {
     /**
      * The path where the SSH secret backend is mounted. Defaults to 'ssh'
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Whether Vault should generate the signing key pair internally. Defaults to true
      */
-    generateSigningKey?: pulumi.Input<boolean>;
+    generateSigningKey?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the desired key bits for the generated SSH CA key when `generateSigningKey` is set to `true`.
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * Specifies the desired key type for the generated SSH CA key when `generateSigningKey` is set to `true`.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * The ID of the managed key to use. When using a managed key, this field or managedKeyName is required.
      *
      * > **Important** Because Vault does not support reading the privateKey back from the API, Terraform cannot detect
      * and correct drift on `privateKey`. Changing the values, however, _will_ overwrite the previously stored values.
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the managed key to use. When using a managed key, this field or managedKeyId is required.
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The private key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The public key part the SSH CA key pair; required if generateSigningKey is false.
      */
-    publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string | undefined>;
 }

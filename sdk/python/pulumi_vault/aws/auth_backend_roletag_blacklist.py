@@ -20,9 +20,9 @@ __all__ = ['AuthBackendRoletagBlacklistArgs', 'AuthBackendRoletagBlacklist']
 class AuthBackendRoletagBlacklistArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendRoletagBlacklist resource.
 
@@ -61,7 +61,7 @@ class AuthBackendRoletagBlacklistArgs:
 
     @_builtins.property
     @pulumi.getter(name="disablePeriodicTidy")
-    def disable_periodic_tidy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_periodic_tidy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables the periodic
         tidying of the roletag blacklist entries. Defaults to false.
@@ -69,12 +69,12 @@ class AuthBackendRoletagBlacklistArgs:
         return pulumi.get(self, "disable_periodic_tidy")
 
     @disable_periodic_tidy.setter
-    def disable_periodic_tidy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_periodic_tidy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_periodic_tidy", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -84,12 +84,12 @@ class AuthBackendRoletagBlacklistArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def safety_buffer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of extra time that must have passed
         beyond the roletag expiration, before it is removed from the backend storage.
@@ -98,17 +98,17 @@ class AuthBackendRoletagBlacklistArgs:
         return pulumi.get(self, "safety_buffer")
 
     @safety_buffer.setter
-    def safety_buffer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def safety_buffer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "safety_buffer", value)
 
 
 @pulumi.input_type
 class _AuthBackendRoletagBlacklistState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRoletagBlacklist resources.
 
@@ -135,7 +135,7 @@ class _AuthBackendRoletagBlacklistState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS auth backend being configured was
         mounted at.
@@ -143,12 +143,12 @@ class _AuthBackendRoletagBlacklistState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disablePeriodicTidy")
-    def disable_periodic_tidy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_periodic_tidy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables the periodic
         tidying of the roletag blacklist entries. Defaults to false.
@@ -156,12 +156,12 @@ class _AuthBackendRoletagBlacklistState:
         return pulumi.get(self, "disable_periodic_tidy")
 
     @disable_periodic_tidy.setter
-    def disable_periodic_tidy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_periodic_tidy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_periodic_tidy", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -171,12 +171,12 @@ class _AuthBackendRoletagBlacklistState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def safety_buffer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of extra time that must have passed
         beyond the roletag expiration, before it is removed from the backend storage.
@@ -185,7 +185,7 @@ class _AuthBackendRoletagBlacklistState:
         return pulumi.get(self, "safety_buffer")
 
     @safety_buffer.setter
-    def safety_buffer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def safety_buffer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "safety_buffer", value)
 
 
@@ -195,10 +195,10 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Configures the periodic tidying operation of the blacklisted role tag entries.
@@ -267,10 +267,10 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -296,10 +296,10 @@ class AuthBackendRoletagBlacklist(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            safety_buffer: Optional[pulumi.Input[_builtins.int]] = None) -> 'AuthBackendRoletagBlacklist':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            safety_buffer: pulumi.Input[Optional[_builtins.int]] = None) -> 'AuthBackendRoletagBlacklist':
         """
         Get an existing AuthBackendRoletagBlacklist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

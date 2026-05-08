@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ldap, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
+//			ldap2, err := ldap.NewAuthBackend(ctx, "ldap", &ldap.AuthBackendArgs{
 //				Path:        pulumi.String("ldap"),
 //				Url:         pulumi.String("ldaps://dc-01.example.org"),
 //				Userdn:      pulumi.String("OU=Users,OU=Accounts,DC=example,DC=org"),
@@ -46,7 +46,7 @@ import (
 //				Policies: pulumi.StringArray{
 //					pulumi.String("dba"),
 //				},
-//				Backend: ldap.Path,
+//				Backend: ldap2.Path,
 //			})
 //			if err != nil {
 //				return err

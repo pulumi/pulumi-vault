@@ -138,22 +138,22 @@ export interface GroupAliasState {
     /**
      * ID of the group to which this is an alias.
      */
-    canonicalId?: pulumi.Input<string>;
+    canonicalId?: pulumi.Input<string | undefined>;
     /**
      * Mount accessor of the authentication backend to which this alias belongs to.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * Name of the group alias to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -178,5 +178,5 @@ export interface GroupAliasArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

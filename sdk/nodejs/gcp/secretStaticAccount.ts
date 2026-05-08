@@ -165,38 +165,38 @@ export interface SecretStaticAccountState {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
-    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
+    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    secretType?: pulumi.Input<string>;
+    secretType?: pulumi.Input<string | undefined>;
     /**
      * Email of the GCP service account to manage.
      */
-    serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string | undefined>;
     /**
      * Project the service account belongs to.
      */
-    serviceAccountProject?: pulumi.Input<string>;
+    serviceAccountProject?: pulumi.Input<string | undefined>;
     /**
      * Name of the Static Account to create
      */
-    staticAccount?: pulumi.Input<string>;
+    staticAccount?: pulumi.Input<string | undefined>;
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      */
-    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -210,18 +210,18 @@ export interface SecretStaticAccountArgs {
     /**
      * Bindings to create for this static account. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
-    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[]>;
+    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretStaticAccountBinding>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Type of secret generated for this static account. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    secretType?: pulumi.Input<string>;
+    secretType?: pulumi.Input<string | undefined>;
     /**
      * Email of the GCP service account to manage.
      */
@@ -233,5 +233,5 @@ export interface SecretStaticAccountArgs {
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this static account (`accessToken` static accounts only).
      */
-    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

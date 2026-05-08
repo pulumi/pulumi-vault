@@ -20,20 +20,20 @@ __all__ = ['SecretBackendRoleArgs', 'SecretBackendRole']
 class SecretBackendRoleArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 extra_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 generated_role_rules: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 allowed_kubernetes_namespace_selector: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_kubernetes_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 extra_annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 extra_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 generated_role_rules: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_default_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
 
@@ -123,7 +123,7 @@ class SecretBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedKubernetesNamespaceSelector")
-    def allowed_kubernetes_namespace_selector(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_kubernetes_namespace_selector(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A label selector for Kubernetes namespaces 
         in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
@@ -133,12 +133,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "allowed_kubernetes_namespace_selector")
 
     @allowed_kubernetes_namespace_selector.setter
-    def allowed_kubernetes_namespace_selector(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_kubernetes_namespace_selector(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_kubernetes_namespace_selector", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedKubernetesNamespaces")
-    def allowed_kubernetes_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_kubernetes_namespaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Kubernetes namespaces this role 
         can generate credentials for. If set to `*` all namespaces are allowed. If set with
@@ -147,12 +147,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "allowed_kubernetes_namespaces")
 
     @allowed_kubernetes_namespaces.setter
-    def allowed_kubernetes_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_kubernetes_namespaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_kubernetes_namespaces", value)
 
     @_builtins.property
     @pulumi.getter(name="extraAnnotations")
-    def extra_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_annotations(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional annotations to apply to all generated 
         Kubernetes objects.
@@ -160,12 +160,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "extra_annotations")
 
     @extra_annotations.setter
-    def extra_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_annotations(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="extraLabels")
-    def extra_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional labels to apply to all generated Kubernetes 
         objects.
@@ -175,12 +175,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "extra_labels")
 
     @extra_labels.setter
-    def extra_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_labels", value)
 
     @_builtins.property
     @pulumi.getter(name="generatedRoleRules")
-    def generated_role_rules(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def generated_role_rules(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Role or ClusterRole rules to use when generating 
         a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
@@ -190,12 +190,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "generated_role_rules")
 
     @generated_role_rules.setter
-    def generated_role_rules(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def generated_role_rules(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "generated_role_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="kubernetesRoleName")
-    def kubernetes_role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kubernetes_role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pre-existing Role or ClusterRole to bind a 
         generated service account to. Mutually exclusive with `service_account_name` and
@@ -205,12 +205,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "kubernetes_role_name")
 
     @kubernetes_role_name.setter
-    def kubernetes_role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kubernetes_role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kubernetes_role_name", value)
 
     @_builtins.property
     @pulumi.getter(name="kubernetesRoleType")
-    def kubernetes_role_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kubernetes_role_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies whether the Kubernetes role is a Role or 
         ClusterRole.
@@ -218,24 +218,24 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "kubernetes_role_type")
 
     @kubernetes_role_type.setter
-    def kubernetes_role_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kubernetes_role_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kubernetes_role_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the role.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nameTemplate")
-    def name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name template to use when generating service accounts, 
         roles and role bindings. If unset, a default template is used.
@@ -243,12 +243,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "name_template")
 
     @name_template.setter
-    def name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_template", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -258,12 +258,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountName")
-    def service_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pre-existing service account to generate tokens for.
         Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
@@ -272,12 +272,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "service_account_name")
 
     @service_account_name.setter
-    def service_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenDefaultAudiences")
-    def token_default_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_default_audiences(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The default audiences for generated Kubernetes tokens.
         If not set, defaults to the Kubernetes cluster's default audiences. This field requires
@@ -286,52 +286,52 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "token_default_audiences")
 
     @token_default_audiences.setter
-    def token_default_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_default_audiences(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_default_audiences", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenDefaultTtl")
-    def token_default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default TTL for generated Kubernetes tokens in seconds.
         """
         return pulumi.get(self, "token_default_ttl")
 
     @token_default_ttl.setter
-    def token_default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_default_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum TTL for generated Kubernetes tokens in seconds.
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
 
 @pulumi.input_type
 class _SecretBackendRoleState:
     def __init__(__self__, *,
-                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 extra_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 generated_role_rules: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 allowed_kubernetes_namespace_selector: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_kubernetes_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra_annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 extra_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 generated_role_rules: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_default_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
 
@@ -409,7 +409,7 @@ class _SecretBackendRoleState:
 
     @_builtins.property
     @pulumi.getter(name="allowedKubernetesNamespaceSelector")
-    def allowed_kubernetes_namespace_selector(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_kubernetes_namespace_selector(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A label selector for Kubernetes namespaces 
         in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
@@ -419,12 +419,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "allowed_kubernetes_namespace_selector")
 
     @allowed_kubernetes_namespace_selector.setter
-    def allowed_kubernetes_namespace_selector(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_kubernetes_namespace_selector(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_kubernetes_namespace_selector", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedKubernetesNamespaces")
-    def allowed_kubernetes_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_kubernetes_namespaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of Kubernetes namespaces this role 
         can generate credentials for. If set to `*` all namespaces are allowed. If set with
@@ -433,12 +433,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "allowed_kubernetes_namespaces")
 
     @allowed_kubernetes_namespaces.setter
-    def allowed_kubernetes_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_kubernetes_namespaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_kubernetes_namespaces", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path of the Kubernetes Secrets Engine backend mount to create
         the role in.
@@ -446,12 +446,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="extraAnnotations")
-    def extra_annotations(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_annotations(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional annotations to apply to all generated 
         Kubernetes objects.
@@ -459,12 +459,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "extra_annotations")
 
     @extra_annotations.setter
-    def extra_annotations(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_annotations(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_annotations", value)
 
     @_builtins.property
     @pulumi.getter(name="extraLabels")
-    def extra_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def extra_labels(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Additional labels to apply to all generated Kubernetes 
         objects.
@@ -474,12 +474,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "extra_labels")
 
     @extra_labels.setter
-    def extra_labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def extra_labels(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "extra_labels", value)
 
     @_builtins.property
     @pulumi.getter(name="generatedRoleRules")
-    def generated_role_rules(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def generated_role_rules(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Role or ClusterRole rules to use when generating 
         a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `service_account_name`
@@ -489,12 +489,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "generated_role_rules")
 
     @generated_role_rules.setter
-    def generated_role_rules(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def generated_role_rules(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "generated_role_rules", value)
 
     @_builtins.property
     @pulumi.getter(name="kubernetesRoleName")
-    def kubernetes_role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kubernetes_role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pre-existing Role or ClusterRole to bind a 
         generated service account to. Mutually exclusive with `service_account_name` and
@@ -504,12 +504,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "kubernetes_role_name")
 
     @kubernetes_role_name.setter
-    def kubernetes_role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kubernetes_role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kubernetes_role_name", value)
 
     @_builtins.property
     @pulumi.getter(name="kubernetesRoleType")
-    def kubernetes_role_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kubernetes_role_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies whether the Kubernetes role is a Role or 
         ClusterRole.
@@ -517,24 +517,24 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "kubernetes_role_type")
 
     @kubernetes_role_type.setter
-    def kubernetes_role_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kubernetes_role_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kubernetes_role_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the role.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="nameTemplate")
-    def name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name template to use when generating service accounts, 
         roles and role bindings. If unset, a default template is used.
@@ -542,12 +542,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "name_template")
 
     @name_template.setter
-    def name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name_template", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -557,12 +557,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountName")
-    def service_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The pre-existing service account to generate tokens for.
         Mutually exclusive with `kubernetes_role_name` and `generated_role_rules`. If set, only a
@@ -571,12 +571,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "service_account_name")
 
     @service_account_name.setter
-    def service_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenDefaultAudiences")
-    def token_default_audiences(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_default_audiences(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The default audiences for generated Kubernetes tokens.
         If not set, defaults to the Kubernetes cluster's default audiences. This field requires
@@ -585,31 +585,31 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "token_default_audiences")
 
     @token_default_audiences.setter
-    def token_default_audiences(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_default_audiences(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_default_audiences", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenDefaultTtl")
-    def token_default_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_default_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default TTL for generated Kubernetes tokens in seconds.
         """
         return pulumi.get(self, "token_default_ttl")
 
     @token_default_ttl.setter
-    def token_default_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_default_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_default_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum TTL for generated Kubernetes tokens in seconds.
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
 
@@ -619,21 +619,21 @@ class SecretBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 extra_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 generated_role_rules: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 allowed_kubernetes_namespace_selector: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_kubernetes_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra_annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 extra_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 generated_role_rules: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_default_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Creates a role for the Kubernetes Secrets Engine in Vault.
@@ -949,21 +949,21 @@ class SecretBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_kubernetes_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 extra_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 generated_role_rules: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 kubernetes_role_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 allowed_kubernetes_namespace_selector: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_kubernetes_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 extra_annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 extra_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 generated_role_rules: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 kubernetes_role_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_default_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1000,21 +1000,21 @@ class SecretBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allowed_kubernetes_namespace_selector: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_kubernetes_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            extra_annotations: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            extra_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            generated_role_rules: Optional[pulumi.Input[_builtins.str]] = None,
-            kubernetes_role_name: Optional[pulumi.Input[_builtins.str]] = None,
-            kubernetes_role_type: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            name_template: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-            token_default_audiences: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_default_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretBackendRole':
+            allowed_kubernetes_namespace_selector: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_kubernetes_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            extra_annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            extra_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            generated_role_rules: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_role_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_template: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            token_default_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

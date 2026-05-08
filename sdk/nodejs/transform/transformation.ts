@@ -159,48 +159,48 @@ export interface TransformationState {
     /**
      * The set of roles allowed to perform this transformation.
      */
-    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
      */
-    deletionAllowed?: pulumi.Input<boolean>;
+    deletionAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * The character used to replace data when in masking mode
      */
-    maskingCharacter?: pulumi.Input<string>;
+    maskingCharacter?: pulumi.Input<string | undefined>;
     /**
      * The name of the transformation.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The name of the template to use.
      */
-    template?: pulumi.Input<string>;
+    template?: pulumi.Input<string | undefined>;
     /**
      * Templates configured for transformation.
      */
-    templates?: pulumi.Input<pulumi.Input<string>[]>;
+    templates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The source of where the tweak value comes from. Only valid when in FPE mode.
      */
-    tweakSource?: pulumi.Input<string>;
+    tweakSource?: pulumi.Input<string | undefined>;
     /**
      * The type of transformation to perform.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -210,28 +210,28 @@ export interface TransformationArgs {
     /**
      * The set of roles allowed to perform this transformation.
      */
-    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
      */
-    deletionAllowed?: pulumi.Input<boolean>;
+    deletionAllowed?: pulumi.Input<boolean | undefined>;
     /**
      * The character used to replace data when in masking mode
      */
-    maskingCharacter?: pulumi.Input<string>;
+    maskingCharacter?: pulumi.Input<string | undefined>;
     /**
      * The name of the transformation.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -239,17 +239,17 @@ export interface TransformationArgs {
     /**
      * The name of the template to use.
      */
-    template?: pulumi.Input<string>;
+    template?: pulumi.Input<string | undefined>;
     /**
      * Templates configured for transformation.
      */
-    templates?: pulumi.Input<pulumi.Input<string>[]>;
+    templates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The source of where the tweak value comes from. Only valid when in FPE mode.
      */
-    tweakSource?: pulumi.Input<string>;
+    tweakSource?: pulumi.Input<string | undefined>;
     /**
      * The type of transformation to perform.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

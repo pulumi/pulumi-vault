@@ -185,43 +185,43 @@ export interface SecretBackendStaticRoleState {
      * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    assumeRoleArn?: pulumi.Input<string>;
+    assumeRoleArn?: pulumi.Input<string | undefined>;
     /**
      * Specifies the session name to use when assuming the role.
      * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    assumeRoleSessionName?: pulumi.Input<string>;
+    assumeRoleSessionName?: pulumi.Input<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the external ID to use when assuming the role.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * How often Vault should rotate the password of the user entry.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The username of the existing AWS IAM to manage password rotation for.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -234,35 +234,35 @@ export interface SecretBackendStaticRoleArgs {
      * If `assumeRoleArn` is provided, `assumeRoleSessionName` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    assumeRoleArn?: pulumi.Input<string>;
+    assumeRoleArn?: pulumi.Input<string | undefined>;
     /**
      * Specifies the session name to use when assuming the role.
      * If `assumeRoleSessionName` is provided, `assumeRoleArn` must also be provided.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    assumeRoleSessionName?: pulumi.Input<string>;
+    assumeRoleSessionName?: pulumi.Input<string | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `aws`
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the external ID to use when assuming the role.
      * Requires Vault 1.19+. *Available only for Vault Enterprise*.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * How often Vault should rotate the password of the user entry.
      */

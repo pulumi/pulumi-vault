@@ -21,9 +21,9 @@ class AuthBackendCertArgs:
     def __init__(__self__, *,
                  aws_public_cert: pulumi.Input[_builtins.str],
                  cert_name: pulumi.Input[_builtins.str],
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendCert resource.
 
@@ -80,7 +80,7 @@ class AuthBackendCertArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS auth backend being configured was
         mounted at.  Defaults to `aws`.
@@ -88,12 +88,12 @@ class AuthBackendCertArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -103,12 +103,12 @@ class AuthBackendCertArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either "pkcs7" or "identity", indicating the type of
         document which can be verified using the given certificate. Defaults to
@@ -117,18 +117,18 @@ class AuthBackendCertArgs:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _AuthBackendCertState:
     def __init__(__self__, *,
-                 aws_public_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 aws_public_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendCert resources.
 
@@ -160,7 +160,7 @@ class _AuthBackendCertState:
 
     @_builtins.property
     @pulumi.getter(name="awsPublicCert")
-    def aws_public_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_public_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The  Base64 encoded AWS Public key required to
         verify PKCS7 signature of the EC2 instance metadata. You can find this key in
@@ -170,12 +170,12 @@ class _AuthBackendCertState:
         return pulumi.get(self, "aws_public_cert")
 
     @aws_public_cert.setter
-    def aws_public_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_public_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_public_cert", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS auth backend being configured was
         mounted at.  Defaults to `aws`.
@@ -183,24 +183,24 @@ class _AuthBackendCertState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="certName")
-    def cert_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cert_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the certificate.
         """
         return pulumi.get(self, "cert_name")
 
     @cert_name.setter
-    def cert_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cert_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cert_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -210,12 +210,12 @@ class _AuthBackendCertState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Either "pkcs7" or "identity", indicating the type of
         document which can be verified using the given certificate. Defaults to
@@ -224,7 +224,7 @@ class _AuthBackendCertState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -234,11 +234,11 @@ class AuthBackendCert(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_public_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 aws_public_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages a certificate to be used with an AWS Auth Backend in Vault.
@@ -328,11 +328,11 @@ class AuthBackendCert(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_public_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cert_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 aws_public_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cert_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -361,11 +361,11 @@ class AuthBackendCert(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_public_cert: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            cert_name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendCert':
+            aws_public_cert: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendCert':
         """
         Get an existing AuthBackendCert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

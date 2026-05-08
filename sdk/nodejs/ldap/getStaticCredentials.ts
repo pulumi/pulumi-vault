@@ -55,6 +55,6 @@ export function getStaticCredentialsOutput(args: GetStaticCredentialsOutputArgs,
  */
 export interface GetStaticCredentialsOutputArgs {
     mount: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     roleName: pulumi.Input<string>;
 }

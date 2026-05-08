@@ -314,118 +314,118 @@ export interface SecretBackendState {
     /**
      * Accessor of the mount
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the RabbitMQ connection URI.
      */
-    connectionUri?: pulumi.Input<string>;
+    connectionUri?: pulumi.Input<string | undefined>;
     /**
      * Default lease duration for secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the RabbitMQ management administrator password.
      * Conflicts with `passwordWo`.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
      */
-    passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the RabbitMQ management administrator username.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
     /**
      * Template describing how dynamic usernames are generated.
      *
@@ -434,12 +434,12 @@ export interface SecretBackendState {
      * on `connectionUri`, `username`, `password`, `verifyConnection`, `usernameTemplate`, and `passwordPolicy`. Changing the values, however, _will_
      * overwrite the previously stored values.
      */
-    usernameTemplate?: pulumi.Input<string>;
+    usernameTemplate?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to verify connection URI, username, and password.
      * Defaults to `true`.
      */
-    verifyConnection?: pulumi.Input<boolean>;
+    verifyConnection?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -449,19 +449,19 @@ export interface SecretBackendArgs {
     /**
      * List of managed key registry entry names that the mount in question is allowed to access
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the RabbitMQ connection URI.
      */
@@ -469,90 +469,90 @@ export interface SecretBackendArgs {
     /**
      * Default lease duration for secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount for the backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * Enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Local mount flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the RabbitMQ management administrator password.
      * Conflicts with `passwordWo`.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Specifies a password policy to use when creating dynamic credentials. Defaults to generating an alphanumeric password if not set.
      */
-    passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Specifies the RabbitMQ management administrator password. This is a write-only field and will not be read back from Vault.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * A version counter for the write-only passwordWo field. Incrementing this value will trigger an update to the password.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The unique path this backend should be mounted at. Must
      * not begin or end with a `/`. Defaults to `rabbitmq`.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the RabbitMQ management administrator username.
      */
@@ -565,10 +565,10 @@ export interface SecretBackendArgs {
      * on `connectionUri`, `username`, `password`, `verifyConnection`, `usernameTemplate`, and `passwordPolicy`. Changing the values, however, _will_
      * overwrite the previously stored values.
      */
-    usernameTemplate?: pulumi.Input<string>;
+    usernameTemplate?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether to verify connection URI, username, and password.
      * Defaults to `true`.
      */
-    verifyConnection?: pulumi.Input<boolean>;
+    verifyConnection?: pulumi.Input<boolean | undefined>;
 }

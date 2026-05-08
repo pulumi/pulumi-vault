@@ -42,11 +42,11 @@ namespace Pulumi.Vault.Kubernetes
     ///         DefaultLeaseTtlSeconds = 43200,
     ///         MaxLeaseTtlSeconds = 86400,
     ///         KubernetesHost = "https://127.0.0.1:61233",
-    ///         KubernetesCaCert = Std.Index.File.Invoke(new()
+    ///         KubernetesCaCert = Std.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/cert",
     ///         }).Apply(invoke =&gt; invoke.Result),
-    ///         ServiceAccountJwtWo = Std.Index.File.Invoke(new()
+    ///         ServiceAccountJwtWo = Std.File.Invoke(new()
     ///         {
     ///             Input = "/path/to/token",
     ///         }).Apply(invoke =&gt; invoke.Result),

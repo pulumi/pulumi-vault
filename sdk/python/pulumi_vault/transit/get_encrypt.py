@@ -144,12 +144,12 @@ def get_encrypt(backend: Optional[_builtins.str] = None,
         key_version=pulumi.get(__ret__, 'key_version'),
         namespace=pulumi.get(__ret__, 'namespace'),
         plaintext=pulumi.get(__ret__, 'plaintext'))
-def get_encrypt_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                       context: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       key: Optional[pulumi.Input[_builtins.str]] = None,
-                       key_version: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                       namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       plaintext: Optional[pulumi.Input[_builtins.str]] = None,
+def get_encrypt_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                       context: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       key: pulumi.Input[Optional[_builtins.str]] = None,
+                       key_version: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                       namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       plaintext: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptResult]:
     """
     This is a data source which can be used to encrypt plaintext using a Vault Transit key.

@@ -258,10 +258,10 @@ def get_secret_v2(mount: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'),
         version=pulumi.get(__ret__, 'version'))
-def get_secret_v2_output(mount: Optional[pulumi.Input[_builtins.str]] = None,
-                         name: Optional[pulumi.Input[_builtins.str]] = None,
-                         namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         version: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_secret_v2_output(mount: pulumi.Input[Optional[_builtins.str]] = None,
+                         name: pulumi.Input[Optional[_builtins.str]] = None,
+                         namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         version: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretV2Result]:
     """
     Reads a KV-V2 secret from a given path in Vault.

@@ -37,8 +37,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -80,8 +80,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -123,8 +123,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -166,8 +166,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -209,8 +209,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -252,8 +252,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -295,8 +295,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -338,8 +338,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -382,8 +382,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -426,8 +426,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -470,8 +470,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -514,8 +514,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetAuthBackendRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -570,8 +570,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -658,8 +658,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -746,8 +746,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -834,8 +834,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -922,8 +922,8 @@ public final class KubernetesFunctions {
      * import com.pulumi.vault.kubernetes.SecretBackendRoleArgs;
      * import com.pulumi.vault.kubernetes.KubernetesFunctions;
      * import com.pulumi.vault.kubernetes.inputs.GetServiceAccountTokenArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

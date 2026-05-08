@@ -188,7 +188,7 @@ def get_backend_config_est(backend: Optional[_builtins.str] = None,
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    est_config = vault.pkiSecret.get_backend_config_est_output(backend=pki.path)
+    est_config = vault.pkisecret.get_backend_config_est_output(backend=pki.path)
     ```
 
 
@@ -217,8 +217,8 @@ def get_backend_config_est(backend: Optional[_builtins.str] = None,
         label_to_path_policy=pulumi.get(__ret__, 'label_to_path_policy'),
         last_updated=pulumi.get(__ret__, 'last_updated'),
         namespace=pulumi.get(__ret__, 'namespace'))
-def get_backend_config_est_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                  namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backend_config_est_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                  namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendConfigEstResult]:
     """
     Reads the PKI EST configuration from Vault Enterprise.
@@ -241,7 +241,7 @@ def get_backend_config_est_output(backend: Optional[pulumi.Input[_builtins.str]]
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    est_config = vault.pkiSecret.get_backend_config_est_output(backend=pki.path)
+    est_config = vault.pkisecret.get_backend_config_est_output(backend=pki.path)
     ```
 
 

@@ -166,52 +166,52 @@ export interface MfaTotpState {
      * `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
      * Options include `SHA1`, `SHA256` and `SHA512`
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * `(int)` - The number of digits in the generated TOTP token.
      * This value can either be 6 or 8.
      */
-    digits?: pulumi.Input<number>;
+    digits?: pulumi.Input<number | undefined>;
     /**
      * `(string: <required>)` - The name of the key's issuing organization.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * `(int)` - Specifies the size in bytes of the generated key.
      */
-    keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number | undefined>;
     /**
      * `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
      */
-    maxValidationAttempts?: pulumi.Input<number>;
+    maxValidationAttempts?: pulumi.Input<number | undefined>;
     /**
      * ID computed by Vault.
      */
-    mfaTotpId?: pulumi.Input<string>;
+    mfaTotpId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(int)` - The length of time used to generate a counter for the TOTP token calculation.
      */
-    period?: pulumi.Input<number>;
+    period?: pulumi.Input<number | undefined>;
     /**
      * `(int)` - The pixel size of the generated square QR code.
      */
-    qrSize?: pulumi.Input<number>;
+    qrSize?: pulumi.Input<number | undefined>;
     /**
      * `(int)` - The number of delay periods that are allowed when validating a TOTP token.
      * This value can either be 0 or 1.
      */
-    skew?: pulumi.Input<number>;
+    skew?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -222,12 +222,12 @@ export interface MfaTotpArgs {
      * `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
      * Options include `SHA1`, `SHA256` and `SHA512`
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * `(int)` - The number of digits in the generated TOTP token.
      * This value can either be 6 or 8.
      */
-    digits?: pulumi.Input<number>;
+    digits?: pulumi.Input<number | undefined>;
     /**
      * `(string: <required>)` - The name of the key's issuing organization.
      */
@@ -235,37 +235,37 @@ export interface MfaTotpArgs {
     /**
      * `(int)` - Specifies the size in bytes of the generated key.
      */
-    keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number | undefined>;
     /**
      * `(int)` - The maximum number of consecutive failed validation attempts allowed. Must be a positive integer. Vault defaults this value to `5` if not provided or if set to `0`.
      */
-    maxValidationAttempts?: pulumi.Input<number>;
+    maxValidationAttempts?: pulumi.Input<number | undefined>;
     /**
      * ID computed by Vault.
      */
-    mfaTotpId?: pulumi.Input<string>;
+    mfaTotpId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(int)` - The length of time used to generate a counter for the TOTP token calculation.
      */
-    period?: pulumi.Input<number>;
+    period?: pulumi.Input<number | undefined>;
     /**
      * `(int)` - The pixel size of the generated square QR code.
      */
-    qrSize?: pulumi.Input<number>;
+    qrSize?: pulumi.Input<number | undefined>;
     /**
      * `(int)` - The number of delay periods that are allowed when validating a TOTP token.
      * This value can either be 0 or 1.
      */
-    skew?: pulumi.Input<number>;
+    skew?: pulumi.Input<number | undefined>;
 }

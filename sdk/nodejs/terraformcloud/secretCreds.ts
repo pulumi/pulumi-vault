@@ -160,42 +160,42 @@ export interface SecretCredsState {
      * The path to the Terraform Cloud secret backend to
      * read credentials from, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The lease associated with the token. Only user tokens will have a 
      * Vault lease associated with them.
      */
-    leaseId?: pulumi.Input<string>;
+    leaseId?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The organization associated with the token provided.
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * The name of the Terraform Cloud secret backend role to generate
      * a token for, with no leading or trailing `/`s.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * The team id associated with the token provided.
      */
-    teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string | undefined>;
     /**
      * The actual token that was generated and can be used with API calls
      * to identify the user of the call.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * The public identifier for a specific token. It can be used 
      * to look up information about a token or to revoke a token.
      */
-    tokenId?: pulumi.Input<string>;
+    tokenId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -213,7 +213,7 @@ export interface SecretCredsArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name of the Terraform Cloud secret backend role to generate
      * a token for, with no leading or trailing `/`s.

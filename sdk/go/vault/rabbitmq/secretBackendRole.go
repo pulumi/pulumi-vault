@@ -36,7 +36,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			rabbitmq, err := rabbitmq.NewSecretBackend(ctx, "rabbitmq", &rabbitmq.SecretBackendArgs{
+//			rabbitmq2, err := rabbitmq.NewSecretBackend(ctx, "rabbitmq", &rabbitmq.SecretBackendArgs{
 //				ConnectionUri: pulumi.String("https://....."),
 //				Username:      pulumi.String("user"),
 //				Password:      pulumi.String("password"),
@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			_, err = rabbitmq.NewSecretBackendRole(ctx, "role", &rabbitmq.SecretBackendRoleArgs{
-//				Backend: rabbitmq.Path,
+//				Backend: rabbitmq2.Path,
 //				Name:    pulumi.String("deploy"),
 //				Tags:    pulumi.String("tag1,tag2"),
 //				Vhosts: rabbitmq.SecretBackendRoleVhostArray{

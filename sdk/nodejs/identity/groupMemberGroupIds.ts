@@ -166,22 +166,22 @@ export interface GroupMemberGroupIdsState {
      * in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
      * are removed.
      */
-    exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean | undefined>;
     /**
      * Group ID to assign member entities to.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * List of member groups that belong to the group
      */
-    memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -198,7 +198,7 @@ export interface GroupMemberGroupIdsArgs {
      * in the group. When destroying the resource, the resource will ensure that the member groups specified in the resource
      * are removed.
      */
-    exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean | undefined>;
     /**
      * Group ID to assign member entities to.
      */
@@ -206,12 +206,12 @@ export interface GroupMemberGroupIdsArgs {
     /**
      * List of member groups that belong to the group
      */
-    memberGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberGroupIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

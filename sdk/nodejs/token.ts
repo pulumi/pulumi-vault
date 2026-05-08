@@ -224,86 +224,86 @@ export interface TokenState {
     /**
      * String containing the client token if stored in present file
      */
-    clientToken?: pulumi.Input<string>;
+    clientToken?: pulumi.Input<string | undefined>;
     /**
      * String containing the token display name
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    explicitMaxTtl?: pulumi.Input<string>;
+    explicitMaxTtl?: pulumi.Input<string | undefined>;
     /**
      * String containing the token lease duration if present in state file
      */
-    leaseDuration?: pulumi.Input<number>;
+    leaseDuration?: pulumi.Input<number | undefined>;
     /**
      * String containing the token lease started time if present in state file
      */
-    leaseStarted?: pulumi.Input<string>;
+    leaseStarted?: pulumi.Input<string | undefined>;
     /**
      * Metadata to be set on this token
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Flag to not attach the default policy to this token
      */
-    noDefaultPolicy?: pulumi.Input<boolean>;
+    noDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to create a token without parent
      */
-    noParent?: pulumi.Input<boolean>;
+    noParent?: pulumi.Input<boolean | undefined>;
     /**
      * The number of allowed uses of this token
      */
-    numUses?: pulumi.Input<number>;
+    numUses?: pulumi.Input<number | undefined>;
     /**
      * The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    period?: pulumi.Input<string>;
+    period?: pulumi.Input<string | undefined>;
     /**
      * List of policies to attach to this token
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The renew increment. This is specified in seconds
      */
-    renewIncrement?: pulumi.Input<number>;
+    renewIncrement?: pulumi.Input<number | undefined>;
     /**
      * The minimal lease to renew this token
      */
-    renewMinLease?: pulumi.Input<number>;
+    renewMinLease?: pulumi.Input<number | undefined>;
     /**
      * Flag to allow to renew this token
      */
-    renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean | undefined>;
     /**
      * The token role name
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
     /**
      * The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * The client wrapped token.
      */
-    wrappedToken?: pulumi.Input<string>;
+    wrappedToken?: pulumi.Input<string | undefined>;
     /**
      * The client wrapping accessor.
      */
-    wrappingAccessor?: pulumi.Input<string>;
+    wrappingAccessor?: pulumi.Input<string | undefined>;
     /**
      * The TTL period of the wrapped token.
      */
-    wrappingTtl?: pulumi.Input<string>;
+    wrappingTtl?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -313,64 +313,64 @@ export interface TokenArgs {
     /**
      * String containing the token display name
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * The explicit max TTL of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    explicitMaxTtl?: pulumi.Input<string>;
+    explicitMaxTtl?: pulumi.Input<string | undefined>;
     /**
      * Metadata to be set on this token
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Flag to not attach the default policy to this token
      */
-    noDefaultPolicy?: pulumi.Input<boolean>;
+    noDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to create a token without parent
      */
-    noParent?: pulumi.Input<boolean>;
+    noParent?: pulumi.Input<boolean | undefined>;
     /**
      * The number of allowed uses of this token
      */
-    numUses?: pulumi.Input<number>;
+    numUses?: pulumi.Input<number | undefined>;
     /**
      * The period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    period?: pulumi.Input<string>;
+    period?: pulumi.Input<string | undefined>;
     /**
      * List of policies to attach to this token
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The renew increment. This is specified in seconds
      */
-    renewIncrement?: pulumi.Input<number>;
+    renewIncrement?: pulumi.Input<number | undefined>;
     /**
      * The minimal lease to renew this token
      */
-    renewMinLease?: pulumi.Input<number>;
+    renewMinLease?: pulumi.Input<number | undefined>;
     /**
      * Flag to allow to renew this token
      */
-    renewable?: pulumi.Input<boolean>;
+    renewable?: pulumi.Input<boolean | undefined>;
     /**
      * The token role name
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
     /**
      * The TTL period of this token. This is specified as a numeric string with suffix like "30s" ro "5m"
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * The TTL period of the wrapped token.
      */
-    wrappingTtl?: pulumi.Input<string>;
+    wrappingTtl?: pulumi.Input<string | undefined>;
 }

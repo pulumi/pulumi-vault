@@ -156,7 +156,7 @@ def get_backend_config_cmpv2(backend: Optional[_builtins.str] = None,
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    cmpv2_config = vault.pkiSecret.get_backend_config_cmpv2_output(backend=pki.path)
+    cmpv2_config = vault.pkisecret.get_backend_config_cmpv2_output(backend=pki.path)
     ```
 
 
@@ -188,9 +188,9 @@ def get_backend_config_cmpv2(backend: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         last_updated=pulumi.get(__ret__, 'last_updated'),
         namespace=pulumi.get(__ret__, 'namespace'))
-def get_backend_config_cmpv2_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                    disabled_validations: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                    namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_backend_config_cmpv2_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                    disabled_validations: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                    namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackendConfigCmpv2Result]:
     """
     Reads the PKI CMPv2 configuration from Vault Enterprise.
@@ -213,7 +213,7 @@ def get_backend_config_cmpv2_output(backend: Optional[pulumi.Input[_builtins.str
         path="pki",
         type="pki",
         description="PKI secret engine mount")
-    cmpv2_config = vault.pkiSecret.get_backend_config_cmpv2_output(backend=pki.path)
+    cmpv2_config = vault.pkisecret.get_backend_config_cmpv2_output(backend=pki.path)
     ```
 
 

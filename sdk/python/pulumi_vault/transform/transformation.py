@@ -20,15 +20,15 @@ __all__ = ['TransformationArgs', 'Transformation']
 class TransformationArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 masking_character: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
-                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tweak_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
+                 templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Transformation resource.
 
@@ -82,19 +82,19 @@ class TransformationArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The set of roles allowed to perform this transformation.
         """
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="deletionAllowed")
-    def deletion_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deletion_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, this transform can be deleted.
         Otherwise, deletion is blocked while this value remains false. Default: `false`
@@ -103,36 +103,36 @@ class TransformationArgs:
         return pulumi.get(self, "deletion_allowed")
 
     @deletion_allowed.setter
-    def deletion_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deletion_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deletion_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="maskingCharacter")
-    def masking_character(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def masking_character(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The character used to replace data when in masking mode
         """
         return pulumi.get(self, "masking_character")
 
     @masking_character.setter
-    def masking_character(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def masking_character(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "masking_character", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the transformation.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -142,71 +142,71 @@ class TransformationArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the template to use.
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template", value)
 
     @_builtins.property
     @pulumi.getter
-    def templates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def templates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Templates configured for transformation.
         """
         return pulumi.get(self, "templates")
 
     @templates.setter
-    def templates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def templates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "templates", value)
 
     @_builtins.property
     @pulumi.getter(name="tweakSource")
-    def tweak_source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tweak_source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The source of where the tweak value comes from. Only valid when in FPE mode.
         """
         return pulumi.get(self, "tweak_source")
 
     @tweak_source.setter
-    def tweak_source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tweak_source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tweak_source", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of transformation to perform.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 @pulumi.input_type
 class _TransformationState:
     def __init__(__self__, *,
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 masking_character: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
-                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tweak_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
+                 templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Transformation resources.
 
@@ -249,19 +249,19 @@ class _TransformationState:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The set of roles allowed to perform this transformation.
         """
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="deletionAllowed")
-    def deletion_allowed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def deletion_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, this transform can be deleted.
         Otherwise, deletion is blocked while this value remains false. Default: `false`
@@ -270,36 +270,36 @@ class _TransformationState:
         return pulumi.get(self, "deletion_allowed")
 
     @deletion_allowed.setter
-    def deletion_allowed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def deletion_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deletion_allowed", value)
 
     @_builtins.property
     @pulumi.getter(name="maskingCharacter")
-    def masking_character(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def masking_character(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The character used to replace data when in masking mode
         """
         return pulumi.get(self, "masking_character")
 
     @masking_character.setter
-    def masking_character(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def masking_character(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "masking_character", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the transformation.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -309,67 +309,67 @@ class _TransformationState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to where the back-end is mounted within Vault.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the template to use.
         """
         return pulumi.get(self, "template")
 
     @template.setter
-    def template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "template", value)
 
     @_builtins.property
     @pulumi.getter
-    def templates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def templates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Templates configured for transformation.
         """
         return pulumi.get(self, "templates")
 
     @templates.setter
-    def templates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def templates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "templates", value)
 
     @_builtins.property
     @pulumi.getter(name="tweakSource")
-    def tweak_source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tweak_source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The source of where the tweak value comes from. Only valid when in FPE mode.
         """
         return pulumi.get(self, "tweak_source")
 
     @tweak_source.setter
-    def tweak_source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tweak_source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tweak_source", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of transformation to perform.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -379,16 +379,16 @@ class Transformation(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 masking_character: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
-                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tweak_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
+                 templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         This resource supports the "/transform/transformation/{name}" Vault endpoint.
@@ -487,16 +487,16 @@ class Transformation(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 masking_character: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 template: Optional[pulumi.Input[_builtins.str]] = None,
-                 templates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 tweak_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None,
+                 templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -528,16 +528,16 @@ class Transformation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            deletion_allowed: Optional[pulumi.Input[_builtins.bool]] = None,
-            masking_character: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            template: Optional[pulumi.Input[_builtins.str]] = None,
-            templates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            tweak_source: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'Transformation':
+            allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            template: pulumi.Input[Optional[_builtins.str]] = None,
+            templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'Transformation':
         """
         Get an existing Transformation resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

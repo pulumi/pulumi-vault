@@ -166,38 +166,38 @@ export interface SecretRolesetState {
     /**
      * Path where the GCP Secrets Engine is mounted
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Bindings to create for this roleset. This can be specified multiple times for multiple bindings. Structure is documented below.
      */
-    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretRolesetBinding>[]>;
+    bindings?: pulumi.Input<pulumi.Input<inputs.gcp.SecretRolesetBinding>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the GCP project that this roleset's service account will belong to.
      */
-    project?: pulumi.Input<string>;
+    project?: pulumi.Input<string | undefined>;
     /**
      * Name of the Roleset to create
      */
-    roleset?: pulumi.Input<string>;
+    roleset?: pulumi.Input<string | undefined>;
     /**
      * Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    secretType?: pulumi.Input<string>;
+    secretType?: pulumi.Input<string | undefined>;
     /**
      * Email of the service account created by Vault for this Roleset.
      */
-    serviceAccountEmail?: pulumi.Input<string>;
+    serviceAccountEmail?: pulumi.Input<string | undefined>;
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
      */
-    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -218,7 +218,7 @@ export interface SecretRolesetArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the GCP project that this roleset's service account will belong to.
      */
@@ -230,9 +230,9 @@ export interface SecretRolesetArgs {
     /**
      * Type of secret generated for this role set. Accepted values: `accessToken`, `serviceAccountKey`. Defaults to `accessToken`.
      */
-    secretType?: pulumi.Input<string>;
+    secretType?: pulumi.Input<string | undefined>;
     /**
      * List of OAuth scopes to assign to `accessToken` secrets generated under this role set (`accessToken` role sets only).
      */
-    tokenScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

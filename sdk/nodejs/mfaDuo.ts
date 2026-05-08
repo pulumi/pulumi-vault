@@ -162,34 +162,34 @@ export interface MfaDuoState {
     /**
      * `(string: <required>)` - API hostname for Duo.
      */
-    apiHostname?: pulumi.Input<string>;
+    apiHostname?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Integration key for Duo.
      */
-    integrationKey?: pulumi.Input<string>;
+    integrationKey?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Push information for Duo.
      */
-    pushInfo?: pulumi.Input<string>;
+    pushInfo?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Secret key for Duo.
      */
-    secretKey?: pulumi.Input<string>;
+    secretKey?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names. Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`. If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
@@ -197,7 +197,7 @@ export interface MfaDuoState {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -219,18 +219,18 @@ export interface MfaDuoArgs {
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - Push information for Duo.
      */
-    pushInfo?: pulumi.Input<string>;
+    pushInfo?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Secret key for Duo.
      */
@@ -242,5 +242,5 @@ export interface MfaDuoArgs {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }

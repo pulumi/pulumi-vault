@@ -145,27 +145,27 @@ export interface SecretBackendV2State {
      * If true, all keys will require the cas
      * parameter to be set on all write requests.
      */
-    casRequired?: pulumi.Input<boolean>;
+    casRequired?: pulumi.Input<boolean | undefined>;
     /**
      * If set, specifies the length of time before
      * a version is deleted. Accepts duration in integer seconds.
      */
-    deleteVersionAfter?: pulumi.Input<number>;
+    deleteVersionAfter?: pulumi.Input<number | undefined>;
     /**
      * The number of versions to keep per key.
      */
-    maxVersions?: pulumi.Input<number>;
+    maxVersions?: pulumi.Input<number | undefined>;
     /**
      * Path where KV-V2 engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -176,16 +176,16 @@ export interface SecretBackendV2Args {
      * If true, all keys will require the cas
      * parameter to be set on all write requests.
      */
-    casRequired?: pulumi.Input<boolean>;
+    casRequired?: pulumi.Input<boolean | undefined>;
     /**
      * If set, specifies the length of time before
      * a version is deleted. Accepts duration in integer seconds.
      */
-    deleteVersionAfter?: pulumi.Input<number>;
+    deleteVersionAfter?: pulumi.Input<number | undefined>;
     /**
      * The number of versions to keep per key.
      */
-    maxVersions?: pulumi.Input<number>;
+    maxVersions?: pulumi.Input<number | undefined>;
     /**
      * Path where KV-V2 engine is mounted.
      */
@@ -196,5 +196,5 @@ export interface SecretBackendV2Args {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

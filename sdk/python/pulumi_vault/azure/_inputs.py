@@ -23,13 +23,13 @@ __all__ = [
 
 class BackendRoleAzureGroupArgsDict(TypedDict):
     group_name: pulumi.Input[_builtins.str]
-    object_id: NotRequired[pulumi.Input[_builtins.str]]
+    object_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class BackendRoleAzureGroupArgs:
     def __init__(__self__, *,
                  group_name: pulumi.Input[_builtins.str],
-                 object_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 object_id: pulumi.Input[Optional[_builtins.str]] = None):
         pulumi.set(__self__, "group_name", group_name)
         if object_id is not None:
             pulumi.set(__self__, "object_id", object_id)
@@ -45,25 +45,25 @@ class BackendRoleAzureGroupArgs:
 
     @_builtins.property
     @pulumi.getter(name="objectId")
-    def object_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def object_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "object_id")
 
     @object_id.setter
-    def object_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def object_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "object_id", value)
 
 
 class BackendRoleAzureRoleArgsDict(TypedDict):
     scope: pulumi.Input[_builtins.str]
-    role_id: NotRequired[pulumi.Input[_builtins.str]]
-    role_name: NotRequired[pulumi.Input[_builtins.str]]
+    role_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    role_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class BackendRoleAzureRoleArgs:
     def __init__(__self__, *,
                  scope: pulumi.Input[_builtins.str],
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None):
         pulumi.set(__self__, "scope", scope)
         if role_id is not None:
             pulumi.set(__self__, "role_id", role_id)
@@ -81,20 +81,20 @@ class BackendRoleAzureRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
 

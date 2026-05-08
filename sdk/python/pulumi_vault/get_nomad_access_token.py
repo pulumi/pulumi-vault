@@ -165,9 +165,9 @@ def get_nomad_access_token(backend: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         role=pulumi.get(__ret__, 'role'),
         secret_id=pulumi.get(__ret__, 'secret_id'))
-def get_nomad_access_token_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                  namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                  role: Optional[pulumi.Input[_builtins.str]] = None,
+def get_nomad_access_token_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                  namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                  role: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNomadAccessTokenResult]:
     """
     Generates tokens for Nomad.

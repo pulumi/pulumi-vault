@@ -28,7 +28,7 @@ import * as utilities from "../utilities";
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const scepConfig = vault.pkiSecret.getBackendConfigScepOutput({
+ * const scepConfig = vault.pkisecret.getBackendConfigScepOutput({
  *     backend: pki.path,
  * });
  * ```
@@ -133,7 +133,7 @@ export interface GetBackendConfigScepResult {
  *     type: "pki",
  *     description: "PKI secret engine mount",
  * });
- * const scepConfig = vault.pkiSecret.getBackendConfigScepOutput({
+ * const scepConfig = vault.pkisecret.getBackendConfigScepOutput({
  *     backend: pki.path,
  * });
  * ```
@@ -159,12 +159,12 @@ export interface GetBackendConfigScepOutputArgs {
     /**
      * The level of logging verbosity, affects only SCEP logs on this mount.
      */
-    logLevel?: pulumi.Input<string>;
+    logLevel?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

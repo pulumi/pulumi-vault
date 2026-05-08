@@ -163,37 +163,37 @@ export interface SecretBackendLibrarySetState {
      * accounts must be checked in by the entity or client token that checked them
      * out. Defaults to false.
      */
-    disableCheckInEnforcement?: pulumi.Input<boolean>;
+    disableCheckInEnforcement?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum password time-to-live in seconds. Defaults
      * to the configuration maxTtl if not provided.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The path where the LDAP secrets backend is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this set of service accounts.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the slice of service accounts mapped to this set.
      */
-    serviceAccountNames?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAccountNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The password time-to-live in seconds. Defaults to the configuration
      * ttl if not provided.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -205,28 +205,28 @@ export interface SecretBackendLibrarySetArgs {
      * accounts must be checked in by the entity or client token that checked them
      * out. Defaults to false.
      */
-    disableCheckInEnforcement?: pulumi.Input<boolean>;
+    disableCheckInEnforcement?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum password time-to-live in seconds. Defaults
      * to the configuration maxTtl if not provided.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The path where the LDAP secrets backend is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this set of service accounts.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the slice of service accounts mapped to this set.
      */
@@ -235,5 +235,5 @@ export interface SecretBackendLibrarySetArgs {
      * The password time-to-live in seconds. Defaults to the configuration
      * ttl if not provided.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }

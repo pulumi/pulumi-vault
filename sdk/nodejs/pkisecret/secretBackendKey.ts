@@ -160,46 +160,46 @@ export interface SecretBackendKeyState {
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the number of bits to use for the generated keys. 
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
      * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
      * 384, or 521; ignored with `key_type=ed25519`.
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * ID of the generated key.
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * When a new key is created with this request, optionally specifies the name for this. 
      * The global ref `default` may not be used as a name.
      */
-    keyName?: pulumi.Input<string>;
+    keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * The managed key's UUID.
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The managed key's configured name.
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -216,31 +216,31 @@ export interface SecretBackendKeyArgs {
      * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
      * 384, or 521; ignored with `key_type=ed25519`.
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * When a new key is created with this request, optionally specifies the name for this. 
      * The global ref `default` may not be used as a name.
      */
-    keyName?: pulumi.Input<string>;
+    keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * The managed key's UUID.
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The managed key's configured name.
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      */

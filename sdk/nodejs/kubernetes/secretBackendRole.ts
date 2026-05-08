@@ -324,85 +324,85 @@ export interface SecretBackendRoleState {
      * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
      * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
      */
-    allowedKubernetesNamespaceSelector?: pulumi.Input<string>;
+    allowedKubernetesNamespaceSelector?: pulumi.Input<string | undefined>;
     /**
      * The list of Kubernetes namespaces this role 
      * can generate credentials for. If set to `*` all namespaces are allowed. If set with
      * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
      */
-    allowedKubernetesNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedKubernetesNamespaces?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path of the Kubernetes Secrets Engine backend mount to create
      * the role in.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Additional annotations to apply to all generated 
      * Kubernetes objects.
      */
-    extraAnnotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraAnnotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Additional labels to apply to all generated Kubernetes 
      * objects.
      *
      * This resource also directly accepts all vault.Mount fields.
      */
-    extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The Role or ClusterRole rules to use when generating 
      * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
      * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
      * when credentials are requested.
      */
-    generatedRoleRules?: pulumi.Input<string>;
+    generatedRoleRules?: pulumi.Input<string | undefined>;
     /**
      * The pre-existing Role or ClusterRole to bind a 
      * generated service account to. Mutually exclusive with `serviceAccountName` and
      * `generatedRoleRules`. If set, Kubernetes token, service account, and role
      * binding objects will be created when credentials are requested.
      */
-    kubernetesRoleName?: pulumi.Input<string>;
+    kubernetesRoleName?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether the Kubernetes role is a Role or 
      * ClusterRole.
      */
-    kubernetesRoleType?: pulumi.Input<string>;
+    kubernetesRoleType?: pulumi.Input<string | undefined>;
     /**
      * The name of the role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name template to use when generating service accounts, 
      * roles and role bindings. If unset, a default template is used.
      */
-    nameTemplate?: pulumi.Input<string>;
+    nameTemplate?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The pre-existing service account to generate tokens for.
      * Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
      * Kubernetes token will be created when credentials are requested.
      */
-    serviceAccountName?: pulumi.Input<string>;
+    serviceAccountName?: pulumi.Input<string | undefined>;
     /**
      * The default audiences for generated Kubernetes tokens.
      * If not set, defaults to the Kubernetes cluster's default audiences. This field requires
      * Vault 1.15 or later.
      */
-    tokenDefaultAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenDefaultAudiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The default TTL for generated Kubernetes tokens in seconds.
      */
-    tokenDefaultTtl?: pulumi.Input<number>;
+    tokenDefaultTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum TTL for generated Kubernetes tokens in seconds.
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -415,13 +415,13 @@ export interface SecretBackendRoleArgs {
      * of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
      * If set with `allowedKubernetesNamespace`, the conditions are `OR`ed.
      */
-    allowedKubernetesNamespaceSelector?: pulumi.Input<string>;
+    allowedKubernetesNamespaceSelector?: pulumi.Input<string | undefined>;
     /**
      * The list of Kubernetes namespaces this role 
      * can generate credentials for. If set to `*` all namespaces are allowed. If set with
      * `allowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
      */
-    allowedKubernetesNamespaces?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedKubernetesNamespaces?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path of the Kubernetes Secrets Engine backend mount to create
      * the role in.
@@ -431,67 +431,67 @@ export interface SecretBackendRoleArgs {
      * Additional annotations to apply to all generated 
      * Kubernetes objects.
      */
-    extraAnnotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraAnnotations?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Additional labels to apply to all generated Kubernetes 
      * objects.
      *
      * This resource also directly accepts all vault.Mount fields.
      */
-    extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extraLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The Role or ClusterRole rules to use when generating 
      * a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `serviceAccountName`
      * and `kubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
      * when credentials are requested.
      */
-    generatedRoleRules?: pulumi.Input<string>;
+    generatedRoleRules?: pulumi.Input<string | undefined>;
     /**
      * The pre-existing Role or ClusterRole to bind a 
      * generated service account to. Mutually exclusive with `serviceAccountName` and
      * `generatedRoleRules`. If set, Kubernetes token, service account, and role
      * binding objects will be created when credentials are requested.
      */
-    kubernetesRoleName?: pulumi.Input<string>;
+    kubernetesRoleName?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether the Kubernetes role is a Role or 
      * ClusterRole.
      */
-    kubernetesRoleType?: pulumi.Input<string>;
+    kubernetesRoleType?: pulumi.Input<string | undefined>;
     /**
      * The name of the role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The name template to use when generating service accounts, 
      * roles and role bindings. If unset, a default template is used.
      */
-    nameTemplate?: pulumi.Input<string>;
+    nameTemplate?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The pre-existing service account to generate tokens for.
      * Mutually exclusive with `kubernetesRoleName` and `generatedRoleRules`. If set, only a
      * Kubernetes token will be created when credentials are requested.
      */
-    serviceAccountName?: pulumi.Input<string>;
+    serviceAccountName?: pulumi.Input<string | undefined>;
     /**
      * The default audiences for generated Kubernetes tokens.
      * If not set, defaults to the Kubernetes cluster's default audiences. This field requires
      * Vault 1.15 or later.
      */
-    tokenDefaultAudiences?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenDefaultAudiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The default TTL for generated Kubernetes tokens in seconds.
      */
-    tokenDefaultTtl?: pulumi.Input<number>;
+    tokenDefaultTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum TTL for generated Kubernetes tokens in seconds.
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
 }

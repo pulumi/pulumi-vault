@@ -171,55 +171,55 @@ export interface MfaOktaState {
     /**
      * Okta API token.
      */
-    apiToken?: pulumi.Input<string>;
+    apiToken?: pulumi.Input<string | undefined>;
     /**
      * The base domain to use for API requests.
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * Method ID.
      */
-    methodId?: pulumi.Input<string>;
+    methodId?: pulumi.Input<string | undefined>;
     /**
      * Mount accessor.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * Method name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace path.
      */
-    namespacePath?: pulumi.Input<string>;
+    namespacePath?: pulumi.Input<string | undefined>;
     /**
      * Name of the organization to be used in the Okta API.
      */
-    orgName?: pulumi.Input<string>;
+    orgName?: pulumi.Input<string | undefined>;
     /**
      * Only match the primary email for the account.
      */
-    primaryEmail?: pulumi.Input<boolean>;
+    primaryEmail?: pulumi.Input<boolean | undefined>;
     /**
      * MFA type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
     /**
      * Resource UUID.
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -233,11 +233,11 @@ export interface MfaOktaArgs {
     /**
      * The base domain to use for API requests.
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Name of the organization to be used in the Okta API.
      */
@@ -245,9 +245,9 @@ export interface MfaOktaArgs {
     /**
      * Only match the primary email for the account.
      */
-    primaryEmail?: pulumi.Input<boolean>;
+    primaryEmail?: pulumi.Input<boolean | undefined>;
     /**
      * A template string for mapping Identity names to MFA methods.
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }

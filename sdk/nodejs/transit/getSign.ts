@@ -121,26 +121,26 @@ export function getSignOutput(args: GetSignOutputArgs, opts?: pulumi.InvokeOutpu
  * A collection of arguments for invoking getSign.
  */
 export interface GetSignOutputArgs {
-    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * The results returned from Vault if using `batchInput`
      */
-    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
-    context?: pulumi.Input<string>;
-    hashAlgorithm?: pulumi.Input<string>;
-    input?: pulumi.Input<string>;
-    keyVersion?: pulumi.Input<number>;
-    marshalingAlgorithm?: pulumi.Input<string>;
+    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
+    context?: pulumi.Input<string | undefined>;
+    hashAlgorithm?: pulumi.Input<string | undefined>;
+    input?: pulumi.Input<string | undefined>;
+    keyVersion?: pulumi.Input<number | undefined>;
+    marshalingAlgorithm?: pulumi.Input<string | undefined>;
     name: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     path: pulumi.Input<string>;
-    prehashed?: pulumi.Input<boolean>;
-    reference?: pulumi.Input<string>;
-    saltLength?: pulumi.Input<string>;
+    prehashed?: pulumi.Input<boolean | undefined>;
+    reference?: pulumi.Input<string | undefined>;
+    saltLength?: pulumi.Input<string | undefined>;
     /**
      * The signature returned from Vault if using `input`
      */
-    signature?: pulumi.Input<string>;
-    signatureAlgorithm?: pulumi.Input<string>;
-    signatureContext?: pulumi.Input<string>;
+    signature?: pulumi.Input<string | undefined>;
+    signatureAlgorithm?: pulumi.Input<string | undefined>;
+    signatureContext?: pulumi.Input<string | undefined>;
 }

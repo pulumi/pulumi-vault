@@ -22,39 +22,39 @@ class SecretRoleArgs:
                  path: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
                  scope: pulumi.Input[_builtins.str],
-                 ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_all: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_decrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_delete_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_discover_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attribute_list: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_import: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_locate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_modify_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_none: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_query: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_register: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_revoke: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_retrieve: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_seed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_sign: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_signature_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_client_key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_client_key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 operation_activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_add_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_all: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_decrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_delete_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_discover_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attribute_list: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_import: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_locate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_modify_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_none: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_query: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_register: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_revoke: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_retrieve: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_seed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_sign: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_signature_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_client_key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_client_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
 
@@ -208,19 +208,19 @@ class SecretRoleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the ca to use, if absent use legacy ca
         """
         return pulumi.get(self, "ca")
 
     @ca.setter
-    def ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -230,421 +230,421 @@ class SecretRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="operationActivate")
-    def operation_activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Activate operation.
         """
         return pulumi.get(self, "operation_activate")
 
     @operation_activate.setter
-    def operation_activate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_activate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_activate", value)
 
     @_builtins.property
     @pulumi.getter(name="operationAddAttribute")
-    def operation_add_attribute(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_add_attribute(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Add Attribute operation.
         """
         return pulumi.get(self, "operation_add_attribute")
 
     @operation_add_attribute.setter
-    def operation_add_attribute(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_add_attribute(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_add_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="operationAll")
-    def operation_all(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_all(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant all permissions to this role. May not be specified with any other `operation_*` params.
         """
         return pulumi.get(self, "operation_all")
 
     @operation_all.setter
-    def operation_all(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_all(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_all", value)
 
     @_builtins.property
     @pulumi.getter(name="operationCreate")
-    def operation_create(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_create(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Create operation.
         """
         return pulumi.get(self, "operation_create")
 
     @operation_create.setter
-    def operation_create(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_create(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_create", value)
 
     @_builtins.property
     @pulumi.getter(name="operationCreateKeyPair")
-    def operation_create_key_pair(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_create_key_pair(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Create Key Pair operation.
         """
         return pulumi.get(self, "operation_create_key_pair")
 
     @operation_create_key_pair.setter
-    def operation_create_key_pair(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_create_key_pair(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_create_key_pair", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDecrypt")
-    def operation_decrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_decrypt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Decrypt operation.
         """
         return pulumi.get(self, "operation_decrypt")
 
     @operation_decrypt.setter
-    def operation_decrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_decrypt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_decrypt", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDeleteAttribute")
-    def operation_delete_attribute(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_delete_attribute(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Delete Attribute operation.
         """
         return pulumi.get(self, "operation_delete_attribute")
 
     @operation_delete_attribute.setter
-    def operation_delete_attribute(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_delete_attribute(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_delete_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDestroy")
-    def operation_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Destroy operation.
         """
         return pulumi.get(self, "operation_destroy")
 
     @operation_destroy.setter
-    def operation_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDiscoverVersions")
-    def operation_discover_versions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_discover_versions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Discover Version operation.
         """
         return pulumi.get(self, "operation_discover_versions")
 
     @operation_discover_versions.setter
-    def operation_discover_versions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_discover_versions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_discover_versions", value)
 
     @_builtins.property
     @pulumi.getter(name="operationEncrypt")
-    def operation_encrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_encrypt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Encrypt operation.
         """
         return pulumi.get(self, "operation_encrypt")
 
     @operation_encrypt.setter
-    def operation_encrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_encrypt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_encrypt", value)
 
     @_builtins.property
     @pulumi.getter(name="operationGet")
-    def operation_get(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_get(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get operation.
         """
         return pulumi.get(self, "operation_get")
 
     @operation_get.setter
-    def operation_get(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_get(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_get", value)
 
     @_builtins.property
     @pulumi.getter(name="operationGetAttributeList")
-    def operation_get_attribute_list(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_get_attribute_list(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get Atrribute List operation.
         """
         return pulumi.get(self, "operation_get_attribute_list")
 
     @operation_get_attribute_list.setter
-    def operation_get_attribute_list(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_get_attribute_list(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_get_attribute_list", value)
 
     @_builtins.property
     @pulumi.getter(name="operationGetAttributes")
-    def operation_get_attributes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_get_attributes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get Atrributes operation.
         """
         return pulumi.get(self, "operation_get_attributes")
 
     @operation_get_attributes.setter
-    def operation_get_attributes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_get_attributes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_get_attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="operationImport")
-    def operation_import(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_import(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Import operation.
         """
         return pulumi.get(self, "operation_import")
 
     @operation_import.setter
-    def operation_import(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_import(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_import", value)
 
     @_builtins.property
     @pulumi.getter(name="operationLocate")
-    def operation_locate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_locate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get Locate operation.
         """
         return pulumi.get(self, "operation_locate")
 
     @operation_locate.setter
-    def operation_locate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_locate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_locate", value)
 
     @_builtins.property
     @pulumi.getter(name="operationMac")
-    def operation_mac(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_mac(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP MAC operation.
         """
         return pulumi.get(self, "operation_mac")
 
     @operation_mac.setter
-    def operation_mac(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_mac(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_mac", value)
 
     @_builtins.property
     @pulumi.getter(name="operationMacVerify")
-    def operation_mac_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_mac_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP MAC Verify operation.
         """
         return pulumi.get(self, "operation_mac_verify")
 
     @operation_mac_verify.setter
-    def operation_mac_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_mac_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_mac_verify", value)
 
     @_builtins.property
     @pulumi.getter(name="operationModifyAttribute")
-    def operation_modify_attribute(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_modify_attribute(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Modify Attribute operation.
         """
         return pulumi.get(self, "operation_modify_attribute")
 
     @operation_modify_attribute.setter
-    def operation_modify_attribute(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_modify_attribute(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_modify_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="operationNone")
-    def operation_none(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_none(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Remove all permissions from this role. May not be specified with any other `operation_*` params.
         """
         return pulumi.get(self, "operation_none")
 
     @operation_none.setter
-    def operation_none(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_none(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_none", value)
 
     @_builtins.property
     @pulumi.getter(name="operationQuery")
-    def operation_query(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_query(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Query operation.
         """
         return pulumi.get(self, "operation_query")
 
     @operation_query.setter
-    def operation_query(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_query(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_query", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRegister")
-    def operation_register(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_register(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Register operation.
         """
         return pulumi.get(self, "operation_register")
 
     @operation_register.setter
-    def operation_register(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_register(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_register", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRekey")
-    def operation_rekey(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rekey(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Rekey operation.
         """
         return pulumi.get(self, "operation_rekey")
 
     @operation_rekey.setter
-    def operation_rekey(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rekey(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rekey", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRekeyKeyPair")
-    def operation_rekey_key_pair(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rekey_key_pair(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Rekey Key Pair operation.
         """
         return pulumi.get(self, "operation_rekey_key_pair")
 
     @operation_rekey_key_pair.setter
-    def operation_rekey_key_pair(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rekey_key_pair(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rekey_key_pair", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRevoke")
-    def operation_revoke(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_revoke(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Revoke operation.
         """
         return pulumi.get(self, "operation_revoke")
 
     @operation_revoke.setter
-    def operation_revoke(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_revoke(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_revoke", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRngRetrieve")
-    def operation_rng_retrieve(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rng_retrieve(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP RNG Retrieve operation.
         """
         return pulumi.get(self, "operation_rng_retrieve")
 
     @operation_rng_retrieve.setter
-    def operation_rng_retrieve(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rng_retrieve(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rng_retrieve", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRngSeed")
-    def operation_rng_seed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rng_seed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP RNG Seed operation.
         """
         return pulumi.get(self, "operation_rng_seed")
 
     @operation_rng_seed.setter
-    def operation_rng_seed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rng_seed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rng_seed", value)
 
     @_builtins.property
     @pulumi.getter(name="operationSign")
-    def operation_sign(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_sign(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Sign operation.
         """
         return pulumi.get(self, "operation_sign")
 
     @operation_sign.setter
-    def operation_sign(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_sign(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_sign", value)
 
     @_builtins.property
     @pulumi.getter(name="operationSignatureVerify")
-    def operation_signature_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_signature_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Signature Verify operation.
         """
         return pulumi.get(self, "operation_signature_verify")
 
     @operation_signature_verify.setter
-    def operation_signature_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_signature_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_signature_verify", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKeyBits")
-    def tls_client_key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def tls_client_key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Client certificate key bits, valid values depend on key type.
         """
         return pulumi.get(self, "tls_client_key_bits")
 
     @tls_client_key_bits.setter
-    def tls_client_key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def tls_client_key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "tls_client_key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKeyType")
-    def tls_client_key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client certificate key type, `rsa` or `ec`.
         """
         return pulumi.get(self, "tls_client_key_type")
 
     @tls_client_key_type.setter
-    def tls_client_key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientTtl")
-    def tls_client_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def tls_client_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Client certificate TTL in seconds.
         """
         return pulumi.get(self, "tls_client_ttl")
 
     @tls_client_ttl.setter
-    def tls_client_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def tls_client_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "tls_client_ttl", value)
 
 
 @pulumi.input_type
 class _SecretRoleState:
     def __init__(__self__, *,
-                 ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_all: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_decrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_delete_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_discover_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attribute_list: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_import: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_locate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_modify_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_none: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_query: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_register: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_revoke: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_retrieve: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_seed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_sign: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_signature_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_client_key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 operation_activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_add_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_all: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_decrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_delete_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_discover_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attribute_list: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_import: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_locate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_modify_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_none: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_query: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_register: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_revoke: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_retrieve: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_seed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_sign: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_signature_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_client_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
 
@@ -764,19 +764,19 @@ class _SecretRoleState:
 
     @_builtins.property
     @pulumi.getter
-    def ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the ca to use, if absent use legacy ca
         """
         return pulumi.get(self, "ca")
 
     @ca.setter
-    def ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -786,348 +786,348 @@ class _SecretRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="operationActivate")
-    def operation_activate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_activate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Activate operation.
         """
         return pulumi.get(self, "operation_activate")
 
     @operation_activate.setter
-    def operation_activate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_activate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_activate", value)
 
     @_builtins.property
     @pulumi.getter(name="operationAddAttribute")
-    def operation_add_attribute(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_add_attribute(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Add Attribute operation.
         """
         return pulumi.get(self, "operation_add_attribute")
 
     @operation_add_attribute.setter
-    def operation_add_attribute(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_add_attribute(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_add_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="operationAll")
-    def operation_all(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_all(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant all permissions to this role. May not be specified with any other `operation_*` params.
         """
         return pulumi.get(self, "operation_all")
 
     @operation_all.setter
-    def operation_all(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_all(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_all", value)
 
     @_builtins.property
     @pulumi.getter(name="operationCreate")
-    def operation_create(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_create(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Create operation.
         """
         return pulumi.get(self, "operation_create")
 
     @operation_create.setter
-    def operation_create(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_create(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_create", value)
 
     @_builtins.property
     @pulumi.getter(name="operationCreateKeyPair")
-    def operation_create_key_pair(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_create_key_pair(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Create Key Pair operation.
         """
         return pulumi.get(self, "operation_create_key_pair")
 
     @operation_create_key_pair.setter
-    def operation_create_key_pair(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_create_key_pair(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_create_key_pair", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDecrypt")
-    def operation_decrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_decrypt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Decrypt operation.
         """
         return pulumi.get(self, "operation_decrypt")
 
     @operation_decrypt.setter
-    def operation_decrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_decrypt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_decrypt", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDeleteAttribute")
-    def operation_delete_attribute(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_delete_attribute(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Delete Attribute operation.
         """
         return pulumi.get(self, "operation_delete_attribute")
 
     @operation_delete_attribute.setter
-    def operation_delete_attribute(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_delete_attribute(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_delete_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDestroy")
-    def operation_destroy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_destroy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Destroy operation.
         """
         return pulumi.get(self, "operation_destroy")
 
     @operation_destroy.setter
-    def operation_destroy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_destroy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_destroy", value)
 
     @_builtins.property
     @pulumi.getter(name="operationDiscoverVersions")
-    def operation_discover_versions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_discover_versions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Discover Version operation.
         """
         return pulumi.get(self, "operation_discover_versions")
 
     @operation_discover_versions.setter
-    def operation_discover_versions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_discover_versions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_discover_versions", value)
 
     @_builtins.property
     @pulumi.getter(name="operationEncrypt")
-    def operation_encrypt(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_encrypt(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Encrypt operation.
         """
         return pulumi.get(self, "operation_encrypt")
 
     @operation_encrypt.setter
-    def operation_encrypt(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_encrypt(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_encrypt", value)
 
     @_builtins.property
     @pulumi.getter(name="operationGet")
-    def operation_get(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_get(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get operation.
         """
         return pulumi.get(self, "operation_get")
 
     @operation_get.setter
-    def operation_get(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_get(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_get", value)
 
     @_builtins.property
     @pulumi.getter(name="operationGetAttributeList")
-    def operation_get_attribute_list(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_get_attribute_list(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get Atrribute List operation.
         """
         return pulumi.get(self, "operation_get_attribute_list")
 
     @operation_get_attribute_list.setter
-    def operation_get_attribute_list(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_get_attribute_list(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_get_attribute_list", value)
 
     @_builtins.property
     @pulumi.getter(name="operationGetAttributes")
-    def operation_get_attributes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_get_attributes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get Atrributes operation.
         """
         return pulumi.get(self, "operation_get_attributes")
 
     @operation_get_attributes.setter
-    def operation_get_attributes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_get_attributes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_get_attributes", value)
 
     @_builtins.property
     @pulumi.getter(name="operationImport")
-    def operation_import(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_import(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Import operation.
         """
         return pulumi.get(self, "operation_import")
 
     @operation_import.setter
-    def operation_import(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_import(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_import", value)
 
     @_builtins.property
     @pulumi.getter(name="operationLocate")
-    def operation_locate(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_locate(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Get Locate operation.
         """
         return pulumi.get(self, "operation_locate")
 
     @operation_locate.setter
-    def operation_locate(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_locate(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_locate", value)
 
     @_builtins.property
     @pulumi.getter(name="operationMac")
-    def operation_mac(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_mac(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP MAC operation.
         """
         return pulumi.get(self, "operation_mac")
 
     @operation_mac.setter
-    def operation_mac(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_mac(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_mac", value)
 
     @_builtins.property
     @pulumi.getter(name="operationMacVerify")
-    def operation_mac_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_mac_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP MAC Verify operation.
         """
         return pulumi.get(self, "operation_mac_verify")
 
     @operation_mac_verify.setter
-    def operation_mac_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_mac_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_mac_verify", value)
 
     @_builtins.property
     @pulumi.getter(name="operationModifyAttribute")
-    def operation_modify_attribute(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_modify_attribute(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Modify Attribute operation.
         """
         return pulumi.get(self, "operation_modify_attribute")
 
     @operation_modify_attribute.setter
-    def operation_modify_attribute(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_modify_attribute(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_modify_attribute", value)
 
     @_builtins.property
     @pulumi.getter(name="operationNone")
-    def operation_none(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_none(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Remove all permissions from this role. May not be specified with any other `operation_*` params.
         """
         return pulumi.get(self, "operation_none")
 
     @operation_none.setter
-    def operation_none(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_none(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_none", value)
 
     @_builtins.property
     @pulumi.getter(name="operationQuery")
-    def operation_query(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_query(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Query operation.
         """
         return pulumi.get(self, "operation_query")
 
     @operation_query.setter
-    def operation_query(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_query(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_query", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRegister")
-    def operation_register(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_register(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Register operation.
         """
         return pulumi.get(self, "operation_register")
 
     @operation_register.setter
-    def operation_register(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_register(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_register", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRekey")
-    def operation_rekey(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rekey(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Rekey operation.
         """
         return pulumi.get(self, "operation_rekey")
 
     @operation_rekey.setter
-    def operation_rekey(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rekey(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rekey", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRekeyKeyPair")
-    def operation_rekey_key_pair(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rekey_key_pair(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Rekey Key Pair operation.
         """
         return pulumi.get(self, "operation_rekey_key_pair")
 
     @operation_rekey_key_pair.setter
-    def operation_rekey_key_pair(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rekey_key_pair(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rekey_key_pair", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRevoke")
-    def operation_revoke(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_revoke(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Revoke operation.
         """
         return pulumi.get(self, "operation_revoke")
 
     @operation_revoke.setter
-    def operation_revoke(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_revoke(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_revoke", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRngRetrieve")
-    def operation_rng_retrieve(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rng_retrieve(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP RNG Retrieve operation.
         """
         return pulumi.get(self, "operation_rng_retrieve")
 
     @operation_rng_retrieve.setter
-    def operation_rng_retrieve(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rng_retrieve(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rng_retrieve", value)
 
     @_builtins.property
     @pulumi.getter(name="operationRngSeed")
-    def operation_rng_seed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_rng_seed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP RNG Seed operation.
         """
         return pulumi.get(self, "operation_rng_seed")
 
     @operation_rng_seed.setter
-    def operation_rng_seed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_rng_seed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_rng_seed", value)
 
     @_builtins.property
     @pulumi.getter(name="operationSign")
-    def operation_sign(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_sign(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Sign operation.
         """
         return pulumi.get(self, "operation_sign")
 
     @operation_sign.setter
-    def operation_sign(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_sign(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_sign", value)
 
     @_builtins.property
     @pulumi.getter(name="operationSignatureVerify")
-    def operation_signature_verify(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def operation_signature_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Grant permission to use the KMIP Signature Verify operation.
         """
         return pulumi.get(self, "operation_signature_verify")
 
     @operation_signature_verify.setter
-    def operation_signature_verify(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def operation_signature_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "operation_signature_verify", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `kmip`.
@@ -1135,67 +1135,67 @@ class _SecretRoleState:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the role.
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter
-    def scope(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scope(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the scope.
         """
         return pulumi.get(self, "scope")
 
     @scope.setter
-    def scope(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scope(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scope", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKeyBits")
-    def tls_client_key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def tls_client_key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Client certificate key bits, valid values depend on key type.
         """
         return pulumi.get(self, "tls_client_key_bits")
 
     @tls_client_key_bits.setter
-    def tls_client_key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def tls_client_key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "tls_client_key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientKeyType")
-    def tls_client_key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_client_key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client certificate key type, `rsa` or `ec`.
         """
         return pulumi.get(self, "tls_client_key_type")
 
     @tls_client_key_type.setter
-    def tls_client_key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_client_key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_client_key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsClientTtl")
-    def tls_client_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def tls_client_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Client certificate TTL in seconds.
         """
         return pulumi.get(self, "tls_client_ttl")
 
     @tls_client_ttl.setter
-    def tls_client_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def tls_client_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "tls_client_ttl", value)
 
 
@@ -1205,42 +1205,42 @@ class SecretRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_all: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_decrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_delete_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_discover_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attribute_list: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_import: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_locate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_modify_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_none: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_query: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_register: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_revoke: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_retrieve: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_seed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_sign: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_signature_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_client_key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 operation_activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_add_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_all: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_decrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_delete_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_discover_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attribute_list: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_import: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_locate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_modify_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_none: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_query: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_register: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_revoke: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_retrieve: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_seed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_sign: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_signature_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_client_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Manages KMIP Secret roles in a Vault server. This feature requires
@@ -1386,42 +1386,42 @@ class SecretRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_all: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_create_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_decrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_delete_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_discover_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attribute_list: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_get_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_import: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_locate: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_mac_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_modify_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_none: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_query: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_register: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rekey_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_revoke: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_retrieve: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_rng_seed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_sign: Optional[pulumi.Input[_builtins.bool]] = None,
-                 operation_signature_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_client_key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_client_ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 operation_activate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_add_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_all: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_create_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_decrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_delete_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_discover_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attribute_list: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_get_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_import: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_locate: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_mac_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_modify_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_none: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_query: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_register: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rekey_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_revoke: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_retrieve: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_rng_seed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_sign: pulumi.Input[Optional[_builtins.bool]] = None,
+                 operation_signature_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_client_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_client_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1483,42 +1483,42 @@ class SecretRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            ca: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            operation_activate: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_add_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_all: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_create: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_create_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_decrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_delete_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_destroy: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_discover_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_encrypt: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_get: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_get_attribute_list: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_get_attributes: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_import: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_locate: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_mac: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_mac_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_modify_attribute: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_none: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_query: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_register: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_rekey: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_rekey_key_pair: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_revoke: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_rng_retrieve: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_rng_seed: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_sign: Optional[pulumi.Input[_builtins.bool]] = None,
-            operation_signature_verify: Optional[pulumi.Input[_builtins.bool]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            scope: Optional[pulumi.Input[_builtins.str]] = None,
-            tls_client_key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-            tls_client_key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            tls_client_ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretRole':
+            ca: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            operation_activate: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_add_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_all: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_create: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_create_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_decrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_delete_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_discover_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_get: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_get_attribute_list: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_get_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_import: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_locate: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_mac: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_mac_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_modify_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_none: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_query: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_register: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rekey: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rekey_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_revoke: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rng_retrieve: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rng_seed: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_sign: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_signature_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            scope: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_client_key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            tls_client_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_client_ttl: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecretRole':
         """
         Get an existing SecretRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

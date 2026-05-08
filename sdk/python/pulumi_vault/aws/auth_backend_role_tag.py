@@ -20,13 +20,13 @@ __all__ = ['AuthBackendRoleTagArgs', 'AuthBackendRoleTag']
 class AuthBackendRoleTagArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AuthBackendRoleTag resource.
 
@@ -75,19 +75,19 @@ class AuthBackendRoleTagArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowInstanceMigration")
-    def allow_instance_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_instance_migration(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, allows migration of the underlying instances where the client resides. Use with caution.
         """
         return pulumi.get(self, "allow_instance_migration")
 
     @allow_instance_migration.setter
-    def allow_instance_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_instance_migration(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_instance_migration", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the AWS auth backend to
         read role tags from, with no leading or trailing `/`s. Defaults to "aws".
@@ -95,48 +95,48 @@ class AuthBackendRoleTagArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disallowReauthentication")
-    def disallow_reauthentication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disallow_reauthentication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, only allows a single token to be granted per instance ID.
         """
         return pulumi.get(self, "disallow_reauthentication")
 
     @disallow_reauthentication.setter
-    def disallow_reauthentication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disallow_reauthentication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disallow_reauthentication", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum TTL of the tokens issued using this role.
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -146,35 +146,35 @@ class AuthBackendRoleTagArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
 @pulumi.input_type
 class _AuthBackendRoleTagState:
     def __init__(__self__, *,
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag_value: Optional[pulumi.Input[_builtins.str]] = None):
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag_value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRoleTag resources.
 
@@ -217,19 +217,19 @@ class _AuthBackendRoleTagState:
 
     @_builtins.property
     @pulumi.getter(name="allowInstanceMigration")
-    def allow_instance_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_instance_migration(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, allows migration of the underlying instances where the client resides. Use with caution.
         """
         return pulumi.get(self, "allow_instance_migration")
 
     @allow_instance_migration.setter
-    def allow_instance_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_instance_migration(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_instance_migration", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the AWS auth backend to
         read role tags from, with no leading or trailing `/`s. Defaults to "aws".
@@ -237,48 +237,48 @@ class _AuthBackendRoleTagState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disallowReauthentication")
-    def disallow_reauthentication(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disallow_reauthentication(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, only allows a single token to be granted per instance ID.
         """
         return pulumi.get(self, "disallow_reauthentication")
 
     @disallow_reauthentication.setter
-    def disallow_reauthentication(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disallow_reauthentication(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disallow_reauthentication", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceId")
-    def instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Instance ID for which this tag is intended for. If set, the created tag can only be used by the instance with the given ID.
         """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
-    def instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum TTL of the tokens issued using this role.
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -288,24 +288,24 @@ class _AuthBackendRoleTagState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The policies to be associated with the tag. Must be a subset of the policies associated with the role.
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the AWS auth backend role to read
         role tags from, with no leading or trailing `/`s.
@@ -313,31 +313,31 @@ class _AuthBackendRoleTagState:
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="tagKey")
-    def tag_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tag_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key of the role tag.
         """
         return pulumi.get(self, "tag_key")
 
     @tag_key.setter
-    def tag_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tag_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tag_key", value)
 
     @_builtins.property
     @pulumi.getter(name="tagValue")
-    def tag_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tag_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value to set the role key.
         """
         return pulumi.get(self, "tag_value")
 
     @tag_value.setter
-    def tag_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tag_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tag_value", value)
 
 
@@ -347,14 +347,14 @@ class AuthBackendRoleTag(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Reads role tag information from an AWS auth backend in Vault.
@@ -467,14 +467,14 @@ class AuthBackendRoleTag(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
+                 allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -506,16 +506,16 @@ class AuthBackendRoleTag(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            allow_instance_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            disallow_reauthentication: Optional[pulumi.Input[_builtins.bool]] = None,
-            instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-            max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            tag_key: Optional[pulumi.Input[_builtins.str]] = None,
-            tag_value: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendRoleTag':
+            allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            tag_key: pulumi.Input[Optional[_builtins.str]] = None,
+            tag_value: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendRoleTag':
         """
         Get an existing AuthBackendRoleTag resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

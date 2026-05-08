@@ -160,45 +160,45 @@ export interface AuthBackendState {
     /**
      * The accessor for this auth method
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * A description of the auth method.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing identity tokens.
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The path to mount the auth method — this defaults to the name of the type.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.AuthBackendTune | undefined>;
     /**
      * The name of the auth method type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -208,37 +208,37 @@ export interface AuthBackendArgs {
     /**
      * A description of the auth method.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The key to use for signing identity tokens.
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The path to mount the auth method — this defaults to the name of the type.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.AuthBackendTune>;
+    tune?: pulumi.Input<inputs.AuthBackendTune | undefined>;
     /**
      * The name of the auth method type.
      */

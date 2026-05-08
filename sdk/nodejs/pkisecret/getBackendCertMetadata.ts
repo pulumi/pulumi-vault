@@ -54,7 +54,7 @@ import * as utilities from "../utilities";
  *     minSecondsRemaining: 60,
  *     certMetadata: "dGVzdCBtZXRhZGF0YQ==",
  * });
- * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkiSecret.getBackendCertMetadataOutput({
+ * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkisecret.getBackendCertMetadataOutput({
  *     path: test_root.path,
  *     serial: serialNumber,
  * }));
@@ -173,7 +173,7 @@ export interface GetBackendCertMetadataResult {
  *     minSecondsRemaining: 60,
  *     certMetadata: "dGVzdCBtZXRhZGF0YQ==",
  * });
- * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkiSecret.getBackendCertMetadataOutput({
+ * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkisecret.getBackendCertMetadataOutput({
  *     path: test_root.path,
  *     serial: serialNumber,
  * }));
@@ -198,7 +198,7 @@ export interface GetBackendCertMetadataOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The path to the PKI secret backend to
      * read the cert metadata from, with no leading or trailing `/`s.

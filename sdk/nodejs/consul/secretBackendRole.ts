@@ -185,65 +185,65 @@ export interface SecretBackendRoleState {
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The Consul namespace that the token will be created in.
      * Applicable for Vault 1.10+ and Consul 1.7+".
      */
-    consulNamespace?: pulumi.Input<string>;
+    consulNamespace?: pulumi.Input<string | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> The list of Consul ACL policies to associate with these roles.
      */
-    consulPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    consulPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul roles to attach to the token.
      * Applicable for Vault 1.10+ with Consul 1.5+.
      */
-    consulRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    consulRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The name of the Consul secrets engine role to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul node
      * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
      */
-    nodeIdentities?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeIdentities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The admin partition that the token will be created in.
      * Applicable for Vault 1.10+ and Consul 1.11+".
      */
-    partition?: pulumi.Input<string>;
+    partition?: pulumi.Input<string | undefined>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
      * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul
      * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      */
-    serviceIdentities?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceIdentities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the TTL for this role.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -253,63 +253,63 @@ export interface SecretBackendRoleArgs {
     /**
      * The unique name of an existing Consul secrets backend mount. Must not begin or end with a `/`. One of `path` or `backend` is required.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The Consul namespace that the token will be created in.
      * Applicable for Vault 1.10+ and Consul 1.7+".
      */
-    consulNamespace?: pulumi.Input<string>;
+    consulNamespace?: pulumi.Input<string | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> The list of Consul ACL policies to associate with these roles.
      */
-    consulPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    consulPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul roles to attach to the token.
      * Applicable for Vault 1.10+ with Consul 1.5+.
      */
-    consulRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    consulRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Indicates that the token should not be replicated globally and instead be local to the current datacenter.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum TTL for leases associated with this role, in seconds.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The name of the Consul secrets engine role to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul node
      * identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.8+.
      */
-    nodeIdentities?: pulumi.Input<pulumi.Input<string>[]>;
+    nodeIdentities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The admin partition that the token will be created in.
      * Applicable for Vault 1.10+ and Consul 1.11+".
      */
-    partition?: pulumi.Input<string>;
+    partition?: pulumi.Input<string | undefined>;
     /**
      * The list of Consul ACL policies to associate with these roles.
      * **NOTE:** The new parameter `consulPolicies` should be used in favor of this. This parameter,
      * `policies`, remains supported for legacy users, but Vault has deprecated this field.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * <sup><a href="#note-about-required-arguments">SEE NOTE</a></sup> Set of Consul
      * service identities to attach to the token. Applicable for Vault 1.11+ with Consul 1.5+.
      */
-    serviceIdentities?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceIdentities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the TTL for this role.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }

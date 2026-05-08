@@ -21,8 +21,8 @@ class GroupPoliciesArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[_builtins.str],
                  policies: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupPolicies resource.
 
@@ -71,7 +71,7 @@ class GroupPoliciesArgs:
 
     @_builtins.property
     @pulumi.getter
-    def exclusive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclusive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defaults to `true`.
 
@@ -82,12 +82,12 @@ class GroupPoliciesArgs:
         return pulumi.get(self, "exclusive")
 
     @exclusive.setter
-    def exclusive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclusive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclusive", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -97,18 +97,18 @@ class GroupPoliciesArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _GroupPoliciesState:
     def __init__(__self__, *,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering GroupPolicies resources.
 
@@ -138,7 +138,7 @@ class _GroupPoliciesState:
 
     @_builtins.property
     @pulumi.getter
-    def exclusive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclusive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defaults to `true`.
 
@@ -149,36 +149,36 @@ class _GroupPoliciesState:
         return pulumi.get(self, "exclusive")
 
     @exclusive.setter
-    def exclusive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclusive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclusive", value)
 
     @_builtins.property
     @pulumi.getter(name="groupId")
-    def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Group ID to assign policies to.
         """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
-    def group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="groupName")
-    def group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the group that are assigned the policies.
         """
         return pulumi.get(self, "group_name")
 
     @group_name.setter
-    def group_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -188,19 +188,19 @@ class _GroupPoliciesState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of policies to assign to the group
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
@@ -210,10 +210,10 @@ class GroupPolicies(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Manages policies for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -358,10 +358,10 @@ class GroupPolicies(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -390,11 +390,11 @@ class GroupPolicies(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-            group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            group_name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'GroupPolicies':
+            exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            group_name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'GroupPolicies':
         """
         Get an existing GroupPolicies resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

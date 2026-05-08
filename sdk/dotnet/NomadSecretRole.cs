@@ -30,7 +30,7 @@ namespace Pulumi.Vault
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var config = new Vault.Index.NomadSecretBackend("config", new()
+    ///     var config = new Vault.NomadSecretBackend("config", new()
     ///     {
     ///         Backend = "nomad",
     ///         Description = "test description",
@@ -40,7 +40,7 @@ namespace Pulumi.Vault
     ///         Token = "ae20ceaa-...",
     ///     });
     /// 
-    ///     var test = new Vault.Index.NomadSecretRole("test", new()
+    ///     var test = new Vault.NomadSecretRole("test", new()
     ///     {
     ///         Backend = config.Backend,
     ///         Role = "test",

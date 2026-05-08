@@ -243,48 +243,48 @@ export interface SecretBackendStaticRoleState {
     /**
      * The unique name of the Vault mount to configure.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
      */
-    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
      */
-    credentialType?: pulumi.Input<string>;
+    credentialType?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the database connection to use for the static role.
      */
-    dbName?: pulumi.Input<string>;
+    dbName?: pulumi.Input<string | undefined>;
     /**
      * A unique name to give the static role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The password corresponding to the username in the database.
      * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
      * Cannot be used with `selfManagedPassword`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the `passwordWo` field. 
      * Used for tracking changes to the write-only password field. For more info see
      * updating write-only attributes.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      * Mutually exclusive with `rotationSchedule`.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotationPeriod`.
@@ -292,32 +292,32 @@ export interface SecretBackendStaticRoleState {
      * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
      * mutually exclusive. One of them must be set but not both.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
-    rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The amount of time, in seconds, in which rotations are allowed to occur starting
      * from a given `rotationSchedule`.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * The password corresponding to the username in the database.
      * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
      * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
      */
-    selfManagedPassword?: pulumi.Input<string>;
+    selfManagedPassword?: pulumi.Input<string | undefined>;
     /**
      * If set to true, Vault will skip the
      * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
      */
-    skipImportRotation?: pulumi.Input<boolean>;
+    skipImportRotation?: pulumi.Input<boolean | undefined>;
     /**
      * The database username that this static role corresponds to.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -331,11 +331,11 @@ export interface SecretBackendStaticRoleArgs {
     /**
      * The configuration for the credential type.Full documentation for the allowed values can be found under "https://developer.hashicorp.com/vault/api-docs/secret/databases#credential_config".
      */
-    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The credential type for the user, can be one of "password", "rsaPrivateKey" or "clientCertificate".The configuration can be done in `credentialConfig`.
      */
-    credentialType?: pulumi.Input<string>;
+    credentialType?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the database connection to use for the static role.
      */
@@ -343,32 +343,32 @@ export interface SecretBackendStaticRoleArgs {
     /**
      * A unique name to give the static role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The password corresponding to the username in the database.
      * This is a write-only field. Requires Vault 1.19+. Deprecates `selfManagedPassword` which was introduced in Vault 1.18.
      * Cannot be used with `selfManagedPassword`.
      */
-    passwordWo?: pulumi.Input<string>;
+    passwordWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the `passwordWo` field. 
      * Used for tracking changes to the write-only password field. For more info see
      * updating write-only attributes.
      */
-    passwordWoVersion?: pulumi.Input<number>;
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The amount of time Vault should wait before rotating the password, in seconds.
      * Mutually exclusive with `rotationSchedule`.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * A cron-style string that will define the schedule on which rotations should occur.
      * Mutually exclusive with `rotationPeriod`.
@@ -376,28 +376,28 @@ export interface SecretBackendStaticRoleArgs {
      * **Warning**: The `rotationPeriod` and `rotationSchedule` fields are
      * mutually exclusive. One of them must be set but not both.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * Database statements to execute to rotate the password for the configured database user.
      */
-    rotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The amount of time, in seconds, in which rotations are allowed to occur starting
      * from a given `rotationSchedule`.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * The password corresponding to the username in the database.
      * Required when using the Rootless Password Rotation workflow for static roles. Only enabled for
      * select DB engines (Postgres). Requires Vault 1.18+ Enterprise.
      * **Deprecated**: Use `passwordWo` instead. This field will be removed in a future version.
      */
-    selfManagedPassword?: pulumi.Input<string>;
+    selfManagedPassword?: pulumi.Input<string | undefined>;
     /**
      * If set to true, Vault will skip the
      * initial secret rotation on import. Requires Vault 1.18+ Enterprise.
      */
-    skipImportRotation?: pulumi.Input<boolean>;
+    skipImportRotation?: pulumi.Input<boolean | undefined>;
     /**
      * The database username that this static role corresponds to.
      */

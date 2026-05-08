@@ -22,8 +22,8 @@ class SecretRoleArgs:
                  backend: pulumi.Input[_builtins.str],
                  role: pulumi.Input[_builtins.str],
                  service_account_name: pulumi.Input[_builtins.str],
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a SecretRole resource.
 
@@ -89,7 +89,7 @@ class SecretRoleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -99,12 +99,12 @@ class SecretRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The password time-to-live in seconds. Defaults to the configuration
         ttl if not provided.
@@ -112,20 +112,20 @@ class SecretRoleArgs:
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
 
 @pulumi.input_type
 class _SecretRoleState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_vault_rotation: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_last_set: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_vault_rotation: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_last_set: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SecretRole resources.
 
@@ -161,7 +161,7 @@ class _SecretRoleState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AD secret backend is mounted at,
         with no leading or trailing `/`s.
@@ -169,24 +169,24 @@ class _SecretRoleState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="lastVaultRotation")
-    def last_vault_rotation(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_vault_rotation(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp of the last password rotation by Vault.
         """
         return pulumi.get(self, "last_vault_rotation")
 
     @last_vault_rotation.setter
-    def last_vault_rotation(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_vault_rotation(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_vault_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -196,24 +196,24 @@ class _SecretRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordLastSet")
-    def password_last_set(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_last_set(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp of the last password set by Vault.
         """
         return pulumi.get(self, "password_last_set")
 
     @password_last_set.setter
-    def password_last_set(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_last_set(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_last_set", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this role within the backend.
         Must be unique within the backend.
@@ -221,12 +221,12 @@ class _SecretRoleState:
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountName")
-    def service_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the Active Directory service
         account mapped to this role.
@@ -234,12 +234,12 @@ class _SecretRoleState:
         return pulumi.get(self, "service_account_name")
 
     @service_account_name.setter
-    def service_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The password time-to-live in seconds. Defaults to the configuration
         ttl if not provided.
@@ -247,7 +247,7 @@ class _SecretRoleState:
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ttl", value)
 
 
@@ -257,11 +257,11 @@ class SecretRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         > **Note** This resource is replaced by "ldap.SecretBackendStaticRole"
@@ -385,11 +385,11 @@ class SecretRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -422,13 +422,13 @@ class SecretRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            last_vault_rotation: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            password_last_set: Optional[pulumi.Input[_builtins.str]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            service_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-            ttl: Optional[pulumi.Input[_builtins.int]] = None) -> 'SecretRole':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            last_vault_rotation: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_last_set: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecretRole':
         """
         Get an existing SecretRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

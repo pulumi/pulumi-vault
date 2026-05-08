@@ -20,9 +20,9 @@ __all__ = ['BackendAcmeEabArgs', 'BackendAcmeEab']
 class BackendAcmeEabArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None):
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a BackendAcmeEab resource.
 
@@ -65,19 +65,19 @@ class BackendAcmeEabArgs:
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Create an EAB token that is specific to an issuer's ACME directory.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace of the target resource.
         The value should not contain leading or trailing forward slashes.
@@ -87,12 +87,12 @@ class BackendAcmeEabArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Create an EAB token that is specific to a role's ACME directory.
 
@@ -106,22 +106,22 @@ class BackendAcmeEabArgs:
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
 
 @pulumi.input_type
 class _BackendAcmeEabState:
     def __init__(__self__, *,
-                 acme_directory: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_on: Optional[pulumi.Input[_builtins.str]] = None,
-                 eab_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None):
+                 acme_directory: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_on: pulumi.Input[Optional[_builtins.str]] = None,
+                 eab_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackendAcmeEab resources.
 
@@ -167,19 +167,19 @@ class _BackendAcmeEabState:
 
     @_builtins.property
     @pulumi.getter(name="acmeDirectory")
-    def acme_directory(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acme_directory(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ACME directory to which the key belongs
         """
         return pulumi.get(self, "acme_directory")
 
     @acme_directory.setter
-    def acme_directory(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acme_directory(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acme_directory", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the PKI secret backend to
         create the EAB token within, with no leading or trailing `/`s.
@@ -187,72 +187,72 @@ class _BackendAcmeEabState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="createdOn")
-    def created_on(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_on(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An RFC3339 formatted date time when the EAB token was created
         """
         return pulumi.get(self, "created_on")
 
     @created_on.setter
-    def created_on(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_on(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_on", value)
 
     @_builtins.property
     @pulumi.getter(name="eabId")
-    def eab_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def eab_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The identifier of a specific ACME EAB token
         """
         return pulumi.get(self, "eab_id")
 
     @eab_id.setter
-    def eab_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def eab_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "eab_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def issuer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Create an EAB token that is specific to an issuer's ACME directory.
         """
         return pulumi.get(self, "issuer")
 
     @issuer.setter
-    def issuer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The EAB token
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key type of the EAB key
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace of the target resource.
         The value should not contain leading or trailing forward slashes.
@@ -262,12 +262,12 @@ class _BackendAcmeEabState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Create an EAB token that is specific to a role's ACME directory.
 
@@ -281,7 +281,7 @@ class _BackendAcmeEabState:
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
 
@@ -291,10 +291,10 @@ class BackendAcmeEab(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows creating ACME EAB (External Account Binding) tokens and deleting unused ones.
@@ -379,10 +379,10 @@ class BackendAcmeEab(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -415,15 +415,15 @@ class BackendAcmeEab(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acme_directory: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            created_on: Optional[pulumi.Input[_builtins.str]] = None,
-            eab_id: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer: Optional[pulumi.Input[_builtins.str]] = None,
-            key: Optional[pulumi.Input[_builtins.str]] = None,
-            key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None) -> 'BackendAcmeEab':
+            acme_directory: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            created_on: pulumi.Input[Optional[_builtins.str]] = None,
+            eab_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None) -> 'BackendAcmeEab':
         """
         Get an existing BackendAcmeEab resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

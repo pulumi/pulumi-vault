@@ -90,67 +90,67 @@ __all__ = [
 ]
 
 class SecretBackendConnectionCassandraArgsDict(TypedDict):
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds to use as a connection timeout.
     """
-    consistency: NotRequired[pulumi.Input[_builtins.str]]
+    consistency: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cassandra consistency level.
     """
-    hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    hosts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Cassandra hosts to connect to.
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to skip verification of the server certificate when using TLS.
     """
-    local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
+    local_datacenter: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cassandra local datacenter name.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The password to use when authenticating with Cassandra.
     """
-    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    pem_bundle: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    pem_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The transport port to use to connect to Cassandra.
     """
-    protocol_version: NotRequired[pulumi.Input[_builtins.int]]
+    protocol_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The CQL protocol version to use.
     """
-    skip_verification: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_verification: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
     """
-    socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
+    socket_keep_alive: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Enable TCP keepalive for Cassandra connections.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS when connecting to Cassandra.
     """
-    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    tls_server_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SNI host for TLS connections.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The username to use when authenticating with Cassandra.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template for dynamic Cassandra usernames.
     """
@@ -158,22 +158,22 @@ class SecretBackendConnectionCassandraArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionCassandraArgs:
     def __init__(__self__, *,
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 consistency: Optional[pulumi.Input[_builtins.str]] = None,
-                 hosts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 local_datacenter: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_verification: Optional[pulumi.Input[_builtins.bool]] = None,
-                 socket_keep_alive: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 consistency: pulumi.Input[Optional[_builtins.str]] = None,
+                 hosts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 local_datacenter: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_verification: pulumi.Input[Optional[_builtins.bool]] = None,
+                 socket_keep_alive: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] connect_timeout: The number of seconds to use as a connection timeout.
         :param pulumi.Input[_builtins.str] consistency: Cassandra consistency level.
@@ -227,194 +227,194 @@ class SecretBackendConnectionCassandraArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def consistency(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def consistency(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cassandra consistency level.
         """
         return pulumi.get(self, "consistency")
 
     @consistency.setter
-    def consistency(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def consistency(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "consistency", value)
 
     @_builtins.property
     @pulumi.getter
-    def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def hosts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Cassandra hosts to connect to.
         """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def hosts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "hosts", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="localDatacenter")
-    def local_datacenter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def local_datacenter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cassandra local datacenter name.
         """
         return pulumi.get(self, "local_datacenter")
 
     @local_datacenter.setter
-    def local_datacenter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def local_datacenter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "local_datacenter", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="pemBundle")
-    def pem_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_bundle(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
     @pem_bundle.setter
-    def pem_bundle(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_bundle(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_bundle", value)
 
     @_builtins.property
     @pulumi.getter(name="pemJson")
-    def pem_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
     @pem_json.setter
-    def pem_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_json", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The transport port to use to connect to Cassandra.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="protocolVersion")
-    def protocol_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def protocol_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CQL protocol version to use.
         """
         return pulumi.get(self, "protocol_version")
 
     @protocol_version.setter
-    def protocol_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def protocol_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "protocol_version", value)
 
     @_builtins.property
     @pulumi.getter(name="skipVerification")
-    def skip_verification(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_verification(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         """
         return pulumi.get(self, "skip_verification")
 
     @skip_verification.setter
-    def skip_verification(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_verification(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_verification", value)
 
     @_builtins.property
     @pulumi.getter(name="socketKeepAlive")
-    def socket_keep_alive(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def socket_keep_alive(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Enable TCP keepalive for Cassandra connections.
         """
         return pulumi.get(self, "socket_keep_alive")
 
     @socket_keep_alive.setter
-    def socket_keep_alive(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def socket_keep_alive(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "socket_keep_alive", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS when connecting to Cassandra.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
-    def tls_server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_server_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SNI host for TLS connections.
         """
         return pulumi.get(self, "tls_server_name")
 
     @tls_server_name.setter
-    def tls_server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_server_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_server_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template for dynamic Cassandra usernames.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
@@ -431,23 +431,23 @@ class SecretBackendConnectionCouchbaseArgsDict(TypedDict):
     """
     Specifies the username for Vault to use.
     """
-    base64_pem: NotRequired[pulumi.Input[_builtins.str]]
+    base64_pem: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
     """
-    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    bucket_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to skip verification of the server certificate when using TLS.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to use TLS when connecting to Couchbase.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
@@ -458,11 +458,11 @@ class SecretBackendConnectionCouchbaseArgs:
                  hosts: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 base64_pem: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 base64_pem: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         :param pulumi.Input[_builtins.str] password: Specifies the password corresponding to the given username.
@@ -525,62 +525,62 @@ class SecretBackendConnectionCouchbaseArgs:
 
     @_builtins.property
     @pulumi.getter(name="base64Pem")
-    def base64_pem(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base64_pem(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         """
         return pulumi.get(self, "base64_pem")
 
     @base64_pem.setter
-    def base64_pem(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base64_pem(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base64_pem", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
         """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
-    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to use TLS when connecting to Couchbase.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
@@ -597,31 +597,31 @@ class SecretBackendConnectionElasticsearchArgsDict(TypedDict):
     """
     The username to be used in the connection URL
     """
-    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
     """
-    ca_path: NotRequired[pulumi.Input[_builtins.str]]
+    ca_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
     """
-    client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to the certificate for the Elasticsearch client to present for communication
     """
-    client_key: NotRequired[pulumi.Input[_builtins.str]]
+    client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to the key for the Elasticsearch client to use for communication
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to disable certificate verification
     """
-    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    tls_server_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     This, if set, is used to set the SNI host when connecting via TLS
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
@@ -632,13 +632,13 @@ class SecretBackendConnectionElasticsearchArgs:
                  password: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] password: The password to be used in the connection URL
         :param pulumi.Input[_builtins.str] url: The URL for Elasticsearch's API
@@ -707,128 +707,128 @@ class SecretBackendConnectionElasticsearchArgs:
 
     @_builtins.property
     @pulumi.getter(name="caCert")
-    def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_cert")
 
     @ca_cert.setter
-    def ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="caPath")
-    def ca_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_path")
 
     @ca_path.setter
-    def ca_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_path", value)
 
     @_builtins.property
     @pulumi.getter(name="clientCert")
-    def client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the certificate for the Elasticsearch client to present for communication
         """
         return pulumi.get(self, "client_cert")
 
     @client_cert.setter
-    def client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="clientKey")
-    def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the key for the Elasticsearch client to use for communication
         """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
-    def client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_key", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to disable certificate verification
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
-    def tls_server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_server_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         This, if set, is used to set the SNI host when connecting via TLS
         """
         return pulumi.get(self, "tls_server_name")
 
     @tls_server_name.setter
-    def tls_server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_server_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_server_name", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionHanaArgsDict(TypedDict):
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -836,16 +836,16 @@ class SecretBackendConnectionHanaArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionHanaArgs:
     def __init__(__self__, *,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.bool] disable_escaping: Disable special character escaping in username and password
@@ -882,79 +882,79 @@ class SecretBackendConnectionHanaArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -962,43 +962,43 @@ class SecretBackendConnectionHanaArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
@@ -1015,31 +1015,31 @@ class SecretBackendConnectionInfluxdbArgsDict(TypedDict):
     """
     Specifies the username to use for superuser access.
     """
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds to use as a connection timeout.
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to skip verification of the server certificate when using TLS.
     """
-    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    pem_bundle: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    pem_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The transport port to use to connect to Influxdb.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS when connecting to Influxdb.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
@@ -1050,13 +1050,13 @@ class SecretBackendConnectionInfluxdbArgs:
                  host: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pem_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] host: Influxdb host to connect to.
         :param pulumi.Input[_builtins.str] password: Specifies the password corresponding to the given username.
@@ -1125,136 +1125,136 @@ class SecretBackendConnectionInfluxdbArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="pemBundle")
-    def pem_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_bundle(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
     @pem_bundle.setter
-    def pem_bundle(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_bundle(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_bundle", value)
 
     @_builtins.property
     @pulumi.getter(name="pemJson")
-    def pem_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
     @pem_json.setter
-    def pem_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_json", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The transport port to use to connect to Influxdb.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS when connecting to Influxdb.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionMongodbArgsDict(TypedDict):
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    write_concern: NotRequired[pulumi.Input[_builtins.str]]
+    write_concern: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the MongoDB write concern for Vault management operations.
     """
@@ -1262,18 +1262,18 @@ class SecretBackendConnectionMongodbArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionMongodbArgs:
     def __init__(__self__, *,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_concern: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_concern: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -1316,67 +1316,67 @@ class SecretBackendConnectionMongodbArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -1384,79 +1384,79 @@ class SecretBackendConnectionMongodbArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="writeConcern")
-    def write_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def write_concern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the MongoDB write concern for Vault management operations.
         """
         return pulumi.get(self, "write_concern")
 
     @write_concern.setter
-    def write_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def write_concern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "write_concern", value)
 
 
@@ -1473,7 +1473,7 @@ class SecretBackendConnectionMongodbatlasArgsDict(TypedDict):
     """
     The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
@@ -1484,7 +1484,7 @@ class SecretBackendConnectionMongodbatlasArgs:
                  private_key: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  public_key: pulumi.Input[_builtins.str],
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API.
         :param pulumi.Input[_builtins.str] project_id: The Project ID the Database User should be created within.
@@ -1535,60 +1535,60 @@ class SecretBackendConnectionMongodbatlasArgs:
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionMssqlArgsDict(TypedDict):
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    contained_db: NotRequired[pulumi.Input[_builtins.bool]]
+    contained_db: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true when the target is a Contained Database, e.g. AzureSQL.
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -1596,17 +1596,17 @@ class SecretBackendConnectionMssqlArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionMssqlArgs:
     def __init__(__self__, *,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 contained_db: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 contained_db: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.bool] contained_db: Set to true when the target is a Contained Database, e.g. AzureSQL.
@@ -1646,91 +1646,91 @@ class SecretBackendConnectionMssqlArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="containedDb")
-    def contained_db(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def contained_db(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true when the target is a Contained Database, e.g. AzureSQL.
         """
         return pulumi.get(self, "contained_db")
 
     @contained_db.setter
-    def contained_db(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def contained_db(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "contained_db", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -1738,97 +1738,97 @@ class SecretBackendConnectionMssqlArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionMysqlArgsDict(TypedDict):
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -1836,19 +1836,19 @@ class SecretBackendConnectionMysqlArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionMysqlArgs:
     def __init__(__self__, *,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
@@ -1894,79 +1894,79 @@ class SecretBackendConnectionMysqlArgs:
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -1974,133 +1974,133 @@ class SecretBackendConnectionMysqlArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionMysqlAuroraArgsDict(TypedDict):
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -2108,19 +2108,19 @@ class SecretBackendConnectionMysqlAuroraArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionMysqlAuroraArgs:
     def __init__(__self__, *,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
@@ -2166,79 +2166,79 @@ class SecretBackendConnectionMysqlAuroraArgs:
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -2246,133 +2246,133 @@ class SecretBackendConnectionMysqlAuroraArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionMysqlLegacyArgsDict(TypedDict):
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -2380,19 +2380,19 @@ class SecretBackendConnectionMysqlLegacyArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionMysqlLegacyArgs:
     def __init__(__self__, *,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
@@ -2438,79 +2438,79 @@ class SecretBackendConnectionMysqlLegacyArgs:
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -2518,133 +2518,133 @@ class SecretBackendConnectionMysqlLegacyArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionMysqlRdsArgsDict(TypedDict):
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -2652,19 +2652,19 @@ class SecretBackendConnectionMysqlRdsArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionMysqlRdsArgs:
     def __init__(__self__, *,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
@@ -2710,79 +2710,79 @@ class SecretBackendConnectionMysqlRdsArgs:
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -2790,129 +2790,129 @@ class SecretBackendConnectionMysqlRdsArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionOracleArgsDict(TypedDict):
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    disconnect_sessions: NotRequired[pulumi.Input[_builtins.bool]]
+    disconnect_sessions: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true to disconnect any open sessions prior to running the revocation statements.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    self_managed: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set, allows onboarding static roles with a rootless connection configuration.
     """
-    split_statements: NotRequired[pulumi.Input[_builtins.bool]]
+    split_statements: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true in order to split statements after semi-colons.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -2920,18 +2920,18 @@ class SecretBackendConnectionOracleArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionOracleArgs:
     def __init__(__self__, *,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 disconnect_sessions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 split_statements: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 disconnect_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 split_statements: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.bool] disconnect_sessions: Set to true to disconnect any open sessions prior to running the revocation statements.
@@ -2974,79 +2974,79 @@ class SecretBackendConnectionOracleArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="disconnectSessions")
-    def disconnect_sessions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disconnect_sessions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to disconnect any open sessions prior to running the revocation statements.
         """
         return pulumi.get(self, "disconnect_sessions")
 
     @disconnect_sessions.setter
-    def disconnect_sessions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disconnect_sessions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disconnect_sessions", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -3054,137 +3054,137 @@ class SecretBackendConnectionOracleArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="selfManaged")
-    def self_managed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def self_managed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, allows onboarding static roles with a rootless connection configuration.
         """
         return pulumi.get(self, "self_managed")
 
     @self_managed.setter
-    def self_managed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def self_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "self_managed", value)
 
     @_builtins.property
     @pulumi.getter(name="splitStatements")
-    def split_statements(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def split_statements(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true in order to split statements after semi-colons.
         """
         return pulumi.get(self, "split_statements")
 
     @split_statements.setter
-    def split_statements(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def split_statements(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "split_statements", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionPostgresqlArgsDict(TypedDict):
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_authentication: NotRequired[pulumi.Input[_builtins.str]]
+    password_authentication: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The secret key used for the x509 client certificate. Must be PEM encoded.
     """
-    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    self_managed: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set, allows onboarding static roles with a rootless connection configuration.
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
     """
-    tls_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 client certificate for connecting to the database. Must be PEM encoded.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -3192,23 +3192,23 @@ class SecretBackendConnectionPostgresqlArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionPostgresqlArgs:
     def __init__(__self__, *,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_authentication: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_authentication: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] auth_type: Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
@@ -3266,103 +3266,103 @@ class SecretBackendConnectionPostgresqlArgs:
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordAuthentication")
-    def password_authentication(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_authentication(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         """
         return pulumi.get(self, "password_authentication")
 
     @password_authentication.setter
-    def password_authentication(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_authentication(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_authentication", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -3370,103 +3370,103 @@ class SecretBackendConnectionPostgresqlArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key used for the x509 client certificate. Must be PEM encoded.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="selfManaged")
-    def self_managed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def self_managed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, allows onboarding static roles with a rootless connection configuration.
         """
         return pulumi.get(self, "self_managed")
 
     @self_managed.setter
-    def self_managed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def self_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "self_managed", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificate")
-    def tls_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 client certificate for connecting to the database. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_certificate")
 
     @tls_certificate.setter
-    def tls_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
@@ -3483,19 +3483,19 @@ class SecretBackendConnectionRedisArgsDict(TypedDict):
     """
     Specifies the username for Vault to use.
     """
-    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to skip verification of the server certificate when using TLS.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The transport port to use to connect to Redis.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to use TLS when connecting to Redis.
     """
@@ -3506,10 +3506,10 @@ class SecretBackendConnectionRedisArgs:
                  host: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None):
+                 ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] host: Specifies the host to connect to
         :param pulumi.Input[_builtins.str] password: Specifies the password corresponding to the given username.
@@ -3569,50 +3569,50 @@ class SecretBackendConnectionRedisArgs:
 
     @_builtins.property
     @pulumi.getter(name="caCert")
-    def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         """
         return pulumi.get(self, "ca_cert")
 
     @ca_cert.setter
-    def ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The transport port to use to connect to Redis.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
 
@@ -3621,15 +3621,15 @@ class SecretBackendConnectionRedisElasticacheArgsDict(TypedDict):
     """
     The configuration endpoint for the ElastiCache cluster to connect to.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
     """
@@ -3638,9 +3638,9 @@ class SecretBackendConnectionRedisElasticacheArgsDict(TypedDict):
 class SecretBackendConnectionRedisElasticacheArgs:
     def __init__(__self__, *,
                  url: pulumi.Input[_builtins.str],
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] url: The configuration endpoint for the ElastiCache cluster to connect to.
         :param pulumi.Input[_builtins.str] password: The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
@@ -3669,80 +3669,80 @@ class SecretBackendConnectionRedisElasticacheArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class SecretBackendConnectionRedshiftArgsDict(TypedDict):
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -3750,16 +3750,16 @@ class SecretBackendConnectionRedshiftArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionRedshiftArgs:
     def __init__(__self__, *,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.bool] disable_escaping: Disable special character escaping in username and password
@@ -3796,79 +3796,79 @@ class SecretBackendConnectionRedshiftArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -3876,90 +3876,90 @@ class SecretBackendConnectionRedshiftArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
 class SecretBackendConnectionSnowflakeArgsDict(TypedDict):
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
+    private_key_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     The private key configured for the admin user in Snowflake.
     """
-    private_key_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    private_key_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for the private key key-pair credentials write-only field
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
@@ -3967,17 +3967,17 @@ class SecretBackendConnectionSnowflakeArgsDict(TypedDict):
 @pulumi.input_type
 class SecretBackendConnectionSnowflakeArgs:
     def __init__(__self__, *,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_url: Connection string to use to connect to the database.
         :param pulumi.Input[_builtins.int] max_connection_lifetime: Maximum number of seconds a connection may be reused.
@@ -4021,68 +4021,68 @@ class SecretBackendConnectionSnowflakeArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -4090,24 +4090,24 @@ class SecretBackendConnectionSnowflakeArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The private key configured for the admin user in Snowflake.
@@ -4115,43 +4115,43 @@ class SecretBackendConnectionSnowflakeArgs:
         return pulumi.get(self, "private_key_wo")
 
     @private_key_wo.setter
-    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the private key key-pair credentials write-only field
         """
         return pulumi.get(self, "private_key_wo_version")
 
     @private_key_wo_version.setter
-    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
 
@@ -4160,122 +4160,122 @@ class SecretsMountCassandraArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds to use as a connection timeout.
     """
-    consistency: NotRequired[pulumi.Input[_builtins.str]]
+    consistency: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cassandra consistency level.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    hosts: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    hosts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Cassandra hosts to connect to.
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to skip verification of the server certificate when using TLS.
     """
-    local_datacenter: NotRequired[pulumi.Input[_builtins.str]]
+    local_datacenter: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cassandra local datacenter name.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The password to use when authenticating with Cassandra.
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    pem_bundle: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    pem_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The transport port to use to connect to Cassandra.
     """
-    protocol_version: NotRequired[pulumi.Input[_builtins.int]]
+    protocol_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The CQL protocol version to use.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    skip_verification: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_verification: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
     """
-    socket_keep_alive: NotRequired[pulumi.Input[_builtins.str]]
+    socket_keep_alive: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Enable TCP keepalive for Cassandra connections.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS when connecting to Cassandra.
     """
-    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    tls_server_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SNI host for TLS connections.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The username to use when authenticating with Cassandra.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template for dynamic Cassandra usernames.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -4285,34 +4285,34 @@ class SecretsMountCassandraArgsDict(TypedDict):
 class SecretsMountCassandraArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 consistency: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hosts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 local_datacenter: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 protocol_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_verification: Optional[pulumi.Input[_builtins.bool]] = None,
-                 socket_keep_alive: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 consistency: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hosts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 local_datacenter: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 protocol_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_verification: pulumi.Input[Optional[_builtins.bool]] = None,
+                 socket_keep_alive: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -4424,7 +4424,7 @@ class SecretsMountCassandraArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -4432,48 +4432,48 @@ class SecretsMountCassandraArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def consistency(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def consistency(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cassandra consistency level.
         """
         return pulumi.get(self, "consistency")
 
     @consistency.setter
-    def consistency(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def consistency(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "consistency", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -4482,156 +4482,156 @@ class SecretsMountCassandraArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def hosts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Cassandra hosts to connect to.
         """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
-    def hosts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def hosts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "hosts", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="localDatacenter")
-    def local_datacenter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def local_datacenter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cassandra local datacenter name.
         """
         return pulumi.get(self, "local_datacenter")
 
     @local_datacenter.setter
-    def local_datacenter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def local_datacenter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "local_datacenter", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pemBundle")
-    def pem_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_bundle(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
     @pem_bundle.setter
-    def pem_bundle(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_bundle(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_bundle", value)
 
     @_builtins.property
     @pulumi.getter(name="pemJson")
-    def pem_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
     @pem_json.setter
-    def pem_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_json", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The transport port to use to connect to Cassandra.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="protocolVersion")
-    def protocol_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def protocol_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The CQL protocol version to use.
         """
         return pulumi.get(self, "protocol_version")
 
     @protocol_version.setter
-    def protocol_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def protocol_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "protocol_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -4639,12 +4639,12 @@ class SecretsMountCassandraArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -4652,12 +4652,12 @@ class SecretsMountCassandraArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -4666,96 +4666,96 @@ class SecretsMountCassandraArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="skipVerification")
-    def skip_verification(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_verification(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Skip permissions checks when a connection to Cassandra is first created. These checks ensure that Vault is able to create roles, but can be resource intensive in clusters with many roles.
         """
         return pulumi.get(self, "skip_verification")
 
     @skip_verification.setter
-    def skip_verification(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_verification(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_verification", value)
 
     @_builtins.property
     @pulumi.getter(name="socketKeepAlive")
-    def socket_keep_alive(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def socket_keep_alive(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Enable TCP keepalive for Cassandra connections.
         """
         return pulumi.get(self, "socket_keep_alive")
 
     @socket_keep_alive.setter
-    def socket_keep_alive(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def socket_keep_alive(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "socket_keep_alive", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS when connecting to Cassandra.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
-    def tls_server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_server_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SNI host for TLS connections.
         """
         return pulumi.get(self, "tls_server_name")
 
     @tls_server_name.setter
-    def tls_server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_server_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_server_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username to use when authenticating with Cassandra.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template for dynamic Cassandra usernames.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -4763,7 +4763,7 @@ class SecretsMountCassandraArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -4784,78 +4784,78 @@ class SecretsMountCouchbaseArgsDict(TypedDict):
     """
     Specifies the username for Vault to use.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    base64_pem: NotRequired[pulumi.Input[_builtins.str]]
+    base64_pem: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
     """
-    bucket_name: NotRequired[pulumi.Input[_builtins.str]]
+    bucket_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to skip verification of the server certificate when using TLS.
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to use TLS when connecting to Couchbase.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -4868,23 +4868,23 @@ class SecretsMountCouchbaseArgs:
                  name: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 base64_pem: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 base64_pem: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hosts: A set of Couchbase URIs to connect to. Must use `couchbases://` scheme if `tls` is `true`.
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
@@ -5005,7 +5005,7 @@ class SecretsMountCouchbaseArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -5013,48 +5013,48 @@ class SecretsMountCouchbaseArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="base64Pem")
-    def base64_pem(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base64_pem(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required if `tls` is `true`. Specifies the certificate authority of the Couchbase server, as a PEM certificate that has been base64 encoded.
         """
         return pulumi.get(self, "base64_pem")
 
     @base64_pem.setter
-    def base64_pem(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base64_pem(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base64_pem", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for Couchbase versions prior to 6.5.0. This is only used to verify vault's connection to the server.
         """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
-    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -5063,72 +5063,72 @@ class SecretsMountCouchbaseArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -5136,12 +5136,12 @@ class SecretsMountCouchbaseArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -5149,12 +5149,12 @@ class SecretsMountCouchbaseArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -5163,48 +5163,48 @@ class SecretsMountCouchbaseArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to use TLS when connecting to Couchbase.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -5212,7 +5212,7 @@ class SecretsMountCouchbaseArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -5233,86 +5233,86 @@ class SecretsMountElasticsearchArgsDict(TypedDict):
     """
     The username to be used in the connection URL
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
     """
-    ca_path: NotRequired[pulumi.Input[_builtins.str]]
+    ca_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
     """
-    client_cert: NotRequired[pulumi.Input[_builtins.str]]
+    client_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to the certificate for the Elasticsearch client to present for communication
     """
-    client_key: NotRequired[pulumi.Input[_builtins.str]]
+    client_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The path to the key for the Elasticsearch client to use for communication
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to disable certificate verification
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls_server_name: NotRequired[pulumi.Input[_builtins.str]]
+    tls_server_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     This, if set, is used to set the SNI host when connecting via TLS
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -5325,25 +5325,25 @@ class SecretsMountElasticsearchArgs:
                  password: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_server_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_server_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[_builtins.str] password: The password to be used in the connection URL
@@ -5470,7 +5470,7 @@ class SecretsMountElasticsearchArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -5478,72 +5478,72 @@ class SecretsMountElasticsearchArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="caCert")
-    def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to a PEM-encoded CA cert file to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_cert")
 
     @ca_cert.setter
-    def ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="caPath")
-    def ca_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         """
         return pulumi.get(self, "ca_path")
 
     @ca_path.setter
-    def ca_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_path", value)
 
     @_builtins.property
     @pulumi.getter(name="clientCert")
-    def client_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the certificate for the Elasticsearch client to present for communication
         """
         return pulumi.get(self, "client_cert")
 
     @client_cert.setter
-    def client_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_cert", value)
 
     @_builtins.property
     @pulumi.getter(name="clientKey")
-    def client_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the key for the Elasticsearch client to use for communication
         """
         return pulumi.get(self, "client_key")
 
     @client_key.setter
-    def client_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -5552,72 +5552,72 @@ class SecretsMountElasticsearchArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to disable certificate verification
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -5625,12 +5625,12 @@ class SecretsMountElasticsearchArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -5638,12 +5638,12 @@ class SecretsMountElasticsearchArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -5652,48 +5652,48 @@ class SecretsMountElasticsearchArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
-    def tls_server_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_server_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         This, if set, is used to set the SNI host when connecting via TLS
         """
         return pulumi.get(self, "tls_server_name")
 
     @tls_server_name.setter
-    def tls_server_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_server_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_server_name", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -5701,7 +5701,7 @@ class SecretsMountElasticsearchArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -5710,99 +5710,99 @@ class SecretsMountHanaArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -5812,28 +5812,28 @@ class SecretsMountHanaArgsDict(TypedDict):
 class SecretsMountHanaArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -5928,7 +5928,7 @@ class SecretsMountHanaArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -5936,36 +5936,36 @@ class SecretsMountHanaArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -5974,84 +5974,84 @@ class SecretsMountHanaArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -6059,60 +6059,60 @@ class SecretsMountHanaArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -6120,12 +6120,12 @@ class SecretsMountHanaArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -6133,12 +6133,12 @@ class SecretsMountHanaArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -6147,48 +6147,48 @@ class SecretsMountHanaArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -6196,7 +6196,7 @@ class SecretsMountHanaArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -6217,86 +6217,86 @@ class SecretsMountInfluxdbArgsDict(TypedDict):
     """
     Specifies the username to use for superuser access.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connect_timeout: NotRequired[pulumi.Input[_builtins.int]]
+    connect_timeout: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of seconds to use as a connection timeout.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to skip verification of the server certificate when using TLS.
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    pem_bundle: NotRequired[pulumi.Input[_builtins.str]]
+    pem_bundle: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    pem_json: NotRequired[pulumi.Input[_builtins.str]]
+    pem_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The transport port to use to connect to Influxdb.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether to use TLS when connecting to Influxdb.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -6309,25 +6309,25 @@ class SecretsMountInfluxdbArgs:
                  name: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connect_timeout: Optional[pulumi.Input[_builtins.int]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_bundle: Optional[pulumi.Input[_builtins.str]] = None,
-                 pem_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connect_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_bundle: pulumi.Input[Optional[_builtins.str]] = None,
+                 pem_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] host: Influxdb host to connect to.
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
@@ -6454,7 +6454,7 @@ class SecretsMountInfluxdbArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -6462,36 +6462,36 @@ class SecretsMountInfluxdbArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectTimeout")
-    def connect_timeout(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def connect_timeout(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of seconds to use as a connection timeout.
         """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
-    def connect_timeout(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def connect_timeout(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "connect_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -6500,108 +6500,108 @@ class SecretsMountInfluxdbArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pemBundle")
-    def pem_bundle(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_bundle(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Concatenated PEM blocks containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_bundle")
 
     @pem_bundle.setter
-    def pem_bundle(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_bundle(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_bundle", value)
 
     @_builtins.property
     @pulumi.getter(name="pemJson")
-    def pem_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pem_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies JSON containing a certificate and private key; a certificate, private key, and issuing CA certificate; or just a CA certificate.
         """
         return pulumi.get(self, "pem_json")
 
     @pem_json.setter
-    def pem_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pem_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pem_json", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The transport port to use to connect to Influxdb.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -6609,12 +6609,12 @@ class SecretsMountInfluxdbArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -6622,12 +6622,12 @@ class SecretsMountInfluxdbArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -6636,48 +6636,48 @@ class SecretsMountInfluxdbArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether to use TLS when connecting to Influxdb.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -6685,7 +6685,7 @@ class SecretsMountInfluxdbArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -6694,108 +6694,108 @@ class SecretsMountMongodbArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
     """
-    write_concern: NotRequired[pulumi.Input[_builtins.str]]
+    write_concern: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the MongoDB write concern for Vault management operations.
     """
@@ -6804,30 +6804,30 @@ class SecretsMountMongodbArgsDict(TypedDict):
 class SecretsMountMongodbArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None,
-                 write_concern: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None,
+                 write_concern: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -6928,7 +6928,7 @@ class SecretsMountMongodbArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -6936,36 +6936,36 @@ class SecretsMountMongodbArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -6974,72 +6974,72 @@ class SecretsMountMongodbArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -7047,60 +7047,60 @@ class SecretsMountMongodbArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -7108,12 +7108,12 @@ class SecretsMountMongodbArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -7121,12 +7121,12 @@ class SecretsMountMongodbArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -7135,72 +7135,72 @@ class SecretsMountMongodbArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 CA file for validating the certificate presented by the MongoDB server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 certificate and private key bundle for connecting to the database. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -7208,19 +7208,19 @@ class SecretsMountMongodbArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
     @_builtins.property
     @pulumi.getter(name="writeConcern")
-    def write_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def write_concern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the MongoDB write concern for Vault management operations.
         """
         return pulumi.get(self, "write_concern")
 
     @write_concern.setter
-    def write_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def write_concern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "write_concern", value)
 
 
@@ -7241,62 +7241,62 @@ class SecretsMountMongodbatlaArgsDict(TypedDict):
     """
     The Public Programmatic API Key used to authenticate with the MongoDB Atlas API.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Template describing how dynamic usernames are generated.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -7309,19 +7309,19 @@ class SecretsMountMongodbatlaArgs:
                  private_key: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  public_key: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[_builtins.str] private_key: The Private Programmatic API Key used to connect with MongoDB Atlas API.
@@ -7430,7 +7430,7 @@ class SecretsMountMongodbatlaArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -7438,24 +7438,24 @@ class SecretsMountMongodbatlaArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -7464,60 +7464,60 @@ class SecretsMountMongodbatlaArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -7525,12 +7525,12 @@ class SecretsMountMongodbatlaArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -7538,12 +7538,12 @@ class SecretsMountMongodbatlaArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -7552,36 +7552,36 @@ class SecretsMountMongodbatlaArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how dynamic usernames are generated.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -7589,7 +7589,7 @@ class SecretsMountMongodbatlaArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -7598,103 +7598,103 @@ class SecretsMountMssqlArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    contained_db: NotRequired[pulumi.Input[_builtins.bool]]
+    contained_db: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true when the target is a Contained Database, e.g. AzureSQL.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -7704,29 +7704,29 @@ class SecretsMountMssqlArgsDict(TypedDict):
 class SecretsMountMssqlArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 contained_db: Optional[pulumi.Input[_builtins.bool]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 contained_db: pulumi.Input[Optional[_builtins.bool]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -7824,7 +7824,7 @@ class SecretsMountMssqlArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -7832,48 +7832,48 @@ class SecretsMountMssqlArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter(name="containedDb")
-    def contained_db(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def contained_db(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true when the target is a Contained Database, e.g. AzureSQL.
         """
         return pulumi.get(self, "contained_db")
 
     @contained_db.setter
-    def contained_db(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def contained_db(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "contained_db", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -7882,84 +7882,84 @@ class SecretsMountMssqlArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -7967,60 +7967,60 @@ class SecretsMountMssqlArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -8028,12 +8028,12 @@ class SecretsMountMssqlArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -8041,12 +8041,12 @@ class SecretsMountMssqlArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -8055,48 +8055,48 @@ class SecretsMountMssqlArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -8104,7 +8104,7 @@ class SecretsMountMssqlArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -8113,111 +8113,111 @@ class SecretsMountMysqlArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -8227,31 +8227,31 @@ class SecretsMountMysqlArgsDict(TypedDict):
 class SecretsMountMysqlArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -8355,7 +8355,7 @@ class SecretsMountMysqlArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -8363,48 +8363,48 @@ class SecretsMountMysqlArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -8413,72 +8413,72 @@ class SecretsMountMysqlArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -8486,60 +8486,60 @@ class SecretsMountMysqlArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -8547,12 +8547,12 @@ class SecretsMountMysqlArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -8560,12 +8560,12 @@ class SecretsMountMysqlArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -8574,84 +8574,84 @@ class SecretsMountMysqlArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -8659,7 +8659,7 @@ class SecretsMountMysqlArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -8668,111 +8668,111 @@ class SecretsMountMysqlAuroraArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -8782,31 +8782,31 @@ class SecretsMountMysqlAuroraArgsDict(TypedDict):
 class SecretsMountMysqlAuroraArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -8910,7 +8910,7 @@ class SecretsMountMysqlAuroraArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -8918,48 +8918,48 @@ class SecretsMountMysqlAuroraArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -8968,72 +8968,72 @@ class SecretsMountMysqlAuroraArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -9041,60 +9041,60 @@ class SecretsMountMysqlAuroraArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -9102,12 +9102,12 @@ class SecretsMountMysqlAuroraArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -9115,12 +9115,12 @@ class SecretsMountMysqlAuroraArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -9129,84 +9129,84 @@ class SecretsMountMysqlAuroraArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -9214,7 +9214,7 @@ class SecretsMountMysqlAuroraArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -9223,111 +9223,111 @@ class SecretsMountMysqlLegacyArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -9337,31 +9337,31 @@ class SecretsMountMysqlLegacyArgsDict(TypedDict):
 class SecretsMountMysqlLegacyArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -9465,7 +9465,7 @@ class SecretsMountMysqlLegacyArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -9473,48 +9473,48 @@ class SecretsMountMysqlLegacyArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -9523,72 +9523,72 @@ class SecretsMountMysqlLegacyArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -9596,60 +9596,60 @@ class SecretsMountMysqlLegacyArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -9657,12 +9657,12 @@ class SecretsMountMysqlLegacyArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -9670,12 +9670,12 @@ class SecretsMountMysqlLegacyArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -9684,84 +9684,84 @@ class SecretsMountMysqlLegacyArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -9769,7 +9769,7 @@ class SecretsMountMysqlLegacyArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -9778,111 +9778,111 @@ class SecretsMountMysqlRdArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
     """
-    tls_certificate_key: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -9892,31 +9892,31 @@ class SecretsMountMysqlRdArgsDict(TypedDict):
 class SecretsMountMysqlRdArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -10020,7 +10020,7 @@ class SecretsMountMysqlRdArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -10028,48 +10028,48 @@ class SecretsMountMysqlRdArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -10078,72 +10078,72 @@ class SecretsMountMysqlRdArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -10151,60 +10151,60 @@ class SecretsMountMysqlRdArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -10212,12 +10212,12 @@ class SecretsMountMysqlRdArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -10225,12 +10225,12 @@ class SecretsMountMysqlRdArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -10239,84 +10239,84 @@ class SecretsMountMysqlRdArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 CA file for validating the certificate presented by the MySQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificateKey")
-    def tls_certificate_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         x509 certificate for connecting to the database. This must be a PEM encoded version of the private key and the certificate combined.
         """
         return pulumi.get(self, "tls_certificate_key")
 
     @tls_certificate_key.setter
-    def tls_certificate_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -10324,7 +10324,7 @@ class SecretsMountMysqlRdArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -10333,107 +10333,107 @@ class SecretsMountOracleArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    disconnect_sessions: NotRequired[pulumi.Input[_builtins.bool]]
+    disconnect_sessions: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true to disconnect any open sessions prior to running the revocation statements.
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    self_managed: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set, allows onboarding static roles with a rootless connection configuration.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    split_statements: NotRequired[pulumi.Input[_builtins.bool]]
+    split_statements: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Set to true in order to split statements after semi-colons.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -10443,30 +10443,30 @@ class SecretsMountOracleArgsDict(TypedDict):
 class SecretsMountOracleArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disconnect_sessions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 split_statements: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disconnect_sessions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 split_statements: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -10567,7 +10567,7 @@ class SecretsMountOracleArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -10575,36 +10575,36 @@ class SecretsMountOracleArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -10613,84 +10613,84 @@ class SecretsMountOracleArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disconnectSessions")
-    def disconnect_sessions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disconnect_sessions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to disconnect any open sessions prior to running the revocation statements.
         """
         return pulumi.get(self, "disconnect_sessions")
 
     @disconnect_sessions.setter
-    def disconnect_sessions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disconnect_sessions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disconnect_sessions", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -10698,60 +10698,60 @@ class SecretsMountOracleArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -10759,12 +10759,12 @@ class SecretsMountOracleArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -10772,12 +10772,12 @@ class SecretsMountOracleArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -10786,72 +10786,72 @@ class SecretsMountOracleArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="selfManaged")
-    def self_managed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def self_managed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, allows onboarding static roles with a rootless connection configuration.
         """
         return pulumi.get(self, "self_managed")
 
     @self_managed.setter
-    def self_managed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def self_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "self_managed", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="splitStatements")
-    def split_statements(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def split_statements(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true in order to split statements after semi-colons.
         """
         return pulumi.get(self, "split_statements")
 
     @split_statements.setter
-    def split_statements(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def split_statements(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "split_statements", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -10859,7 +10859,7 @@ class SecretsMountOracleArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -10868,127 +10868,127 @@ class SecretsMountPostgresqlArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    auth_type: NotRequired[pulumi.Input[_builtins.str]]
+    auth_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_authentication: NotRequired[pulumi.Input[_builtins.str]]
+    password_authentication: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    private_key: NotRequired[pulumi.Input[_builtins.str]]
+    private_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The secret key used for the x509 client certificate. Must be PEM encoded.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    self_managed: NotRequired[pulumi.Input[_builtins.bool]]
+    self_managed: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If set, allows onboarding static roles with a rootless connection configuration.
     """
-    service_account_json: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A JSON encoded credential for use with IAM authorization
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls_ca: NotRequired[pulumi.Input[_builtins.str]]
+    tls_ca: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
     """
-    tls_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    tls_certificate: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The x509 client certificate for connecting to the database. Must be PEM encoded.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -10998,35 +10998,35 @@ class SecretsMountPostgresqlArgsDict(TypedDict):
 class SecretsMountPostgresqlArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_authentication: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 self_managed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_account_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 tls_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_authentication: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_account_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 tls_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -11142,7 +11142,7 @@ class SecretsMountPostgresqlArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -11150,48 +11150,48 @@ class SecretsMountPostgresqlArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="authType")
-    def auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specify alternative authorization type. (Only 'gcp_iam' is valid currently)
         """
         return pulumi.get(self, "auth_type")
 
     @auth_type.setter
-    def auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -11200,96 +11200,96 @@ class SecretsMountPostgresqlArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordAuthentication")
-    def password_authentication(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_authentication(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When set to `scram-sha-256`, passwords will be hashed by Vault before being sent to PostgreSQL.
         """
         return pulumi.get(self, "password_authentication")
 
     @password_authentication.setter
-    def password_authentication(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_authentication(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_authentication", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -11297,72 +11297,72 @@ class SecretsMountPostgresqlArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret key used for the x509 client certificate. Must be PEM encoded.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -11370,12 +11370,12 @@ class SecretsMountPostgresqlArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -11383,12 +11383,12 @@ class SecretsMountPostgresqlArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -11397,96 +11397,96 @@ class SecretsMountPostgresqlArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="selfManaged")
-    def self_managed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def self_managed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, allows onboarding static roles with a rootless connection configuration.
         """
         return pulumi.get(self, "self_managed")
 
     @self_managed.setter
-    def self_managed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def self_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "self_managed", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountJson")
-    def service_account_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON encoded credential for use with IAM authorization
         """
         return pulumi.get(self, "service_account_json")
 
     @service_account_json.setter
-    def service_account_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_json", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCa")
-    def tls_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 CA file for validating the certificate presented by the PostgreSQL server. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_ca")
 
     @tls_ca.setter
-    def tls_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCertificate")
-    def tls_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The x509 client certificate for connecting to the database. Must be PEM encoded.
         """
         return pulumi.get(self, "tls_certificate")
 
     @tls_certificate.setter
-    def tls_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_certificate", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -11494,7 +11494,7 @@ class SecretsMountPostgresqlArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -11515,74 +11515,74 @@ class SecretsMountRediArgsDict(TypedDict):
     """
     Specifies the username for Vault to use.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    ca_cert: NotRequired[pulumi.Input[_builtins.str]]
+    ca_cert: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    insecure_tls: NotRequired[pulumi.Input[_builtins.bool]]
+    insecure_tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to skip verification of the server certificate when using TLS.
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    port: NotRequired[pulumi.Input[_builtins.int]]
+    port: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The transport port to use to connect to Redis.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    tls: NotRequired[pulumi.Input[_builtins.bool]]
+    tls: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether to use TLS when connecting to Redis.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -11595,22 +11595,22 @@ class SecretsMountRediArgs:
                  name: pulumi.Input[_builtins.str],
                  password: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ca_cert: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 insecure_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] host: Specifies the host to connect to
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
@@ -11728,7 +11728,7 @@ class SecretsMountRediArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -11736,36 +11736,36 @@ class SecretsMountRediArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="caCert")
-    def ca_cert(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_cert(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The contents of a PEM-encoded CA cert file to use to verify the Redis server's identity.
         """
         return pulumi.get(self, "ca_cert")
 
     @ca_cert.setter
-    def ca_cert(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_cert(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_cert", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -11774,84 +11774,84 @@ class SecretsMountRediArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def insecure_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to skip verification of the server certificate when using TLS.
         """
         return pulumi.get(self, "insecure_tls")
 
     @insecure_tls.setter
-    def insecure_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def insecure_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "insecure_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The transport port to use to connect to Redis.
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -11859,12 +11859,12 @@ class SecretsMountRediArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -11872,12 +11872,12 @@ class SecretsMountRediArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -11886,36 +11886,36 @@ class SecretsMountRediArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to use TLS when connecting to Redis.
         """
         return pulumi.get(self, "tls")
 
     @tls.setter
-    def tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tls", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -11923,7 +11923,7 @@ class SecretsMountRediArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -11936,70 +11936,70 @@ class SecretsMountRedisElasticacheArgsDict(TypedDict):
     """
     The configuration endpoint for the ElastiCache cluster to connect to.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -12010,21 +12010,21 @@ class SecretsMountRedisElasticacheArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[_builtins.str] url: The configuration endpoint for the ElastiCache cluster to connect to.
@@ -12111,7 +12111,7 @@ class SecretsMountRedisElasticacheArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -12119,24 +12119,24 @@ class SecretsMountRedisElasticacheArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -12145,84 +12145,84 @@ class SecretsMountRedisElasticacheArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS secret key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS region where the ElastiCache cluster is hosted. If omitted the plugin tries to infer the region from the environment.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -12230,12 +12230,12 @@ class SecretsMountRedisElasticacheArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -12243,12 +12243,12 @@ class SecretsMountRedisElasticacheArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -12257,36 +12257,36 @@ class SecretsMountRedisElasticacheArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The AWS access key id to use to talk to ElastiCache. If omitted the credentials chain provider is used instead.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -12294,7 +12294,7 @@ class SecretsMountRedisElasticacheArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -12303,99 +12303,99 @@ class SecretsMountRedshiftArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    disable_escaping: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_escaping: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Disable special character escaping in username and password
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -12405,28 +12405,28 @@ class SecretsMountRedshiftArgsDict(TypedDict):
 class SecretsMountRedshiftArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_escaping: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_escaping: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -12521,7 +12521,7 @@ class SecretsMountRedshiftArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -12529,36 +12529,36 @@ class SecretsMountRedshiftArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -12567,84 +12567,84 @@ class SecretsMountRedshiftArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableEscaping")
-    def disable_escaping(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_escaping(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable special character escaping in username and password
         """
         return pulumi.get(self, "disable_escaping")
 
     @disable_escaping.setter
-    def disable_escaping(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_escaping(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_escaping", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -12652,60 +12652,60 @@ class SecretsMountRedshiftArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -12713,12 +12713,12 @@ class SecretsMountRedshiftArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -12726,12 +12726,12 @@ class SecretsMountRedshiftArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -12740,48 +12740,48 @@ class SecretsMountRedshiftArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -12789,7 +12789,7 @@ class SecretsMountRedshiftArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 
@@ -12798,104 +12798,104 @@ class SecretsMountSnowflakeArgsDict(TypedDict):
     """
     Name of the database connection.
     """
-    allowed_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allowed_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of roles that are allowed to use this
     connection.
     """
-    connection_url: NotRequired[pulumi.Input[_builtins.str]]
+    connection_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Connection string to use to connect to the database.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
     """
-    disable_automated_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    disable_automated_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
     Supported list of database secrets engines that can be configured:
     """
-    max_connection_lifetime: NotRequired[pulumi.Input[_builtins.int]]
+    max_connection_lifetime: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of seconds a connection may be reused.
     """
-    max_idle_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_idle_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of idle connections to the database.
     """
-    max_open_connections: NotRequired[pulumi.Input[_builtins.int]]
+    max_open_connections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Maximum number of open connections to the database.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential password used in the connection URL
     """
-    password_policy: NotRequired[pulumi.Input[_builtins.str]]
+    password_policy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
     """
-    password_wo: NotRequired[pulumi.Input[_builtins.str]]
+    password_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     Write-only field for the root credential password used in the connection URL
     """
-    password_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    password_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for root credential password write-only field
     """
-    plugin_name: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the name of the plugin to use.
     """
-    plugin_version: NotRequired[pulumi.Input[_builtins.str]]
+    plugin_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the semantic version of the plugin to use for this connection.
     """
-    private_key_wo: NotRequired[pulumi.Input[_builtins.str]]
+    private_key_wo: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
     The private key configured for the admin user in Snowflake.
     """
-    private_key_wo_version: NotRequired[pulumi.Input[_builtins.int]]
+    private_key_wo_version: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Version counter for the private key key-pair credentials write-only field
     """
-    root_rotation_statements: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    root_rotation_statements: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     A list of database statements to be executed to rotate the root user's credentials.
     """
-    rotation_period: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_period: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The amount of time in seconds Vault should wait before rotating the root credential.
     A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
     """
-    rotation_schedule: NotRequired[pulumi.Input[_builtins.str]]
+    rotation_schedule: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
     defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
     """
-    rotation_window: NotRequired[pulumi.Input[_builtins.int]]
+    rotation_window: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The maximum amount of time in seconds allowed to complete
     a rotation when a scheduled token rotation occurs. The default rotation window is
     unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
     """
-    skip_static_role_import_rotation: NotRequired[pulumi.Input[_builtins.bool]]
+    skip_static_role_import_rotation: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The root credential username used in the connection URL
     """
-    username_template: NotRequired[pulumi.Input[_builtins.str]]
+    username_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username generation template.
     """
-    verify_connection: NotRequired[pulumi.Input[_builtins.bool]]
+    verify_connection: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Whether the connection should be verified on
     initial configuration or not.
@@ -12905,29 +12905,29 @@ class SecretsMountSnowflakeArgsDict(TypedDict):
 class SecretsMountSnowflakeArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 allowed_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_connection_lifetime: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_idle_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_open_connections: Optional[pulumi.Input[_builtins.int]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 plugin_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 plugin_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 root_rotation_statements: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_static_role_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 verify_connection: Optional[pulumi.Input[_builtins.bool]] = None):
+                 allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 verify_connection: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the database connection.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: A list of roles that are allowed to use this
@@ -13029,7 +13029,7 @@ class SecretsMountSnowflakeArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
-    def allowed_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of roles that are allowed to use this
         connection.
@@ -13037,36 +13037,36 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "allowed_roles")
 
     @allowed_roles.setter
-    def allowed_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionUrl")
-    def connection_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string to use to connect to the database.
         """
         return pulumi.get(self, "connection_url")
 
     @connection_url.setter
-    def connection_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
         """
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
 
@@ -13075,73 +13075,73 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="maxConnectionLifetime")
-    def max_connection_lifetime(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_connection_lifetime(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of seconds a connection may be reused.
         """
         return pulumi.get(self, "max_connection_lifetime")
 
     @max_connection_lifetime.setter
-    def max_connection_lifetime(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_connection_lifetime(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_connection_lifetime", value)
 
     @_builtins.property
     @pulumi.getter(name="maxIdleConnections")
-    def max_idle_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_idle_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of idle connections to the database.
         """
         return pulumi.get(self, "max_idle_connections")
 
     @max_idle_connections.setter
-    def max_idle_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_idle_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_idle_connections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxOpenConnections")
-    def max_open_connections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_open_connections(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of open connections to the database.
         """
         return pulumi.get(self, "max_open_connections")
 
     @max_open_connections.setter
-    def max_open_connections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_open_connections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_open_connections", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.""")
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential password used in the connection URL
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")
-    def password_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         """
         return pulumi.get(self, "password_policy")
 
     @password_policy.setter
-    def password_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWo")
-    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only field for the root credential password used in the connection URL
@@ -13149,48 +13149,48 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "password_wo")
 
     @password_wo.setter
-    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
-    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for root credential password write-only field
         """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
-    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginName")
-    def plugin_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the plugin to use.
         """
         return pulumi.get(self, "plugin_name")
 
     @plugin_name.setter
-    def plugin_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_name", value)
 
     @_builtins.property
     @pulumi.getter(name="pluginVersion")
-    def plugin_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def plugin_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the semantic version of the plugin to use for this connection.
         """
         return pulumi.get(self, "plugin_version")
 
     @plugin_version.setter
-    def plugin_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def plugin_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWo")
-    def private_key_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The private key configured for the admin user in Snowflake.
@@ -13198,36 +13198,36 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "private_key_wo")
 
     @private_key_wo.setter
-    def private_key_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyWoVersion")
-    def private_key_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the private key key-pair credentials write-only field
         """
         return pulumi.get(self, "private_key_wo_version")
 
     @private_key_wo_version.setter
-    def private_key_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def private_key_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "private_key_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="rootRotationStatements")
-    def root_rotation_statements(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def root_rotation_statements(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of database statements to be executed to rotate the root user's credentials.
         """
         return pulumi.get(self, "root_rotation_statements")
 
     @root_rotation_statements.setter
-    def root_rotation_statements(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def root_rotation_statements(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "root_rotation_statements", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -13235,12 +13235,12 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -13248,12 +13248,12 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -13262,48 +13262,48 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
-    def skip_static_role_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skip_import_rotation field. The default is false. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "skip_static_role_import_rotation")
 
     @skip_static_role_import_rotation.setter
-    def skip_static_role_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_static_role_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_static_role_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The root credential username used in the connection URL
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameTemplate")
-    def username_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username generation template.
         """
         return pulumi.get(self, "username_template")
 
     @username_template.setter
-    def username_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_template", value)
 
     @_builtins.property
     @pulumi.getter(name="verifyConnection")
-    def verify_connection(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def verify_connection(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the connection should be verified on
         initial configuration or not.
@@ -13311,7 +13311,7 @@ class SecretsMountSnowflakeArgs:
         return pulumi.get(self, "verify_connection")
 
     @verify_connection.setter
-    def verify_connection(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def verify_connection(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "verify_connection", value)
 
 

@@ -175,49 +175,49 @@ export interface BackendConfigAcmeState {
     /**
      * Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
      */
-    allowRoleExtKeyUsage?: pulumi.Input<boolean>;
+    allowRoleExtKeyUsage?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies which issuers are allowed for use with ACME.
      */
-    allowedIssuers?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIssuers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies which roles are allowed for use with ACME.
      */
-    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
      */
-    defaultDirectoryPolicy?: pulumi.Input<string>;
+    defaultDirectoryPolicy?: pulumi.Input<string | undefined>;
     /**
      * DNS resolver to use for domain resolution on this mount.
      * Must be in the format `<host>:<port>`, with both parts mandatory.
      */
-    dnsResolver?: pulumi.Input<string>;
+    dnsResolver?: pulumi.Input<string | undefined>;
     /**
      * Specifies the policy to use for external account binding behaviour.
      * Allowed values are `not-required`, `new-account-required` or `always-required`.
      */
-    eabPolicy?: pulumi.Input<string>;
+    eabPolicy?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether ACME is enabled.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -227,15 +227,15 @@ export interface BackendConfigAcmeArgs {
     /**
      * Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
      */
-    allowRoleExtKeyUsage?: pulumi.Input<boolean>;
+    allowRoleExtKeyUsage?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies which issuers are allowed for use with ACME.
      */
-    allowedIssuers?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIssuers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies which roles are allowed for use with ACME.
      */
-    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -244,17 +244,17 @@ export interface BackendConfigAcmeArgs {
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
      */
-    defaultDirectoryPolicy?: pulumi.Input<string>;
+    defaultDirectoryPolicy?: pulumi.Input<string | undefined>;
     /**
      * DNS resolver to use for domain resolution on this mount.
      * Must be in the format `<host>:<port>`, with both parts mandatory.
      */
-    dnsResolver?: pulumi.Input<string>;
+    dnsResolver?: pulumi.Input<string | undefined>;
     /**
      * Specifies the policy to use for external account binding behaviour.
      * Allowed values are `not-required`, `new-account-required` or `always-required`.
      */
-    eabPolicy?: pulumi.Input<string>;
+    eabPolicy?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether ACME is enabled.
      */
@@ -262,12 +262,12 @@ export interface BackendConfigAcmeArgs {
     /**
      * The maximum TTL in seconds for certificates issued by ACME. **Vault 1.17.0+**
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

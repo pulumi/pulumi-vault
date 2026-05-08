@@ -22,34 +22,34 @@ class RaftSnapshotAgentConfigArgs:
                  interval_seconds: pulumi.Input[_builtins.int],
                  path_prefix: pulumi.Input[_builtins.str],
                  storage_type: pulumi.Input[_builtins.str],
-                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_enable_kms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_force_path_style: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_server_side_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_max_space: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 retain: Optional[pulumi.Input[_builtins.int]] = None):
+                 autoload_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_enable_kms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_force_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_auth_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_blob_environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_service_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 local_max_space: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 retain: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a RaftSnapshotAgentConfig resource.
 
@@ -203,7 +203,7 @@ class RaftSnapshotAgentConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="autoloadEnabled")
-    def autoload_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoload_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
         **Note:** Not supported with `storage_type = "local"`.
@@ -213,228 +213,228 @@ class RaftSnapshotAgentConfigArgs:
         return pulumi.get(self, "autoload_enabled")
 
     @autoload_enabled.setter
-    def autoload_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoload_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoload_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
-    def aws_access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key ID.
         """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
-    def aws_access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3Bucket")
-    def aws_s3_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         S3 bucket to write snapshots to.
         """
         return pulumi.get(self, "aws_s3_bucket")
 
     @aws_s3_bucket.setter
-    def aws_s3_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3DisableTls")
-    def aws_s3_disable_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_disable_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         """
         return pulumi.get(self, "aws_s3_disable_tls")
 
     @aws_s3_disable_tls.setter
-    def aws_s3_disable_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_disable_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_disable_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3EnableKms")
-    def aws_s3_enable_kms(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_enable_kms(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use KMS to encrypt bucket contents.
         """
         return pulumi.get(self, "aws_s3_enable_kms")
 
     @aws_s3_enable_kms.setter
-    def aws_s3_enable_kms(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_enable_kms(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_enable_kms", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3Endpoint")
-    def aws_s3_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         """
         return pulumi.get(self, "aws_s3_endpoint")
 
     @aws_s3_endpoint.setter
-    def aws_s3_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3ForcePathStyle")
-    def aws_s3_force_path_style(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_force_path_style(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use the endpoint/bucket URL style instead of bucket.endpoint.
         """
         return pulumi.get(self, "aws_s3_force_path_style")
 
     @aws_s3_force_path_style.setter
-    def aws_s3_force_path_style(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_force_path_style(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_force_path_style", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3KmsKey")
-    def aws_s3_kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_kms_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Use named KMS key, when aws_s3_enable_kms=true
         """
         return pulumi.get(self, "aws_s3_kms_key")
 
     @aws_s3_kms_key.setter
-    def aws_s3_kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_kms_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_kms_key", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3Region")
-    def aws_s3_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS region bucket is in.
         """
         return pulumi.get(self, "aws_s3_region")
 
     @aws_s3_region.setter
-    def aws_s3_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_region", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3ServerSideEncryption")
-    def aws_s3_server_side_encryption(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_server_side_encryption(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use AES256 to encrypt bucket contents.
         """
         return pulumi.get(self, "aws_s3_server_side_encryption")
 
     @aws_s3_server_side_encryption.setter
-    def aws_s3_server_side_encryption(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_server_side_encryption(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_server_side_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
-    def aws_secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key.
         """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
-    def aws_secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSessionToken")
-    def aws_session_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_session_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS session token.
         """
         return pulumi.get(self, "aws_session_token")
 
     @aws_session_token.setter
-    def aws_session_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_session_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_session_token", value)
 
     @_builtins.property
     @pulumi.getter(name="azureAccountKey")
-    def azure_account_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_account_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure account key. Required when azure_auth_mode is 'shared'.
         """
         return pulumi.get(self, "azure_account_key")
 
     @azure_account_key.setter
-    def azure_account_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_account_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_account_key", value)
 
     @_builtins.property
     @pulumi.getter(name="azureAccountName")
-    def azure_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure account name.
         """
         return pulumi.get(self, "azure_account_name")
 
     @azure_account_name.setter
-    def azure_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="azureAuthMode")
-    def azure_auth_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_auth_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
         """
         return pulumi.get(self, "azure_auth_mode")
 
     @azure_auth_mode.setter
-    def azure_auth_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_auth_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_auth_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="azureBlobEnvironment")
-    def azure_blob_environment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_blob_environment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure blob environment.
         """
         return pulumi.get(self, "azure_blob_environment")
 
     @azure_blob_environment.setter
-    def azure_blob_environment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_blob_environment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_blob_environment", value)
 
     @_builtins.property
     @pulumi.getter(name="azureClientId")
-    def azure_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
         """
         return pulumi.get(self, "azure_client_id")
 
     @azure_client_id.setter
-    def azure_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureContainerName")
-    def azure_container_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_container_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure container name to write snapshots to.
         """
         return pulumi.get(self, "azure_container_name")
 
     @azure_container_name.setter
-    def azure_container_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_container_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_container_name", value)
 
     @_builtins.property
     @pulumi.getter(name="azureEndpoint")
-    def azure_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         """
         return pulumi.get(self, "azure_endpoint")
 
     @azure_endpoint.setter
-    def azure_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="filePrefix")
-    def file_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Within the directory or bucket
         prefix given by `path_prefix`, the file or object name of snapshot files
@@ -443,84 +443,84 @@ class RaftSnapshotAgentConfigArgs:
         return pulumi.get(self, "file_prefix")
 
     @file_prefix.setter
-    def file_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="googleDisableTls")
-    def google_disable_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def google_disable_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable TLS for the GCS endpoint.
         """
         return pulumi.get(self, "google_disable_tls")
 
     @google_disable_tls.setter
-    def google_disable_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def google_disable_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "google_disable_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="googleEndpoint")
-    def google_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def google_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         """
         return pulumi.get(self, "google_endpoint")
 
     @google_endpoint.setter
-    def google_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def google_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "google_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="googleGcsBucket")
-    def google_gcs_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def google_gcs_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         GCS bucket to write snapshots to.
         """
         return pulumi.get(self, "google_gcs_bucket")
 
     @google_gcs_bucket.setter
-    def google_gcs_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def google_gcs_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "google_gcs_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="googleServiceAccountKey")
-    def google_service_account_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def google_service_account_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google service account key in JSON format.
         """
         return pulumi.get(self, "google_service_account_key")
 
     @google_service_account_key.setter
-    def google_service_account_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def google_service_account_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "google_service_account_key", value)
 
     @_builtins.property
     @pulumi.getter(name="localMaxSpace")
-    def local_max_space(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def local_max_space(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum space, in bytes, to use for snapshots.
         """
         return pulumi.get(self, "local_max_space")
 
     @local_max_space.setter
-    def local_max_space(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def local_max_space(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "local_max_space", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `<required>` – Name of the configuration to modify.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -530,12 +530,12 @@ class RaftSnapshotAgentConfigArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def retain(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retain(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many snapshots are to be kept; when writing a
         snapshot, if there are more snapshots already stored than this number, the
@@ -544,44 +544,44 @@ class RaftSnapshotAgentConfigArgs:
         return pulumi.get(self, "retain")
 
     @retain.setter
-    def retain(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retain(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retain", value)
 
 
 @pulumi.input_type
 class _RaftSnapshotAgentConfigState:
     def __init__(__self__, *,
-                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_enable_kms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_force_path_style: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_server_side_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 local_max_space: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 retain: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 autoload_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_enable_kms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_force_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_auth_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_blob_environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_service_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 local_max_space: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 retain: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.
 
@@ -697,7 +697,7 @@ class _RaftSnapshotAgentConfigState:
 
     @_builtins.property
     @pulumi.getter(name="autoloadEnabled")
-    def autoload_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def autoload_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
         **Note:** Not supported with `storage_type = "local"`.
@@ -707,228 +707,228 @@ class _RaftSnapshotAgentConfigState:
         return pulumi.get(self, "autoload_enabled")
 
     @autoload_enabled.setter
-    def autoload_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def autoload_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "autoload_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="awsAccessKeyId")
-    def aws_access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS access key ID.
         """
         return pulumi.get(self, "aws_access_key_id")
 
     @aws_access_key_id.setter
-    def aws_access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3Bucket")
-    def aws_s3_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         S3 bucket to write snapshots to.
         """
         return pulumi.get(self, "aws_s3_bucket")
 
     @aws_s3_bucket.setter
-    def aws_s3_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3DisableTls")
-    def aws_s3_disable_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_disable_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable TLS for the S3 endpoint. This should only be used for testing purposes.
         """
         return pulumi.get(self, "aws_s3_disable_tls")
 
     @aws_s3_disable_tls.setter
-    def aws_s3_disable_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_disable_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_disable_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3EnableKms")
-    def aws_s3_enable_kms(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_enable_kms(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use KMS to encrypt bucket contents.
         """
         return pulumi.get(self, "aws_s3_enable_kms")
 
     @aws_s3_enable_kms.setter
-    def aws_s3_enable_kms(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_enable_kms(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_enable_kms", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3Endpoint")
-    def aws_s3_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio.
         """
         return pulumi.get(self, "aws_s3_endpoint")
 
     @aws_s3_endpoint.setter
-    def aws_s3_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3ForcePathStyle")
-    def aws_s3_force_path_style(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_force_path_style(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use the endpoint/bucket URL style instead of bucket.endpoint.
         """
         return pulumi.get(self, "aws_s3_force_path_style")
 
     @aws_s3_force_path_style.setter
-    def aws_s3_force_path_style(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_force_path_style(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_force_path_style", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3KmsKey")
-    def aws_s3_kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_kms_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Use named KMS key, when aws_s3_enable_kms=true
         """
         return pulumi.get(self, "aws_s3_kms_key")
 
     @aws_s3_kms_key.setter
-    def aws_s3_kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_kms_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_kms_key", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3Region")
-    def aws_s3_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_s3_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS region bucket is in.
         """
         return pulumi.get(self, "aws_s3_region")
 
     @aws_s3_region.setter
-    def aws_s3_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_s3_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_s3_region", value)
 
     @_builtins.property
     @pulumi.getter(name="awsS3ServerSideEncryption")
-    def aws_s3_server_side_encryption(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def aws_s3_server_side_encryption(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Use AES256 to encrypt bucket contents.
         """
         return pulumi.get(self, "aws_s3_server_side_encryption")
 
     @aws_s3_server_side_encryption.setter
-    def aws_s3_server_side_encryption(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def aws_s3_server_side_encryption(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "aws_s3_server_side_encryption", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
-    def aws_secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key.
         """
         return pulumi.get(self, "aws_secret_access_key")
 
     @aws_secret_access_key.setter
-    def aws_secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSessionToken")
-    def aws_session_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_session_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS session token.
         """
         return pulumi.get(self, "aws_session_token")
 
     @aws_session_token.setter
-    def aws_session_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_session_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_session_token", value)
 
     @_builtins.property
     @pulumi.getter(name="azureAccountKey")
-    def azure_account_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_account_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure account key. Required when azure_auth_mode is 'shared'.
         """
         return pulumi.get(self, "azure_account_key")
 
     @azure_account_key.setter
-    def azure_account_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_account_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_account_key", value)
 
     @_builtins.property
     @pulumi.getter(name="azureAccountName")
-    def azure_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure account name.
         """
         return pulumi.get(self, "azure_account_name")
 
     @azure_account_name.setter
-    def azure_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="azureAuthMode")
-    def azure_auth_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_auth_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+.
         """
         return pulumi.get(self, "azure_auth_mode")
 
     @azure_auth_mode.setter
-    def azure_auth_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_auth_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_auth_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="azureBlobEnvironment")
-    def azure_blob_environment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_blob_environment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure blob environment.
         """
         return pulumi.get(self, "azure_blob_environment")
 
     @azure_blob_environment.setter
-    def azure_blob_environment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_blob_environment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_blob_environment", value)
 
     @_builtins.property
     @pulumi.getter(name="azureClientId")
-    def azure_client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure client ID for authentication. Required when azure_auth_mode is 'managed'. Requires Vault Enterprise 1.18.0+.
         """
         return pulumi.get(self, "azure_client_id")
 
     @azure_client_id.setter
-    def azure_client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="azureContainerName")
-    def azure_container_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_container_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure container name to write snapshots to.
         """
         return pulumi.get(self, "azure_container_name")
 
     @azure_container_name.setter
-    def azure_container_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_container_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_container_name", value)
 
     @_builtins.property
     @pulumi.getter(name="azureEndpoint")
-    def azure_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite.
         """
         return pulumi.get(self, "azure_endpoint")
 
     @azure_endpoint.setter
-    def azure_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="filePrefix")
-    def file_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def file_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Within the directory or bucket
         prefix given by `path_prefix`, the file or object name of snapshot files
@@ -937,96 +937,96 @@ class _RaftSnapshotAgentConfigState:
         return pulumi.get(self, "file_prefix")
 
     @file_prefix.setter
-    def file_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def file_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "file_prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="googleDisableTls")
-    def google_disable_tls(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def google_disable_tls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disable TLS for the GCS endpoint.
         """
         return pulumi.get(self, "google_disable_tls")
 
     @google_disable_tls.setter
-    def google_disable_tls(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def google_disable_tls(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "google_disable_tls", value)
 
     @_builtins.property
     @pulumi.getter(name="googleEndpoint")
-    def google_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def google_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server.
         """
         return pulumi.get(self, "google_endpoint")
 
     @google_endpoint.setter
-    def google_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def google_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "google_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="googleGcsBucket")
-    def google_gcs_bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def google_gcs_bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         GCS bucket to write snapshots to.
         """
         return pulumi.get(self, "google_gcs_bucket")
 
     @google_gcs_bucket.setter
-    def google_gcs_bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def google_gcs_bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "google_gcs_bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="googleServiceAccountKey")
-    def google_service_account_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def google_service_account_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Google service account key in JSON format.
         """
         return pulumi.get(self, "google_service_account_key")
 
     @google_service_account_key.setter
-    def google_service_account_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def google_service_account_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "google_service_account_key", value)
 
     @_builtins.property
     @pulumi.getter(name="intervalSeconds")
-    def interval_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def interval_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         `<required>` - Time (in seconds) between snapshots.
         """
         return pulumi.get(self, "interval_seconds")
 
     @interval_seconds.setter
-    def interval_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def interval_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "interval_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="localMaxSpace")
-    def local_max_space(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def local_max_space(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum space, in bytes, to use for snapshots.
         """
         return pulumi.get(self, "local_max_space")
 
     @local_max_space.setter
-    def local_max_space(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def local_max_space(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "local_max_space", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `<required>` – Name of the configuration to modify.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -1036,12 +1036,12 @@ class _RaftSnapshotAgentConfigState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pathPrefix")
-    def path_prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `<required>` - For `storage_type = "local"`, the directory to
         write the snapshots in. For cloud storage types, the bucket prefix to use.
@@ -1051,12 +1051,12 @@ class _RaftSnapshotAgentConfigState:
         return pulumi.get(self, "path_prefix")
 
     @path_prefix.setter
-    def path_prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path_prefix", value)
 
     @_builtins.property
     @pulumi.getter
-    def retain(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retain(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How many snapshots are to be kept; when writing a
         snapshot, if there are more snapshots already stored than this number, the
@@ -1065,12 +1065,12 @@ class _RaftSnapshotAgentConfigState:
         return pulumi.get(self, "retain")
 
     @retain.setter
-    def retain(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retain(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retain", value)
 
     @_builtins.property
     @pulumi.getter(name="storageType")
-    def storage_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `<required>` - One of "local", "azure-blob", "aws-s3",
         or "google-gcs". The remaining parameters described below are all specific to
@@ -1079,7 +1079,7 @@ class _RaftSnapshotAgentConfigState:
         return pulumi.get(self, "storage_type")
 
     @storage_type.setter
-    def storage_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_type", value)
 
 
@@ -1089,37 +1089,37 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_enable_kms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_force_path_style: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_server_side_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 local_max_space: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 retain: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 autoload_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_enable_kms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_force_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_auth_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_blob_environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_service_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 local_max_space: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 retain: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a Raft Snapshot Agent Configuration for Vault. This configures Vault
@@ -1357,37 +1357,37 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_enable_kms: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_force_path_style: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_s3_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_s3_server_side_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-                 aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 google_service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 local_max_space: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 retain: Optional[pulumi.Input[_builtins.int]] = None,
-                 storage_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 autoload_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_enable_kms: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_force_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_s3_kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+                 aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_auth_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_blob_environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 file_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 google_service_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 local_max_space: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 retain: pulumi.Input[Optional[_builtins.int]] = None,
+                 storage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1444,37 +1444,37 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            autoload_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            aws_access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_s3_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_s3_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-            aws_s3_enable_kms: Optional[pulumi.Input[_builtins.bool]] = None,
-            aws_s3_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_s3_force_path_style: Optional[pulumi.Input[_builtins.bool]] = None,
-            aws_s3_kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_s3_region: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_s3_server_side_encryption: Optional[pulumi.Input[_builtins.bool]] = None,
-            aws_secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_session_token: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_auth_mode: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_blob_environment: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            file_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            google_disable_tls: Optional[pulumi.Input[_builtins.bool]] = None,
-            google_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            google_gcs_bucket: Optional[pulumi.Input[_builtins.str]] = None,
-            google_service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-            interval_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-            local_max_space: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path_prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            retain: Optional[pulumi.Input[_builtins.int]] = None,
-            storage_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'RaftSnapshotAgentConfig':
+            autoload_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_s3_enable_kms: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_s3_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_force_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_s3_kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_auth_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_blob_environment: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            file_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            google_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+            google_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            google_gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            google_service_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+            interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            local_max_space: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            retain: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'RaftSnapshotAgentConfig':
         """
         Get an existing RaftSnapshotAgentConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

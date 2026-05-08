@@ -215,7 +215,7 @@ export interface GetGroupOutputArgs {
     /**
      * ID of the alias.
      */
-    aliasId?: pulumi.Input<string>;
+    aliasId?: pulumi.Input<string | undefined>;
     /**
      * Accessor of the mount to which the alias belongs to.
      * This should be supplied in conjunction with `aliasName`.
@@ -223,25 +223,25 @@ export interface GetGroupOutputArgs {
      * The lookup criteria can be `groupName`, `groupId`, `aliasId`, or a combination of
      * `aliasName` and `aliasMountAccessor`.
      */
-    aliasMountAccessor?: pulumi.Input<string>;
+    aliasMountAccessor?: pulumi.Input<string | undefined>;
     /**
      * Name of the alias. This should be supplied in conjunction with
      * `aliasMountAccessor`.
      */
-    aliasName?: pulumi.Input<string>;
+    aliasName?: pulumi.Input<string | undefined>;
     /**
      * ID of the group.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * Name of the group.
      */
-    groupName?: pulumi.Input<string>;
+    groupName?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

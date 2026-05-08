@@ -21,11 +21,11 @@ __all__ = ['KeysArgs', 'Keys']
 @pulumi.input_type
 class KeysArgs:
     def __init__(__self__, *,
-                 aws: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]] = None,
-                 azures: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]] = None,
-                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
+                 aws: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAwArgs']]]] = None,
+                 azures: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAzureArgs']]]] = None,
+                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input['KeysGcpArgs']]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
         """
         The set of arguments for constructing a Keys resource.
 
@@ -48,73 +48,73 @@ class KeysArgs:
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]]:
+    def aws(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysAwArgs']]]]:
         """
         Configuration block for AWS Managed Keys
         """
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]]):
+    def aws(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAwArgs']]]]):
         pulumi.set(self, "aws", value)
 
     @_builtins.property
     @pulumi.getter
-    def azures(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]]:
+    def azures(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysAzureArgs']]]]:
         """
         Configuration block for Azure Managed Keys
         """
         return pulumi.get(self, "azures")
 
     @azures.setter
-    def azures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]]):
+    def azures(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAzureArgs']]]]):
         pulumi.set(self, "azures", value)
 
     @_builtins.property
     @pulumi.getter
-    def gcps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]:
+    def gcps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysGcpArgs']]]]:
         """
         Configuration block for GCP Cloud KMS Managed Keys
         """
         return pulumi.get(self, "gcps")
 
     @gcps.setter
-    def gcps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]):
+    def gcps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysGcpArgs']]]]):
         pulumi.set(self, "gcps", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target namespace. (requires Enterprise)
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def pkcs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]]:
+    def pkcs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysPkcArgs']]]]:
         """
         Configuration block for PKCS Managed Keys
         """
         return pulumi.get(self, "pkcs")
 
     @pkcs.setter
-    def pkcs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]]):
+    def pkcs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysPkcArgs']]]]):
         pulumi.set(self, "pkcs", value)
 
 
 @pulumi.input_type
 class _KeysState:
     def __init__(__self__, *,
-                 aws: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]] = None,
-                 azures: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]] = None,
-                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
+                 aws: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAwArgs']]]] = None,
+                 azures: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAzureArgs']]]] = None,
+                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input['KeysGcpArgs']]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input['KeysPkcArgs']]]] = None):
         """
         Input properties used for looking up and filtering Keys resources.
 
@@ -137,62 +137,62 @@ class _KeysState:
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]]:
+    def aws(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysAwArgs']]]]:
         """
         Configuration block for AWS Managed Keys
         """
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAwArgs']]]]):
+    def aws(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAwArgs']]]]):
         pulumi.set(self, "aws", value)
 
     @_builtins.property
     @pulumi.getter
-    def azures(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]]:
+    def azures(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysAzureArgs']]]]:
         """
         Configuration block for Azure Managed Keys
         """
         return pulumi.get(self, "azures")
 
     @azures.setter
-    def azures(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysAzureArgs']]]]):
+    def azures(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysAzureArgs']]]]):
         pulumi.set(self, "azures", value)
 
     @_builtins.property
     @pulumi.getter
-    def gcps(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]:
+    def gcps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysGcpArgs']]]]:
         """
         Configuration block for GCP Cloud KMS Managed Keys
         """
         return pulumi.get(self, "gcps")
 
     @gcps.setter
-    def gcps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysGcpArgs']]]]):
+    def gcps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysGcpArgs']]]]):
         pulumi.set(self, "gcps", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target namespace. (requires Enterprise)
         """
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def pkcs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]]:
+    def pkcs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['KeysPkcArgs']]]]:
         """
         Configuration block for PKCS Managed Keys
         """
         return pulumi.get(self, "pkcs")
 
     @pkcs.setter
-    def pkcs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KeysPkcArgs']]]]):
+    def pkcs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['KeysPkcArgs']]]]):
         pulumi.set(self, "pkcs", value)
 
 
@@ -202,11 +202,11 @@ class Keys(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
-                 azures: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
-                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
+                 aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
+                 azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
+                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
                  __props__=None):
         """
         A resource that manages the lifecycle of all [Managed Keys](https://www.vaultproject.io/docs/enterprise/managed-keys) in Vault.
@@ -403,11 +403,11 @@ class Keys(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
-                 azures: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
-                 gcps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pkcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
+                 aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
+                 azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
+                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -432,11 +432,11 @@ class Keys(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
-            azures: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
-            gcps: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            pkcs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None) -> 'Keys':
+            aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
+            azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
+            gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None) -> 'Keys':
         """
         Get an existing Keys resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -21,22 +21,22 @@ class AuthBackendConfigArgs:
     def __init__(__self__, *,
                  resource: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str],
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendConfig resource.
 
@@ -150,7 +150,7 @@ class AuthBackendConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the Azure auth backend being configured was
         mounted at.  Defaults to `azure`.
@@ -158,12 +158,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client id for credentials to query the Azure APIs.
         Currently read permissions to query compute resources are required.
@@ -171,12 +171,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client secret for credentials to query the
         Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
@@ -185,12 +185,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
@@ -198,12 +198,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the write-only client secret.
         Increment this value to trigger an update of the client secret in Vault.
@@ -212,12 +212,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         *Available only for Vault Enterprise*
@@ -225,12 +225,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure cloud environment. Valid values:
         AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
@@ -239,12 +239,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "environment")
 
     @environment.setter
-    def environment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value for plugin identity tokens. Requires Vault 1.17+.
         *Available only for Vault Enterprise*
@@ -252,12 +252,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds.
         Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
@@ -266,12 +266,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of retries for Azure API requests. 
         Defaults to `3`.
@@ -279,12 +279,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetryDelay")
-    def max_retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retry_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum delay in seconds between retries for Azure API requests.
         Defaults to `60`.
@@ -292,12 +292,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "max_retry_delay")
 
     @max_retry_delay.setter
-    def max_retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retry_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retry_delay", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -307,12 +307,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="retryDelay")
-    def retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retry_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial delay in seconds between retries for Azure API requests.
         Defaults to `4`.
@@ -320,12 +320,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "retry_delay")
 
     @retry_delay.setter
-    def retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retry_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retry_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -334,12 +334,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -348,12 +348,12 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -363,31 +363,31 @@ class AuthBackendConfigArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
 
 @pulumi.input_type
 class _AuthBackendConfigState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfig resources.
 
@@ -477,7 +477,7 @@ class _AuthBackendConfigState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the Azure auth backend being configured was
         mounted at.  Defaults to `azure`.
@@ -485,12 +485,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client id for credentials to query the Azure APIs.
         Currently read permissions to query compute resources are required.
@@ -498,12 +498,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The client secret for credentials to query the
         Azure APIs. Mutually exclusive with `client_secret_wo`. **Note:** This field will be
@@ -512,12 +512,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWo")
-    def client_secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
@@ -525,12 +525,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "client_secret_wo")
 
     @client_secret_wo.setter
-    def client_secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecretWoVersion")
-    def client_secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def client_secret_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the write-only client secret.
         Increment this value to trigger an update of the client secret in Vault.
@@ -539,12 +539,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "client_secret_wo_version")
 
     @client_secret_wo_version.setter
-    def client_secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def client_secret_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "client_secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         *Available only for Vault Enterprise*
@@ -552,12 +552,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def environment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def environment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Azure cloud environment. Valid values:
         AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
@@ -566,12 +566,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "environment")
 
     @environment.setter
-    def environment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def environment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value for plugin identity tokens. Requires Vault 1.17+.
         *Available only for Vault Enterprise*
@@ -579,12 +579,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated identity tokens in seconds.
         Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
@@ -593,12 +593,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetries")
-    def max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of retries for Azure API requests. 
         Defaults to `3`.
@@ -606,12 +606,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "max_retries")
 
     @max_retries.setter
-    def max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="maxRetryDelay")
-    def max_retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_retry_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum delay in seconds between retries for Azure API requests.
         Defaults to `60`.
@@ -619,12 +619,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "max_retry_delay")
 
     @max_retry_delay.setter
-    def max_retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_retry_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_retry_delay", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -634,12 +634,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def resource(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The configured URL for the application registered in
         Azure Active Directory.
@@ -647,12 +647,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "resource")
 
     @resource.setter
-    def resource(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource", value)
 
     @_builtins.property
     @pulumi.getter(name="retryDelay")
-    def retry_delay(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retry_delay(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial delay in seconds between retries for Azure API requests.
         Defaults to `4`.
@@ -660,12 +660,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "retry_delay")
 
     @retry_delay.setter
-    def retry_delay(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retry_delay(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retry_delay", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -674,12 +674,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -688,12 +688,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -703,12 +703,12 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The tenant id for the Azure Active Directory
         organization.
@@ -716,7 +716,7 @@ class _AuthBackendConfigState:
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
 
@@ -726,24 +726,24 @@ class AuthBackendConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Configures the Azure Auth Backend in Vault.
@@ -777,7 +777,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             tenant_id="11111111-2222-3333-4444-555555555555",
             client_id="11111111-2222-3333-4444-555555555555",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
         ```
@@ -918,7 +918,7 @@ class AuthBackendConfig(pulumi.CustomResource):
             tenant_id="11111111-2222-3333-4444-555555555555",
             client_id="11111111-2222-3333-4444-555555555555",
             identity_token_audience="<TOKEN_AUDIENCE>",
-            identity_token_ttl="<TOKEN_TTL>",
+            identity_token_ttl=int("<TOKEN_TTL>"),
             rotation_schedule="0 * * * SAT",
             rotation_window=3600)
         ```
@@ -987,24 +987,24 @@ class AuthBackendConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 resource: Optional[pulumi.Input[_builtins.str]] = None,
-                 retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 resource: pulumi.Input[Optional[_builtins.str]] = None,
+                 retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1048,24 +1048,24 @@ class AuthBackendConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            client_secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-            environment: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-            max_retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            resource: Optional[pulumi.Input[_builtins.str]] = None,
-            retry_delay: Optional[pulumi.Input[_builtins.int]] = None,
-            rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-            rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-            tenant_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendConfig':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            resource: pulumi.Input[Optional[_builtins.str]] = None,
+            retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendConfig':
         """
         Get an existing AuthBackendConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

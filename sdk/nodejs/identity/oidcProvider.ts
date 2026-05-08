@@ -167,36 +167,36 @@ export interface OidcProviderState {
      * The client IDs that are permitted to use the provider. 
      * If empty, no clients are allowed. If `*`, all clients are allowed.
      */
-    allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedClientIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set to true if the issuer endpoint uses HTTPS.
      */
-    httpsEnabled?: pulumi.Input<boolean>;
+    httpsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies what will be used as the `scheme://host:port`
      * component for the `iss` claim of ID tokens. This value is computed using the
      * `issuerHost` and `httpsEnabled` fields.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * The host for the issuer. Can be either host or host:port.
      */
-    issuerHost?: pulumi.Input<string>;
+    issuerHost?: pulumi.Input<string | undefined>;
     /**
      * The name of the provider.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The scopes available for requesting on the provider.
      */
-    scopesSupporteds?: pulumi.Input<pulumi.Input<string>[]>;
+    scopesSupporteds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -207,28 +207,28 @@ export interface OidcProviderArgs {
      * The client IDs that are permitted to use the provider. 
      * If empty, no clients are allowed. If `*`, all clients are allowed.
      */
-    allowedClientIds?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedClientIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set to true if the issuer endpoint uses HTTPS.
      */
-    httpsEnabled?: pulumi.Input<boolean>;
+    httpsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The host for the issuer. Can be either host or host:port.
      */
-    issuerHost?: pulumi.Input<string>;
+    issuerHost?: pulumi.Input<string | undefined>;
     /**
      * The name of the provider.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The scopes available for requesting on the provider.
      */
-    scopesSupporteds?: pulumi.Input<pulumi.Input<string>[]>;
+    scopesSupporteds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

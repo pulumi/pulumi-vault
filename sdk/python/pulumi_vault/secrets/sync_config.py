@@ -19,9 +19,9 @@ __all__ = ['SyncConfigArgs', 'SyncConfig']
 @pulumi.input_type
 class SyncConfigArgs:
     def __init__(__self__, *,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_capacity: Optional[pulumi.Input[_builtins.int]] = None):
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_capacity: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a SyncConfig resource.
 
@@ -40,19 +40,19 @@ class SyncConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables the syncing process between Vault and external destinations. Defaults to `false`.
         """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
-    def disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         This resource can only be configured in the root namespace.
@@ -61,28 +61,28 @@ class SyncConfigArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="queueCapacity")
-    def queue_capacity(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def queue_capacity(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.
         """
         return pulumi.get(self, "queue_capacity")
 
     @queue_capacity.setter
-    def queue_capacity(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def queue_capacity(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "queue_capacity", value)
 
 
 @pulumi.input_type
 class _SyncConfigState:
     def __init__(__self__, *,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_capacity: Optional[pulumi.Input[_builtins.int]] = None):
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_capacity: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering SyncConfig resources.
 
@@ -101,19 +101,19 @@ class _SyncConfigState:
 
     @_builtins.property
     @pulumi.getter
-    def disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables the syncing process between Vault and external destinations. Defaults to `false`.
         """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
-    def disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         This resource can only be configured in the root namespace.
@@ -122,19 +122,19 @@ class _SyncConfigState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="queueCapacity")
-    def queue_capacity(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def queue_capacity(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of pending sync operations allowed on the queue. Defaults to `1000000`.
         """
         return pulumi.get(self, "queue_capacity")
 
     @queue_capacity.setter
-    def queue_capacity(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def queue_capacity(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "queue_capacity", value)
 
 
@@ -144,9 +144,9 @@ class SyncConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_capacity: Optional[pulumi.Input[_builtins.int]] = None,
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_capacity: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Configures the secret sync global config.
@@ -229,9 +229,9 @@ class SyncConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 queue_capacity: Optional[pulumi.Input[_builtins.int]] = None,
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue_capacity: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -254,9 +254,9 @@ class SyncConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            queue_capacity: Optional[pulumi.Input[_builtins.int]] = None) -> 'SyncConfig':
+            disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            queue_capacity: pulumi.Input[Optional[_builtins.int]] = None) -> 'SyncConfig':
         """
         Get an existing SyncConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -161,29 +161,29 @@ export interface SyncAssociationState {
     /**
      * Metadata for each subkey of the associated secret.
      */
-    metadatas?: pulumi.Input<pulumi.Input<inputs.secrets.SyncAssociationMetadata>[]>;
+    metadatas?: pulumi.Input<pulumi.Input<inputs.secrets.SyncAssociationMetadata>[] | undefined>;
     /**
      * Specifies the mount where the secret is located.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the secret to synchronize.
      */
-    secretName?: pulumi.Input<string>;
+    secretName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the destination type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -197,13 +197,13 @@ export interface SyncAssociationArgs {
     /**
      * Specifies the name of the destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the secret to synchronize.
      */

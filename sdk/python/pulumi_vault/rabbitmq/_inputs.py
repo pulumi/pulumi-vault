@@ -113,7 +113,7 @@ class SecretBackendRoleVhostTopicArgsDict(TypedDict):
     """
     The vhost to set permissions for.
     """
-    vhosts: NotRequired[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgsDict']]]]
+    vhosts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]]]
     """
     Specifies a map of virtual hosts to permissions.
     """
@@ -122,7 +122,7 @@ class SecretBackendRoleVhostTopicArgsDict(TypedDict):
 class SecretBackendRoleVhostTopicArgs:
     def __init__(__self__, *,
                  host: pulumi.Input[_builtins.str],
-                 vhosts: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]] = None):
+                 vhosts: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] host: The vhost to set permissions for.
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]] vhosts: Specifies a map of virtual hosts to permissions.
@@ -145,14 +145,14 @@ class SecretBackendRoleVhostTopicArgs:
 
     @_builtins.property
     @pulumi.getter
-    def vhosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]]:
+    def vhosts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]]:
         """
         Specifies a map of virtual hosts to permissions.
         """
         return pulumi.get(self, "vhosts")
 
     @vhosts.setter
-    def vhosts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]]):
+    def vhosts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]]):
         pulumi.set(self, "vhosts", value)
 
 

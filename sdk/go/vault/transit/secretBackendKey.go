@@ -31,7 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+//			transit2, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
 //				Path:                   pulumi.String("transit"),
 //				Type:                   pulumi.String("transit"),
 //				Description:            pulumi.String("Example description"),
@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_, err = transit.NewSecretBackendKey(ctx, "key", &transit.SecretBackendKeyArgs{
-//				Backend: transit.Path,
+//				Backend: transit2.Path,
 //				Name:    pulumi.String("my_key"),
 //			})
 //			if err != nil {
@@ -69,7 +69,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+//			transit2, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
 //				Path: pulumi.String("transit"),
 //				Type: pulumi.String("transit"),
 //			})
@@ -77,7 +77,7 @@ import (
 //				return err
 //			}
 //			_, err = transit.NewSecretBackendKey(ctx, "derived_key", &transit.SecretBackendKeyArgs{
-//				Backend:              transit.Path,
+//				Backend:              transit2.Path,
 //				Name:                 pulumi.String("derived_key"),
 //				Derived:              pulumi.Bool(true),
 //				ConvergentEncryption: pulumi.Bool(true),
@@ -108,7 +108,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			transit, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
+//			transit2, err := vault.NewMount(ctx, "transit", &vault.MountArgs{
 //				Path: pulumi.String("transit"),
 //				Type: pulumi.String("transit"),
 //			})
@@ -116,7 +116,7 @@ import (
 //				return err
 //			}
 //			_, err = transit.NewSecretBackendKey(ctx, "managed_key_by_name", &transit.SecretBackendKeyArgs{
-//				Backend:         transit.Path,
+//				Backend:         transit2.Path,
 //				Name:            pulumi.String("my_managed_key"),
 //				Type:            pulumi.String("managed_key"),
 //				ManagedKeyName:  pulumi.String("my_aws_kms_key"),
@@ -126,7 +126,7 @@ import (
 //				return err
 //			}
 //			_, err = transit.NewSecretBackendKey(ctx, "managed_key_by_id", &transit.SecretBackendKeyArgs{
-//				Backend:         transit.Path,
+//				Backend:         transit2.Path,
 //				Name:            pulumi.String("my_managed_key_by_id"),
 //				Type:            pulumi.String("managed_key"),
 //				ManagedKeyId:    pulumi.String("12345678-1234-1234-1234-123456789012"),

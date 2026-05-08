@@ -35,7 +35,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//			aws2, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
 //				Path:        pulumi.String("my-aws"),
 //				Description: pulumi.String("Obtain AWS credentials."),
 //			})
@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			_, err = aws.NewSecretBackendStaticRole(ctx, "role", &aws.SecretBackendStaticRoleArgs{
-//				Backend:        aws.Path,
+//				Backend:        aws2.Path,
 //				Name:           pulumi.String("test"),
 //				Username:       pulumi.String("my-test-user"),
 //				RotationPeriod: pulumi.Int(3600),
@@ -69,7 +69,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			aws, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
+//			aws2, err := aws.NewSecretBackend(ctx, "aws", &aws.SecretBackendArgs{
 //				Path:        pulumi.String("my-aws"),
 //				Description: pulumi.String("Obtain AWS credentials."),
 //			})
@@ -77,7 +77,7 @@ import (
 //				return err
 //			}
 //			_, err = aws.NewSecretBackendStaticRole(ctx, "assume-role", &aws.SecretBackendStaticRoleArgs{
-//				Backend:               aws.Path,
+//				Backend:               aws2.Path,
 //				Name:                  pulumi.String("assume-role-test"),
 //				Username:              pulumi.String("my-assume-role-user"),
 //				AssumeRoleArn:         pulumi.String("arn:aws:iam::123456789012:role/assume-role"),

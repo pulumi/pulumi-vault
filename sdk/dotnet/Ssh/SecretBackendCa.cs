@@ -23,7 +23,7 @@ namespace Pulumi.Vault.Ssh
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Vault.Index.Mount("example", new()
+    ///     var example = new Vault.Mount("example", new()
     ///     {
     ///         Type = "ssh",
     ///     });

@@ -220,7 +220,7 @@ export interface GetSecretOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The full logical path from which to request data.
      * To read data from the "generic" secret backend mounted in Vault by
@@ -234,11 +234,11 @@ export interface GetSecretOutputArgs {
      * Vault KV secrets engine - version 2 to indicate which version of the secret
      * to read.
      */
-    version?: pulumi.Input<number>;
+    version?: pulumi.Input<number | undefined>;
     /**
      * If set to true, stores `leaseStartTime` in the TF state.
      * Note that storing the `leaseStartTime` in the TF state will cause a persistent drift
      * on every `pulumi preview` and will require a `pulumi up`.
      */
-    withLeaseStartTime?: pulumi.Input<boolean>;
+    withLeaseStartTime?: pulumi.Input<boolean | undefined>;
 }

@@ -20,22 +20,22 @@ __all__ = [
 ]
 
 class SecretV2CustomMetadataArgsDict(TypedDict):
-    cas_required: NotRequired[pulumi.Input[_builtins.bool]]
+    cas_required: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     If true, all keys will require the cas parameter to be set on all write requests.
     """
-    data: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    data: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
     secret data from Vault**. A mapping whose keys are the top-level data keys returned from
     Vault and whose values are the corresponding values. This map can only represent string data,
     so any non-string values returned from Vault are serialized as JSON.
     """
-    delete_version_after: NotRequired[pulumi.Input[_builtins.int]]
+    delete_version_after: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     If set, specifies the length of time before a version is deleted.
     """
-    max_versions: NotRequired[pulumi.Input[_builtins.int]]
+    max_versions: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of versions to keep per key.
     """
@@ -43,10 +43,10 @@ class SecretV2CustomMetadataArgsDict(TypedDict):
 @pulumi.input_type
 class SecretV2CustomMetadataArgs:
     def __init__(__self__, *,
-                 cas_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 delete_version_after: Optional[pulumi.Input[_builtins.int]] = None,
-                 max_versions: Optional[pulumi.Input[_builtins.int]] = None):
+                 cas_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 delete_version_after: pulumi.Input[Optional[_builtins.int]] = None,
+                 max_versions: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.bool] cas_required: If true, all keys will require the cas parameter to be set on all write requests.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] data: **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
@@ -67,19 +67,19 @@ class SecretV2CustomMetadataArgs:
 
     @_builtins.property
     @pulumi.getter(name="casRequired")
-    def cas_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cas_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, all keys will require the cas parameter to be set on all write requests.
         """
         return pulumi.get(self, "cas_required")
 
     @cas_required.setter
-    def cas_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cas_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cas_required", value)
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
         secret data from Vault**. A mapping whose keys are the top-level data keys returned from
@@ -89,31 +89,31 @@ class SecretV2CustomMetadataArgs:
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteVersionAfter")
-    def delete_version_after(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def delete_version_after(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         If set, specifies the length of time before a version is deleted.
         """
         return pulumi.get(self, "delete_version_after")
 
     @delete_version_after.setter
-    def delete_version_after(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def delete_version_after(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "delete_version_after", value)
 
     @_builtins.property
     @pulumi.getter(name="maxVersions")
-    def max_versions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_versions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of versions to keep per key.
         """
         return pulumi.get(self, "max_versions")
 
     @max_versions.setter
-    def max_versions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_versions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_versions", value)
 
 

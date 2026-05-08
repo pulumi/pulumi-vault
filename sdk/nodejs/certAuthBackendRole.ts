@@ -291,140 +291,140 @@ export interface CertAuthBackendRoleState {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Allowed the common names for authenticated client certificates
      */
-    allowedCommonNames?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedCommonNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed alternative dns names for authenticated client certificates
      */
-    allowedDnsSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedDnsSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed emails for authenticated client certificates
      */
-    allowedEmailSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedEmailSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      */
-    allowedNames?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed organization units for authenticated client certificates.
      */
-    allowedOrganizationalUnits?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedOrganizationalUnits?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed URIs for authenticated client certificates
      */
-    allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedUriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Path to the mounted Cert auth backend
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * CA certificate used to validate client certificates
      */
-    certificate?: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
     /**
      * The name to display on tokens issued under this role.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * Name of the role
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Any additional CA certificates
      * needed to verify OCSP responses. Provided as base64 encoded PEM data.
      * Requires Vault version 1.13+.
      */
-    ocspCaCertificates?: pulumi.Input<string>;
+    ocspCaCertificates?: pulumi.Input<string | undefined>;
     /**
      * If enabled, validate certificates'
      * revocation status using OCSP. Requires Vault version 1.13+.
      */
-    ocspEnabled?: pulumi.Input<boolean>;
+    ocspEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * If true and an OCSP response cannot
      * be fetched or is of an unknown status, the login will proceed as if the
      * certificate has not been revoked.
      * Requires Vault version 1.13+.
      */
-    ocspFailOpen?: pulumi.Input<boolean>;
+    ocspFailOpen?: pulumi.Input<boolean | undefined>;
     /**
      * The number of retries to attempt when
      * connecting to an OCSP server. Defaults to 4 retries.
      * Must be a non-negative value. Requires Vault version 1.16+.
      */
-    ocspMaxRetries?: pulumi.Input<number>;
+    ocspMaxRetries?: pulumi.Input<number | undefined>;
     /**
      * If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
      * Requires Vault version 1.13+.
      */
-    ocspQueryAllServers?: pulumi.Input<boolean>;
+    ocspQueryAllServers?: pulumi.Input<boolean | undefined>;
     /**
      * : A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.
      */
-    ocspServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServersOverrides?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum age in seconds of the
      * 'thisUpdate' field in an OCSP response before it is considered too old.
      * Defaults to 0 (disabled). Must be a non-negative value.
      * Requires Vault version 1.16+.
      */
-    ocspThisUpdateMaxAge?: pulumi.Input<number>;
+    ocspThisUpdateMaxAge?: pulumi.Input<number | undefined>;
     /**
      * TLS extensions required on
      * client certificates
      */
-    requiredExtensions?: pulumi.Input<pulumi.Input<string>[]>;
+    requiredExtensions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -435,35 +435,35 @@ export interface CertAuthBackendRoleArgs {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Allowed the common names for authenticated client certificates
      */
-    allowedCommonNames?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedCommonNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed alternative dns names for authenticated client certificates
      */
-    allowedDnsSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedDnsSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed emails for authenticated client certificates
      */
-    allowedEmailSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedEmailSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
      */
-    allowedNames?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed organization units for authenticated client certificates.
      */
-    allowedOrganizationalUnits?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedOrganizationalUnits?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Allowed URIs for authenticated client certificates
      */
-    allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedUriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Path to the mounted Cert auth backend
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * CA certificate used to validate client certificates
      */
@@ -471,102 +471,102 @@ export interface CertAuthBackendRoleArgs {
     /**
      * The name to display on tokens issued under this role.
      */
-    displayName?: pulumi.Input<string>;
+    displayName?: pulumi.Input<string | undefined>;
     /**
      * Name of the role
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Any additional CA certificates
      * needed to verify OCSP responses. Provided as base64 encoded PEM data.
      * Requires Vault version 1.13+.
      */
-    ocspCaCertificates?: pulumi.Input<string>;
+    ocspCaCertificates?: pulumi.Input<string | undefined>;
     /**
      * If enabled, validate certificates'
      * revocation status using OCSP. Requires Vault version 1.13+.
      */
-    ocspEnabled?: pulumi.Input<boolean>;
+    ocspEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * If true and an OCSP response cannot
      * be fetched or is of an unknown status, the login will proceed as if the
      * certificate has not been revoked.
      * Requires Vault version 1.13+.
      */
-    ocspFailOpen?: pulumi.Input<boolean>;
+    ocspFailOpen?: pulumi.Input<boolean | undefined>;
     /**
      * The number of retries to attempt when
      * connecting to an OCSP server. Defaults to 4 retries.
      * Must be a non-negative value. Requires Vault version 1.16+.
      */
-    ocspMaxRetries?: pulumi.Input<number>;
+    ocspMaxRetries?: pulumi.Input<number | undefined>;
     /**
      * If set to true, rather than
      * accepting the first successful OCSP response, query all servers and consider
      * the certificate valid only if all servers agree.
      * Requires Vault version 1.13+.
      */
-    ocspQueryAllServers?: pulumi.Input<boolean>;
+    ocspQueryAllServers?: pulumi.Input<boolean | undefined>;
     /**
      * : A comma-separated list of OCSP
      * server addresses. If unset, the OCSP server is determined from the
      * AuthorityInformationAccess extension on the certificate being inspected.
      * Requires Vault version 1.13+.
      */
-    ocspServersOverrides?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServersOverrides?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum age in seconds of the
      * 'thisUpdate' field in an OCSP response before it is considered too old.
      * Defaults to 0 (disabled). Must be a non-negative value.
      * Requires Vault version 1.16+.
      */
-    ocspThisUpdateMaxAge?: pulumi.Input<number>;
+    ocspThisUpdateMaxAge?: pulumi.Input<number | undefined>;
     /**
      * TLS extensions required on
      * client certificates
      */
-    requiredExtensions?: pulumi.Input<pulumi.Input<string>[]>;
+    requiredExtensions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }

@@ -115,9 +115,9 @@ def get_static_access_credentials(backend: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         namespace=pulumi.get(__ret__, 'namespace'),
         secret_key=pulumi.get(__ret__, 'secret_key'))
-def get_static_access_credentials_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                         name: Optional[pulumi.Input[_builtins.str]] = None,
-                                         namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_static_access_credentials_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                         name: pulumi.Input[Optional[_builtins.str]] = None,
+                                         namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStaticAccessCredentialsResult]:
     """
     Use this data source to access information about an existing resource.

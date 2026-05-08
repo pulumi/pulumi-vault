@@ -21,10 +21,10 @@ class MfaPingidArgs:
     def __init__(__self__, *,
                  mount_accessor: pulumi.Input[_builtins.str],
                  settings_file_base64: pulumi.Input[_builtins.str],
-                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 mfa_pingid_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a MfaPingid resource.
 
@@ -85,31 +85,31 @@ class MfaPingidArgs:
 
     @_builtins.property
     @pulumi.getter(name="mfaPingidId")
-    def mfa_pingid_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mfa_pingid_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – ID computed by Vault
         """
         return pulumi.get(self, "mfa_pingid_id")
 
     @mfa_pingid_id.setter
-    def mfa_pingid_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mfa_pingid_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mfa_pingid_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -119,12 +119,12 @@ class MfaPingidArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameFormat")
-    def username_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -137,26 +137,26 @@ class MfaPingidArgs:
         return pulumi.get(self, "username_format")
 
     @username_format.setter
-    def username_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_format", value)
 
 
 @pulumi.input_type
 class _MfaPingidState:
     def __init__(__self__, *,
-                 admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 authenticator_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings_file_base64: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None):
+                 admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 authenticator_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 mfa_pingid_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings_file_base64: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MfaPingid resources.
 
@@ -214,55 +214,55 @@ class _MfaPingidState:
 
     @_builtins.property
     @pulumi.getter(name="adminUrl")
-    def admin_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def admin_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – Admin URL computed by Vault
         """
         return pulumi.get(self, "admin_url")
 
     @admin_url.setter
-    def admin_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def admin_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "admin_url", value)
 
     @_builtins.property
     @pulumi.getter(name="authenticatorUrl")
-    def authenticator_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authenticator_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – Authenticator URL computed by Vault
         """
         return pulumi.get(self, "authenticator_url")
 
     @authenticator_url.setter
-    def authenticator_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authenticator_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authenticator_url", value)
 
     @_builtins.property
     @pulumi.getter(name="idpUrl")
-    def idp_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – IDP URL computed by Vault
         """
         return pulumi.get(self, "idp_url")
 
     @idp_url.setter
-    def idp_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_url", value)
 
     @_builtins.property
     @pulumi.getter(name="mfaPingidId")
-    def mfa_pingid_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mfa_pingid_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – ID computed by Vault
         """
         return pulumi.get(self, "mfa_pingid_id")
 
     @mfa_pingid_id.setter
-    def mfa_pingid_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mfa_pingid_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mfa_pingid_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")
-    def mount_accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount_accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
         The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -270,24 +270,24 @@ class _MfaPingidState:
         return pulumi.get(self, "mount_accessor")
 
     @mount_accessor.setter
-    def mount_accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount_accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount_accessor", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` – Name of the MFA method.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -297,36 +297,36 @@ class _MfaPingidState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="namespaceId")
-    def namespace_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – Namespace ID computed by Vault
         """
         return pulumi.get(self, "namespace_id")
 
     @namespace_id.setter
-    def namespace_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace_id", value)
 
     @_builtins.property
     @pulumi.getter(name="orgAlias")
-    def org_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – Org Alias computed by Vault
         """
         return pulumi.get(self, "org_alias")
 
     @org_alias.setter
-    def org_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="settingsFileBase64")
-    def settings_file_base64(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def settings_file_base64(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string: <required>)` - A base64-encoded third-party settings file retrieved
         from PingID's configuration page.
@@ -334,36 +334,36 @@ class _MfaPingidState:
         return pulumi.get(self, "settings_file_base64")
 
     @settings_file_base64.setter
-    def settings_file_base64(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def settings_file_base64(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "settings_file_base64", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` – Type of configuration computed by Vault
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="useSignature")
-    def use_signature(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         `(string)` – If set to true, enables use of PingID signature. Computed by Vault
         """
         return pulumi.get(self, "use_signature")
 
     @use_signature.setter
-    def use_signature(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_signature(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_signature", value)
 
     @_builtins.property
     @pulumi.getter(name="usernameFormat")
-    def username_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         `(string)` - A format string for mapping Identity names to MFA method names. 
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -376,7 +376,7 @@ class _MfaPingidState:
         return pulumi.get(self, "username_format")
 
     @username_format.setter
-    def username_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username_format", value)
 
 
@@ -386,12 +386,12 @@ class MfaPingid(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings_file_base64: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 mfa_pingid_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings_file_base64: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to manage [PingID MFA](https://www.vaultproject.io/docs/enterprise/mfa/mfa-pingid).
@@ -498,12 +498,12 @@ class MfaPingid(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 settings_file_base64: Optional[pulumi.Input[_builtins.str]] = None,
-                 username_format: Optional[pulumi.Input[_builtins.str]] = None,
+                 mfa_pingid_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 settings_file_base64: pulumi.Input[Optional[_builtins.str]] = None,
+                 username_format: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -540,19 +540,19 @@ class MfaPingid(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            admin_url: Optional[pulumi.Input[_builtins.str]] = None,
-            authenticator_url: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_url: Optional[pulumi.Input[_builtins.str]] = None,
-            mfa_pingid_id: Optional[pulumi.Input[_builtins.str]] = None,
-            mount_accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace_id: Optional[pulumi.Input[_builtins.str]] = None,
-            org_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            settings_file_base64: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            use_signature: Optional[pulumi.Input[_builtins.bool]] = None,
-            username_format: Optional[pulumi.Input[_builtins.str]] = None) -> 'MfaPingid':
+            admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+            authenticator_url: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_url: pulumi.Input[Optional[_builtins.str]] = None,
+            mfa_pingid_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            settings_file_base64: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            use_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+            username_format: pulumi.Input[Optional[_builtins.str]] = None) -> 'MfaPingid':
         """
         Get an existing MfaPingid resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

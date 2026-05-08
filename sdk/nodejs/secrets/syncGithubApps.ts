@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  *
  * const github_apps = new vault.secrets.SyncGithubApps("github-apps", {
  *     name: "gh-apps",
- *     appId: appId,
+ *     appId: Number(appId),
  *     privateKey: std.file({
  *         input: privatekeyFile,
  *     }).then(invoke => invoke.result),
@@ -139,25 +139,25 @@ export interface SyncGithubAppsState {
     /**
      * The GitHub application ID.
      */
-    appId?: pulumi.Input<number>;
+    appId?: pulumi.Input<number | undefined>;
     /**
      * A fingerprint of a private key.
      */
-    fingerprint?: pulumi.Input<string>;
+    fingerprint?: pulumi.Input<string | undefined>;
     /**
      * The user-defined name of the GitHub App configuration.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The content of a PEM formatted private key generated on GitHub for the app.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -171,13 +171,13 @@ export interface SyncGithubAppsArgs {
     /**
      * The user-defined name of the GitHub App configuration.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The content of a PEM formatted private key generated on GitHub for the app.
      */

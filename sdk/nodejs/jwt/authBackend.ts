@@ -322,55 +322,55 @@ export interface AuthBackendState {
     /**
      * The accessor for this auth method
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * The value against which to match the iss claim in a JWT
      */
-    boundIssuer?: pulumi.Input<string>;
+    boundIssuer?: pulumi.Input<string | undefined>;
     /**
      * The default role to use if none is provided during login
      */
-    defaultRole?: pulumi.Input<string>;
+    defaultRole?: pulumi.Input<string | undefined>;
     /**
      * The description of the auth backend
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
-    jwksCaPem?: pulumi.Input<string>;
+    jwksCaPem?: pulumi.Input<string | undefined>;
     /**
      * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
      */
-    jwksPairs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    jwksPairs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
      */
-    jwksUrl?: pulumi.Input<string>;
+    jwksUrl?: pulumi.Input<string | undefined>;
     /**
      * A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
      */
-    jwtSupportedAlgs?: pulumi.Input<pulumi.Input<string>[]>;
+    jwtSupportedAlgs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      */
-    jwtValidationPubkeys?: pulumi.Input<pulumi.Input<string>[]>;
+    jwtValidationPubkeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      *
@@ -378,53 +378,53 @@ export interface AuthBackendState {
      *
      * The `tune` block is used to tune the auth backend:
      */
-    namespaceInState?: pulumi.Input<boolean>;
+    namespaceInState?: pulumi.Input<boolean | undefined>;
     /**
      * Client ID used for OIDC backends
      */
-    oidcClientId?: pulumi.Input<string>;
+    oidcClientId?: pulumi.Input<string | undefined>;
     /**
      * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
-    oidcClientSecret?: pulumi.Input<string>;
+    oidcClientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
      */
-    oidcClientSecretWo?: pulumi.Input<string>;
+    oidcClientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
      */
-    oidcClientSecretWoVersion?: pulumi.Input<number>;
+    oidcClientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
      */
-    oidcDiscoveryCaPem?: pulumi.Input<string>;
+    oidcDiscoveryCaPem?: pulumi.Input<string | undefined>;
     /**
      * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      */
-    oidcDiscoveryUrl?: pulumi.Input<string>;
+    oidcDiscoveryUrl?: pulumi.Input<string | undefined>;
     /**
      * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
      */
-    oidcResponseMode?: pulumi.Input<string>;
+    oidcResponseMode?: pulumi.Input<string | undefined>;
     /**
      * List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
      */
-    oidcResponseTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcResponseTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Path to mount the JWT/OIDC auth backend
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
      */
-    providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    tune?: pulumi.Input<inputs.jwt.AuthBackendTune>;
+    providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    tune?: pulumi.Input<inputs.jwt.AuthBackendTune | undefined>;
     /**
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -434,51 +434,51 @@ export interface AuthBackendArgs {
     /**
      * The value against which to match the iss claim in a JWT
      */
-    boundIssuer?: pulumi.Input<string>;
+    boundIssuer?: pulumi.Input<string | undefined>;
     /**
      * The default role to use if none is provided during login
      */
-    defaultRole?: pulumi.Input<string>;
+    defaultRole?: pulumi.Input<string | undefined>;
     /**
      * The description of the auth backend
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the JWKS URL. If not set, system certificates are used.
      */
-    jwksCaPem?: pulumi.Input<string>;
+    jwksCaPem?: pulumi.Input<string | undefined>;
     /**
      * List of JWKS URL and optional CA certificate pairs. Cannot be used with `jwksUrl` or `jwksCaPem`. Requires Vault 1.16+.
      */
-    jwksPairs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    jwksPairs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * JWKS URL to use to authenticate signatures. Cannot be used with "oidcDiscoveryUrl" or "jwtValidationPubkeys".
      */
-    jwksUrl?: pulumi.Input<string>;
+    jwksUrl?: pulumi.Input<string | undefined>;
     /**
      * A list of supported signing algorithms. Vault 1.1.0 defaults to [RS256] but future or past versions of Vault may differ
      */
-    jwtSupportedAlgs?: pulumi.Input<pulumi.Input<string>[]>;
+    jwtSupportedAlgs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A list of PEM-encoded public keys to use to authenticate signatures locally. Cannot be used in combination with `oidcDiscoveryUrl`
      */
-    jwtValidationPubkeys?: pulumi.Input<pulumi.Input<string>[]>;
+    jwtValidationPubkeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies if the auth method is local only.
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      *
@@ -486,51 +486,51 @@ export interface AuthBackendArgs {
      *
      * The `tune` block is used to tune the auth backend:
      */
-    namespaceInState?: pulumi.Input<boolean>;
+    namespaceInState?: pulumi.Input<boolean | undefined>;
     /**
      * Client ID used for OIDC backends
      */
-    oidcClientId?: pulumi.Input<string>;
+    oidcClientId?: pulumi.Input<string | undefined>;
     /**
      * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
-    oidcClientSecret?: pulumi.Input<string>;
+    oidcClientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Write-only Client Secret used for OIDC. This field is recommended over oidcClientSecret for enhanced security.
      */
-    oidcClientSecretWo?: pulumi.Input<string>;
+    oidcClientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only `oidcClientSecretWo` field. Increment this value to trigger an update of the client secret in Vault. Required when using `oidcClientSecretWo`.
      */
-    oidcClientSecretWoVersion?: pulumi.Input<number>;
+    oidcClientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The CA certificate or chain of certificates, in PEM format, to use to validate connections to the OIDC Discovery URL. If not set, system certificates are used
      */
-    oidcDiscoveryCaPem?: pulumi.Input<string>;
+    oidcDiscoveryCaPem?: pulumi.Input<string | undefined>;
     /**
      * The OIDC Discovery URL, without any .well-known component (base path). Cannot be used in combination with `jwtValidationPubkeys`
      */
-    oidcDiscoveryUrl?: pulumi.Input<string>;
+    oidcDiscoveryUrl?: pulumi.Input<string | undefined>;
     /**
      * The response mode to be used in the OAuth2 request. Allowed values are `query` and `formPost`. Defaults to `query`. If using Vault namespaces, and `oidcResponseMode` is `formPost`, then `namespaceInState` should be set to `false`.
      */
-    oidcResponseMode?: pulumi.Input<string>;
+    oidcResponseMode?: pulumi.Input<string | undefined>;
     /**
      * List of response types to request. Allowed values are 'code' and 'id_token'. Defaults to `["code"]`. Note: `idToken` may only be used if `oidcResponseMode` is set to `formPost`.
      */
-    oidcResponseTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcResponseTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Path to mount the JWT/OIDC auth backend
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
      */
-    providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    tune?: pulumi.Input<inputs.jwt.AuthBackendTune>;
+    providerConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    tune?: pulumi.Input<inputs.jwt.AuthBackendTune | undefined>;
     /**
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

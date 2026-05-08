@@ -407,179 +407,179 @@ export interface SecretsMountState {
     /**
      * Accessor of the mount
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * Set of managed key registry entry names that the mount in question is allowed to access
      *
      * The following arguments are common to all database engines:
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A nested block containing configuration options for Cassandra connections.  
      * *See Configuration Options for more info*
      */
-    cassandras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCassandra>[]>;
+    cassandras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCassandra>[] | undefined>;
     /**
      * A nested block containing configuration options for Couchbase connections.  
      * *See Configuration Options for more info*
      */
-    couchbases?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCouchbase>[]>;
+    couchbases?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCouchbase>[] | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.  
      * *See Configuration Options for more info*
      */
-    elasticsearches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountElasticsearch>[]>;
+    elasticsearches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountElasticsearch>[] | undefined>;
     /**
      * The total number of database secrets engines configured.
      */
-    engineCount?: pulumi.Input<number>;
+    engineCount?: pulumi.Input<number | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.  
      * *See Configuration Options for more info*
      */
-    hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[]>;
+    hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[] | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for InfluxDB connections.  
      * *See Configuration Options for more info*
      */
-    influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[]>;
+    influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[] | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.  
      * *See Configuration Options for more info*
      */
-    mongodbatlas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodbatla>[]>;
+    mongodbatlas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodbatla>[] | undefined>;
     /**
      * A nested block containing configuration options for MongoDB connections.  
      * *See Configuration Options for more info*
      */
-    mongodbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodb>[]>;
+    mongodbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodb>[] | undefined>;
     /**
      * A nested block containing configuration options for MSSQL connections.  
      * *See Configuration Options for more info*
      */
-    mssqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMssql>[]>;
+    mssqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMssql>[] | undefined>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqlAuroras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlAurora>[]>;
+    mysqlAuroras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlAurora>[] | undefined>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqlLegacies?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlLegacy>[]>;
+    mysqlLegacies?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlLegacy>[] | undefined>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqlRds?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlRd>[]>;
+    mysqlRds?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlRd>[] | undefined>;
     /**
      * A nested block containing configuration options for MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[]>;
+    mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[] | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A nested block containing configuration options for Oracle connections.  
      * *See Configuration Options for more info*
      */
-    oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[]>;
+    oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Where the secret backend will be mounted
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use for this connection.
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.  
      * *See Configuration Options for more info*
      */
-    postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
+    postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[] | undefined>;
     /**
      * A nested block containing configuration options for Redis connections.  
      * *See Configuration Options for more info*
      */
-    redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[]>;
+    redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[] | undefined>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
-    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticache>[]>;
+    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticache>[] | undefined>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
      */
-    redshifts?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedshift>[]>;
+    redshifts?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedshift>[] | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for Snowflake connections.  
      * *See Configuration Options for more info*
      */
-    snowflakes?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountSnowflake>[]>;
+    snowflakes?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountSnowflake>[] | undefined>;
 }
 
 /**
@@ -591,132 +591,132 @@ export interface SecretsMountArgs {
      *
      * The following arguments are common to all database engines:
      */
-    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedManagedKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedResponseHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
      */
-    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacRequestKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
-    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[]>;
+    auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A nested block containing configuration options for Cassandra connections.  
      * *See Configuration Options for more info*
      */
-    cassandras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCassandra>[]>;
+    cassandras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCassandra>[] | undefined>;
     /**
      * A nested block containing configuration options for Couchbase connections.  
      * *See Configuration Options for more info*
      */
-    couchbases?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCouchbase>[]>;
+    couchbases?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountCouchbase>[] | undefined>;
     /**
      * Default lease duration for tokens and secrets in seconds
      */
-    defaultLeaseTtlSeconds?: pulumi.Input<number>;
+    defaultLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[]>;
+    delegatedAuthAccessors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Human-friendly description of the mount
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.  
      * *See Configuration Options for more info*
      */
-    elasticsearches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountElasticsearch>[]>;
+    elasticsearches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountElasticsearch>[] | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
      */
-    externalEntropyAccess?: pulumi.Input<boolean>;
+    externalEntropyAccess?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables caching.
      */
-    forceNoCache?: pulumi.Input<boolean>;
+    forceNoCache?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.  
      * *See Configuration Options for more info*
      */
-    hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[]>;
+    hanas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountHana>[] | undefined>;
     /**
      * The key to use for signing plugin workload identity tokens
      */
-    identityTokenKey?: pulumi.Input<string>;
+    identityTokenKey?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for InfluxDB connections.  
      * *See Configuration Options for more info*
      */
-    influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[]>;
+    influxdbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountInfluxdb>[] | undefined>;
     /**
      * Specifies whether to show this mount in the UI-specific listing endpoint
      */
-    listingVisibility?: pulumi.Input<string>;
+    listingVisibility?: pulumi.Input<string | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enforce local mount in HA environment
      */
-    local?: pulumi.Input<boolean>;
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum possible lease duration for tokens and secrets in seconds
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.  
      * *See Configuration Options for more info*
      */
-    mongodbatlas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodbatla>[]>;
+    mongodbatlas?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodbatla>[] | undefined>;
     /**
      * A nested block containing configuration options for MongoDB connections.  
      * *See Configuration Options for more info*
      */
-    mongodbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodb>[]>;
+    mongodbs?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMongodb>[] | undefined>;
     /**
      * A nested block containing configuration options for MSSQL connections.  
      * *See Configuration Options for more info*
      */
-    mssqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMssql>[]>;
+    mssqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMssql>[] | undefined>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqlAuroras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlAurora>[]>;
+    mysqlAuroras?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlAurora>[] | undefined>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqlLegacies?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlLegacy>[]>;
+    mysqlLegacies?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlLegacy>[] | undefined>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqlRds?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlRd>[]>;
+    mysqlRds?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysqlRd>[] | undefined>;
     /**
      * A nested block containing configuration options for MySQL connections.  
      * *See Configuration Options for more info*
      */
-    mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[]>;
+    mysqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountMysql>[] | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies mount type specific options that are passed to the backend
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * A nested block containing configuration options for Oracle connections.  
      * *See Configuration Options for more info*
      */
-    oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[]>;
+    oracles?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountOracle>[] | undefined>;
     /**
      * List of headers to allow and pass from the request to the plugin
      */
-    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    passthroughRequestHeaders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Where the secret backend will be mounted
      */
@@ -724,34 +724,34 @@ export interface SecretsMountArgs {
     /**
      * Specifies the semantic version of the plugin to use for this connection.
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.  
      * *See Configuration Options for more info*
      */
-    postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[]>;
+    postgresqls?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountPostgresql>[] | undefined>;
     /**
      * A nested block containing configuration options for Redis connections.  
      * *See Configuration Options for more info*
      */
-    redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[]>;
+    redis?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedi>[] | undefined>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.  
      * *See Configuration Options for more info*
      */
-    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticache>[]>;
+    redisElasticaches?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedisElasticache>[] | undefined>;
     /**
      * A nested block containing configuration options for AWS Redshift connections.  
      * *See Configuration Options for more info*
      */
-    redshifts?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedshift>[]>;
+    redshifts?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountRedshift>[] | undefined>;
     /**
      * Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
-    sealWrap?: pulumi.Input<boolean>;
+    sealWrap?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for Snowflake connections.  
      * *See Configuration Options for more info*
      */
-    snowflakes?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountSnowflake>[]>;
+    snowflakes?: pulumi.Input<pulumi.Input<inputs.database.SecretsMountSnowflake>[] | undefined>;
 }

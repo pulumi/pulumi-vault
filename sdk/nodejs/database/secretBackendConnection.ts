@@ -322,145 +322,145 @@ export interface SecretBackendConnectionState {
      * A list of roles that are allowed to use this
      * connection.
      */
-    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique name of the Vault mount to configure.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for Cassandra connections.
      */
-    cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
+    cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra | undefined>;
     /**
      * A nested block containing configuration options for Couchbase connections.
      */
-    couchbase?: pulumi.Input<inputs.database.SecretBackendConnectionCouchbase>;
+    couchbase?: pulumi.Input<inputs.database.SecretBackendConnectionCouchbase | undefined>;
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
-    data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
-    elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
+    elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch | undefined>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */
-    hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
+    hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana | undefined>;
     /**
      * A nested block containing configuration options for InfluxDB connections.
      */
-    influxdb?: pulumi.Input<inputs.database.SecretBackendConnectionInfluxdb>;
+    influxdb?: pulumi.Input<inputs.database.SecretBackendConnectionInfluxdb | undefined>;
     /**
      * A nested block containing configuration options for MongoDB connections.
      */
-    mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
+    mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb | undefined>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.
      */
-    mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
+    mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas | undefined>;
     /**
      * A nested block containing configuration options for MSSQL connections.
      */
-    mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql>;
+    mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql | undefined>;
     /**
      * A nested block containing configuration options for MySQL connections.
      */
-    mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql>;
+    mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql | undefined>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.
      */
-    mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora>;
+    mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora | undefined>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.
      */
-    mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy>;
+    mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy | undefined>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.
      */
-    mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds>;
+    mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds | undefined>;
     /**
      * A unique name to give the database connection.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for Oracle connections.
      */
-    oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
+    oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle | undefined>;
     /**
      * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
      */
-    passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the plugin to use.
      */
-    pluginName?: pulumi.Input<string>;
+    pluginName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use for this connection.
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
-    postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql | undefined>;
     /**
      * A nested block containing configuration options for Redis connections.
      */
-    redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis>;
+    redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis | undefined>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      *
      * Exactly one of the nested blocks of configuration options must be supplied.
      */
-    redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache>;
+    redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache | undefined>;
     /**
      * Connection parameters for the redshift-database-plugin plugin.
      */
-    redshift?: pulumi.Input<inputs.database.SecretBackendConnectionRedshift>;
+    redshift?: pulumi.Input<inputs.database.SecretBackendConnectionRedshift | undefined>;
     /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */
-    rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
      */
-    skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+    skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
-    snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
+    snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake | undefined>;
     /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
-    verifyConnection?: pulumi.Input<boolean>;
+    verifyConnection?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -471,7 +471,7 @@ export interface SecretBackendConnectionArgs {
      * A list of roles that are allowed to use this
      * connection.
      */
-    allowedRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique name of the Vault mount to configure.
      */
@@ -479,135 +479,135 @@ export interface SecretBackendConnectionArgs {
     /**
      * A nested block containing configuration options for Cassandra connections.
      */
-    cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra>;
+    cassandra?: pulumi.Input<inputs.database.SecretBackendConnectionCassandra | undefined>;
     /**
      * A nested block containing configuration options for Couchbase connections.
      */
-    couchbase?: pulumi.Input<inputs.database.SecretBackendConnectionCouchbase>;
+    couchbase?: pulumi.Input<inputs.database.SecretBackendConnectionCouchbase | undefined>;
     /**
      * A map of sensitive data to pass to the endpoint. Useful for templated connection strings.
      */
-    data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for Elasticsearch connections.
      */
-    elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch>;
+    elasticsearch?: pulumi.Input<inputs.database.SecretBackendConnectionElasticsearch | undefined>;
     /**
      * A nested block containing configuration options for SAP HanaDB connections.
      */
-    hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana>;
+    hana?: pulumi.Input<inputs.database.SecretBackendConnectionHana | undefined>;
     /**
      * A nested block containing configuration options for InfluxDB connections.
      */
-    influxdb?: pulumi.Input<inputs.database.SecretBackendConnectionInfluxdb>;
+    influxdb?: pulumi.Input<inputs.database.SecretBackendConnectionInfluxdb | undefined>;
     /**
      * A nested block containing configuration options for MongoDB connections.
      */
-    mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb>;
+    mongodb?: pulumi.Input<inputs.database.SecretBackendConnectionMongodb | undefined>;
     /**
      * A nested block containing configuration options for MongoDB Atlas connections.
      */
-    mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas>;
+    mongodbatlas?: pulumi.Input<inputs.database.SecretBackendConnectionMongodbatlas | undefined>;
     /**
      * A nested block containing configuration options for MSSQL connections.
      */
-    mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql>;
+    mssql?: pulumi.Input<inputs.database.SecretBackendConnectionMssql | undefined>;
     /**
      * A nested block containing configuration options for MySQL connections.
      */
-    mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql>;
+    mysql?: pulumi.Input<inputs.database.SecretBackendConnectionMysql | undefined>;
     /**
      * A nested block containing configuration options for Aurora MySQL connections.
      */
-    mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora>;
+    mysqlAurora?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlAurora | undefined>;
     /**
      * A nested block containing configuration options for legacy MySQL connections.
      */
-    mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy>;
+    mysqlLegacy?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlLegacy | undefined>;
     /**
      * A nested block containing configuration options for RDS MySQL connections.
      */
-    mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds>;
+    mysqlRds?: pulumi.Input<inputs.database.SecretBackendConnectionMysqlRds | undefined>;
     /**
      * A unique name to give the database connection.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for Oracle connections.
      */
-    oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle>;
+    oracle?: pulumi.Input<inputs.database.SecretBackendConnectionOracle | undefined>;
     /**
      * The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
      */
-    passwordPolicy?: pulumi.Input<string>;
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the plugin to use.
      */
-    pluginName?: pulumi.Input<string>;
+    pluginName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the semantic version of the plugin to use for this connection.
      */
-    pluginVersion?: pulumi.Input<string>;
+    pluginVersion?: pulumi.Input<string | undefined>;
     /**
      * A nested block containing configuration options for PostgreSQL connections.
      */
-    postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql>;
+    postgresql?: pulumi.Input<inputs.database.SecretBackendConnectionPostgresql | undefined>;
     /**
      * A nested block containing configuration options for Redis connections.
      */
-    redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis>;
+    redis?: pulumi.Input<inputs.database.SecretBackendConnectionRedis | undefined>;
     /**
      * A nested block containing configuration options for Redis ElastiCache connections.
      *
      * Exactly one of the nested blocks of configuration options must be supplied.
      */
-    redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache>;
+    redisElasticache?: pulumi.Input<inputs.database.SecretBackendConnectionRedisElasticache | undefined>;
     /**
      * Connection parameters for the redshift-database-plugin plugin.
      */
-    redshift?: pulumi.Input<inputs.database.SecretBackendConnectionRedshift>;
+    redshift?: pulumi.Input<inputs.database.SecretBackendConnectionRedshift | undefined>;
     /**
      * A list of database statements to be executed to rotate the root user's credentials.
      */
-    rootRotationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rootRotationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Specifies if a given static account's password should be rotated on creation of the static roles associated with this database config. This can be overridden at the role-level by the static role's skipImportRotation field. The default is false. Requires Vault Enterprise 1.19+.
      */
-    skipStaticRoleImportRotation?: pulumi.Input<boolean>;
+    skipStaticRoleImportRotation?: pulumi.Input<boolean | undefined>;
     /**
      * A nested block containing configuration options for Snowflake connections.
      */
-    snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake>;
+    snowflake?: pulumi.Input<inputs.database.SecretBackendConnectionSnowflake | undefined>;
     /**
      * Whether the connection should be verified on
      * initial configuration or not.
      */
-    verifyConnection?: pulumi.Input<boolean>;
+    verifyConnection?: pulumi.Input<boolean | undefined>;
 }

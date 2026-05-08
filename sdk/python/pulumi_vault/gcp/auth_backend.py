@@ -21,32 +21,32 @@ __all__ = ['AuthBackendArgs', 'AuthBackend']
 @pulumi.input_type
 class AuthBackendArgs:
     def __init__(__self__, *,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_endpoint: Optional[pulumi.Input['AuthBackendCustomEndpointArgs']] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_endpoint: pulumi.Input[Optional['AuthBackendCustomEndpointArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gce_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gce_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
 
@@ -157,43 +157,43 @@ class AuthBackendArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The clients email associated with the credentials
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID of the credentials
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialsWo")
-    def credentials_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
@@ -201,12 +201,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "credentials_wo")
 
     @credentials_wo.setter
-    def credentials_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialsWoVersion")
-    def credentials_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credentials_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
         For more information about write-only attributes, see
@@ -215,12 +215,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "credentials_wo_version")
 
     @credentials_wo_version.setter
-    def credentials_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credentials_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credentials_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="customEndpoint")
-    def custom_endpoint(self) -> Optional[pulumi.Input['AuthBackendCustomEndpointArgs']]:
+    def custom_endpoint(self) -> pulumi.Input[Optional['AuthBackendCustomEndpointArgs']]:
         """
         Specifies overrides to
         [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
@@ -233,36 +233,36 @@ class AuthBackendArgs:
         return pulumi.get(self, "custom_endpoint")
 
     @custom_endpoint.setter
-    def custom_endpoint(self, value: Optional[pulumi.Input['AuthBackendCustomEndpointArgs']]):
+    def custom_endpoint(self, value: pulumi.Input[Optional['AuthBackendCustomEndpointArgs']]):
         pulumi.set(self, "custom_endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the auth method.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -270,60 +270,60 @@ class AuthBackendArgs:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter(name="gceAlias")
-    def gce_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gce_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
         """
         return pulumi.get(self, "gce_alias")
 
     @gce_alias.setter
-    def gce_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gce_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gce_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="gceMetadatas")
-    def gce_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def gce_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
         """
         return pulumi.get(self, "gce_metadatas")
 
     @gce_metadatas.setter
-    def gce_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def gce_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "gce_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="iamAlias")
-    def iam_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
         """
         return pulumi.get(self, "iam_alias")
 
     @iam_alias.setter
-    def iam_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="iamMetadatas")
-    def iam_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def iam_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Controls the metadata to include on the token returned by the login endpoint.
         """
         return pulumi.get(self, "iam_metadatas")
 
     @iam_metadatas.setter
-    def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def iam_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value for plugin identity
         tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
@@ -332,12 +332,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
-    def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key to use for signing plugin identity
         tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -345,12 +345,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "identity_token_key")
 
     @identity_token_key.setter
-    def identity_token_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_key", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated tokens. Defaults to
         1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
@@ -359,24 +359,24 @@ class AuthBackendArgs:
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the auth method is local only.
         """
         return pulumi.get(self, "local")
 
     @local.setter
-    def local(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -386,48 +386,48 @@ class AuthBackendArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to mount the auth method — this defaults to 'gcp'.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the private key from the credentials
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The GCP Project ID
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -435,12 +435,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -448,12 +448,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -462,12 +462,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountEmail")
-    def service_account_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service Account to impersonate for plugin workload identity federation.
         Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -475,12 +475,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "service_account_email")
 
     @service_account_email.setter
-    def service_account_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_email", value)
 
     @_builtins.property
     @pulumi.getter
-    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+    def tune(self) -> pulumi.Input[Optional['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
 
@@ -489,40 +489,40 @@ class AuthBackendArgs:
         return pulumi.get(self, "tune")
 
     @tune.setter
-    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+    def tune(self, value: pulumi.Input[Optional['AuthBackendTuneArgs']]):
         pulumi.set(self, "tune", value)
 
 
 @pulumi.input_type
 class _AuthBackendState:
     def __init__(__self__, *,
-                 accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_endpoint: Optional[pulumi.Input['AuthBackendCustomEndpointArgs']] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None):
+                 accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_endpoint: pulumi.Input[Optional['AuthBackendCustomEndpointArgs']] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gce_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gce_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
 
@@ -636,55 +636,55 @@ class _AuthBackendState:
 
     @_builtins.property
     @pulumi.getter
-    def accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         """
         return pulumi.get(self, "accessor")
 
     @accessor.setter
-    def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="clientEmail")
-    def client_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The clients email associated with the credentials
         """
         return pulumi.get(self, "client_email")
 
     @client_email.setter
-    def client_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_email", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID of the credentials
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def credentials(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A JSON string containing the contents of a GCP credentials file. If this value is empty, Vault will try to use Application Default Credentials from the machine on which the Vault server is running. Mutually exclusive with `credentials_wo`.
         """
         return pulumi.get(self, "credentials")
 
     @credentials.setter
-    def credentials(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialsWo")
-    def credentials_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credentials_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         JSON-encoded credentials to use to connect to GCP. This field is write-only and the value cannot be read back.
@@ -692,12 +692,12 @@ class _AuthBackendState:
         return pulumi.get(self, "credentials_wo")
 
     @credentials_wo.setter
-    def credentials_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credentials_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credentials_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialsWoVersion")
-    def credentials_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def credentials_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
         For more information about write-only attributes, see
@@ -706,12 +706,12 @@ class _AuthBackendState:
         return pulumi.get(self, "credentials_wo_version")
 
     @credentials_wo_version.setter
-    def credentials_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def credentials_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "credentials_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="customEndpoint")
-    def custom_endpoint(self) -> Optional[pulumi.Input['AuthBackendCustomEndpointArgs']]:
+    def custom_endpoint(self) -> pulumi.Input[Optional['AuthBackendCustomEndpointArgs']]:
         """
         Specifies overrides to
         [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
@@ -724,36 +724,36 @@ class _AuthBackendState:
         return pulumi.get(self, "custom_endpoint")
 
     @custom_endpoint.setter
-    def custom_endpoint(self, value: Optional[pulumi.Input['AuthBackendCustomEndpointArgs']]):
+    def custom_endpoint(self, value: pulumi.Input[Optional['AuthBackendCustomEndpointArgs']]):
         pulumi.set(self, "custom_endpoint", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A description of the auth method.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
-    def disable_automated_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "disable_automated_rotation")
 
     @disable_automated_rotation.setter
-    def disable_automated_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_automated_rotation", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -761,60 +761,60 @@ class _AuthBackendState:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter(name="gceAlias")
-    def gce_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gce_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
         """
         return pulumi.get(self, "gce_alias")
 
     @gce_alias.setter
-    def gce_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gce_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gce_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="gceMetadatas")
-    def gce_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def gce_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Controls which instance metadata fields from the GCE login are captured into Vault's token metadata or audit logs.
         """
         return pulumi.get(self, "gce_metadatas")
 
     @gce_metadatas.setter
-    def gce_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def gce_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "gce_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="iamAlias")
-    def iam_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Defines what alias needs to be used during login and refelects the same in token metadata and audit logs.
         """
         return pulumi.get(self, "iam_alias")
 
     @iam_alias.setter
-    def iam_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="iamMetadatas")
-    def iam_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def iam_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Controls the metadata to include on the token returned by the login endpoint.
         """
         return pulumi.get(self, "iam_metadatas")
 
     @iam_metadatas.setter
-    def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def iam_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenAudience")
-    def identity_token_audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The audience claim value for plugin identity
         tokens. Must match an allowed audience configured for the target [Workload Identity Pool](https://cloud.google.com/iam/docs/workload-identity-federation-with-other-providers#prepare).
@@ -823,12 +823,12 @@ class _AuthBackendState:
         return pulumi.get(self, "identity_token_audience")
 
     @identity_token_audience.setter
-    def identity_token_audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_audience", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenKey")
-    def identity_token_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_token_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key to use for signing plugin identity
         tokens. Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -836,12 +836,12 @@ class _AuthBackendState:
         return pulumi.get(self, "identity_token_key")
 
     @identity_token_key.setter
-    def identity_token_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_token_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_token_key", value)
 
     @_builtins.property
     @pulumi.getter(name="identityTokenTtl")
-    def identity_token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def identity_token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The TTL of generated tokens. Defaults to
         1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
@@ -850,24 +850,24 @@ class _AuthBackendState:
         return pulumi.get(self, "identity_token_ttl")
 
     @identity_token_ttl.setter
-    def identity_token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def identity_token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def local(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the auth method is local only.
         """
         return pulumi.get(self, "local")
 
     @local.setter
-    def local(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -877,48 +877,48 @@ class _AuthBackendState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to mount the auth method — this defaults to 'gcp'.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyId")
-    def private_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the private key from the credentials
         """
         return pulumi.get(self, "private_key_id")
 
     @private_key_id.setter
-    def private_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The GCP Project ID
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
@@ -926,12 +926,12 @@ class _AuthBackendState:
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationSchedule")
-    def rotation_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
         defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -939,12 +939,12 @@ class _AuthBackendState:
         return pulumi.get(self, "rotation_schedule")
 
     @rotation_schedule.setter
-    def rotation_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rotation_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationWindow")
-    def rotation_window(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum amount of time in seconds allowed to complete
         a rotation when a scheduled token rotation occurs. The default rotation window is
@@ -953,12 +953,12 @@ class _AuthBackendState:
         return pulumi.get(self, "rotation_window")
 
     @rotation_window.setter
-    def rotation_window(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_window", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountEmail")
-    def service_account_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Service Account to impersonate for plugin workload identity federation.
         Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
@@ -966,12 +966,12 @@ class _AuthBackendState:
         return pulumi.get(self, "service_account_email")
 
     @service_account_email.setter
-    def service_account_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_email", value)
 
     @_builtins.property
     @pulumi.getter
-    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+    def tune(self) -> pulumi.Input[Optional['AuthBackendTuneArgs']]:
         """
         Extra configuration block. Structure is documented below.
 
@@ -980,7 +980,7 @@ class _AuthBackendState:
         return pulumi.get(self, "tune")
 
     @tune.setter
-    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+    def tune(self, value: pulumi.Input[Optional['AuthBackendTuneArgs']]):
         pulumi.set(self, "tune", value)
 
 
@@ -990,32 +990,32 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gce_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gce_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  __props__=None):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
@@ -1198,32 +1198,32 @@ class AuthBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 local: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-                 service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 client_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 gce_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 gce_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1272,33 +1272,33 @@ class AuthBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            client_email: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            credentials: Optional[pulumi.Input[_builtins.str]] = None,
-            credentials_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            credentials_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            custom_endpoint: Optional[pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_automated_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-            gce_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            gce_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            identity_token_audience: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_key: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            local: Optional[pulumi.Input[_builtins.bool]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-            rotation_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_window: Optional[pulumi.Input[_builtins.int]] = None,
-            service_account_email: Optional[pulumi.Input[_builtins.str]] = None,
-            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None) -> 'AuthBackend':
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            client_email: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            gce_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            gce_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -19,15 +19,15 @@ __all__ = ['SecretBackendCaArgs', 'SecretBackendCa']
 @pulumi.input_type
 class SecretBackendCaArgs:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_signing_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendCa resource.
 
@@ -68,55 +68,55 @@ class SecretBackendCaArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the SSH secret backend is mounted. Defaults to 'ssh'
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="generateSigningKey")
-    def generate_signing_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_signing_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether Vault should generate the signing key pair internally. Defaults to true
         """
         return pulumi.get(self, "generate_signing_key")
 
     @generate_signing_key.setter
-    def generate_signing_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_signing_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_signing_key", value)
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         """
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
 
@@ -126,24 +126,24 @@ class SecretBackendCaArgs:
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         """
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -153,46 +153,46 @@ class SecretBackendCaArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
 
 @pulumi.input_type
 class _SecretBackendCaState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_signing_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCa resources.
 
@@ -233,55 +233,55 @@ class _SecretBackendCaState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the SSH secret backend is mounted. Defaults to 'ssh'
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="generateSigningKey")
-    def generate_signing_key(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def generate_signing_key(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether Vault should generate the signing key pair internally. Defaults to true
         """
         return pulumi.get(self, "generate_signing_key")
 
     @generate_signing_key.setter
-    def generate_signing_key(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def generate_signing_key(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_signing_key", value)
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the desired key bits for the generated SSH CA key when `generate_signing_key` is set to `true`.
         """
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the desired key type for the generated SSH CA key when `generate_signing_key` is set to `true`.
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the managed key to use. When using a managed key, this field or managed_key_name is required.
 
@@ -291,24 +291,24 @@ class _SecretBackendCaState:
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the managed key to use. When using a managed key, this field or managed_key_id is required.
         """
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -318,31 +318,31 @@ class _SecretBackendCaState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The public key part the SSH CA key pair; required if generate_signing_key is false.
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
 
@@ -352,15 +352,15 @@ class SecretBackendCa(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_signing_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to manage CA information in an SSH secret backend
@@ -447,15 +447,15 @@ class SecretBackendCa(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 generate_signing_key: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -486,15 +486,15 @@ class SecretBackendCa(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            generate_signing_key: Optional[pulumi.Input[_builtins.bool]] = None,
-            key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-            key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            public_key: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendCa':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            generate_signing_key: pulumi.Input[Optional[_builtins.bool]] = None,
+            key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendCa':
         """
         Get an existing SecretBackendCa resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

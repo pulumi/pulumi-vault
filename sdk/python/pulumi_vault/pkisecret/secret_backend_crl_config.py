@@ -20,19 +20,19 @@ __all__ = ['SecretBackendCrlConfigArgs', 'SecretBackendCrlConfig']
 class SecretBackendCrlConfigArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 auto_rebuild: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rebuild_grace_period: Optional[pulumi.Input[_builtins.str]] = None,
-                 cross_cluster_revocation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delta_rebuild_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_delta: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_crl_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 unified_crl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 unified_crl_on_existing_paths: Optional[pulumi.Input[_builtins.bool]] = None):
+                 auto_rebuild: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rebuild_grace_period: pulumi.Input[Optional[_builtins.str]] = None,
+                 cross_cluster_revocation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delta_rebuild_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_delta: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_crl_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 unified_crl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 unified_crl_on_existing_paths: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendCrlConfig resource.
 
@@ -100,67 +100,67 @@ class SecretBackendCrlConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="autoRebuild")
-    def auto_rebuild(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_rebuild(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         """
         return pulumi.get(self, "auto_rebuild")
 
     @auto_rebuild.setter
-    def auto_rebuild(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_rebuild(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_rebuild", value)
 
     @_builtins.property
     @pulumi.getter(name="autoRebuildGracePeriod")
-    def auto_rebuild_grace_period(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auto_rebuild_grace_period(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
         """
         return pulumi.get(self, "auto_rebuild_grace_period")
 
     @auto_rebuild_grace_period.setter
-    def auto_rebuild_grace_period(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auto_rebuild_grace_period(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auto_rebuild_grace_period", value)
 
     @_builtins.property
     @pulumi.getter(name="crossClusterRevocation")
-    def cross_cluster_revocation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cross_cluster_revocation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable cross-cluster revocation request queues. **Vault 1.13+**
         """
         return pulumi.get(self, "cross_cluster_revocation")
 
     @cross_cluster_revocation.setter
-    def cross_cluster_revocation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cross_cluster_revocation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cross_cluster_revocation", value)
 
     @_builtins.property
     @pulumi.getter(name="deltaRebuildInterval")
-    def delta_rebuild_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delta_rebuild_interval(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Interval to check for new revocations on, to regenerate the delta CRL.
         """
         return pulumi.get(self, "delta_rebuild_interval")
 
     @delta_rebuild_interval.setter
-    def delta_rebuild_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delta_rebuild_interval(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delta_rebuild_interval", value)
 
     @_builtins.property
     @pulumi.getter
-    def disable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables or enables CRL building.
         """
         return pulumi.get(self, "disable")
 
     @disable.setter
-    def disable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDelta")
-    def enable_delta(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_delta(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables building of delta CRLs with up-to-date revocation information, 
         augmenting the last complete CRL.  **Vault 1.12+**
@@ -168,24 +168,24 @@ class SecretBackendCrlConfigArgs:
         return pulumi.get(self, "enable_delta")
 
     @enable_delta.setter
-    def enable_delta(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_delta(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_delta", value)
 
     @_builtins.property
     @pulumi.getter
-    def expiry(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expiry(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the time until expiration.
         """
         return pulumi.get(self, "expiry")
 
     @expiry.setter
-    def expiry(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expiry(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expiry", value)
 
     @_builtins.property
     @pulumi.getter(name="maxCrlEntries")
-    def max_crl_entries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_crl_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of entries a CRL can contain. This option exists to prevent 
         accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
@@ -193,12 +193,12 @@ class SecretBackendCrlConfigArgs:
         return pulumi.get(self, "max_crl_entries")
 
     @max_crl_entries.setter
-    def max_crl_entries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_crl_entries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_crl_entries", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -208,24 +208,24 @@ class SecretBackendCrlConfigArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspDisable")
-    def ocsp_disable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_disable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables the OCSP responder in Vault. **Vault 1.12+**
         """
         return pulumi.get(self, "ocsp_disable")
 
     @ocsp_disable.setter
-    def ocsp_disable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_disable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_disable", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspExpiry")
-    def ocsp_expiry(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ocsp_expiry(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time an OCSP response can be cached for, useful for OCSP stapling 
         refresh durations. **Vault 1.12+**
@@ -233,24 +233,24 @@ class SecretBackendCrlConfigArgs:
         return pulumi.get(self, "ocsp_expiry")
 
     @ocsp_expiry.setter
-    def ocsp_expiry(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ocsp_expiry(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ocsp_expiry", value)
 
     @_builtins.property
     @pulumi.getter(name="unifiedCrl")
-    def unified_crl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def unified_crl(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables unified CRL and OCSP building. **Vault 1.13+**
         """
         return pulumi.get(self, "unified_crl")
 
     @unified_crl.setter
-    def unified_crl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def unified_crl(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "unified_crl", value)
 
     @_builtins.property
     @pulumi.getter(name="unifiedCrlOnExistingPaths")
-    def unified_crl_on_existing_paths(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def unified_crl_on_existing_paths(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables serving the unified CRL and OCSP on the existing, previously
         cluster-local paths. **Vault 1.13+**
@@ -258,27 +258,27 @@ class SecretBackendCrlConfigArgs:
         return pulumi.get(self, "unified_crl_on_existing_paths")
 
     @unified_crl_on_existing_paths.setter
-    def unified_crl_on_existing_paths(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def unified_crl_on_existing_paths(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "unified_crl_on_existing_paths", value)
 
 
 @pulumi.input_type
 class _SecretBackendCrlConfigState:
     def __init__(__self__, *,
-                 auto_rebuild: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rebuild_grace_period: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cross_cluster_revocation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delta_rebuild_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_delta: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_crl_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 unified_crl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 unified_crl_on_existing_paths: Optional[pulumi.Input[_builtins.bool]] = None):
+                 auto_rebuild: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rebuild_grace_period: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cross_cluster_revocation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delta_rebuild_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_delta: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_crl_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 unified_crl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 unified_crl_on_existing_paths: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendCrlConfig resources.
 
@@ -335,79 +335,79 @@ class _SecretBackendCrlConfigState:
 
     @_builtins.property
     @pulumi.getter(name="autoRebuild")
-    def auto_rebuild(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_rebuild(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
         """
         return pulumi.get(self, "auto_rebuild")
 
     @auto_rebuild.setter
-    def auto_rebuild(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_rebuild(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_rebuild", value)
 
     @_builtins.property
     @pulumi.getter(name="autoRebuildGracePeriod")
-    def auto_rebuild_grace_period(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auto_rebuild_grace_period(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Grace period before CRL expiry to attempt rebuild of CRL. **Vault 1.12+**
         """
         return pulumi.get(self, "auto_rebuild_grace_period")
 
     @auto_rebuild_grace_period.setter
-    def auto_rebuild_grace_period(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auto_rebuild_grace_period(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auto_rebuild_grace_period", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="crossClusterRevocation")
-    def cross_cluster_revocation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cross_cluster_revocation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable cross-cluster revocation request queues. **Vault 1.13+**
         """
         return pulumi.get(self, "cross_cluster_revocation")
 
     @cross_cluster_revocation.setter
-    def cross_cluster_revocation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cross_cluster_revocation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cross_cluster_revocation", value)
 
     @_builtins.property
     @pulumi.getter(name="deltaRebuildInterval")
-    def delta_rebuild_interval(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delta_rebuild_interval(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Interval to check for new revocations on, to regenerate the delta CRL.
         """
         return pulumi.get(self, "delta_rebuild_interval")
 
     @delta_rebuild_interval.setter
-    def delta_rebuild_interval(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delta_rebuild_interval(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delta_rebuild_interval", value)
 
     @_builtins.property
     @pulumi.getter
-    def disable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables or enables CRL building.
         """
         return pulumi.get(self, "disable")
 
     @disable.setter
-    def disable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable", value)
 
     @_builtins.property
     @pulumi.getter(name="enableDelta")
-    def enable_delta(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_delta(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables building of delta CRLs with up-to-date revocation information, 
         augmenting the last complete CRL.  **Vault 1.12+**
@@ -415,24 +415,24 @@ class _SecretBackendCrlConfigState:
         return pulumi.get(self, "enable_delta")
 
     @enable_delta.setter
-    def enable_delta(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_delta(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_delta", value)
 
     @_builtins.property
     @pulumi.getter
-    def expiry(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expiry(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the time until expiration.
         """
         return pulumi.get(self, "expiry")
 
     @expiry.setter
-    def expiry(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expiry(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expiry", value)
 
     @_builtins.property
     @pulumi.getter(name="maxCrlEntries")
-    def max_crl_entries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_crl_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of entries a CRL can contain. This option exists to prevent 
         accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
@@ -440,12 +440,12 @@ class _SecretBackendCrlConfigState:
         return pulumi.get(self, "max_crl_entries")
 
     @max_crl_entries.setter
-    def max_crl_entries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_crl_entries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_crl_entries", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -455,24 +455,24 @@ class _SecretBackendCrlConfigState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspDisable")
-    def ocsp_disable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_disable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables the OCSP responder in Vault. **Vault 1.12+**
         """
         return pulumi.get(self, "ocsp_disable")
 
     @ocsp_disable.setter
-    def ocsp_disable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_disable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_disable", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspExpiry")
-    def ocsp_expiry(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ocsp_expiry(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time an OCSP response can be cached for, useful for OCSP stapling 
         refresh durations. **Vault 1.12+**
@@ -480,24 +480,24 @@ class _SecretBackendCrlConfigState:
         return pulumi.get(self, "ocsp_expiry")
 
     @ocsp_expiry.setter
-    def ocsp_expiry(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ocsp_expiry(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ocsp_expiry", value)
 
     @_builtins.property
     @pulumi.getter(name="unifiedCrl")
-    def unified_crl(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def unified_crl(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables unified CRL and OCSP building. **Vault 1.13+**
         """
         return pulumi.get(self, "unified_crl")
 
     @unified_crl.setter
-    def unified_crl(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def unified_crl(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "unified_crl", value)
 
     @_builtins.property
     @pulumi.getter(name="unifiedCrlOnExistingPaths")
-    def unified_crl_on_existing_paths(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def unified_crl_on_existing_paths(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enables serving the unified CRL and OCSP on the existing, previously
         cluster-local paths. **Vault 1.13+**
@@ -505,7 +505,7 @@ class _SecretBackendCrlConfigState:
         return pulumi.get(self, "unified_crl_on_existing_paths")
 
     @unified_crl_on_existing_paths.setter
-    def unified_crl_on_existing_paths(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def unified_crl_on_existing_paths(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "unified_crl_on_existing_paths", value)
 
 
@@ -515,20 +515,20 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_rebuild: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rebuild_grace_period: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cross_cluster_revocation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delta_rebuild_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_delta: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_crl_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 unified_crl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 unified_crl_on_existing_paths: Optional[pulumi.Input[_builtins.bool]] = None,
+                 auto_rebuild: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rebuild_grace_period: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cross_cluster_revocation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delta_rebuild_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_delta: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_crl_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 unified_crl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 unified_crl_on_existing_paths: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Allows setting the duration for which the generated CRL should be marked valid. If the CRL is disabled, it will return a signed but zero-length CRL for any request. If enabled, it will re-build the CRL.
@@ -617,20 +617,20 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_rebuild: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_rebuild_grace_period: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cross_cluster_revocation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delta_rebuild_interval: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_delta: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_crl_entries: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_disable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_expiry: Optional[pulumi.Input[_builtins.str]] = None,
-                 unified_crl: Optional[pulumi.Input[_builtins.bool]] = None,
-                 unified_crl_on_existing_paths: Optional[pulumi.Input[_builtins.bool]] = None,
+                 auto_rebuild: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_rebuild_grace_period: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cross_cluster_revocation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delta_rebuild_interval: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_delta: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_crl_entries: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_disable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_expiry: pulumi.Input[Optional[_builtins.str]] = None,
+                 unified_crl: pulumi.Input[Optional[_builtins.bool]] = None,
+                 unified_crl_on_existing_paths: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -666,20 +666,20 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            auto_rebuild: Optional[pulumi.Input[_builtins.bool]] = None,
-            auto_rebuild_grace_period: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            cross_cluster_revocation: Optional[pulumi.Input[_builtins.bool]] = None,
-            delta_rebuild_interval: Optional[pulumi.Input[_builtins.str]] = None,
-            disable: Optional[pulumi.Input[_builtins.bool]] = None,
-            enable_delta: Optional[pulumi.Input[_builtins.bool]] = None,
-            expiry: Optional[pulumi.Input[_builtins.str]] = None,
-            max_crl_entries: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            ocsp_disable: Optional[pulumi.Input[_builtins.bool]] = None,
-            ocsp_expiry: Optional[pulumi.Input[_builtins.str]] = None,
-            unified_crl: Optional[pulumi.Input[_builtins.bool]] = None,
-            unified_crl_on_existing_paths: Optional[pulumi.Input[_builtins.bool]] = None) -> 'SecretBackendCrlConfig':
+            auto_rebuild: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_rebuild_grace_period: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cross_cluster_revocation: pulumi.Input[Optional[_builtins.bool]] = None,
+            delta_rebuild_interval: pulumi.Input[Optional[_builtins.str]] = None,
+            disable: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_delta: pulumi.Input[Optional[_builtins.bool]] = None,
+            expiry: pulumi.Input[Optional[_builtins.str]] = None,
+            max_crl_entries: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_disable: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_expiry: pulumi.Input[Optional[_builtins.str]] = None,
+            unified_crl: pulumi.Input[Optional[_builtins.bool]] = None,
+            unified_crl_on_existing_paths: pulumi.Input[Optional[_builtins.bool]] = None) -> 'SecretBackendCrlConfig':
         """
         Get an existing SecretBackendCrlConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

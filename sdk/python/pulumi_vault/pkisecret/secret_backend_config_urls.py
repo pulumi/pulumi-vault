@@ -20,11 +20,11 @@ __all__ = ['SecretBackendConfigUrlsArgs', 'SecretBackendConfigUrls']
 class SecretBackendConfigUrlsArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigUrls resource.
 
@@ -64,43 +64,43 @@ class SecretBackendConfigUrlsArgs:
 
     @_builtins.property
     @pulumi.getter(name="crlDistributionPoints")
-    def crl_distribution_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the CRL Distribution Points field.
         """
         return pulumi.get(self, "crl_distribution_points")
 
     @crl_distribution_points.setter
-    def crl_distribution_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="enableTemplating")
-    def enable_templating(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_templating(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies that templating of AIA fields is allowed.
         """
         return pulumi.get(self, "enable_templating")
 
     @enable_templating.setter
-    def enable_templating(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_templating(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_templating", value)
 
     @_builtins.property
     @pulumi.getter(name="issuingCertificates")
-    def issuing_certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def issuing_certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the Issuing Certificate field.
         """
         return pulumi.get(self, "issuing_certificates")
 
     @issuing_certificates.setter
-    def issuing_certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def issuing_certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "issuing_certificates", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -110,31 +110,31 @@ class SecretBackendConfigUrlsArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspServers")
-    def ocsp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ocsp_servers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the OCSP Servers field.
         """
         return pulumi.get(self, "ocsp_servers")
 
     @ocsp_servers.setter
-    def ocsp_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ocsp_servers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers", value)
 
 
 @pulumi.input_type
 class _SecretBackendConfigUrlsState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigUrls resources.
 
@@ -163,55 +163,55 @@ class _SecretBackendConfigUrlsState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="crlDistributionPoints")
-    def crl_distribution_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the CRL Distribution Points field.
         """
         return pulumi.get(self, "crl_distribution_points")
 
     @crl_distribution_points.setter
-    def crl_distribution_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="enableTemplating")
-    def enable_templating(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_templating(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies that templating of AIA fields is allowed.
         """
         return pulumi.get(self, "enable_templating")
 
     @enable_templating.setter
-    def enable_templating(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_templating(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_templating", value)
 
     @_builtins.property
     @pulumi.getter(name="issuingCertificates")
-    def issuing_certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def issuing_certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the Issuing Certificate field.
         """
         return pulumi.get(self, "issuing_certificates")
 
     @issuing_certificates.setter
-    def issuing_certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def issuing_certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "issuing_certificates", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -221,19 +221,19 @@ class _SecretBackendConfigUrlsState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspServers")
-    def ocsp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ocsp_servers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the OCSP Servers field.
         """
         return pulumi.get(self, "ocsp_servers")
 
     @ocsp_servers.setter
-    def ocsp_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ocsp_servers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers", value)
 
 
@@ -243,12 +243,12 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Allows setting the issuing certificate endpoints, CRL distribution points, and OCSP server endpoints that will be encoded into issued certificates.
@@ -345,12 +345,12 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 enable_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -378,12 +378,12 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            enable_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-            issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'SecretBackendConfigUrls':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'SecretBackendConfigUrls':
         """
         Get an existing SecretBackendConfigUrls resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

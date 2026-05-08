@@ -22,15 +22,15 @@ class SyncVercelDestinationArgs:
                  access_token: pulumi.Input[_builtins.str],
                  deployment_environments: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  project_id: pulumi.Input[_builtins.str],
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SyncVercelDestination resource.
 
@@ -122,7 +122,7 @@ class SyncVercelDestinationArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv4Addresses")
-    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
         for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
@@ -131,12 +131,12 @@ class SyncVercelDestinationArgs:
         return pulumi.get(self, "allowed_ipv4_addresses")
 
     @allowed_ipv4_addresses.setter
-    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv4_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv6Addresses")
-    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
         for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
@@ -145,12 +145,12 @@ class SyncVercelDestinationArgs:
         return pulumi.get(self, "allowed_ipv6_addresses")
 
     @allowed_ipv6_addresses.setter
-    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv6_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedPorts")
-    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def allowed_ports(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         Set of allowed ports for outbound connections from Vault to the
         destination. If not set, all ports are allowed. Requires Vault 1.19+.
@@ -158,12 +158,12 @@ class SyncVercelDestinationArgs:
         return pulumi.get(self, "allowed_ports")
 
     @allowed_ports.setter
-    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def allowed_ports(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter(name="disableStrictNetworking")
-    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_strict_networking(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, disables strict networking enforcement
         for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
@@ -172,12 +172,12 @@ class SyncVercelDestinationArgs:
         return pulumi.get(self, "disable_strict_networking")
 
     @disable_strict_networking.setter
-    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_strict_networking(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter
-    def granularity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def granularity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines what level of information is synced as a distinct resource
         at the destination. Supports `secret-path` and `secret-key`.
@@ -185,24 +185,24 @@ class SyncVercelDestinationArgs:
         return pulumi.get(self, "granularity")
 
     @granularity.setter
-    def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def granularity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the GitHub destination.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -211,12 +211,12 @@ class SyncVercelDestinationArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="secretNameTemplate")
-    def secret_name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_name_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how to generate external secret names.
         Supports a subset of the Go Template syntax.
@@ -224,38 +224,38 @@ class SyncVercelDestinationArgs:
         return pulumi.get(self, "secret_name_template")
 
     @secret_name_template.setter
-    def secret_name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_name_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_name_template", value)
 
     @_builtins.property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Team ID where to manage environment variables.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_id", value)
 
 
 @pulumi.input_type
 class _SyncVercelDestinationState:
     def __init__(__self__, *,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 deployment_environments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SyncVercelDestination resources.
 
@@ -315,7 +315,7 @@ class _SyncVercelDestinationState:
 
     @_builtins.property
     @pulumi.getter(name="accessToken")
-    def access_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Vercel API access token with the permissions to manage environment
         variables.
@@ -323,12 +323,12 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "access_token")
 
     @access_token.setter
-    def access_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_token", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv4Addresses")
-    def allowed_ipv4_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
         for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
@@ -337,12 +337,12 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "allowed_ipv4_addresses")
 
     @allowed_ipv4_addresses.setter
-    def allowed_ipv4_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv4_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedIpv6Addresses")
-    def allowed_ipv6_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
         for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
@@ -351,12 +351,12 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "allowed_ipv6_addresses")
 
     @allowed_ipv6_addresses.setter
-    def allowed_ipv6_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_ipv6_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedPorts")
-    def allowed_ports(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]:
+    def allowed_ports(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]:
         """
         Set of allowed ports for outbound connections from Vault to the
         destination. If not set, all ports are allowed. Requires Vault 1.19+.
@@ -364,12 +364,12 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "allowed_ports")
 
     @allowed_ports.setter
-    def allowed_ports(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]]):
+    def allowed_ports(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]]):
         pulumi.set(self, "allowed_ports", value)
 
     @_builtins.property
     @pulumi.getter(name="deploymentEnvironments")
-    def deployment_environments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def deployment_environments(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Deployment environments where the environment variables
         are available. Accepts `development`, `preview` and `production`.
@@ -377,12 +377,12 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "deployment_environments")
 
     @deployment_environments.setter
-    def deployment_environments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def deployment_environments(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "deployment_environments", value)
 
     @_builtins.property
     @pulumi.getter(name="disableStrictNetworking")
-    def disable_strict_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_strict_networking(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true`, disables strict networking enforcement
         for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
@@ -391,12 +391,12 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "disable_strict_networking")
 
     @disable_strict_networking.setter
-    def disable_strict_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_strict_networking(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_strict_networking", value)
 
     @_builtins.property
     @pulumi.getter
-    def granularity(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def granularity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Determines what level of information is synced as a distinct resource
         at the destination. Supports `secret-path` and `secret-key`.
@@ -404,24 +404,24 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "granularity")
 
     @granularity.setter
-    def granularity(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def granularity(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "granularity", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique name of the GitHub destination.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -430,24 +430,24 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Project ID where to manage environment variables.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretNameTemplate")
-    def secret_name_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_name_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Template describing how to generate external secret names.
         Supports a subset of the Go Template syntax.
@@ -455,31 +455,31 @@ class _SyncVercelDestinationState:
         return pulumi.get(self, "secret_name_template")
 
     @secret_name_template.setter
-    def secret_name_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_name_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_name_template", value)
 
     @_builtins.property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Team ID where to manage environment variables.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the secrets destination (`vercel-project`).
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -489,18 +489,18 @@ class SyncVercelDestination(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 deployment_environments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a Vercel destination to synchronize secrets in Vault. Requires Vault 1.16+.
@@ -653,18 +653,18 @@ class SyncVercelDestination(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 access_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-                 deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 granularity: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 access_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+                 deployment_environments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 granularity: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -705,19 +705,19 @@ class SyncVercelDestination(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            access_token: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_ipv4_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_ipv6_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_ports: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.int]]]] = None,
-            deployment_environments: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            disable_strict_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-            granularity: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_name_template: Optional[pulumi.Input[_builtins.str]] = None,
-            team_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'SyncVercelDestination':
+            access_token: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            deployment_environments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+            granularity: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'SyncVercelDestination':
         """
         Get an existing SyncVercelDestination resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

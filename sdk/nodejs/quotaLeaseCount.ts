@@ -140,23 +140,23 @@ export interface QuotaLeaseCountState {
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
-    inheritable?: pulumi.Input<boolean>;
+    inheritable?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.
      */
-    maxLeases?: pulumi.Input<number>;
+    maxLeases?: pulumi.Input<number | undefined>;
     /**
      * Name of the rate limit quota
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -165,11 +165,11 @@ export interface QuotaLeaseCountState {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -179,7 +179,7 @@ export interface QuotaLeaseCountArgs {
     /**
      * If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
      */
-    inheritable?: pulumi.Input<boolean>;
+    inheritable?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of leases to be allowed by the quota
      * rule. The `maxLeases` must be positive.
@@ -188,14 +188,14 @@ export interface QuotaLeaseCountArgs {
     /**
      * Name of the rate limit quota
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path of the mount or namespace to apply the quota. A blank path configures a
      * global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -204,9 +204,9 @@ export interface QuotaLeaseCountArgs {
      * `auth/userpass` to `namespace1/auth/userpass` moves this quota from being a global mount quota to
      * a namespace specific mount quota. **Note, namespaces are supported in Enterprise only.**
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
 }

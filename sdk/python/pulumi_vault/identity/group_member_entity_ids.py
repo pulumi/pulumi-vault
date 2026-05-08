@@ -20,9 +20,9 @@ __all__ = ['GroupMemberEntityIdsArgs', 'GroupMemberEntityIds']
 class GroupMemberEntityIdsArgs:
     def __init__(__self__, *,
                  group_id: pulumi.Input[_builtins.str],
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a GroupMemberEntityIds resource.
 
@@ -60,7 +60,7 @@ class GroupMemberEntityIdsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def exclusive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclusive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defaults to `true`.
 
@@ -71,24 +71,24 @@ class GroupMemberEntityIdsArgs:
         return pulumi.get(self, "exclusive")
 
     @exclusive.setter
-    def exclusive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclusive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclusive", value)
 
     @_builtins.property
     @pulumi.getter(name="memberEntityIds")
-    def member_entity_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def member_entity_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of member entities that belong to the group
         """
         return pulumi.get(self, "member_entity_ids")
 
     @member_entity_ids.setter
-    def member_entity_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def member_entity_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "member_entity_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -98,17 +98,17 @@ class GroupMemberEntityIdsArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _GroupMemberEntityIdsState:
     def __init__(__self__, *,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GroupMemberEntityIds resources.
 
@@ -135,7 +135,7 @@ class _GroupMemberEntityIdsState:
 
     @_builtins.property
     @pulumi.getter
-    def exclusive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclusive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defaults to `true`.
 
@@ -146,36 +146,36 @@ class _GroupMemberEntityIdsState:
         return pulumi.get(self, "exclusive")
 
     @exclusive.setter
-    def exclusive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclusive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclusive", value)
 
     @_builtins.property
     @pulumi.getter(name="groupId")
-    def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Group ID to assign member entities to.
         """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
-    def group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="memberEntityIds")
-    def member_entity_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def member_entity_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of member entities that belong to the group
         """
         return pulumi.get(self, "member_entity_ids")
 
     @member_entity_ids.setter
-    def member_entity_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def member_entity_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "member_entity_ids", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -185,7 +185,7 @@ class _GroupMemberEntityIdsState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -195,10 +195,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages member entities for an Identity Group for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -345,10 +345,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -374,10 +374,10 @@ class GroupMemberEntityIds(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-            group_id: Optional[pulumi.Input[_builtins.str]] = None,
-            member_entity_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'GroupMemberEntityIds':
+            exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'GroupMemberEntityIds':
         """
         Get an existing GroupMemberEntityIds resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

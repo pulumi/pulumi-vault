@@ -228,7 +228,7 @@ export interface GetServiceAccountTokenOutputArgs {
      * If true, generate a ClusterRoleBinding to grant 
      * permissions across the whole cluster instead of within a namespace.
      */
-    clusterRoleBinding?: pulumi.Input<boolean>;
+    clusterRoleBinding?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the Kubernetes namespace in which to 
      * generate the credentials.
@@ -240,7 +240,7 @@ export interface GetServiceAccountTokenOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The name of the Kubernetes secret backend role to generate service 
      * account tokens from.
@@ -250,5 +250,5 @@ export interface GetServiceAccountTokenOutputArgs {
      * The TTL of the generated Kubernetes service account token, specified in 
      * seconds or as a Go duration format string.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
 }

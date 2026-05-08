@@ -158,22 +158,22 @@ export interface GroupMemberEntityIdsState {
      *
      * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
      */
-    exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean | undefined>;
     /**
      * Group ID to assign member entities to.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * List of member entities that belong to the group
      */
-    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -187,7 +187,7 @@ export interface GroupMemberEntityIdsArgs {
      *
      * If set to `false`, this resource will simply ensure that the member entities specified in the resource are present in the group. When destroying the resource, the resource will ensure that the member entities specified in the resource are removed.
      */
-    exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean | undefined>;
     /**
      * Group ID to assign member entities to.
      */
@@ -195,12 +195,12 @@ export interface GroupMemberEntityIdsArgs {
     /**
      * List of member entities that belong to the group
      */
-    memberEntityIds?: pulumi.Input<pulumi.Input<string>[]>;
+    memberEntityIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

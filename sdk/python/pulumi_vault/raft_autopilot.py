@@ -19,14 +19,14 @@ __all__ = ['RaftAutopilotArgs', 'RaftAutopilot']
 @pulumi.input_type
 class RaftAutopilotArgs:
     def __init__(__self__, *,
-                 cleanup_dead_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_server_last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_upgrade_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_trailing_logs: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_quorum: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_stabilization_time: Optional[pulumi.Input[_builtins.str]] = None):
+                 cleanup_dead_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_server_last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_upgrade_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_trailing_logs: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_quorum: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_stabilization_time: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RaftAutopilot resource.
 
@@ -69,7 +69,7 @@ class RaftAutopilotArgs:
 
     @_builtins.property
     @pulumi.getter(name="cleanupDeadServers")
-    def cleanup_dead_servers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cleanup_dead_servers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to remove dead server nodes
         periodically or when a new server joins. This requires that `min-quorum` is also set.
@@ -77,12 +77,12 @@ class RaftAutopilotArgs:
         return pulumi.get(self, "cleanup_dead_servers")
 
     @cleanup_dead_servers.setter
-    def cleanup_dead_servers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cleanup_dead_servers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cleanup_dead_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="deadServerLastContactThreshold")
-    def dead_server_last_contact_threshold(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dead_server_last_contact_threshold(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Limit the amount of time a 
         server can go without leader contact before being considered failed. This only takes
@@ -91,24 +91,24 @@ class RaftAutopilotArgs:
         return pulumi.get(self, "dead_server_last_contact_threshold")
 
     @dead_server_last_contact_threshold.setter
-    def dead_server_last_contact_threshold(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dead_server_last_contact_threshold(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dead_server_last_contact_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="disableUpgradeMigration")
-    def disable_upgrade_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_upgrade_migration(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables automatically upgrading Vault using autopilot. (Enterprise-only)
         """
         return pulumi.get(self, "disable_upgrade_migration")
 
     @disable_upgrade_migration.setter
-    def disable_upgrade_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_upgrade_migration(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_upgrade_migration", value)
 
     @_builtins.property
     @pulumi.getter(name="lastContactThreshold")
-    def last_contact_threshold(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_contact_threshold(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Limit the amount of time a server can go 
         without leader contact before being considered unhealthy.
@@ -116,12 +116,12 @@ class RaftAutopilotArgs:
         return pulumi.get(self, "last_contact_threshold")
 
     @last_contact_threshold.setter
-    def last_contact_threshold(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_contact_threshold(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_contact_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTrailingLogs")
-    def max_trailing_logs(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_trailing_logs(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of log entries in the Raft log 
         that a server can be behind its leader before being considered unhealthy.
@@ -129,12 +129,12 @@ class RaftAutopilotArgs:
         return pulumi.get(self, "max_trailing_logs")
 
     @max_trailing_logs.setter
-    def max_trailing_logs(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_trailing_logs(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_trailing_logs", value)
 
     @_builtins.property
     @pulumi.getter(name="minQuorum")
-    def min_quorum(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_quorum(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of servers allowed in a cluster before 
         autopilot can prune dead servers. This should at least be 3. Applicable only for
@@ -143,12 +143,12 @@ class RaftAutopilotArgs:
         return pulumi.get(self, "min_quorum")
 
     @min_quorum.setter
-    def min_quorum(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_quorum(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_quorum", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -158,12 +158,12 @@ class RaftAutopilotArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="serverStabilizationTime")
-    def server_stabilization_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_stabilization_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum amount of time a server must be 
         stable in the 'healthy' state before being added to the cluster.
@@ -171,21 +171,21 @@ class RaftAutopilotArgs:
         return pulumi.get(self, "server_stabilization_time")
 
     @server_stabilization_time.setter
-    def server_stabilization_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_stabilization_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_stabilization_time", value)
 
 
 @pulumi.input_type
 class _RaftAutopilotState:
     def __init__(__self__, *,
-                 cleanup_dead_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_server_last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_upgrade_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_trailing_logs: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_quorum: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_stabilization_time: Optional[pulumi.Input[_builtins.str]] = None):
+                 cleanup_dead_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_server_last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_upgrade_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_trailing_logs: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_quorum: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_stabilization_time: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RaftAutopilot resources.
 
@@ -228,7 +228,7 @@ class _RaftAutopilotState:
 
     @_builtins.property
     @pulumi.getter(name="cleanupDeadServers")
-    def cleanup_dead_servers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cleanup_dead_servers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether to remove dead server nodes
         periodically or when a new server joins. This requires that `min-quorum` is also set.
@@ -236,12 +236,12 @@ class _RaftAutopilotState:
         return pulumi.get(self, "cleanup_dead_servers")
 
     @cleanup_dead_servers.setter
-    def cleanup_dead_servers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cleanup_dead_servers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cleanup_dead_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="deadServerLastContactThreshold")
-    def dead_server_last_contact_threshold(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dead_server_last_contact_threshold(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Limit the amount of time a 
         server can go without leader contact before being considered failed. This only takes
@@ -250,24 +250,24 @@ class _RaftAutopilotState:
         return pulumi.get(self, "dead_server_last_contact_threshold")
 
     @dead_server_last_contact_threshold.setter
-    def dead_server_last_contact_threshold(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dead_server_last_contact_threshold(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dead_server_last_contact_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="disableUpgradeMigration")
-    def disable_upgrade_migration(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_upgrade_migration(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Disables automatically upgrading Vault using autopilot. (Enterprise-only)
         """
         return pulumi.get(self, "disable_upgrade_migration")
 
     @disable_upgrade_migration.setter
-    def disable_upgrade_migration(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_upgrade_migration(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_upgrade_migration", value)
 
     @_builtins.property
     @pulumi.getter(name="lastContactThreshold")
-    def last_contact_threshold(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_contact_threshold(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Limit the amount of time a server can go 
         without leader contact before being considered unhealthy.
@@ -275,12 +275,12 @@ class _RaftAutopilotState:
         return pulumi.get(self, "last_contact_threshold")
 
     @last_contact_threshold.setter
-    def last_contact_threshold(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_contact_threshold(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_contact_threshold", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTrailingLogs")
-    def max_trailing_logs(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_trailing_logs(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Maximum number of log entries in the Raft log 
         that a server can be behind its leader before being considered unhealthy.
@@ -288,12 +288,12 @@ class _RaftAutopilotState:
         return pulumi.get(self, "max_trailing_logs")
 
     @max_trailing_logs.setter
-    def max_trailing_logs(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_trailing_logs(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_trailing_logs", value)
 
     @_builtins.property
     @pulumi.getter(name="minQuorum")
-    def min_quorum(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def min_quorum(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minimum number of servers allowed in a cluster before 
         autopilot can prune dead servers. This should at least be 3. Applicable only for
@@ -302,12 +302,12 @@ class _RaftAutopilotState:
         return pulumi.get(self, "min_quorum")
 
     @min_quorum.setter
-    def min_quorum(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def min_quorum(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "min_quorum", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -317,12 +317,12 @@ class _RaftAutopilotState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="serverStabilizationTime")
-    def server_stabilization_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def server_stabilization_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum amount of time a server must be 
         stable in the 'healthy' state before being added to the cluster.
@@ -330,7 +330,7 @@ class _RaftAutopilotState:
         return pulumi.get(self, "server_stabilization_time")
 
     @server_stabilization_time.setter
-    def server_stabilization_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def server_stabilization_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "server_stabilization_time", value)
 
 
@@ -340,14 +340,14 @@ class RaftAutopilot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cleanup_dead_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_server_last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_upgrade_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_trailing_logs: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_quorum: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_stabilization_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 cleanup_dead_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_server_last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_upgrade_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_trailing_logs: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_quorum: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_stabilization_time: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Autopilot enables automated workflows for managing Raft clusters. The
@@ -452,14 +452,14 @@ class RaftAutopilot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cleanup_dead_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 dead_server_last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_upgrade_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-                 last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_trailing_logs: Optional[pulumi.Input[_builtins.int]] = None,
-                 min_quorum: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 server_stabilization_time: Optional[pulumi.Input[_builtins.str]] = None,
+                 cleanup_dead_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dead_server_last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_upgrade_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+                 last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_trailing_logs: pulumi.Input[Optional[_builtins.int]] = None,
+                 min_quorum: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 server_stabilization_time: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -487,14 +487,14 @@ class RaftAutopilot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cleanup_dead_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-            dead_server_last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_upgrade_migration: Optional[pulumi.Input[_builtins.bool]] = None,
-            last_contact_threshold: Optional[pulumi.Input[_builtins.str]] = None,
-            max_trailing_logs: Optional[pulumi.Input[_builtins.int]] = None,
-            min_quorum: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            server_stabilization_time: Optional[pulumi.Input[_builtins.str]] = None) -> 'RaftAutopilot':
+            cleanup_dead_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+            dead_server_last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_upgrade_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_contact_threshold: pulumi.Input[Optional[_builtins.str]] = None,
+            max_trailing_logs: pulumi.Input[Optional[_builtins.int]] = None,
+            min_quorum: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            server_stabilization_time: pulumi.Input[Optional[_builtins.str]] = None) -> 'RaftAutopilot':
         """
         Get an existing RaftAutopilot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -184,9 +184,9 @@ def get_secrets_list_v2(mount: Optional[_builtins.str] = None,
         names=pulumi.get(__ret__, 'names'),
         namespace=pulumi.get(__ret__, 'namespace'),
         path=pulumi.get(__ret__, 'path'))
-def get_secrets_list_v2_output(mount: Optional[pulumi.Input[_builtins.str]] = None,
-                               name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                               namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_secrets_list_v2_output(mount: pulumi.Input[Optional[_builtins.str]] = None,
+                               name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                               namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretsListV2Result]:
     """
     Lists KV-V2 secrets at a given path in Vault.

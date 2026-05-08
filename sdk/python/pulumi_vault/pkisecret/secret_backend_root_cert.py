@@ -22,43 +22,43 @@ class SecretBackendRootCertArgs:
                  backend: pulumi.Input[_builtins.str],
                  common_name: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 country: Optional[pulumi.Input[_builtins.str]] = None,
-                 exclude_cn_from_sans: Optional[pulumi.Input[_builtins.bool]] = None,
-                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 locality: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ou: Optional[pulumi.Input[_builtins.str]] = None,
-                 permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 postal_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 province: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 street_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
+                 alt_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 country: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclude_cn_from_sans: pulumi.Input[Optional[_builtins.bool]] = None,
+                 excluded_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 locality: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 postal_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 province: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 street_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendRootCert resource.
 
@@ -229,115 +229,115 @@ class SecretBackendRootCertArgs:
 
     @_builtins.property
     @pulumi.getter(name="altNames")
-    def alt_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def alt_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of alternative names
         """
         return pulumi.get(self, "alt_names")
 
     @alt_names.setter
-    def alt_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def alt_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alt_names", value)
 
     @_builtins.property
     @pulumi.getter
-    def country(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def country(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The country
         """
         return pulumi.get(self, "country")
 
     @country.setter
-    def country(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def country(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "country", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeCnFromSans")
-    def exclude_cn_from_sans(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclude_cn_from_sans(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to exclude CN from SANs
         """
         return pulumi.get(self, "exclude_cn_from_sans")
 
     @exclude_cn_from_sans.setter
-    def exclude_cn_from_sans(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclude_cn_from_sans(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclude_cn_from_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedDnsDomains")
-    def excluded_dns_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_dns_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_dns_domains")
 
     @excluded_dns_domains.setter
-    def excluded_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_dns_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_dns_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedEmailAddresses")
-    def excluded_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_email_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_email_addresses")
 
     @excluded_email_addresses.setter
-    def excluded_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_email_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_email_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedIpRanges")
-    def excluded_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_ip_ranges")
 
     @excluded_ip_ranges.setter
-    def excluded_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedUriDomains")
-    def excluded_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_uri_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_uri_domains")
 
     @excluded_uri_domains.setter
-    def excluded_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_uri_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_uri_domains", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The format of data
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="ipSans")
-    def ip_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of alternative IPs
         """
         return pulumi.get(self, "ip_sans")
 
     @ip_sans.setter
-    def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerName")
-    def issuer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Provides a name to the specified issuer. The name must be unique
         across all issuers and not be the reserved value `default`
@@ -345,24 +345,24 @@ class SecretBackendRootCertArgs:
         return pulumi.get(self, "issuer_name")
 
     @issuer_name.setter
-    def issuer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_name", value)
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of bits to use
         """
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="keyName")
-    def key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When a new key is created with this request, optionally specifies
         the name for this. The global ref `default` may not be used as a name.
@@ -370,12 +370,12 @@ class SecretBackendRootCertArgs:
         return pulumi.get(self, "key_name")
 
     @key_name.setter
-    def key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="keyRef")
-    def key_ref(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_ref(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the key (either default, by name, or by identifier) to use
         for generating this request. Only suitable for `type=existing` requests.
@@ -383,48 +383,48 @@ class SecretBackendRootCertArgs:
         return pulumi.get(self, "key_ref")
 
     @key_ref.setter
-    def key_ref(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_ref(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_ref", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The desired key type
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="keyUsages")
-    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def key_usages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         """
         return pulumi.get(self, "key_usages")
 
     @key_usages.setter
-    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def key_usages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "key_usages", value)
 
     @_builtins.property
     @pulumi.getter
-    def locality(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def locality(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The locality
         """
         return pulumi.get(self, "locality")
 
     @locality.setter
-    def locality(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def locality(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "locality", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the previously configured managed key. This field is
         required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -432,12 +432,12 @@ class SecretBackendRootCertArgs:
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the previously configured managed key. This field is
         required if `type` is `kms`  and it conflicts with `managed_key_id`
@@ -445,24 +445,24 @@ class SecretBackendRootCertArgs:
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="maxPathLength")
-    def max_path_length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_path_length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum path length to encode in the generated certificate
         """
         return pulumi.get(self, "max_path_length")
 
     @max_path_length.setter
-    def max_path_length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_path_length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_path_length", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -472,262 +472,262 @@ class SecretBackendRootCertArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="notAfter")
-    def not_after(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_after(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         """
         return pulumi.get(self, "not_after")
 
     @not_after.setter
-    def not_after(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_after(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_after", value)
 
     @_builtins.property
     @pulumi.getter(name="notBeforeDuration")
-    def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_before_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the duration by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
     @not_before_duration.setter
-    def not_before_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_before_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_before_duration", value)
 
     @_builtins.property
     @pulumi.getter
-    def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization
         """
         return pulumi.get(self, "organization")
 
     @organization.setter
-    def organization(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization", value)
 
     @_builtins.property
     @pulumi.getter(name="otherSans")
-    def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def other_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of other SANs
         """
         return pulumi.get(self, "other_sans")
 
     @other_sans.setter
-    def other_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def other_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "other_sans", value)
 
     @_builtins.property
     @pulumi.getter
-    def ou(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ou(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization unit
         """
         return pulumi.get(self, "ou")
 
     @ou.setter
-    def ou(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ou(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ou", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedDnsDomains")
-    def permitted_dns_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_dns_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of domains for which certificates are allowed to be issued
         """
         return pulumi.get(self, "permitted_dns_domains")
 
     @permitted_dns_domains.setter
-    def permitted_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_dns_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_dns_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedEmailAddresses")
-    def permitted_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_email_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "permitted_email_addresses")
 
     @permitted_email_addresses.setter
-    def permitted_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_email_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_email_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedIpRanges")
-    def permitted_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "permitted_ip_ranges")
 
     @permitted_ip_ranges.setter
-    def permitted_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedUriDomains")
-    def permitted_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_uri_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "permitted_uri_domains")
 
     @permitted_uri_domains.setter
-    def permitted_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_uri_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_uri_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="postalCode")
-    def postal_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def postal_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The postal code
         """
         return pulumi.get(self, "postal_code")
 
     @postal_code.setter
-    def postal_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def postal_code(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "postal_code", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyFormat")
-    def private_key_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key format
         """
         return pulumi.get(self, "private_key_format")
 
     @private_key_format.setter
-    def private_key_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def province(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def province(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The province
         """
         return pulumi.get(self, "province")
 
     @province.setter
-    def province(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def province(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "province", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureBits")
-    def signature_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def signature_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of bits to use in the signature algorithm
         """
         return pulumi.get(self, "signature_bits")
 
     @signature_bits.setter
-    def signature_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def signature_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "signature_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="streetAddress")
-    def street_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def street_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The street address
         """
         return pulumi.get(self, "street_address")
 
     @street_address.setter
-    def street_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def street_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "street_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time to live
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="uriSans")
-    def uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def uri_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
 
     @uri_sans.setter
-    def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def uri_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "uri_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="usePss")
-    def use_pss(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_pss(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
         return pulumi.get(self, "use_pss")
 
     @use_pss.setter
-    def use_pss(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_pss(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_pss", value)
 
 
 @pulumi.input_type
 class _SecretBackendRootCertState:
     def __init__(__self__, *,
-                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 common_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 country: Optional[pulumi.Input[_builtins.str]] = None,
-                 exclude_cn_from_sans: Optional[pulumi.Input[_builtins.bool]] = None,
-                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 issuer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuing_ca: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 locality: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ou: Optional[pulumi.Input[_builtins.str]] = None,
-                 permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 postal_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 province: Optional[pulumi.Input[_builtins.str]] = None,
-                 serial_number: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 street_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None):
+                 alt_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 common_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 country: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclude_cn_from_sans: pulumi.Input[Optional[_builtins.bool]] = None,
+                 excluded_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuing_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 locality: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 postal_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 province: pulumi.Input[Optional[_builtins.str]] = None,
+                 serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 street_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRootCert resources.
 
@@ -879,163 +879,163 @@ class _SecretBackendRootCertState:
 
     @_builtins.property
     @pulumi.getter(name="altNames")
-    def alt_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def alt_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of alternative names
         """
         return pulumi.get(self, "alt_names")
 
     @alt_names.setter
-    def alt_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def alt_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alt_names", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The PKI secret backend the resource belongs to.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The certificate.
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="commonName")
-    def common_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def common_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CN of intermediate to create
         """
         return pulumi.get(self, "common_name")
 
     @common_name.setter
-    def common_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def common_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "common_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def country(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def country(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The country
         """
         return pulumi.get(self, "country")
 
     @country.setter
-    def country(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def country(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "country", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeCnFromSans")
-    def exclude_cn_from_sans(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclude_cn_from_sans(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag to exclude CN from SANs
         """
         return pulumi.get(self, "exclude_cn_from_sans")
 
     @exclude_cn_from_sans.setter
-    def exclude_cn_from_sans(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclude_cn_from_sans(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclude_cn_from_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedDnsDomains")
-    def excluded_dns_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_dns_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_dns_domains")
 
     @excluded_dns_domains.setter
-    def excluded_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_dns_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_dns_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedEmailAddresses")
-    def excluded_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_email_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_email_addresses")
 
     @excluded_email_addresses.setter
-    def excluded_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_email_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_email_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedIpRanges")
-    def excluded_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_ip_ranges")
 
     @excluded_ip_ranges.setter
-    def excluded_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="excludedUriDomains")
-    def excluded_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def excluded_uri_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "excluded_uri_domains")
 
     @excluded_uri_domains.setter
-    def excluded_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def excluded_uri_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "excluded_uri_domains", value)
 
     @_builtins.property
     @pulumi.getter
-    def format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The format of data
         """
         return pulumi.get(self, "format")
 
     @format.setter
-    def format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "format", value)
 
     @_builtins.property
     @pulumi.getter(name="ipSans")
-    def ip_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ip_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of alternative IPs
         """
         return pulumi.get(self, "ip_sans")
 
     @ip_sans.setter
-    def ip_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ip_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ip_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerId")
-    def issuer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the generated issuer.
         """
         return pulumi.get(self, "issuer_id")
 
     @issuer_id.setter
-    def issuer_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_id", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerName")
-    def issuer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Provides a name to the specified issuer. The name must be unique
         across all issuers and not be the reserved value `default`
@@ -1043,48 +1043,48 @@ class _SecretBackendRootCertState:
         return pulumi.get(self, "issuer_name")
 
     @issuer_name.setter
-    def issuer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_name", value)
 
     @_builtins.property
     @pulumi.getter(name="issuingCa")
-    def issuing_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuing_ca(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The issuing CA certificate.
         """
         return pulumi.get(self, "issuing_ca")
 
     @issuing_ca.setter
-    def issuing_ca(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuing_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuing_ca", value)
 
     @_builtins.property
     @pulumi.getter(name="keyBits")
-    def key_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of bits to use
         """
         return pulumi.get(self, "key_bits")
 
     @key_bits.setter
-    def key_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def key_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "key_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="keyId")
-    def key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the generated key.
         """
         return pulumi.get(self, "key_id")
 
     @key_id.setter
-    def key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="keyName")
-    def key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When a new key is created with this request, optionally specifies
         the name for this. The global ref `default` may not be used as a name.
@@ -1092,12 +1092,12 @@ class _SecretBackendRootCertState:
         return pulumi.get(self, "key_name")
 
     @key_name.setter
-    def key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="keyRef")
-    def key_ref(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_ref(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the key (either default, by name, or by identifier) to use
         for generating this request. Only suitable for `type=existing` requests.
@@ -1105,48 +1105,48 @@ class _SecretBackendRootCertState:
         return pulumi.get(self, "key_ref")
 
     @key_ref.setter
-    def key_ref(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_ref(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_ref", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The desired key type
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="keyUsages")
-    def key_usages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def key_usages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         """
         return pulumi.get(self, "key_usages")
 
     @key_usages.setter
-    def key_usages(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def key_usages(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "key_usages", value)
 
     @_builtins.property
     @pulumi.getter
-    def locality(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def locality(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The locality
         """
         return pulumi.get(self, "locality")
 
     @locality.setter
-    def locality(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def locality(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "locality", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyId")
-    def managed_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the previously configured managed key. This field is
         required if `type` is `kms` and it conflicts with `managed_key_name`
@@ -1154,12 +1154,12 @@ class _SecretBackendRootCertState:
         return pulumi.get(self, "managed_key_id")
 
     @managed_key_id.setter
-    def managed_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="managedKeyName")
-    def managed_key_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the previously configured managed key. This field is
         required if `type` is `kms`  and it conflicts with `managed_key_id`
@@ -1167,24 +1167,24 @@ class _SecretBackendRootCertState:
         return pulumi.get(self, "managed_key_name")
 
     @managed_key_name.setter
-    def managed_key_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def managed_key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "managed_key_name", value)
 
     @_builtins.property
     @pulumi.getter(name="maxPathLength")
-    def max_path_length(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_path_length(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum path length to encode in the generated certificate
         """
         return pulumi.get(self, "max_path_length")
 
     @max_path_length.setter
-    def max_path_length(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_path_length(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_path_length", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -1194,204 +1194,204 @@ class _SecretBackendRootCertState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="notAfter")
-    def not_after(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_after(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         """
         return pulumi.get(self, "not_after")
 
     @not_after.setter
-    def not_after(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_after(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_after", value)
 
     @_builtins.property
     @pulumi.getter(name="notBeforeDuration")
-    def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_before_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the duration by which to backdate the NotBefore property.
         """
         return pulumi.get(self, "not_before_duration")
 
     @not_before_duration.setter
-    def not_before_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_before_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_before_duration", value)
 
     @_builtins.property
     @pulumi.getter
-    def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization
         """
         return pulumi.get(self, "organization")
 
     @organization.setter
-    def organization(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization", value)
 
     @_builtins.property
     @pulumi.getter(name="otherSans")
-    def other_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def other_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of other SANs
         """
         return pulumi.get(self, "other_sans")
 
     @other_sans.setter
-    def other_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def other_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "other_sans", value)
 
     @_builtins.property
     @pulumi.getter
-    def ou(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ou(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization unit
         """
         return pulumi.get(self, "ou")
 
     @ou.setter
-    def ou(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ou(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ou", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedDnsDomains")
-    def permitted_dns_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_dns_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of domains for which certificates are allowed to be issued
         """
         return pulumi.get(self, "permitted_dns_domains")
 
     @permitted_dns_domains.setter
-    def permitted_dns_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_dns_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_dns_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedEmailAddresses")
-    def permitted_email_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_email_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "permitted_email_addresses")
 
     @permitted_email_addresses.setter
-    def permitted_email_addresses(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_email_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_email_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedIpRanges")
-    def permitted_ip_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "permitted_ip_ranges")
 
     @permitted_ip_ranges.setter
-    def permitted_ip_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="permittedUriDomains")
-    def permitted_uri_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def permitted_uri_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "permitted_uri_domains")
 
     @permitted_uri_domains.setter
-    def permitted_uri_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def permitted_uri_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "permitted_uri_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="postalCode")
-    def postal_code(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def postal_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The postal code
         """
         return pulumi.get(self, "postal_code")
 
     @postal_code.setter
-    def postal_code(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def postal_code(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "postal_code", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKeyFormat")
-    def private_key_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The private key format
         """
         return pulumi.get(self, "private_key_format")
 
     @private_key_format.setter
-    def private_key_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def province(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def province(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The province
         """
         return pulumi.get(self, "province")
 
     @province.setter
-    def province(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def province(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "province", value)
 
     @_builtins.property
     @pulumi.getter(name="serialNumber")
-    def serial_number(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def serial_number(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The certificate's serial number, hex formatted.
         """
         return pulumi.get(self, "serial_number")
 
     @serial_number.setter
-    def serial_number(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def serial_number(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "serial_number", value)
 
     @_builtins.property
     @pulumi.getter(name="signatureBits")
-    def signature_bits(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def signature_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of bits to use in the signature algorithm
         """
         return pulumi.get(self, "signature_bits")
 
     @signature_bits.setter
-    def signature_bits(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def signature_bits(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "signature_bits", value)
 
     @_builtins.property
     @pulumi.getter(name="streetAddress")
-    def street_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def street_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The street address
         """
         return pulumi.get(self, "street_address")
 
     @street_address.setter
-    def street_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def street_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "street_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Time to live
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
         or \\"kms\\"
@@ -1399,31 +1399,31 @@ class _SecretBackendRootCertState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="uriSans")
-    def uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def uri_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of alternative URIs
         """
         return pulumi.get(self, "uri_sans")
 
     @uri_sans.setter
-    def uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def uri_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "uri_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="usePss")
-    def use_pss(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_pss(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
         return pulumi.get(self, "use_pss")
 
     @use_pss.setter
-    def use_pss(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_pss(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_pss", value)
 
 
@@ -1433,46 +1433,46 @@ class SecretBackendRootCert(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 common_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 country: Optional[pulumi.Input[_builtins.str]] = None,
-                 exclude_cn_from_sans: Optional[pulumi.Input[_builtins.bool]] = None,
-                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 locality: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ou: Optional[pulumi.Input[_builtins.str]] = None,
-                 permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 postal_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 province: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 street_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alt_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 common_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 country: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclude_cn_from_sans: pulumi.Input[Optional[_builtins.bool]] = None,
+                 excluded_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 locality: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 postal_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 province: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 street_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Generates a new self-signed CA certificate and private keys for the PKI Secret Backend.
@@ -1619,46 +1619,46 @@ class SecretBackendRootCert(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 common_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 country: Optional[pulumi.Input[_builtins.str]] = None,
-                 exclude_cn_from_sans: Optional[pulumi.Input[_builtins.bool]] = None,
-                 excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 format: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 locality: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ou: Optional[pulumi.Input[_builtins.str]] = None,
-                 permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 postal_code: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 province: Optional[pulumi.Input[_builtins.str]] = None,
-                 signature_bits: Optional[pulumi.Input[_builtins.int]] = None,
-                 street_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 use_pss: Optional[pulumi.Input[_builtins.bool]] = None,
+                 alt_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 common_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 country: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclude_cn_from_sans: pulumi.Input[Optional[_builtins.bool]] = None,
+                 excluded_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 excluded_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 locality: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 postal_code: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 province: pulumi.Input[Optional[_builtins.str]] = None,
+                 signature_bits: pulumi.Input[Optional[_builtins.int]] = None,
+                 street_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 use_pss: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1729,51 +1729,51 @@ class SecretBackendRootCert(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alt_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            common_name: Optional[pulumi.Input[_builtins.str]] = None,
-            country: Optional[pulumi.Input[_builtins.str]] = None,
-            exclude_cn_from_sans: Optional[pulumi.Input[_builtins.bool]] = None,
-            excluded_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            excluded_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            excluded_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            excluded_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            format: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            issuer_id: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-            issuing_ca: Optional[pulumi.Input[_builtins.str]] = None,
-            key_bits: Optional[pulumi.Input[_builtins.int]] = None,
-            key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            key_name: Optional[pulumi.Input[_builtins.str]] = None,
-            key_ref: Optional[pulumi.Input[_builtins.str]] = None,
-            key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            key_usages: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            locality: Optional[pulumi.Input[_builtins.str]] = None,
-            managed_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            managed_key_name: Optional[pulumi.Input[_builtins.str]] = None,
-            max_path_length: Optional[pulumi.Input[_builtins.int]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            not_after: Optional[pulumi.Input[_builtins.str]] = None,
-            not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-            organization: Optional[pulumi.Input[_builtins.str]] = None,
-            other_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ou: Optional[pulumi.Input[_builtins.str]] = None,
-            permitted_dns_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            permitted_email_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            permitted_ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            permitted_uri_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            postal_code: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key_format: Optional[pulumi.Input[_builtins.str]] = None,
-            province: Optional[pulumi.Input[_builtins.str]] = None,
-            serial_number: Optional[pulumi.Input[_builtins.str]] = None,
-            signature_bits: Optional[pulumi.Input[_builtins.int]] = None,
-            street_address: Optional[pulumi.Input[_builtins.str]] = None,
-            ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            use_pss: Optional[pulumi.Input[_builtins.bool]] = None) -> 'SecretBackendRootCert':
+            alt_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            common_name: pulumi.Input[Optional[_builtins.str]] = None,
+            country: pulumi.Input[Optional[_builtins.str]] = None,
+            exclude_cn_from_sans: pulumi.Input[Optional[_builtins.bool]] = None,
+            excluded_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            excluded_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            excluded_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            format: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            issuing_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            key_ref: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            locality: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            not_after: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            organization: pulumi.Input[Optional[_builtins.str]] = None,
+            other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ou: pulumi.Input[Optional[_builtins.str]] = None,
+            permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            postal_code: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
+            province: pulumi.Input[Optional[_builtins.str]] = None,
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            signature_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            street_address: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            use_pss: pulumi.Input[Optional[_builtins.bool]] = None) -> 'SecretBackendRootCert':
         """
         Get an existing SecretBackendRootCert resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

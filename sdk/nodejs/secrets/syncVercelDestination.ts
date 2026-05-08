@@ -215,67 +215,67 @@ export interface SyncVercelDestinationState {
      * Vercel API access token with the permissions to manage environment
      * variables.
      */
-    accessToken?: pulumi.Input<string>;
+    accessToken?: pulumi.Input<string | undefined>;
     /**
      * Set of allowed IPv4 addresses in CIDR notation (e.g., `192.168.1.1/32`)
      * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
      * Requires Vault 1.19+.
      */
-    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
      * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
      * Requires Vault 1.19+.
      */
-    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed ports for outbound connections from Vault to the
      * destination. If not set, all ports are allowed. Requires Vault 1.19+.
      */
-    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
      */
-    deploymentEnvironments?: pulumi.Input<pulumi.Input<string>[]>;
+    deploymentEnvironments?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * If set to `true`, disables strict networking enforcement
      * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
      * Defaults to `false`. Requires Vault 1.19+.
      */
-    disableStrictNetworking?: pulumi.Input<boolean>;
+    disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    granularity?: pulumi.Input<string>;
+    granularity?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the GitHub destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Project ID where to manage environment variables.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    secretNameTemplate?: pulumi.Input<string>;
+    secretNameTemplate?: pulumi.Input<string | undefined>;
     /**
      * Team ID where to manage environment variables.
      */
-    teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string | undefined>;
     /**
      * The type of the secrets destination (`vercel-project`).
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -292,18 +292,18 @@ export interface SyncVercelDestinationArgs {
      * for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed.
      * Requires Vault 1.19+.
      */
-    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv4Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed IPv6 addresses in CIDR notation (e.g., `2001:db8::1/128`)
      * for outbound connections from Vault to the destination. If not set, all IPv6 addresses are allowed.
      * Requires Vault 1.19+.
      */
-    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedIpv6Addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Set of allowed ports for outbound connections from Vault to the
      * destination. If not set, all ports are allowed. Requires Vault 1.19+.
      */
-    allowedPorts?: pulumi.Input<pulumi.Input<number>[]>;
+    allowedPorts?: pulumi.Input<pulumi.Input<number>[] | undefined>;
     /**
      * Deployment environments where the environment variables
      * are available. Accepts `development`, `preview` and `production`.
@@ -314,22 +314,22 @@ export interface SyncVercelDestinationArgs {
      * for this destination. When disabled, Vault will not enforce allowed IP addresses and ports.
      * Defaults to `false`. Requires Vault 1.19+.
      */
-    disableStrictNetworking?: pulumi.Input<boolean>;
+    disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Determines what level of information is synced as a distinct resource
      * at the destination. Supports `secret-path` and `secret-key`.
      */
-    granularity?: pulumi.Input<string>;
+    granularity?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the GitHub destination.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Project ID where to manage environment variables.
      */
@@ -338,9 +338,9 @@ export interface SyncVercelDestinationArgs {
      * Template describing how to generate external secret names.
      * Supports a subset of the Go Template syntax.
      */
-    secretNameTemplate?: pulumi.Input<string>;
+    secretNameTemplate?: pulumi.Input<string | undefined>;
     /**
      * Team ID where to manage environment variables.
      */
-    teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string | undefined>;
 }

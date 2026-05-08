@@ -22,10 +22,10 @@ class SecretBackendStaticRoleArgs:
                  role_name: pulumi.Input[_builtins.str],
                  rotation_period: pulumi.Input[_builtins.int],
                  username: pulumi.Input[_builtins.str],
-                 dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None):
+                 dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SecretBackendStaticRole resource.
 
@@ -94,7 +94,7 @@ class SecretBackendStaticRoleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def dn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Distinguished name (DN) of the existing LDAP entry to manage
         password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -103,12 +103,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "dn")
 
     @dn.setter
-    def dn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dn", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `ldap`.
@@ -116,12 +116,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -131,12 +131,12 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="skipImportRotation")
-    def skip_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Causes vault to skip the initial secret rotation on import. Not applicable to updates.
         Requires Vault 1.16 or above.
@@ -144,20 +144,20 @@ class SecretBackendStaticRoleArgs:
         return pulumi.get(self, "skip_import_rotation")
 
     @skip_import_rotation.setter
-    def skip_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_import_rotation", value)
 
 
 @pulumi.input_type
 class _SecretBackendStaticRoleState:
     def __init__(__self__, *,
-                 dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
 
@@ -193,7 +193,7 @@ class _SecretBackendStaticRoleState:
 
     @_builtins.property
     @pulumi.getter
-    def dn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Distinguished name (DN) of the existing LDAP entry to manage
         password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -202,12 +202,12 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "dn")
 
     @dn.setter
-    def dn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dn", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path this backend should be mounted at. Must
         not begin or end with a `/`. Defaults to `ldap`.
@@ -215,12 +215,12 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -230,36 +230,36 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the role.
         """
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How often Vault should rotate the password of the user entry.
         """
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "rotation_period", value)
 
     @_builtins.property
     @pulumi.getter(name="skipImportRotation")
-    def skip_import_rotation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Causes vault to skip the initial secret rotation on import. Not applicable to updates.
         Requires Vault 1.16 or above.
@@ -267,19 +267,19 @@ class _SecretBackendStaticRoleState:
         return pulumi.get(self, "skip_import_rotation")
 
     @skip_import_rotation.setter
-    def skip_import_rotation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_import_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_import_rotation", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The username of the existing LDAP entry to manage password rotation for.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -289,13 +289,13 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a static role for LDAP Secret Backend for Vault.
@@ -417,13 +417,13 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 dn: Optional[pulumi.Input[_builtins.str]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 skip_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 dn: pulumi.Input[Optional[_builtins.str]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -456,13 +456,13 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            dn: Optional[pulumi.Input[_builtins.str]] = None,
-            mount: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            role_name: Optional[pulumi.Input[_builtins.str]] = None,
-            rotation_period: Optional[pulumi.Input[_builtins.int]] = None,
-            skip_import_rotation: Optional[pulumi.Input[_builtins.bool]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendStaticRole':
+            dn: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendStaticRole':
         """
         Get an existing SecretBackendStaticRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -243,13 +243,13 @@ export interface SecretV2State {
      * write operation to be successful, cas must be set to the current version
      * of the secret.
      */
-    cas?: pulumi.Input<number>;
+    cas?: pulumi.Input<number | undefined>;
     /**
      * A nested block that allows configuring metadata for the
      * KV secret. Refer to the
      * Configuration Options for more info.
      */
-    customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata>;
+    customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata | undefined>;
     /**
      * **Deprecated. Please use new ephemeral resource `vault.kv.SecretV2` to read back
      * secret data from Vault**. A mapping whose keys are the top-level data keys returned from
@@ -258,62 +258,62 @@ export interface SecretV2State {
      *
      * @deprecated Deprecated. Will no longer be set on a read.
      */
-    data?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    data?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * JSON-encoded string that will be
      * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      */
-    dataJson?: pulumi.Input<string>;
+    dataJson?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * JSON-encoded string that will be
      * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      */
-    dataJsonWo?: pulumi.Input<string>;
+    dataJsonWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      */
-    dataJsonWoVersion?: pulumi.Input<number>;
+    dataJsonWoVersion?: pulumi.Input<number | undefined>;
     /**
      * If set to true, permanently deletes all
      * versions for the specified key.
      */
-    deleteAllVersions?: pulumi.Input<boolean>;
+    deleteAllVersions?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables reading secret from Vault;
      * note: drift won't be detected.
      */
-    disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean | undefined>;
     /**
      * Metadata associated with this secret read from Vault.
      */
-    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Path where KV-V2 engine is mounted.
      */
-    mount?: pulumi.Input<string>;
+    mount?: pulumi.Input<string | undefined>;
     /**
      * Full name of the secret. For a nested secret
      * the name is the nested path excluding the mount and data
      * prefix. For example, for a secret at `kvv2/data/foo/bar/baz`
      * the name is `foo/bar/baz`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * An object that holds option settings.
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Full path where the KV-V2 secret will be written.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -326,38 +326,38 @@ export interface SecretV2Args {
      * write operation to be successful, cas must be set to the current version
      * of the secret.
      */
-    cas?: pulumi.Input<number>;
+    cas?: pulumi.Input<number | undefined>;
     /**
      * A nested block that allows configuring metadata for the
      * KV secret. Refer to the
      * Configuration Options for more info.
      */
-    customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata>;
+    customMetadata?: pulumi.Input<inputs.kv.SecretV2CustomMetadata | undefined>;
     /**
      * JSON-encoded string that will be
      * written as the secret data at the given path. This is required if `dataJsonWo` is not set.
      */
-    dataJson?: pulumi.Input<string>;
+    dataJson?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * JSON-encoded string that will be
      * written as the secret data at the given path. This is required if `dataJson` is not set. **Note**: This property is write-only and will not be read from the API.
      */
-    dataJsonWo?: pulumi.Input<string>;
+    dataJsonWo?: pulumi.Input<string | undefined>;
     /**
      * The version of the `dataJsonWo`. For more info see updating write-only attributes.
      */
-    dataJsonWoVersion?: pulumi.Input<number>;
+    dataJsonWoVersion?: pulumi.Input<number | undefined>;
     /**
      * If set to true, permanently deletes all
      * versions for the specified key.
      */
-    deleteAllVersions?: pulumi.Input<boolean>;
+    deleteAllVersions?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, disables reading secret from Vault;
      * note: drift won't be detected.
      */
-    disableRead?: pulumi.Input<boolean>;
+    disableRead?: pulumi.Input<boolean | undefined>;
     /**
      * Path where KV-V2 engine is mounted.
      */
@@ -368,16 +368,16 @@ export interface SecretV2Args {
      * prefix. For example, for a secret at `kvv2/data/foo/bar/baz`
      * the name is `foo/bar/baz`.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * An object that holds option settings.
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }

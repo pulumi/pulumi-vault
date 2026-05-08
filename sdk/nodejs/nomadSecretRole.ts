@@ -151,34 +151,34 @@ export interface NomadSecretRoleState {
     /**
      * The unique path this backend should be mounted at.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies if the generated token should be global. Defaults to 
      * false.
      */
-    global?: pulumi.Input<boolean>;
+    global?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    role?: pulumi.Input<string>;
+    role?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of token to create when using this role. Valid 
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -193,19 +193,19 @@ export interface NomadSecretRoleArgs {
      * Specifies if the generated token should be global. Defaults to 
      * false.
      */
-    global?: pulumi.Input<boolean>;
+    global?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * List of policies attached to the generated token. This setting is only used 
      * when `type` is 'client'.
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
@@ -215,5 +215,5 @@ export interface NomadSecretRoleArgs {
      * Specifies the type of token to create when using this role. Valid 
      * settings are 'client' and 'management'. Defaults to 'client'.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

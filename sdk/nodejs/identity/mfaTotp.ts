@@ -180,67 +180,67 @@ export interface MfaTotpState {
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * The number of digits in the generated TOTP token. This value can either be 6 or 8
      */
-    digits?: pulumi.Input<number>;
+    digits?: pulumi.Input<number | undefined>;
     /**
      * The name of the key's issuing organization.
      */
-    issuer?: pulumi.Input<string>;
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * Specifies the size in bytes of the generated key.
      */
-    keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of consecutive failed validation attempts allowed.
      */
-    maxValidationAttempts?: pulumi.Input<number>;
+    maxValidationAttempts?: pulumi.Input<number | undefined>;
     /**
      * Method ID.
      */
-    methodId?: pulumi.Input<string>;
+    methodId?: pulumi.Input<string | undefined>;
     /**
      * Mount accessor.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * Method name.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace ID.
      */
-    namespaceId?: pulumi.Input<string>;
+    namespaceId?: pulumi.Input<string | undefined>;
     /**
      * Method's namespace path.
      */
-    namespacePath?: pulumi.Input<string>;
+    namespacePath?: pulumi.Input<string | undefined>;
     /**
      * The length of time in seconds used to generate a counter for the TOTP token calculation.
      */
-    period?: pulumi.Input<number>;
+    period?: pulumi.Input<number | undefined>;
     /**
      * The pixel size of the generated square QR code.
      */
-    qrSize?: pulumi.Input<number>;
+    qrSize?: pulumi.Input<number | undefined>;
     /**
      * The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
      */
-    skew?: pulumi.Input<number>;
+    skew?: pulumi.Input<number | undefined>;
     /**
      * MFA type.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Resource UUID.
      */
-    uuid?: pulumi.Input<string>;
+    uuid?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -250,11 +250,11 @@ export interface MfaTotpArgs {
     /**
      * Specifies the hashing algorithm used to generate the TOTP code. Options include SHA1, SHA256, SHA512.
      */
-    algorithm?: pulumi.Input<string>;
+    algorithm?: pulumi.Input<string | undefined>;
     /**
      * The number of digits in the generated TOTP token. This value can either be 6 or 8
      */
-    digits?: pulumi.Input<number>;
+    digits?: pulumi.Input<number | undefined>;
     /**
      * The name of the key's issuing organization.
      */
@@ -262,25 +262,25 @@ export interface MfaTotpArgs {
     /**
      * Specifies the size in bytes of the generated key.
      */
-    keySize?: pulumi.Input<number>;
+    keySize?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of consecutive failed validation attempts allowed.
      */
-    maxValidationAttempts?: pulumi.Input<number>;
+    maxValidationAttempts?: pulumi.Input<number | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The length of time in seconds used to generate a counter for the TOTP token calculation.
      */
-    period?: pulumi.Input<number>;
+    period?: pulumi.Input<number | undefined>;
     /**
      * The pixel size of the generated square QR code.
      */
-    qrSize?: pulumi.Input<number>;
+    qrSize?: pulumi.Input<number | undefined>;
     /**
      * The number of delay periods that are allowed when validating a TOTP token. This value can either be 0 or 1.
      */
-    skew?: pulumi.Input<number>;
+    skew?: pulumi.Input<number | undefined>;
 }

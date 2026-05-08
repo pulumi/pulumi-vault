@@ -20,11 +20,11 @@ __all__ = ['AuthBackendLoginArgs', 'AuthBackendLogin']
 class AuthBackendLoginArgs:
     def __init__(__self__, *,
                  role_id: pulumi.Input[_builtins.str],
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendLogin resource.
 
@@ -66,19 +66,19 @@ class AuthBackendLoginArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path of the Vault backend to log in with.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -88,12 +88,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret ID of the role to log in with. Required
         unless `bind_secret_id` is set to false on the role.
@@ -101,12 +101,12 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretIdWo")
-    def secret_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
@@ -114,38 +114,38 @@ class AuthBackendLoginArgs:
         return pulumi.get(self, "secret_id_wo")
 
     @secret_id_wo.setter
-    def secret_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="secretIdWoVersion")
-    def secret_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the `secret_id_wo`. For more info see updating write-only attributes.
         """
         return pulumi.get(self, "secret_id_wo_version")
 
     @secret_id_wo_version.setter
-    def secret_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_id_wo_version", value)
 
 
 @pulumi.input_type
 class _AuthBackendLoginState:
     def __init__(__self__, *,
-                 accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 lease_duration: Optional[pulumi.Input[_builtins.int]] = None,
-                 lease_started: Optional[pulumi.Input[_builtins.str]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
+                 accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+                 lease_started: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendLogin resources.
 
@@ -197,79 +197,79 @@ class _AuthBackendLoginState:
 
     @_builtins.property
     @pulumi.getter
-    def accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The accessor for the token.
         """
         return pulumi.get(self, "accessor")
 
     @accessor.setter
-    def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accessor", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique path of the Vault backend to log in with.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="clientToken")
-    def client_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Vault token created.
         """
         return pulumi.get(self, "client_token")
 
     @client_token.setter
-    def client_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_token", value)
 
     @_builtins.property
     @pulumi.getter(name="leaseDuration")
-    def lease_duration(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def lease_duration(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         How long the token is valid for, in seconds.
         """
         return pulumi.get(self, "lease_duration")
 
     @lease_duration.setter
-    def lease_duration(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def lease_duration(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "lease_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="leaseStarted")
-    def lease_started(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def lease_started(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the lease started, in RFC 3339 format.
         """
         return pulumi.get(self, "lease_started")
 
     @lease_started.setter
-    def lease_started(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def lease_started(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "lease_started", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata associated with the token.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -279,48 +279,48 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of policies applied to the token.
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter
-    def renewable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def renewable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Whether the token is renewable or not.
         """
         return pulumi.get(self, "renewable")
 
     @renewable.setter
-    def renewable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def renewable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "renewable", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the role to log in with.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret ID of the role to log in with. Required
         unless `bind_secret_id` is set to false on the role.
@@ -328,12 +328,12 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretIdWo")
-    def secret_id_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         The SecretID to log in with. Write-only attribute that can accept ephemeral values. Required unless `bind_secret_id` is set to false on the role.
@@ -341,19 +341,19 @@ class _AuthBackendLoginState:
         return pulumi.get(self, "secret_id_wo")
 
     @secret_id_wo.setter
-    def secret_id_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="secretIdWoVersion")
-    def secret_id_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the `secret_id_wo`. For more info see updating write-only attributes.
         """
         return pulumi.get(self, "secret_id_wo_version")
 
     @secret_id_wo_version.setter
-    def secret_id_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_id_wo_version", value)
 
 
@@ -363,12 +363,12 @@ class AuthBackendLogin(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Logs into Vault using the AppRole auth backend. See the [Vault
@@ -519,12 +519,12 @@ class AuthBackendLogin(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -561,19 +561,19 @@ class AuthBackendLogin(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            client_token: Optional[pulumi.Input[_builtins.str]] = None,
-            lease_duration: Optional[pulumi.Input[_builtins.int]] = None,
-            lease_started: Optional[pulumi.Input[_builtins.str]] = None,
-            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            renewable: Optional[pulumi.Input[_builtins.bool]] = None,
-            role_id: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_id: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_id_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_id_wo_version: Optional[pulumi.Input[_builtins.int]] = None) -> 'AuthBackendLogin':
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            client_token: pulumi.Input[Optional[_builtins.str]] = None,
+            lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+            lease_started: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None) -> 'AuthBackendLogin':
         """
         Get an existing AuthBackendLogin resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

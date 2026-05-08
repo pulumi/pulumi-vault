@@ -403,12 +403,12 @@ def get_group(alias_id: Optional[_builtins.str] = None,
         parent_group_ids=pulumi.get(__ret__, 'parent_group_ids'),
         policies=pulumi.get(__ret__, 'policies'),
         type=pulumi.get(__ret__, 'type'))
-def get_group_output(alias_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     alias_mount_accessor: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     alias_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     group_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     group_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                     namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_group_output(alias_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     alias_mount_accessor: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     alias_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     group_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     group_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                     namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGroupResult]:
     """
     Lookup an Identity Group for Vault. The Identity secrets engine is the identity management solution

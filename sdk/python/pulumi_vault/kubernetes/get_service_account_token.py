@@ -269,12 +269,12 @@ def get_service_account_token(backend: Optional[_builtins.str] = None,
         service_account_namespace=pulumi.get(__ret__, 'service_account_namespace'),
         service_account_token=pulumi.get(__ret__, 'service_account_token'),
         ttl=pulumi.get(__ret__, 'ttl'))
-def get_service_account_token_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                                     cluster_role_binding: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                     kubernetes_namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                                     namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                     role: Optional[pulumi.Input[_builtins.str]] = None,
-                                     ttl: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_service_account_token_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                                     cluster_role_binding: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                     kubernetes_namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                                     namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                     role: pulumi.Input[Optional[_builtins.str]] = None,
+                                     ttl: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountTokenResult]:
     """
     Generates service account tokens for Kubernetes.

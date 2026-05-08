@@ -22,16 +22,16 @@ __all__ = ['SecretV2Args', 'SecretV2']
 class SecretV2Args:
     def __init__(__self__, *,
                  mount: pulumi.Input[_builtins.str],
-                 cas: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
-                 data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+                 cas: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_metadata: pulumi.Input[Optional['SecretV2CustomMetadataArgs']] = None,
+                 data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 delete_all_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a SecretV2 resource.
 
@@ -99,7 +99,7 @@ class SecretV2Args:
 
     @_builtins.property
     @pulumi.getter
-    def cas(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cas(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         This flag is required if `cas_required` is set to true
         on either the secret or the engine's config. In order for a
@@ -109,12 +109,12 @@ class SecretV2Args:
         return pulumi.get(self, "cas")
 
     @cas.setter
-    def cas(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cas(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cas", value)
 
     @_builtins.property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Optional[pulumi.Input['SecretV2CustomMetadataArgs']]:
+    def custom_metadata(self) -> pulumi.Input[Optional['SecretV2CustomMetadataArgs']]:
         """
         A nested block that allows configuring metadata for the
         KV secret. Refer to the
@@ -123,12 +123,12 @@ class SecretV2Args:
         return pulumi.get(self, "custom_metadata")
 
     @custom_metadata.setter
-    def custom_metadata(self, value: Optional[pulumi.Input['SecretV2CustomMetadataArgs']]):
+    def custom_metadata(self, value: pulumi.Input[Optional['SecretV2CustomMetadataArgs']]):
         pulumi.set(self, "custom_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJson")
-    def data_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def data_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON-encoded string that will be
         written as the secret data at the given path. This is required if `data_json_wo` is not set.
@@ -136,12 +136,12 @@ class SecretV2Args:
         return pulumi.get(self, "data_json")
 
     @data_json.setter
-    def data_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def data_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "data_json", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJsonWo")
-    def data_json_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def data_json_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         JSON-encoded string that will be
@@ -150,24 +150,24 @@ class SecretV2Args:
         return pulumi.get(self, "data_json_wo")
 
     @data_json_wo.setter
-    def data_json_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def data_json_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "data_json_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJsonWoVersion")
-    def data_json_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def data_json_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the `data_json_wo`. For more info see updating write-only attributes.
         """
         return pulumi.get(self, "data_json_wo_version")
 
     @data_json_wo_version.setter
-    def data_json_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def data_json_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "data_json_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteAllVersions")
-    def delete_all_versions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_all_versions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, permanently deletes all
         versions for the specified key.
@@ -175,12 +175,12 @@ class SecretV2Args:
         return pulumi.get(self, "delete_all_versions")
 
     @delete_all_versions.setter
-    def delete_all_versions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_all_versions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_all_versions", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRead")
-    def disable_read(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables reading secret from Vault;
         note: drift won't be detected.
@@ -188,12 +188,12 @@ class SecretV2Args:
         return pulumi.get(self, "disable_read")
 
     @disable_read.setter
-    def disable_read(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_read", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Full name of the secret. For a nested secret
         the name is the nested path excluding the mount and data
@@ -203,12 +203,12 @@ class SecretV2Args:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -218,39 +218,39 @@ class SecretV2Args:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def options(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         An object that holds option settings.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def options(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "options", value)
 
 
 @pulumi.input_type
 class _SecretV2State:
     def __init__(__self__, *,
-                 cas: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_metadata: Optional[pulumi.Input['SecretV2CustomMetadataArgs']] = None,
-                 data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None):
+                 cas: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_metadata: pulumi.Input[Optional['SecretV2CustomMetadataArgs']] = None,
+                 data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 delete_all_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretV2 resources.
 
@@ -322,7 +322,7 @@ class _SecretV2State:
 
     @_builtins.property
     @pulumi.getter
-    def cas(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cas(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         This flag is required if `cas_required` is set to true
         on either the secret or the engine's config. In order for a
@@ -332,12 +332,12 @@ class _SecretV2State:
         return pulumi.get(self, "cas")
 
     @cas.setter
-    def cas(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cas(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cas", value)
 
     @_builtins.property
     @pulumi.getter(name="customMetadata")
-    def custom_metadata(self) -> Optional[pulumi.Input['SecretV2CustomMetadataArgs']]:
+    def custom_metadata(self) -> pulumi.Input[Optional['SecretV2CustomMetadataArgs']]:
         """
         A nested block that allows configuring metadata for the
         KV secret. Refer to the
@@ -346,13 +346,13 @@ class _SecretV2State:
         return pulumi.get(self, "custom_metadata")
 
     @custom_metadata.setter
-    def custom_metadata(self, value: Optional[pulumi.Input['SecretV2CustomMetadataArgs']]):
+    def custom_metadata(self, value: pulumi.Input[Optional['SecretV2CustomMetadataArgs']]):
         pulumi.set(self, "custom_metadata", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Deprecated. Will no longer be set on a read.""")
-    def data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
         secret data from Vault**. A mapping whose keys are the top-level data keys returned from
@@ -362,12 +362,12 @@ class _SecretV2State:
         return pulumi.get(self, "data")
 
     @data.setter
-    def data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJson")
-    def data_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def data_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON-encoded string that will be
         written as the secret data at the given path. This is required if `data_json_wo` is not set.
@@ -375,12 +375,12 @@ class _SecretV2State:
         return pulumi.get(self, "data_json")
 
     @data_json.setter
-    def data_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def data_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "data_json", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJsonWo")
-    def data_json_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def data_json_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         JSON-encoded string that will be
@@ -389,24 +389,24 @@ class _SecretV2State:
         return pulumi.get(self, "data_json_wo")
 
     @data_json_wo.setter
-    def data_json_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def data_json_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "data_json_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="dataJsonWoVersion")
-    def data_json_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def data_json_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The version of the `data_json_wo`. For more info see updating write-only attributes.
         """
         return pulumi.get(self, "data_json_wo_version")
 
     @data_json_wo_version.setter
-    def data_json_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def data_json_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "data_json_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteAllVersions")
-    def delete_all_versions(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_all_versions(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, permanently deletes all
         versions for the specified key.
@@ -414,12 +414,12 @@ class _SecretV2State:
         return pulumi.get(self, "delete_all_versions")
 
     @delete_all_versions.setter
-    def delete_all_versions(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_all_versions(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_all_versions", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRead")
-    def disable_read(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables reading secret from Vault;
         note: drift won't be detected.
@@ -427,36 +427,36 @@ class _SecretV2State:
         return pulumi.get(self, "disable_read")
 
     @disable_read.setter
-    def disable_read(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_read", value)
 
     @_builtins.property
     @pulumi.getter
-    def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Metadata associated with this secret read from Vault.
         """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
-    def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
-    def mount(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mount(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path where KV-V2 engine is mounted.
         """
         return pulumi.get(self, "mount")
 
     @mount.setter
-    def mount(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mount(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mount", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Full name of the secret. For a nested secret
         the name is the nested path excluding the mount and data
@@ -466,12 +466,12 @@ class _SecretV2State:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -481,31 +481,31 @@ class _SecretV2State:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def options(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         An object that holds option settings.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def options(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Full path where the KV-V2 secret will be written.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
 
@@ -515,17 +515,17 @@ class SecretV2(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cas: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
-                 data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 cas: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
+                 data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 delete_all_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Writes a KV-V2 secret to a given path in Vault.
@@ -712,17 +712,17 @@ class SecretV2(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cas: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
-                 data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mount: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 cas: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
+                 data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 delete_all_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mount: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -760,20 +760,20 @@ class SecretV2(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cas: Optional[pulumi.Input[_builtins.int]] = None,
-            custom_metadata: Optional[pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
-            data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            data_json: Optional[pulumi.Input[_builtins.str]] = None,
-            data_json_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            data_json_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            delete_all_versions: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-            metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            mount: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretV2':
+            cas: pulumi.Input[Optional[_builtins.int]] = None,
+            custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
+            data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            data_json: pulumi.Input[Optional[_builtins.str]] = None,
+            data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            delete_all_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretV2':
         """
         Get an existing SecretV2 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

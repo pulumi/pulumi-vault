@@ -38,7 +38,7 @@ namespace Pulumi.Vault.Secrets
     ///     {
     ///         Name = "gh-apps",
     ///         AppId = appId,
-    ///         PrivateKey = Std.Index.File.Invoke(new()
+    ///         PrivateKey = Std.File.Invoke(new()
     ///         {
     ///             Input = privatekeyFile,
     ///         }).Apply(invoke =&gt; invoke.Result),

@@ -19,10 +19,10 @@ __all__ = ['AuthBackendIdentityWhitelistArgs', 'AuthBackendIdentityWhitelist']
 @pulumi.input_type
 class AuthBackendIdentityWhitelistArgs:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a AuthBackendIdentityWhitelist resource.
 
@@ -48,19 +48,19 @@ class AuthBackendIdentityWhitelistArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path of the AWS backend being configured.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disablePeriodicTidy")
-    def disable_periodic_tidy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_periodic_tidy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables the periodic
         tidying of the identity-whitelist entries.
@@ -68,12 +68,12 @@ class AuthBackendIdentityWhitelistArgs:
         return pulumi.get(self, "disable_periodic_tidy")
 
     @disable_periodic_tidy.setter
-    def disable_periodic_tidy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_periodic_tidy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_periodic_tidy", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -83,12 +83,12 @@ class AuthBackendIdentityWhitelistArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def safety_buffer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of extra time, in minutes, that must
         have passed beyond the roletag expiration, before it is removed from the
@@ -97,17 +97,17 @@ class AuthBackendIdentityWhitelistArgs:
         return pulumi.get(self, "safety_buffer")
 
     @safety_buffer.setter
-    def safety_buffer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def safety_buffer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "safety_buffer", value)
 
 
 @pulumi.input_type
 class _AuthBackendIdentityWhitelistState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering AuthBackendIdentityWhitelist resources.
 
@@ -133,19 +133,19 @@ class _AuthBackendIdentityWhitelistState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path of the AWS backend being configured.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="disablePeriodicTidy")
-    def disable_periodic_tidy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_periodic_tidy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, disables the periodic
         tidying of the identity-whitelist entries.
@@ -153,12 +153,12 @@ class _AuthBackendIdentityWhitelistState:
         return pulumi.get(self, "disable_periodic_tidy")
 
     @disable_periodic_tidy.setter
-    def disable_periodic_tidy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_periodic_tidy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_periodic_tidy", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -168,12 +168,12 @@ class _AuthBackendIdentityWhitelistState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def safety_buffer(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The amount of extra time, in minutes, that must
         have passed beyond the roletag expiration, before it is removed from the
@@ -182,7 +182,7 @@ class _AuthBackendIdentityWhitelistState:
         return pulumi.get(self, "safety_buffer")
 
     @safety_buffer.setter
-    def safety_buffer(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def safety_buffer(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "safety_buffer", value)
 
 
@@ -192,10 +192,10 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         Configures the periodic tidying operation of the whitelisted identity entries.
@@ -285,10 +285,10 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.int]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -312,10 +312,10 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_periodic_tidy: Optional[pulumi.Input[_builtins.bool]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            safety_buffer: Optional[pulumi.Input[_builtins.int]] = None) -> 'AuthBackendIdentityWhitelist':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            safety_buffer: pulumi.Input[Optional[_builtins.int]] = None) -> 'AuthBackendIdentityWhitelist':
         """
         Get an existing AuthBackendIdentityWhitelist resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

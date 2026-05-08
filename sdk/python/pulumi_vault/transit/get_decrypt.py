@@ -143,11 +143,11 @@ def get_decrypt(backend: Optional[_builtins.str] = None,
         key=pulumi.get(__ret__, 'key'),
         namespace=pulumi.get(__ret__, 'namespace'),
         plaintext=pulumi.get(__ret__, 'plaintext'))
-def get_decrypt_output(backend: Optional[pulumi.Input[_builtins.str]] = None,
-                       ciphertext: Optional[pulumi.Input[_builtins.str]] = None,
-                       context: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       key: Optional[pulumi.Input[_builtins.str]] = None,
-                       namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_decrypt_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
+                       ciphertext: pulumi.Input[Optional[_builtins.str]] = None,
+                       context: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       key: pulumi.Input[Optional[_builtins.str]] = None,
+                       namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDecryptResult]:
     """
     This is a data source which can be used to decrypt ciphertext using a Vault Transit key.

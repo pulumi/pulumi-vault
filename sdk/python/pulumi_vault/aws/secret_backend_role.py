@@ -21,20 +21,20 @@ class SecretBackendRoleArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  credential_type: pulumi.Input[_builtins.str],
-                 default_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 policy_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 user_path: Optional[pulumi.Input[_builtins.str]] = None):
+                 default_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 session_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 user_path: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
 
@@ -153,7 +153,7 @@ class SecretBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultStsTtl")
-    def default_sts_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_sts_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default TTL in seconds for STS credentials.
         When a TTL is not specified when STS credentials are requested,
@@ -164,12 +164,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "default_sts_ttl")
 
     @default_sts_ttl.setter
-    def default_sts_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_sts_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_sts_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         External ID to set for assume role creds. 
         Valid only when `credential_type` is set to `assumed_role`.
@@ -177,12 +177,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="iamGroups")
-    def iam_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def iam_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of IAM group names. IAM users generated
         against this vault role will be added to these IAM Groups. For a credential
@@ -194,12 +194,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "iam_groups")
 
     @iam_groups.setter
-    def iam_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def iam_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="iamTags")
-    def iam_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def iam_tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of strings representing key/value pairs
         to be used as tags for any IAM user that is created by this role.
@@ -207,12 +207,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "iam_tags")
 
     @iam_tags.setter
-    def iam_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def iam_tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_tags", value)
 
     @_builtins.property
     @pulumi.getter(name="maxStsTtl")
-    def max_sts_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_sts_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The max allowed TTL in seconds for STS credentials
         (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
@@ -221,24 +221,24 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "max_sts_ttl")
 
     @max_sts_ttl.setter
-    def max_sts_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_sts_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_sts_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="mfaSerialNumber")
-    def mfa_serial_number(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mfa_serial_number(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
         """
         return pulumi.get(self, "mfa_serial_number")
 
     @mfa_serial_number.setter
-    def mfa_serial_number(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mfa_serial_number(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mfa_serial_number", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this role within the backend.
         Must be unique within the backend.
@@ -246,12 +246,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -261,12 +261,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="permissionsBoundaryArn")
-    def permissions_boundary_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def permissions_boundary_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the AWS Permissions 
         Boundary to attach to IAM users created in the role. Valid only when
@@ -276,12 +276,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "permissions_boundary_arn")
 
     @permissions_boundary_arn.setter
-    def permissions_boundary_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def permissions_boundary_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "permissions_boundary_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="policyArns")
-    def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policy_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies a list of AWS managed policy ARNs. The
         behavior depends on the credential type. With `iam_user`, the policies will be
@@ -294,12 +294,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "policy_arns")
 
     @policy_arns.setter
-    def policy_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policy_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policy_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="policyDocument")
-    def policy_document(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_document(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IAM policy document for the role. The
         behavior depends on the credential type. With `iam_user`, the policy document
@@ -310,12 +310,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "policy_document")
 
     @policy_document.setter
-    def policy_document(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_document(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_document", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArns")
-    def role_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def role_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the ARNs of the AWS roles this Vault role
         is allowed to assume. Required when `credential_type` is `assumed_role` and
@@ -324,12 +324,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "role_arns")
 
     @role_arns.setter
-    def role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def role_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "role_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="sessionTags")
-    def session_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def session_tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of strings representing key/value pairs to be set
         during assume role creds creation. Valid only when `credential_type` is set to
@@ -338,12 +338,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "session_tags")
 
     @session_tags.setter
-    def session_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def session_tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "session_tags", value)
 
     @_builtins.property
     @pulumi.getter(name="userPath")
-    def user_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path for the user name. Valid only when 
         `credential_type` is `iam_user`. Default is `/`.
@@ -351,29 +351,29 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "user_path")
 
     @user_path.setter
-    def user_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_path", value)
 
 
 @pulumi.input_type
 class _SecretBackendRoleState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 policy_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 user_path: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 session_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 user_path: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
 
@@ -467,7 +467,7 @@ class _SecretBackendRoleState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS secret backend is mounted at,
         with no leading or trailing `/`s.
@@ -475,12 +475,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="credentialType")
-    def credential_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def credential_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of credential to be used when
         retrieving credentials from the role. Must be one of `iam_user`, `assumed_role`, or
@@ -489,12 +489,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "credential_type")
 
     @credential_type.setter
-    def credential_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def credential_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "credential_type", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultStsTtl")
-    def default_sts_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_sts_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The default TTL in seconds for STS credentials.
         When a TTL is not specified when STS credentials are requested,
@@ -505,12 +505,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "default_sts_ttl")
 
     @default_sts_ttl.setter
-    def default_sts_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_sts_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_sts_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         External ID to set for assume role creds. 
         Valid only when `credential_type` is set to `assumed_role`.
@@ -518,12 +518,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="iamGroups")
-    def iam_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def iam_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of IAM group names. IAM users generated
         against this vault role will be added to these IAM Groups. For a credential
@@ -535,12 +535,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "iam_groups")
 
     @iam_groups.setter
-    def iam_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def iam_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="iamTags")
-    def iam_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def iam_tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of strings representing key/value pairs
         to be used as tags for any IAM user that is created by this role.
@@ -548,12 +548,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "iam_tags")
 
     @iam_tags.setter
-    def iam_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def iam_tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_tags", value)
 
     @_builtins.property
     @pulumi.getter(name="maxStsTtl")
-    def max_sts_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_sts_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The max allowed TTL in seconds for STS credentials
         (credentials TTL are capped to `max_sts_ttl`). Valid only when `credential_type` is
@@ -562,24 +562,24 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "max_sts_ttl")
 
     @max_sts_ttl.setter
-    def max_sts_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_sts_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_sts_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="mfaSerialNumber")
-    def mfa_serial_number(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mfa_serial_number(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
         """
         return pulumi.get(self, "mfa_serial_number")
 
     @mfa_serial_number.setter
-    def mfa_serial_number(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mfa_serial_number(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mfa_serial_number", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to identify this role within the backend.
         Must be unique within the backend.
@@ -587,12 +587,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -602,12 +602,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="permissionsBoundaryArn")
-    def permissions_boundary_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def permissions_boundary_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ARN of the AWS Permissions 
         Boundary to attach to IAM users created in the role. Valid only when
@@ -617,12 +617,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "permissions_boundary_arn")
 
     @permissions_boundary_arn.setter
-    def permissions_boundary_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def permissions_boundary_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "permissions_boundary_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="policyArns")
-    def policy_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policy_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies a list of AWS managed policy ARNs. The
         behavior depends on the credential type. With `iam_user`, the policies will be
@@ -635,12 +635,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "policy_arns")
 
     @policy_arns.setter
-    def policy_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policy_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policy_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="policyDocument")
-    def policy_document(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def policy_document(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The IAM policy document for the role. The
         behavior depends on the credential type. With `iam_user`, the policy document
@@ -651,12 +651,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "policy_document")
 
     @policy_document.setter
-    def policy_document(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def policy_document(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "policy_document", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArns")
-    def role_arns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def role_arns(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the ARNs of the AWS roles this Vault role
         is allowed to assume. Required when `credential_type` is `assumed_role` and
@@ -665,12 +665,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "role_arns")
 
     @role_arns.setter
-    def role_arns(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def role_arns(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "role_arns", value)
 
     @_builtins.property
     @pulumi.getter(name="sessionTags")
-    def session_tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def session_tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of strings representing key/value pairs to be set
         during assume role creds creation. Valid only when `credential_type` is set to
@@ -679,12 +679,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "session_tags")
 
     @session_tags.setter
-    def session_tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def session_tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "session_tags", value)
 
     @_builtins.property
     @pulumi.getter(name="userPath")
-    def user_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path for the user name. Valid only when 
         `credential_type` is `iam_user`. Default is `/`.
@@ -692,7 +692,7 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "user_path")
 
     @user_path.setter
-    def user_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_path", value)
 
 
@@ -702,22 +702,22 @@ class SecretBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 policy_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 user_path: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 session_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 user_path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Creates a role on an AWS Secret Backend for Vault. Roles are
@@ -889,22 +889,22 @@ class SecretBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 policy_document: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 user_path: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 max_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 mfa_serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 policy_document: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 session_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 user_path: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -944,22 +944,22 @@ class SecretBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            credential_type: Optional[pulumi.Input[_builtins.str]] = None,
-            default_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            external_id: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            iam_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            max_sts_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            mfa_serial_number: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            permissions_boundary_arn: Optional[pulumi.Input[_builtins.str]] = None,
-            policy_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            policy_document: Optional[pulumi.Input[_builtins.str]] = None,
-            role_arns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            session_tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            user_path: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendRole':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+            default_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            iam_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            max_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mfa_serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            permissions_boundary_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            policy_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            policy_document: pulumi.Input[Optional[_builtins.str]] = None,
+            role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            session_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            user_path: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

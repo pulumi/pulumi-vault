@@ -170,8 +170,8 @@ def get_namespace(namespace: Optional[_builtins.str] = None,
         namespace_id=pulumi.get(__ret__, 'namespace_id'),
         path=pulumi.get(__ret__, 'path'),
         path_fq=pulumi.get(__ret__, 'path_fq'))
-def get_namespace_output(namespace: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                         path: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_namespace_output(namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                         path: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNamespaceResult]:
     """
     Lookup a [Namespace](https://developer.hashicorp.com/vault/docs/enterprise/namespaces) from Vault or from the provider configuration.

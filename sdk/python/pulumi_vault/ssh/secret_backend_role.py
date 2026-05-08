@@ -23,34 +23,34 @@ class SecretBackendRoleArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  key_type: pulumi.Input[_builtins.str],
-                 algorithm_signer: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_bare_domains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_empty_principals: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_host_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_key_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_critical_options: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_extensions: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
-                 allowed_users: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_users_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 algorithm_signer: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_bare_domains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_empty_principals: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_host_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_key_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_critical_options: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
+                 allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cidr_list: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_critical_options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_user_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 key_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendRole resource.
 
@@ -182,31 +182,31 @@ class SecretBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="algorithmSigner")
-    def algorithm_signer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm_signer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
         """
         return pulumi.get(self, "algorithm_signer")
 
     @algorithm_signer.setter
-    def algorithm_signer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm_signer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm_signer", value)
 
     @_builtins.property
     @pulumi.getter(name="allowBareDomains")
-    def allow_bare_domains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_bare_domains(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         """
         return pulumi.get(self, "allow_bare_domains")
 
     @allow_bare_domains.setter
-    def allow_bare_domains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_bare_domains(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_bare_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="allowEmptyPrincipals")
-    def allow_empty_principals(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_empty_principals(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow signing certificates with no
         valid principals (e.g. any valid principal). For backwards compatibility
@@ -215,84 +215,84 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "allow_empty_principals")
 
     @allow_empty_principals.setter
-    def allow_empty_principals(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_empty_principals(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_empty_principals", value)
 
     @_builtins.property
     @pulumi.getter(name="allowHostCertificates")
-    def allow_host_certificates(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_host_certificates(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if certificates are allowed to be signed for use as a 'host'.
         """
         return pulumi.get(self, "allow_host_certificates")
 
     @allow_host_certificates.setter
-    def allow_host_certificates(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_host_certificates(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_host_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="allowSubdomains")
-    def allow_subdomains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_subdomains(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
         """
         return pulumi.get(self, "allow_subdomains")
 
     @allow_subdomains.setter
-    def allow_subdomains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_subdomains(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_subdomains", value)
 
     @_builtins.property
     @pulumi.getter(name="allowUserCertificates")
-    def allow_user_certificates(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_user_certificates(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if certificates are allowed to be signed for use as a 'user'.
         """
         return pulumi.get(self, "allow_user_certificates")
 
     @allow_user_certificates.setter
-    def allow_user_certificates(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_user_certificates(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_user_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="allowUserKeyIds")
-    def allow_user_key_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_user_key_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if users can override the key ID for a signed certificate with the `key_id` field.
         """
         return pulumi.get(self, "allow_user_key_ids")
 
     @allow_user_key_ids.setter
-    def allow_user_key_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_user_key_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_user_key_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedCriticalOptions")
-    def allowed_critical_options(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_critical_options(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a comma-separated list of critical options that certificates can have when signed.
         """
         return pulumi.get(self, "allowed_critical_options")
 
     @allowed_critical_options.setter
-    def allowed_critical_options(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_critical_options(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_critical_options", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedDomains")
-    def allowed_domains(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_domains(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The list of domains for which a client can request a host certificate.
         """
         return pulumi.get(self, "allowed_domains")
 
     @allowed_domains.setter
-    def allowed_domains(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_domains(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedDomainsTemplate")
-    def allowed_domains_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allowed_domains_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if `allowed_domains` can be declared using
         identity template policies. Non-templated domains are also permitted.
@@ -300,24 +300,24 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "allowed_domains_template")
 
     @allowed_domains_template.setter
-    def allowed_domains_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allowed_domains_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allowed_domains_template", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedExtensions")
-    def allowed_extensions(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_extensions(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a comma-separated list of extensions that certificates can have when signed.
         """
         return pulumi.get(self, "allowed_extensions")
 
     @allowed_extensions.setter
-    def allowed_extensions(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_extensions(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_extensions", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUserKeyConfigs")
-    def allowed_user_key_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
+    def allowed_user_key_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
         """
         Set of configuration blocks to define allowed  
         user key configuration, like key type and their lengths. Can be specified multiple times.
@@ -326,72 +326,72 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "allowed_user_key_configs")
 
     @allowed_user_key_configs.setter
-    def allowed_user_key_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]):
+    def allowed_user_key_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]):
         pulumi.set(self, "allowed_user_key_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUsers")
-    def allowed_users(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_users(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         """
         return pulumi.get(self, "allowed_users")
 
     @allowed_users.setter
-    def allowed_users(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_users(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_users", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUsersTemplate")
-    def allowed_users_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allowed_users_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         """
         return pulumi.get(self, "allowed_users_template")
 
     @allowed_users_template.setter
-    def allowed_users_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allowed_users_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allowed_users_template", value)
 
     @_builtins.property
     @pulumi.getter(name="cidrList")
-    def cidr_list(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cidr_list(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The comma-separated string of CIDR blocks for which this role is applicable.
         """
         return pulumi.get(self, "cidr_list")
 
     @cidr_list.setter
-    def cidr_list(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cidr_list(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cidr_list", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultCriticalOptions")
-    def default_critical_options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def default_critical_options(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies a map of critical options that certificates have when signed.
         """
         return pulumi.get(self, "default_critical_options")
 
     @default_critical_options.setter
-    def default_critical_options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def default_critical_options(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_critical_options", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultExtensions")
-    def default_extensions(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def default_extensions(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies a map of extensions that certificates have when signed.
         """
         return pulumi.get(self, "default_extensions")
 
     @default_extensions.setter
-    def default_extensions(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def default_extensions(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_extensions", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultExtensionsTemplate")
-    def default_extensions_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_extensions_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the `default_extensions` field supports templating.
         When set to `true`, the extension values can use identity template policies. Defaults to `false`.
@@ -399,36 +399,36 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "default_extensions_template")
 
     @default_extensions_template.setter
-    def default_extensions_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_extensions_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_extensions_template", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultUser")
-    def default_user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default username for which a credential will be generated.
         """
         return pulumi.get(self, "default_user")
 
     @default_user.setter
-    def default_user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_user", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultUserTemplate")
-    def default_user_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_user_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
         """
         return pulumi.get(self, "default_user_template")
 
     @default_user_template.setter
-    def default_user_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_user_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_user_template", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeCidrLists")
-    def exclude_cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def exclude_cidr_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
         This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
@@ -436,48 +436,48 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "exclude_cidr_lists")
 
     @exclude_cidr_lists.setter
-    def exclude_cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def exclude_cidr_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "exclude_cidr_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="keyIdFormat")
-    def key_id_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_id_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a custom format for the key id of a signed certificate.
         """
         return pulumi.get(self, "key_id_format")
 
     @key_id_format.setter
-    def key_id_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_id_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_id_format", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the maximum Time To Live value.
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the role to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -487,12 +487,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="notBeforeDuration")
-    def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_before_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the duration by which to backdate the ValidAfter property.
         Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
@@ -500,12 +500,12 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "not_before_duration")
 
     @not_before_duration.setter
-    def not_before_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_before_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_before_duration", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the port number for SSH connections. Defaults to `22`.
         This is primarily used with OTP key types to specify the SSH port on target hosts.
@@ -513,55 +513,55 @@ class SecretBackendRoleArgs:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the Time To Live value.
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
 
 @pulumi.input_type
 class _SecretBackendRoleState:
     def __init__(__self__, *,
-                 algorithm_signer: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_bare_domains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_empty_principals: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_host_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_key_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_critical_options: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_extensions: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
-                 allowed_users: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_users_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None):
+                 algorithm_signer: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_bare_domains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_empty_principals: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_host_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_key_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_critical_options: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]] = None,
+                 allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_list: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_critical_options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_user_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 key_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendRole resources.
 
@@ -671,31 +671,31 @@ class _SecretBackendRoleState:
 
     @_builtins.property
     @pulumi.getter(name="algorithmSigner")
-    def algorithm_signer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def algorithm_signer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
         """
         return pulumi.get(self, "algorithm_signer")
 
     @algorithm_signer.setter
-    def algorithm_signer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def algorithm_signer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "algorithm_signer", value)
 
     @_builtins.property
     @pulumi.getter(name="allowBareDomains")
-    def allow_bare_domains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_bare_domains(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if host certificates that are requested are allowed to use the base domains listed in `allowed_domains`.
         """
         return pulumi.get(self, "allow_bare_domains")
 
     @allow_bare_domains.setter
-    def allow_bare_domains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_bare_domains(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_bare_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="allowEmptyPrincipals")
-    def allow_empty_principals(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_empty_principals(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Allow signing certificates with no
         valid principals (e.g. any valid principal). For backwards compatibility
@@ -704,84 +704,84 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "allow_empty_principals")
 
     @allow_empty_principals.setter
-    def allow_empty_principals(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_empty_principals(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_empty_principals", value)
 
     @_builtins.property
     @pulumi.getter(name="allowHostCertificates")
-    def allow_host_certificates(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_host_certificates(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if certificates are allowed to be signed for use as a 'host'.
         """
         return pulumi.get(self, "allow_host_certificates")
 
     @allow_host_certificates.setter
-    def allow_host_certificates(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_host_certificates(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_host_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="allowSubdomains")
-    def allow_subdomains(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_subdomains(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if host certificates that are requested are allowed to be subdomains of those listed in `allowed_domains`.
         """
         return pulumi.get(self, "allow_subdomains")
 
     @allow_subdomains.setter
-    def allow_subdomains(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_subdomains(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_subdomains", value)
 
     @_builtins.property
     @pulumi.getter(name="allowUserCertificates")
-    def allow_user_certificates(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_user_certificates(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if certificates are allowed to be signed for use as a 'user'.
         """
         return pulumi.get(self, "allow_user_certificates")
 
     @allow_user_certificates.setter
-    def allow_user_certificates(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_user_certificates(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_user_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="allowUserKeyIds")
-    def allow_user_key_ids(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_user_key_ids(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if users can override the key ID for a signed certificate with the `key_id` field.
         """
         return pulumi.get(self, "allow_user_key_ids")
 
     @allow_user_key_ids.setter
-    def allow_user_key_ids(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_user_key_ids(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_user_key_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedCriticalOptions")
-    def allowed_critical_options(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_critical_options(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a comma-separated list of critical options that certificates can have when signed.
         """
         return pulumi.get(self, "allowed_critical_options")
 
     @allowed_critical_options.setter
-    def allowed_critical_options(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_critical_options(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_critical_options", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedDomains")
-    def allowed_domains(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_domains(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The list of domains for which a client can request a host certificate.
         """
         return pulumi.get(self, "allowed_domains")
 
     @allowed_domains.setter
-    def allowed_domains(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_domains(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_domains", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedDomainsTemplate")
-    def allowed_domains_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allowed_domains_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if `allowed_domains` can be declared using
         identity template policies. Non-templated domains are also permitted.
@@ -789,24 +789,24 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "allowed_domains_template")
 
     @allowed_domains_template.setter
-    def allowed_domains_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allowed_domains_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allowed_domains_template", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedExtensions")
-    def allowed_extensions(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_extensions(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a comma-separated list of extensions that certificates can have when signed.
         """
         return pulumi.get(self, "allowed_extensions")
 
     @allowed_extensions.setter
-    def allowed_extensions(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_extensions(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_extensions", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUserKeyConfigs")
-    def allowed_user_key_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
+    def allowed_user_key_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]:
         """
         Set of configuration blocks to define allowed  
         user key configuration, like key type and their lengths. Can be specified multiple times.
@@ -815,84 +815,84 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "allowed_user_key_configs")
 
     @allowed_user_key_configs.setter
-    def allowed_user_key_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]):
+    def allowed_user_key_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleAllowedUserKeyConfigArgs']]]]):
         pulumi.set(self, "allowed_user_key_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUsers")
-    def allowed_users(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def allowed_users(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
         """
         return pulumi.get(self, "allowed_users")
 
     @allowed_users.setter
-    def allowed_users(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def allowed_users(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "allowed_users", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUsersTemplate")
-    def allowed_users_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allowed_users_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if `allowed_users` can be declared using identity template policies. Non-templated users are also permitted.
         """
         return pulumi.get(self, "allowed_users_template")
 
     @allowed_users_template.setter
-    def allowed_users_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allowed_users_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allowed_users_template", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path where the SSH secret backend is mounted.
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="cidrList")
-    def cidr_list(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cidr_list(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The comma-separated string of CIDR blocks for which this role is applicable.
         """
         return pulumi.get(self, "cidr_list")
 
     @cidr_list.setter
-    def cidr_list(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cidr_list(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cidr_list", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultCriticalOptions")
-    def default_critical_options(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def default_critical_options(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies a map of critical options that certificates have when signed.
         """
         return pulumi.get(self, "default_critical_options")
 
     @default_critical_options.setter
-    def default_critical_options(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def default_critical_options(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_critical_options", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultExtensions")
-    def default_extensions(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def default_extensions(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Specifies a map of extensions that certificates have when signed.
         """
         return pulumi.get(self, "default_extensions")
 
     @default_extensions.setter
-    def default_extensions(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def default_extensions(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "default_extensions", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultExtensionsTemplate")
-    def default_extensions_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_extensions_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies if the `default_extensions` field supports templating.
         When set to `true`, the extension values can use identity template policies. Defaults to `false`.
@@ -900,36 +900,36 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "default_extensions_template")
 
     @default_extensions_template.setter
-    def default_extensions_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_extensions_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_extensions_template", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultUser")
-    def default_user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default username for which a credential will be generated.
         """
         return pulumi.get(self, "default_user")
 
     @default_user.setter
-    def default_user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_user", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultUserTemplate")
-    def default_user_template(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_user_template(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, `default_users` can be specified using identity template values. A non-templated user is also permitted.
         """
         return pulumi.get(self, "default_user_template")
 
     @default_user_template.setter
-    def default_user_template(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_user_template(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_user_template", value)
 
     @_builtins.property
     @pulumi.getter(name="excludeCidrLists")
-    def exclude_cidr_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def exclude_cidr_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies a comma-separated list of CIDR blocks for which credentials cannot be created.
         This is particularly useful for OTP key types to restrict credential generation to specific network ranges.
@@ -937,60 +937,60 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "exclude_cidr_lists")
 
     @exclude_cidr_lists.setter
-    def exclude_cidr_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def exclude_cidr_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "exclude_cidr_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="keyIdFormat")
-    def key_id_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_id_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies a custom format for the key id of a signed certificate.
         """
         return pulumi.get(self, "key_id_format")
 
     @key_id_format.setter
-    def key_id_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_id_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_id_format", value)
 
     @_builtins.property
     @pulumi.getter(name="keyType")
-    def key_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of credentials generated by this role. This can be either `otp`, `dynamic` or `ca`.
         """
         return pulumi.get(self, "key_type")
 
     @key_type.setter
-    def key_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_type", value)
 
     @_builtins.property
     @pulumi.getter(name="maxTtl")
-    def max_ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the maximum Time To Live value.
         """
         return pulumi.get(self, "max_ttl")
 
     @max_ttl.setter
-    def max_ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_ttl", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the name of the role to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -1000,12 +1000,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="notBeforeDuration")
-    def not_before_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_before_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the duration by which to backdate the ValidAfter property.
         Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
@@ -1013,12 +1013,12 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "not_before_duration")
 
     @not_before_duration.setter
-    def not_before_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_before_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_before_duration", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the port number for SSH connections. Defaults to `22`.
         This is primarily used with OTP key types to specify the SSH port on target hosts.
@@ -1026,19 +1026,19 @@ class _SecretBackendRoleState:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter
-    def ttl(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ttl(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the Time To Live value.
         """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
-    def ttl(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ttl", value)
 
 
@@ -1048,36 +1048,36 @@ class SecretBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm_signer: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_bare_domains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_empty_principals: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_host_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_key_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_critical_options: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_extensions: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
-                 allowed_users: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_users_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 algorithm_signer: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_bare_domains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_empty_principals: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_host_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_key_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_critical_options: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
+                 allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_list: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_critical_options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_user_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 key_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to manage roles in an SSH secret backend
@@ -1213,36 +1213,36 @@ class SecretBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 algorithm_signer: Optional[pulumi.Input[_builtins.str]] = None,
-                 allow_bare_domains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_empty_principals: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_host_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allow_user_key_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_critical_options: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_domains_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 allowed_extensions: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
-                 allowed_users: Optional[pulumi.Input[_builtins.str]] = None,
-                 allowed_users_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 default_user: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
-                 exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 ttl: Optional[pulumi.Input[_builtins.str]] = None,
+                 algorithm_signer: pulumi.Input[Optional[_builtins.str]] = None,
+                 allow_bare_domains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_empty_principals: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_host_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allow_user_key_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_critical_options: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
+                 allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
+                 allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 cidr_list: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_critical_options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 default_extensions_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 default_user: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_user_template: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exclude_cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 key_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1296,36 +1296,36 @@ class SecretBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            algorithm_signer: Optional[pulumi.Input[_builtins.str]] = None,
-            allow_bare_domains: Optional[pulumi.Input[_builtins.bool]] = None,
-            allow_empty_principals: Optional[pulumi.Input[_builtins.bool]] = None,
-            allow_host_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-            allow_subdomains: Optional[pulumi.Input[_builtins.bool]] = None,
-            allow_user_certificates: Optional[pulumi.Input[_builtins.bool]] = None,
-            allow_user_key_ids: Optional[pulumi.Input[_builtins.bool]] = None,
-            allowed_critical_options: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_domains: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_domains_template: Optional[pulumi.Input[_builtins.bool]] = None,
-            allowed_extensions: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_user_key_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
-            allowed_users: Optional[pulumi.Input[_builtins.str]] = None,
-            allowed_users_template: Optional[pulumi.Input[_builtins.bool]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            cidr_list: Optional[pulumi.Input[_builtins.str]] = None,
-            default_critical_options: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            default_extensions: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            default_extensions_template: Optional[pulumi.Input[_builtins.bool]] = None,
-            default_user: Optional[pulumi.Input[_builtins.str]] = None,
-            default_user_template: Optional[pulumi.Input[_builtins.bool]] = None,
-            exclude_cidr_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            key_id_format: Optional[pulumi.Input[_builtins.str]] = None,
-            key_type: Optional[pulumi.Input[_builtins.str]] = None,
-            max_ttl: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            not_before_duration: Optional[pulumi.Input[_builtins.str]] = None,
-            port: Optional[pulumi.Input[_builtins.int]] = None,
-            ttl: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendRole':
+            algorithm_signer: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_bare_domains: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_empty_principals: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_host_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_user_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_user_key_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            allowed_critical_options: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
+            allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cidr_list: pulumi.Input[Optional[_builtins.str]] = None,
+            default_critical_options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            default_extensions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            default_extensions_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            default_user: pulumi.Input[Optional[_builtins.str]] = None,
+            default_user_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            exclude_cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            key_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

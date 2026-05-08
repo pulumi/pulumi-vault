@@ -21,28 +21,28 @@ class AuthBackendRoleArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_labels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 max_jwt_exp: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 add_group_aliases: pulumi.Input[Optional[_builtins.bool]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_gce_inference: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_instance_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_service_accounts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 max_jwt_exp: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendRole resource.
 
@@ -141,16 +141,16 @@ class AuthBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="addGroupAliases")
-    def add_group_aliases(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_group_aliases(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "add_group_aliases")
 
     @add_group_aliases.setter
-    def add_group_aliases(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_group_aliases(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_group_aliases", value)
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -158,102 +158,102 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowGceInference")
-    def allow_gce_inference(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_gce_inference(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "allow_gce_inference")
 
     @allow_gce_inference.setter
-    def allow_gce_inference(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_gce_inference(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_gce_inference", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted GCP auth backend
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="boundInstanceGroups")
-    def bound_instance_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_instance_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_instance_groups")
 
     @bound_instance_groups.setter
-    def bound_instance_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_instance_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_instance_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="boundLabels")
-    def bound_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_labels")
 
     @bound_labels.setter
-    def bound_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_labels", value)
 
     @_builtins.property
     @pulumi.getter(name="boundProjects")
-    def bound_projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_projects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         """
         return pulumi.get(self, "bound_projects")
 
     @bound_projects.setter
-    def bound_projects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_projects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_projects", value)
 
     @_builtins.property
     @pulumi.getter(name="boundRegions")
-    def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_regions")
 
     @bound_regions.setter
-    def bound_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_regions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="boundServiceAccounts")
-    def bound_service_accounts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_service_accounts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         """
         return pulumi.get(self, "bound_service_accounts")
 
     @bound_service_accounts.setter
-    def bound_service_accounts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_service_accounts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_service_accounts", value)
 
     @_builtins.property
     @pulumi.getter(name="boundZones")
-    def bound_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_zones(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_zones")
 
     @bound_zones.setter
-    def bound_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_zones(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_zones", value)
 
     @_builtins.property
     @pulumi.getter(name="maxJwtExp")
-    def max_jwt_exp(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_jwt_exp(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "max_jwt_exp")
 
     @max_jwt_exp.setter
-    def max_jwt_exp(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_jwt_exp(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_jwt_exp", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -263,157 +263,157 @@ class AuthBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The role_id is the stable, unique identifier for the role generated by vault.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 
 @pulumi.input_type
 class _AuthBackendRoleState:
     def __init__(__self__, *,
-                 add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_labels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 max_jwt_exp: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 add_group_aliases: pulumi.Input[Optional[_builtins.bool]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_gce_inference: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_instance_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_service_accounts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 max_jwt_exp: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendRole resources.
 
@@ -490,16 +490,16 @@ class _AuthBackendRoleState:
 
     @_builtins.property
     @pulumi.getter(name="addGroupAliases")
-    def add_group_aliases(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def add_group_aliases(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "add_group_aliases")
 
     @add_group_aliases.setter
-    def add_group_aliases(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def add_group_aliases(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "add_group_aliases", value)
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -507,102 +507,102 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowGceInference")
-    def allow_gce_inference(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_gce_inference(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "allow_gce_inference")
 
     @allow_gce_inference.setter
-    def allow_gce_inference(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_gce_inference(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_gce_inference", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted GCP auth backend
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="boundInstanceGroups")
-    def bound_instance_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_instance_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_instance_groups")
 
     @bound_instance_groups.setter
-    def bound_instance_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_instance_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_instance_groups", value)
 
     @_builtins.property
     @pulumi.getter(name="boundLabels")
-    def bound_labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_labels")
 
     @bound_labels.setter
-    def bound_labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_labels", value)
 
     @_builtins.property
     @pulumi.getter(name="boundProjects")
-    def bound_projects(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_projects(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         An array of GCP project IDs. Only entities belonging to this project can authenticate under the role.
         """
         return pulumi.get(self, "bound_projects")
 
     @bound_projects.setter
-    def bound_projects(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_projects(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_projects", value)
 
     @_builtins.property
     @pulumi.getter(name="boundRegions")
-    def bound_regions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_regions")
 
     @bound_regions.setter
-    def bound_regions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_regions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="boundServiceAccounts")
-    def bound_service_accounts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_service_accounts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         GCP Service Accounts allowed to issue tokens under this role. (Note: **Required** if role is `iam`)
         """
         return pulumi.get(self, "bound_service_accounts")
 
     @bound_service_accounts.setter
-    def bound_service_accounts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_service_accounts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_service_accounts", value)
 
     @_builtins.property
     @pulumi.getter(name="boundZones")
-    def bound_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def bound_zones(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "bound_zones")
 
     @bound_zones.setter
-    def bound_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def bound_zones(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "bound_zones", value)
 
     @_builtins.property
     @pulumi.getter(name="maxJwtExp")
-    def max_jwt_exp(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_jwt_exp(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "max_jwt_exp")
 
     @max_jwt_exp.setter
-    def max_jwt_exp(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_jwt_exp(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_jwt_exp", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -612,151 +612,151 @@ class _AuthBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the GCP role
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The role_id is the stable, unique identifier for the role generated by vault.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of GCP authentication role (either `gce` or `iam`)
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -766,30 +766,30 @@ class AuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_labels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 max_jwt_exp: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_group_aliases: pulumi.Input[Optional[_builtins.bool]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_gce_inference: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_instance_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_service_accounts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 max_jwt_exp: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to create a role in an [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
@@ -908,30 +908,30 @@ class AuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_labels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 max_jwt_exp: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
+                 add_group_aliases: pulumi.Input[Optional[_builtins.bool]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allow_gce_inference: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 bound_instance_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_service_accounts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 bound_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 max_jwt_exp: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -979,30 +979,30 @@ class AuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            add_group_aliases: Optional[pulumi.Input[_builtins.bool]] = None,
-            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            allow_gce_inference: Optional[pulumi.Input[_builtins.bool]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            bound_instance_groups: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_labels: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_projects: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_regions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_service_accounts: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            bound_zones: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            max_jwt_exp: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            role_id: Optional[pulumi.Input[_builtins.str]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-            token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-            token_period: Optional[pulumi.Input[_builtins.int]] = None,
-            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_type: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendRole':
+            add_group_aliases: pulumi.Input[Optional[_builtins.bool]] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allow_gce_inference: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_instance_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_service_accounts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            max_jwt_exp: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendRole':
         """
         Get an existing AuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -21,11 +21,11 @@ class EndpointArgs:
     def __init__(__self__, *,
                  data_json: pulumi.Input[_builtins.str],
                  path: pulumi.Input[_builtins.str],
-                 disable_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ignore_absent_fields: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 disable_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ignore_absent_fields: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Endpoint resource.
 
@@ -105,7 +105,7 @@ class EndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="disableDelete")
-    def disable_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_delete(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         - (Optional) True/false. Set this to true if your
         vault authentication is not able to delete the data or if the endpoint
@@ -114,12 +114,12 @@ class EndpointArgs:
         return pulumi.get(self, "disable_delete")
 
     @disable_delete.setter
-    def disable_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_delete(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_delete", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRead")
-    def disable_read(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         True/false. Set this to true if your vault
         authentication is not able to read the data or if the endpoint does
@@ -130,12 +130,12 @@ class EndpointArgs:
         return pulumi.get(self, "disable_read")
 
     @disable_read.setter
-    def disable_read(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_read", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreAbsentFields")
-    def ignore_absent_fields(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_absent_fields(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         - (Optional) True/false. If set to true,
         ignore any fields present when the endpoint is read but that were not
@@ -148,12 +148,12 @@ class EndpointArgs:
         return pulumi.get(self, "ignore_absent_fields")
 
     @ignore_absent_fields.setter
-    def ignore_absent_fields(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_absent_fields(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_absent_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -163,12 +163,12 @@ class EndpointArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="writeFields")
-    def write_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def write_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         - (Optional). A list of fields that should be returned
         in `write_data_json` and `write_data`. If omitted, data returned by
@@ -181,22 +181,22 @@ class EndpointArgs:
         return pulumi.get(self, "write_fields")
 
     @write_fields.setter
-    def write_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def write_fields(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "write_fields", value)
 
 
 @pulumi.input_type
 class _EndpointState:
     def __init__(__self__, *,
-                 data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ignore_absent_fields: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 write_data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ignore_absent_fields: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 write_data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Endpoint resources.
 
@@ -261,7 +261,7 @@ class _EndpointState:
 
     @_builtins.property
     @pulumi.getter(name="dataJson")
-    def data_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def data_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String containing a JSON-encoded object that will be
         written to the given path as the secret data.
@@ -269,12 +269,12 @@ class _EndpointState:
         return pulumi.get(self, "data_json")
 
     @data_json.setter
-    def data_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def data_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "data_json", value)
 
     @_builtins.property
     @pulumi.getter(name="disableDelete")
-    def disable_delete(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_delete(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         - (Optional) True/false. Set this to true if your
         vault authentication is not able to delete the data or if the endpoint
@@ -283,12 +283,12 @@ class _EndpointState:
         return pulumi.get(self, "disable_delete")
 
     @disable_delete.setter
-    def disable_delete(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_delete(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_delete", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRead")
-    def disable_read(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         True/false. Set this to true if your vault
         authentication is not able to read the data or if the endpoint does
@@ -299,12 +299,12 @@ class _EndpointState:
         return pulumi.get(self, "disable_read")
 
     @disable_read.setter
-    def disable_read(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_read", value)
 
     @_builtins.property
     @pulumi.getter(name="ignoreAbsentFields")
-    def ignore_absent_fields(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ignore_absent_fields(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         - (Optional) True/false. If set to true,
         ignore any fields present when the endpoint is read but that were not
@@ -317,12 +317,12 @@ class _EndpointState:
         return pulumi.get(self, "ignore_absent_fields")
 
     @ignore_absent_fields.setter
-    def ignore_absent_fields(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ignore_absent_fields(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ignore_absent_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -332,12 +332,12 @@ class _EndpointState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The full logical path at which to write the given
         data. Consult each backend's documentation to see which endpoints
@@ -347,12 +347,12 @@ class _EndpointState:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter(name="writeData")
-    def write_data(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def write_data(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         - A map whose keys are the top-level data keys
         returned from Vault by the write operation and whose values are the
@@ -363,12 +363,12 @@ class _EndpointState:
         return pulumi.get(self, "write_data")
 
     @write_data.setter
-    def write_data(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def write_data(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "write_data", value)
 
     @_builtins.property
     @pulumi.getter(name="writeDataJson")
-    def write_data_json(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def write_data_json(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         - The JSON data returned by the write operation.
         Only fields set in `write_fields` are present in the JSON data.
@@ -376,12 +376,12 @@ class _EndpointState:
         return pulumi.get(self, "write_data_json")
 
     @write_data_json.setter
-    def write_data_json(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def write_data_json(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "write_data_json", value)
 
     @_builtins.property
     @pulumi.getter(name="writeFields")
-    def write_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def write_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         - (Optional). A list of fields that should be returned
         in `write_data_json` and `write_data`. If omitted, data returned by
@@ -394,7 +394,7 @@ class _EndpointState:
         return pulumi.get(self, "write_fields")
 
     @write_fields.setter
-    def write_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def write_fields(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "write_fields", value)
 
 
@@ -404,13 +404,13 @@ class Endpoint(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ignore_absent_fields: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ignore_absent_fields: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Writes and manages arbitrary data at a given path in Vault.
@@ -612,13 +612,13 @@ class Endpoint(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_json: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ignore_absent_fields: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 data_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ignore_absent_fields: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 write_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -653,15 +653,15 @@ class Endpoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data_json: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_delete: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_read: Optional[pulumi.Input[_builtins.bool]] = None,
-            ignore_absent_fields: Optional[pulumi.Input[_builtins.bool]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            write_data: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            write_data_json: Optional[pulumi.Input[_builtins.str]] = None,
-            write_fields: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Endpoint':
+            data_json: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+            ignore_absent_fields: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            write_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            write_data_json: pulumi.Input[Optional[_builtins.str]] = None,
+            write_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Endpoint':
         """
         Get an existing Endpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

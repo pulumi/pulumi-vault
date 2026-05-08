@@ -127,123 +127,123 @@ export interface ProviderArgs {
     /**
      * If true, adds the value of the `address` argument to the Terraform process environment.
      */
-    addAddressToEnv?: pulumi.Input<string>;
+    addAddressToEnv?: pulumi.Input<string | undefined>;
     /**
      * URL of the root of the target Vault server.
      */
-    address?: pulumi.Input<string>;
+    address?: pulumi.Input<string | undefined>;
     /**
      * Login to vault with an existing auth method using auth/<mount>/login
      */
-    authLogin?: pulumi.Input<inputs.ProviderAuthLogin>;
+    authLogin?: pulumi.Input<inputs.ProviderAuthLogin | undefined>;
     /**
      * Login to vault using the AWS method
      */
-    authLoginAws?: pulumi.Input<inputs.ProviderAuthLoginAws>;
+    authLoginAws?: pulumi.Input<inputs.ProviderAuthLoginAws | undefined>;
     /**
      * Login to vault using the azure method
      */
-    authLoginAzure?: pulumi.Input<inputs.ProviderAuthLoginAzure>;
+    authLoginAzure?: pulumi.Input<inputs.ProviderAuthLoginAzure | undefined>;
     /**
      * Login to vault using the cert method
      */
-    authLoginCert?: pulumi.Input<inputs.ProviderAuthLoginCert>;
+    authLoginCert?: pulumi.Input<inputs.ProviderAuthLoginCert | undefined>;
     /**
      * Login to vault using the gcp method
      */
-    authLoginGcp?: pulumi.Input<inputs.ProviderAuthLoginGcp>;
+    authLoginGcp?: pulumi.Input<inputs.ProviderAuthLoginGcp | undefined>;
     /**
      * Login to vault using the jwt method
      */
-    authLoginJwt?: pulumi.Input<inputs.ProviderAuthLoginJwt>;
+    authLoginJwt?: pulumi.Input<inputs.ProviderAuthLoginJwt | undefined>;
     /**
      * Login to vault using the kerberos method
      */
-    authLoginKerberos?: pulumi.Input<inputs.ProviderAuthLoginKerberos>;
+    authLoginKerberos?: pulumi.Input<inputs.ProviderAuthLoginKerberos | undefined>;
     /**
      * Login to vault using the OCI method
      */
-    authLoginOci?: pulumi.Input<inputs.ProviderAuthLoginOci>;
+    authLoginOci?: pulumi.Input<inputs.ProviderAuthLoginOci | undefined>;
     /**
      * Login to vault using the oidc method
      */
-    authLoginOidc?: pulumi.Input<inputs.ProviderAuthLoginOidc>;
+    authLoginOidc?: pulumi.Input<inputs.ProviderAuthLoginOidc | undefined>;
     /**
      * Login to vault using the radius method
      */
-    authLoginRadius?: pulumi.Input<inputs.ProviderAuthLoginRadius>;
+    authLoginRadius?: pulumi.Input<inputs.ProviderAuthLoginRadius | undefined>;
     /**
      * Login to vault using
      */
-    authLoginTokenFile?: pulumi.Input<inputs.ProviderAuthLoginTokenFile>;
+    authLoginTokenFile?: pulumi.Input<inputs.ProviderAuthLoginTokenFile | undefined>;
     /**
      * Login to vault using the userpass method
      */
-    authLoginUserpass?: pulumi.Input<inputs.ProviderAuthLoginUserpass>;
+    authLoginUserpass?: pulumi.Input<inputs.ProviderAuthLoginUserpass | undefined>;
     /**
      * Path to directory containing CA certificate files to validate the server's certificate.
      */
-    caCertDir?: pulumi.Input<string>;
+    caCertDir?: pulumi.Input<string | undefined>;
     /**
      * Path to a CA certificate file to validate the server's certificate.
      */
-    caCertFile?: pulumi.Input<string>;
+    caCertFile?: pulumi.Input<string | undefined>;
     /**
      * Client authentication credentials.
      */
-    clientAuth?: pulumi.Input<inputs.ProviderClientAuth>;
+    clientAuth?: pulumi.Input<inputs.ProviderClientAuth | undefined>;
     /**
      * The headers to send with each Vault request.
      */
-    headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[]>;
+    headers?: pulumi.Input<pulumi.Input<inputs.ProviderHeader>[] | undefined>;
     /**
      * Maximum TTL for secret leases requested by this provider.
      */
-    maxLeaseTtlSeconds?: pulumi.Input<number>;
+    maxLeaseTtlSeconds?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of retries when a 5xx error code is encountered.
      */
-    maxRetries?: pulumi.Input<number>;
+    maxRetries?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of retries for Client Controlled Consistency related operations
      */
-    maxRetriesCcc?: pulumi.Input<number>;
+    maxRetriesCcc?: pulumi.Input<number | undefined>;
     /**
      * The namespace to use. Available only for Vault Enterprise.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * In the case where the Vault token is for a specific namespace and the provider namespace is not configured, use the token namespace as the root namespace for all resources.
      */
-    setNamespaceFromToken?: pulumi.Input<boolean>;
+    setNamespaceFromToken?: pulumi.Input<boolean | undefined>;
     /**
      * Set this to true to prevent the creation of ephemeral child token used by this provider.
      */
-    skipChildToken?: pulumi.Input<boolean>;
+    skipChildToken?: pulumi.Input<boolean | undefined>;
     /**
      * Skip the dynamic fetching of the Vault server version.
      */
-    skipGetVaultVersion?: pulumi.Input<boolean>;
+    skipGetVaultVersion?: pulumi.Input<boolean | undefined>;
     /**
      * Set this to true only if the target Vault server is an insecure development instance.
      */
-    skipTlsVerify?: pulumi.Input<boolean>;
+    skipTlsVerify?: pulumi.Input<boolean | undefined>;
     /**
      * Name to use as the SNI host when connecting via TLS.
      */
-    tlsServerName?: pulumi.Input<string>;
+    tlsServerName?: pulumi.Input<string | undefined>;
     /**
      * Token to use to authenticate to Vault.
      */
-    token?: pulumi.Input<string>;
+    token?: pulumi.Input<string | undefined>;
     /**
      * Token name to use for creating the Vault child token.
      */
-    tokenName?: pulumi.Input<string>;
+    tokenName?: pulumi.Input<string | undefined>;
     /**
      * Override the Vault server version, which is normally determined dynamically from the target Vault server
      */
-    vaultVersionOverride?: pulumi.Input<string>;
+    vaultVersionOverride?: pulumi.Input<string | undefined>;
 }
 
 export namespace Provider {

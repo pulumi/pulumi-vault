@@ -170,41 +170,41 @@ export interface MfaOktaState {
     /**
      * `(string: <required>)` - Okta API key.
      */
-    apiToken?: pulumi.Input<string>;
+    apiToken?: pulumi.Input<string | undefined>;
     /**
      * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
      * `oktapreview.com`, and `okta-emea.com`.
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * ID computed by Vault.
      */
-    mfaOktaId?: pulumi.Input<string>;
+    mfaOktaId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
-    mountAccessor?: pulumi.Input<string>;
+    mountAccessor?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Name of the organization to be used in the Okta API.
      */
-    orgName?: pulumi.Input<string>;
+    orgName?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - If set to true, the username will only match the 
      * primary email for the account.
      */
-    primaryEmail?: pulumi.Input<boolean>;
+    primaryEmail?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names. 
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -214,7 +214,7 @@ export interface MfaOktaState {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -229,11 +229,11 @@ export interface MfaOktaArgs {
      * `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
      * `oktapreview.com`, and `okta-emea.com`.
      */
-    baseUrl?: pulumi.Input<string>;
+    baseUrl?: pulumi.Input<string | undefined>;
     /**
      * ID computed by Vault.
      */
-    mfaOktaId?: pulumi.Input<string>;
+    mfaOktaId?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
@@ -242,14 +242,14 @@ export interface MfaOktaArgs {
     /**
      * `(string: <required>)` – Name of the MFA method.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * `(string: <required>)` - Name of the organization to be used in the Okta API.
      */
@@ -258,7 +258,7 @@ export interface MfaOktaArgs {
      * `(string: <required>)` - If set to true, the username will only match the 
      * primary email for the account.
      */
-    primaryEmail?: pulumi.Input<boolean>;
+    primaryEmail?: pulumi.Input<boolean | undefined>;
     /**
      * `(string)` - A format string for mapping Identity names to MFA method names. 
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
@@ -268,5 +268,5 @@ export interface MfaOktaArgs {
      * - alias.metadata.`<key>`: The value of the Alias's metadata parameter
      * - entity.metadata.`<key>`: The value of the Entity's metadata parameter
      */
-    usernameFormat?: pulumi.Input<string>;
+    usernameFormat?: pulumi.Input<string | undefined>;
 }

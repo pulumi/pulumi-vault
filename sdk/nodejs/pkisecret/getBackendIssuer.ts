@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     ttl: "86400",
  *     issuerName: "example",
  * });
- * const example = root.issuerId.apply(issuerId => vault.pkiSecret.getBackendIssuerOutput({
+ * const example = root.issuerId.apply(issuerId => vault.pkisecret.getBackendIssuerOutput({
  *     backend: root.path,
  *     issuerRef: issuerId,
  * }));
@@ -202,7 +202,7 @@ export interface GetBackendIssuerResult {
  *     ttl: "86400",
  *     issuerName: "example",
  * });
- * const example = root.issuerId.apply(issuerId => vault.pkiSecret.getBackendIssuerOutput({
+ * const example = root.issuerId.apply(issuerId => vault.pkisecret.getBackendIssuerOutput({
  *     backend: root.path,
  *     issuerRef: issuerId,
  * }));
@@ -235,28 +235,28 @@ export interface GetBackendIssuerOutputArgs {
      * issuer is able to issue certificates where the chain of trust (including the
      * issued certificate) contain critical extensions not processed by Vault.
      */
-    disableCriticalExtensionChecks?: pulumi.Input<boolean>;
+    disableCriticalExtensionChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this issuer is able
      * to issue certificates where the chain of trust (including the final issued
      * certificate) contains a link in which the subject of the issuing certificate
      * does not match the named issuer of the certificate it signed.
      */
-    disableNameChecks?: pulumi.Input<boolean>;
+    disableNameChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * final issued certificate) violates the name constraints critical extension of
      * one of the issuer certificates in the chain.
      */
-    disableNameConstraintChecks?: pulumi.Input<boolean>;
+    disableNameConstraintChecks?: pulumi.Input<boolean | undefined>;
     /**
      * This determines whether this issuer
      * is able to issue certificates where the chain of trust (including the final
      * issued certificate) is longer than allowed by a certificate authority in that
      * chain.
      */
-    disablePathLengthChecks?: pulumi.Input<boolean>;
+    disablePathLengthChecks?: pulumi.Input<boolean | undefined>;
     /**
      * Reference to an existing issuer.
      */
@@ -267,5 +267,5 @@ export interface GetBackendIssuerOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

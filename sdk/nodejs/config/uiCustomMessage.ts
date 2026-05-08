@@ -126,39 +126,39 @@ export interface UiCustomMessageState {
     /**
      * A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
      */
-    authenticated?: pulumi.Input<boolean>;
+    authenticated?: pulumi.Input<boolean | undefined>;
     /**
      * The ending time of the active period of the custom message. Can be omitted for non-expiring message
      */
-    endTime?: pulumi.Input<string>;
+    endTime?: pulumi.Input<string | undefined>;
     /**
      * A block containing a hyperlink associated with the custom message
      */
-    link?: pulumi.Input<inputs.config.UiCustomMessageLink>;
+    link?: pulumi.Input<inputs.config.UiCustomMessageLink | undefined>;
     /**
      * The base64-encoded content of the custom message
      */
-    messageBase64?: pulumi.Input<string>;
+    messageBase64?: pulumi.Input<string | undefined>;
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A map containing additional options for the custom message
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The starting time of the active period of the custom message
      */
-    startTime?: pulumi.Input<string>;
+    startTime?: pulumi.Input<string | undefined>;
     /**
      * The title of the custom message
      */
-    title?: pulumi.Input<string>;
+    title?: pulumi.Input<string | undefined>;
     /**
      * The display type of custom message. Allowed values are banner and modal
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -168,15 +168,15 @@ export interface UiCustomMessageArgs {
     /**
      * A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
      */
-    authenticated?: pulumi.Input<boolean>;
+    authenticated?: pulumi.Input<boolean | undefined>;
     /**
      * The ending time of the active period of the custom message. Can be omitted for non-expiring message
      */
-    endTime?: pulumi.Input<string>;
+    endTime?: pulumi.Input<string | undefined>;
     /**
      * A block containing a hyperlink associated with the custom message
      */
-    link?: pulumi.Input<inputs.config.UiCustomMessageLink>;
+    link?: pulumi.Input<inputs.config.UiCustomMessageLink | undefined>;
     /**
      * The base64-encoded content of the custom message
      */
@@ -184,11 +184,11 @@ export interface UiCustomMessageArgs {
     /**
      * Target namespace. (requires Enterprise)
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * A map containing additional options for the custom message
      */
-    options?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    options?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The starting time of the active period of the custom message
      */
@@ -200,5 +200,5 @@ export interface UiCustomMessageArgs {
     /**
      * The display type of custom message. Allowed values are banner and modal
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

@@ -21,27 +21,27 @@ class BackendConfigAutoTidyArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  enabled: pulumi.Input[_builtins.bool],
-                 acme_account_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 interval_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintain_stored_certificate_counts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pause_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 publish_stored_certificate_count_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revocation_queue_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 tidy_acme: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cmpv2_nonce_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cross_cluster_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_expired_issuers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_move_legacy_ca_bundle: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revocation_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_cert_issuer_associations: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None):
+                 acme_account_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 interval_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintain_stored_certificate_counts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pause_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 publish_stored_certificate_count_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revocation_queue_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 tidy_acme: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cmpv2_nonce_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cross_cluster_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_expired_issuers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_move_legacy_ca_bundle: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revocation_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_cert_issuer_associations: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a BackendConfigAutoTidy resource.
 
@@ -162,19 +162,19 @@ class BackendConfigAutoTidyArgs:
 
     @_builtins.property
     @pulumi.getter(name="acmeAccountSafetyBuffer")
-    def acme_account_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acme_account_safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         """
         return pulumi.get(self, "acme_account_safety_buffer")
 
     @acme_account_safety_buffer.setter
-    def acme_account_safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acme_account_safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acme_account_safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter(name="intervalDuration")
-    def interval_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def interval_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Interval at which to run an auto-tidy operation. This is the time
         between tidy invocations (after one finishes to the start of the next).
@@ -182,12 +182,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "interval_duration")
 
     @interval_duration.setter
-    def interval_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def interval_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "interval_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerSafetyBuffer")
-    def issuer_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of extra time that must have passed beyond issuer's
         expiration before it is removed from the backend storage.
@@ -195,12 +195,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "issuer_safety_buffer")
 
     @issuer_safety_buffer.setter
-    def issuer_safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter(name="maintainStoredCertificateCounts")
-    def maintain_stored_certificate_counts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def maintain_stored_certificate_counts(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This configures whether stored certificate are
         counted upon initialization of the backend, and whether during normal operation, a running count
@@ -209,12 +209,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "maintain_stored_certificate_counts")
 
     @maintain_stored_certificate_counts.setter
-    def maintain_stored_certificate_counts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def maintain_stored_certificate_counts(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "maintain_stored_certificate_counts", value)
 
     @_builtins.property
     @pulumi.getter(name="maxStartupBackoffDuration")
-    def max_startup_backoff_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_startup_backoff_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum amount of time auto-tidy will be delayed
         after startup.
@@ -222,12 +222,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "max_startup_backoff_duration")
 
     @max_startup_backoff_duration.setter
-    def max_startup_backoff_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_startup_backoff_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_startup_backoff_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="minStartupBackoffDuration")
-    def min_startup_backoff_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_startup_backoff_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The minimum amount of time auto-tidy will be delayed
         after startup.
@@ -235,12 +235,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "min_startup_backoff_duration")
 
     @min_startup_backoff_duration.setter
-    def min_startup_backoff_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_startup_backoff_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_startup_backoff_duration", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace of the target resource.
         The value should not contain leading or trailing forward slashes.
@@ -250,24 +250,24 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pauseDuration")
-    def pause_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pause_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time to wait between processing certificates.
         """
         return pulumi.get(self, "pause_duration")
 
     @pause_duration.setter
-    def pause_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pause_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pause_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="publishStoredCertificateCountMetrics")
-    def publish_stored_certificate_count_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def publish_stored_certificate_count_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This configures whether the stored
         certificate count is published to the metrics consumer.
@@ -275,12 +275,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "publish_stored_certificate_count_metrics")
 
     @publish_stored_certificate_count_metrics.setter
-    def publish_stored_certificate_count_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def publish_stored_certificate_count_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "publish_stored_certificate_count_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="revocationQueueSafetyBuffer")
-    def revocation_queue_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def revocation_queue_safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time that must pass from the
         cross-cluster revocation request being initiated to when it will be slated for removal.
@@ -288,12 +288,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "revocation_queue_safety_buffer")
 
     @revocation_queue_safety_buffer.setter
-    def revocation_queue_safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def revocation_queue_safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "revocation_queue_safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of extra time that must have passed beyond certificate
         expiration before it is removed from the backend storage and/or revocation list.
@@ -301,60 +301,60 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "safety_buffer")
 
     @safety_buffer.setter
-    def safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyAcme")
-    def tidy_acme(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_acme(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying ACME accounts, orders and authorizations.
         """
         return pulumi.get(self, "tidy_acme")
 
     @tidy_acme.setter
-    def tidy_acme(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_acme(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_acme", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCertMetadata")
-    def tidy_cert_metadata(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cert_metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up certificate metadata.
         """
         return pulumi.get(self, "tidy_cert_metadata")
 
     @tidy_cert_metadata.setter
-    def tidy_cert_metadata(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cert_metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cert_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCertStore")
-    def tidy_cert_store(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cert_store(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up the certificate store
         """
         return pulumi.get(self, "tidy_cert_store")
 
     @tidy_cert_store.setter
-    def tidy_cert_store(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cert_store(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cert_store", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCmpv2NonceStore")
-    def tidy_cmpv2_nonce_store(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cmpv2_nonce_store(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up the CMPv2 nonce store.
         """
         return pulumi.get(self, "tidy_cmpv2_nonce_store")
 
     @tidy_cmpv2_nonce_store.setter
-    def tidy_cmpv2_nonce_store(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cmpv2_nonce_store(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cmpv2_nonce_store", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCrossClusterRevokedCerts")
-    def tidy_cross_cluster_revoked_certs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cross_cluster_revoked_certs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up the cross-cluster
         revoked certificate store.
@@ -362,12 +362,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "tidy_cross_cluster_revoked_certs")
 
     @tidy_cross_cluster_revoked_certs.setter
-    def tidy_cross_cluster_revoked_certs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cross_cluster_revoked_certs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cross_cluster_revoked_certs", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyExpiredIssuers")
-    def tidy_expired_issuers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_expired_issuers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to automatically remove expired issuers past the
         `issuer_safety_buffer`. No keys will be removed as part of this operation.
@@ -375,12 +375,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "tidy_expired_issuers")
 
     @tidy_expired_issuers.setter
-    def tidy_expired_issuers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_expired_issuers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_expired_issuers", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyMoveLegacyCaBundle")
-    def tidy_move_legacy_ca_bundle(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_move_legacy_ca_bundle(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to move the legacy `ca_bundle` from
         `/config/ca_bundle` to `/config/ca_bundle.bak`.
@@ -388,12 +388,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "tidy_move_legacy_ca_bundle")
 
     @tidy_move_legacy_ca_bundle.setter
-    def tidy_move_legacy_ca_bundle(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_move_legacy_ca_bundle(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_move_legacy_ca_bundle", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyRevocationQueue")
-    def tidy_revocation_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_revocation_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to remove stale revocation queue entries that
         haven't been confirmed by any active cluster.
@@ -401,12 +401,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "tidy_revocation_queue")
 
     @tidy_revocation_queue.setter
-    def tidy_revocation_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_revocation_queue(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_revocation_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyRevokedCertIssuerAssociations")
-    def tidy_revoked_cert_issuer_associations(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_revoked_cert_issuer_associations(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to validate issuer associations
         on revocation entries. This helps increase the performance of CRL building and OCSP responses.
@@ -414,12 +414,12 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "tidy_revoked_cert_issuer_associations")
 
     @tidy_revoked_cert_issuer_associations.setter
-    def tidy_revoked_cert_issuer_associations(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_revoked_cert_issuer_associations(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_revoked_cert_issuer_associations", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyRevokedCerts")
-    def tidy_revoked_certs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_revoked_certs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to remove all invalid and expired certificates from
         storage. A revoked storage entry is considered invalid if the entry is empty, or the value within
@@ -429,36 +429,36 @@ class BackendConfigAutoTidyArgs:
         return pulumi.get(self, "tidy_revoked_certs")
 
     @tidy_revoked_certs.setter
-    def tidy_revoked_certs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_revoked_certs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_revoked_certs", value)
 
 
 @pulumi.input_type
 class _BackendConfigAutoTidyState:
     def __init__(__self__, *,
-                 acme_account_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 interval_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintain_stored_certificate_counts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pause_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 publish_stored_certificate_count_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revocation_queue_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 tidy_acme: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cmpv2_nonce_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cross_cluster_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_expired_issuers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_move_legacy_ca_bundle: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revocation_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_cert_issuer_associations: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None):
+                 acme_account_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 interval_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintain_stored_certificate_counts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pause_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 publish_stored_certificate_count_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revocation_queue_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 tidy_acme: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cmpv2_nonce_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cross_cluster_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_expired_issuers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_move_legacy_ca_bundle: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revocation_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_cert_issuer_associations: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering BackendConfigAutoTidy resources.
 
@@ -556,19 +556,19 @@ class _BackendConfigAutoTidyState:
 
     @_builtins.property
     @pulumi.getter(name="acmeAccountSafetyBuffer")
-    def acme_account_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def acme_account_safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
         """
         return pulumi.get(self, "acme_account_safety_buffer")
 
     @acme_account_safety_buffer.setter
-    def acme_account_safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def acme_account_safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "acme_account_safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path to the PKI secret backend to
         read the configuration from, with no leading or trailing `/`s.
@@ -576,24 +576,24 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether automatic tidy is enabled or not.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="intervalDuration")
-    def interval_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def interval_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Interval at which to run an auto-tidy operation. This is the time
         between tidy invocations (after one finishes to the start of the next).
@@ -601,12 +601,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "interval_duration")
 
     @interval_duration.setter
-    def interval_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def interval_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "interval_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerSafetyBuffer")
-    def issuer_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of extra time that must have passed beyond issuer's
         expiration before it is removed from the backend storage.
@@ -614,12 +614,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "issuer_safety_buffer")
 
     @issuer_safety_buffer.setter
-    def issuer_safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter(name="maintainStoredCertificateCounts")
-    def maintain_stored_certificate_counts(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def maintain_stored_certificate_counts(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This configures whether stored certificate are
         counted upon initialization of the backend, and whether during normal operation, a running count
@@ -628,12 +628,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "maintain_stored_certificate_counts")
 
     @maintain_stored_certificate_counts.setter
-    def maintain_stored_certificate_counts(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def maintain_stored_certificate_counts(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "maintain_stored_certificate_counts", value)
 
     @_builtins.property
     @pulumi.getter(name="maxStartupBackoffDuration")
-    def max_startup_backoff_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_startup_backoff_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum amount of time auto-tidy will be delayed
         after startup.
@@ -641,12 +641,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "max_startup_backoff_duration")
 
     @max_startup_backoff_duration.setter
-    def max_startup_backoff_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_startup_backoff_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_startup_backoff_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="minStartupBackoffDuration")
-    def min_startup_backoff_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def min_startup_backoff_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The minimum amount of time auto-tidy will be delayed
         after startup.
@@ -654,12 +654,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "min_startup_backoff_duration")
 
     @min_startup_backoff_duration.setter
-    def min_startup_backoff_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def min_startup_backoff_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "min_startup_backoff_duration", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace of the target resource.
         The value should not contain leading or trailing forward slashes.
@@ -669,24 +669,24 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="pauseDuration")
-    def pause_duration(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pause_duration(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time to wait between processing certificates.
         """
         return pulumi.get(self, "pause_duration")
 
     @pause_duration.setter
-    def pause_duration(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pause_duration(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pause_duration", value)
 
     @_builtins.property
     @pulumi.getter(name="publishStoredCertificateCountMetrics")
-    def publish_stored_certificate_count_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def publish_stored_certificate_count_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This configures whether the stored
         certificate count is published to the metrics consumer.
@@ -694,12 +694,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "publish_stored_certificate_count_metrics")
 
     @publish_stored_certificate_count_metrics.setter
-    def publish_stored_certificate_count_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def publish_stored_certificate_count_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "publish_stored_certificate_count_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="revocationQueueSafetyBuffer")
-    def revocation_queue_safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def revocation_queue_safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of time that must pass from the
         cross-cluster revocation request being initiated to when it will be slated for removal.
@@ -707,12 +707,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "revocation_queue_safety_buffer")
 
     @revocation_queue_safety_buffer.setter
-    def revocation_queue_safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def revocation_queue_safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "revocation_queue_safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter(name="safetyBuffer")
-    def safety_buffer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def safety_buffer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The amount of extra time that must have passed beyond certificate
         expiration before it is removed from the backend storage and/or revocation list.
@@ -720,60 +720,60 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "safety_buffer")
 
     @safety_buffer.setter
-    def safety_buffer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def safety_buffer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "safety_buffer", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyAcme")
-    def tidy_acme(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_acme(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying ACME accounts, orders and authorizations.
         """
         return pulumi.get(self, "tidy_acme")
 
     @tidy_acme.setter
-    def tidy_acme(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_acme(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_acme", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCertMetadata")
-    def tidy_cert_metadata(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cert_metadata(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up certificate metadata.
         """
         return pulumi.get(self, "tidy_cert_metadata")
 
     @tidy_cert_metadata.setter
-    def tidy_cert_metadata(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cert_metadata(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cert_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCertStore")
-    def tidy_cert_store(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cert_store(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up the certificate store
         """
         return pulumi.get(self, "tidy_cert_store")
 
     @tidy_cert_store.setter
-    def tidy_cert_store(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cert_store(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cert_store", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCmpv2NonceStore")
-    def tidy_cmpv2_nonce_store(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cmpv2_nonce_store(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up the CMPv2 nonce store.
         """
         return pulumi.get(self, "tidy_cmpv2_nonce_store")
 
     @tidy_cmpv2_nonce_store.setter
-    def tidy_cmpv2_nonce_store(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cmpv2_nonce_store(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cmpv2_nonce_store", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyCrossClusterRevokedCerts")
-    def tidy_cross_cluster_revoked_certs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_cross_cluster_revoked_certs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to enable tidying up the cross-cluster
         revoked certificate store.
@@ -781,12 +781,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "tidy_cross_cluster_revoked_certs")
 
     @tidy_cross_cluster_revoked_certs.setter
-    def tidy_cross_cluster_revoked_certs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_cross_cluster_revoked_certs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_cross_cluster_revoked_certs", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyExpiredIssuers")
-    def tidy_expired_issuers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_expired_issuers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to automatically remove expired issuers past the
         `issuer_safety_buffer`. No keys will be removed as part of this operation.
@@ -794,12 +794,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "tidy_expired_issuers")
 
     @tidy_expired_issuers.setter
-    def tidy_expired_issuers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_expired_issuers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_expired_issuers", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyMoveLegacyCaBundle")
-    def tidy_move_legacy_ca_bundle(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_move_legacy_ca_bundle(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to move the legacy `ca_bundle` from
         `/config/ca_bundle` to `/config/ca_bundle.bak`.
@@ -807,12 +807,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "tidy_move_legacy_ca_bundle")
 
     @tidy_move_legacy_ca_bundle.setter
-    def tidy_move_legacy_ca_bundle(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_move_legacy_ca_bundle(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_move_legacy_ca_bundle", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyRevocationQueue")
-    def tidy_revocation_queue(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_revocation_queue(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to remove stale revocation queue entries that
         haven't been confirmed by any active cluster.
@@ -820,12 +820,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "tidy_revocation_queue")
 
     @tidy_revocation_queue.setter
-    def tidy_revocation_queue(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_revocation_queue(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_revocation_queue", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyRevokedCertIssuerAssociations")
-    def tidy_revoked_cert_issuer_associations(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_revoked_cert_issuer_associations(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to validate issuer associations
         on revocation entries. This helps increase the performance of CRL building and OCSP responses.
@@ -833,12 +833,12 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "tidy_revoked_cert_issuer_associations")
 
     @tidy_revoked_cert_issuer_associations.setter
-    def tidy_revoked_cert_issuer_associations(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_revoked_cert_issuer_associations(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_revoked_cert_issuer_associations", value)
 
     @_builtins.property
     @pulumi.getter(name="tidyRevokedCerts")
-    def tidy_revoked_certs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def tidy_revoked_certs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to true to remove all invalid and expired certificates from
         storage. A revoked storage entry is considered invalid if the entry is empty, or the value within
@@ -848,7 +848,7 @@ class _BackendConfigAutoTidyState:
         return pulumi.get(self, "tidy_revoked_certs")
 
     @tidy_revoked_certs.setter
-    def tidy_revoked_certs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def tidy_revoked_certs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "tidy_revoked_certs", value)
 
 
@@ -858,29 +858,29 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acme_account_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 interval_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintain_stored_certificate_counts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pause_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 publish_stored_certificate_count_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revocation_queue_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 tidy_acme: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cmpv2_nonce_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cross_cluster_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_expired_issuers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_move_legacy_ca_bundle: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revocation_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_cert_issuer_associations: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None,
+                 acme_account_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 interval_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintain_stored_certificate_counts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pause_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 publish_stored_certificate_count_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revocation_queue_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 tidy_acme: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cmpv2_nonce_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cross_cluster_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_expired_issuers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_move_legacy_ca_bundle: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revocation_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_cert_issuer_associations: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         Allows setting the Auto Tidy configuration on a PKI Secret Backend
@@ -994,29 +994,29 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 acme_account_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 interval_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 maintain_stored_certificate_counts: Optional[pulumi.Input[_builtins.bool]] = None,
-                 max_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 min_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 pause_duration: Optional[pulumi.Input[_builtins.str]] = None,
-                 publish_stored_certificate_count_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 revocation_queue_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-                 tidy_acme: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cert_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cmpv2_nonce_store: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_cross_cluster_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_expired_issuers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_move_legacy_ca_bundle: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revocation_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_cert_issuer_associations: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None,
+                 acme_account_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 interval_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 maintain_stored_certificate_counts: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 pause_duration: pulumi.Input[Optional[_builtins.str]] = None,
+                 publish_stored_certificate_count_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 revocation_queue_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+                 tidy_acme: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cert_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cmpv2_nonce_store: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_cross_cluster_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_expired_issuers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_move_legacy_ca_bundle: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revocation_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_cert_issuer_associations: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tidy_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1063,29 +1063,29 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            acme_account_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            interval_duration: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-            maintain_stored_certificate_counts: Optional[pulumi.Input[_builtins.bool]] = None,
-            max_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-            min_startup_backoff_duration: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            pause_duration: Optional[pulumi.Input[_builtins.str]] = None,
-            publish_stored_certificate_count_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-            revocation_queue_safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-            safety_buffer: Optional[pulumi.Input[_builtins.str]] = None,
-            tidy_acme: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_cert_metadata: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_cert_store: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_cmpv2_nonce_store: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_cross_cluster_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_expired_issuers: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_move_legacy_ca_bundle: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_revocation_queue: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_revoked_cert_issuer_associations: Optional[pulumi.Input[_builtins.bool]] = None,
-            tidy_revoked_certs: Optional[pulumi.Input[_builtins.bool]] = None) -> 'BackendConfigAutoTidy':
+            acme_account_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            interval_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            maintain_stored_certificate_counts: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            min_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            pause_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            publish_stored_certificate_count_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            revocation_queue_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            tidy_acme: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cert_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cert_store: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cmpv2_nonce_store: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cross_cluster_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_expired_issuers: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_move_legacy_ca_bundle: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_revocation_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_revoked_cert_issuer_associations: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None) -> 'BackendConfigAutoTidy':
         """
         Get an existing BackendConfigAutoTidy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

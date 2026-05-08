@@ -22,7 +22,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetAuthBackend.Invoke(new()
+        ///     var example = Vault.GetAuthBackend.Invoke(new()
         ///     {
         ///         Path = "userpass",
         ///     });
@@ -44,7 +44,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetAuthBackend.Invoke(new()
+        ///     var example = Vault.GetAuthBackend.Invoke(new()
         ///     {
         ///         Path = "userpass",
         ///     });
@@ -66,7 +66,7 @@ namespace Pulumi.Vault
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var example = Vault.Index.GetAuthBackend.Invoke(new()
+        ///     var example = Vault.GetAuthBackend.Invoke(new()
         ///     {
         ///         Path = "userpass",
         ///     });

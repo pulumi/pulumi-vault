@@ -159,31 +159,31 @@ export interface SecretBackendRoleState {
      * The path the RabbitMQ secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies a comma-separated RabbitMQ management tags.
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
     /**
      * Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
      */
-    vhostTopics?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopic>[]>;
+    vhostTopics?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopic>[] | undefined>;
     /**
      * Specifies a map of virtual hosts to permissions.
      */
-    vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[]>;
+    vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[] | undefined>;
 }
 
 /**
@@ -199,24 +199,24 @@ export interface SecretBackendRoleArgs {
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies a comma-separated RabbitMQ management tags.
      */
-    tags?: pulumi.Input<string>;
+    tags?: pulumi.Input<string | undefined>;
     /**
      * Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
      */
-    vhostTopics?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopic>[]>;
+    vhostTopics?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhostTopic>[] | undefined>;
     /**
      * Specifies a map of virtual hosts to permissions.
      */
-    vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[]>;
+    vhosts?: pulumi.Input<pulumi.Input<inputs.rabbitMq.SecretBackendRoleVhost>[] | undefined>;
 }

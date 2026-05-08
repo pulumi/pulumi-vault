@@ -107,6 +107,6 @@ export function getPolicyDocumentOutput(args?: GetPolicyDocumentOutputArgs, opts
  * A collection of arguments for invoking getPolicyDocument.
  */
 export interface GetPolicyDocumentOutputArgs {
-    namespace?: pulumi.Input<string>;
-    rules?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleArgs>[]>;
+    namespace?: pulumi.Input<string | undefined>;
+    rules?: pulumi.Input<pulumi.Input<inputs.GetPolicyDocumentRuleArgs>[] | undefined>;
 }

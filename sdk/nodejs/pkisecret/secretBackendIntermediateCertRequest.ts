@@ -305,139 +305,139 @@ export interface SecretBackendIntermediateCertRequestState {
      * Only needed as a workaround in some compatibility scenarios with Active Directory
      * Certificate Services
      */
-    addBasicConstraints?: pulumi.Input<boolean>;
+    addBasicConstraints?: pulumi.Input<boolean | undefined>;
     /**
      * List of alternative names
      */
-    altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * CN of intermediate to create
      */
-    commonName?: pulumi.Input<string>;
+    commonName?: pulumi.Input<string | undefined>;
     /**
      * The country
      */
-    country?: pulumi.Input<string>;
+    country?: pulumi.Input<string | undefined>;
     /**
      * The CSR
      */
-    csr?: pulumi.Input<string>;
+    csr?: pulumi.Input<string | undefined>;
     /**
      * Flag to exclude CN from SANs
      */
-    excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean | undefined>;
     /**
      * The format of data
      */
-    format?: pulumi.Input<string>;
+    format?: pulumi.Input<string | undefined>;
     /**
      * List of alternative IPs
      */
-    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The number of bits to use
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * The ID of the generated key.
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * When a new key is created with this request, optionally specifies
      * the name for this. The global ref `default` may not be used as a name.
      */
-    keyName?: pulumi.Input<string>;
+    keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
      * for generating this request. Only suitable for `type=existing` requests.
      */
-    keyRef?: pulumi.Input<string>;
+    keyRef?: pulumi.Input<string | undefined>;
     /**
      * The desired key type
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Specifies keyUsage to encode in the generated certificate.
      */
-    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The locality
      */
-    locality?: pulumi.Input<string>;
+    locality?: pulumi.Input<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
      * required if `type` is `kms` and it conflicts with `managedKeyName`
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the previously configured managed key. This field is
      * required if `type` is `kms`  and it conflicts with `managedKeyId`
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The organization
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * List of other SANs
      */
-    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The organization unit
      */
-    ou?: pulumi.Input<string>;
+    ou?: pulumi.Input<string | undefined>;
     /**
      * The postal code
      */
-    postalCode?: pulumi.Input<string>;
+    postalCode?: pulumi.Input<string | undefined>;
     /**
      * The private key
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * The private key format
      */
-    privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string | undefined>;
     /**
      * The private key type
      */
-    privateKeyType?: pulumi.Input<string>;
+    privateKeyType?: pulumi.Input<string | undefined>;
     /**
      * The province
      */
-    province?: pulumi.Input<string>;
+    province?: pulumi.Input<string | undefined>;
     /**
      * The requested Subject's named Serial Number
      */
-    serialNumber?: pulumi.Input<string>;
+    serialNumber?: pulumi.Input<string | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    signatureBits?: pulumi.Input<number>;
+    signatureBits?: pulumi.Input<number | undefined>;
     /**
      * The street address
      */
-    streetAddress?: pulumi.Input<string>;
+    streetAddress?: pulumi.Input<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
      * or \"kms\"
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * List of alternative URIs
      */
-    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -449,11 +449,11 @@ export interface SecretBackendIntermediateCertRequestArgs {
      * Only needed as a workaround in some compatibility scenarios with Active Directory
      * Certificate Services
      */
-    addBasicConstraints?: pulumi.Input<boolean>;
+    addBasicConstraints?: pulumi.Input<boolean | undefined>;
     /**
      * List of alternative names
      */
-    altNames?: pulumi.Input<pulumi.Input<string>[]>;
+    altNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The PKI secret backend the resource belongs to.
      */
@@ -465,98 +465,98 @@ export interface SecretBackendIntermediateCertRequestArgs {
     /**
      * The country
      */
-    country?: pulumi.Input<string>;
+    country?: pulumi.Input<string | undefined>;
     /**
      * Flag to exclude CN from SANs
      */
-    excludeCnFromSans?: pulumi.Input<boolean>;
+    excludeCnFromSans?: pulumi.Input<boolean | undefined>;
     /**
      * The format of data
      */
-    format?: pulumi.Input<string>;
+    format?: pulumi.Input<string | undefined>;
     /**
      * List of alternative IPs
      */
-    ipSans?: pulumi.Input<pulumi.Input<string>[]>;
+    ipSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The number of bits to use
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * When a new key is created with this request, optionally specifies
      * the name for this. The global ref `default` may not be used as a name.
      */
-    keyName?: pulumi.Input<string>;
+    keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
      * for generating this request. Only suitable for `type=existing` requests.
      */
-    keyRef?: pulumi.Input<string>;
+    keyRef?: pulumi.Input<string | undefined>;
     /**
      * The desired key type
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Specifies keyUsage to encode in the generated certificate.
      */
-    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The locality
      */
-    locality?: pulumi.Input<string>;
+    locality?: pulumi.Input<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
      * required if `type` is `kms` and it conflicts with `managedKeyName`
      */
-    managedKeyId?: pulumi.Input<string>;
+    managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the previously configured managed key. This field is
      * required if `type` is `kms`  and it conflicts with `managedKeyId`
      */
-    managedKeyName?: pulumi.Input<string>;
+    managedKeyName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The organization
      */
-    organization?: pulumi.Input<string>;
+    organization?: pulumi.Input<string | undefined>;
     /**
      * List of other SANs
      */
-    otherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    otherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The organization unit
      */
-    ou?: pulumi.Input<string>;
+    ou?: pulumi.Input<string | undefined>;
     /**
      * The postal code
      */
-    postalCode?: pulumi.Input<string>;
+    postalCode?: pulumi.Input<string | undefined>;
     /**
      * The private key format
      */
-    privateKeyFormat?: pulumi.Input<string>;
+    privateKeyFormat?: pulumi.Input<string | undefined>;
     /**
      * The province
      */
-    province?: pulumi.Input<string>;
+    province?: pulumi.Input<string | undefined>;
     /**
      * The requested Subject's named Serial Number
      */
-    serialNumber?: pulumi.Input<string>;
+    serialNumber?: pulumi.Input<string | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    signatureBits?: pulumi.Input<number>;
+    signatureBits?: pulumi.Input<number | undefined>;
     /**
      * The street address
      */
-    streetAddress?: pulumi.Input<string>;
+    streetAddress?: pulumi.Input<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\" or \"internal\"
      * or \"kms\"
@@ -565,5 +565,5 @@ export interface SecretBackendIntermediateCertRequestArgs {
     /**
      * List of alternative URIs
      */
-    uriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    uriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

@@ -161,12 +161,12 @@ export interface GetNamespaceOutputArgs {
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The path of the namespace. Must not have a trailing `/`.
      * If not specified or empty, path attributes are set for the current namespace
      * based on the `namespace` arguments of the provider and this data source.
      * Other path related attributes will be empty in this case.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
 }

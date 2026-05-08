@@ -249,13 +249,13 @@ export interface SecretBackendRoleState {
      * The path the AWS secret backend is mounted at,
      * with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of credential to be used when
      * retrieving credentials from the role. Must be one of `iamUser`, `assumedRole`, or
      * `federationToken`.
      */
-    credentialType?: pulumi.Input<string>;
+    credentialType?: pulumi.Input<string | undefined>;
     /**
      * The default TTL in seconds for STS credentials.
      * When a TTL is not specified when STS credentials are requested,
@@ -263,12 +263,12 @@ export interface SecretBackendRoleState {
      * then this default TTL will be used. Valid only when `credentialType` is one of
      * `assumedRole` or `federationToken`.
      */
-    defaultStsTtl?: pulumi.Input<number>;
+    defaultStsTtl?: pulumi.Input<number | undefined>;
     /**
      * External ID to set for assume role creds. 
      * Valid only when `credentialType` is set to `assumedRole`.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
@@ -277,41 +277,41 @@ export interface SecretBackendRoleState {
      * policies from each group in `iamGroups` combined with the `policyDocument`
      * and `policyArns` parameters.
      */
-    iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    iamGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A map of strings representing key/value pairs
      * to be used as tags for any IAM user that is created by this role.
      */
-    iamTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    iamTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
      * one of `assumedRole` or `federationToken`.
      */
-    maxStsTtl?: pulumi.Input<number>;
+    maxStsTtl?: pulumi.Input<number | undefined>;
     /**
      * The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
      */
-    mfaSerialNumber?: pulumi.Input<string>;
+    mfaSerialNumber?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the AWS Permissions 
      * Boundary to attach to IAM users created in the role. Valid only when
      * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
      */
-    permissionsBoundaryArn?: pulumi.Input<string>;
+    permissionsBoundaryArn?: pulumi.Input<string | undefined>;
     /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
@@ -321,7 +321,7 @@ export interface SecretBackendRoleState {
      * `federationToken`, at least one of `policyDocument` or `policyArns` must
      * be specified.
      */
-    policyArns?: pulumi.Input<pulumi.Input<string>[]>;
+    policyArns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The IAM policy document for the role. The
      * behavior depends on the credential type. With `iamUser`, the policy document
@@ -329,24 +329,24 @@ export interface SecretBackendRoleState {
      * user has. With `assumedRole` and `federationToken`, the policy document will
      * act as a filter on what the credentials can do, similar to `policyArns`.
      */
-    policyDocument?: pulumi.Input<string>;
+    policyDocument?: pulumi.Input<string | undefined>;
     /**
      * Specifies the ARNs of the AWS roles this Vault role
      * is allowed to assume. Required when `credentialType` is `assumedRole` and
      * prohibited otherwise.
      */
-    roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    roleArns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A map of strings representing key/value pairs to be set
      * during assume role creds creation. Valid only when `credentialType` is set to
      * `assumedRole`.
      */
-    sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The path for the user name. Valid only when 
      * `credentialType` is `iamUser`. Default is `/`.
      */
-    userPath?: pulumi.Input<string>;
+    userPath?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -371,12 +371,12 @@ export interface SecretBackendRoleArgs {
      * then this default TTL will be used. Valid only when `credentialType` is one of
      * `assumedRole` or `federationToken`.
      */
-    defaultStsTtl?: pulumi.Input<number>;
+    defaultStsTtl?: pulumi.Input<number | undefined>;
     /**
      * External ID to set for assume role creds. 
      * Valid only when `credentialType` is set to `assumedRole`.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * A list of IAM group names. IAM users generated
      * against this vault role will be added to these IAM Groups. For a credential
@@ -385,41 +385,41 @@ export interface SecretBackendRoleArgs {
      * policies from each group in `iamGroups` combined with the `policyDocument`
      * and `policyArns` parameters.
      */
-    iamGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    iamGroups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A map of strings representing key/value pairs
      * to be used as tags for any IAM user that is created by this role.
      */
-    iamTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    iamTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The max allowed TTL in seconds for STS credentials
      * (credentials TTL are capped to `maxStsTtl`). Valid only when `credentialType` is
      * one of `assumedRole` or `federationToken`.
      */
-    maxStsTtl?: pulumi.Input<number>;
+    maxStsTtl?: pulumi.Input<number | undefined>;
     /**
      * The ARN or hardware device number of the device configured to the IAM user for multi-factor authentication. Only required if the IAM user has an MFA device set up in AWS.
      */
-    mfaSerialNumber?: pulumi.Input<string>;
+    mfaSerialNumber?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend.
      * Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The ARN of the AWS Permissions 
      * Boundary to attach to IAM users created in the role. Valid only when
      * `credentialType` is `iamUser`. If not specified, then no permissions boundary
      * policy will be attached.
      */
-    permissionsBoundaryArn?: pulumi.Input<string>;
+    permissionsBoundaryArn?: pulumi.Input<string | undefined>;
     /**
      * Specifies a list of AWS managed policy ARNs. The
      * behavior depends on the credential type. With `iamUser`, the policies will be
@@ -429,7 +429,7 @@ export interface SecretBackendRoleArgs {
      * `federationToken`, at least one of `policyDocument` or `policyArns` must
      * be specified.
      */
-    policyArns?: pulumi.Input<pulumi.Input<string>[]>;
+    policyArns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The IAM policy document for the role. The
      * behavior depends on the credential type. With `iamUser`, the policy document
@@ -437,22 +437,22 @@ export interface SecretBackendRoleArgs {
      * user has. With `assumedRole` and `federationToken`, the policy document will
      * act as a filter on what the credentials can do, similar to `policyArns`.
      */
-    policyDocument?: pulumi.Input<string>;
+    policyDocument?: pulumi.Input<string | undefined>;
     /**
      * Specifies the ARNs of the AWS roles this Vault role
      * is allowed to assume. Required when `credentialType` is `assumedRole` and
      * prohibited otherwise.
      */
-    roleArns?: pulumi.Input<pulumi.Input<string>[]>;
+    roleArns?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * A map of strings representing key/value pairs to be set
      * during assume role creds creation. Valid only when `credentialType` is set to
      * `assumedRole`.
      */
-    sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    sessionTags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The path for the user name. Valid only when 
      * `credentialType` is `iamUser`. Default is `/`.
      */
-    userPath?: pulumi.Input<string>;
+    userPath?: pulumi.Input<string | undefined>;
 }

@@ -21,20 +21,20 @@ class SecretBackendIssuerArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  issuer_ref: pulumi.Input[_builtins.str],
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disable_critical_extension_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_constraint_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_path_length_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_aia_url_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 leaf_not_after_behavior: Optional[pulumi.Input[_builtins.str]] = None,
-                 manual_chains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 usage: Optional[pulumi.Input[_builtins.str]] = None):
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_path_length_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_aia_url_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 leaf_not_after_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+                 manual_chains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 usage: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendIssuer resource.
 
@@ -134,7 +134,7 @@ class SecretBackendIssuerArgs:
 
     @_builtins.property
     @pulumi.getter(name="crlDistributionPoints")
-    def crl_distribution_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the CRL
         Distribution Points field.
@@ -142,12 +142,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "crl_distribution_points")
 
     @crl_distribution_points.setter
-    def crl_distribution_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="disableCriticalExtensionChecks")
-    def disable_critical_extension_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_critical_extension_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this
         issuer is able to issue certificates where the chain of trust (including the
@@ -156,12 +156,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "disable_critical_extension_checks")
 
     @disable_critical_extension_checks.setter
-    def disable_critical_extension_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_critical_extension_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_critical_extension_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="disableNameChecks")
-    def disable_name_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_name_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this issuer is able
         to issue certificates where the chain of trust (including the final issued
@@ -171,12 +171,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "disable_name_checks")
 
     @disable_name_checks.setter
-    def disable_name_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_name_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_name_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="disableNameConstraintChecks")
-    def disable_name_constraint_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_name_constraint_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this
         issuer is able to issue certificates where the chain of trust (including the
@@ -186,12 +186,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "disable_name_constraint_checks")
 
     @disable_name_constraint_checks.setter
-    def disable_name_constraint_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_name_constraint_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_name_constraint_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="disablePathLengthChecks")
-    def disable_path_length_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_path_length_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this issuer
         is able to issue certificates where the chain of trust (including the final
@@ -201,12 +201,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "disable_path_length_checks")
 
     @disable_path_length_checks.setter
-    def disable_path_length_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_path_length_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_path_length_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="enableAiaUrlTemplating")
-    def enable_aia_url_templating(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_aia_url_templating(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies that the AIA URL values should
         be templated.
@@ -214,24 +214,24 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "enable_aia_url_templating")
 
     @enable_aia_url_templating.setter
-    def enable_aia_url_templating(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_aia_url_templating(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_aia_url_templating", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerName")
-    def issuer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the issuer.
         """
         return pulumi.get(self, "issuer_name")
 
     @issuer_name.setter
-    def issuer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_name", value)
 
     @_builtins.property
     @pulumi.getter(name="issuingCertificates")
-    def issuing_certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def issuing_certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the Issuing
         Certificate field.
@@ -239,12 +239,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "issuing_certificates")
 
     @issuing_certificates.setter
-    def issuing_certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def issuing_certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "issuing_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="leafNotAfterBehavior")
-    def leaf_not_after_behavior(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def leaf_not_after_behavior(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Behavior of a leaf's NotAfter field during
         issuance.
@@ -252,12 +252,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "leaf_not_after_behavior")
 
     @leaf_not_after_behavior.setter
-    def leaf_not_after_behavior(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def leaf_not_after_behavior(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "leaf_not_after_behavior", value)
 
     @_builtins.property
     @pulumi.getter(name="manualChains")
-    def manual_chains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def manual_chains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Chain of issuer references to build this issuer's
         computed CAChain field from, when non-empty.
@@ -265,12 +265,12 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "manual_chains")
 
     @manual_chains.setter
-    def manual_chains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def manual_chains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "manual_chains", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -280,24 +280,24 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspServers")
-    def ocsp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ocsp_servers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the OCSP Servers field.
         """
         return pulumi.get(self, "ocsp_servers")
 
     @ocsp_servers.setter
-    def ocsp_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ocsp_servers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="revocationSignatureAlgorithm")
-    def revocation_signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def revocation_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which signature algorithm to use
         when building CRLs.
@@ -305,42 +305,42 @@ class SecretBackendIssuerArgs:
         return pulumi.get(self, "revocation_signature_algorithm")
 
     @revocation_signature_algorithm.setter
-    def revocation_signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def revocation_signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "revocation_signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def usage(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def usage(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allowed usages for this issuer.
         """
         return pulumi.get(self, "usage")
 
     @usage.setter
-    def usage(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def usage(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "usage", value)
 
 
 @pulumi.input_type
 class _SecretBackendIssuerState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disable_critical_extension_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_constraint_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_path_length_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_aia_url_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 leaf_not_after_behavior: Optional[pulumi.Input[_builtins.str]] = None,
-                 manual_chains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 usage: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_path_length_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_aia_url_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 leaf_not_after_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+                 manual_chains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 usage: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendIssuer resources.
 
@@ -420,7 +420,7 @@ class _SecretBackendIssuerState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the PKI secret backend is mounted at, with no
         leading or trailing `/`s.
@@ -428,12 +428,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="crlDistributionPoints")
-    def crl_distribution_points(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the CRL
         Distribution Points field.
@@ -441,12 +441,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "crl_distribution_points")
 
     @crl_distribution_points.setter
-    def crl_distribution_points(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="disableCriticalExtensionChecks")
-    def disable_critical_extension_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_critical_extension_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this
         issuer is able to issue certificates where the chain of trust (including the
@@ -455,12 +455,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "disable_critical_extension_checks")
 
     @disable_critical_extension_checks.setter
-    def disable_critical_extension_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_critical_extension_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_critical_extension_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="disableNameChecks")
-    def disable_name_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_name_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this issuer is able
         to issue certificates where the chain of trust (including the final issued
@@ -470,12 +470,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "disable_name_checks")
 
     @disable_name_checks.setter
-    def disable_name_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_name_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_name_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="disableNameConstraintChecks")
-    def disable_name_constraint_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_name_constraint_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this
         issuer is able to issue certificates where the chain of trust (including the
@@ -485,12 +485,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "disable_name_constraint_checks")
 
     @disable_name_constraint_checks.setter
-    def disable_name_constraint_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_name_constraint_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_name_constraint_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="disablePathLengthChecks")
-    def disable_path_length_checks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_path_length_checks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         This determines whether this issuer
         is able to issue certificates where the chain of trust (including the final
@@ -500,12 +500,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "disable_path_length_checks")
 
     @disable_path_length_checks.setter
-    def disable_path_length_checks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_path_length_checks(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_path_length_checks", value)
 
     @_builtins.property
     @pulumi.getter(name="enableAiaUrlTemplating")
-    def enable_aia_url_templating(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enable_aia_url_templating(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies that the AIA URL values should
         be templated.
@@ -513,48 +513,48 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "enable_aia_url_templating")
 
     @enable_aia_url_templating.setter
-    def enable_aia_url_templating(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enable_aia_url_templating(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enable_aia_url_templating", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerId")
-    def issuer_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the issuer.
         """
         return pulumi.get(self, "issuer_id")
 
     @issuer_id.setter
-    def issuer_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_id", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerName")
-    def issuer_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the issuer.
         """
         return pulumi.get(self, "issuer_name")
 
     @issuer_name.setter
-    def issuer_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_name", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerRef")
-    def issuer_ref(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_ref(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Reference to an existing issuer.
         """
         return pulumi.get(self, "issuer_ref")
 
     @issuer_ref.setter
-    def issuer_ref(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_ref(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_ref", value)
 
     @_builtins.property
     @pulumi.getter(name="issuingCertificates")
-    def issuing_certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def issuing_certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the Issuing
         Certificate field.
@@ -562,12 +562,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "issuing_certificates")
 
     @issuing_certificates.setter
-    def issuing_certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def issuing_certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "issuing_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="leafNotAfterBehavior")
-    def leaf_not_after_behavior(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def leaf_not_after_behavior(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Behavior of a leaf's NotAfter field during
         issuance.
@@ -575,12 +575,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "leaf_not_after_behavior")
 
     @leaf_not_after_behavior.setter
-    def leaf_not_after_behavior(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def leaf_not_after_behavior(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "leaf_not_after_behavior", value)
 
     @_builtins.property
     @pulumi.getter(name="manualChains")
-    def manual_chains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def manual_chains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Chain of issuer references to build this issuer's
         computed CAChain field from, when non-empty.
@@ -588,12 +588,12 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "manual_chains")
 
     @manual_chains.setter
-    def manual_chains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def manual_chains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "manual_chains", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -603,24 +603,24 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspServers")
-    def ocsp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ocsp_servers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the URL values for the OCSP Servers field.
         """
         return pulumi.get(self, "ocsp_servers")
 
     @ocsp_servers.setter
-    def ocsp_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ocsp_servers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="revocationSignatureAlgorithm")
-    def revocation_signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def revocation_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Which signature algorithm to use
         when building CRLs.
@@ -628,19 +628,19 @@ class _SecretBackendIssuerState:
         return pulumi.get(self, "revocation_signature_algorithm")
 
     @revocation_signature_algorithm.setter
-    def revocation_signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def revocation_signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "revocation_signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter
-    def usage(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def usage(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Allowed usages for this issuer.
         """
         return pulumi.get(self, "usage")
 
     @usage.setter
-    def usage(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def usage(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "usage", value)
 
 
@@ -650,22 +650,22 @@ class SecretBackendIssuer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disable_critical_extension_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_constraint_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_path_length_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_aia_url_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 leaf_not_after_behavior: Optional[pulumi.Input[_builtins.str]] = None,
-                 manual_chains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 usage: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_path_length_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_aia_url_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 leaf_not_after_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+                 manual_chains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 usage: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages the lifecycle of an existing issuer on a PKI Secret Backend. This resource does not
@@ -802,22 +802,22 @@ class SecretBackendIssuer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 disable_critical_extension_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_name_constraint_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disable_path_length_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-                 enable_aia_url_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-                 issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_ref: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 leaf_not_after_behavior: Optional[pulumi.Input[_builtins.str]] = None,
-                 manual_chains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 revocation_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 usage: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_path_length_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enable_aia_url_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+                 issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 leaf_not_after_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+                 manual_chains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 revocation_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 usage: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -858,23 +858,23 @@ class SecretBackendIssuer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            crl_distribution_points: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            disable_critical_extension_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_name_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_name_constraint_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-            disable_path_length_checks: Optional[pulumi.Input[_builtins.bool]] = None,
-            enable_aia_url_templating: Optional[pulumi.Input[_builtins.bool]] = None,
-            issuer_id: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer_name: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer_ref: Optional[pulumi.Input[_builtins.str]] = None,
-            issuing_certificates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            leaf_not_after_behavior: Optional[pulumi.Input[_builtins.str]] = None,
-            manual_chains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            ocsp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            revocation_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            usage: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendIssuer':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_path_length_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_aia_url_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+            issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            leaf_not_after_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            manual_chains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            revocation_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            usage: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendIssuer':
         """
         Get an existing SecretBackendIssuer resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

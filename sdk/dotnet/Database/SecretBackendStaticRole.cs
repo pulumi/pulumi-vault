@@ -24,7 +24,7 @@ namespace Pulumi.Vault.Database
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var db = new Vault.Index.Mount("db", new()
+    ///     var db = new Vault.Mount("db", new()
     ///     {
     ///         Path = "postgres",
     ///         Type = "database",

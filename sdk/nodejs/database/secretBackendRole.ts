@@ -205,66 +205,66 @@ export interface SecretBackendRoleState {
     /**
      * The unique name of the Vault mount to configure.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The database statements to execute when
      * creating a user.
      */
-    creationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    creationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the configuration
      * for the given `credentialType`.
      *
      * The following options are available for each `credentialType` value:
      */
-    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies the type of credential that
      * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
      * See the plugin's API page for credential types supported by individual databases.
      */
-    credentialType?: pulumi.Input<string>;
+    credentialType?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the database connection to use for
      * the role.
      */
-    dbName?: pulumi.Input<string>;
+    dbName?: pulumi.Input<string | undefined>;
     /**
      * The default number of seconds for leases for this
      * role.
      */
-    defaultTtl?: pulumi.Input<number>;
+    defaultTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of seconds for leases for this
      * role.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * A unique name to give the role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The database statements to execute when
      * renewing a user.
      */
-    renewStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    renewStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The database statements to execute when
      * revoking a user.
      */
-    revocationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    revocationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The database statements to execute when
      * rolling back creation due to an error.
      */
-    rollbackStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rollbackStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -286,13 +286,13 @@ export interface SecretBackendRoleArgs {
      *
      * The following options are available for each `credentialType` value:
      */
-    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    credentialConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies the type of credential that
      * will be generated for the role. Options include: `password`, `rsaPrivateKey`, `clientCertificate`.
      * See the plugin's API page for credential types supported by individual databases.
      */
-    credentialType?: pulumi.Input<string>;
+    credentialType?: pulumi.Input<string | undefined>;
     /**
      * The unique name of the database connection to use for
      * the role.
@@ -302,36 +302,36 @@ export interface SecretBackendRoleArgs {
      * The default number of seconds for leases for this
      * role.
      */
-    defaultTtl?: pulumi.Input<number>;
+    defaultTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum number of seconds for leases for this
      * role.
      */
-    maxTtl?: pulumi.Input<number>;
+    maxTtl?: pulumi.Input<number | undefined>;
     /**
      * A unique name to give the role.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured namespace.
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The database statements to execute when
      * renewing a user.
      */
-    renewStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    renewStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The database statements to execute when
      * revoking a user.
      */
-    revocationStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    revocationStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The database statements to execute when
      * rolling back creation due to an error.
      */
-    rollbackStatements?: pulumi.Input<pulumi.Input<string>[]>;
+    rollbackStatements?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

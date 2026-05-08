@@ -147,24 +147,24 @@ export interface GetSecretBackendSignOutputArgs {
     /**
      * Specifies the type of certificate to be created; either "user" or "host".
      */
-    certType?: pulumi.Input<string>;
+    certType?: pulumi.Input<string | undefined>;
     /**
      * Specifies a map of the critical options that the certificate should be signed for. Defaults to none.
      */
-    criticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    criticalOptions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies a map of the extensions that the certificate should be signed for. Defaults to none.
      */
-    extensions?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    extensions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Specifies the key id that the created certificate should have. If not specified, the display name of the token will be used.
      */
-    keyId?: pulumi.Input<string>;
+    keyId?: pulumi.Input<string | undefined>;
     /**
      * Specifies the name of the role to sign.
      */
     name: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Full path where SSH backend is mounted.
      */
@@ -176,9 +176,9 @@ export interface GetSecretBackendSignOutputArgs {
     /**
      * Specifies the Requested Time To Live. Cannot be greater than the role's maxTtl value. If not provided, the role's ttl value will be used. Note that the role values default to system values if not explicitly set.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * Specifies valid principals, either usernames or hostnames, that the certificate should be signed for. Required unless the role has specified allowEmptyPrincipals or a value has been set for either the defaultUser or defaultUserTemplate role parameters.
      */
-    validPrincipals?: pulumi.Input<string>;
+    validPrincipals?: pulumi.Input<string | undefined>;
 }

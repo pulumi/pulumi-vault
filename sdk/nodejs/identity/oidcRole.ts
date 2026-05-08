@@ -182,34 +182,34 @@ export interface OidcRoleState {
      * The value that will be included in the `aud` field of all the OIDC identity
      * tokens issued by this role
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * A configured named key, the key must already exist
      * before tokens can be issued.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * Name of the OIDC Role to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The template string to use for generating tokens. This may be in
      * string-ified JSON or base64 format. See the
      * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
      * for the template format.
      */
-    template?: pulumi.Input<string>;
+    template?: pulumi.Input<string | undefined>;
     /**
      * TTL of the tokens generated against the role in number of seconds.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -220,7 +220,7 @@ export interface OidcRoleArgs {
      * The value that will be included in the `aud` field of all the OIDC identity
      * tokens issued by this role
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * A configured named key, the key must already exist
      * before tokens can be issued.
@@ -229,23 +229,23 @@ export interface OidcRoleArgs {
     /**
      * Name of the OIDC Role to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The template string to use for generating tokens. This may be in
      * string-ified JSON or base64 format. See the
      * [documentation](https://www.vaultproject.io/docs/secrets/identity/index.html#token-contents-and-templates)
      * for the template format.
      */
-    template?: pulumi.Input<string>;
+    template?: pulumi.Input<string | undefined>;
     /**
      * TTL of the tokens generated against the role in number of seconds.
      */
-    ttl?: pulumi.Input<number>;
+    ttl?: pulumi.Input<number | undefined>;
 }

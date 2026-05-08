@@ -20,9 +20,9 @@ __all__ = ['SecretBackendConfigIssuersArgs', 'SecretBackendConfigIssuers']
 class SecretBackendConfigIssuersArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
-                 default: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_follows_latest_issuer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 default: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_follows_latest_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendConfigIssuers resource.
 
@@ -61,7 +61,7 @@ class SecretBackendConfigIssuersArgs:
 
     @_builtins.property
     @pulumi.getter
-    def default(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default issuer using the issuer ID.
         **NOTE:** It is recommended to only set the default issuer using the ID.
@@ -70,12 +70,12 @@ class SecretBackendConfigIssuersArgs:
         return pulumi.get(self, "default")
 
     @default.setter
-    def default(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultFollowsLatestIssuer")
-    def default_follows_latest_issuer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_follows_latest_issuer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether a root creation
         or an issuer import operation updates the default issuer to the newly added issuer.
@@ -83,12 +83,12 @@ class SecretBackendConfigIssuersArgs:
         return pulumi.get(self, "default_follows_latest_issuer")
 
     @default_follows_latest_issuer.setter
-    def default_follows_latest_issuer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_follows_latest_issuer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_follows_latest_issuer", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -98,17 +98,17 @@ class SecretBackendConfigIssuersArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _SecretBackendConfigIssuersState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_follows_latest_issuer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_follows_latest_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendConfigIssuers resources.
 
@@ -135,7 +135,7 @@ class _SecretBackendConfigIssuersState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the PKI secret backend is mounted at, with no
         leading or trailing `/`s.
@@ -143,12 +143,12 @@ class _SecretBackendConfigIssuersState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def default(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the default issuer using the issuer ID.
         **NOTE:** It is recommended to only set the default issuer using the ID.
@@ -157,12 +157,12 @@ class _SecretBackendConfigIssuersState:
         return pulumi.get(self, "default")
 
     @default.setter
-    def default(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultFollowsLatestIssuer")
-    def default_follows_latest_issuer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def default_follows_latest_issuer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether a root creation
         or an issuer import operation updates the default issuer to the newly added issuer.
@@ -170,12 +170,12 @@ class _SecretBackendConfigIssuersState:
         return pulumi.get(self, "default_follows_latest_issuer")
 
     @default_follows_latest_issuer.setter
-    def default_follows_latest_issuer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def default_follows_latest_issuer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "default_follows_latest_issuer", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -185,7 +185,7 @@ class _SecretBackendConfigIssuersState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -195,10 +195,10 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_follows_latest_issuer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_follows_latest_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Allows setting the value of the default issuer. For more information, see the
@@ -313,10 +313,10 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 default: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_follows_latest_issuer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 default: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_follows_latest_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -342,10 +342,10 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            default: Optional[pulumi.Input[_builtins.str]] = None,
-            default_follows_latest_issuer: Optional[pulumi.Input[_builtins.bool]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'SecretBackendConfigIssuers':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            default: pulumi.Input[Optional[_builtins.str]] = None,
+            default_follows_latest_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendConfigIssuers':
         """
         Get an existing SecretBackendConfigIssuers resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

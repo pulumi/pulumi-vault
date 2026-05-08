@@ -54,6 +54,6 @@ export function getDynamicCredentialsOutput(args: GetDynamicCredentialsOutputArg
  */
 export interface GetDynamicCredentialsOutputArgs {
     mount: pulumi.Input<string>;
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     roleName: pulumi.Input<string>;
 }

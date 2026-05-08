@@ -221,89 +221,89 @@ export interface AuthBackendRoleState {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The unique name of the auth backend to configure.
      * Defaults to `approle`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to require `secretId` to be
      * presented when logging in using this AppRole. Defaults to `true`.
      */
-    bindSecretId?: pulumi.Input<boolean>;
+    bindSecretId?: pulumi.Input<boolean | undefined>;
     /**
      * If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
      */
-    localSecretIds?: pulumi.Input<boolean>;
+    localSecretIds?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * The name of the role.
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
     /**
      * If set,
      * specifies blocks of IP addresses which can perform the login operation.
      */
-    secretIdBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    secretIdBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The number of times any particular SecretID
      * can be used to fetch a token from this AppRole, after which the SecretID will
      * expire. A value of zero will allow unlimited uses.
      */
-    secretIdNumUses?: pulumi.Input<number>;
+    secretIdNumUses?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds after which any SecretID
      * expires.
      */
-    secretIdTtl?: pulumi.Input<number>;
+    secretIdTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -314,33 +314,33 @@ export interface AuthBackendRoleArgs {
      * The metadata to be tied to generated entity alias.
      *   This should be a list or map containing the metadata in key value pairs.
      */
-    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    aliasMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The unique name of the auth backend to configure.
      * Defaults to `approle`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Whether or not to require `secretId` to be
      * presented when logging in using this AppRole. Defaults to `true`.
      */
-    bindSecretId?: pulumi.Input<boolean>;
+    bindSecretId?: pulumi.Input<boolean | undefined>;
     /**
      * If true, SecretIDs generated against this role will be 'local' to the node they were generated on. This means that they will only be valid when used against the same node that they were generated on.
      */
-    localSecretIds?: pulumi.Input<boolean>;
+    localSecretIds?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The RoleID of this role. If not specified, one will be
      * auto-generated.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * The name of the role.
      */
@@ -349,52 +349,52 @@ export interface AuthBackendRoleArgs {
      * If set,
      * specifies blocks of IP addresses which can perform the login operation.
      */
-    secretIdBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    secretIdBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The number of times any particular SecretID
      * can be used to fetch a token from this AppRole, after which the SecretID will
      * expire. A value of zero will allow unlimited uses.
      */
-    secretIdNumUses?: pulumi.Input<number>;
+    secretIdNumUses?: pulumi.Input<number | undefined>;
     /**
      * The number of seconds after which any SecretID
      * expires.
      */
-    secretIdTtl?: pulumi.Input<number>;
+    secretIdTtl?: pulumi.Input<number | undefined>;
     /**
      * Specifies the blocks of IP addresses which are allowed to use the generated token
      */
-    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenBoundCidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Generated Token's Explicit Maximum TTL in seconds
      */
-    tokenExplicitMaxTtl?: pulumi.Input<number>;
+    tokenExplicitMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * The maximum lifetime of the generated token
      */
-    tokenMaxTtl?: pulumi.Input<number>;
+    tokenMaxTtl?: pulumi.Input<number | undefined>;
     /**
      * If true, the 'default' policy will not automatically be added to generated tokens
      */
-    tokenNoDefaultPolicy?: pulumi.Input<boolean>;
+    tokenNoDefaultPolicy?: pulumi.Input<boolean | undefined>;
     /**
      * The maximum number of times a token may be used, a value of zero means unlimited
      */
-    tokenNumUses?: pulumi.Input<number>;
+    tokenNumUses?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Period
      */
-    tokenPeriod?: pulumi.Input<number>;
+    tokenPeriod?: pulumi.Input<number | undefined>;
     /**
      * Generated Token's Policies
      */
-    tokenPolicies?: pulumi.Input<pulumi.Input<string>[]>;
+    tokenPolicies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The initial ttl of the token to generate in seconds
      */
-    tokenTtl?: pulumi.Input<number>;
+    tokenTtl?: pulumi.Input<number | undefined>;
     /**
      * The type of token to generate, service or batch
      */
-    tokenType?: pulumi.Input<string>;
+    tokenType?: pulumi.Input<string | undefined>;
 }

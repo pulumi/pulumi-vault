@@ -135,30 +135,30 @@ export interface SecretBackendConfigUrlsState {
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL values for the CRL Distribution Points field.
      */
-    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
+    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies that templating of AIA fields is allowed.
      */
-    enableTemplating?: pulumi.Input<boolean>;
+    enableTemplating?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the URL values for the Issuing Certificate field.
      */
-    issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    issuingCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */
-    ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -172,24 +172,24 @@ export interface SecretBackendConfigUrlsArgs {
     /**
      * Specifies the URL values for the CRL Distribution Points field.
      */
-    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[]>;
+    crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies that templating of AIA fields is allowed.
      */
-    enableTemplating?: pulumi.Input<boolean>;
+    enableTemplating?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the URL values for the Issuing Certificate field.
      */
-    issuingCertificates?: pulumi.Input<pulumi.Input<string>[]>;
+    issuingCertificates?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Specifies the URL values for the OCSP Servers field.
      */
-    ocspServers?: pulumi.Input<pulumi.Input<string>[]>;
+    ocspServers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

@@ -20,15 +20,15 @@ __all__ = ['QuotaRateLimitArgs', 'QuotaRateLimit']
 class QuotaRateLimitArgs:
     def __init__(__self__, *,
                  rate: pulumi.Input[_builtins.float],
-                 block_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 group_by: Optional[pulumi.Input[_builtins.str]] = None,
-                 inheritable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 secondary_rate: Optional[pulumi.Input[_builtins.float]] = None):
+                 block_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 group_by: pulumi.Input[Optional[_builtins.str]] = None,
+                 inheritable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_rate: pulumi.Input[Optional[_builtins.float]] = None):
         """
         The set of arguments for constructing a QuotaRateLimit resource.
 
@@ -96,7 +96,7 @@ class QuotaRateLimitArgs:
 
     @_builtins.property
     @pulumi.getter(name="blockInterval")
-    def block_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def block_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         If set, when a client reaches a rate limit threshold, the client will
         be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
@@ -104,12 +104,12 @@ class QuotaRateLimitArgs:
         return pulumi.get(self, "block_interval")
 
     @block_interval.setter
-    def block_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def block_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "block_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="groupBy")
-    def group_by(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_by(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Attribute used to group requests for rate limiting. Limits are enforced independently for each
         group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
@@ -122,48 +122,48 @@ class QuotaRateLimitArgs:
         return pulumi.get(self, "group_by")
 
     @group_by.setter
-    def group_by(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_by(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_by", value)
 
     @_builtins.property
     @pulumi.getter
-    def inheritable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def inheritable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         """
         return pulumi.get(self, "inheritable")
 
     @inheritable.setter
-    def inheritable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def inheritable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "inheritable", value)
 
     @_builtins.property
     @pulumi.getter
-    def interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The duration in seconds to enforce rate limiting for.
         """
         return pulumi.get(self, "interval")
 
     @interval.setter
-    def interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "interval", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the rate limit quota
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -173,12 +173,12 @@ class QuotaRateLimitArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path of the mount or namespace to apply the quota. A blank path configures a
         global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -190,24 +190,24 @@ class QuotaRateLimitArgs:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="secondaryRate")
-    def secondary_rate(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def secondary_rate(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
         the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
@@ -216,23 +216,23 @@ class QuotaRateLimitArgs:
         return pulumi.get(self, "secondary_rate")
 
     @secondary_rate.setter
-    def secondary_rate(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def secondary_rate(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "secondary_rate", value)
 
 
 @pulumi.input_type
 class _QuotaRateLimitState:
     def __init__(__self__, *,
-                 block_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 group_by: Optional[pulumi.Input[_builtins.str]] = None,
-                 inheritable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 rate: Optional[pulumi.Input[_builtins.float]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 secondary_rate: Optional[pulumi.Input[_builtins.float]] = None):
+                 block_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 group_by: pulumi.Input[Optional[_builtins.str]] = None,
+                 inheritable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 rate: pulumi.Input[Optional[_builtins.float]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_rate: pulumi.Input[Optional[_builtins.float]] = None):
         """
         Input properties used for looking up and filtering QuotaRateLimit resources.
 
@@ -288,7 +288,7 @@ class _QuotaRateLimitState:
 
     @_builtins.property
     @pulumi.getter(name="blockInterval")
-    def block_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def block_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         If set, when a client reaches a rate limit threshold, the client will
         be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.
@@ -296,12 +296,12 @@ class _QuotaRateLimitState:
         return pulumi.get(self, "block_interval")
 
     @block_interval.setter
-    def block_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def block_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "block_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="groupBy")
-    def group_by(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_by(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Attribute used to group requests for rate limiting. Limits are enforced independently for each
         group. Valid `group_by` modes are: 1) `ip` that groups requests by their source IP address (**`group_by` defaults to
@@ -314,48 +314,48 @@ class _QuotaRateLimitState:
         return pulumi.get(self, "group_by")
 
     @group_by.setter
-    def group_by(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_by(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_by", value)
 
     @_builtins.property
     @pulumi.getter
-    def inheritable(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def inheritable(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
         """
         return pulumi.get(self, "inheritable")
 
     @inheritable.setter
-    def inheritable(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def inheritable(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "inheritable", value)
 
     @_builtins.property
     @pulumi.getter
-    def interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The duration in seconds to enforce rate limiting for.
         """
         return pulumi.get(self, "interval")
 
     @interval.setter
-    def interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "interval", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the rate limit quota
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -365,12 +365,12 @@ class _QuotaRateLimitState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path of the mount or namespace to apply the quota. A blank path configures a
         global rate limit quota. For example `namespace1/` adds a quota to a full namespace,
@@ -382,12 +382,12 @@ class _QuotaRateLimitState:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
-    def rate(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def rate(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         The maximum number of requests at any given second to be allowed by the quota
         rule. The `rate` must be positive.
@@ -395,24 +395,24 @@ class _QuotaRateLimitState:
         return pulumi.get(self, "rate")
 
     @rate.setter
-    def rate(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def rate(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "rate", value)
 
     @_builtins.property
     @pulumi.getter
-    def role(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If set on a quota where `path` is set to an auth mount with a concept of roles (such as /auth/approle/), this will make the quota restrict login requests to that mount that are made with the specified role.
         """
         return pulumi.get(self, "role")
 
     @role.setter
-    def role(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role", value)
 
     @_builtins.property
     @pulumi.getter(name="secondaryRate")
-    def secondary_rate(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def secondary_rate(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Can only be set for the `group_by` modes `entity_then_ip` or `entity_then_none`. This is
         the rate limit applied to the requests that fall under the "ip" or "none" groupings, while the authenticated requests
@@ -421,7 +421,7 @@ class _QuotaRateLimitState:
         return pulumi.get(self, "secondary_rate")
 
     @secondary_rate.setter
-    def secondary_rate(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def secondary_rate(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "secondary_rate", value)
 
 
@@ -431,16 +431,16 @@ class QuotaRateLimit(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 block_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 group_by: Optional[pulumi.Input[_builtins.str]] = None,
-                 inheritable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 rate: Optional[pulumi.Input[_builtins.float]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 secondary_rate: Optional[pulumi.Input[_builtins.float]] = None,
+                 block_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 group_by: pulumi.Input[Optional[_builtins.str]] = None,
+                 inheritable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 rate: pulumi.Input[Optional[_builtins.float]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_rate: pulumi.Input[Optional[_builtins.float]] = None,
                  __props__=None):
         """
         Manage rate limit quotas which enforce API rate limiting using a token bucket algorithm.
@@ -459,7 +459,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         global_ = vault.QuotaRateLimit("global",
             name="global",
             path="",
-            rate=100)
+            rate=float(100))
         ```
 
         ## Import
@@ -525,7 +525,7 @@ class QuotaRateLimit(pulumi.CustomResource):
         global_ = vault.QuotaRateLimit("global",
             name="global",
             path="",
-            rate=100)
+            rate=float(100))
         ```
 
         ## Import
@@ -552,16 +552,16 @@ class QuotaRateLimit(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 block_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 group_by: Optional[pulumi.Input[_builtins.str]] = None,
-                 inheritable: Optional[pulumi.Input[_builtins.bool]] = None,
-                 interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 rate: Optional[pulumi.Input[_builtins.float]] = None,
-                 role: Optional[pulumi.Input[_builtins.str]] = None,
-                 secondary_rate: Optional[pulumi.Input[_builtins.float]] = None,
+                 block_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 group_by: pulumi.Input[Optional[_builtins.str]] = None,
+                 inheritable: pulumi.Input[Optional[_builtins.bool]] = None,
+                 interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 rate: pulumi.Input[Optional[_builtins.float]] = None,
+                 role: pulumi.Input[Optional[_builtins.str]] = None,
+                 secondary_rate: pulumi.Input[Optional[_builtins.float]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -593,16 +593,16 @@ class QuotaRateLimit(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            block_interval: Optional[pulumi.Input[_builtins.int]] = None,
-            group_by: Optional[pulumi.Input[_builtins.str]] = None,
-            inheritable: Optional[pulumi.Input[_builtins.bool]] = None,
-            interval: Optional[pulumi.Input[_builtins.int]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            rate: Optional[pulumi.Input[_builtins.float]] = None,
-            role: Optional[pulumi.Input[_builtins.str]] = None,
-            secondary_rate: Optional[pulumi.Input[_builtins.float]] = None) -> 'QuotaRateLimit':
+            block_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            group_by: pulumi.Input[Optional[_builtins.str]] = None,
+            inheritable: pulumi.Input[Optional[_builtins.bool]] = None,
+            interval: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            rate: pulumi.Input[Optional[_builtins.float]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            secondary_rate: pulumi.Input[Optional[_builtins.float]] = None) -> 'QuotaRateLimit':
         """
         Get an existing QuotaRateLimit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

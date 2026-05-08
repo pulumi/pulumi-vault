@@ -19,12 +19,12 @@ __all__ = ['AuthBackendConfigIdentityArgs', 'AuthBackendConfigIdentity']
 @pulumi.input_type
 class AuthBackendConfigIdentityArgs:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a AuthBackendConfigIdentity resource.
 
@@ -58,7 +58,7 @@ class AuthBackendConfigIdentityArgs:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS auth backend being configured was
         mounted at.  Defaults to `aws`.
@@ -66,12 +66,12 @@ class AuthBackendConfigIdentityArgs:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="ec2Alias")
-    def ec2_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ec2_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to generate the identity alias when using the ec2 auth method. Valid choices are
         `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
@@ -79,12 +79,12 @@ class AuthBackendConfigIdentityArgs:
         return pulumi.get(self, "ec2_alias")
 
     @ec2_alias.setter
-    def ec2_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ec2_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ec2_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="ec2Metadatas")
-    def ec2_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ec2_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The metadata to include on the token returned by the `login` endpoint. This metadata will be
         added to both audit logs, and on the `ec2_alias`
@@ -92,12 +92,12 @@ class AuthBackendConfigIdentityArgs:
         return pulumi.get(self, "ec2_metadatas")
 
     @ec2_metadatas.setter
-    def ec2_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ec2_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ec2_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="iamAlias")
-    def iam_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to generate the identity alias when using the iam auth method. Valid choices are
         `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
@@ -105,12 +105,12 @@ class AuthBackendConfigIdentityArgs:
         return pulumi.get(self, "iam_alias")
 
     @iam_alias.setter
-    def iam_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="iamMetadatas")
-    def iam_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def iam_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The metadata to include on the token returned by the `login` endpoint. This metadata will be
         added to both audit logs, and on the `iam_alias`
@@ -118,12 +118,12 @@ class AuthBackendConfigIdentityArgs:
         return pulumi.get(self, "iam_metadatas")
 
     @iam_metadatas.setter
-    def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def iam_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_metadatas", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -133,19 +133,19 @@ class AuthBackendConfigIdentityArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _AuthBackendConfigIdentityState:
     def __init__(__self__, *,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering AuthBackendConfigIdentity resources.
 
@@ -179,7 +179,7 @@ class _AuthBackendConfigIdentityState:
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The path the AWS auth backend being configured was
         mounted at.  Defaults to `aws`.
@@ -187,12 +187,12 @@ class _AuthBackendConfigIdentityState:
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="ec2Alias")
-    def ec2_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ec2_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to generate the identity alias when using the ec2 auth method. Valid choices are
         `role_id`, `instance_id`, and `image_id`. Defaults to `role_id`
@@ -200,12 +200,12 @@ class _AuthBackendConfigIdentityState:
         return pulumi.get(self, "ec2_alias")
 
     @ec2_alias.setter
-    def ec2_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ec2_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ec2_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="ec2Metadatas")
-    def ec2_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ec2_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The metadata to include on the token returned by the `login` endpoint. This metadata will be
         added to both audit logs, and on the `ec2_alias`
@@ -213,12 +213,12 @@ class _AuthBackendConfigIdentityState:
         return pulumi.get(self, "ec2_metadatas")
 
     @ec2_metadatas.setter
-    def ec2_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ec2_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ec2_metadatas", value)
 
     @_builtins.property
     @pulumi.getter(name="iamAlias")
-    def iam_alias(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to generate the identity alias when using the iam auth method. Valid choices are
         `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
@@ -226,12 +226,12 @@ class _AuthBackendConfigIdentityState:
         return pulumi.get(self, "iam_alias")
 
     @iam_alias.setter
-    def iam_alias(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_alias(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_alias", value)
 
     @_builtins.property
     @pulumi.getter(name="iamMetadatas")
-    def iam_metadatas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def iam_metadatas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The metadata to include on the token returned by the `login` endpoint. This metadata will be
         added to both audit logs, and on the `iam_alias`
@@ -239,12 +239,12 @@ class _AuthBackendConfigIdentityState:
         return pulumi.get(self, "iam_metadatas")
 
     @iam_metadatas.setter
-    def iam_metadatas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def iam_metadatas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "iam_metadatas", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -254,7 +254,7 @@ class _AuthBackendConfigIdentityState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
@@ -264,12 +264,12 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Manages an AWS auth backend identity configuration in a Vault server. This configuration defines how Vault interacts
@@ -369,12 +369,12 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 ec2_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -400,12 +400,12 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            ec2_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            ec2_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            iam_alias: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_metadatas: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None) -> 'AuthBackendConfigIdentity':
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            ec2_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            ec2_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackendConfigIdentity':
         """
         Get an existing AuthBackendConfigIdentity resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

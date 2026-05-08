@@ -138,25 +138,25 @@ export interface SecretBackendConfigIssuersState {
      * The path the PKI secret backend is mounted at, with no
      * leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Specifies the default issuer using the issuer ID.
      * **NOTE:** It is recommended to only set the default issuer using the ID.
      * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      */
-    default?: pulumi.Input<string>;
+    default?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether a root creation
      * or an issuer import operation updates the default issuer to the newly added issuer.
      */
-    defaultFollowsLatestIssuer?: pulumi.Input<boolean>;
+    defaultFollowsLatestIssuer?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -173,17 +173,17 @@ export interface SecretBackendConfigIssuersArgs {
      * **NOTE:** It is recommended to only set the default issuer using the ID.
      * While Vault does allow passing in the issuer name, this can lead to possible drifts in the Terraform state.
      */
-    default?: pulumi.Input<string>;
+    default?: pulumi.Input<string | undefined>;
     /**
      * Specifies whether a root creation
      * or an issuer import operation updates the default issuer to the newly added issuer.
      */
-    defaultFollowsLatestIssuer?: pulumi.Input<boolean>;
+    defaultFollowsLatestIssuer?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
 }

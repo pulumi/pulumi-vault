@@ -166,26 +166,26 @@ export interface GroupPoliciesState {
      *
      * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
-    exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean | undefined>;
     /**
      * Group ID to assign policies to.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * The name of the group that are assigned the policies.
      */
-    groupName?: pulumi.Input<string>;
+    groupName?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * List of policies to assign to the group
      */
-    policies?: pulumi.Input<pulumi.Input<string>[]>;
+    policies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -199,7 +199,7 @@ export interface GroupPoliciesArgs {
      *
      * If set to `false`, this resource will simply ensure that the policies specified in the resource are present in the group. When destroying the resource, the resource will ensure that the policies specified in the resource are removed.
      */
-    exclusive?: pulumi.Input<boolean>;
+    exclusive?: pulumi.Input<boolean | undefined>;
     /**
      * Group ID to assign policies to.
      */
@@ -210,7 +210,7 @@ export interface GroupPoliciesArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * List of policies to assign to the group
      */

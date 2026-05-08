@@ -427,222 +427,222 @@ export interface SecretBackendRoleState {
     /**
      * Flag to allow any name
      */
-    allowAnyName?: pulumi.Input<boolean>;
+    allowAnyName?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow certificates matching the actual domain
      */
-    allowBareDomains?: pulumi.Input<boolean>;
+    allowBareDomains?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow names containing glob patterns.
      */
-    allowGlobDomains?: pulumi.Input<boolean>;
+    allowGlobDomains?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow IP SANs
      */
-    allowIpSans?: pulumi.Input<boolean>;
+    allowIpSans?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow certificates for localhost
      */
-    allowLocalhost?: pulumi.Input<boolean>;
+    allowLocalhost?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow certificates matching subdomains
      */
-    allowSubdomains?: pulumi.Input<boolean>;
+    allowSubdomains?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow wildcard certificates.
      */
-    allowWildcardCertificates?: pulumi.Input<boolean>;
+    allowWildcardCertificates?: pulumi.Input<boolean | undefined>;
     /**
      * List of allowed domains for certificates
      */
-    allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
-    allowedDomainsTemplate?: pulumi.Input<boolean>;
+    allowedDomainsTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Defines allowed custom SANs
      */
-    allowedOtherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedOtherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * An array of allowed serial numbers to put in Subject
      */
-    allowedSerialNumbers?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedSerialNumbers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Defines allowed URI SANs
      */
-    allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedUriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
-    allowedUriSansTemplate?: pulumi.Input<boolean>;
+    allowedUriSansTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Defines allowed User IDs
      */
-    allowedUserIds?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedUserIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * Flag to mark basic constraints valid when issuing non-CA certificates
      */
-    basicConstraintsValidForNonCa?: pulumi.Input<boolean>;
+    basicConstraintsValidForNonCa?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to specify certificates for client use
      */
-    clientFlag?: pulumi.Input<boolean>;
+    clientFlag?: pulumi.Input<boolean | undefined>;
     /**
      * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
      */
-    cnValidations?: pulumi.Input<pulumi.Input<string>[]>;
+    cnValidations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to specify certificates for code signing use
      */
-    codeSigningFlag?: pulumi.Input<boolean>;
+    codeSigningFlag?: pulumi.Input<boolean | undefined>;
     /**
      * The country of generated certificates
      */
-    countries?: pulumi.Input<pulumi.Input<string>[]>;
+    countries?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to specify certificates for email protection use
      */
-    emailProtectionFlag?: pulumi.Input<boolean>;
+    emailProtectionFlag?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow only valid host names
      */
-    enforceHostnames?: pulumi.Input<boolean>;
+    enforceHostnames?: pulumi.Input<boolean | undefined>;
     /**
      * Specify the allowed extended key usage OIDs constraint on issued certificates
      */
-    extKeyUsageOids?: pulumi.Input<pulumi.Input<string>[]>;
+    extKeyUsageOids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specify the allowed extended key usage constraint on issued certificates
      */
-    extKeyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    extKeyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to generate leases with certificates
      */
-    generateLease?: pulumi.Input<boolean>;
+    generateLease?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
      * overriding the role's `issuerRef` value.
      */
-    issuerRef?: pulumi.Input<string>;
+    issuerRef?: pulumi.Input<string | undefined>;
     /**
      * The number of bits of generated keys
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Specify the allowed key usage constraint on issued
      * certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
      * To specify no default key usage constraints, set this to an empty list `[]`.
      */
-    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The locality of generated certificates
      */
-    localities?: pulumi.Input<pulumi.Input<string>[]>;
+    localities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum lease TTL, in seconds, for the role.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend. Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Flag to not store certificates in the storage backend
      */
-    noStore?: pulumi.Input<boolean>;
+    noStore?: pulumi.Input<boolean | undefined>;
     /**
      * Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
      */
-    noStoreMetadata?: pulumi.Input<boolean>;
+    noStoreMetadata?: pulumi.Input<boolean | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      */
-    notBeforeDuration?: pulumi.Input<string>;
+    notBeforeDuration?: pulumi.Input<string | undefined>;
     /**
      * The organization unit of generated certificates
      */
-    organizationUnit?: pulumi.Input<pulumi.Input<string>[]>;
+    organizationUnit?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The organization of generated certificates
      */
-    organizations?: pulumi.Input<pulumi.Input<string>[]>;
+    organizations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      */
-    policyIdentifier?: pulumi.Input<pulumi.Input<inputs.pkiSecret.SecretBackendRolePolicyIdentifier>[]>;
+    policyIdentifier?: pulumi.Input<pulumi.Input<inputs.pkiSecret.SecretBackendRolePolicyIdentifier>[] | undefined>;
     /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
-    policyIdentifiers?: pulumi.Input<pulumi.Input<string>[]>;
+    policyIdentifiers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The postal code of generated certificates
      */
-    postalCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    postalCodes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The province of generated certificates
      */
-    provinces?: pulumi.Input<pulumi.Input<string>[]>;
+    provinces?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to force CN usage
      */
-    requireCn?: pulumi.Input<boolean>;
+    requireCn?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
      *
      * Example usage:
      */
-    serialNumberSource?: pulumi.Input<string>;
+    serialNumberSource?: pulumi.Input<string | undefined>;
     /**
      * Flag to specify certificates for server use
      */
-    serverFlag?: pulumi.Input<boolean>;
+    serverFlag?: pulumi.Input<boolean | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    signatureBits?: pulumi.Input<number>;
+    signatureBits?: pulumi.Input<number | undefined>;
     /**
      * The street address of generated certificates
      */
-    streetAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    streetAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The TTL, in seconds, for any certificate issued against this role.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * Flag to use the CN in the CSR
      */
-    useCsrCommonName?: pulumi.Input<boolean>;
+    useCsrCommonName?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to use the SANs in the CSR
      */
-    useCsrSans?: pulumi.Input<boolean>;
+    useCsrSans?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      */
-    usePss?: pulumi.Input<boolean>;
+    usePss?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -652,59 +652,59 @@ export interface SecretBackendRoleArgs {
     /**
      * Flag to allow any name
      */
-    allowAnyName?: pulumi.Input<boolean>;
+    allowAnyName?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow certificates matching the actual domain
      */
-    allowBareDomains?: pulumi.Input<boolean>;
+    allowBareDomains?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow names containing glob patterns.
      */
-    allowGlobDomains?: pulumi.Input<boolean>;
+    allowGlobDomains?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow IP SANs
      */
-    allowIpSans?: pulumi.Input<boolean>;
+    allowIpSans?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow certificates for localhost
      */
-    allowLocalhost?: pulumi.Input<boolean>;
+    allowLocalhost?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow certificates matching subdomains
      */
-    allowSubdomains?: pulumi.Input<boolean>;
+    allowSubdomains?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow wildcard certificates.
      */
-    allowWildcardCertificates?: pulumi.Input<boolean>;
+    allowWildcardCertificates?: pulumi.Input<boolean | undefined>;
     /**
      * List of allowed domains for certificates
      */
-    allowedDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag, if set, `allowedDomains` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
-    allowedDomainsTemplate?: pulumi.Input<boolean>;
+    allowedDomainsTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Defines allowed custom SANs
      */
-    allowedOtherSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedOtherSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * An array of allowed serial numbers to put in Subject
      */
-    allowedSerialNumbers?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedSerialNumbers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Defines allowed URI SANs
      */
-    allowedUriSans?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedUriSans?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag, if set, `allowedUriSans` can be specified using identity template expressions such as `{{identity.entity.aliases.<mount accessor>.name}}`.
      */
-    allowedUriSansTemplate?: pulumi.Input<boolean>;
+    allowedUriSansTemplate?: pulumi.Input<boolean | undefined>;
     /**
      * Defines allowed User IDs
      */
-    allowedUserIds?: pulumi.Input<pulumi.Input<string>[]>;
+    allowedUserIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
@@ -712,160 +712,160 @@ export interface SecretBackendRoleArgs {
     /**
      * Flag to mark basic constraints valid when issuing non-CA certificates
      */
-    basicConstraintsValidForNonCa?: pulumi.Input<boolean>;
+    basicConstraintsValidForNonCa?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to specify certificates for client use
      */
-    clientFlag?: pulumi.Input<boolean>;
+    clientFlag?: pulumi.Input<boolean | undefined>;
     /**
      * Validations to run on the Common Name field of the certificate, choices: `email`, `hostname`, `disabled`
      */
-    cnValidations?: pulumi.Input<pulumi.Input<string>[]>;
+    cnValidations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to specify certificates for code signing use
      */
-    codeSigningFlag?: pulumi.Input<boolean>;
+    codeSigningFlag?: pulumi.Input<boolean | undefined>;
     /**
      * The country of generated certificates
      */
-    countries?: pulumi.Input<pulumi.Input<string>[]>;
+    countries?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to specify certificates for email protection use
      */
-    emailProtectionFlag?: pulumi.Input<boolean>;
+    emailProtectionFlag?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to allow only valid host names
      */
-    enforceHostnames?: pulumi.Input<boolean>;
+    enforceHostnames?: pulumi.Input<boolean | undefined>;
     /**
      * Specify the allowed extended key usage OIDs constraint on issued certificates
      */
-    extKeyUsageOids?: pulumi.Input<pulumi.Input<string>[]>;
+    extKeyUsageOids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specify the allowed extended key usage constraint on issued certificates
      */
-    extKeyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    extKeyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to generate leases with certificates
      */
-    generateLease?: pulumi.Input<boolean>;
+    generateLease?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the default issuer of this request. May
      * be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
      * the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
      * overriding the role's `issuerRef` value.
      */
-    issuerRef?: pulumi.Input<string>;
+    issuerRef?: pulumi.Input<string | undefined>;
     /**
      * The number of bits of generated keys
      */
-    keyBits?: pulumi.Input<number>;
+    keyBits?: pulumi.Input<number | undefined>;
     /**
      * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
      * Defaults to `rsa`
      */
-    keyType?: pulumi.Input<string>;
+    keyType?: pulumi.Input<string | undefined>;
     /**
      * Specify the allowed key usage constraint on issued
      * certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
      * To specify no default key usage constraints, set this to an empty list `[]`.
      */
-    keyUsages?: pulumi.Input<pulumi.Input<string>[]>;
+    keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The locality of generated certificates
      */
-    localities?: pulumi.Input<pulumi.Input<string>[]>;
+    localities?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The maximum lease TTL, in seconds, for the role.
      */
-    maxTtl?: pulumi.Input<string>;
+    maxTtl?: pulumi.Input<string | undefined>;
     /**
      * The name to identify this role within the backend. Must be unique within the backend.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Flag to not store certificates in the storage backend
      */
-    noStore?: pulumi.Input<boolean>;
+    noStore?: pulumi.Input<boolean | undefined>;
     /**
      * Allows metadata to be stored keyed on the certificate's serial number. The field is independent of no_store, allowing metadata storage regardless of whether certificates are stored. If true, metadata is not stored and an error is returned if the metadata field is specified on issuance APIs
      */
-    noStoreMetadata?: pulumi.Input<boolean>;
+    noStoreMetadata?: pulumi.Input<boolean | undefined>;
     /**
      * Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
-    notAfter?: pulumi.Input<string>;
+    notAfter?: pulumi.Input<string | undefined>;
     /**
      * Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
      */
-    notBeforeDuration?: pulumi.Input<string>;
+    notBeforeDuration?: pulumi.Input<string | undefined>;
     /**
      * The organization unit of generated certificates
      */
-    organizationUnit?: pulumi.Input<pulumi.Input<string>[]>;
+    organizationUnit?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The organization of generated certificates
      */
-    organizations?: pulumi.Input<pulumi.Input<string>[]>;
+    organizations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      */
-    policyIdentifier?: pulumi.Input<pulumi.Input<inputs.pkiSecret.SecretBackendRolePolicyIdentifier>[]>;
+    policyIdentifier?: pulumi.Input<pulumi.Input<inputs.pkiSecret.SecretBackendRolePolicyIdentifier>[] | undefined>;
     /**
      * Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
      */
-    policyIdentifiers?: pulumi.Input<pulumi.Input<string>[]>;
+    policyIdentifiers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The postal code of generated certificates
      */
-    postalCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    postalCodes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The province of generated certificates
      */
-    provinces?: pulumi.Input<pulumi.Input<string>[]>;
+    provinces?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag to force CN usage
      */
-    requireCn?: pulumi.Input<boolean>;
+    requireCn?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the source of the subject serial number. Valid values are json-csr (default) or json. When set to json-csr, the subject serial number is taken from the serialNumber parameter and falls back to the serial number in the CSR. When set to json, the subject serial number is taken from the serialNumber parameter but will ignore any value in the CSR. For backwards compatibility an empty value for this field will default to the json-csr behavior.
      *
      * Example usage:
      */
-    serialNumberSource?: pulumi.Input<string>;
+    serialNumberSource?: pulumi.Input<string | undefined>;
     /**
      * Flag to specify certificates for server use
      */
-    serverFlag?: pulumi.Input<boolean>;
+    serverFlag?: pulumi.Input<boolean | undefined>;
     /**
      * The number of bits to use in the signature algorithm
      */
-    signatureBits?: pulumi.Input<number>;
+    signatureBits?: pulumi.Input<number | undefined>;
     /**
      * The street address of generated certificates
      */
-    streetAddresses?: pulumi.Input<pulumi.Input<string>[]>;
+    streetAddresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The TTL, in seconds, for any certificate issued against this role.
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * Flag to use the CN in the CSR
      */
-    useCsrCommonName?: pulumi.Input<boolean>;
+    useCsrCommonName?: pulumi.Input<boolean | undefined>;
     /**
      * Flag to use the SANs in the CSR
      */
-    useCsrSans?: pulumi.Input<boolean>;
+    useCsrSans?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether or not to use PSS signatures over PKCS#1v1.5 signatures when a RSA-type issuer is used. Ignored for ECDSA/Ed25519 issuers.
      */
-    usePss?: pulumi.Input<boolean>;
+    usePss?: pulumi.Input<boolean | undefined>;
 }

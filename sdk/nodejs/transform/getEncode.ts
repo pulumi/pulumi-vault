@@ -178,22 +178,22 @@ export interface GetEncodeOutputArgs {
     /**
      * Specifies a list of items to be encoded in a single batch. If this parameter is set, the parameters 'value', 'transformation' and 'tweak' will be ignored. Each batch item within the list can specify these parameters instead.
      */
-    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    batchInputs?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * The result of encoding a batch.
      */
-    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[]>;
+    batchResults?: pulumi.Input<pulumi.Input<{[key: string]: pulumi.Input<string>}>[] | undefined>;
     /**
      * The result of encoding a value.
      */
-    encodedValue?: pulumi.Input<string>;
+    encodedValue?: pulumi.Input<string | undefined>;
     /**
      * The namespace of the target resource.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Path to where the back-end is mounted within Vault.
      */
@@ -205,13 +205,13 @@ export interface GetEncodeOutputArgs {
     /**
      * The transformation to perform. If no value is provided and the role contains a single transformation, this value will be inferred from the role.
      */
-    transformation?: pulumi.Input<string>;
+    transformation?: pulumi.Input<string | undefined>;
     /**
      * The tweak value to use. Only applicable for FPE transformations
      */
-    tweak?: pulumi.Input<string>;
+    tweak?: pulumi.Input<string | undefined>;
     /**
      * The value in which to encode.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }

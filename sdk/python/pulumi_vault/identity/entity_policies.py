@@ -21,8 +21,8 @@ class EntityPoliciesArgs:
     def __init__(__self__, *,
                  entity_id: pulumi.Input[_builtins.str],
                  policies: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None):
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EntityPolicies resource.
 
@@ -71,7 +71,7 @@ class EntityPoliciesArgs:
 
     @_builtins.property
     @pulumi.getter
-    def exclusive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclusive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defaults to `true`.
 
@@ -82,12 +82,12 @@ class EntityPoliciesArgs:
         return pulumi.get(self, "exclusive")
 
     @exclusive.setter
-    def exclusive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclusive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclusive", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -97,18 +97,18 @@ class EntityPoliciesArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
 
 @pulumi.input_type
 class _EntityPoliciesState:
     def __init__(__self__, *,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering EntityPolicies resources.
 
@@ -138,31 +138,31 @@ class _EntityPoliciesState:
 
     @_builtins.property
     @pulumi.getter(name="entityId")
-    def entity_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Entity ID to assign policies to.
         """
         return pulumi.get(self, "entity_id")
 
     @entity_id.setter
-    def entity_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_id", value)
 
     @_builtins.property
     @pulumi.getter(name="entityName")
-    def entity_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def entity_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the entity that are assigned the policies.
         """
         return pulumi.get(self, "entity_name")
 
     @entity_name.setter
-    def entity_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def entity_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "entity_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def exclusive(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def exclusive(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defaults to `true`.
 
@@ -173,12 +173,12 @@ class _EntityPoliciesState:
         return pulumi.get(self, "exclusive")
 
     @exclusive.setter
-    def exclusive(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def exclusive(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "exclusive", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -188,19 +188,19 @@ class _EntityPoliciesState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of policies to assign to the entity
         """
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "policies", value)
 
 
@@ -210,10 +210,10 @@ class EntityPolicies(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Manages policies for an Identity Entity for Vault. The [Identity secrets engine](https://www.vaultproject.io/docs/secrets/identity/index.html) is the identity management solution for Vault.
@@ -342,10 +342,10 @@ class EntityPolicies(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -374,11 +374,11 @@ class EntityPolicies(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            entity_id: Optional[pulumi.Input[_builtins.str]] = None,
-            entity_name: Optional[pulumi.Input[_builtins.str]] = None,
-            exclusive: Optional[pulumi.Input[_builtins.bool]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'EntityPolicies':
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+            exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'EntityPolicies':
         """
         Get an existing EntityPolicies resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

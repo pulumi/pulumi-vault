@@ -175,52 +175,52 @@ export interface OciAuthBackendState {
     /**
      * The accessor of the auth backend
      */
-    accessor?: pulumi.Input<string>;
+    accessor?: pulumi.Input<string | undefined>;
     /**
      * A description of the auth backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Stops rotation of the root credential until set to false.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The Tenancy OCID of your OCI account.
      */
-    homeTenancyId?: pulumi.Input<string>;
+    homeTenancyId?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the auth backend to configure.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.OciAuthBackendTune>;
+    tune?: pulumi.Input<inputs.OciAuthBackendTune | undefined>;
 }
 
 /**
@@ -230,15 +230,15 @@ export interface OciAuthBackendArgs {
     /**
      * A description of the auth backend.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Stops rotation of the root credential until set to false.
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * If set, opts out of mount migration on path updates.
      */
-    disableRemount?: pulumi.Input<boolean>;
+    disableRemount?: pulumi.Input<boolean | undefined>;
     /**
      * The Tenancy OCID of your OCI account.
      */
@@ -249,27 +249,27 @@ export interface OciAuthBackendArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Unique name of the auth backend to configure.
      */
-    path?: pulumi.Input<string>;
+    path?: pulumi.Input<string | undefined>;
     /**
      * The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Extra configuration block. Structure is documented below.
      *
      * The `tune` block is used to tune the auth backend:
      */
-    tune?: pulumi.Input<inputs.OciAuthBackendTune>;
+    tune?: pulumi.Input<inputs.OciAuthBackendTune | undefined>;
 }

@@ -169,53 +169,53 @@ export interface OidcClientState {
     /**
      * The time-to-live for access tokens obtained by the client.
      */
-    accessTokenTtl?: pulumi.Input<number>;
+    accessTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * A list of assignment resources associated with the client.
      */
-    assignments?: pulumi.Input<pulumi.Input<string>[]>;
+    assignments?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The Client ID returned by Vault.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The Client Secret Key returned by Vault.
      * For public OpenID Clients `clientSecret` is set to an empty string `""`
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * The client type based on its ability to maintain confidentiality of credentials.
      * The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
      */
-    clientType?: pulumi.Input<string>;
+    clientType?: pulumi.Input<string | undefined>;
     /**
      * The time-to-live for ID tokens obtained by the client. 
      * The value should be less than the `verificationTtl` on the key.
      */
-    idTokenTtl?: pulumi.Input<number>;
+    idTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * A reference to a named key resource in Vault.
      * This cannot be modified after creation. If not provided, the `default`
      * key is used.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The name of the client.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Redirection URI values used by the client. 
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      */
-    redirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    redirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -225,42 +225,42 @@ export interface OidcClientArgs {
     /**
      * The time-to-live for access tokens obtained by the client.
      */
-    accessTokenTtl?: pulumi.Input<number>;
+    accessTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * A list of assignment resources associated with the client.
      */
-    assignments?: pulumi.Input<pulumi.Input<string>[]>;
+    assignments?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The client type based on its ability to maintain confidentiality of credentials.
      * The following client types are supported: `confidential`, `public`. Defaults to `confidential`.
      */
-    clientType?: pulumi.Input<string>;
+    clientType?: pulumi.Input<string | undefined>;
     /**
      * The time-to-live for ID tokens obtained by the client. 
      * The value should be less than the `verificationTtl` on the key.
      */
-    idTokenTtl?: pulumi.Input<number>;
+    idTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * A reference to a named key resource in Vault.
      * This cannot be modified after creation. If not provided, the `default`
      * key is used.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The name of the client.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Redirection URI values used by the client. 
      * One of these values must exactly match the `redirectUri` parameter value
      * used in each authentication request.
      */
-    redirectUris?: pulumi.Input<pulumi.Input<string>[]>;
+    redirectUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

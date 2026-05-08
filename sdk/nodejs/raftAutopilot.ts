@@ -151,45 +151,45 @@ export interface RaftAutopilotState {
      * Specifies whether to remove dead server nodes
      * periodically or when a new server joins. This requires that `min-quorum` is also set.
      */
-    cleanupDeadServers?: pulumi.Input<boolean>;
+    cleanupDeadServers?: pulumi.Input<boolean | undefined>;
     /**
      * Limit the amount of time a 
      * server can go without leader contact before being considered failed. This only takes
      * effect when `cleanupDeadServers` is set.
      */
-    deadServerLastContactThreshold?: pulumi.Input<string>;
+    deadServerLastContactThreshold?: pulumi.Input<string | undefined>;
     /**
      * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
      */
-    disableUpgradeMigration?: pulumi.Input<boolean>;
+    disableUpgradeMigration?: pulumi.Input<boolean | undefined>;
     /**
      * Limit the amount of time a server can go 
      * without leader contact before being considered unhealthy.
      */
-    lastContactThreshold?: pulumi.Input<string>;
+    lastContactThreshold?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of log entries in the Raft log 
      * that a server can be behind its leader before being considered unhealthy.
      */
-    maxTrailingLogs?: pulumi.Input<number>;
+    maxTrailingLogs?: pulumi.Input<number | undefined>;
     /**
      * Minimum number of servers allowed in a cluster before 
      * autopilot can prune dead servers. This should at least be 3. Applicable only for
      * voting nodes.
      */
-    minQuorum?: pulumi.Input<number>;
+    minQuorum?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Minimum amount of time a server must be 
      * stable in the 'healthy' state before being added to the cluster.
      */
-    serverStabilizationTime?: pulumi.Input<string>;
+    serverStabilizationTime?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -200,43 +200,43 @@ export interface RaftAutopilotArgs {
      * Specifies whether to remove dead server nodes
      * periodically or when a new server joins. This requires that `min-quorum` is also set.
      */
-    cleanupDeadServers?: pulumi.Input<boolean>;
+    cleanupDeadServers?: pulumi.Input<boolean | undefined>;
     /**
      * Limit the amount of time a 
      * server can go without leader contact before being considered failed. This only takes
      * effect when `cleanupDeadServers` is set.
      */
-    deadServerLastContactThreshold?: pulumi.Input<string>;
+    deadServerLastContactThreshold?: pulumi.Input<string | undefined>;
     /**
      * Disables automatically upgrading Vault using autopilot. (Enterprise-only)
      */
-    disableUpgradeMigration?: pulumi.Input<boolean>;
+    disableUpgradeMigration?: pulumi.Input<boolean | undefined>;
     /**
      * Limit the amount of time a server can go 
      * without leader contact before being considered unhealthy.
      */
-    lastContactThreshold?: pulumi.Input<string>;
+    lastContactThreshold?: pulumi.Input<string | undefined>;
     /**
      * Maximum number of log entries in the Raft log 
      * that a server can be behind its leader before being considered unhealthy.
      */
-    maxTrailingLogs?: pulumi.Input<number>;
+    maxTrailingLogs?: pulumi.Input<number | undefined>;
     /**
      * Minimum number of servers allowed in a cluster before 
      * autopilot can prune dead servers. This should at least be 3. Applicable only for
      * voting nodes.
      */
-    minQuorum?: pulumi.Input<number>;
+    minQuorum?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * Minimum amount of time a server must be 
      * stable in the 'healthy' state before being added to the cluster.
      */
-    serverStabilizationTime?: pulumi.Input<string>;
+    serverStabilizationTime?: pulumi.Input<string | undefined>;
 }

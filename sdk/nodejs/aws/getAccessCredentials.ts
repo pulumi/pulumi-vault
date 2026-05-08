@@ -242,11 +242,11 @@ export interface GetAccessCredentialsOutputArgs {
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The region the read credentials belong to.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The name of the AWS secret backend role to read
      * credentials from, with no leading or trailing `/`s.
@@ -257,18 +257,18 @@ export interface GetAccessCredentialsOutputArgs {
      * from the configured role. If the role does not have multiple ARNs, this does
      * not need to be specified.
      */
-    roleArn?: pulumi.Input<string>;
+    roleArn?: pulumi.Input<string | undefined>;
     /**
      * Specifies the TTL for the use of the STS token. This
      * is specified as a string with a duration suffix. Valid only when
      * `credentialType` of the connected `vault.aws.SecretBackendRole` resource is `assumedRole` or `federationToken`
      */
-    ttl?: pulumi.Input<string>;
+    ttl?: pulumi.Input<string | undefined>;
     /**
      * The type of credentials to read. Defaults
      * to `"creds"`, which just returns an AWS Access Key ID and Secret
      * Key. Can also be set to `"sts"`, which will return a security token
      * in addition to the keys.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }

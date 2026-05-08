@@ -37,7 +37,7 @@ import * as utilities from "../utilities";
  *     tenantId: "11111111-2222-3333-4444-555555555555",
  *     clientId: "11111111-2222-3333-4444-555555555555",
  *     identityTokenAudience: "<TOKEN_AUDIENCE>",
- *     identityTokenTtl: "<TOKEN_TTL>",
+ *     identityTokenTtl: Number("<TOKEN_TTL>"),
  *     rotationSchedule: "0 * * * SAT",
  *     rotationWindow: 3600,
  * });
@@ -295,102 +295,102 @@ export interface AuthBackendConfigState {
      * The path the Azure auth backend being configured was
      * mounted at.  Defaults to `azure`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The client id for credentials to query the Azure APIs.
      * Currently read permissions to query compute resources are required.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client secret for credentials to query the
      * Azure APIs. Mutually exclusive with `clientSecretWo`. **Note:** This field will be
      * stored in Terraform state. Consider using `clientSecretWo` instead for enhanced security.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only client secret.
      * Increment this value to trigger an update of the client secret in Vault.
      * Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * The Azure cloud environment. Valid values:
      * AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
-    environment?: pulumi.Input<string>;
+    environment?: pulumi.Input<string | undefined>;
     /**
      * The audience claim value for plugin identity tokens. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds.
      * Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of retries for Azure API requests. 
      * Defaults to `3`.
      */
-    maxRetries?: pulumi.Input<number>;
+    maxRetries?: pulumi.Input<number | undefined>;
     /**
      * The maximum delay in seconds between retries for Azure API requests.
      * Defaults to `60`.
      */
-    maxRetryDelay?: pulumi.Input<number>;
+    maxRetryDelay?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The configured URL for the application registered in
      * Azure Active Directory.
      */
-    resource?: pulumi.Input<string>;
+    resource?: pulumi.Input<string | undefined>;
     /**
      * The initial delay in seconds between retries for Azure API requests.
      * Defaults to `4`.
      */
-    retryDelay?: pulumi.Input<number>;
+    retryDelay?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * The tenant id for the Azure Active Directory
      * organization.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -401,68 +401,68 @@ export interface AuthBackendConfigArgs {
      * The path the Azure auth backend being configured was
      * mounted at.  Defaults to `azure`.
      */
-    backend?: pulumi.Input<string>;
+    backend?: pulumi.Input<string | undefined>;
     /**
      * The client id for credentials to query the Azure APIs.
      * Currently read permissions to query compute resources are required.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The client secret for credentials to query the
      * Azure APIs. Mutually exclusive with `clientSecretWo`. **Note:** This field will be
      * stored in Terraform state. Consider using `clientSecretWo` instead for enhanced security.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * The client secret for credentials to query the Azure APIs. This field is write-only and will never be stored in state. Mutually exclusive with 'client_secret'. Requires 'client_secret_wo_version' to trigger updates.
      */
-    clientSecretWo?: pulumi.Input<string>;
+    clientSecretWo?: pulumi.Input<string | undefined>;
     /**
      * Version counter for the write-only client secret.
      * Increment this value to trigger an update of the client secret in Vault.
      * Required when using `clientSecretWo`.
      */
-    clientSecretWoVersion?: pulumi.Input<number>;
+    clientSecretWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    disableAutomatedRotation?: pulumi.Input<boolean>;
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * The Azure cloud environment. Valid values:
      * AzurePublicCloud, AzureUSGovernmentCloud, AzureChinaCloud,
      * AzureGermanCloud.  Defaults to `AzurePublicCloud`.
      */
-    environment?: pulumi.Input<string>;
+    environment?: pulumi.Input<string | undefined>;
     /**
      * The audience claim value for plugin identity tokens. Requires Vault 1.17+.
      * *Available only for Vault Enterprise*
      */
-    identityTokenAudience?: pulumi.Input<string>;
+    identityTokenAudience?: pulumi.Input<string | undefined>;
     /**
      * The TTL of generated identity tokens in seconds.
      * Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
      * Requires Vault 1.17+. *Available only for Vault Enterprise*
      */
-    identityTokenTtl?: pulumi.Input<number>;
+    identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
      * Maximum number of retries for Azure API requests. 
      * Defaults to `3`.
      */
-    maxRetries?: pulumi.Input<number>;
+    maxRetries?: pulumi.Input<number | undefined>;
     /**
      * The maximum delay in seconds between retries for Azure API requests.
      * Defaults to `60`.
      */
-    maxRetryDelay?: pulumi.Input<number>;
+    maxRetryDelay?: pulumi.Input<number | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
      * *Available only for Vault Enterprise*.
      */
-    namespace?: pulumi.Input<string>;
+    namespace?: pulumi.Input<string | undefined>;
     /**
      * The configured URL for the application registered in
      * Azure Active Directory.
@@ -472,26 +472,26 @@ export interface AuthBackendConfigArgs {
      * The initial delay in seconds between retries for Azure API requests.
      * Defaults to `4`.
      */
-    retryDelay?: pulumi.Input<number>;
+    retryDelay?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationPeriod?: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
     /**
      * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
      * defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationSchedule?: pulumi.Input<string>;
+    rotationSchedule?: pulumi.Input<string | undefined>;
     /**
      * The maximum amount of time in seconds allowed to complete
      * a rotation when a scheduled token rotation occurs. The default rotation window is
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      * *Available only for Vault Enterprise*
      */
-    rotationWindow?: pulumi.Input<number>;
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * The tenant id for the Azure Active Directory
      * organization.

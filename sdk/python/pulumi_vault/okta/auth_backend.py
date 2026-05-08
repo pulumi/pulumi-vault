@@ -21,31 +21,31 @@ __all__ = ['AuthBackendArgs', 'AuthBackend']
 @pulumi.input_type
 class AuthBackendArgs:
     def __init__(__self__, *,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
-                 users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None,
+                 users: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
 
@@ -148,7 +148,7 @@ class AuthBackendArgs:
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -156,12 +156,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="apiToken")
-    def api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Okta API token. This is required to query Okta for user group membership.
         If this is not supplied only locally configured groups will be enabled.
@@ -170,12 +170,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "api_token")
 
     @api_token.setter
-    def api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token", value)
 
     @_builtins.property
     @pulumi.getter(name="apiTokenWo")
-    def api_token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
@@ -183,12 +183,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "api_token_wo")
 
     @api_token_wo.setter
-    def api_token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="apiTokenWoVersion")
-    def api_token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def api_token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the write-only `api_token_wo`.
         Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
@@ -196,48 +196,48 @@ class AuthBackendArgs:
         return pulumi.get(self, "api_token_wo_version")
 
     @api_token_wo_version.setter
-    def api_token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def api_token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "api_token_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Okta url. Examples: oktapreview.com, okta.com
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="bypassOktaMfa")
-    def bypass_okta_mfa(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def bypass_okta_mfa(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         """
         return pulumi.get(self, "bypass_okta_mfa")
 
     @bypass_okta_mfa.setter
-    def bypass_okta_mfa(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def bypass_okta_mfa(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "bypass_okta_mfa", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the auth backend
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -245,12 +245,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]:
+    def groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]:
         """
         Associate Okta groups with policies within Vault.
         See below for more details.
@@ -258,12 +258,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "groups")
 
     @groups.setter
-    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]):
+    def groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]):
         pulumi.set(self, "groups", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -273,12 +273,12 @@ class AuthBackendArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="orgName")
-    def org_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
         Exactly one of `org_name` or `organization` must be specified.
@@ -286,13 +286,13 @@ class AuthBackendArgs:
         return pulumi.get(self, "org_name")
 
     @org_name.setter
-    def org_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_name", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Use org_name instead""")
-    def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
         Exactly one of `org_name` or `organization` must be specified.
@@ -300,25 +300,25 @@ class AuthBackendArgs:
         return pulumi.get(self, "organization")
 
     @organization.setter
-    def organization(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to mount the Okta auth backend. Default to path `okta`.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Use api_token instead""")
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
         If this is not supplied only locally configured groups will be enabled.
@@ -327,129 +327,129 @@ class AuthBackendArgs:
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+    def tune(self) -> pulumi.Input[Optional['AuthBackendTuneArgs']]:
         return pulumi.get(self, "tune")
 
     @tune.setter
-    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+    def tune(self, value: pulumi.Input[Optional['AuthBackendTuneArgs']]):
         pulumi.set(self, "tune", value)
 
     @_builtins.property
     @pulumi.getter
-    def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
+    def users(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
         """
         Associate Okta users with groups or policies within Vault.
         See below for more details.
@@ -457,39 +457,39 @@ class AuthBackendArgs:
         return pulumi.get(self, "users")
 
     @users.setter
-    def users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]):
+    def users(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendUserArgs']]]]):
         pulumi.set(self, "users", value)
 
 
 @pulumi.input_type
 class _AuthBackendState:
     def __init__(__self__, *,
-                 accessor: Optional[pulumi.Input[_builtins.str]] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input['AuthBackendTuneArgs']] = None,
-                 users: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
+                 accessor: pulumi.Input[Optional[_builtins.str]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendGroupArgs']]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None,
+                 users: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
 
@@ -595,19 +595,19 @@ class _AuthBackendState:
 
     @_builtins.property
     @pulumi.getter
-    def accessor(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The mount accessor related to the auth mount. It is useful for integration with [Identity Secrets Engine](https://www.vaultproject.io/docs/secrets/identity/index.html).
         """
         return pulumi.get(self, "accessor")
 
     @accessor.setter
-    def accessor(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accessor(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accessor", value)
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -615,12 +615,12 @@ class _AuthBackendState:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="apiToken")
-    def api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Okta API token. This is required to query Okta for user group membership.
         If this is not supplied only locally configured groups will be enabled.
@@ -629,12 +629,12 @@ class _AuthBackendState:
         return pulumi.get(self, "api_token")
 
     @api_token.setter
-    def api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token", value)
 
     @_builtins.property
     @pulumi.getter(name="apiTokenWo")
-    def api_token_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         Write-only Okta API token. This is required to query Okta for user group membership. If this is not supplied only locally configured groups will be enabled.
@@ -642,12 +642,12 @@ class _AuthBackendState:
         return pulumi.get(self, "api_token_wo")
 
     @api_token_wo.setter
-    def api_token_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="apiTokenWoVersion")
-    def api_token_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def api_token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Version counter for the write-only `api_token_wo`.
         Increment this value to trigger an update of the write-only token. Required when using `api_token_wo`.
@@ -655,48 +655,48 @@ class _AuthBackendState:
         return pulumi.get(self, "api_token_wo_version")
 
     @api_token_wo_version.setter
-    def api_token_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def api_token_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "api_token_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="baseUrl")
-    def base_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Okta url. Examples: oktapreview.com, okta.com
         """
         return pulumi.get(self, "base_url")
 
     @base_url.setter
-    def base_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def base_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "base_url", value)
 
     @_builtins.property
     @pulumi.getter(name="bypassOktaMfa")
-    def bypass_okta_mfa(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def bypass_okta_mfa(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When true, requests by Okta for a MFA check will be bypassed. This also disallows certain status checks on the account, such as whether the password is expired.
         """
         return pulumi.get(self, "bypass_okta_mfa")
 
     @bypass_okta_mfa.setter
-    def bypass_okta_mfa(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def bypass_okta_mfa(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "bypass_okta_mfa", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the auth backend
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="disableRemount")
-    def disable_remount(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set, opts out of mount migration on path updates.
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
@@ -704,12 +704,12 @@ class _AuthBackendState:
         return pulumi.get(self, "disable_remount")
 
     @disable_remount.setter
-    def disable_remount(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
 
     @_builtins.property
     @pulumi.getter
-    def groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]:
+    def groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]:
         """
         Associate Okta groups with policies within Vault.
         See below for more details.
@@ -717,12 +717,12 @@ class _AuthBackendState:
         return pulumi.get(self, "groups")
 
     @groups.setter
-    def groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]):
+    def groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendGroupArgs']]]]):
         pulumi.set(self, "groups", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -732,12 +732,12 @@ class _AuthBackendState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="orgName")
-    def org_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
         Exactly one of `org_name` or `organization` must be specified.
@@ -745,13 +745,13 @@ class _AuthBackendState:
         return pulumi.get(self, "org_name")
 
     @org_name.setter
-    def org_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_name", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Use org_name instead""")
-    def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def organization(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **Deprecated: Use `org_name` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
         Exactly one of `org_name` or `organization` must be specified.
@@ -759,25 +759,25 @@ class _AuthBackendState:
         return pulumi.get(self, "organization")
 
     @organization.setter
-    def organization(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def organization(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "organization", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to mount the Okta auth backend. Default to path `okta`.
         """
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""Use api_token instead""")
-    def token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **Deprecated: Use `api_token` instead.** The Okta API token. This is required to query Okta for user group membership.
         If this is not supplied only locally configured groups will be enabled.
@@ -786,129 +786,129 @@ class _AuthBackendState:
         return pulumi.get(self, "token")
 
     @token.setter
-    def token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def tune(self) -> Optional[pulumi.Input['AuthBackendTuneArgs']]:
+    def tune(self) -> pulumi.Input[Optional['AuthBackendTuneArgs']]:
         return pulumi.get(self, "tune")
 
     @tune.setter
-    def tune(self, value: Optional[pulumi.Input['AuthBackendTuneArgs']]):
+    def tune(self, value: pulumi.Input[Optional['AuthBackendTuneArgs']]):
         pulumi.set(self, "tune", value)
 
     @_builtins.property
     @pulumi.getter
-    def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
+    def users(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendUserArgs']]]]:
         """
         Associate Okta users with groups or policies within Vault.
         See below for more details.
@@ -916,7 +916,7 @@ class _AuthBackendState:
         return pulumi.get(self, "users")
 
     @users.setter
-    def users(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthBackendUserArgs']]]]):
+    def users(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AuthBackendUserArgs']]]]):
         pulumi.set(self, "users", value)
 
 
@@ -926,31 +926,31 @@ class AuthBackend(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-                 users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
                  __props__=None):
         """
         Provides a resource for managing an
@@ -1103,31 +1103,31 @@ class AuthBackend(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-                 api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-                 base_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-                 groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 token: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-                 users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 api_token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 base_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 organization: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 token: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1175,32 +1175,32 @@ class AuthBackend(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accessor: Optional[pulumi.Input[_builtins.str]] = None,
-            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            api_token: Optional[pulumi.Input[_builtins.str]] = None,
-            api_token_wo: Optional[pulumi.Input[_builtins.str]] = None,
-            api_token_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
-            base_url: Optional[pulumi.Input[_builtins.str]] = None,
-            bypass_okta_mfa: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            disable_remount: Optional[pulumi.Input[_builtins.bool]] = None,
-            groups: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            org_name: Optional[pulumi.Input[_builtins.str]] = None,
-            organization: Optional[pulumi.Input[_builtins.str]] = None,
-            path: Optional[pulumi.Input[_builtins.str]] = None,
-            token: Optional[pulumi.Input[_builtins.str]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-            token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-            token_period: Optional[pulumi.Input[_builtins.int]] = None,
-            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_type: Optional[pulumi.Input[_builtins.str]] = None,
-            tune: Optional[pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-            users: Optional[pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None) -> 'AuthBackend':
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            api_token: pulumi.Input[Optional[_builtins.str]] = None,
+            api_token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            api_token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            org_name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+            users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

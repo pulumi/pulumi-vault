@@ -20,34 +20,34 @@ __all__ = ['CertAuthBackendRoleArgs', 'CertAuthBackendRole']
 class CertAuthBackendRoleArgs:
     def __init__(__self__, *,
                  certificate: pulumi.Input[_builtins.str],
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_common_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_dns_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_email_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_organizational_units: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_ca_certificates: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_fail_open: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 ocsp_query_all_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 required_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CertAuthBackendRole resource.
 
@@ -175,7 +175,7 @@ class CertAuthBackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -183,120 +183,120 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedCommonNames")
-    def allowed_common_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_common_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed the common names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_common_names")
 
     @allowed_common_names.setter
-    def allowed_common_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_common_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_common_names", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedDnsSans")
-    def allowed_dns_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_dns_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed alternative dns names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_dns_sans")
 
     @allowed_dns_sans.setter
-    def allowed_dns_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_dns_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_dns_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedEmailSans")
-    def allowed_email_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_email_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed emails for authenticated client certificates
         """
         return pulumi.get(self, "allowed_email_sans")
 
     @allowed_email_sans.setter
-    def allowed_email_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_email_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_email_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedNames")
-    def allowed_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_names")
 
     @allowed_names.setter
-    def allowed_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_names", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedOrganizationalUnits")
-    def allowed_organizational_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_organizational_units(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed organization units for authenticated client certificates.
         """
         return pulumi.get(self, "allowed_organizational_units")
 
     @allowed_organizational_units.setter
-    def allowed_organizational_units(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_organizational_units(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_organizational_units", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUriSans")
-    def allowed_uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_uri_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed URIs for authenticated client certificates
         """
         return pulumi.get(self, "allowed_uri_sans")
 
     @allowed_uri_sans.setter
-    def allowed_uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_uri_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_uri_sans", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted Cert auth backend
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to display on tokens issued under this role.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the role
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -306,12 +306,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspCaCertificates")
-    def ocsp_ca_certificates(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ocsp_ca_certificates(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Any additional CA certificates
         needed to verify OCSP responses. Provided as base64 encoded PEM data.
@@ -320,12 +320,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "ocsp_ca_certificates")
 
     @ocsp_ca_certificates.setter
-    def ocsp_ca_certificates(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ocsp_ca_certificates(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ocsp_ca_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspEnabled")
-    def ocsp_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If enabled, validate certificates'
         revocation status using OCSP. Requires Vault version 1.13+.
@@ -333,12 +333,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "ocsp_enabled")
 
     @ocsp_enabled.setter
-    def ocsp_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspFailOpen")
-    def ocsp_fail_open(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_fail_open(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true and an OCSP response cannot
         be fetched or is of an unknown status, the login will proceed as if the
@@ -348,12 +348,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "ocsp_fail_open")
 
     @ocsp_fail_open.setter
-    def ocsp_fail_open(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_fail_open(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_fail_open", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspMaxRetries")
-    def ocsp_max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ocsp_max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of retries to attempt when
         connecting to an OCSP server. Defaults to 4 retries.
@@ -362,12 +362,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "ocsp_max_retries")
 
     @ocsp_max_retries.setter
-    def ocsp_max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ocsp_max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ocsp_max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspQueryAllServers")
-    def ocsp_query_all_servers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_query_all_servers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, rather than
         accepting the first successful OCSP response, query all servers and consider
@@ -377,12 +377,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "ocsp_query_all_servers")
 
     @ocsp_query_all_servers.setter
-    def ocsp_query_all_servers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_query_all_servers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_query_all_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspServersOverrides")
-    def ocsp_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ocsp_servers_overrides(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         : A comma-separated list of OCSP
         server addresses. If unset, the OCSP server is determined from the
@@ -392,12 +392,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "ocsp_servers_overrides")
 
     @ocsp_servers_overrides.setter
-    def ocsp_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ocsp_servers_overrides(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers_overrides", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspThisUpdateMaxAge")
-    def ocsp_this_update_max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ocsp_this_update_max_age(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum age in seconds of the
         'thisUpdate' field in an OCSP response before it is considered too old.
@@ -407,12 +407,12 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "ocsp_this_update_max_age")
 
     @ocsp_this_update_max_age.setter
-    def ocsp_this_update_max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ocsp_this_update_max_age(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ocsp_this_update_max_age", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredExtensions")
-    def required_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def required_extensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         TLS extensions required on
         client certificates
@@ -420,150 +420,150 @@ class CertAuthBackendRoleArgs:
         return pulumi.get(self, "required_extensions")
 
     @required_extensions.setter
-    def required_extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def required_extensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "required_extensions", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 
 @pulumi.input_type
 class _CertAuthBackendRoleState:
     def __init__(__self__, *,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_common_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_dns_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_email_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_organizational_units: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_ca_certificates: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_fail_open: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 ocsp_query_all_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 required_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CertAuthBackendRole resources.
 
@@ -680,7 +680,7 @@ class _CertAuthBackendRoleState:
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
-    def alias_metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def alias_metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         The metadata to be tied to generated entity alias.
           This should be a list or map containing the metadata in key value pairs.
@@ -688,132 +688,132 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "alias_metadata")
 
     @alias_metadata.setter
-    def alias_metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def alias_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "alias_metadata", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedCommonNames")
-    def allowed_common_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_common_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed the common names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_common_names")
 
     @allowed_common_names.setter
-    def allowed_common_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_common_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_common_names", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedDnsSans")
-    def allowed_dns_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_dns_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed alternative dns names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_dns_sans")
 
     @allowed_dns_sans.setter
-    def allowed_dns_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_dns_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_dns_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedEmailSans")
-    def allowed_email_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_email_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed emails for authenticated client certificates
         """
         return pulumi.get(self, "allowed_email_sans")
 
     @allowed_email_sans.setter
-    def allowed_email_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_email_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_email_sans", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedNames")
-    def allowed_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         DEPRECATED: Please use the individual `allowed_X_sans` parameters instead. Allowed subject names for authenticated client certificates
         """
         return pulumi.get(self, "allowed_names")
 
     @allowed_names.setter
-    def allowed_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_names", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedOrganizationalUnits")
-    def allowed_organizational_units(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_organizational_units(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed organization units for authenticated client certificates.
         """
         return pulumi.get(self, "allowed_organizational_units")
 
     @allowed_organizational_units.setter
-    def allowed_organizational_units(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_organizational_units(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_organizational_units", value)
 
     @_builtins.property
     @pulumi.getter(name="allowedUriSans")
-    def allowed_uri_sans(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def allowed_uri_sans(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Allowed URIs for authenticated client certificates
         """
         return pulumi.get(self, "allowed_uri_sans")
 
     @allowed_uri_sans.setter
-    def allowed_uri_sans(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def allowed_uri_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_uri_sans", value)
 
     @_builtins.property
     @pulumi.getter
-    def backend(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backend(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Path to the mounted Cert auth backend
         """
         return pulumi.get(self, "backend")
 
     @backend.setter
-    def backend(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
 
     @_builtins.property
     @pulumi.getter
-    def certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CA certificate used to validate client certificates
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
-    def certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def display_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name to display on tokens issued under this role.
         """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
-    def display_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def display_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "display_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the role
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def namespace(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
         The value should not contain leading or trailing forward slashes.
@@ -823,12 +823,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "namespace")
 
     @namespace.setter
-    def namespace(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspCaCertificates")
-    def ocsp_ca_certificates(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ocsp_ca_certificates(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Any additional CA certificates
         needed to verify OCSP responses. Provided as base64 encoded PEM data.
@@ -837,12 +837,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "ocsp_ca_certificates")
 
     @ocsp_ca_certificates.setter
-    def ocsp_ca_certificates(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ocsp_ca_certificates(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ocsp_ca_certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspEnabled")
-    def ocsp_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If enabled, validate certificates'
         revocation status using OCSP. Requires Vault version 1.13+.
@@ -850,12 +850,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "ocsp_enabled")
 
     @ocsp_enabled.setter
-    def ocsp_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspFailOpen")
-    def ocsp_fail_open(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_fail_open(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true and an OCSP response cannot
         be fetched or is of an unknown status, the login will proceed as if the
@@ -865,12 +865,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "ocsp_fail_open")
 
     @ocsp_fail_open.setter
-    def ocsp_fail_open(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_fail_open(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_fail_open", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspMaxRetries")
-    def ocsp_max_retries(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ocsp_max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of retries to attempt when
         connecting to an OCSP server. Defaults to 4 retries.
@@ -879,12 +879,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "ocsp_max_retries")
 
     @ocsp_max_retries.setter
-    def ocsp_max_retries(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ocsp_max_retries(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ocsp_max_retries", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspQueryAllServers")
-    def ocsp_query_all_servers(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def ocsp_query_all_servers(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If set to true, rather than
         accepting the first successful OCSP response, query all servers and consider
@@ -894,12 +894,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "ocsp_query_all_servers")
 
     @ocsp_query_all_servers.setter
-    def ocsp_query_all_servers(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def ocsp_query_all_servers(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "ocsp_query_all_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspServersOverrides")
-    def ocsp_servers_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def ocsp_servers_overrides(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         : A comma-separated list of OCSP
         server addresses. If unset, the OCSP server is determined from the
@@ -909,12 +909,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "ocsp_servers_overrides")
 
     @ocsp_servers_overrides.setter
-    def ocsp_servers_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def ocsp_servers_overrides(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "ocsp_servers_overrides", value)
 
     @_builtins.property
     @pulumi.getter(name="ocspThisUpdateMaxAge")
-    def ocsp_this_update_max_age(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def ocsp_this_update_max_age(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum age in seconds of the
         'thisUpdate' field in an OCSP response before it is considered too old.
@@ -924,12 +924,12 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "ocsp_this_update_max_age")
 
     @ocsp_this_update_max_age.setter
-    def ocsp_this_update_max_age(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def ocsp_this_update_max_age(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "ocsp_this_update_max_age", value)
 
     @_builtins.property
     @pulumi.getter(name="requiredExtensions")
-    def required_extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def required_extensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         TLS extensions required on
         client certificates
@@ -937,115 +937,115 @@ class _CertAuthBackendRoleState:
         return pulumi.get(self, "required_extensions")
 
     @required_extensions.setter
-    def required_extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def required_extensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "required_extensions", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenBoundCidrs")
-    def token_bound_cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_bound_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the blocks of IP addresses which are allowed to use the generated token
         """
         return pulumi.get(self, "token_bound_cidrs")
 
     @token_bound_cidrs.setter
-    def token_bound_cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_bound_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_bound_cidrs", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenExplicitMaxTtl")
-    def token_explicit_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Explicit Maximum TTL in seconds
         """
         return pulumi.get(self, "token_explicit_max_ttl")
 
     @token_explicit_max_ttl.setter
-    def token_explicit_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenMaxTtl")
-    def token_max_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum lifetime of the generated token
         """
         return pulumi.get(self, "token_max_ttl")
 
     @token_max_ttl.setter
-    def token_max_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNoDefaultPolicy")
-    def token_no_default_policy(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def token_no_default_policy(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the 'default' policy will not automatically be added to generated tokens
         """
         return pulumi.get(self, "token_no_default_policy")
 
     @token_no_default_policy.setter
-    def token_no_default_policy(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def token_no_default_policy(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "token_no_default_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenNumUses")
-    def token_num_uses(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_num_uses(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum number of times a token may be used, a value of zero means unlimited
         """
         return pulumi.get(self, "token_num_uses")
 
     @token_num_uses.setter
-    def token_num_uses(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_num_uses(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_num_uses", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPeriod")
-    def token_period(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Generated Token's Period
         """
         return pulumi.get(self, "token_period")
 
     @token_period.setter
-    def token_period(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_period(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_period", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenPolicies")
-    def token_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def token_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Generated Token's Policies
         """
         return pulumi.get(self, "token_policies")
 
     @token_policies.setter
-    def token_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def token_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "token_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenTtl")
-    def token_ttl(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def token_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The initial ttl of the token to generate in seconds
         """
         return pulumi.get(self, "token_ttl")
 
     @token_ttl.setter
-    def token_ttl(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def token_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "token_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenType")
-    def token_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of token to generate, service or batch
         """
         return pulumi.get(self, "token_type")
 
     @token_type.setter
-    def token_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
 
 
@@ -1055,35 +1055,35 @@ class CertAuthBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_common_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_dns_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_email_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_organizational_units: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_ca_certificates: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_fail_open: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 ocsp_query_all_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 required_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
@@ -1214,35 +1214,35 @@ class CertAuthBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 backend: Optional[pulumi.Input[_builtins.str]] = None,
-                 certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 display_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 namespace: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
-                 ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-                 ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-                 ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-                 required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-                 token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_period: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-                 token_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 allowed_common_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_dns_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_email_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_organizational_units: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 display_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_ca_certificates: pulumi.Input[Optional[_builtins.str]] = None,
+                 ocsp_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_fail_open: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+                 ocsp_query_all_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ocsp_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ocsp_this_update_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+                 required_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+                 token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 token_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1293,35 +1293,35 @@ class CertAuthBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            alias_metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            allowed_common_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_dns_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_email_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_organizational_units: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            allowed_uri_sans: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            backend: Optional[pulumi.Input[_builtins.str]] = None,
-            certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            display_name: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            namespace: Optional[pulumi.Input[_builtins.str]] = None,
-            ocsp_ca_certificates: Optional[pulumi.Input[_builtins.str]] = None,
-            ocsp_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            ocsp_fail_open: Optional[pulumi.Input[_builtins.bool]] = None,
-            ocsp_max_retries: Optional[pulumi.Input[_builtins.int]] = None,
-            ocsp_query_all_servers: Optional[pulumi.Input[_builtins.bool]] = None,
-            ocsp_servers_overrides: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            ocsp_this_update_max_age: Optional[pulumi.Input[_builtins.int]] = None,
-            required_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_bound_cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_explicit_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_max_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_no_default_policy: Optional[pulumi.Input[_builtins.bool]] = None,
-            token_num_uses: Optional[pulumi.Input[_builtins.int]] = None,
-            token_period: Optional[pulumi.Input[_builtins.int]] = None,
-            token_policies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            token_ttl: Optional[pulumi.Input[_builtins.int]] = None,
-            token_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'CertAuthBackendRole':
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allowed_common_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_dns_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_email_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_organizational_units: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_ca_certificates: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_fail_open: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            ocsp_query_all_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ocsp_this_update_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+            required_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'CertAuthBackendRole':
         """
         Get an existing CertAuthBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
