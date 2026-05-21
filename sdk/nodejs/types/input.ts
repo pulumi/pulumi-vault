@@ -769,7 +769,7 @@ export namespace database {
         /**
          * Whether to disable certificate verification
          */
-        insecureTls?: pulumi.Input<boolean | undefined>;
+        insecure?: pulumi.Input<boolean | undefined>;
         /**
          * The password to be used in the connection URL
          */
@@ -1748,7 +1748,7 @@ export namespace database {
         /**
          * Whether to disable certificate verification
          */
-        insecureTls?: pulumi.Input<boolean | undefined>;
+        insecure?: pulumi.Input<boolean | undefined>;
         /**
          * Name of the database connection.
          */

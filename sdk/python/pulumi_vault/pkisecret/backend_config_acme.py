@@ -24,6 +24,8 @@ class BackendConfigAcmeArgs:
                  allow_role_ext_key_usage: pulumi.Input[Optional[_builtins.bool]] = None,
                  allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 challenge_excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 challenge_permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -37,6 +39,8 @@ class BackendConfigAcmeArgs:
         :param pulumi.Input[_builtins.bool] allow_role_ext_key_usage: Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_issuers: Specifies which issuers are allowed for use with ACME.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: Specifies which roles are allowed for use with ACME.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_excluded_ip_ranges: List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_permitted_ip_ranges: List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
         :param pulumi.Input[_builtins.str] default_directory_policy: Specifies the policy to be used for non-role-qualified ACME requests.
                Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
         :param pulumi.Input[_builtins.str] dns_resolver: DNS resolver to use for domain resolution on this mount.
@@ -57,6 +61,10 @@ class BackendConfigAcmeArgs:
             pulumi.set(__self__, "allowed_issuers", allowed_issuers)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if challenge_excluded_ip_ranges is not None:
+            pulumi.set(__self__, "challenge_excluded_ip_ranges", challenge_excluded_ip_ranges)
+        if challenge_permitted_ip_ranges is not None:
+            pulumi.set(__self__, "challenge_permitted_ip_ranges", challenge_permitted_ip_ranges)
         if default_directory_policy is not None:
             pulumi.set(__self__, "default_directory_policy", default_directory_policy)
         if dns_resolver is not None:
@@ -127,6 +135,30 @@ class BackendConfigAcmeArgs:
     @allowed_roles.setter
     def allowed_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "allowed_roles", value)
+
+    @_builtins.property
+    @pulumi.getter(name="challengeExcludedIpRanges")
+    def challenge_excluded_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        """
+        return pulumi.get(self, "challenge_excluded_ip_ranges")
+
+    @challenge_excluded_ip_ranges.setter
+    def challenge_excluded_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "challenge_excluded_ip_ranges", value)
+
+    @_builtins.property
+    @pulumi.getter(name="challengePermittedIpRanges")
+    def challenge_permitted_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+        """
+        return pulumi.get(self, "challenge_permitted_ip_ranges")
+
+    @challenge_permitted_ip_ranges.setter
+    def challenge_permitted_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "challenge_permitted_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultDirectoryPolicy")
@@ -202,6 +234,8 @@ class _BackendConfigAcmeState:
                  allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 challenge_excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 challenge_permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -215,6 +249,8 @@ class _BackendConfigAcmeState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_issuers: Specifies which issuers are allowed for use with ACME.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: Specifies which roles are allowed for use with ACME.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_excluded_ip_ranges: List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_permitted_ip_ranges: List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
         :param pulumi.Input[_builtins.str] default_directory_policy: Specifies the policy to be used for non-role-qualified ACME requests.
                Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
         :param pulumi.Input[_builtins.str] dns_resolver: DNS resolver to use for domain resolution on this mount.
@@ -236,6 +272,10 @@ class _BackendConfigAcmeState:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if challenge_excluded_ip_ranges is not None:
+            pulumi.set(__self__, "challenge_excluded_ip_ranges", challenge_excluded_ip_ranges)
+        if challenge_permitted_ip_ranges is not None:
+            pulumi.set(__self__, "challenge_permitted_ip_ranges", challenge_permitted_ip_ranges)
         if default_directory_policy is not None:
             pulumi.set(__self__, "default_directory_policy", default_directory_policy)
         if dns_resolver is not None:
@@ -296,6 +336,30 @@ class _BackendConfigAcmeState:
     @backend.setter
     def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
+
+    @_builtins.property
+    @pulumi.getter(name="challengeExcludedIpRanges")
+    def challenge_excluded_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        """
+        return pulumi.get(self, "challenge_excluded_ip_ranges")
+
+    @challenge_excluded_ip_ranges.setter
+    def challenge_excluded_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "challenge_excluded_ip_ranges", value)
+
+    @_builtins.property
+    @pulumi.getter(name="challengePermittedIpRanges")
+    def challenge_permitted_ip_ranges(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+        """
+        return pulumi.get(self, "challenge_permitted_ip_ranges")
+
+    @challenge_permitted_ip_ranges.setter
+    def challenge_permitted_ip_ranges(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "challenge_permitted_ip_ranges", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultDirectoryPolicy")
@@ -386,6 +450,8 @@ class BackendConfigAcme(pulumi.CustomResource):
                  allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 challenge_excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 challenge_permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -439,6 +505,8 @@ class BackendConfigAcme(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_issuers: Specifies which issuers are allowed for use with ACME.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: Specifies which roles are allowed for use with ACME.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_excluded_ip_ranges: List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_permitted_ip_ranges: List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
         :param pulumi.Input[_builtins.str] default_directory_policy: Specifies the policy to be used for non-role-qualified ACME requests.
                Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
         :param pulumi.Input[_builtins.str] dns_resolver: DNS resolver to use for domain resolution on this mount.
@@ -517,6 +585,8 @@ class BackendConfigAcme(pulumi.CustomResource):
                  allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 challenge_excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 challenge_permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -538,6 +608,8 @@ class BackendConfigAcme(pulumi.CustomResource):
             if backend is None and not opts.urn:
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
+            __props__.__dict__["challenge_excluded_ip_ranges"] = challenge_excluded_ip_ranges
+            __props__.__dict__["challenge_permitted_ip_ranges"] = challenge_permitted_ip_ranges
             __props__.__dict__["default_directory_policy"] = default_directory_policy
             __props__.__dict__["dns_resolver"] = dns_resolver
             __props__.__dict__["eab_policy"] = eab_policy
@@ -560,6 +632,8 @@ class BackendConfigAcme(pulumi.CustomResource):
             allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
+            challenge_excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            challenge_permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
             dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
             eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -577,6 +651,8 @@ class BackendConfigAcme(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_issuers: Specifies which issuers are allowed for use with ACME.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: Specifies which roles are allowed for use with ACME.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_excluded_ip_ranges: List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] challenge_permitted_ip_ranges: List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
         :param pulumi.Input[_builtins.str] default_directory_policy: Specifies the policy to be used for non-role-qualified ACME requests.
                Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
         :param pulumi.Input[_builtins.str] dns_resolver: DNS resolver to use for domain resolution on this mount.
@@ -598,6 +674,8 @@ class BackendConfigAcme(pulumi.CustomResource):
         __props__.__dict__["allowed_issuers"] = allowed_issuers
         __props__.__dict__["allowed_roles"] = allowed_roles
         __props__.__dict__["backend"] = backend
+        __props__.__dict__["challenge_excluded_ip_ranges"] = challenge_excluded_ip_ranges
+        __props__.__dict__["challenge_permitted_ip_ranges"] = challenge_permitted_ip_ranges
         __props__.__dict__["default_directory_policy"] = default_directory_policy
         __props__.__dict__["dns_resolver"] = dns_resolver
         __props__.__dict__["eab_policy"] = eab_policy
@@ -637,6 +715,22 @@ class BackendConfigAcme(pulumi.CustomResource):
         The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         """
         return pulumi.get(self, "backend")
+
+    @_builtins.property
+    @pulumi.getter(name="challengeExcludedIpRanges")
+    def challenge_excluded_ip_ranges(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        """
+        return pulumi.get(self, "challenge_excluded_ip_ranges")
+
+    @_builtins.property
+    @pulumi.getter(name="challengePermittedIpRanges")
+    def challenge_permitted_ip_ranges(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+        """
+        return pulumi.get(self, "challenge_permitted_ip_ranges")
 
     @_builtins.property
     @pulumi.getter(name="defaultDirectoryPolicy")

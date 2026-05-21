@@ -164,6 +164,10 @@ type SecretBackend struct {
 	Schema pulumi.StringOutput `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
+	// If true, Vault performs rotations by authenticating as this account
+	// using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+	// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+	SelfManaged pulumi.BoolOutput `pulumi:"selfManaged"`
 	// If set to true, static roles will not be rotated during import.
 	// Defaults to false. Requires Vault 1.16 or above.
 	SkipStaticRoleImportRotation pulumi.BoolPtrOutput `pulumi:"skipStaticRoleImportRotation"`
@@ -324,6 +328,10 @@ type secretBackendState struct {
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
+	// If true, Vault performs rotations by authenticating as this account
+	// using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+	// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+	SelfManaged *bool `pulumi:"selfManaged"`
 	// If set to true, static roles will not be rotated during import.
 	// Defaults to false. Requires Vault 1.16 or above.
 	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
@@ -433,6 +441,10 @@ type SecretBackendState struct {
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
+	// If true, Vault performs rotations by authenticating as this account
+	// using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+	// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+	SelfManaged pulumi.BoolPtrInput
 	// If set to true, static roles will not be rotated during import.
 	// Defaults to false. Requires Vault 1.16 or above.
 	SkipStaticRoleImportRotation pulumi.BoolPtrInput
@@ -544,6 +556,10 @@ type secretBackendArgs struct {
 	Schema *string `pulumi:"schema"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
+	// If true, Vault performs rotations by authenticating as this account
+	// using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+	// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+	SelfManaged *bool `pulumi:"selfManaged"`
 	// If set to true, static roles will not be rotated during import.
 	// Defaults to false. Requires Vault 1.16 or above.
 	SkipStaticRoleImportRotation *bool `pulumi:"skipStaticRoleImportRotation"`
@@ -652,6 +668,10 @@ type SecretBackendArgs struct {
 	Schema pulumi.StringPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
+	// If true, Vault performs rotations by authenticating as this account
+	// using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+	// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+	SelfManaged pulumi.BoolPtrInput
 	// If set to true, static roles will not be rotated during import.
 	// Defaults to false. Requires Vault 1.16 or above.
 	SkipStaticRoleImportRotation pulumi.BoolPtrInput
@@ -959,6 +979,13 @@ func (o SecretBackendOutput) Schema() pulumi.StringOutput {
 // Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 func (o SecretBackendOutput) SealWrap() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
+}
+
+// If true, Vault performs rotations by authenticating as this account
+// using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+func (o SecretBackendOutput) SelfManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.SelfManaged }).(pulumi.BoolOutput)
 }
 
 // If set to true, static roles will not be rotated during import.

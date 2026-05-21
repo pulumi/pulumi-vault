@@ -56,6 +56,10 @@ import (
 //				},
 //				Ttl:    pulumi.String("300"),
 //				MaxTtl: pulumi.String("600"),
+//				Metadata: pulumi.StringMap{
+//					"team":  pulumi.String("test"),
+//					"owner": pulumi.String("vault"),
+//				},
 //				AzureRoles: azure.BackendRoleAzureRoleArray{
 //					&azure.BackendRoleAzureRoleArgs{
 //						RoleName: pulumi.String("Reader"),
@@ -100,6 +104,9 @@ type BackendRole struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrOutput `pulumi:"maxTtl"`
+	// A map of string key-value pairs that are stored alongside the role and returned with generated
+	// credentials.
+	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -171,6 +178,9 @@ type backendRoleState struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl *string `pulumi:"maxTtl"`
+	// A map of string key-value pairs that are stored alongside the role and returned with generated
+	// credentials.
+	Metadata map[string]string `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -210,6 +220,9 @@ type BackendRoleState struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrInput
+	// A map of string key-value pairs that are stored alongside the role and returned with generated
+	// credentials.
+	Metadata pulumi.StringMapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -253,6 +266,9 @@ type backendRoleArgs struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl *string `pulumi:"maxTtl"`
+	// A map of string key-value pairs that are stored alongside the role and returned with generated
+	// credentials.
+	Metadata map[string]string `pulumi:"metadata"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -293,6 +309,9 @@ type BackendRoleArgs struct {
 	// Specifies the maximum TTL for service principals generated using this role. Accepts time
 	// suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 	MaxTtl pulumi.StringPtrInput
+	// A map of string key-value pairs that are stored alongside the role and returned with generated
+	// credentials.
+	Metadata pulumi.StringMapInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -437,6 +456,12 @@ func (o BackendRoleOutput) ExplicitMaxTtl() pulumi.StringPtrOutput {
 // suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
 func (o BackendRoleOutput) MaxTtl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BackendRole) pulumi.StringPtrOutput { return v.MaxTtl }).(pulumi.StringPtrOutput)
+}
+
+// A map of string key-value pairs that are stored alongside the role and returned with generated
+// credentials.
+func (o BackendRoleOutput) Metadata() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackendRole) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
 }
 
 // The namespace to provision the resource in.

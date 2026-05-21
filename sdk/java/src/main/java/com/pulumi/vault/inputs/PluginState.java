@@ -32,14 +32,14 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      * 
      */
     @Import(name="command")
     private @Nullable Output<String> command;
 
     /**
-     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      * 
      */
     public Optional<Output<String>> command() {
@@ -111,14 +111,14 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SHA256 sum of the plugin binary.
+     * SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      * 
      */
     @Import(name="sha256")
     private @Nullable Output<String> sha256;
 
     /**
-     * @return SHA256 sum of the plugin binary.
+     * @return SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      * 
      */
     public Optional<Output<String>> sha256() {
@@ -141,14 +141,14 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Semantic version of the plugin.
+     * Semantic version of the plugin. Required for official enterprise plugins.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Semantic version of the plugin.
+     * @return Semantic version of the plugin. Required for official enterprise plugins.
      * 
      */
     public Optional<Output<String>> version() {
@@ -219,7 +219,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
@@ -230,7 +230,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
@@ -338,7 +338,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sha256 SHA256 sum of the plugin binary.
+         * @param sha256 SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
@@ -349,7 +349,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sha256 SHA256 sum of the plugin binary.
+         * @param sha256 SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
@@ -380,7 +380,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Semantic version of the plugin.
+         * @param version Semantic version of the plugin. Required for official enterprise plugins.
          * 
          * @return builder
          * 
@@ -391,7 +391,7 @@ public final class PluginState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Semantic version of the plugin.
+         * @param version Semantic version of the plugin. Required for official enterprise plugins.
          * 
          * @return builder
          * 

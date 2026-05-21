@@ -608,6 +608,25 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * If true, Vault performs rotations by authenticating as this account
+     * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+     * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    @Import(name="selfManaged")
+    private @Nullable Output<Boolean> selfManaged;
+
+    /**
+     * @return If true, Vault performs rotations by authenticating as this account
+     * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+     * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    public Optional<Output<Boolean>> selfManaged() {
+        return Optional.ofNullable(this.selfManaged);
+    }
+
+    /**
      * If set to true, static roles will not be rotated during import.
      * Defaults to false. Requires Vault 1.16 or above.
      * 
@@ -741,6 +760,7 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.rotationWindow = $.rotationWindow;
         this.schema = $.schema;
         this.sealWrap = $.sealWrap;
+        this.selfManaged = $.selfManaged;
         this.skipStaticRoleImportRotation = $.skipStaticRoleImportRotation;
         this.starttls = $.starttls;
         this.upndomain = $.upndomain;
@@ -1634,6 +1654,31 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder sealWrap(Boolean sealWrap) {
             return sealWrap(Output.of(sealWrap));
+        }
+
+        /**
+         * @param selfManaged If true, Vault performs rotations by authenticating as this account
+         * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+         * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManaged(@Nullable Output<Boolean> selfManaged) {
+            $.selfManaged = selfManaged;
+            return this;
+        }
+
+        /**
+         * @param selfManaged If true, Vault performs rotations by authenticating as this account
+         * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+         * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder selfManaged(Boolean selfManaged) {
+            return selfManaged(Output.of(selfManaged));
         }
 
         /**

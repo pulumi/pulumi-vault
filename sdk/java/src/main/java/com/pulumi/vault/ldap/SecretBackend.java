@@ -652,6 +652,24 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.sealWrap;
     }
     /**
+     * If true, Vault performs rotations by authenticating as this account
+     * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+     * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    @Export(name="selfManaged", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> selfManaged;
+
+    /**
+     * @return If true, Vault performs rotations by authenticating as this account
+     * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+     * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    public Output<Boolean> selfManaged() {
+        return this.selfManaged;
+    }
+    /**
      * If set to true, static roles will not be rotated during import.
      * Defaults to false. Requires Vault 1.16 or above.
      * 

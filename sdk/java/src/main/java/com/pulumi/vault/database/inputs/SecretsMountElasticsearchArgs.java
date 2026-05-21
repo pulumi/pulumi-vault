@@ -135,15 +135,15 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
      * Whether to disable certificate verification
      * 
      */
-    @Import(name="insecureTls")
-    private @Nullable Output<Boolean> insecureTls;
+    @Import(name="insecure")
+    private @Nullable Output<Boolean> insecure;
 
     /**
      * @return Whether to disable certificate verification
      * 
      */
-    public Optional<Output<Boolean>> insecureTls() {
-        return Optional.ofNullable(this.insecureTls);
+    public Optional<Output<Boolean>> insecure() {
+        return Optional.ofNullable(this.insecure);
     }
 
     /**
@@ -391,7 +391,7 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         this.clientKey = $.clientKey;
         this.data = $.data;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
-        this.insecureTls = $.insecureTls;
+        this.insecure = $.insecure;
         this.name = $.name;
         this.password = $.password;
         this.passwordPolicy = $.passwordPolicy;
@@ -592,24 +592,24 @@ public final class SecretsMountElasticsearchArgs extends com.pulumi.resources.Re
         }
 
         /**
-         * @param insecureTls Whether to disable certificate verification
+         * @param insecure Whether to disable certificate verification
          * 
          * @return builder
          * 
          */
-        public Builder insecureTls(@Nullable Output<Boolean> insecureTls) {
-            $.insecureTls = insecureTls;
+        public Builder insecure(@Nullable Output<Boolean> insecure) {
+            $.insecure = insecure;
             return this;
         }
 
         /**
-         * @param insecureTls Whether to disable certificate verification
+         * @param insecure Whether to disable certificate verification
          * 
          * @return builder
          * 
          */
-        public Builder insecureTls(Boolean insecureTls) {
-            return insecureTls(Output.of(insecureTls));
+        public Builder insecure(Boolean insecure) {
+            return insecure(Output.of(insecure));
         }
 
         /**

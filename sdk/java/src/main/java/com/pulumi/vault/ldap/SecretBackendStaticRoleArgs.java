@@ -19,6 +19,21 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     public static final SecretBackendStaticRoleArgs Empty = new SecretBackendStaticRoleArgs();
 
     /**
+     * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    @Import(name="disableAutomatedRotation")
+    private @Nullable Output<Boolean> disableAutomatedRotation;
+
+    /**
+     * @return Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    public Optional<Output<Boolean>> disableAutomatedRotation() {
+        return Optional.ofNullable(this.disableAutomatedRotation);
+    }
+
+    /**
      * Distinguished name (DN) of the existing LDAP entry to manage
      * password rotation for. If given, it will take precedence over `username` for the LDAP
      * search performed during password rotation. Cannot be modified after creation.
@@ -76,6 +91,40 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * The version of the `passwordWo`. For more info see updating write-only attributes.
+     * Requires Vault Enterprise 2.0+.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return The version of the `passwordWo`. For more info see updating write-only attributes.
+     * Requires Vault Enterprise 2.0+.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
+    }
+
+    /**
      * Name of the role.
      * 
      */
@@ -91,18 +140,71 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     }
 
     /**
-     * How often Vault should rotate the password of the user entry.
+     * The amount of time in seconds Vault should wait before rotating the static credential.
+     * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
      * 
      */
-    @Import(name="rotationPeriod", required=true)
-    private Output<Integer> rotationPeriod;
+    @Import(name="rotationPeriod")
+    private @Nullable Output<Integer> rotationPeriod;
 
     /**
-     * @return How often Vault should rotate the password of the user entry.
+     * @return The amount of time in seconds Vault should wait before rotating the static credential.
+     * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
      * 
      */
-    public Output<Integer> rotationPeriod() {
-        return this.rotationPeriod;
+    public Optional<Output<Integer>> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+
+    /**
+     * The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    @Import(name="rotationPolicy")
+    private @Nullable Output<String> rotationPolicy;
+
+    /**
+     * @return The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    public Optional<Output<String>> rotationPolicy() {
+        return Optional.ofNullable(this.rotationPolicy);
+    }
+
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    @Import(name="rotationSchedule")
+    private @Nullable Output<String> rotationSchedule;
+
+    /**
+     * @return The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    public Optional<Output<String>> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
+    }
+
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    @Import(name="rotationWindow")
+    private @Nullable Output<Integer> rotationWindow;
+
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+     * 
+     */
+    public Optional<Output<Integer>> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
     }
 
     /**
@@ -140,11 +242,17 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
     private SecretBackendStaticRoleArgs() {}
 
     private SecretBackendStaticRoleArgs(SecretBackendStaticRoleArgs $) {
+        this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.dn = $.dn;
         this.mount = $.mount;
         this.namespace = $.namespace;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.roleName = $.roleName;
         this.rotationPeriod = $.rotationPeriod;
+        this.rotationPolicy = $.rotationPolicy;
+        this.rotationSchedule = $.rotationSchedule;
+        this.rotationWindow = $.rotationWindow;
         this.skipImportRotation = $.skipImportRotation;
         this.username = $.username;
     }
@@ -165,6 +273,27 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
 
         public Builder(SecretBackendStaticRoleArgs defaults) {
             $ = new SecretBackendStaticRoleArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(@Nullable Output<Boolean> disableAutomatedRotation) {
+            $.disableAutomatedRotation = disableAutomatedRotation;
+            return this;
+        }
+
+        /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(Boolean disableAutomatedRotation) {
+            return disableAutomatedRotation(Output.of(disableAutomatedRotation));
         }
 
         /**
@@ -243,6 +372,52 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion The version of the `passwordWo`. For more info see updating write-only attributes.
+         * Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion The version of the `passwordWo`. For more info see updating write-only attributes.
+         * Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
+        }
+
+        /**
          * @param roleName Name of the role.
          * 
          * @return builder
@@ -264,24 +439,95 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         }
 
         /**
-         * @param rotationPeriod How often Vault should rotate the password of the user entry.
+         * @param rotationPeriod The amount of time in seconds Vault should wait before rotating the static credential.
+         * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
          * 
          * @return builder
          * 
          */
-        public Builder rotationPeriod(Output<Integer> rotationPeriod) {
+        public Builder rotationPeriod(@Nullable Output<Integer> rotationPeriod) {
             $.rotationPeriod = rotationPeriod;
             return this;
         }
 
         /**
-         * @param rotationPeriod How often Vault should rotate the password of the user entry.
+         * @param rotationPeriod The amount of time in seconds Vault should wait before rotating the static credential.
+         * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
          * 
          * @return builder
          * 
          */
         public Builder rotationPeriod(Integer rotationPeriod) {
             return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param rotationPolicy The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPolicy(@Nullable Output<String> rotationPolicy) {
+            $.rotationPolicy = rotationPolicy;
+            return this;
+        }
+
+        /**
+         * @param rotationPolicy The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPolicy(String rotationPolicy) {
+            return rotationPolicy(Output.of(rotationPolicy));
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(@Nullable Output<String> rotationSchedule) {
+            $.rotationSchedule = rotationSchedule;
+            return this;
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+         * defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(String rotationSchedule) {
+            return rotationSchedule(Output.of(rotationSchedule));
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(@Nullable Output<Integer> rotationWindow) {
+            $.rotationWindow = rotationWindow;
+            return this;
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(Integer rotationWindow) {
+            return rotationWindow(Output.of(rotationWindow));
         }
 
         /**
@@ -331,9 +577,6 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
         public SecretBackendStaticRoleArgs build() {
             if ($.roleName == null) {
                 throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "roleName");
-            }
-            if ($.rotationPeriod == null) {
-                throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "rotationPeriod");
             }
             if ($.username == null) {
                 throw new MissingRequiredPropertyException("SecretBackendStaticRoleArgs", "username");

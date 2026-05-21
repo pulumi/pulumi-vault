@@ -29,6 +29,7 @@ class BackendRoleArgs:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
                  persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -48,6 +49,8 @@ class BackendRoleArgs:
         :param pulumi.Input[_builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A map of string key-value pairs that are stored alongside the role and returned with generated
+               credentials.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -76,6 +79,8 @@ class BackendRoleArgs:
             pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if permanently_delete is not None:
@@ -189,6 +194,19 @@ class BackendRoleArgs:
 
     @_builtins.property
     @pulumi.getter
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of string key-value pairs that are stored alongside the role and returned with generated
+        credentials.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "metadata", value)
+
+    @_builtins.property
+    @pulumi.getter
     def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The namespace to provision the resource in.
@@ -276,6 +294,7 @@ class _BackendRoleState:
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
                  persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -295,6 +314,8 @@ class _BackendRoleState:
         :param pulumi.Input[_builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A map of string key-value pairs that are stored alongside the role and returned with generated
+               credentials.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -323,6 +344,8 @@ class _BackendRoleState:
             pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
         if max_ttl is not None:
             pulumi.set(__self__, "max_ttl", max_ttl)
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if permanently_delete is not None:
@@ -423,6 +446,19 @@ class _BackendRoleState:
     @max_ttl.setter
     def max_ttl(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_ttl", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        A map of string key-value pairs that are stored alongside the role and returned with generated
+        credentials.
+        """
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "metadata", value)
 
     @_builtins.property
     @pulumi.getter
@@ -528,6 +564,7 @@ class BackendRole(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
                  persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -569,6 +606,10 @@ class BackendRole(pulumi.CustomResource):
             ],
             ttl="300",
             max_ttl="600",
+            metadata={
+                "team": "test",
+                "owner": "vault",
+            },
             azure_roles=[{
                 "role_name": "Reader",
                 "scope": f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
@@ -593,6 +634,8 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A map of string key-value pairs that are stored alongside the role and returned with generated
+               credentials.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -646,6 +689,10 @@ class BackendRole(pulumi.CustomResource):
             ],
             ttl="300",
             max_ttl="600",
+            metadata={
+                "team": "test",
+                "owner": "vault",
+            },
             azure_roles=[{
                 "role_name": "Reader",
                 "scope": f"/subscriptions/{subscription_id}/resourceGroups/azure-vault-group",
@@ -681,6 +728,7 @@ class BackendRole(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+                 metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
                  persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -704,6 +752,7 @@ class BackendRole(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
             __props__.__dict__["max_ttl"] = max_ttl
+            __props__.__dict__["metadata"] = metadata
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["permanently_delete"] = permanently_delete
             __props__.__dict__["persist_app"] = persist_app
@@ -730,6 +779,7 @@ class BackendRole(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
             max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
             persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -753,6 +803,8 @@ class BackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] explicit_max_ttl: Specifies the explicit maximum lifetime of the lease and service principal generated using this role. If not set or set to 0, will use the system default (10 years). Requires Vault 1.18+.
         :param pulumi.Input[_builtins.str] max_ttl: Specifies the maximum TTL for service principals generated using this role. Accepts time
                suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: A map of string key-value pairs that are stored alongside the role and returned with generated
+               credentials.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -778,6 +830,7 @@ class BackendRole(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
         __props__.__dict__["max_ttl"] = max_ttl
+        __props__.__dict__["metadata"] = metadata
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["permanently_delete"] = permanently_delete
         __props__.__dict__["persist_app"] = persist_app
@@ -844,6 +897,15 @@ class BackendRole(pulumi.CustomResource):
         suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
         """
         return pulumi.get(self, "max_ttl")
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        A map of string key-value pairs that are stored alongside the role and returned with generated
+        credentials.
+        """
+        return pulumi.get(self, "metadata")
 
     @_builtins.property
     @pulumi.getter

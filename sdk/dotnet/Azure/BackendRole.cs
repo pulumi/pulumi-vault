@@ -51,6 +51,11 @@ namespace Pulumi.Vault.Azure
     ///         },
     ///         Ttl = "300",
     ///         MaxTtl = "600",
+    ///         Metadata = 
+    ///         {
+    ///             { "team", "test" },
+    ///             { "owner", "vault" },
+    ///         },
     ///         AzureRoles = new[]
     ///         {
     ///             new Vault.Azure.Inputs.BackendRoleAzureRoleArgs
@@ -119,6 +124,13 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Output("maxTtl")]
         public Output<string?> MaxTtl { get; private set; } = null!;
+
+        /// <summary>
+        /// A map of string key-value pairs that are stored alongside the role and returned with generated
+        /// credentials.
+        /// </summary>
+        [Output("metadata")]
+        public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -270,6 +282,19 @@ namespace Pulumi.Vault.Azure
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
 
+        [Input("metadata")]
+        private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// A map of string key-value pairs that are stored alongside the role and returned with generated
+        /// credentials.
+        /// </summary>
+        public InputMap<string> Metadata
+        {
+            get => _metadata ?? (_metadata = new InputMap<string>());
+            set => _metadata = value;
+        }
+
         /// <summary>
         /// The namespace to provision the resource in.
         /// The value should not contain leading or trailing forward slashes.
@@ -387,6 +412,19 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("maxTtl")]
         public Input<string>? MaxTtl { get; set; }
+
+        [Input("metadata")]
+        private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// A map of string key-value pairs that are stored alongside the role and returned with generated
+        /// credentials.
+        /// </summary>
+        public InputMap<string> Metadata
+        {
+            get => _metadata ?? (_metadata = new InputMap<string>());
+            set => _metadata = value;
+        }
 
         /// <summary>
         /// The namespace to provision the resource in.

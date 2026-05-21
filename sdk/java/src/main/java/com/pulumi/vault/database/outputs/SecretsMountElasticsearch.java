@@ -58,7 +58,7 @@ public final class SecretsMountElasticsearch {
      * @return Whether to disable certificate verification
      * 
      */
-    private @Nullable Boolean insecureTls;
+    private @Nullable Boolean insecure;
     /**
      * @return Name of the database connection.
      * 
@@ -197,8 +197,8 @@ public final class SecretsMountElasticsearch {
      * @return Whether to disable certificate verification
      * 
      */
-    public Optional<Boolean> insecureTls() {
-        return Optional.ofNullable(this.insecureTls);
+    public Optional<Boolean> insecure() {
+        return Optional.ofNullable(this.insecure);
     }
     /**
      * @return Name of the database connection.
@@ -327,7 +327,7 @@ public final class SecretsMountElasticsearch {
         private @Nullable String clientKey;
         private @Nullable Map<String,String> data;
         private @Nullable Boolean disableAutomatedRotation;
-        private @Nullable Boolean insecureTls;
+        private @Nullable Boolean insecure;
         private String name;
         private String password;
         private @Nullable String passwordPolicy;
@@ -353,7 +353,7 @@ public final class SecretsMountElasticsearch {
     	      this.clientKey = defaults.clientKey;
     	      this.data = defaults.data;
     	      this.disableAutomatedRotation = defaults.disableAutomatedRotation;
-    	      this.insecureTls = defaults.insecureTls;
+    	      this.insecure = defaults.insecure;
     	      this.name = defaults.name;
     	      this.password = defaults.password;
     	      this.passwordPolicy = defaults.passwordPolicy;
@@ -417,9 +417,9 @@ public final class SecretsMountElasticsearch {
             return this;
         }
         @CustomType.Setter
-        public Builder insecureTls(@Nullable Boolean insecureTls) {
+        public Builder insecure(@Nullable Boolean insecure) {
 
-            this.insecureTls = insecureTls;
+            this.insecure = insecure;
             return this;
         }
         @CustomType.Setter
@@ -532,7 +532,7 @@ public final class SecretsMountElasticsearch {
             _resultValue.clientKey = clientKey;
             _resultValue.data = data;
             _resultValue.disableAutomatedRotation = disableAutomatedRotation;
-            _resultValue.insecureTls = insecureTls;
+            _resultValue.insecure = insecure;
             _resultValue.name = name;
             _resultValue.password = password;
             _resultValue.passwordPolicy = passwordPolicy;

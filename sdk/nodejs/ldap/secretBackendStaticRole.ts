@@ -37,6 +37,12 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Ephemeral Attributes Reference
+ *
+ * * `passwordWo` - (Optional) The password for the user. Can be updated.
+ *   **Note**: This property is write-only and will not be read from the API.
+ *   Requires Vault Enterprise 2.0+.
+ *
  * ## Import
  *
  * LDAP secret backend static role can be imported using the full path to the role
@@ -75,6 +81,10 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
     }
 
     /**
+     * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+     */
+    declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
+    /**
      * Distinguished name (DN) of the existing LDAP entry to manage
      * password rotation for. If given, it will take precedence over `username` for the LDAP
      * search performed during password rotation. Cannot be modified after creation.
@@ -93,13 +103,39 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the `passwordWo`. For more info see updating write-only attributes.
+     * Requires Vault Enterprise 2.0+.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
+    /**
      * Name of the role.
      */
     declare public readonly roleName: pulumi.Output<string>;
     /**
-     * How often Vault should rotate the password of the user entry.
+     * The amount of time in seconds Vault should wait before rotating the static credential.
+     * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
      */
-    declare public readonly rotationPeriod: pulumi.Output<number>;
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
+    /**
+     * The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+     */
+    declare public readonly rotationPolicy: pulumi.Output<string | undefined>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+     */
+    declare public readonly rotationSchedule: pulumi.Output<string | undefined>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+     */
+    declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
      * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
      * Requires Vault 1.16 or above.
@@ -123,11 +159,17 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
+            resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
             resourceInputs["dn"] = state?.dn;
             resourceInputs["mount"] = state?.mount;
             resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["roleName"] = state?.roleName;
             resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["rotationPolicy"] = state?.rotationPolicy;
+            resourceInputs["rotationSchedule"] = state?.rotationSchedule;
+            resourceInputs["rotationWindow"] = state?.rotationWindow;
             resourceInputs["skipImportRotation"] = state?.skipImportRotation;
             resourceInputs["username"] = state?.username;
         } else {
@@ -135,21 +177,26 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             if (args?.roleName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'roleName'");
             }
-            if (args?.rotationPeriod === undefined && !opts.urn) {
-                throw new Error("Missing required property 'rotationPeriod'");
-            }
             if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
+            resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
             resourceInputs["dn"] = args?.dn;
             resourceInputs["mount"] = args?.mount;
             resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["roleName"] = args?.roleName;
             resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["rotationPolicy"] = args?.rotationPolicy;
+            resourceInputs["rotationSchedule"] = args?.rotationSchedule;
+            resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["skipImportRotation"] = args?.skipImportRotation;
             resourceInputs["username"] = args?.username;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["passwordWo"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(SecretBackendStaticRole.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -158,6 +205,10 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretBackendStaticRole resources.
  */
 export interface SecretBackendStaticRoleState {
+    /**
+     * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
     /**
      * Distinguished name (DN) of the existing LDAP entry to manage
      * password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -177,13 +228,39 @@ export interface SecretBackendStaticRoleState {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+     */
+    passwordWo?: pulumi.Input<string | undefined>;
+    /**
+     * The version of the `passwordWo`. For more info see updating write-only attributes.
+     * Requires Vault Enterprise 2.0+.
+     */
+    passwordWoVersion?: pulumi.Input<number | undefined>;
+    /**
      * Name of the role.
      */
     roleName?: pulumi.Input<string | undefined>;
     /**
-     * How often Vault should rotate the password of the user entry.
+     * The amount of time in seconds Vault should wait before rotating the static credential.
+     * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
      */
     rotationPeriod?: pulumi.Input<number | undefined>;
+    /**
+     * The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+     */
+    rotationPolicy?: pulumi.Input<string | undefined>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+     */
+    rotationSchedule?: pulumi.Input<string | undefined>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+     */
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
      * Requires Vault 1.16 or above.
@@ -200,6 +277,10 @@ export interface SecretBackendStaticRoleState {
  */
 export interface SecretBackendStaticRoleArgs {
     /**
+     * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+     */
+    disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
+    /**
      * Distinguished name (DN) of the existing LDAP entry to manage
      * password rotation for. If given, it will take precedence over `username` for the LDAP
      * search performed during password rotation. Cannot be modified after creation.
@@ -218,13 +299,39 @@ export interface SecretBackendStaticRoleArgs {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+     */
+    passwordWo?: pulumi.Input<string | undefined>;
+    /**
+     * The version of the `passwordWo`. For more info see updating write-only attributes.
+     * Requires Vault Enterprise 2.0+.
+     */
+    passwordWoVersion?: pulumi.Input<number | undefined>;
+    /**
      * Name of the role.
      */
     roleName: pulumi.Input<string>;
     /**
-     * How often Vault should rotate the password of the user entry.
+     * The amount of time in seconds Vault should wait before rotating the static credential.
+     * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
      */
-    rotationPeriod: pulumi.Input<number>;
+    rotationPeriod?: pulumi.Input<number | undefined>;
+    /**
+     * The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+     */
+    rotationPolicy?: pulumi.Input<string | undefined>;
+    /**
+     * The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+     * defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+     */
+    rotationSchedule?: pulumi.Input<string | undefined>;
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+     */
+    rotationWindow?: pulumi.Input<number | undefined>;
     /**
      * Causes vault to skip the initial secret rotation on import. Not applicable to updates.
      * Requires Vault 1.16 or above.

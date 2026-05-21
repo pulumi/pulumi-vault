@@ -91,6 +91,14 @@ export class BackendConfigAcme extends pulumi.CustomResource {
      */
     declare public readonly backend: pulumi.Output<string>;
     /**
+     * List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+     */
+    declare public readonly challengeExcludedIpRanges: pulumi.Output<string[] | undefined>;
+    /**
+     * List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+     */
+    declare public readonly challengePermittedIpRanges: pulumi.Output<string[] | undefined>;
+    /**
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
      */
@@ -138,6 +146,8 @@ export class BackendConfigAcme extends pulumi.CustomResource {
             resourceInputs["allowedIssuers"] = state?.allowedIssuers;
             resourceInputs["allowedRoles"] = state?.allowedRoles;
             resourceInputs["backend"] = state?.backend;
+            resourceInputs["challengeExcludedIpRanges"] = state?.challengeExcludedIpRanges;
+            resourceInputs["challengePermittedIpRanges"] = state?.challengePermittedIpRanges;
             resourceInputs["defaultDirectoryPolicy"] = state?.defaultDirectoryPolicy;
             resourceInputs["dnsResolver"] = state?.dnsResolver;
             resourceInputs["eabPolicy"] = state?.eabPolicy;
@@ -156,6 +166,8 @@ export class BackendConfigAcme extends pulumi.CustomResource {
             resourceInputs["allowedIssuers"] = args?.allowedIssuers;
             resourceInputs["allowedRoles"] = args?.allowedRoles;
             resourceInputs["backend"] = args?.backend;
+            resourceInputs["challengeExcludedIpRanges"] = args?.challengeExcludedIpRanges;
+            resourceInputs["challengePermittedIpRanges"] = args?.challengePermittedIpRanges;
             resourceInputs["defaultDirectoryPolicy"] = args?.defaultDirectoryPolicy;
             resourceInputs["dnsResolver"] = args?.dnsResolver;
             resourceInputs["eabPolicy"] = args?.eabPolicy;
@@ -188,6 +200,14 @@ export interface BackendConfigAcmeState {
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
     backend?: pulumi.Input<string | undefined>;
+    /**
+     * List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+     */
+    challengeExcludedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+     */
+    challengePermittedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
@@ -240,6 +260,14 @@ export interface BackendConfigAcmeArgs {
      * The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
      */
     backend: pulumi.Input<string>;
+    /**
+     * List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+     */
+    challengeExcludedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+     */
+    challengePermittedIpRanges?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.

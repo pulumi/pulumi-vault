@@ -72,8 +72,8 @@ namespace Pulumi.Vault.Database.Inputs
         /// <summary>
         /// Whether to disable certificate verification
         /// </summary>
-        [Input("insecureTls")]
-        public Input<bool>? InsecureTls { get; set; }
+        [Input("insecure")]
+        public Input<bool>? Insecure { get; set; }
 
         /// <summary>
         /// Name of the database connection.

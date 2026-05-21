@@ -147,6 +147,34 @@ public class BackendConfigAcme extends com.pulumi.resources.CustomResource {
         return this.backend;
     }
     /**
+     * List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    @Export(name="challengeExcludedIpRanges", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> challengeExcludedIpRanges;
+
+    /**
+     * @return List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    public Output<Optional<List<String>>> challengeExcludedIpRanges() {
+        return Codegen.optional(this.challengeExcludedIpRanges);
+    }
+    /**
+     * List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    @Export(name="challengePermittedIpRanges", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> challengePermittedIpRanges;
+
+    /**
+     * @return List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    public Output<Optional<List<String>>> challengePermittedIpRanges() {
+        return Codegen.optional(this.challengePermittedIpRanges);
+    }
+    /**
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
      * 

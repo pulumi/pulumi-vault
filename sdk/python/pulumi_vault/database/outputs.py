@@ -423,8 +423,6 @@ class SecretBackendConnectionElasticsearch(dict):
             suggest = "client_cert"
         elif key == "clientKey":
             suggest = "client_key"
-        elif key == "insecureTls":
-            suggest = "insecure_tls"
         elif key == "tlsServerName":
             suggest = "tls_server_name"
         elif key == "usernameTemplate":
@@ -449,7 +447,7 @@ class SecretBackendConnectionElasticsearch(dict):
                  ca_path: Optional[_builtins.str] = None,
                  client_cert: Optional[_builtins.str] = None,
                  client_key: Optional[_builtins.str] = None,
-                 insecure_tls: Optional[_builtins.bool] = None,
+                 insecure: Optional[_builtins.bool] = None,
                  tls_server_name: Optional[_builtins.str] = None,
                  username_template: Optional[_builtins.str] = None):
         """
@@ -460,7 +458,7 @@ class SecretBackendConnectionElasticsearch(dict):
         :param _builtins.str ca_path: The path to a directory of PEM-encoded CA cert files to use to verify the Elasticsearch server's identity
         :param _builtins.str client_cert: The path to the certificate for the Elasticsearch client to present for communication
         :param _builtins.str client_key: The path to the key for the Elasticsearch client to use for communication
-        :param _builtins.bool insecure_tls: Whether to disable certificate verification
+        :param _builtins.bool insecure: Whether to disable certificate verification
         :param _builtins.str tls_server_name: This, if set, is used to set the SNI host when connecting via TLS
         :param _builtins.str username_template: Template describing how dynamic usernames are generated.
         """
@@ -475,8 +473,8 @@ class SecretBackendConnectionElasticsearch(dict):
             pulumi.set(__self__, "client_cert", client_cert)
         if client_key is not None:
             pulumi.set(__self__, "client_key", client_key)
-        if insecure_tls is not None:
-            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if insecure is not None:
+            pulumi.set(__self__, "insecure", insecure)
         if tls_server_name is not None:
             pulumi.set(__self__, "tls_server_name", tls_server_name)
         if username_template is not None:
@@ -539,12 +537,12 @@ class SecretBackendConnectionElasticsearch(dict):
         return pulumi.get(self, "client_key")
 
     @_builtins.property
-    @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[_builtins.bool]:
+    @pulumi.getter
+    def insecure(self) -> Optional[_builtins.bool]:
         """
         Whether to disable certificate verification
         """
-        return pulumi.get(self, "insecure_tls")
+        return pulumi.get(self, "insecure")
 
     @_builtins.property
     @pulumi.getter(name="tlsServerName")
@@ -3821,8 +3819,6 @@ class SecretsMountElasticsearch(dict):
             suggest = "client_key"
         elif key == "disableAutomatedRotation":
             suggest = "disable_automated_rotation"
-        elif key == "insecureTls":
-            suggest = "insecure_tls"
         elif key == "passwordPolicy":
             suggest = "password_policy"
         elif key == "pluginName":
@@ -3869,7 +3865,7 @@ class SecretsMountElasticsearch(dict):
                  client_key: Optional[_builtins.str] = None,
                  data: Optional[Mapping[str, _builtins.str]] = None,
                  disable_automated_rotation: Optional[_builtins.bool] = None,
-                 insecure_tls: Optional[_builtins.bool] = None,
+                 insecure: Optional[_builtins.bool] = None,
                  password_policy: Optional[_builtins.str] = None,
                  plugin_name: Optional[_builtins.str] = None,
                  plugin_version: Optional[_builtins.str] = None,
@@ -3896,7 +3892,7 @@ class SecretsMountElasticsearch(dict):
         :param _builtins.bool disable_automated_rotation: Cancels all upcoming rotations of the root credential until unset. Requires Vault Enterprise 1.19+.
                
                Supported list of database secrets engines that can be configured:
-        :param _builtins.bool insecure_tls: Whether to disable certificate verification
+        :param _builtins.bool insecure: Whether to disable certificate verification
         :param _builtins.str password_policy: The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
         :param _builtins.str plugin_name: Specifies the name of the plugin to use.
         :param _builtins.str plugin_version: Specifies the semantic version of the plugin to use for this connection.
@@ -3932,8 +3928,8 @@ class SecretsMountElasticsearch(dict):
             pulumi.set(__self__, "data", data)
         if disable_automated_rotation is not None:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
-        if insecure_tls is not None:
-            pulumi.set(__self__, "insecure_tls", insecure_tls)
+        if insecure is not None:
+            pulumi.set(__self__, "insecure", insecure)
         if password_policy is not None:
             pulumi.set(__self__, "password_policy", password_policy)
         if plugin_name is not None:
@@ -4049,12 +4045,12 @@ class SecretsMountElasticsearch(dict):
         return pulumi.get(self, "disable_automated_rotation")
 
     @_builtins.property
-    @pulumi.getter(name="insecureTls")
-    def insecure_tls(self) -> Optional[_builtins.bool]:
+    @pulumi.getter
+    def insecure(self) -> Optional[_builtins.bool]:
         """
         Whether to disable certificate verification
         """
-        return pulumi.get(self, "insecure_tls")
+        return pulumi.get(self, "insecure")
 
     @_builtins.property
     @pulumi.getter(name="passwordPolicy")

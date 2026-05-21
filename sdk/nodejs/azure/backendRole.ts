@@ -40,6 +40,10 @@ import * as utilities from "../utilities";
  *     ],
  *     ttl: "300",
  *     maxTtl: "600",
+ *     metadata: {
+ *         team: "test",
+ *         owner: "vault",
+ *     },
  *     azureRoles: [{
  *         roleName: "Reader",
  *         scope: `/subscriptions/${subscriptionId}/resourceGroups/azure-vault-group`,
@@ -113,6 +117,11 @@ export class BackendRole extends pulumi.CustomResource {
      */
     declare public readonly maxTtl: pulumi.Output<string | undefined>;
     /**
+     * A map of string key-value pairs that are stored alongside the role and returned with generated
+     * credentials.
+     */
+    declare public readonly metadata: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
      * The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -167,6 +176,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["explicitMaxTtl"] = state?.explicitMaxTtl;
             resourceInputs["maxTtl"] = state?.maxTtl;
+            resourceInputs["metadata"] = state?.metadata;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["permanentlyDelete"] = state?.permanentlyDelete;
             resourceInputs["persistApp"] = state?.persistApp;
@@ -186,6 +196,7 @@ export class BackendRole extends pulumi.CustomResource {
             resourceInputs["description"] = args?.description;
             resourceInputs["explicitMaxTtl"] = args?.explicitMaxTtl;
             resourceInputs["maxTtl"] = args?.maxTtl;
+            resourceInputs["metadata"] = args?.metadata;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["permanentlyDelete"] = args?.permanentlyDelete;
             resourceInputs["persistApp"] = args?.persistApp;
@@ -233,6 +244,11 @@ export interface BackendRoleState {
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
     maxTtl?: pulumi.Input<string | undefined>;
+    /**
+     * A map of string key-value pairs that are stored alongside the role and returned with generated
+     * credentials.
+     */
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -303,6 +319,11 @@ export interface BackendRoleArgs {
      * suffixed strings ("1h") or an integer number of seconds. Defaults to the system/engine max TTL time.
      */
     maxTtl?: pulumi.Input<string | undefined>;
+    /**
+     * A map of string key-value pairs that are stored alongside the role and returned with generated
+     * credentials.
+     */
+    metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.

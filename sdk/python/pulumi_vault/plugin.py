@@ -19,35 +19,35 @@ __all__ = ['PluginArgs', 'Plugin']
 @pulumi.input_type
 class PluginArgs:
     def __init__(__self__, *,
-                 command: pulumi.Input[_builtins.str],
-                 sha256: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
                  args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 command: pulumi.Input[Optional[_builtins.str]] = None,
                  envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  oci_image: pulumi.Input[Optional[_builtins.str]] = None,
                  runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 sha256: pulumi.Input[Optional[_builtins.str]] = None,
                  version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Plugin resource.
 
-        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`.
-        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary.
         :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
+        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
                `command`, `args`, and `env` will update the container's entrypoint, args, and
                environment variables (append-only) respectively.
         :param pulumi.Input[_builtins.str] runtime: Vault plugin runtime to use if `oci_image` is specified.
-        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin.
+        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin. Required for official enterprise plugins.
         """
-        pulumi.set(__self__, "command", command)
-        pulumi.set(__self__, "sha256", sha256)
         pulumi.set(__self__, "type", type)
         if args is not None:
             pulumi.set(__self__, "args", args)
+        if command is not None:
+            pulumi.set(__self__, "command", command)
         if envs is not None:
             pulumi.set(__self__, "envs", envs)
         if name is not None:
@@ -56,32 +56,10 @@ class PluginArgs:
             pulumi.set(__self__, "oci_image", oci_image)
         if runtime is not None:
             pulumi.set(__self__, "runtime", runtime)
+        if sha256 is not None:
+            pulumi.set(__self__, "sha256", sha256)
         if version is not None:
             pulumi.set(__self__, "version", version)
-
-    @_builtins.property
-    @pulumi.getter
-    def command(self) -> pulumi.Input[_builtins.str]:
-        """
-        Command to execute the plugin, relative to the server's configured `plugin_directory`.
-        """
-        return pulumi.get(self, "command")
-
-    @command.setter
-    def command(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "command", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def sha256(self) -> pulumi.Input[_builtins.str]:
-        """
-        SHA256 sum of the plugin binary.
-        """
-        return pulumi.get(self, "sha256")
-
-    @sha256.setter
-    def sha256(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "sha256", value)
 
     @_builtins.property
     @pulumi.getter
@@ -109,130 +87,9 @@ class PluginArgs:
 
     @_builtins.property
     @pulumi.getter
-    def envs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        List of additional environment variables to run the plugin with in KEY=VALUE form.
-        """
-        return pulumi.get(self, "envs")
-
-    @envs.setter
-    def envs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "envs", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Name of the plugin.
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter(name="ociImage")
-    def oci_image(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Specifies OCI image to run. If specified, setting
-        `command`, `args`, and `env` will update the container's entrypoint, args, and
-        environment variables (append-only) respectively.
-        """
-        return pulumi.get(self, "oci_image")
-
-    @oci_image.setter
-    def oci_image(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "oci_image", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def runtime(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Vault plugin runtime to use if `oci_image` is specified.
-        """
-        return pulumi.get(self, "runtime")
-
-    @runtime.setter
-    def runtime(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "runtime", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
-        """
-        Semantic version of the plugin.
-        """
-        return pulumi.get(self, "version")
-
-    @version.setter
-    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "version", value)
-
-
-@pulumi.input_type
-class _PluginState:
-    def __init__(__self__, *,
-                 args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 command: pulumi.Input[Optional[_builtins.str]] = None,
-                 envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: pulumi.Input[Optional[_builtins.str]] = None,
-                 oci_image: pulumi.Input[Optional[_builtins.str]] = None,
-                 runtime: pulumi.Input[Optional[_builtins.str]] = None,
-                 sha256: pulumi.Input[Optional[_builtins.str]] = None,
-                 type: pulumi.Input[Optional[_builtins.str]] = None,
-                 version: pulumi.Input[Optional[_builtins.str]] = None):
-        """
-        Input properties used for looking up and filtering Plugin resources.
-
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
-        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
-        :param pulumi.Input[_builtins.str] name: Name of the plugin.
-        :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
-               `command`, `args`, and `env` will update the container's entrypoint, args, and
-               environment variables (append-only) respectively.
-        :param pulumi.Input[_builtins.str] runtime: Vault plugin runtime to use if `oci_image` is specified.
-        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary.
-        :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
-        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin.
-        """
-        if args is not None:
-            pulumi.set(__self__, "args", args)
-        if command is not None:
-            pulumi.set(__self__, "command", command)
-        if envs is not None:
-            pulumi.set(__self__, "envs", envs)
-        if name is not None:
-            pulumi.set(__self__, "name", name)
-        if oci_image is not None:
-            pulumi.set(__self__, "oci_image", oci_image)
-        if runtime is not None:
-            pulumi.set(__self__, "runtime", runtime)
-        if sha256 is not None:
-            pulumi.set(__self__, "sha256", sha256)
-        if type is not None:
-            pulumi.set(__self__, "type", type)
-        if version is not None:
-            pulumi.set(__self__, "version", version)
-
-    @_builtins.property
-    @pulumi.getter
-    def args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
-        """
-        List of additional args to pass to the plugin.
-        """
-        return pulumi.get(self, "args")
-
-    @args.setter
-    def args(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
-        pulumi.set(self, "args", value)
-
-    @_builtins.property
-    @pulumi.getter
     def command(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Command to execute the plugin, relative to the server's configured `plugin_directory`.
+        Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
         """
         return pulumi.get(self, "command")
 
@@ -294,7 +151,152 @@ class _PluginState:
     @pulumi.getter
     def sha256(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        SHA256 sum of the plugin binary.
+        SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+        """
+        return pulumi.get(self, "sha256")
+
+    @sha256.setter
+    def sha256(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "sha256", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Semantic version of the plugin. Required for official enterprise plugins.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class _PluginState:
+    def __init__(__self__, *,
+                 args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 command: pulumi.Input[Optional[_builtins.str]] = None,
+                 envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 oci_image: pulumi.Input[Optional[_builtins.str]] = None,
+                 runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 sha256: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        Input properties used for looking up and filtering Plugin resources.
+
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
+        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
+        :param pulumi.Input[_builtins.str] name: Name of the plugin.
+        :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
+               `command`, `args`, and `env` will update the container's entrypoint, args, and
+               environment variables (append-only) respectively.
+        :param pulumi.Input[_builtins.str] runtime: Vault plugin runtime to use if `oci_image` is specified.
+        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+        :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
+        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin. Required for official enterprise plugins.
+        """
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if command is not None:
+            pulumi.set(__self__, "command", command)
+        if envs is not None:
+            pulumi.set(__self__, "envs", envs)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if oci_image is not None:
+            pulumi.set(__self__, "oci_image", oci_image)
+        if runtime is not None:
+            pulumi.set(__self__, "runtime", runtime)
+        if sha256 is not None:
+            pulumi.set(__self__, "sha256", sha256)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def args(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of additional args to pass to the plugin.
+        """
+        return pulumi.get(self, "args")
+
+    @args.setter
+    def args(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "args", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def command(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
+        """
+        return pulumi.get(self, "command")
+
+    @command.setter
+    def command(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "command", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def envs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of additional environment variables to run the plugin with in KEY=VALUE form.
+        """
+        return pulumi.get(self, "envs")
+
+    @envs.setter
+    def envs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "envs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Name of the plugin.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ociImage")
+    def oci_image(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies OCI image to run. If specified, setting
+        `command`, `args`, and `env` will update the container's entrypoint, args, and
+        environment variables (append-only) respectively.
+        """
+        return pulumi.get(self, "oci_image")
+
+    @oci_image.setter
+    def oci_image(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "oci_image", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runtime(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Vault plugin runtime to use if `oci_image` is specified.
+        """
+        return pulumi.get(self, "runtime")
+
+    @runtime.setter
+    def runtime(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "runtime", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sha256(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
         """
         return pulumi.get(self, "sha256")
 
@@ -318,7 +320,7 @@ class _PluginState:
     @pulumi.getter
     def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Semantic version of the plugin.
+        Semantic version of the plugin. Required for official enterprise plugins.
         """
         return pulumi.get(self, "version")
 
@@ -358,6 +360,25 @@ class Plugin(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Register an Official Enterprise plugin (version vX.Y.Z+ent)
+
+        The `version` is required for enterprise plugins.
+        The `sha256` and `command` shoud not be set for an enterprise plugin.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        oracle = vault.Plugin("oracle",
+            type="database",
+            name="vault-plugin-database-oracle",
+            version="v0.13.0+ent")
+        ```
+
+        ### Register a CE plugin (version vX.Y.Z)
+
+        The `sha256` and `command` are required to register a CE plugin.
+
         ```python
         import pulumi
         import pulumi_vault as vault
@@ -388,16 +409,16 @@ class Plugin(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
-        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`.
+        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
                `command`, `args`, and `env` will update the container's entrypoint, args, and
                environment variables (append-only) respectively.
         :param pulumi.Input[_builtins.str] runtime: Vault plugin runtime to use if `oci_image` is specified.
-        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary.
+        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
         :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
-        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin.
+        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin. Required for official enterprise plugins.
         """
         ...
     @overload
@@ -419,6 +440,25 @@ class Plugin(pulumi.CustomResource):
         [documentation](https://developer.hashicorp.com/vault/docs/plugins).
 
         ## Example Usage
+
+        ### Register an Official Enterprise plugin (version vX.Y.Z+ent)
+
+        The `version` is required for enterprise plugins.
+        The `sha256` and `command` shoud not be set for an enterprise plugin.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        oracle = vault.Plugin("oracle",
+            type="database",
+            name="vault-plugin-database-oracle",
+            version="v0.13.0+ent")
+        ```
+
+        ### Register a CE plugin (version vX.Y.Z)
+
+        The `sha256` and `command` are required to register a CE plugin.
 
         ```python
         import pulumi
@@ -481,15 +521,11 @@ class Plugin(pulumi.CustomResource):
             __props__ = PluginArgs.__new__(PluginArgs)
 
             __props__.__dict__["args"] = args
-            if command is None and not opts.urn:
-                raise TypeError("Missing required property 'command'")
             __props__.__dict__["command"] = command
             __props__.__dict__["envs"] = None if envs is None else pulumi.Output.secret(envs)
             __props__.__dict__["name"] = name
             __props__.__dict__["oci_image"] = oci_image
             __props__.__dict__["runtime"] = runtime
-            if sha256 is None and not opts.urn:
-                raise TypeError("Missing required property 'sha256'")
             __props__.__dict__["sha256"] = sha256
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
@@ -524,16 +560,16 @@ class Plugin(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
-        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`.
+        :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
                `command`, `args`, and `env` will update the container's entrypoint, args, and
                environment variables (append-only) respectively.
         :param pulumi.Input[_builtins.str] runtime: Vault plugin runtime to use if `oci_image` is specified.
-        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary.
+        :param pulumi.Input[_builtins.str] sha256: SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
         :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
-        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin.
+        :param pulumi.Input[_builtins.str] version: Semantic version of the plugin. Required for official enterprise plugins.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -560,9 +596,9 @@ class Plugin(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def command(self) -> pulumi.Output[_builtins.str]:
+    def command(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Command to execute the plugin, relative to the server's configured `plugin_directory`.
+        Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
         """
         return pulumi.get(self, "command")
 
@@ -602,9 +638,9 @@ class Plugin(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def sha256(self) -> pulumi.Output[_builtins.str]:
+    def sha256(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        SHA256 sum of the plugin binary.
+        SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
         """
         return pulumi.get(self, "sha256")
 
@@ -620,7 +656,7 @@ class Plugin(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Semantic version of the plugin.
+        Semantic version of the plugin. Required for official enterprise plugins.
         """
         return pulumi.get(self, "version")
 

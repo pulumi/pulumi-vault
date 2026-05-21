@@ -24,6 +24,33 @@ namespace Pulumi.Vault
     /// 
     /// ## Example Usage
     /// 
+    /// ### Register an Official Enterprise plugin (version vX.Y.Z+ent)
+    /// 
+    /// The `Version` is required for enterprise plugins.
+    /// The `Sha256` and `Command` shoud not be set for an enterprise plugin.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var oracle = new Vault.Plugin("oracle", new()
+    ///     {
+    ///         Type = "database",
+    ///         Name = "vault-plugin-database-oracle",
+    ///         Version = "v0.13.0+ent",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Register a CE plugin (version vX.Y.Z)
+    /// 
+    /// The `Sha256` and `Command` are required to register a CE plugin.
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -75,10 +102,10 @@ namespace Pulumi.Vault
         public Output<ImmutableArray<string>> Args { get; private set; } = null!;
 
         /// <summary>
-        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`.
+        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`. Need to be set for non-enterprise plugin.
         /// </summary>
         [Output("command")]
-        public Output<string> Command { get; private set; } = null!;
+        public Output<string?> Command { get; private set; } = null!;
 
         /// <summary>
         /// List of additional environment variables to run the plugin with in KEY=VALUE form.
@@ -107,10 +134,10 @@ namespace Pulumi.Vault
         public Output<string?> Runtime { get; private set; } = null!;
 
         /// <summary>
-        /// SHA256 sum of the plugin binary.
+        /// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
         /// </summary>
         [Output("sha256")]
-        public Output<string> Sha256 { get; private set; } = null!;
+        public Output<string?> Sha256 { get; private set; } = null!;
 
         /// <summary>
         /// Type of plugin; one of "auth", "secret", or "database".
@@ -119,7 +146,7 @@ namespace Pulumi.Vault
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// Semantic version of the plugin.
+        /// Semantic version of the plugin. Required for official enterprise plugins.
         /// </summary>
         [Output("version")]
         public Output<string?> Version { get; private set; } = null!;
@@ -187,87 +214,7 @@ namespace Pulumi.Vault
         }
 
         /// <summary>
-        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`.
-        /// </summary>
-        [Input("command", required: true)]
-        public Input<string> Command { get; set; } = null!;
-
-        [Input("envs")]
-        private InputList<string>? _envs;
-
-        /// <summary>
-        /// List of additional environment variables to run the plugin with in KEY=VALUE form.
-        /// </summary>
-        public InputList<string> Envs
-        {
-            get => _envs ?? (_envs = new InputList<string>());
-            set
-            {
-                var emptySecret = Output.CreateSecret(ImmutableArray.Create<string>());
-                _envs = Output.All(value, emptySecret).Apply(v => v[0]);
-            }
-        }
-
-        /// <summary>
-        /// Name of the plugin.
-        /// </summary>
-        [Input("name")]
-        public Input<string>? Name { get; set; }
-
-        /// <summary>
-        /// Specifies OCI image to run. If specified, setting
-        /// `Command`, `Args`, and `Env` will update the container's entrypoint, args, and
-        /// environment variables (append-only) respectively.
-        /// </summary>
-        [Input("ociImage")]
-        public Input<string>? OciImage { get; set; }
-
-        /// <summary>
-        /// Vault plugin runtime to use if `OciImage` is specified.
-        /// </summary>
-        [Input("runtime")]
-        public Input<string>? Runtime { get; set; }
-
-        /// <summary>
-        /// SHA256 sum of the plugin binary.
-        /// </summary>
-        [Input("sha256", required: true)]
-        public Input<string> Sha256 { get; set; } = null!;
-
-        /// <summary>
-        /// Type of plugin; one of "auth", "secret", or "database".
-        /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
-
-        /// <summary>
-        /// Semantic version of the plugin.
-        /// </summary>
-        [Input("version")]
-        public Input<string>? Version { get; set; }
-
-        public PluginArgs()
-        {
-        }
-        public static new PluginArgs Empty => new PluginArgs();
-    }
-
-    public sealed class PluginState : global::Pulumi.ResourceArgs
-    {
-        [Input("args")]
-        private InputList<string>? _args;
-
-        /// <summary>
-        /// List of additional args to pass to the plugin.
-        /// </summary>
-        public InputList<string> Args
-        {
-            get => _args ?? (_args = new InputList<string>());
-            set => _args = value;
-        }
-
-        /// <summary>
-        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`.
+        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`. Need to be set for non-enterprise plugin.
         /// </summary>
         [Input("command")]
         public Input<string>? Command { get; set; }
@@ -309,7 +256,87 @@ namespace Pulumi.Vault
         public Input<string>? Runtime { get; set; }
 
         /// <summary>
-        /// SHA256 sum of the plugin binary.
+        /// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+        /// </summary>
+        [Input("sha256")]
+        public Input<string>? Sha256 { get; set; }
+
+        /// <summary>
+        /// Type of plugin; one of "auth", "secret", or "database".
+        /// </summary>
+        [Input("type", required: true)]
+        public Input<string> Type { get; set; } = null!;
+
+        /// <summary>
+        /// Semantic version of the plugin. Required for official enterprise plugins.
+        /// </summary>
+        [Input("version")]
+        public Input<string>? Version { get; set; }
+
+        public PluginArgs()
+        {
+        }
+        public static new PluginArgs Empty => new PluginArgs();
+    }
+
+    public sealed class PluginState : global::Pulumi.ResourceArgs
+    {
+        [Input("args")]
+        private InputList<string>? _args;
+
+        /// <summary>
+        /// List of additional args to pass to the plugin.
+        /// </summary>
+        public InputList<string> Args
+        {
+            get => _args ?? (_args = new InputList<string>());
+            set => _args = value;
+        }
+
+        /// <summary>
+        /// Command to execute the plugin, relative to the server's configured `PluginDirectory`. Need to be set for non-enterprise plugin.
+        /// </summary>
+        [Input("command")]
+        public Input<string>? Command { get; set; }
+
+        [Input("envs")]
+        private InputList<string>? _envs;
+
+        /// <summary>
+        /// List of additional environment variables to run the plugin with in KEY=VALUE form.
+        /// </summary>
+        public InputList<string> Envs
+        {
+            get => _envs ?? (_envs = new InputList<string>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<string>());
+                _envs = Output.All(value, emptySecret).Apply(v => v[0]);
+            }
+        }
+
+        /// <summary>
+        /// Name of the plugin.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Specifies OCI image to run. If specified, setting
+        /// `Command`, `Args`, and `Env` will update the container's entrypoint, args, and
+        /// environment variables (append-only) respectively.
+        /// </summary>
+        [Input("ociImage")]
+        public Input<string>? OciImage { get; set; }
+
+        /// <summary>
+        /// Vault plugin runtime to use if `OciImage` is specified.
+        /// </summary>
+        [Input("runtime")]
+        public Input<string>? Runtime { get; set; }
+
+        /// <summary>
+        /// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
         /// </summary>
         [Input("sha256")]
         public Input<string>? Sha256 { get; set; }
@@ -321,7 +348,7 @@ namespace Pulumi.Vault
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// Semantic version of the plugin.
+        /// Semantic version of the plugin. Required for official enterprise plugins.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

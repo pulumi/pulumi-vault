@@ -51,6 +51,12 @@ namespace Pulumi.Vault.Ldap
     /// });
     /// ```
     /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// * `PasswordWo` - (Optional) The password for the user. Can be updated.
+    ///   **Note**: This property is write-only and will not be read from the API.
+    ///   Requires Vault Enterprise 2.0+.
+    /// 
     /// ## Import
     /// 
     /// LDAP secret backend static role can be imported using the full path to the role
@@ -63,6 +69,12 @@ namespace Pulumi.Vault.Ldap
     [VaultResourceType("vault:ldap/secretBackendStaticRole:SecretBackendStaticRole")]
     public partial class SecretBackendStaticRole : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Output("disableAutomatedRotation")]
+        public Output<bool?> DisableAutomatedRotation { get; private set; } = null!;
+
         /// <summary>
         /// Distinguished name (DN) of the existing LDAP entry to manage
         /// password rotation for. If given, it will take precedence over `Username` for the LDAP
@@ -88,16 +100,52 @@ namespace Pulumi.Vault.Ldap
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the `PasswordWo`. For more info see updating write-only attributes.
+        /// Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the role.
         /// </summary>
         [Output("roleName")]
         public Output<string> RoleName { get; private set; } = null!;
 
         /// <summary>
-        /// How often Vault should rotate the password of the user entry.
+        /// The amount of time in seconds Vault should wait before rotating the static credential.
+        /// A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
         /// </summary>
         [Output("rotationPeriod")]
-        public Output<int> RotationPeriod { get; private set; } = null!;
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Output("rotationPolicy")]
+        public Output<string?> RotationPolicy { get; private set; } = null!;
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Output("rotationSchedule")]
+        public Output<string?> RotationSchedule { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Output("rotationWindow")]
+        public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
         /// Causes vault to skip the initial secret rotation on import. Not applicable to updates.
@@ -135,6 +183,10 @@ namespace Pulumi.Vault.Ldap
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "passwordWo",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -159,6 +211,12 @@ namespace Pulumi.Vault.Ldap
     public sealed class SecretBackendStaticRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// Distinguished name (DN) of the existing LDAP entry to manage
         /// password rotation for. If given, it will take precedence over `Username` for the LDAP
         /// search performed during password rotation. Cannot be modified after creation.
@@ -182,6 +240,30 @@ namespace Pulumi.Vault.Ldap
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the `PasswordWo`. For more info see updating write-only attributes.
+        /// Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         /// <summary>
         /// Name of the role.
         /// </summary>
@@ -189,10 +271,32 @@ namespace Pulumi.Vault.Ldap
         public Input<string> RoleName { get; set; } = null!;
 
         /// <summary>
-        /// How often Vault should rotate the password of the user entry.
+        /// The amount of time in seconds Vault should wait before rotating the static credential.
+        /// A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
         /// </summary>
-        [Input("rotationPeriod", required: true)]
-        public Input<int> RotationPeriod { get; set; } = null!;
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("rotationPolicy")]
+        public Input<string>? RotationPolicy { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
         /// Causes vault to skip the initial secret rotation on import. Not applicable to updates.
@@ -216,6 +320,12 @@ namespace Pulumi.Vault.Ldap
     public sealed class SecretBackendStaticRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// Distinguished name (DN) of the existing LDAP entry to manage
         /// password rotation for. If given, it will take precedence over `Username` for the LDAP
         /// search performed during password rotation. Cannot be modified after creation.
@@ -239,6 +349,30 @@ namespace Pulumi.Vault.Ldap
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Password for the static role. This is required for Vault to manage an existing account and enable rotation.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the `PasswordWo`. For more info see updating write-only attributes.
+        /// Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         /// <summary>
         /// Name of the role.
         /// </summary>
@@ -246,10 +380,32 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? RoleName { get; set; }
 
         /// <summary>
-        /// How often Vault should rotate the password of the user entry.
+        /// The amount of time in seconds Vault should wait before rotating the static credential.
+        /// A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
         /// </summary>
         [Input("rotationPeriod")]
         public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("rotationPolicy")]
+        public Input<string>? RotationPolicy { get; set; }
+
+        /// <summary>
+        /// The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
+        /// defining the schedule on which Vault should rotate the static credential. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
         /// Causes vault to skip the initial secret rotation on import. Not applicable to updates.
