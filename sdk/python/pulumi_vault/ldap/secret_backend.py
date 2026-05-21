@@ -56,6 +56,7 @@ class SecretBackendArgs:
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  schema: pulumi.Input[Optional[_builtins.str]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
                  skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  upndomain: pulumi.Input[Optional[_builtins.str]] = None,
@@ -118,6 +119,9 @@ class SecretBackendArgs:
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] self_managed: If true, Vault performs rotations by authenticating as this account
+               using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+               requirement when creating static roles. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
                Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[_builtins.bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
@@ -200,6 +204,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "schema", schema)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if skip_static_role_import_rotation is not None:
             pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if starttls is not None:
@@ -674,6 +680,20 @@ class SecretBackendArgs:
         pulumi.set(self, "seal_wrap", value)
 
     @_builtins.property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, Vault performs rotations by authenticating as this account
+        using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+        requirement when creating static roles. Requires Vault Enterprise 2.0+.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @self_managed.setter
+    def self_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "self_managed", value)
+
+    @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
     def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -789,6 +809,7 @@ class _SecretBackendState:
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  schema: pulumi.Input[Optional[_builtins.str]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
                  skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  upndomain: pulumi.Input[Optional[_builtins.str]] = None,
@@ -852,6 +873,9 @@ class _SecretBackendState:
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] self_managed: If true, Vault performs rotations by authenticating as this account
+               using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+               requirement when creating static roles. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
                Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[_builtins.bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
@@ -937,6 +961,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "schema", schema)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
+        if self_managed is not None:
+            pulumi.set(__self__, "self_managed", self_managed)
         if skip_static_role_import_rotation is not None:
             pulumi.set(__self__, "skip_static_role_import_rotation", skip_static_role_import_rotation)
         if starttls is not None:
@@ -1423,6 +1449,20 @@ class _SecretBackendState:
         pulumi.set(self, "seal_wrap", value)
 
     @_builtins.property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, Vault performs rotations by authenticating as this account
+        using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+        requirement when creating static roles. Requires Vault Enterprise 2.0+.
+        """
+        return pulumi.get(self, "self_managed")
+
+    @self_managed.setter
+    def self_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "self_managed", value)
+
+    @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")
     def skip_static_role_import_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -1540,6 +1580,7 @@ class SecretBackend(pulumi.CustomResource):
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  schema: pulumi.Input[Optional[_builtins.str]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
                  skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  upndomain: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1646,6 +1687,9 @@ class SecretBackend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] self_managed: If true, Vault performs rotations by authenticating as this account
+               using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+               requirement when creating static roles. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
                Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[_builtins.bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
@@ -1757,6 +1801,7 @@ class SecretBackend(pulumi.CustomResource):
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  schema: pulumi.Input[Optional[_builtins.str]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
                  skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  upndomain: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1811,6 +1856,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["schema"] = schema
             __props__.__dict__["seal_wrap"] = seal_wrap
+            __props__.__dict__["self_managed"] = self_managed
             __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
             __props__.__dict__["starttls"] = starttls
             __props__.__dict__["upndomain"] = upndomain
@@ -1868,6 +1914,7 @@ class SecretBackend(pulumi.CustomResource):
             rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
             schema: pulumi.Input[Optional[_builtins.str]] = None,
             seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+            self_managed: pulumi.Input[Optional[_builtins.bool]] = None,
             skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
             starttls: pulumi.Input[Optional[_builtins.bool]] = None,
             upndomain: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1935,6 +1982,9 @@ class SecretBackend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include `openldap`, `ad`, and `racf`. Default is `openldap`.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] self_managed: If true, Vault performs rotations by authenticating as this account
+               using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+               requirement when creating static roles. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.bool] skip_static_role_import_rotation: If set to true, static roles will not be rotated during import.
                Defaults to false. Requires Vault 1.16 or above.
         :param pulumi.Input[_builtins.bool] starttls: Issue a StartTLS command after establishing unencrypted connection.
@@ -1986,6 +2036,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["schema"] = schema
         __props__.__dict__["seal_wrap"] = seal_wrap
+        __props__.__dict__["self_managed"] = self_managed
         __props__.__dict__["skip_static_role_import_rotation"] = skip_static_role_import_rotation
         __props__.__dict__["starttls"] = starttls
         __props__.__dict__["upndomain"] = upndomain
@@ -2313,6 +2364,16 @@ class SecretBackend(pulumi.CustomResource):
         Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         return pulumi.get(self, "seal_wrap")
+
+    @_builtins.property
+    @pulumi.getter(name="selfManaged")
+    def self_managed(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If true, Vault performs rotations by authenticating as this account
+        using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+        requirement when creating static roles. Requires Vault Enterprise 2.0+.
+        """
+        return pulumi.get(self, "self_managed")
 
     @_builtins.property
     @pulumi.getter(name="skipStaticRoleImportRotation")

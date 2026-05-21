@@ -15,6 +15,7 @@ import com.pulumi.vault.azure.outputs.BackendRoleAzureRole;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -73,6 +74,10 @@ import javax.annotation.Nullable;
  *                 "environment:development")
  *             .ttl("300")
  *             .maxTtl("600")
+ *             .metadata(Map.ofEntries(
+ *                 Map.entry("team", "test"),
+ *                 Map.entry("owner", "vault")
+ *             ))
  *             .azureRoles(BackendRoleAzureRoleArgs.builder()
  *                 .roleName("Reader")
  *                 .scope(String.format("/subscriptions/%s/resourceGroups/azure-vault-group", subscriptionId))
@@ -196,6 +201,22 @@ public class BackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> maxTtl() {
         return Codegen.optional(this.maxTtl);
+    }
+    /**
+     * A map of string key-value pairs that are stored alongside the role and returned with generated
+     * credentials.
+     * 
+     */
+    @Export(name="metadata", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> metadata;
+
+    /**
+     * @return A map of string key-value pairs that are stored alongside the role and returned with generated
+     * credentials.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> metadata() {
+        return Codegen.optional(this.metadata);
     }
     /**
      * The namespace to provision the resource in.

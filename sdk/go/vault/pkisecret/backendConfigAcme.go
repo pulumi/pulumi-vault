@@ -89,6 +89,10 @@ type BackendConfigAcme struct {
 	AllowedRoles pulumi.StringArrayOutput `pulumi:"allowedRoles"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringOutput `pulumi:"backend"`
+	// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengeExcludedIpRanges pulumi.StringArrayOutput `pulumi:"challengeExcludedIpRanges"`
+	// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengePermittedIpRanges pulumi.StringArrayOutput `pulumi:"challengePermittedIpRanges"`
 	// Specifies the policy to be used for non-role-qualified ACME requests.
 	// Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
 	DefaultDirectoryPolicy pulumi.StringOutput `pulumi:"defaultDirectoryPolicy"`
@@ -153,6 +157,10 @@ type backendConfigAcmeState struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend *string `pulumi:"backend"`
+	// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengeExcludedIpRanges []string `pulumi:"challengeExcludedIpRanges"`
+	// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengePermittedIpRanges []string `pulumi:"challengePermittedIpRanges"`
 	// Specifies the policy to be used for non-role-qualified ACME requests.
 	// Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
 	DefaultDirectoryPolicy *string `pulumi:"defaultDirectoryPolicy"`
@@ -182,6 +190,10 @@ type BackendConfigAcmeState struct {
 	AllowedRoles pulumi.StringArrayInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringPtrInput
+	// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengeExcludedIpRanges pulumi.StringArrayInput
+	// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengePermittedIpRanges pulumi.StringArrayInput
 	// Specifies the policy to be used for non-role-qualified ACME requests.
 	// Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
 	DefaultDirectoryPolicy pulumi.StringPtrInput
@@ -215,6 +227,10 @@ type backendConfigAcmeArgs struct {
 	AllowedRoles []string `pulumi:"allowedRoles"`
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`
+	// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengeExcludedIpRanges []string `pulumi:"challengeExcludedIpRanges"`
+	// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengePermittedIpRanges []string `pulumi:"challengePermittedIpRanges"`
 	// Specifies the policy to be used for non-role-qualified ACME requests.
 	// Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
 	DefaultDirectoryPolicy *string `pulumi:"defaultDirectoryPolicy"`
@@ -245,6 +261,10 @@ type BackendConfigAcmeArgs struct {
 	AllowedRoles pulumi.StringArrayInput
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend pulumi.StringInput
+	// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengeExcludedIpRanges pulumi.StringArrayInput
+	// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+	ChallengePermittedIpRanges pulumi.StringArrayInput
 	// Specifies the policy to be used for non-role-qualified ACME requests.
 	// Allowed values are `forbid`, `sign-verbatim`, `role:<role_name>`, `external-policy` or `external-policy:<policy>`.
 	DefaultDirectoryPolicy pulumi.StringPtrInput
@@ -370,6 +390,16 @@ func (o BackendConfigAcmeOutput) AllowedRoles() pulumi.StringArrayOutput {
 // The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 func (o BackendConfigAcmeOutput) Backend() pulumi.StringOutput {
 	return o.ApplyT(func(v *BackendConfigAcme) pulumi.StringOutput { return v.Backend }).(pulumi.StringOutput)
+}
+
+// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+func (o BackendConfigAcmeOutput) ChallengeExcludedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BackendConfigAcme) pulumi.StringArrayOutput { return v.ChallengeExcludedIpRanges }).(pulumi.StringArrayOutput)
+}
+
+// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+func (o BackendConfigAcmeOutput) ChallengePermittedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *BackendConfigAcme) pulumi.StringArrayOutput { return v.ChallengePermittedIpRanges }).(pulumi.StringArrayOutput)
 }
 
 // Specifies the policy to be used for non-role-qualified ACME requests.

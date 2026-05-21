@@ -33,18 +33,18 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      * 
      */
-    @Import(name="command", required=true)
-    private Output<String> command;
+    @Import(name="command")
+    private @Nullable Output<String> command;
 
     /**
-     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      * 
      */
-    public Output<String> command() {
-        return this.command;
+    public Optional<Output<String>> command() {
+        return Optional.ofNullable(this.command);
     }
 
     /**
@@ -112,18 +112,18 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * SHA256 sum of the plugin binary.
+     * SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      * 
      */
-    @Import(name="sha256", required=true)
-    private Output<String> sha256;
+    @Import(name="sha256")
+    private @Nullable Output<String> sha256;
 
     /**
-     * @return SHA256 sum of the plugin binary.
+     * @return SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      * 
      */
-    public Output<String> sha256() {
-        return this.sha256;
+    public Optional<Output<String>> sha256() {
+        return Optional.ofNullable(this.sha256);
     }
 
     /**
@@ -142,14 +142,14 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Semantic version of the plugin.
+     * Semantic version of the plugin. Required for official enterprise plugins.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Semantic version of the plugin.
+     * @return Semantic version of the plugin. Required for official enterprise plugins.
      * 
      */
     public Optional<Output<String>> version() {
@@ -220,18 +220,18 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
          */
-        public Builder command(Output<String> command) {
+        public Builder command(@Nullable Output<String> command) {
             $.command = command;
             return this;
         }
 
         /**
-         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+         * @param command Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
@@ -339,18 +339,18 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sha256 SHA256 sum of the plugin binary.
+         * @param sha256 SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
          */
-        public Builder sha256(Output<String> sha256) {
+        public Builder sha256(@Nullable Output<String> sha256) {
             $.sha256 = sha256;
             return this;
         }
 
         /**
-         * @param sha256 SHA256 sum of the plugin binary.
+         * @param sha256 SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
          * 
          * @return builder
          * 
@@ -381,7 +381,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Semantic version of the plugin.
+         * @param version Semantic version of the plugin. Required for official enterprise plugins.
          * 
          * @return builder
          * 
@@ -392,7 +392,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version Semantic version of the plugin.
+         * @param version Semantic version of the plugin. Required for official enterprise plugins.
          * 
          * @return builder
          * 
@@ -402,12 +402,6 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public PluginArgs build() {
-            if ($.command == null) {
-                throw new MissingRequiredPropertyException("PluginArgs", "command");
-            }
-            if ($.sha256 == null) {
-                throw new MissingRequiredPropertyException("PluginArgs", "sha256");
-            }
             if ($.type == null) {
                 throw new MissingRequiredPropertyException("PluginArgs", "type");
             }

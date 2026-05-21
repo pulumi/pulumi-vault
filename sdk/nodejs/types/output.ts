@@ -711,7 +711,7 @@ export namespace database {
         /**
          * Whether to disable certificate verification
          */
-        insecureTls?: boolean;
+        insecure?: boolean;
         /**
          * The password to be used in the connection URL
          */
@@ -1690,7 +1690,7 @@ export namespace database {
         /**
          * Whether to disable certificate verification
          */
-        insecureTls?: boolean;
+        insecure?: boolean;
         /**
          * Name of the database connection.
          */

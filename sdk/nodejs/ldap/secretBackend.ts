@@ -245,6 +245,12 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
+     * If true, Vault performs rotations by authenticating as this account
+     * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+     * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+     */
+    declare public readonly selfManaged: pulumi.Output<boolean>;
+    /**
      * If set to true, static roles will not be rotated during import.
      * Defaults to false. Requires Vault 1.16 or above.
      */
@@ -322,6 +328,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = state?.rotationWindow;
             resourceInputs["schema"] = state?.schema;
             resourceInputs["sealWrap"] = state?.sealWrap;
+            resourceInputs["selfManaged"] = state?.selfManaged;
             resourceInputs["skipStaticRoleImportRotation"] = state?.skipStaticRoleImportRotation;
             resourceInputs["starttls"] = state?.starttls;
             resourceInputs["upndomain"] = state?.upndomain;
@@ -370,6 +377,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["schema"] = args?.schema;
             resourceInputs["sealWrap"] = args?.sealWrap;
+            resourceInputs["selfManaged"] = args?.selfManaged;
             resourceInputs["skipStaticRoleImportRotation"] = args?.skipStaticRoleImportRotation;
             resourceInputs["starttls"] = args?.starttls;
             resourceInputs["upndomain"] = args?.upndomain;
@@ -557,6 +565,12 @@ export interface SecretBackendState {
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     sealWrap?: pulumi.Input<boolean | undefined>;
+    /**
+     * If true, Vault performs rotations by authenticating as this account
+     * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+     * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+     */
+    selfManaged?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, static roles will not be rotated during import.
      * Defaults to false. Requires Vault 1.16 or above.
@@ -753,6 +767,12 @@ export interface SecretBackendArgs {
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     sealWrap?: pulumi.Input<boolean | undefined>;
+    /**
+     * If true, Vault performs rotations by authenticating as this account
+     * using its current password (no privileged bind DN). Immutable after creation. Enforces `password`
+     * requirement when creating static roles. Requires Vault Enterprise 2.0+.
+     */
+    selfManaged?: pulumi.Input<boolean | undefined>;
     /**
      * If set to true, static roles will not be rotated during import.
      * Defaults to false. Requires Vault 1.16 or above.

@@ -308,6 +308,14 @@ namespace Pulumi.Vault.Ldap
         public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
+        /// If true, Vault performs rotations by authenticating as this account
+        /// using its current password (no privileged bind DN). Immutable after creation. Enforces `Password`
+        /// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Output("selfManaged")]
+        public Output<bool> SelfManaged { get; private set; } = null!;
+
+        /// <summary>
         /// If set to true, static roles will not be rotated during import.
         /// Defaults to false. Requires Vault 1.16 or above.
         /// </summary>
@@ -719,6 +727,14 @@ namespace Pulumi.Vault.Ldap
         public Input<bool>? SealWrap { get; set; }
 
         /// <summary>
+        /// If true, Vault performs rotations by authenticating as this account
+        /// using its current password (no privileged bind DN). Immutable after creation. Enforces `Password`
+        /// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("selfManaged")]
+        public Input<bool>? SelfManaged { get; set; }
+
+        /// <summary>
         /// If set to true, static roles will not be rotated during import.
         /// Defaults to false. Requires Vault 1.16 or above.
         /// </summary>
@@ -1089,6 +1105,14 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("sealWrap")]
         public Input<bool>? SealWrap { get; set; }
+
+        /// <summary>
+        /// If true, Vault performs rotations by authenticating as this account
+        /// using its current password (no privileged bind DN). Immutable after creation. Enforces `Password`
+        /// requirement when creating static roles. Requires Vault Enterprise 2.0+.
+        /// </summary>
+        [Input("selfManaged")]
+        public Input<bool>? SelfManaged { get; set; }
 
         /// <summary>
         /// If set to true, static roles will not be rotated during import.

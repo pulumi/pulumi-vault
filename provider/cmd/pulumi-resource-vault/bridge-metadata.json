@@ -1686,6 +1686,12 @@
                     },
                     "allowed_roles": {
                         "maxItemsOne": false
+                    },
+                    "challenge_excluded_ip_ranges": {
+                        "maxItemsOne": false
+                    },
+                    "challenge_permitted_ip_ranges": {
+                        "maxItemsOne": false
                     }
                 }
             },

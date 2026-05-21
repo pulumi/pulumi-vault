@@ -30,6 +30,48 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
+ * ### Register an Official Enterprise plugin (version vX.Y.Z+ent)
+ * 
+ * The `version` is required for enterprise plugins.
+ * The `sha256` and `command` shoud not be set for an enterprise plugin.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Plugin;
+ * import com.pulumi.vault.PluginArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var oracle = new Plugin("oracle", PluginArgs.builder()
+ *             .type("database")
+ *             .name("vault-plugin-database-oracle")
+ *             .version("v0.13.0+ent")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Register a CE plugin (version vX.Y.Z)
+ * 
+ * The `sha256` and `command` are required to register a CE plugin.
+ * 
  * <pre>
  * {@code
  * package generated_program;
@@ -102,18 +144,18 @@ public class Plugin extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.args);
     }
     /**
-     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+     * Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      * 
      */
     @Export(name="command", refs={String.class}, tree="[0]")
-    private Output<String> command;
+    private Output</* @Nullable */ String> command;
 
     /**
-     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`.
+     * @return Command to execute the plugin, relative to the server&#39;s configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      * 
      */
-    public Output<String> command() {
-        return this.command;
+    public Output<Optional<String>> command() {
+        return Codegen.optional(this.command);
     }
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
@@ -176,18 +218,18 @@ public class Plugin extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.runtime);
     }
     /**
-     * SHA256 sum of the plugin binary.
+     * SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      * 
      */
     @Export(name="sha256", refs={String.class}, tree="[0]")
-    private Output<String> sha256;
+    private Output</* @Nullable */ String> sha256;
 
     /**
-     * @return SHA256 sum of the plugin binary.
+     * @return SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      * 
      */
-    public Output<String> sha256() {
-        return this.sha256;
+    public Output<Optional<String>> sha256() {
+        return Codegen.optional(this.sha256);
     }
     /**
      * Type of plugin; one of &#34;auth&#34;, &#34;secret&#34;, or &#34;database&#34;.
@@ -204,14 +246,14 @@ public class Plugin extends com.pulumi.resources.CustomResource {
         return this.type;
     }
     /**
-     * Semantic version of the plugin.
+     * Semantic version of the plugin. Required for official enterprise plugins.
      * 
      */
     @Export(name="version", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> version;
 
     /**
-     * @return Semantic version of the plugin.
+     * @return Semantic version of the plugin. Required for official enterprise plugins.
      * 
      */
     public Output<Optional<String>> version() {

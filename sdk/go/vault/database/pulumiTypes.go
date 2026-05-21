@@ -715,7 +715,7 @@ type SecretBackendConnectionElasticsearch struct {
 	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey *string `pulumi:"clientKey"`
 	// Whether to disable certificate verification
-	InsecureTls *bool `pulumi:"insecureTls"`
+	Insecure *bool `pulumi:"insecure"`
 	// The password to be used in the connection URL
 	Password string `pulumi:"password"`
 	// This, if set, is used to set the SNI host when connecting via TLS
@@ -749,7 +749,7 @@ type SecretBackendConnectionElasticsearchArgs struct {
 	// The path to the key for the Elasticsearch client to use for communication
 	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
 	// Whether to disable certificate verification
-	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
 	// The password to be used in the connection URL
 	Password pulumi.StringInput `pulumi:"password"`
 	// This, if set, is used to set the SNI host when connecting via TLS
@@ -860,8 +860,8 @@ func (o SecretBackendConnectionElasticsearchOutput) ClientKey() pulumi.StringPtr
 }
 
 // Whether to disable certificate verification
-func (o SecretBackendConnectionElasticsearchOutput) InsecureTls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+func (o SecretBackendConnectionElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretBackendConnectionElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
 }
 
 // The password to be used in the connection URL
@@ -954,12 +954,12 @@ func (o SecretBackendConnectionElasticsearchPtrOutput) ClientKey() pulumi.String
 }
 
 // Whether to disable certificate verification
-func (o SecretBackendConnectionElasticsearchPtrOutput) InsecureTls() pulumi.BoolPtrOutput {
+func (o SecretBackendConnectionElasticsearchPtrOutput) Insecure() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackendConnectionElasticsearch) *bool {
 		if v == nil {
 			return nil
 		}
-		return v.InsecureTls
+		return v.Insecure
 	}).(pulumi.BoolPtrOutput)
 }
 
@@ -6572,7 +6572,7 @@ type SecretsMountElasticsearch struct {
 	// Supported list of database secrets engines that can be configured:
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// Whether to disable certificate verification
-	InsecureTls *bool `pulumi:"insecureTls"`
+	Insecure *bool `pulumi:"insecure"`
 	// Name of the database connection.
 	Name string `pulumi:"name"`
 	// The password to be used in the connection URL
@@ -6640,7 +6640,7 @@ type SecretsMountElasticsearchArgs struct {
 	// Supported list of database secrets engines that can be configured:
 	DisableAutomatedRotation pulumi.BoolPtrInput `pulumi:"disableAutomatedRotation"`
 	// Whether to disable certificate verification
-	InsecureTls pulumi.BoolPtrInput `pulumi:"insecureTls"`
+	Insecure pulumi.BoolPtrInput `pulumi:"insecure"`
 	// Name of the database connection.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The password to be used in the connection URL
@@ -6768,8 +6768,8 @@ func (o SecretsMountElasticsearchOutput) DisableAutomatedRotation() pulumi.BoolP
 }
 
 // Whether to disable certificate verification
-func (o SecretsMountElasticsearchOutput) InsecureTls() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.InsecureTls }).(pulumi.BoolPtrOutput)
+func (o SecretsMountElasticsearchOutput) Insecure() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretsMountElasticsearch) *bool { return v.Insecure }).(pulumi.BoolPtrOutput)
 }
 
 // Name of the database connection.

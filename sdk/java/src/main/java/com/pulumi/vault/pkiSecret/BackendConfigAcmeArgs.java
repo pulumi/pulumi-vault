@@ -80,6 +80,36 @@ public final class BackendConfigAcmeArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    @Import(name="challengeExcludedIpRanges")
+    private @Nullable Output<List<String>> challengeExcludedIpRanges;
+
+    /**
+     * @return List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    public Optional<Output<List<String>>> challengeExcludedIpRanges() {
+        return Optional.ofNullable(this.challengeExcludedIpRanges);
+    }
+
+    /**
+     * List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    @Import(name="challengePermittedIpRanges")
+    private @Nullable Output<List<String>> challengePermittedIpRanges;
+
+    /**
+     * @return List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+     * 
+     */
+    public Optional<Output<List<String>>> challengePermittedIpRanges() {
+        return Optional.ofNullable(this.challengePermittedIpRanges);
+    }
+
+    /**
      * Specifies the policy to be used for non-role-qualified ACME requests.
      * Allowed values are `forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
      * 
@@ -188,6 +218,8 @@ public final class BackendConfigAcmeArgs extends com.pulumi.resources.ResourceAr
         this.allowedIssuers = $.allowedIssuers;
         this.allowedRoles = $.allowedRoles;
         this.backend = $.backend;
+        this.challengeExcludedIpRanges = $.challengeExcludedIpRanges;
+        this.challengePermittedIpRanges = $.challengePermittedIpRanges;
         this.defaultDirectoryPolicy = $.defaultDirectoryPolicy;
         this.dnsResolver = $.dnsResolver;
         this.eabPolicy = $.eabPolicy;
@@ -316,6 +348,68 @@ public final class BackendConfigAcmeArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder backend(String backend) {
             return backend(Output.of(backend));
+        }
+
+        /**
+         * @param challengeExcludedIpRanges List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder challengeExcludedIpRanges(@Nullable Output<List<String>> challengeExcludedIpRanges) {
+            $.challengeExcludedIpRanges = challengeExcludedIpRanges;
+            return this;
+        }
+
+        /**
+         * @param challengeExcludedIpRanges List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder challengeExcludedIpRanges(List<String> challengeExcludedIpRanges) {
+            return challengeExcludedIpRanges(Output.of(challengeExcludedIpRanges));
+        }
+
+        /**
+         * @param challengeExcludedIpRanges List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder challengeExcludedIpRanges(String... challengeExcludedIpRanges) {
+            return challengeExcludedIpRanges(List.of(challengeExcludedIpRanges));
+        }
+
+        /**
+         * @param challengePermittedIpRanges List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder challengePermittedIpRanges(@Nullable Output<List<String>> challengePermittedIpRanges) {
+            $.challengePermittedIpRanges = challengePermittedIpRanges;
+            return this;
+        }
+
+        /**
+         * @param challengePermittedIpRanges List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder challengePermittedIpRanges(List<String> challengePermittedIpRanges) {
+            return challengePermittedIpRanges(Output.of(challengePermittedIpRanges));
+        }
+
+        /**
+         * @param challengePermittedIpRanges List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+         * 
+         * @return builder
+         * 
+         */
+        public Builder challengePermittedIpRanges(String... challengePermittedIpRanges) {
+            return challengePermittedIpRanges(List.of(challengePermittedIpRanges));
         }
 
         /**

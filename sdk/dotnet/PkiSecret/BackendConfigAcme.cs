@@ -96,6 +96,18 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
+        /// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        /// </summary>
+        [Output("challengeExcludedIpRanges")]
+        public Output<ImmutableArray<string>> ChallengeExcludedIpRanges { get; private set; } = null!;
+
+        /// <summary>
+        /// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+        /// </summary>
+        [Output("challengePermittedIpRanges")]
+        public Output<ImmutableArray<string>> ChallengePermittedIpRanges { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies the policy to be used for non-role-qualified ACME requests.
         /// Allowed values are `Forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
         /// </summary>
@@ -219,6 +231,30 @@ namespace Pulumi.Vault.PkiSecret
         [Input("backend", required: true)]
         public Input<string> Backend { get; set; } = null!;
 
+        [Input("challengeExcludedIpRanges")]
+        private InputList<string>? _challengeExcludedIpRanges;
+
+        /// <summary>
+        /// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        /// </summary>
+        public InputList<string> ChallengeExcludedIpRanges
+        {
+            get => _challengeExcludedIpRanges ?? (_challengeExcludedIpRanges = new InputList<string>());
+            set => _challengeExcludedIpRanges = value;
+        }
+
+        [Input("challengePermittedIpRanges")]
+        private InputList<string>? _challengePermittedIpRanges;
+
+        /// <summary>
+        /// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+        /// </summary>
+        public InputList<string> ChallengePermittedIpRanges
+        {
+            get => _challengePermittedIpRanges ?? (_challengePermittedIpRanges = new InputList<string>());
+            set => _challengePermittedIpRanges = value;
+        }
+
         /// <summary>
         /// Specifies the policy to be used for non-role-qualified ACME requests.
         /// Allowed values are `Forbid`, `sign-verbatim`, `role:&lt;role_name&gt;`, `external-policy` or `external-policy:&lt;policy&gt;`.
@@ -304,6 +340,30 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("backend")]
         public Input<string>? Backend { get; set; }
+
+        [Input("challengeExcludedIpRanges")]
+        private InputList<string>? _challengeExcludedIpRanges;
+
+        /// <summary>
+        /// List of CIDR blocks specifying IP ranges that are not allowed to complete ACME challenges. **Vault 1.19.16+**
+        /// </summary>
+        public InputList<string> ChallengeExcludedIpRanges
+        {
+            get => _challengeExcludedIpRanges ?? (_challengeExcludedIpRanges = new InputList<string>());
+            set => _challengeExcludedIpRanges = value;
+        }
+
+        [Input("challengePermittedIpRanges")]
+        private InputList<string>? _challengePermittedIpRanges;
+
+        /// <summary>
+        /// List of CIDR blocks specifying IP ranges that are allowed to complete ACME challenges. **Vault 1.19.16+**
+        /// </summary>
+        public InputList<string> ChallengePermittedIpRanges
+        {
+            get => _challengePermittedIpRanges ?? (_challengePermittedIpRanges = new InputList<string>());
+            set => _challengePermittedIpRanges = value;
+        }
 
         /// <summary>
         /// Specifies the policy to be used for non-role-qualified ACME requests.

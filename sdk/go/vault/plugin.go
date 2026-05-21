@@ -26,6 +26,41 @@ import (
 //
 // ## Example Usage
 //
+// ### Register an Official Enterprise plugin (version vX.Y.Z+ent)
+//
+// The `version` is required for enterprise plugins.
+// The `sha256` and `command` shoud not be set for an enterprise plugin.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewPlugin(ctx, "oracle", &vault.PluginArgs{
+//				Type:    pulumi.String("database"),
+//				Name:    pulumi.String("vault-plugin-database-oracle"),
+//				Version: pulumi.String("v0.13.0+ent"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Register a CE plugin (version vX.Y.Z)
+//
+// The `sha256` and `command` are required to register a CE plugin.
+//
 // ```go
 // package main
 //
@@ -79,8 +114,8 @@ type Plugin struct {
 
 	// List of additional args to pass to the plugin.
 	Args pulumi.StringArrayOutput `pulumi:"args"`
-	// Command to execute the plugin, relative to the server's configured `pluginDirectory`.
-	Command pulumi.StringOutput `pulumi:"command"`
+	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
+	Command pulumi.StringPtrOutput `pulumi:"command"`
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs pulumi.StringArrayOutput `pulumi:"envs"`
 	// Name of the plugin.
@@ -91,11 +126,11 @@ type Plugin struct {
 	OciImage pulumi.StringPtrOutput `pulumi:"ociImage"`
 	// Vault plugin runtime to use if `ociImage` is specified.
 	Runtime pulumi.StringPtrOutput `pulumi:"runtime"`
-	// SHA256 sum of the plugin binary.
-	Sha256 pulumi.StringOutput `pulumi:"sha256"`
+	// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+	Sha256 pulumi.StringPtrOutput `pulumi:"sha256"`
 	// Type of plugin; one of "auth", "secret", or "database".
 	Type pulumi.StringOutput `pulumi:"type"`
-	// Semantic version of the plugin.
+	// Semantic version of the plugin. Required for official enterprise plugins.
 	Version pulumi.StringPtrOutput `pulumi:"version"`
 }
 
@@ -106,12 +141,6 @@ func NewPlugin(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Command == nil {
-		return nil, errors.New("invalid value for required argument 'Command'")
-	}
-	if args.Sha256 == nil {
-		return nil, errors.New("invalid value for required argument 'Sha256'")
-	}
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
@@ -147,7 +176,7 @@ func GetPlugin(ctx *pulumi.Context,
 type pluginState struct {
 	// List of additional args to pass to the plugin.
 	Args []string `pulumi:"args"`
-	// Command to execute the plugin, relative to the server's configured `pluginDirectory`.
+	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 	Command *string `pulumi:"command"`
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs []string `pulumi:"envs"`
@@ -159,18 +188,18 @@ type pluginState struct {
 	OciImage *string `pulumi:"ociImage"`
 	// Vault plugin runtime to use if `ociImage` is specified.
 	Runtime *string `pulumi:"runtime"`
-	// SHA256 sum of the plugin binary.
+	// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
 	Sha256 *string `pulumi:"sha256"`
 	// Type of plugin; one of "auth", "secret", or "database".
 	Type *string `pulumi:"type"`
-	// Semantic version of the plugin.
+	// Semantic version of the plugin. Required for official enterprise plugins.
 	Version *string `pulumi:"version"`
 }
 
 type PluginState struct {
 	// List of additional args to pass to the plugin.
 	Args pulumi.StringArrayInput
-	// Command to execute the plugin, relative to the server's configured `pluginDirectory`.
+	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 	Command pulumi.StringPtrInput
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs pulumi.StringArrayInput
@@ -182,11 +211,11 @@ type PluginState struct {
 	OciImage pulumi.StringPtrInput
 	// Vault plugin runtime to use if `ociImage` is specified.
 	Runtime pulumi.StringPtrInput
-	// SHA256 sum of the plugin binary.
+	// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
 	Sha256 pulumi.StringPtrInput
 	// Type of plugin; one of "auth", "secret", or "database".
 	Type pulumi.StringPtrInput
-	// Semantic version of the plugin.
+	// Semantic version of the plugin. Required for official enterprise plugins.
 	Version pulumi.StringPtrInput
 }
 
@@ -197,8 +226,8 @@ func (PluginState) ElementType() reflect.Type {
 type pluginArgs struct {
 	// List of additional args to pass to the plugin.
 	Args []string `pulumi:"args"`
-	// Command to execute the plugin, relative to the server's configured `pluginDirectory`.
-	Command string `pulumi:"command"`
+	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
+	Command *string `pulumi:"command"`
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs []string `pulumi:"envs"`
 	// Name of the plugin.
@@ -209,11 +238,11 @@ type pluginArgs struct {
 	OciImage *string `pulumi:"ociImage"`
 	// Vault plugin runtime to use if `ociImage` is specified.
 	Runtime *string `pulumi:"runtime"`
-	// SHA256 sum of the plugin binary.
-	Sha256 string `pulumi:"sha256"`
+	// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+	Sha256 *string `pulumi:"sha256"`
 	// Type of plugin; one of "auth", "secret", or "database".
 	Type string `pulumi:"type"`
-	// Semantic version of the plugin.
+	// Semantic version of the plugin. Required for official enterprise plugins.
 	Version *string `pulumi:"version"`
 }
 
@@ -221,8 +250,8 @@ type pluginArgs struct {
 type PluginArgs struct {
 	// List of additional args to pass to the plugin.
 	Args pulumi.StringArrayInput
-	// Command to execute the plugin, relative to the server's configured `pluginDirectory`.
-	Command pulumi.StringInput
+	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
+	Command pulumi.StringPtrInput
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs pulumi.StringArrayInput
 	// Name of the plugin.
@@ -233,11 +262,11 @@ type PluginArgs struct {
 	OciImage pulumi.StringPtrInput
 	// Vault plugin runtime to use if `ociImage` is specified.
 	Runtime pulumi.StringPtrInput
-	// SHA256 sum of the plugin binary.
-	Sha256 pulumi.StringInput
+	// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+	Sha256 pulumi.StringPtrInput
 	// Type of plugin; one of "auth", "secret", or "database".
 	Type pulumi.StringInput
-	// Semantic version of the plugin.
+	// Semantic version of the plugin. Required for official enterprise plugins.
 	Version pulumi.StringPtrInput
 }
 
@@ -333,9 +362,9 @@ func (o PluginOutput) Args() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringArrayOutput { return v.Args }).(pulumi.StringArrayOutput)
 }
 
-// Command to execute the plugin, relative to the server's configured `pluginDirectory`.
-func (o PluginOutput) Command() pulumi.StringOutput {
-	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Command }).(pulumi.StringOutput)
+// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
+func (o PluginOutput) Command() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.StringPtrOutput { return v.Command }).(pulumi.StringPtrOutput)
 }
 
 // List of additional environment variables to run the plugin with in KEY=VALUE form.
@@ -360,9 +389,9 @@ func (o PluginOutput) Runtime() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringPtrOutput { return v.Runtime }).(pulumi.StringPtrOutput)
 }
 
-// SHA256 sum of the plugin binary.
-func (o PluginOutput) Sha256() pulumi.StringOutput {
-	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Sha256 }).(pulumi.StringOutput)
+// SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
+func (o PluginOutput) Sha256() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.StringPtrOutput { return v.Sha256 }).(pulumi.StringPtrOutput)
 }
 
 // Type of plugin; one of "auth", "secret", or "database".
@@ -370,7 +399,7 @@ func (o PluginOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// Semantic version of the plugin.
+// Semantic version of the plugin. Required for official enterprise plugins.
 func (o PluginOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringPtrOutput { return v.Version }).(pulumi.StringPtrOutput)
 }

@@ -11,6 +11,7 @@ import com.pulumi.vault.azure.inputs.BackendRoleAzureRoleArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -127,6 +128,23 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> maxTtl() {
         return Optional.ofNullable(this.maxTtl);
+    }
+
+    /**
+     * A map of string key-value pairs that are stored alongside the role and returned with generated
+     * credentials.
+     * 
+     */
+    @Import(name="metadata")
+    private @Nullable Output<Map<String,String>> metadata;
+
+    /**
+     * @return A map of string key-value pairs that are stored alongside the role and returned with generated
+     * credentials.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> metadata() {
+        return Optional.ofNullable(this.metadata);
     }
 
     /**
@@ -256,6 +274,7 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
         this.description = $.description;
         this.explicitMaxTtl = $.explicitMaxTtl;
         this.maxTtl = $.maxTtl;
+        this.metadata = $.metadata;
         this.namespace = $.namespace;
         this.permanentlyDelete = $.permanentlyDelete;
         this.persistApp = $.persistApp;
@@ -452,6 +471,29 @@ public final class BackendRoleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder maxTtl(String maxTtl) {
             return maxTtl(Output.of(maxTtl));
+        }
+
+        /**
+         * @param metadata A map of string key-value pairs that are stored alongside the role and returned with generated
+         * credentials.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(@Nullable Output<Map<String,String>> metadata) {
+            $.metadata = metadata;
+            return this;
+        }
+
+        /**
+         * @param metadata A map of string key-value pairs that are stored alongside the role and returned with generated
+         * credentials.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder metadata(Map<String,String> metadata) {
+            return metadata(Output.of(metadata));
         }
 
         /**

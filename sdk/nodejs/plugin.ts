@@ -19,6 +19,26 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Register an Official Enterprise plugin (version vX.Y.Z+ent)
+ *
+ * The `version` is required for enterprise plugins.
+ * The `sha256` and `command` shoud not be set for an enterprise plugin.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const oracle = new vault.Plugin("oracle", {
+ *     type: "database",
+ *     name: "vault-plugin-database-oracle",
+ *     version: "v0.13.0+ent",
+ * });
+ * ```
+ *
+ * ### Register a CE plugin (version vX.Y.Z)
+ *
+ * The `sha256` and `command` are required to register a CE plugin.
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
@@ -79,9 +99,9 @@ export class Plugin extends pulumi.CustomResource {
      */
     declare public readonly args: pulumi.Output<string[] | undefined>;
     /**
-     * Command to execute the plugin, relative to the server's configured `pluginDirectory`.
+     * Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      */
-    declare public readonly command: pulumi.Output<string>;
+    declare public readonly command: pulumi.Output<string | undefined>;
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */
@@ -101,15 +121,15 @@ export class Plugin extends pulumi.CustomResource {
      */
     declare public readonly runtime: pulumi.Output<string | undefined>;
     /**
-     * SHA256 sum of the plugin binary.
+     * SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      */
-    declare public readonly sha256: pulumi.Output<string>;
+    declare public readonly sha256: pulumi.Output<string | undefined>;
     /**
      * Type of plugin; one of "auth", "secret", or "database".
      */
     declare public readonly type: pulumi.Output<string>;
     /**
-     * Semantic version of the plugin.
+     * Semantic version of the plugin. Required for official enterprise plugins.
      */
     declare public readonly version: pulumi.Output<string | undefined>;
 
@@ -137,12 +157,6 @@ export class Plugin extends pulumi.CustomResource {
             resourceInputs["version"] = state?.version;
         } else {
             const args = argsOrState as PluginArgs | undefined;
-            if (args?.command === undefined && !opts.urn) {
-                throw new Error("Missing required property 'command'");
-            }
-            if (args?.sha256 === undefined && !opts.urn) {
-                throw new Error("Missing required property 'sha256'");
-            }
             if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
@@ -172,7 +186,7 @@ export interface PluginState {
      */
     args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Command to execute the plugin, relative to the server's configured `pluginDirectory`.
+     * Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      */
     command?: pulumi.Input<string | undefined>;
     /**
@@ -194,7 +208,7 @@ export interface PluginState {
      */
     runtime?: pulumi.Input<string | undefined>;
     /**
-     * SHA256 sum of the plugin binary.
+     * SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      */
     sha256?: pulumi.Input<string | undefined>;
     /**
@@ -202,7 +216,7 @@ export interface PluginState {
      */
     type?: pulumi.Input<string | undefined>;
     /**
-     * Semantic version of the plugin.
+     * Semantic version of the plugin. Required for official enterprise plugins.
      */
     version?: pulumi.Input<string | undefined>;
 }
@@ -216,9 +230,9 @@ export interface PluginArgs {
      */
     args?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Command to execute the plugin, relative to the server's configured `pluginDirectory`.
+     * Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      */
-    command: pulumi.Input<string>;
+    command?: pulumi.Input<string | undefined>;
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */
@@ -238,15 +252,15 @@ export interface PluginArgs {
      */
     runtime?: pulumi.Input<string | undefined>;
     /**
-     * SHA256 sum of the plugin binary.
+     * SHA256 sum of the plugin binary. Need to be set for non-enterprise plugin.
      */
-    sha256: pulumi.Input<string>;
+    sha256?: pulumi.Input<string | undefined>;
     /**
      * Type of plugin; one of "auth", "secret", or "database".
      */
     type: pulumi.Input<string>;
     /**
-     * Semantic version of the plugin.
+     * Semantic version of the plugin. Required for official enterprise plugins.
      */
     version?: pulumi.Input<string | undefined>;
 }

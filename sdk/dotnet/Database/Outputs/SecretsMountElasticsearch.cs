@@ -47,7 +47,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// <summary>
         /// Whether to disable certificate verification
         /// </summary>
-        public readonly bool? InsecureTls;
+        public readonly bool? Insecure;
         /// <summary>
         /// Name of the database connection.
         /// </summary>
@@ -130,7 +130,7 @@ namespace Pulumi.Vault.Database.Outputs
 
             bool? disableAutomatedRotation,
 
-            bool? insecureTls,
+            bool? insecure,
 
             string name,
 
@@ -169,7 +169,7 @@ namespace Pulumi.Vault.Database.Outputs
             ClientKey = clientKey;
             Data = data;
             DisableAutomatedRotation = disableAutomatedRotation;
-            InsecureTls = insecureTls;
+            Insecure = insecure;
             Name = name;
             Password = password;
             PasswordPolicy = passwordPolicy;

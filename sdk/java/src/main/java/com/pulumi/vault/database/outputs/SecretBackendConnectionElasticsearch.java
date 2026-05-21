@@ -37,7 +37,7 @@ public final class SecretBackendConnectionElasticsearch {
      * @return Whether to disable certificate verification
      * 
      */
-    private @Nullable Boolean insecureTls;
+    private @Nullable Boolean insecure;
     /**
      * @return The password to be used in the connection URL
      * 
@@ -97,8 +97,8 @@ public final class SecretBackendConnectionElasticsearch {
      * @return Whether to disable certificate verification
      * 
      */
-    public Optional<Boolean> insecureTls() {
-        return Optional.ofNullable(this.insecureTls);
+    public Optional<Boolean> insecure() {
+        return Optional.ofNullable(this.insecure);
     }
     /**
      * @return The password to be used in the connection URL
@@ -149,7 +149,7 @@ public final class SecretBackendConnectionElasticsearch {
         private @Nullable String caPath;
         private @Nullable String clientCert;
         private @Nullable String clientKey;
-        private @Nullable Boolean insecureTls;
+        private @Nullable Boolean insecure;
         private String password;
         private @Nullable String tlsServerName;
         private String url;
@@ -162,7 +162,7 @@ public final class SecretBackendConnectionElasticsearch {
     	      this.caPath = defaults.caPath;
     	      this.clientCert = defaults.clientCert;
     	      this.clientKey = defaults.clientKey;
-    	      this.insecureTls = defaults.insecureTls;
+    	      this.insecure = defaults.insecure;
     	      this.password = defaults.password;
     	      this.tlsServerName = defaults.tlsServerName;
     	      this.url = defaults.url;
@@ -195,9 +195,9 @@ public final class SecretBackendConnectionElasticsearch {
             return this;
         }
         @CustomType.Setter
-        public Builder insecureTls(@Nullable Boolean insecureTls) {
+        public Builder insecure(@Nullable Boolean insecure) {
 
-            this.insecureTls = insecureTls;
+            this.insecure = insecure;
             return this;
         }
         @CustomType.Setter
@@ -242,7 +242,7 @@ public final class SecretBackendConnectionElasticsearch {
             _resultValue.caPath = caPath;
             _resultValue.clientCert = clientCert;
             _resultValue.clientKey = clientKey;
-            _resultValue.insecureTls = insecureTls;
+            _resultValue.insecure = insecure;
             _resultValue.password = password;
             _resultValue.tlsServerName = tlsServerName;
             _resultValue.url = url;

@@ -32,7 +32,7 @@ namespace Pulumi.Vault.Database.Outputs
         /// <summary>
         /// Whether to disable certificate verification
         /// </summary>
-        public readonly bool? InsecureTls;
+        public readonly bool? Insecure;
         /// <summary>
         /// The password to be used in the connection URL
         /// </summary>
@@ -64,7 +64,7 @@ namespace Pulumi.Vault.Database.Outputs
 
             string? clientKey,
 
-            bool? insecureTls,
+            bool? insecure,
 
             string password,
 
@@ -80,7 +80,7 @@ namespace Pulumi.Vault.Database.Outputs
             CaPath = caPath;
             ClientCert = clientCert;
             ClientKey = clientKey;
-            InsecureTls = insecureTls;
+            Insecure = insecure;
             Password = password;
             TlsServerName = tlsServerName;
             Url = url;
