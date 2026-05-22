@@ -186,8 +186,8 @@ def get_backend_cert_metadata(namespace: Optional[_builtins.str] = None,
         ttl="720h",
         min_seconds_remaining=60,
         cert_metadata="dGVzdCBtZXRhZGF0YQ==")
-    test = test_secret_backend_cert.serial_number.apply(lambda serial_number: vault.pkisecret.get_backend_cert_metadata_output(path=test_root["path"],
-        serial=serial_number))
+    test = vault.pkisecret.get_backend_cert_metadata_output(path=test_root["path"],
+        serial=test_secret_backend_cert.serial_number)
     ```
 
 
@@ -266,8 +266,8 @@ def get_backend_cert_metadata_output(namespace: pulumi.Input[Optional[Optional[_
         ttl="720h",
         min_seconds_remaining=60,
         cert_metadata="dGVzdCBtZXRhZGF0YQ==")
-    test = test_secret_backend_cert.serial_number.apply(lambda serial_number: vault.pkisecret.get_backend_cert_metadata_output(path=test_root["path"],
-        serial=serial_number))
+    test = vault.pkisecret.get_backend_cert_metadata_output(path=test_root["path"],
+        serial=test_secret_backend_cert.serial_number)
     ```
 
 

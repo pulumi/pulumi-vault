@@ -33,10 +33,10 @@ import * as utilities from "../utilities";
  *     keyType: "rsa",
  *     keyBits: 4096,
  * });
- * const example = key.keyId.apply(keyId => vault.pkisecret.getBackendKeyOutput({
+ * const example = vault.pkisecret.getBackendKeyOutput({
  *     backend: keyVaultMount.path,
- *     keyRef: keyId,
- * }));
+ *     keyRef: key.keyId,
+ * });
  * ```
  */
 export function getBackendKey(args: GetBackendKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendKeyResult> {
@@ -123,10 +123,10 @@ export interface GetBackendKeyResult {
  *     keyType: "rsa",
  *     keyBits: 4096,
  * });
- * const example = key.keyId.apply(keyId => vault.pkisecret.getBackendKeyOutput({
+ * const example = vault.pkisecret.getBackendKeyOutput({
  *     backend: keyVaultMount.path,
- *     keyRef: keyId,
- * }));
+ *     keyRef: key.keyId,
+ * });
  * ```
  */
 export function getBackendKeyOutput(args: GetBackendKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackendKeyResult> {

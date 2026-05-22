@@ -47,10 +47,10 @@ import * as utilities from "../utilities";
  * `,
  * });
  * // generally, these blocks would be in a different module
- * const creds = pulumi.all([aws.path, role.name]).apply(([path, name]) => vault.aws.getAccessCredentialsOutput({
- *     backend: path,
- *     role: name,
- * }));
+ * const creds = vault.aws.getAccessCredentialsOutput({
+ *     backend: aws.path,
+ *     role: role.name,
+ * });
  * ```
  */
 export function getAccessCredentials(args: GetAccessCredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetAccessCredentialsResult> {
@@ -208,10 +208,10 @@ export interface GetAccessCredentialsResult {
  * `,
  * });
  * // generally, these blocks would be in a different module
- * const creds = pulumi.all([aws.path, role.name]).apply(([path, name]) => vault.aws.getAccessCredentialsOutput({
- *     backend: path,
- *     role: name,
- * }));
+ * const creds = vault.aws.getAccessCredentialsOutput({
+ *     backend: aws.path,
+ *     role: role.name,
+ * });
  * ```
  */
 export function getAccessCredentialsOutput(args: GetAccessCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccessCredentialsResult> {

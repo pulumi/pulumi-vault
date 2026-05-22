@@ -33,10 +33,10 @@ import * as utilities from "../utilities";
  *     ttl: "86400",
  *     issuerName: "example",
  * });
- * const example = root.issuerId.apply(issuerId => vault.pkisecret.getBackendIssuerOutput({
+ * const example = vault.pkisecret.getBackendIssuerOutput({
  *     backend: root.path,
- *     issuerRef: issuerId,
- * }));
+ *     issuerRef: root.issuerId,
+ * });
  * ```
  */
 export function getBackendIssuer(args: GetBackendIssuerArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendIssuerResult> {
@@ -202,10 +202,10 @@ export interface GetBackendIssuerResult {
  *     ttl: "86400",
  *     issuerName: "example",
  * });
- * const example = root.issuerId.apply(issuerId => vault.pkisecret.getBackendIssuerOutput({
+ * const example = vault.pkisecret.getBackendIssuerOutput({
  *     backend: root.path,
- *     issuerRef: issuerId,
- * }));
+ *     issuerRef: root.issuerId,
+ * });
  * ```
  */
 export function getBackendIssuerOutput(args: GetBackendIssuerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackendIssuerResult> {

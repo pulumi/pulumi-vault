@@ -1688,10 +1688,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(_path)
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(kvv2.path())
      *             .name(test2.name())
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -1787,10 +1787,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(_path)
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(kvv2.path())
      *             .name(test2.name())
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -1886,10 +1886,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(_path)
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(kvv2.path())
      *             .name(test2.name())
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -1985,10 +1985,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(_path)
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(kvv2.path())
      *             .name(test2.name())
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -2084,10 +2084,10 @@ public final class KvFunctions {
      *             .mount(kvv2.path())
      *             .build());
      * 
-     *         final var nestedSecrets = kvv2.path().applyValue(_path -> KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
-     *             .mount(_path)
+     *         final var nestedSecrets = KvFunctions.getSecretsListV2(GetSecretsListV2Args.builder()
+     *             .mount(kvv2.path())
      *             .name(test2.name())
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }

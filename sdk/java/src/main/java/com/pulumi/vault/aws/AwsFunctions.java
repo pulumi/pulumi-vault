@@ -86,14 +86,10 @@ public final class AwsFunctions {
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
-     *         final var creds = Output.tuple(aws.path(), role.name()).applyValue(values -> {
-     *             var path = values.t1;
-     *             var name = values.t2;
-     *             return AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *                 .backend(path)
-     *                 .role(name)
-     *                 .build());
-     *         });
+     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
+     *             .backend(aws.path())
+     *             .role(role.name())
+     *             .build());
      * 
      *     }
      * }
@@ -172,14 +168,10 @@ public final class AwsFunctions {
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
-     *         final var creds = Output.tuple(aws.path(), role.name()).applyValue(values -> {
-     *             var path = values.t1;
-     *             var name = values.t2;
-     *             return AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *                 .backend(path)
-     *                 .role(name)
-     *                 .build());
-     *         });
+     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
+     *             .backend(aws.path())
+     *             .role(role.name())
+     *             .build());
      * 
      *     }
      * }
@@ -258,14 +250,10 @@ public final class AwsFunctions {
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
-     *         final var creds = Output.tuple(aws.path(), role.name()).applyValue(values -> {
-     *             var path = values.t1;
-     *             var name = values.t2;
-     *             return AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *                 .backend(path)
-     *                 .role(name)
-     *                 .build());
-     *         });
+     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
+     *             .backend(aws.path())
+     *             .role(role.name())
+     *             .build());
      * 
      *     }
      * }
@@ -344,14 +332,10 @@ public final class AwsFunctions {
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
-     *         final var creds = Output.tuple(aws.path(), role.name()).applyValue(values -> {
-     *             var path = values.t1;
-     *             var name = values.t2;
-     *             return AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *                 .backend(path)
-     *                 .role(name)
-     *                 .build());
-     *         });
+     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
+     *             .backend(aws.path())
+     *             .role(role.name())
+     *             .build());
      * 
      *     }
      * }
@@ -430,14 +414,10 @@ public final class AwsFunctions {
      *             .build());
      * 
      *         // generally, these blocks would be in a different module
-     *         final var creds = Output.tuple(aws.path(), role.name()).applyValue(values -> {
-     *             var path = values.t1;
-     *             var name = values.t2;
-     *             return AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
-     *                 .backend(path)
-     *                 .role(name)
-     *                 .build());
-     *         });
+     *         final var creds = AwsFunctions.getAccessCredentials(GetAccessCredentialsArgs.builder()
+     *             .backend(aws.path())
+     *             .role(role.name())
+     *             .build());
      * 
      *     }
      * }

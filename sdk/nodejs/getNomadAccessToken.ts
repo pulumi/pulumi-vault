@@ -35,10 +35,10 @@ import * as utilities from "./utilities";
  *     type: "client",
  *     policies: ["readonly"],
  * });
- * const token = pulumi.all([config.backend, test.role]).apply(([backend, role]) => vault.getNomadAccessTokenOutput({
- *     backend: backend,
- *     role: role,
- * }));
+ * const token = vault.getNomadAccessTokenOutput({
+ *     backend: config.backend,
+ *     role: test.role,
+ * });
  * ```
  */
 export function getNomadAccessToken(args: GetNomadAccessTokenArgs, opts?: pulumi.InvokeOptions): Promise<GetNomadAccessTokenResult> {
@@ -125,10 +125,10 @@ export interface GetNomadAccessTokenResult {
  *     type: "client",
  *     policies: ["readonly"],
  * });
- * const token = pulumi.all([config.backend, test.role]).apply(([backend, role]) => vault.getNomadAccessTokenOutput({
- *     backend: backend,
- *     role: role,
- * }));
+ * const token = vault.getNomadAccessTokenOutput({
+ *     backend: config.backend,
+ *     role: test.role,
+ * });
  * ```
  */
 export function getNomadAccessTokenOutput(args: GetNomadAccessTokenOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNomadAccessTokenResult> {

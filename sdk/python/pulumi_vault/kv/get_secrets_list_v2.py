@@ -151,8 +151,8 @@ def get_secrets_list_v2(mount: Optional[_builtins.str] = None,
             "password": "test",
         }))
     secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path)
-    nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_list_v2_output(mount=path,
-        name=test2["name"]))
+    nested_secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path,
+        name=test2["name"])
     ```
 
     ## Required Vault Capabilities
@@ -235,8 +235,8 @@ def get_secrets_list_v2_output(mount: pulumi.Input[Optional[_builtins.str]] = No
             "password": "test",
         }))
     secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path)
-    nested_secrets = kvv2.path.apply(lambda path: vault.kv.get_secrets_list_v2_output(mount=path,
-        name=test2["name"]))
+    nested_secrets = vault.kv.get_secrets_list_v2_output(mount=kvv2.path,
+        name=test2["name"])
     ```
 
     ## Required Vault Capabilities

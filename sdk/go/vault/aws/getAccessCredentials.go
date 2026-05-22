@@ -69,14 +69,10 @@ import (
 //				return err
 //			}
 //			// generally, these blocks would be in a different module
-//			_ = pulumi.All(aws2.Path, role.Name).ApplyT(func(_args []interface{}) (aws.GetAccessCredentialsResult, error) {
-//				path := _args[0].(*string)
-//				name := _args[1].(string)
-//				return aws.GetAccessCredentialsResult(interface{}(aws.GetAccessCredentials(ctx, &aws.GetAccessCredentialsArgs{
-//					Backend: path,
-//					Role:    name,
-//				}, nil))), nil
-//			}).(aws.GetAccessCredentialsResultOutput)
+//			_ = aws.GetAccessCredentialsOutput(ctx, aws.GetAccessCredentialsOutputArgs{
+//				Backend: aws2.Path,
+//				Role:    role.Name,
+//			}, nil)
 //			return nil
 //		})
 //	}

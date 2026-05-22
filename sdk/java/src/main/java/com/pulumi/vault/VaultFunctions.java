@@ -2119,14 +2119,10 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
-     *             var backend = values.t1;
-     *             var role = values.t2;
-     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *                 .backend(backend)
-     *                 .role(role)
-     *                 .build());
-     *         });
+     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *             .backend(config.backend())
+     *             .role(test.role())
+     *             .build());
      * 
      *     }
      * }
@@ -2192,14 +2188,10 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
-     *             var backend = values.t1;
-     *             var role = values.t2;
-     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *                 .backend(backend)
-     *                 .role(role)
-     *                 .build());
-     *         });
+     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *             .backend(config.backend())
+     *             .role(test.role())
+     *             .build());
      * 
      *     }
      * }
@@ -2265,14 +2257,10 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
-     *             var backend = values.t1;
-     *             var role = values.t2;
-     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *                 .backend(backend)
-     *                 .role(role)
-     *                 .build());
-     *         });
+     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *             .backend(config.backend())
+     *             .role(test.role())
+     *             .build());
      * 
      *     }
      * }
@@ -2338,14 +2326,10 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
-     *             var backend = values.t1;
-     *             var role = values.t2;
-     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *                 .backend(backend)
-     *                 .role(role)
-     *                 .build());
-     *         });
+     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *             .backend(config.backend())
+     *             .role(test.role())
+     *             .build());
      * 
      *     }
      * }
@@ -2411,14 +2395,10 @@ public final class VaultFunctions {
      *             .policies("readonly")
      *             .build());
      * 
-     *         final var token = Output.tuple(config.backend(), test.role()).applyValue(values -> {
-     *             var backend = values.t1;
-     *             var role = values.t2;
-     *             return VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
-     *                 .backend(backend)
-     *                 .role(role)
-     *                 .build());
-     *         });
+     *         final var token = VaultFunctions.getNomadAccessToken(GetNomadAccessTokenArgs.builder()
+     *             .backend(config.backend())
+     *             .role(test.role())
+     *             .build());
      * 
      *     }
      * }
