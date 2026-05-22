@@ -54,12 +54,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = root.IssuerId.ApplyT(func(issuerId string) (pkisecret.GetBackendIssuerResult, error) {
-//				return pkisecret.GetBackendIssuerResult(interface{}(pkisecret.GetBackendIssuer(ctx, &pkisecret.GetBackendIssuerArgs{
-//					Backend:   root.Path,
-//					IssuerRef: issuerId,
-//				}, nil))), nil
-//			}).(pkisecret.GetBackendIssuerResultOutput)
+//			_ = pkisecret.GetBackendIssuerOutput(ctx, pkisecret.GetBackendIssuerOutputArgs{
+//				Backend:   root.Path,
+//				IssuerRef: root.IssuerId,
+//			}, nil)
 //			return nil
 //		})
 //	}

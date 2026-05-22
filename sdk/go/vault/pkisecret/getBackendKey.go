@@ -54,12 +54,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = key.KeyId.ApplyT(func(keyId string) (pkisecret.GetBackendKeyResult, error) {
-//				return pkisecret.GetBackendKeyResult(interface{}(pkisecret.GetBackendKey(ctx, &pkisecret.GetBackendKeyArgs{
-//					Backend: keyVaultMount.Path,
-//					KeyRef:  keyId,
-//				}, nil))), nil
-//			}).(pkisecret.GetBackendKeyResultOutput)
+//			_ = pkisecret.GetBackendKeyOutput(ctx, pkisecret.GetBackendKeyOutputArgs{
+//				Backend: pulumi.Any(keyVaultMount.Path),
+//				KeyRef:  key.KeyId,
+//			}, nil)
 //			return nil
 //		})
 //	}

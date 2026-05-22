@@ -267,8 +267,8 @@ def get_backend_issuer(backend: Optional[_builtins.str] = None,
         common_name="example",
         ttl="86400",
         issuer_name="example")
-    example = root.issuer_id.apply(lambda issuer_id: vault.pkisecret.get_backend_issuer_output(backend=root.path,
-        issuer_ref=issuer_id))
+    example = vault.pkisecret.get_backend_issuer_output(backend=root.path,
+        issuer_ref=root.issuer_id)
     ```
 
 
@@ -358,8 +358,8 @@ def get_backend_issuer_output(backend: pulumi.Input[Optional[_builtins.str]] = N
         common_name="example",
         ttl="86400",
         issuer_name="example")
-    example = root.issuer_id.apply(lambda issuer_id: vault.pkisecret.get_backend_issuer_output(backend=root.path,
-        issuer_ref=issuer_id))
+    example = vault.pkisecret.get_backend_issuer_output(backend=root.path,
+        issuer_ref=root.issuer_id)
     ```
 
 

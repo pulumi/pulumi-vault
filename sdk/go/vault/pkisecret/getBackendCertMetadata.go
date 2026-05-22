@@ -83,12 +83,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = testSecretBackendCert.SerialNumber.ApplyT(func(serialNumber string) (pkisecret.GetBackendCertMetadataResult, error) {
-//				return pkisecret.GetBackendCertMetadataResult(interface{}(pkisecret.GetBackendCertMetadata(ctx, &pkisecret.GetBackendCertMetadataArgs{
-//					Path:   test_root.Path,
-//					Serial: serialNumber,
-//				}, nil))), nil
-//			}).(pkisecret.GetBackendCertMetadataResultOutput)
+//			_ = pkisecret.GetBackendCertMetadataOutput(ctx, pkisecret.GetBackendCertMetadataOutputArgs{
+//				Path:   pulumi.Any(test_root.Path),
+//				Serial: testSecretBackendCert.SerialNumber,
+//			}, nil)
 //			return nil
 //		})
 //	}

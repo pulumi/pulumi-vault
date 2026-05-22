@@ -56,10 +56,10 @@ import * as utilities from "../utilities";
  * const secrets = vault.kv.getSecretsListV2Output({
  *     mount: kvv2.path,
  * });
- * const nestedSecrets = kvv2.path.apply(path => vault.kv.getSecretsListV2Output({
- *     mount: path,
+ * const nestedSecrets = vault.kv.getSecretsListV2Output({
+ *     mount: kvv2.path,
  *     name: test2.name,
- * }));
+ * });
  * ```
  *
  * ## Required Vault Capabilities
@@ -171,10 +171,10 @@ export interface GetSecretsListV2Result {
  * const secrets = vault.kv.getSecretsListV2Output({
  *     mount: kvv2.path,
  * });
- * const nestedSecrets = kvv2.path.apply(path => vault.kv.getSecretsListV2Output({
- *     mount: path,
+ * const nestedSecrets = vault.kv.getSecretsListV2Output({
+ *     mount: kvv2.path,
  *     name: test2.name,
- * }));
+ * });
  * ```
  *
  * ## Required Vault Capabilities

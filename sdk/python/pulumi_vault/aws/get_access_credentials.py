@@ -254,11 +254,8 @@ def get_access_credentials(backend: Optional[_builtins.str] = None,
     }
     \"\"\")
     # generally, these blocks would be in a different module
-    creds = pulumi.Output.all(
-        path=aws.path,
-        name=role.name
-    ).apply(lambda resolved_outputs: vault.aws.get_access_credentials_output(backend=resolved_outputs['path'],
-        role=resolved_outputs['name']))
+    creds = vault.aws.get_access_credentials_output(backend=aws.path,
+        role=role.name)
     ```
 
 
@@ -358,11 +355,8 @@ def get_access_credentials_output(backend: pulumi.Input[Optional[_builtins.str]]
     }
     \"\"\")
     # generally, these blocks would be in a different module
-    creds = pulumi.Output.all(
-        path=aws.path,
-        name=role.name
-    ).apply(lambda resolved_outputs: vault.aws.get_access_credentials_output(backend=resolved_outputs['path'],
-        role=resolved_outputs['name']))
+    creds = vault.aws.get_access_credentials_output(backend=aws.path,
+        role=role.name)
     ```
 
 

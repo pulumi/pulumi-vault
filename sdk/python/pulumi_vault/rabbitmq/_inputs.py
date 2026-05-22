@@ -113,7 +113,7 @@ class SecretBackendRoleVhostTopicArgsDict(TypedDict):
     """
     The vhost to set permissions for.
     """
-    vhosts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgs']]]]]
+    vhosts: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRoleVhostTopicVhostArgsDict']]]]]
     """
     Specifies a map of virtual hosts to permissions.
     """

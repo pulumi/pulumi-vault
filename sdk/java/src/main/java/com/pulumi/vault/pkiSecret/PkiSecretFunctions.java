@@ -115,10 +115,10 @@ public final class PkiSecretFunctions {
      *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
      *             .build());
      * 
-     *         final var test = testSecretBackendCert.serialNumber().applyValue(_serialNumber -> PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
      *             .path(test_root.path())
-     *             .serial(_serialNumber)
-     *             .build()));
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
      * 
      *     }
      * }
@@ -208,10 +208,10 @@ public final class PkiSecretFunctions {
      *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
      *             .build());
      * 
-     *         final var test = testSecretBackendCert.serialNumber().applyValue(_serialNumber -> PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
      *             .path(test_root.path())
-     *             .serial(_serialNumber)
-     *             .build()));
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
      * 
      *     }
      * }
@@ -301,10 +301,10 @@ public final class PkiSecretFunctions {
      *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
      *             .build());
      * 
-     *         final var test = testSecretBackendCert.serialNumber().applyValue(_serialNumber -> PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
      *             .path(test_root.path())
-     *             .serial(_serialNumber)
-     *             .build()));
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
      * 
      *     }
      * }
@@ -394,10 +394,10 @@ public final class PkiSecretFunctions {
      *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
      *             .build());
      * 
-     *         final var test = testSecretBackendCert.serialNumber().applyValue(_serialNumber -> PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
      *             .path(test_root.path())
-     *             .serial(_serialNumber)
-     *             .build()));
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
      * 
      *     }
      * }
@@ -487,10 +487,10 @@ public final class PkiSecretFunctions {
      *             .certMetadata("dGVzdCBtZXRhZGF0YQ==")
      *             .build());
      * 
-     *         final var test = testSecretBackendCert.serialNumber().applyValue(_serialNumber -> PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
+     *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
      *             .path(test_root.path())
-     *             .serial(_serialNumber)
-     *             .build()));
+     *             .serial(testSecretBackendCert.serialNumber())
+     *             .build());
      * 
      *     }
      * }
@@ -1394,10 +1394,10 @@ public final class PkiSecretFunctions {
      *             .issuerName("example")
      *             .build());
      * 
-     *         final var example = root.issuerId().applyValue(_issuerId -> PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
      *             .backend(root.path())
-     *             .issuerRef(_issuerId)
-     *             .build()));
+     *             .issuerRef(root.issuerId())
+     *             .build());
      * 
      *     }
      * }
@@ -1461,10 +1461,10 @@ public final class PkiSecretFunctions {
      *             .issuerName("example")
      *             .build());
      * 
-     *         final var example = root.issuerId().applyValue(_issuerId -> PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
      *             .backend(root.path())
-     *             .issuerRef(_issuerId)
-     *             .build()));
+     *             .issuerRef(root.issuerId())
+     *             .build());
      * 
      *     }
      * }
@@ -1528,10 +1528,10 @@ public final class PkiSecretFunctions {
      *             .issuerName("example")
      *             .build());
      * 
-     *         final var example = root.issuerId().applyValue(_issuerId -> PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
      *             .backend(root.path())
-     *             .issuerRef(_issuerId)
-     *             .build()));
+     *             .issuerRef(root.issuerId())
+     *             .build());
      * 
      *     }
      * }
@@ -1595,10 +1595,10 @@ public final class PkiSecretFunctions {
      *             .issuerName("example")
      *             .build());
      * 
-     *         final var example = root.issuerId().applyValue(_issuerId -> PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
      *             .backend(root.path())
-     *             .issuerRef(_issuerId)
-     *             .build()));
+     *             .issuerRef(root.issuerId())
+     *             .build());
      * 
      *     }
      * }
@@ -1662,10 +1662,10 @@ public final class PkiSecretFunctions {
      *             .issuerName("example")
      *             .build());
      * 
-     *         final var example = root.issuerId().applyValue(_issuerId -> PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendIssuer(GetBackendIssuerArgs.builder()
      *             .backend(root.path())
-     *             .issuerRef(_issuerId)
-     *             .build()));
+     *             .issuerRef(root.issuerId())
+     *             .build());
      * 
      *     }
      * }
@@ -2059,10 +2059,10 @@ public final class PkiSecretFunctions {
      *             .keyBits(4096)
      *             .build());
      * 
-     *         final var example = key.keyId().applyValue(_keyId -> PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
      *             .backend(keyVaultMount.path())
-     *             .keyRef(_keyId)
-     *             .build()));
+     *             .keyRef(key.keyId())
+     *             .build());
      * 
      *     }
      * }
@@ -2126,10 +2126,10 @@ public final class PkiSecretFunctions {
      *             .keyBits(4096)
      *             .build());
      * 
-     *         final var example = key.keyId().applyValue(_keyId -> PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
      *             .backend(keyVaultMount.path())
-     *             .keyRef(_keyId)
-     *             .build()));
+     *             .keyRef(key.keyId())
+     *             .build());
      * 
      *     }
      * }
@@ -2193,10 +2193,10 @@ public final class PkiSecretFunctions {
      *             .keyBits(4096)
      *             .build());
      * 
-     *         final var example = key.keyId().applyValue(_keyId -> PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
      *             .backend(keyVaultMount.path())
-     *             .keyRef(_keyId)
-     *             .build()));
+     *             .keyRef(key.keyId())
+     *             .build());
      * 
      *     }
      * }
@@ -2260,10 +2260,10 @@ public final class PkiSecretFunctions {
      *             .keyBits(4096)
      *             .build());
      * 
-     *         final var example = key.keyId().applyValue(_keyId -> PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
      *             .backend(keyVaultMount.path())
-     *             .keyRef(_keyId)
-     *             .build()));
+     *             .keyRef(key.keyId())
+     *             .build());
      * 
      *     }
      * }
@@ -2327,10 +2327,10 @@ public final class PkiSecretFunctions {
      *             .keyBits(4096)
      *             .build());
      * 
-     *         final var example = key.keyId().applyValue(_keyId -> PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
+     *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
      *             .backend(keyVaultMount.path())
-     *             .keyRef(_keyId)
-     *             .build()));
+     *             .keyRef(key.keyId())
+     *             .build());
      * 
      *     }
      * }

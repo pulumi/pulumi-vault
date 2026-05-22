@@ -54,10 +54,10 @@ import * as utilities from "../utilities";
  *     minSecondsRemaining: 60,
  *     certMetadata: "dGVzdCBtZXRhZGF0YQ==",
  * });
- * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkisecret.getBackendCertMetadataOutput({
+ * const test = vault.pkisecret.getBackendCertMetadataOutput({
  *     path: test_root.path,
- *     serial: serialNumber,
- * }));
+ *     serial: testSecretBackendCert.serialNumber,
+ * });
  * ```
  */
 export function getBackendCertMetadata(args: GetBackendCertMetadataArgs, opts?: pulumi.InvokeOptions): Promise<GetBackendCertMetadataResult> {
@@ -173,10 +173,10 @@ export interface GetBackendCertMetadataResult {
  *     minSecondsRemaining: 60,
  *     certMetadata: "dGVzdCBtZXRhZGF0YQ==",
  * });
- * const test = testSecretBackendCert.serialNumber.apply(serialNumber => vault.pkisecret.getBackendCertMetadataOutput({
+ * const test = vault.pkisecret.getBackendCertMetadataOutput({
  *     path: test_root.path,
- *     serial: serialNumber,
- * }));
+ *     serial: testSecretBackendCert.serialNumber,
+ * });
  * ```
  */
 export function getBackendCertMetadataOutput(args: GetBackendCertMetadataOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackendCertMetadataResult> {

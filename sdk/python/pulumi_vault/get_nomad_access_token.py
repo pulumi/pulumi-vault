@@ -134,11 +134,8 @@ def get_nomad_access_token(backend: Optional[_builtins.str] = None,
         role="test",
         type="client",
         policies=["readonly"])
-    token = pulumi.Output.all(
-        backend=config.backend,
-        role=test.role
-    ).apply(lambda resolved_outputs: vault.get_nomad_access_token_output(backend=resolved_outputs['backend'],
-        role=resolved_outputs['role']))
+    token = vault.get_nomad_access_token_output(backend=config.backend,
+        role=test.role)
     ```
 
 
@@ -198,11 +195,8 @@ def get_nomad_access_token_output(backend: pulumi.Input[Optional[_builtins.str]]
         role="test",
         type="client",
         policies=["readonly"])
-    token = pulumi.Output.all(
-        backend=config.backend,
-        role=test.role
-    ).apply(lambda resolved_outputs: vault.get_nomad_access_token_output(backend=resolved_outputs['backend'],
-        role=resolved_outputs['role']))
+    token = vault.get_nomad_access_token_output(backend=config.backend,
+        role=test.role)
     ```
 
 

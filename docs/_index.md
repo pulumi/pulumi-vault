@@ -524,7 +524,7 @@ The path-based `authLogin` configuration block accepts the following arguments:
   to see what can go here.
 ## Example Usage
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -707,11 +707,31 @@ public class App {
 ```
 
 {{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    vault = {
+      source = "pulumi/vault"
+    }
+  }
+}
+
+resource "vault_generic_secret" "example" {
+  path = "secret/foo"
+  data_json = jsonencode({
+    "foo"   = "bar"
+    "pizza" = "cheese"
+  })
+}
+```
+
+{{% /choosable %}}
 {{< /chooser >}}
 ### Example `authLogin` Usage
 With the `userpass` backend:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -850,11 +870,20 @@ public class App {
 ```
 
 {{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+variable "loginUsername" {
+}
+variable "loginPassword" {
+}
+```
+
+{{% /choosable %}}
 {{< /chooser >}}
 
 Or, using `approle`:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -989,6 +1018,15 @@ public class App {
         final var loginApproleRoleId = config.require("loginApproleRoleId");
         final var loginApproleSecretId = config.require("loginApproleSecretId");
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+variable "loginApproleRoleId" {
+}
+variable "loginApproleSecretId" {
 }
 ```
 
