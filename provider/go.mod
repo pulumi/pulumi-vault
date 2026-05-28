@@ -5,7 +5,7 @@ go 1.26.2
 require (
 	github.com/hashicorp/terraform-provider-vault v0.0.0
 	github.com/pulumi/providertest v0.6.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.130.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.131.0
 	github.com/pulumi/pulumi/sdk/v3 v3.242.0
 	github.com/stretchr/testify v1.11.1
 )
