@@ -43,6 +43,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.vault.rabbitMq.SecretBackendRoleArgs;
  * import com.pulumi.vault.rabbitMq.inputs.SecretBackendRoleVhostArgs;
  * import com.pulumi.vault.rabbitMq.inputs.SecretBackendRoleVhostTopicArgs;
+ * import com.pulumi.vault.rabbitMq.inputs.SecretBackendRoleVhostTopicVhostArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;

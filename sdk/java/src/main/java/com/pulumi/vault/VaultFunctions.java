@@ -2423,6 +2423,7 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
+     * import com.pulumi.vault.inputs.GetPolicyDocumentRuleArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
      * import java.util.ArrayList;
@@ -2479,6 +2480,7 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
+     * import com.pulumi.vault.inputs.GetPolicyDocumentRuleArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
      * import java.util.ArrayList;
@@ -2535,6 +2537,7 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
+     * import com.pulumi.vault.inputs.GetPolicyDocumentRuleArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
      * import java.util.ArrayList;
@@ -2591,6 +2594,7 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
+     * import com.pulumi.vault.inputs.GetPolicyDocumentRuleArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
      * import java.util.ArrayList;
@@ -2647,6 +2651,7 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
+     * import com.pulumi.vault.inputs.GetPolicyDocumentRuleArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
      * import java.util.ArrayList;
@@ -2703,6 +2708,7 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
+     * import com.pulumi.vault.inputs.GetPolicyDocumentRuleArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
      * import java.util.ArrayList;
@@ -2759,6 +2765,7 @@ public final class VaultFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.vault.VaultFunctions;
      * import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
+     * import com.pulumi.vault.inputs.GetPolicyDocumentRuleArgs;
      * import com.pulumi.vault.Policy;
      * import com.pulumi.vault.PolicyArgs;
      * import java.util.ArrayList;
