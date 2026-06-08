@@ -91,7 +91,7 @@ import javax.annotation.Nullable;
  *                 .build()).result())
  *             .rotationSchedule("0 * * * SAT")
  *             .rotationWindow(3600)
- *             .customEndpoint(AuthBackendCustomEndpointArgs.builder()
+ *             .customEndpoint(com.pulumi.vault.gcp.inputs.AuthBackendCustomEndpointArgs.builder()
  *                 .api("www.googleapis.com")
  *                 .iam("iam.googleapis.com")
  *                 .crm("cloudresourcemanager.googleapis.com")
