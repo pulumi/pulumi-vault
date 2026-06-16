@@ -61,7 +61,7 @@ import (
 //			_, err = approle.NewAuthBackendRoleSecretId(ctx, "id", &approle.AuthBackendRoleSecretIdArgs{
 //				Backend:  approle2.Path,
 //				RoleName: example.RoleName,
-//				Metadata: pulumi.String(pulumi.String(json0)),
+//				Metadata: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
