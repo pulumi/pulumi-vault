@@ -85,7 +85,7 @@ import (
 //				Name:    pulumi.String("dev1"),
 //				Backend: db.Path,
 //				DbName: pulumi.String(db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (*string, error) {
-//					return &mssqls[0].Name, nil
+//					return mssqls[0].Name, nil
 //				}).(pulumi.StringPtrOutput)),
 //				CreationStatements: pulumi.StringArray{
 //					pulumi.String("CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';"),
@@ -100,7 +100,7 @@ import (
 //				Name:    pulumi.String("dev2"),
 //				Backend: db.Path,
 //				DbName: pulumi.String(db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (*string, error) {
-//					return &postgresqls[0].Name, nil
+//					return postgresqls[0].Name, nil
 //				}).(pulumi.StringPtrOutput)),
 //				CreationStatements: pulumi.StringArray{
 //					pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),

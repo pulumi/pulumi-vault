@@ -63,10 +63,10 @@ import (
 //				MaxLeaseTtlSeconds:     pulumi.Int(36000),
 //				AllowedManagedKeys: pulumi.StringArray{
 //					pulumi.String(keys.Aws.ApplyT(func(aws []managed.KeysAw) (*string, error) {
-//						return &aws[0].Name, nil
+//						return aws[0].Name, nil
 //					}).(pulumi.StringPtrOutput)),
 //					pulumi.String(keys.Aws.ApplyT(func(aws []managed.KeysAw) (*string, error) {
-//						return &aws[1].Name, nil
+//						return aws[1].Name, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
 //			})
@@ -125,7 +125,7 @@ import (
 //				MaxLeaseTtlSeconds:     pulumi.Int(36000),
 //				AllowedManagedKeys: pulumi.StringArray{
 //					pulumi.String(gcpKeys.Gcps.ApplyT(func(gcps []managed.KeysGcp) (*string, error) {
-//						return &gcps[0].Name, nil
+//						return gcps[0].Name, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
 //			})
