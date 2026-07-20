@@ -1,6 +1,10 @@
 {
     "auto-aliasing": {
         "resources": {
+            "vault_activation_flags": {
+                "current": "vault:index/activationFlags:ActivationFlags",
+                "majorVersion": 7
+            },
             "vault_ad_secret_backend": {
                 "current": "vault:ad/secretBackend:SecretBackend",
                 "majorVersion": 7
@@ -18,6 +22,15 @@
                 "current": "vault:ad/secretRole:SecretRole",
                 "majorVersion": 7
             },
+            "vault_agent_registration": {
+                "current": "vault:index/agentRegistration:AgentRegistration",
+                "majorVersion": 7,
+                "fields": {
+                    "ceiling_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_alicloud_auth_backend_role": {
                 "current": "vault:alicloud/authBackendRole:AuthBackendRole",
                 "majorVersion": 7,
@@ -26,6 +39,22 @@
                         "maxItemsOne": false
                     },
                     "token_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_alicloud_secret_backend": {
+                "current": "vault:alicloud/secretBackend:SecretBackend",
+                "majorVersion": 7
+            },
+            "vault_alicloud_secret_backend_role": {
+                "current": "vault:alicloud/secretBackendRole:SecretBackendRole",
+                "majorVersion": 7,
+                "fields": {
+                    "inline_policies": {
+                        "maxItemsOne": false
+                    },
+                    "remote_policies": {
                         "maxItemsOne": false
                     }
                 }
@@ -315,6 +344,10 @@
                     }
                 }
             },
+            "vault_azure_secret_backend_static_role": {
+                "current": "vault:azure/secretBackendStaticRole:SecretBackendStaticRole",
+                "majorVersion": 7
+            },
             "vault_cert_auth_backend_role": {
                 "current": "vault:index/certAuthBackendRole:CertAuthBackendRole",
                 "majorVersion": 7,
@@ -351,12 +384,74 @@
                     }
                 }
             },
+            "vault_cf_auth_backend_config": {
+                "current": "vault:index/cfAuthBackendConfig:CfAuthBackendConfig",
+                "majorVersion": 7,
+                "fields": {
+                    "cf_api_trusted_certificates": {
+                        "maxItemsOne": false
+                    },
+                    "identity_ca_certificates": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_cf_auth_backend_role": {
+                "current": "vault:index/cfAuthBackendRole:CfAuthBackendRole",
+                "majorVersion": 7,
+                "fields": {
+                    "bound_application_ids": {
+                        "maxItemsOne": false
+                    },
+                    "bound_instance_ids": {
+                        "maxItemsOne": false
+                    },
+                    "bound_organization_ids": {
+                        "maxItemsOne": false
+                    },
+                    "bound_space_ids": {
+                        "maxItemsOne": false
+                    },
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_config_control_group": {
+                "current": "vault:config/controlGroup:ControlGroup",
+                "majorVersion": 7
+            },
+            "vault_config_group_policy_application": {
+                "current": "vault:config/groupPolicyApplication:GroupPolicyApplication",
+                "majorVersion": 7
+            },
             "vault_config_ui_custom_message": {
                 "current": "vault:config/uiCustomMessage:UiCustomMessage",
                 "majorVersion": 7,
                 "fields": {
                     "link": {
                         "maxItemsOne": true
+                    }
+                }
+            },
+            "vault_config_ui_default_auth": {
+                "current": "vault:config/uiDefaultAuth:UiDefaultAuth",
+                "majorVersion": 7,
+                "fields": {
+                    "backup_auth_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_config_ui_header": {
+                "current": "vault:config/uiHeader:UiHeader",
+                "majorVersion": 7,
+                "fields": {
+                    "values": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1206,6 +1301,44 @@
                     }
                 }
             },
+            "vault_keymgmt_aws_kms": {
+                "current": "vault:index/keymgmtAwsKms:KeymgmtAwsKms",
+                "majorVersion": 7
+            },
+            "vault_keymgmt_azure_kms": {
+                "current": "vault:index/keymgmtAzureKms:KeymgmtAzureKms",
+                "majorVersion": 7
+            },
+            "vault_keymgmt_distribute_key": {
+                "current": "vault:index/keymgmtDistributeKey:KeymgmtDistributeKey",
+                "majorVersion": 7,
+                "fields": {
+                    "purpose": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_keymgmt_gcp_kms": {
+                "current": "vault:index/keymgmtGcpKms:KeymgmtGcpKms",
+                "majorVersion": 7
+            },
+            "vault_keymgmt_key": {
+                "current": "vault:index/keymgmtKey:KeymgmtKey",
+                "majorVersion": 7,
+                "fields": {
+                    "replica_regions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_keymgmt_key_rotate": {
+                "current": "vault:index/keymgmtKeyRotate:KeymgmtKeyRotate",
+                "majorVersion": 7
+            },
+            "vault_keymgmt_replicate_key": {
+                "current": "vault:index/keymgmtReplicateKey:KeymgmtReplicateKey",
+                "majorVersion": 7
+            },
             "vault_kmip_secret_backend": {
                 "current": "vault:kmip/secretBackend:SecretBackend",
                 "majorVersion": 7,
@@ -1229,6 +1362,29 @@
                         "maxItemsOne": false
                     },
                     "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    },
+                    "server_hostnames": {
+                        "maxItemsOne": false
+                    },
+                    "server_ips": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_kmip_secret_ca_generated": {
+                "current": "vault:kmip/secretCaGenerated:SecretCaGenerated",
+                "majorVersion": 7
+            },
+            "vault_kmip_secret_ca_imported": {
+                "current": "vault:kmip/secretCaImported:SecretCaImported",
+                "majorVersion": 7
+            },
+            "vault_kmip_secret_listener": {
+                "current": "vault:kmip/secretListener:SecretListener",
+                "majorVersion": 7,
+                "fields": {
+                    "additional_client_cas": {
                         "maxItemsOne": false
                     },
                     "server_hostnames": {
@@ -1565,6 +1721,21 @@
                     }
                 }
             },
+            "vault_oauth_resource_server_config_profile": {
+                "current": "vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile",
+                "majorVersion": 7,
+                "fields": {
+                    "audiences": {
+                        "maxItemsOne": false
+                    },
+                    "public_keys": {
+                        "maxItemsOne": false
+                    },
+                    "supported_algorithms": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_oci_auth_backend": {
                 "current": "vault:index/ociAuthBackend:OciAuthBackend",
                 "majorVersion": 7,
@@ -1676,6 +1847,68 @@
                         "maxItemsOne": false
                     },
                     "policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_os_secret_backend": {
+                "current": "vault:index/osSecretBackend:OsSecretBackend",
+                "majorVersion": 7
+            },
+            "vault_os_secret_backend_account": {
+                "current": "vault:index/osSecretBackendAccount:OsSecretBackendAccount",
+                "majorVersion": 7
+            },
+            "vault_os_secret_backend_host": {
+                "current": "vault:index/osSecretBackendHost:OsSecretBackendHost",
+                "majorVersion": 7
+            },
+            "vault_password_policy": {
+                "current": "vault:index/passwordPolicy:PasswordPolicy",
+                "majorVersion": 7
+            },
+            "vault_pki_external_ca_secret_backend_acme_account": {
+                "current": "vault:index/pkiExternalCaSecretBackendAcmeAccount:PkiExternalCaSecretBackendAcmeAccount",
+                "majorVersion": 7,
+                "fields": {
+                    "email_contacts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_pki_external_ca_secret_backend_order": {
+                "current": "vault:index/pkiExternalCaSecretBackendOrder:PkiExternalCaSecretBackendOrder",
+                "majorVersion": 7,
+                "fields": {
+                    "identifiers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_pki_external_ca_secret_backend_order_certificate": {
+                "current": "vault:index/pkiExternalCaSecretBackendOrderCertificate:PkiExternalCaSecretBackendOrderCertificate",
+                "majorVersion": 7,
+                "fields": {
+                    "ca_chain": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_pki_external_ca_secret_backend_order_challenge_fulfilled": {
+                "current": "vault:index/pkiExternalCaSecretBackendOrderChallengeFulfilled:PkiExternalCaSecretBackendOrderChallengeFulfilled",
+                "majorVersion": 7
+            },
+            "vault_pki_external_ca_secret_backend_role": {
+                "current": "vault:index/pkiExternalCaSecretBackendRole:PkiExternalCaSecretBackendRole",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_challenge_types": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_domain_options": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_domains": {
                         "maxItemsOne": false
                     }
                 }
@@ -2048,9 +2281,25 @@
                 "current": "vault:index/pluginPinnedVersion:PluginPinnedVersion",
                 "majorVersion": 7
             },
+            "vault_plugin_runtime": {
+                "current": "vault:index/pluginRuntime:PluginRuntime",
+                "majorVersion": 7
+            },
             "vault_policy": {
                 "current": "vault:index/policy:Policy",
                 "majorVersion": 7
+            },
+            "vault_quota_config": {
+                "current": "vault:index/quotaConfig:QuotaConfig",
+                "majorVersion": 7,
+                "fields": {
+                    "absolute_rate_limit_exempt_paths": {
+                        "maxItemsOne": false
+                    },
+                    "rate_limit_exempt_paths": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_quota_lease_count": {
                 "current": "vault:index/quotaLeaseCount:QuotaLeaseCount",
@@ -2103,12 +2352,44 @@
                     }
                 }
             },
+            "vault_radius_auth_backend": {
+                "current": "vault:index/radiusAuthBackend:RadiusAuthBackend",
+                "majorVersion": 7,
+                "fields": {
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
+                    },
+                    "unregistered_user_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_radius_auth_backend_user": {
+                "current": "vault:index/radiusAuthBackendUser:RadiusAuthBackendUser",
+                "majorVersion": 7,
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_raft_autopilot": {
                 "current": "vault:index/raftAutopilot:RaftAutopilot",
                 "majorVersion": 7
             },
+            "vault_raft_snapshot_agent_config": {
+                "current": "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig",
+                "majorVersion": 7
+            },
             "vault_rgp_policy": {
                 "current": "vault:index/rgpPolicy:RgpPolicy",
+                "majorVersion": 7
+            },
+            "vault_rotation_policy": {
+                "current": "vault:index/rotationPolicy:RotationPolicy",
                 "majorVersion": 7
             },
             "vault_saml_auth_backend": {
@@ -2264,6 +2545,38 @@
                     }
                 }
             },
+            "vault_spiffe_auth_backend_config": {
+                "current": "vault:index/spiffeAuthBackendConfig:SpiffeAuthBackendConfig",
+                "majorVersion": 7,
+                "fields": {
+                    "audience": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_spiffe_auth_backend_role": {
+                "current": "vault:index/spiffeAuthBackendRole:SpiffeAuthBackendRole",
+                "majorVersion": 7,
+                "fields": {
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
+                    },
+                    "workload_id_patterns": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_spiffe_secret_backend_config": {
+                "current": "vault:index/spiffeSecretBackendConfig:SpiffeSecretBackendConfig",
+                "majorVersion": 7
+            },
+            "vault_spiffe_secret_backend_role": {
+                "current": "vault:index/spiffeSecretBackendRole:SpiffeSecretBackendRole",
+                "majorVersion": 7
+            },
             "vault_ssh_secret_backend_ca": {
                 "current": "vault:ssh/secretBackendCa:SecretBackendCa",
                 "majorVersion": 7
@@ -2283,6 +2596,18 @@
                         }
                     },
                     "exclude_cidr_list": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_sys_config_cors": {
+                "current": "vault:index/sysConfigCors:SysConfigCors",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_headers": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_origins": {
                         "maxItemsOne": false
                     }
                 }
@@ -2399,9 +2724,33 @@
             "vault_transit_secret_cache_config": {
                 "current": "vault:transit/secretCacheConfig:SecretCacheConfig",
                 "majorVersion": 7
+            },
+            "vault_userpass_auth_backend_user": {
+                "current": "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser",
+                "majorVersion": 7,
+                "fields": {
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
+                    }
+                }
             }
         },
         "datasources": {
+            "vault_activation_flags": {
+                "current": "vault:index/getActivationFlags:getActivationFlags",
+                "majorVersion": 7,
+                "fields": {
+                    "activated_flags": {
+                        "maxItemsOne": false
+                    },
+                    "unactivated_flags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_ad_access_credentials": {
                 "current": "vault:ad/getAccessCredentials:getAccessCredentials",
                 "majorVersion": 7
@@ -2655,6 +3004,10 @@
                 "current": "vault:index/getNomadAccessToken:getNomadAccessToken",
                 "majorVersion": 7
             },
+            "vault_pki_external_ca_secret_backend_order_challenge": {
+                "current": "vault:index/getPkiExternalCaSecretBackendOrderChallenge:getPkiExternalCaSecretBackendOrderChallenge",
+                "majorVersion": 7
+            },
             "vault_pki_secret_backend_cert_metadata": {
                 "current": "vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata",
                 "majorVersion": 7
@@ -2738,6 +3091,15 @@
                     }
                 }
             },
+            "vault_plugin_runtimes": {
+                "current": "vault:index/getPluginRuntimes:getPluginRuntimes",
+                "majorVersion": 7,
+                "fields": {
+                    "runtimes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_policy_document": {
                 "current": "vault:index/getPolicyDocument:getPolicyDocument",
                 "majorVersion": 7,
@@ -2792,6 +3154,18 @@
             "vault_ssh_secret_backend_sign": {
                 "current": "vault:ssh/getSecretBackendSign:getSecretBackendSign",
                 "majorVersion": 7
+            },
+            "vault_sys_config_cors": {
+                "current": "vault:index/getSysConfigCors:getSysConfigCors",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_headers": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_origins": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "vault_transform_decode": {
                 "current": "vault:transform/getDecode:getDecode",
@@ -2864,6 +3238,434 @@
         }
     },
     "auto-settings": {},
+    "default-resource-schema-fixups": {
+        "resources": {
+            "vault_activation_flags": {},
+            "vault_agent_registration": {},
+            "vault_alicloud_secret_backend": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_alicloud_secret_backend_role": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_azure_secret_backend_static_role": {},
+            "vault_cf_auth_backend_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_cf_auth_backend_role": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_config_control_group": {},
+            "vault_config_group_policy_application": {},
+            "vault_config_ui_default_auth": {},
+            "vault_config_ui_header": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_keymgmt_aws_kms": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_keymgmt_azure_kms": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_keymgmt_distribute_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_keymgmt_gcp_kms": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_keymgmt_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_keymgmt_key_rotate": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_keymgmt_replicate_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_kmip_secret_ca_generated": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_kmip_secret_ca_imported": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_kmip_secret_listener": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_oauth_resource_server_config_profile": {},
+            "vault_os_secret_backend": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_os_secret_backend_account": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_os_secret_backend_host": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_password_policy": {},
+            "vault_pki_external_ca_secret_backend_acme_account": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_external_ca_secret_backend_order": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_external_ca_secret_backend_order_certificate": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_external_ca_secret_backend_order_challenge_fulfilled": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_external_ca_secret_backend_role": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_plugin_runtime": {},
+            "vault_quota_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_radius_auth_backend": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_radius_auth_backend_user": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_raft_snapshot_agent_config": {},
+            "vault_rotation_policy": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_spiffe_auth_backend_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_spiffe_auth_backend_role": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_spiffe_secret_backend_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_spiffe_secret_backend_role": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_sys_config_cors": {},
+            "vault_userpass_auth_backend_user": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            }
+        }
+    },
+    "mux": {
+        "resources": {
+            "vault:ad/secretBackend:SecretBackend": 0,
+            "vault:ad/secretLibrary:SecretLibrary": 0,
+            "vault:ad/secretRole:SecretRole": 0,
+            "vault:alicloud/authBackendRole:AuthBackendRole": 0,
+            "vault:alicloud/secretBackend:SecretBackend": 1,
+            "vault:alicloud/secretBackendRole:SecretBackendRole": 1,
+            "vault:appRole/authBackendLogin:AuthBackendLogin": 0,
+            "vault:appRole/authBackendRole:AuthBackendRole": 0,
+            "vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId": 0,
+            "vault:aws/authBackendCert:AuthBackendCert": 0,
+            "vault:aws/authBackendClient:AuthBackendClient": 0,
+            "vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity": 0,
+            "vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist": 0,
+            "vault:aws/authBackendLogin:AuthBackendLogin": 0,
+            "vault:aws/authBackendRole:AuthBackendRole": 0,
+            "vault:aws/authBackendRoleTag:AuthBackendRoleTag": 0,
+            "vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist": 0,
+            "vault:aws/authBackendStsRole:AuthBackendStsRole": 0,
+            "vault:aws/secretBackend:SecretBackend": 0,
+            "vault:aws/secretBackendRole:SecretBackendRole": 0,
+            "vault:aws/secretBackendStaticRole:SecretBackendStaticRole": 0,
+            "vault:azure/authBackendConfig:AuthBackendConfig": 0,
+            "vault:azure/authBackendRole:AuthBackendRole": 0,
+            "vault:azure/backend:Backend": 0,
+            "vault:azure/backendRole:BackendRole": 0,
+            "vault:azure/secretBackendStaticRole:SecretBackendStaticRole": 1,
+            "vault:config/controlGroup:ControlGroup": 1,
+            "vault:config/groupPolicyApplication:GroupPolicyApplication": 1,
+            "vault:config/uiCustomMessage:UiCustomMessage": 0,
+            "vault:config/uiDefaultAuth:UiDefaultAuth": 1,
+            "vault:config/uiHeader:UiHeader": 1,
+            "vault:consul/secretBackend:SecretBackend": 0,
+            "vault:consul/secretBackendRole:SecretBackendRole": 0,
+            "vault:database/secretBackendConnection:SecretBackendConnection": 0,
+            "vault:database/secretBackendRole:SecretBackendRole": 0,
+            "vault:database/secretBackendStaticRole:SecretBackendStaticRole": 0,
+            "vault:database/secretsMount:SecretsMount": 0,
+            "vault:gcp/authBackend:AuthBackend": 0,
+            "vault:gcp/authBackendRole:AuthBackendRole": 0,
+            "vault:gcp/secretBackend:SecretBackend": 0,
+            "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount": 0,
+            "vault:gcp/secretRoleset:SecretRoleset": 0,
+            "vault:gcp/secretStaticAccount:SecretStaticAccount": 0,
+            "vault:generic/endpoint:Endpoint": 0,
+            "vault:generic/secret:Secret": 0,
+            "vault:github/authBackend:AuthBackend": 0,
+            "vault:github/team:Team": 0,
+            "vault:github/user:User": 0,
+            "vault:identity/entity:Entity": 0,
+            "vault:identity/entityAlias:EntityAlias": 0,
+            "vault:identity/entityPolicies:EntityPolicies": 0,
+            "vault:identity/group:Group": 0,
+            "vault:identity/groupAlias:GroupAlias": 0,
+            "vault:identity/groupMemberEntityIds:GroupMemberEntityIds": 0,
+            "vault:identity/groupMemberGroupIds:GroupMemberGroupIds": 0,
+            "vault:identity/groupPolicies:GroupPolicies": 0,
+            "vault:identity/mfaDuo:MfaDuo": 0,
+            "vault:identity/mfaLoginEnforcement:MfaLoginEnforcement": 0,
+            "vault:identity/mfaOkta:MfaOkta": 0,
+            "vault:identity/mfaPingid:MfaPingid": 0,
+            "vault:identity/mfaTotp:MfaTotp": 0,
+            "vault:identity/oidc:Oidc": 0,
+            "vault:identity/oidcAssignment:OidcAssignment": 0,
+            "vault:identity/oidcClient:OidcClient": 0,
+            "vault:identity/oidcKey:OidcKey": 0,
+            "vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID": 0,
+            "vault:identity/oidcProvider:OidcProvider": 0,
+            "vault:identity/oidcRole:OidcRole": 0,
+            "vault:identity/oidcScope:OidcScope": 0,
+            "vault:index/activationFlags:ActivationFlags": 1,
+            "vault:index/agentRegistration:AgentRegistration": 1,
+            "vault:index/audit:Audit": 0,
+            "vault:index/auditRequestHeader:AuditRequestHeader": 0,
+            "vault:index/authBackend:AuthBackend": 0,
+            "vault:index/certAuthBackendRole:CertAuthBackendRole": 0,
+            "vault:index/cfAuthBackendConfig:CfAuthBackendConfig": 1,
+            "vault:index/cfAuthBackendRole:CfAuthBackendRole": 1,
+            "vault:index/egpPolicy:EgpPolicy": 0,
+            "vault:index/keymgmtAwsKms:KeymgmtAwsKms": 1,
+            "vault:index/keymgmtAzureKms:KeymgmtAzureKms": 1,
+            "vault:index/keymgmtDistributeKey:KeymgmtDistributeKey": 1,
+            "vault:index/keymgmtGcpKms:KeymgmtGcpKms": 1,
+            "vault:index/keymgmtKey:KeymgmtKey": 1,
+            "vault:index/keymgmtKeyRotate:KeymgmtKeyRotate": 1,
+            "vault:index/keymgmtReplicateKey:KeymgmtReplicateKey": 1,
+            "vault:index/mfaDuo:MfaDuo": 0,
+            "vault:index/mfaOkta:MfaOkta": 0,
+            "vault:index/mfaPingid:MfaPingid": 0,
+            "vault:index/mfaTotp:MfaTotp": 0,
+            "vault:index/mount:Mount": 0,
+            "vault:index/namespace:Namespace": 0,
+            "vault:index/nomadSecretBackend:NomadSecretBackend": 0,
+            "vault:index/nomadSecretRole:NomadSecretRole": 0,
+            "vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile": 1,
+            "vault:index/ociAuthBackend:OciAuthBackend": 0,
+            "vault:index/ociAuthBackendRole:OciAuthBackendRole": 0,
+            "vault:index/osSecretBackend:OsSecretBackend": 1,
+            "vault:index/osSecretBackendAccount:OsSecretBackendAccount": 1,
+            "vault:index/osSecretBackendHost:OsSecretBackendHost": 1,
+            "vault:index/passwordPolicy:PasswordPolicy": 1,
+            "vault:index/pkiExternalCaSecretBackendAcmeAccount:PkiExternalCaSecretBackendAcmeAccount": 1,
+            "vault:index/pkiExternalCaSecretBackendOrder:PkiExternalCaSecretBackendOrder": 1,
+            "vault:index/pkiExternalCaSecretBackendOrderCertificate:PkiExternalCaSecretBackendOrderCertificate": 1,
+            "vault:index/pkiExternalCaSecretBackendOrderChallengeFulfilled:PkiExternalCaSecretBackendOrderChallengeFulfilled": 1,
+            "vault:index/pkiExternalCaSecretBackendRole:PkiExternalCaSecretBackendRole": 1,
+            "vault:index/plugin:Plugin": 0,
+            "vault:index/pluginPinnedVersion:PluginPinnedVersion": 0,
+            "vault:index/pluginRuntime:PluginRuntime": 1,
+            "vault:index/policy:Policy": 0,
+            "vault:index/quotaConfig:QuotaConfig": 1,
+            "vault:index/quotaLeaseCount:QuotaLeaseCount": 0,
+            "vault:index/quotaRateLimit:QuotaRateLimit": 0,
+            "vault:index/radiusAuthBackend:RadiusAuthBackend": 1,
+            "vault:index/radiusAuthBackendUser:RadiusAuthBackendUser": 1,
+            "vault:index/raftAutopilot:RaftAutopilot": 0,
+            "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig": 1,
+            "vault:index/rgpPolicy:RgpPolicy": 0,
+            "vault:index/rotationPolicy:RotationPolicy": 1,
+            "vault:index/scepAuthBackendRole:ScepAuthBackendRole": 0,
+            "vault:index/spiffeAuthBackendConfig:SpiffeAuthBackendConfig": 1,
+            "vault:index/spiffeAuthBackendRole:SpiffeAuthBackendRole": 1,
+            "vault:index/spiffeSecretBackendConfig:SpiffeSecretBackendConfig": 1,
+            "vault:index/spiffeSecretBackendRole:SpiffeSecretBackendRole": 1,
+            "vault:index/sysConfigCors:SysConfigCors": 1,
+            "vault:index/token:Token": 0,
+            "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser": 1,
+            "vault:jwt/authBackend:AuthBackend": 0,
+            "vault:jwt/authBackendRole:AuthBackendRole": 0,
+            "vault:kmip/secretBackend:SecretBackend": 0,
+            "vault:kmip/secretCaGenerated:SecretCaGenerated": 1,
+            "vault:kmip/secretCaImported:SecretCaImported": 1,
+            "vault:kmip/secretListener:SecretListener": 1,
+            "vault:kmip/secretRole:SecretRole": 0,
+            "vault:kmip/secretScope:SecretScope": 0,
+            "vault:kubernetes/authBackendConfig:AuthBackendConfig": 0,
+            "vault:kubernetes/authBackendRole:AuthBackendRole": 0,
+            "vault:kubernetes/secretBackend:SecretBackend": 0,
+            "vault:kubernetes/secretBackendRole:SecretBackendRole": 0,
+            "vault:kv/secret:Secret": 0,
+            "vault:kv/secretBackendV2:SecretBackendV2": 0,
+            "vault:kv/secretV2:SecretV2": 0,
+            "vault:ldap/authBackend:AuthBackend": 0,
+            "vault:ldap/authBackendGroup:AuthBackendGroup": 0,
+            "vault:ldap/authBackendUser:AuthBackendUser": 0,
+            "vault:ldap/secretBackend:SecretBackend": 0,
+            "vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole": 0,
+            "vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet": 0,
+            "vault:ldap/secretBackendStaticRole:SecretBackendStaticRole": 0,
+            "vault:managed/keys:Keys": 0,
+            "vault:mongodbatlas/secretBackend:SecretBackend": 0,
+            "vault:mongodbatlas/secretRole:SecretRole": 0,
+            "vault:okta/authBackend:AuthBackend": 0,
+            "vault:okta/authBackendGroup:AuthBackendGroup": 0,
+            "vault:okta/authBackendUser:AuthBackendUser": 0,
+            "vault:pkiSecret/backendAcmeEab:BackendAcmeEab": 0,
+            "vault:pkiSecret/backendConfigAcme:BackendConfigAcme": 0,
+            "vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy": 0,
+            "vault:pkiSecret/backendConfigCluster:BackendConfigCluster": 0,
+            "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2": 0,
+            "vault:pkiSecret/backendConfigEst:BackendConfigEst": 0,
+            "vault:pkiSecret/backendConfigScep:BackendConfigScep": 0,
+            "vault:pkiSecret/secretBackendCert:SecretBackendCert": 0,
+            "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa": 0,
+            "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers": 0,
+            "vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls": 0,
+            "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig": 0,
+            "vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest": 0,
+            "vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned": 0,
+            "vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer": 0,
+            "vault:pkiSecret/secretBackendKey:SecretBackendKey": 0,
+            "vault:pkiSecret/secretBackendRole:SecretBackendRole": 0,
+            "vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert": 0,
+            "vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate": 0,
+            "vault:pkiSecret/secretBackendSign:SecretBackendSign": 0,
+            "vault:rabbitMq/secretBackend:SecretBackend": 0,
+            "vault:rabbitMq/secretBackendRole:SecretBackendRole": 0,
+            "vault:saml/authBackend:AuthBackend": 0,
+            "vault:saml/authBackendRole:AuthBackendRole": 0,
+            "vault:secrets/syncAssociation:SyncAssociation": 0,
+            "vault:secrets/syncAwsDestination:SyncAwsDestination": 0,
+            "vault:secrets/syncAzureDestination:SyncAzureDestination": 0,
+            "vault:secrets/syncConfig:SyncConfig": 0,
+            "vault:secrets/syncGcpDestination:SyncGcpDestination": 0,
+            "vault:secrets/syncGhDestination:SyncGhDestination": 0,
+            "vault:secrets/syncGithubApps:SyncGithubApps": 0,
+            "vault:secrets/syncVercelDestination:SyncVercelDestination": 0,
+            "vault:ssh/secretBackendCa:SecretBackendCa": 0,
+            "vault:ssh/secretBackendRole:SecretBackendRole": 0,
+            "vault:terraformcloud/secretBackend:SecretBackend": 0,
+            "vault:terraformcloud/secretCreds:SecretCreds": 0,
+            "vault:terraformcloud/secretRole:SecretRole": 0,
+            "vault:tokenauth/authBackendRole:AuthBackendRole": 0,
+            "vault:transform/alphabet:Alphabet": 0,
+            "vault:transform/role:Role": 0,
+            "vault:transform/template:Template": 0,
+            "vault:transform/transformation:Transformation": 0,
+            "vault:transit/secretBackendKey:SecretBackendKey": 0,
+            "vault:transit/secretCacheConfig:SecretCacheConfig": 0
+        },
+        "functions": {
+            "vault:ad/getAccessCredentials:getAccessCredentials": 0,
+            "vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId": 0,
+            "vault:aws/getAccessCredentials:getAccessCredentials": 0,
+            "vault:aws/getStaticAccessCredentials:getStaticAccessCredentials": 0,
+            "vault:azure/getAccessCredentials:getAccessCredentials": 0,
+            "vault:gcp/getAuthBackendRole:getAuthBackendRole": 0,
+            "vault:generic/getSecret:getSecret": 0,
+            "vault:identity/getEntity:getEntity": 0,
+            "vault:identity/getGroup:getGroup": 0,
+            "vault:identity/getOidcClientCreds:getOidcClientCreds": 0,
+            "vault:identity/getOidcOpenidConfig:getOidcOpenidConfig": 0,
+            "vault:identity/getOidcPublicKeys:getOidcPublicKeys": 0,
+            "vault:index/getActivationFlags:getActivationFlags": 1,
+            "vault:index/getAuthBackend:getAuthBackend": 0,
+            "vault:index/getAuthBackends:getAuthBackends": 0,
+            "vault:index/getNamespace:getNamespace": 0,
+            "vault:index/getNamespaces:getNamespaces": 0,
+            "vault:index/getNomadAccessToken:getNomadAccessToken": 0,
+            "vault:index/getPkiExternalCaSecretBackendOrderChallenge:getPkiExternalCaSecretBackendOrderChallenge": 1,
+            "vault:index/getPluginRuntimes:getPluginRuntimes": 1,
+            "vault:index/getPolicyDocument:getPolicyDocument": 0,
+            "vault:index/getRaftAutopilotState:getRaftAutopilotState": 0,
+            "vault:index/getSysConfigCors:getSysConfigCors": 1,
+            "vault:kubernetes/getAuthBackendConfig:getAuthBackendConfig": 0,
+            "vault:kubernetes/getAuthBackendRole:getAuthBackendRole": 0,
+            "vault:kubernetes/getServiceAccountToken:getServiceAccountToken": 0,
+            "vault:kv/getSecret:getSecret": 0,
+            "vault:kv/getSecretSubkeysV2:getSecretSubkeysV2": 0,
+            "vault:kv/getSecretV2:getSecretV2": 0,
+            "vault:kv/getSecretsList:getSecretsList": 0,
+            "vault:kv/getSecretsListV2:getSecretsListV2": 0,
+            "vault:ldap/getDynamicCredentials:getDynamicCredentials": 0,
+            "vault:ldap/getStaticCredentials:getStaticCredentials": 0,
+            "vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata": 0,
+            "vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2": 0,
+            "vault:pkiSecret/getBackendConfigEst:getBackendConfigEst": 0,
+            "vault:pkiSecret/getBackendConfigScep:getBackendConfigScep": 0,
+            "vault:pkiSecret/getBackendIssuer:getBackendIssuer": 0,
+            "vault:pkiSecret/getBackendIssuers:getBackendIssuers": 0,
+            "vault:pkiSecret/getBackendKey:getBackendKey": 0,
+            "vault:pkiSecret/getBackendKeys:getBackendKeys": 0,
+            "vault:ssh/getSecretBackendSign:getSecretBackendSign": 0,
+            "vault:transform/getDecode:getDecode": 0,
+            "vault:transform/getEncode:getEncode": 0,
+            "vault:transit/getCmac:getCmac": 0,
+            "vault:transit/getDecrypt:getDecrypt": 0,
+            "vault:transit/getEncrypt:getEncrypt": 0,
+            "vault:transit/getSign:getSign": 0,
+            "vault:transit/getVerify:getVerify": 0
+        }
+    },
     "renames": {
         "resources": {
             "vault:ad/secretBackend:SecretBackend": "vault_ad_secret_backend",

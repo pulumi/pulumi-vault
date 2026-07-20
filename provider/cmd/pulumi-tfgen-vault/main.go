@@ -15,13 +15,12 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfgen"
 
 	vault "github.com/pulumi/pulumi-vault/provider/v7"
-	"github.com/pulumi/pulumi-vault/provider/v7/pkg/version"
 )
 
 func main() {
 	// Modify the path to point to the new provider
-	tfgen.Main("vault", version.Version, vault.Provider())
+	tfgen.MainWithMuxer("vault", vault.Provider())
 }

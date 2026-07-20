@@ -1,0 +1,31 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: guineveresaenger <guinevere@pulumi.com>
+Date: Mon, 20 Jul 2026 11:47:16 -0700
+Subject: [PATCH] Expose framework provider for Pulumi bridge muxing
+
+
+diff --git a/vault/pulumi_framework_provider.go b/vault/pulumi_framework_provider.go
+new file mode 100644
+index 00000000..22ad63e7
+--- /dev/null
++++ b/vault/pulumi_framework_provider.go
+@@ -0,0 +1,19 @@
++// Copyright IBM Corp. 2016, 2026
++// SPDX-License-Identifier: MPL-2.0
++
++package vault
++
++import (
++	"github.com/hashicorp/terraform-plugin-framework/provider"
++
++	"github.com/hashicorp/terraform-provider-vault/internal/provider/fwprovider"
++)
++
++// NewFrameworkProvider exposes the Plugin Framework provider that the upstream
++// binary muxes alongside the SDKv2 provider via ProtoV5ProviderServerFactory.
++// The Pulumi bridge lives in a separate module and cannot import the internal
++// fwprovider package directly, so it relies on this exported constructor to mux
++// Plugin-Framework-only resources into the bridged provider.
++func NewFrameworkProvider(primary interface{ Meta() interface{} }) provider.Provider {
++	return fwprovider.New(primary)
++}

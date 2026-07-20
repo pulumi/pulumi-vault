@@ -16,6 +16,7 @@ package provider
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -28,6 +29,7 @@ import (
 	"github.com/hashicorp/terraform-provider-vault/schema"
 	"github.com/hashicorp/terraform-provider-vault/vault"
 
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
@@ -149,8 +151,18 @@ var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
+	ctx := context.Background()
+
+	// The upstream provider muxes an SDKv2 provider with a Plugin Framework
+	// provider. Both must share the same primary so the Framework provider can
+	// read the configured client from primary.Meta().
+	primary := schema.NewProvider(vault.Provider())
+
 	prov := tfbridge.ProviderInfo{
-		P:                shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider()),
+		P: pfbridge.MuxShimWithPF(ctx,
+			shimv2.NewProvider(primary.SchemaProvider()),
+			vault.NewFrameworkProvider(primary),
+		),
 		Name:             "vault",
 		DisplayName:      "HashiCorp Vault",
 		Description:      "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
