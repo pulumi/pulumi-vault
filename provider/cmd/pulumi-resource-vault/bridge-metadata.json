@@ -1425,16 +1425,44 @@
                 "majorVersion": 7,
                 "fields": {
                     "aws": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "usages": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "azure": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "usages": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "gcp": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "usages": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "pkcs": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "usages": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -2079,10 +2107,6 @@
                 "current": "vault:index/raftAutopilot:RaftAutopilot",
                 "majorVersion": 7
             },
-            "vault_raft_snapshot_agent_config": {
-                "current": "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig",
-                "majorVersion": 7
-            },
             "vault_rgp_policy": {
                 "current": "vault:index/rgpPolicy:RgpPolicy",
                 "majorVersion": 7
@@ -2353,6 +2377,9 @@
                 "majorVersion": 7,
                 "fields": {
                     "allowed_roles": {
+                        "maxItemsOne": false
+                    },
+                    "stores": {
                         "maxItemsOne": false
                     },
                     "templates": {

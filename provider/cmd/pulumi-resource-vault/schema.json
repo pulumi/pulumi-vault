@@ -5159,6 +5159,13 @@
                     "type": "string",
                     "description": "The AWS secret key to use\n"
                 },
+                "usages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.\n"
+                },
                 "uuid": {
                     "type": "string",
                     "description": "ID of the managed key read from Vault\n"
@@ -5187,6 +5194,7 @@
                         "name",
                         "region",
                         "secretKey",
+                        "usages",
                         "uuid"
                     ]
                 }
@@ -5246,6 +5254,13 @@
                     "type": "string",
                     "description": "The tenant id for the Azure Active Directory organization\n"
                 },
+                "usages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.\n"
+                },
                 "uuid": {
                     "type": "string",
                     "description": "ID of the managed key read from Vault\n"
@@ -5280,6 +5295,7 @@
                         "name",
                         "resource",
                         "tenantId",
+                        "usages",
                         "uuid",
                         "vaultName"
                     ]
@@ -5336,6 +5352,13 @@
                     "type": "string",
                     "description": "The GCP region where the key ring was created.\n"
                 },
+                "usages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.\n"
+                },
                 "uuid": {
                     "type": "string",
                     "description": "ID of the managed key read from Vault\n"
@@ -5366,6 +5389,7 @@
                         "name",
                         "project",
                         "region",
+                        "usages",
                         "uuid"
                     ]
                 }
@@ -5413,6 +5437,10 @@
                     "type": "string",
                     "description": "The name of the\u003cspan pulumi-lang-nodejs=\" kmsLibrary \" pulumi-lang-dotnet=\" KmsLibrary \" pulumi-lang-go=\" kmsLibrary \" pulumi-lang-python=\" kms_library \" pulumi-lang-yaml=\" kmsLibrary \" pulumi-lang-java=\" kmsLibrary \" pulumi-lang-hcl=\" kms_library \"\u003e kmsLibrary \u003c/span\u003estanza to use from Vault's config to lookup the local library path\n"
                 },
+                "maxParallel": {
+                    "type": "integer",
+                    "description": "The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1\n"
+                },
                 "mechanism": {
                     "type": "string",
                     "description": "The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.\n"
@@ -5432,6 +5460,13 @@
                 "tokenLabel": {
                     "type": "string",
                     "description": "The slot token label to use\n"
+                },
+                "usages": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.\n"
                 },
                 "uuid": {
                     "type": "string",
@@ -5453,9 +5488,11 @@
                         "allowStoreKey",
                         "anyMount",
                         "library",
+                        "maxParallel",
                         "mechanism",
                         "name",
                         "pin",
+                        "usages",
                         "uuid"
                     ]
                 }
@@ -20856,7 +20893,7 @@
             }
         },
         "vault:index/namespace:Namespace": {
-            "description": "Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).\n\n**Note** this feature is available only with Vault Enterprise.\n\n## Example Usage\n\n### Single namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst ns1 = new vault.Namespace(\"ns1\", {path: \"ns1\"});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nns1 = vault.Namespace(\"ns1\", path=\"ns1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ns1 = new Vault.Namespace(\"ns1\", new()\n    {\n        Path = \"ns1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewNamespace(ctx, \"ns1\", \u0026vault.NamespaceArgs{\n\t\t\tPath: pulumi.String(\"ns1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_namespace\" \"ns1\" {\n  path = \"ns1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Namespace;\nimport com.pulumi.vault.NamespaceArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ns1 = new Namespace(\"ns1\", NamespaceArgs.builder()\n            .path(\"ns1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ns1:\n    type: vault:Namespace\n    properties:\n      path: ns1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst childNamespaces = config.getObject\u003cArray\u003cstring\u003e\u003e(\"childNamespaces\") || [\n    \"child_0\",\n    \"child_1\",\n    \"child_2\",\n];\nconst parent = new vault.Namespace(\"parent\", {path: \"parent\"});\nconst children: vault.Namespace[] = [];\nfor (const range of childNamespaces.map((v, k) =\u003e ({key: k, value: v}))) {\n    children.push(new vault.Namespace(`children-${range.key}`, {\n        namespace: parent.path,\n        path: String(range.key),\n    }));\n}\nconst childrenMount: vault.Mount[] = [];\nchildren.apply(rangeBody =\u003e {\n    for (const range of rangeBody.map((v, k) =\u003e ({key: k, value: v}))) {\n        childrenMount.push(new vault.Mount(`children-${range.key}`, {\n            namespace: range.value.pathFq,\n            path: \"secrets\",\n            type: \"kv\",\n            options: {\n                version: \"1\",\n            },\n        }));\n    }\n});\nconst childrenSecret: vault.generic.Secret[] = [];\nchildrenMount.apply(rangeBody =\u003e {\n    for (const range of rangeBody.map((v, k) =\u003e ({key: k, value: v}))) {\n        childrenSecret.push(new vault.generic.Secret(`children-${range.key}`, {\n            namespace: range.value.namespace,\n            path: `${range.value.path}/secret`,\n            dataJson: JSON.stringify({\n                ns: range.key,\n            }),\n        }));\n    }\n});\n```\n```python\nimport pulumi\nfrom typing import Any\nimport json\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\nchild_namespaces = config.get_object(\"childNamespaces\")\nif child_namespaces is None:\n    child_namespaces = [\n        \"child_0\",\n        \"child_1\",\n        \"child_2\",\n    ]\nparent = vault.Namespace(\"parent\", path=\"parent\")\nchildren: list[Any] = []\nfor range in [{\"key\": k, \"value\": v} for [k, v] in enumerate(child_namespaces)]:\n    children.append(vault.Namespace(f\"children-{range['key']}\",\n        namespace=parent.path,\n        path=str(range[\"key\"])))\nchildren_mount: list[Any] = []\ndef create_children(range_body):\n    for range in [{\"key\": k, \"value\": v} for [k, v] in enumerate(range_body)]:\n        children_mount.append(vault.Mount(f\"children-{range['key']}\",\n            namespace=range[\"value\"].path_fq,\n            path=\"secrets\",\n            type=\"kv\",\n            options={\n                \"version\": \"1\",\n            }))\n\nchildren.apply(create_children)\nchildren_secret: list[Any] = []\ndef create_children(range_body):\n    for range in [{\"key\": k, \"value\": v} for [k, v] in enumerate(range_body)]:\n        children_secret.append(vault.generic.Secret(f\"children-{range['key']}\",\n            namespace=range[\"value\"].namespace,\n            path=f\"{range['value'].path}/secret\",\n            data_json=json.dumps({\n                \"ns\": range[\"key\"],\n            })))\n\nchildren_mount.apply(create_children)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var childNamespaces = config.GetObject\u003cstring[]\u003e(\"childNamespaces\") ?? new[]\n    {\n        \"child_0\",\n        \"child_1\",\n        \"child_2\",\n    };\n    var parent = new Vault.Namespace(\"parent\", new()\n    {\n        Path = \"parent\",\n    });\n\n    var children = new List\u003cVault.Namespace\u003e();\n    foreach (var range in childNamespaces.Select((v, k) =\u003e new { Key = k, Value = v }))\n    {\n        children.Add(new Vault.Namespace($\"children-{range.Key}\", new()\n        {\n            TargetNamespace = parent.Path,\n            Path = range.Key,\n        }));\n    }\n    var childrenMount = new List\u003cVault.Mount\u003e();\n    children.Apply(rangeBody =\u003e\n    {\n        foreach (var range in rangeBody.Select((v, k) =\u003e new { Key = k, Value = v }))\n        {\n            childrenMount.Add(new Vault.Mount($\"children-{range.Key}\", new()\n            {\n                Namespace = range.Value.PathFq,\n                Path = \"secrets\",\n                Type = \"kv\",\n                Options = \n                {\n                    { \"version\", \"1\" },\n                },\n            }));\n        }\n        return 0;\n    });\n    var childrenSecret = new List\u003cVault.Generic.Secret\u003e();\n    childrenMount.Apply(rangeBody =\u003e\n    {\n        foreach (var range in rangeBody.Select((v, k) =\u003e new { Key = k, Value = v }))\n        {\n            childrenSecret.Add(new Vault.Generic.Secret($\"children-{range.Key}\", new()\n            {\n                Namespace = range.Value.Namespace,\n                Path = $\"{range.Value.Path}/secret\",\n                DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"ns\"] = range.Key,\n                }),\n            }));\n        }\n        return 0;\n    });\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/generic\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tchildNamespaces := []string{\n\t\t\t\"child_0\",\n\t\t\t\"child_1\",\n\t\t\t\"child_2\",\n\t\t}\n\t\tif param := cfg.GetObject(\"childNamespaces\"); param != nil {\n\t\t\tchildNamespaces = param\n\t\t}\n\t\tparent, err := vault.NewNamespace(ctx, \"parent\", \u0026vault.NamespaceArgs{\n\t\t\tPath: pulumi.String(\"parent\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar children []*vault.Namespace\n\t\tfor key0, _ := range childNamespaces {\n\t\t\t__res, err := vault.NewNamespace(ctx, fmt.Sprintf(\"children-%v\", key0), \u0026vault.NamespaceArgs{\n\t\t\t\tNamespace: parent.Path,\n\t\t\t\tPath:      pulumi.Int(key0),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tchildren = append(children, __res)\n\t\t}\n\t\tvar childrenMount []*vault.Mount\n\t\tfor key0, val0 := range children {\n\t\t\t__res, err := vault.NewMount(ctx, fmt.Sprintf(\"children-%v\", key0), \u0026vault.MountArgs{\n\t\t\t\tNamespace: pulumi.String(val0),\n\t\t\t\tPath:      pulumi.String(\"secrets\"),\n\t\t\t\tType:      pulumi.String(\"kv\"),\n\t\t\t\tOptions: pulumi.StringMap{\n\t\t\t\t\t\"version\": pulumi.String(\"1\"),\n\t\t\t\t},\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tchildrenMount = append(childrenMount, __res)\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"ns\": key0,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\tvar childrenSecret []*generic.Secret\n\t\tfor key0, val0 := range childrenMount {\n\t\t\t__res, err := generic.NewSecret(ctx, fmt.Sprintf(\"children-%v\", key0), \u0026generic.SecretArgs{\n\t\t\t\tNamespace: pulumi.String(val0),\n\t\t\t\tPath:      pulumi.Sprintf(\"%v/secret\", val0),\n\t\t\t\tDataJson:  pulumi.String(json0),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tchildrenSecret = append(childrenSecret, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_namespace\" \"parent\" {\n  path = \"parent\"\n}\nresource \"vault_namespace\" \"children\" {\n  for_each  = {  for  __key,  __value  in  var.childNamespaces  :  tostring(__key)  =\u003e  __value  }\n  namespace = vault_namespace.parent.path\n  path      = each.key\n}\nresource \"vault_mount\" \"children\" {\n  for_each  = {  for  __key,  __value  in  vault_namespace.children  :  tostring(__key)  =\u003e  __value  }\n  namespace = each.value.pathFq\n  path      = \"secrets\"\n  type      = \"kv\"\n  options = {\n    \"version\" = \"1\"\n  }\n}\nresource \"vault_generic_secret\" \"children\" {\n  for_each  = {  for  __key,  __value  in  vault_mount.children  :  tostring(__key)  =\u003e  __value  }\n  namespace = each.value.namespace\n  path      =\"${each.value.path}/secret\"\n  data_json = jsonencode({\n    \"ns\" = each.key\n  })\n}\nvariable \"childNamespaces\" {\n  type    = list(string)\n  default = [\"child_0\", \"child_1\", \"child_2\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Namespace;\nimport com.pulumi.vault.NamespaceArgs;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.generic.Secret;\nimport com.pulumi.vault.generic.SecretArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport com.pulumi.codegen.internal.KeyedValue;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var childNamespaces = config.get(\"childNamespaces\").orElse(Arrays.asList(        \n            \"child_0\",\n            \"child_1\",\n            \"child_2\"));\n        var parent = new Namespace(\"parent\", NamespaceArgs.builder()\n            .path(\"parent\")\n            .build());\n\n        for (var range : KeyedValue.of(childNamespaces)) {\n            new Namespace(\"children-\" + range.key(), NamespaceArgs.builder()\n                .namespace(parent.path())\n                .path(range.key())\n                .build());\n        }\n\n        for (var range : KeyedValue.of(children)) {\n            new Mount(\"childrenMount-\" + range.key(), MountArgs.builder()\n                .namespace(range.value().pathFq())\n                .path(\"secrets\")\n                .type(\"kv\")\n                .options(Map.of(\"version\", \"1\"))\n                .build());\n        }\n\n        for (var range : KeyedValue.of(childrenMount)) {\n            new Secret(\"childrenSecret-\" + range.key(), SecretArgs.builder()\n                .namespace(range.value().namespace())\n                .path(String.format(\"%s/secret\", range.value().path()))\n                .dataJson(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"ns\", range.key())\n                    )))\n                .build());\n        }\n\n    }\n}\n```\n```yaml\nconfiguration:\n  childNamespaces:\n    type: list\u003cstring\u003e\n    default:\n      - child_0\n      - child_1\n      - child_2\nresources:\n  parent:\n    type: vault:Namespace\n    properties:\n      path: parent\n  children:\n    type: vault:Namespace\n    properties:\n      namespace: ${parent.path}\n      path: ${range.key}\n    options: {}\n  childrenMount:\n    type: vault:Mount\n    name: children\n    properties:\n      namespace: ${range.value.pathFq}\n      path: secrets\n      type: kv\n      options:\n        version: '1'\n    options: {}\n  childrenSecret:\n    type: vault:generic:Secret\n    name: children\n    properties:\n      namespace: ${range.value.namespace}\n      path: ${range.value.path}/secret\n      dataJson:\n        fn::toJSON:\n          ns: ${range.key}\n    options: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Tutorials\n\nRefer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.\n\n## Import\n\nNamespaces can be imported using its \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\" pulumi-lang-hcl=\"`name`\"\u003e`name`\u003c/span\u003e as accessor id\n\n```sh\n$ pulumi import vault:index/namespace:Namespace example \u003cname\u003e\n```\n\nIf the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example2 = new vault.Namespace(\"example2\", {path: \"example2\"});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample2 = vault.Namespace(\"example2\", path=\"example2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example2 = new Vault.Namespace(\"example2\", new()\n    {\n        Path = \"example2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewNamespace(ctx, \"example2\", \u0026vault.NamespaceArgs{\n\t\t\tPath: pulumi.String(\"example2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_namespace\" \"example2\" {\n  path = \"example2\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Namespace;\nimport com.pulumi.vault.NamespaceArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example2 = new Namespace(\"example2\", NamespaceArgs.builder()\n            .path(\"example2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example2:\n    type: vault:Namespace\n    properties:\n      path: example2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n```sh\n$ pulumi import vault:index/namespace:Namespace example2 example2\n\n$ terraform state show vault_namespace.example2\n```\n\nvault_namespace.example2:\nresource \u003cspan pulumi-lang-nodejs=\"\"vault.Namespace\"\" pulumi-lang-dotnet=\"\"vault.Namespace\"\" pulumi-lang-go=\"\"Namespace\"\" pulumi-lang-python=\"\"Namespace\"\" pulumi-lang-yaml=\"\"vault.Namespace\"\" pulumi-lang-java=\"\"vault.Namespace\"\" pulumi-lang-hcl=\"\"vault_namespace\"\"\u003e\"vault.Namespace\"\u003c/span\u003e \"example2\" {\nid           = \"example/example2/\"\u003cspan pulumi-lang-nodejs=\"\nnamespaceId \" pulumi-lang-dotnet=\"\nNamespaceId \" pulumi-lang-go=\"\nnamespaceId \" pulumi-lang-python=\"\nnamespace_id \" pulumi-lang-yaml=\"\nnamespaceId \" pulumi-lang-java=\"\nnamespaceId \" pulumi-lang-hcl=\"\nnamespace_id \"\u003e\nnamespaceId \u003c/span\u003e= \u003cknown after import\u003e\npath         = \"example2\"\u003cspan pulumi-lang-nodejs=\"\npathFq \" pulumi-lang-dotnet=\"\nPathFq \" pulumi-lang-go=\"\npathFq \" pulumi-lang-python=\"\npath_fq \" pulumi-lang-yaml=\"\npathFq \" pulumi-lang-java=\"\npathFq \" pulumi-lang-hcl=\"\npath_fq \"\u003e\npathFq \u003c/span\u003e     = \"example2\"\n}\n\n",
+            "description": "Provides a resource to manage [Namespaces](https://www.vaultproject.io/docs/enterprise/namespaces/index.html).\n\n**Note** this feature is available only with Vault Enterprise.\n\n## Example Usage\n\n### Single namespace\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst ns1 = new vault.Namespace(\"ns1\", {path: \"ns1\"});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nns1 = vault.Namespace(\"ns1\", path=\"ns1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ns1 = new Vault.Namespace(\"ns1\", new()\n    {\n        Path = \"ns1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewNamespace(ctx, \"ns1\", \u0026vault.NamespaceArgs{\n\t\t\tPath: pulumi.String(\"ns1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_namespace\" \"ns1\" {\n  path = \"ns1\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Namespace;\nimport com.pulumi.vault.NamespaceArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ns1 = new Namespace(\"ns1\", NamespaceArgs.builder()\n            .path(\"ns1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ns1:\n    type: vault:Namespace\n    properties:\n      path: ns1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Nested namespaces\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst childNamespaces = config.getObject\u003cArray\u003cstring\u003e\u003e(\"childNamespaces\") || [\n    \"child_0\",\n    \"child_1\",\n    \"child_2\",\n];\nconst parent = new vault.Namespace(\"parent\", {path: \"parent\"});\nconst children: vault.Namespace[] = [];\nfor (const range of childNamespaces.map((v, k) =\u003e ({key: k, value: v}))) {\n    children.push(new vault.Namespace(`children-${range.key}`, {\n        namespace: parent.path,\n        path: String(range.key),\n    }));\n}\nconst childrenMount: vault.Mount[] = [];\nchildren.apply(rangeBody =\u003e {\n    for (const range of rangeBody.map((v, k) =\u003e ({key: k, value: v}))) {\n        childrenMount.push(new vault.Mount(`children-${range.key}`, {\n            namespace: range.value.pathFq,\n            path: \"secrets\",\n            type: \"kv\",\n            options: {\n                version: \"1\",\n            },\n        }));\n    }\n});\nconst childrenSecret: vault.generic.Secret[] = [];\nchildrenMount.apply(rangeBody =\u003e {\n    for (const range of rangeBody.map((v, k) =\u003e ({key: k, value: v}))) {\n        childrenSecret.push(new vault.generic.Secret(`children-${range.key}`, {\n            namespace: range.value.namespace,\n            path: `${range.value.path}/secret`,\n            dataJson: JSON.stringify({\n                ns: range.key,\n            }),\n        }));\n    }\n});\n```\n```python\nimport pulumi\nfrom typing import Any\nimport json\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\nchild_namespaces = config.get_object(\"childNamespaces\")\nif child_namespaces is None:\n    child_namespaces = [\n        \"child_0\",\n        \"child_1\",\n        \"child_2\",\n    ]\nparent = vault.Namespace(\"parent\", path=\"parent\")\nchildren: list[vault.Namespace] = []\nfor children_range in [{\"key\": k, \"value\": v} for [k, v] in enumerate(child_namespaces)]:\n    children.append(vault.Namespace(f\"children-{children_range['key']}\",\n        namespace=parent.path,\n        path=str(children_range[\"key\"])))\nchildren_mount: list[vault.Mount] = []\ndef create_children(range_body):\n    for children_mount_range in [{\"key\": k, \"value\": v} for [k, v] in enumerate(range_body)]:\n        children_mount.append(vault.Mount(f\"children-{children_mount_range['key']}\",\n            namespace=children_mount_range[\"value\"].path_fq,\n            path=\"secrets\",\n            type=\"kv\",\n            options={\n                \"version\": \"1\",\n            }))\n\nchildren.apply(create_children)\nchildren_secret: list[vault.generic.Secret] = []\ndef create_children(range_body):\n    for children_secret_range in [{\"key\": k, \"value\": v} for [k, v] in enumerate(range_body)]:\n        children_secret.append(vault.generic.Secret(f\"children-{children_secret_range['key']}\",\n            namespace=children_secret_range[\"value\"].namespace,\n            path=f\"{children_secret_range['value'].path}/secret\",\n            data_json=json.dumps({\n                \"ns\": children_secret_range[\"key\"],\n            })))\n\nchildren_mount.apply(create_children)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.Json;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var childNamespaces = config.GetObject\u003cstring[]\u003e(\"childNamespaces\") ?? new[]\n    {\n        \"child_0\",\n        \"child_1\",\n        \"child_2\",\n    };\n    var parent = new Vault.Namespace(\"parent\", new()\n    {\n        Path = \"parent\",\n    });\n\n    var children = new List\u003cVault.Namespace\u003e();\n    foreach (var range in childNamespaces.Select((v, k) =\u003e new { Key = k, Value = v }))\n    {\n        children.Add(new Vault.Namespace($\"children-{range.Key}\", new()\n        {\n            TargetNamespace = parent.Path,\n            Path = range.Key,\n        }));\n    }\n    var childrenMount = new List\u003cVault.Mount\u003e();\n    children.Apply(rangeBody =\u003e\n    {\n        foreach (var range in rangeBody.Select((v, k) =\u003e new { Key = k, Value = v }))\n        {\n            childrenMount.Add(new Vault.Mount($\"children-{range.Key}\", new()\n            {\n                Namespace = range.Value.PathFq,\n                Path = \"secrets\",\n                Type = \"kv\",\n                Options = \n                {\n                    { \"version\", \"1\" },\n                },\n            }));\n        }\n        return 0;\n    });\n    var childrenSecret = new List\u003cVault.Generic.Secret\u003e();\n    childrenMount.Apply(rangeBody =\u003e\n    {\n        foreach (var range in rangeBody.Select((v, k) =\u003e new { Key = k, Value = v }))\n        {\n            childrenSecret.Add(new Vault.Generic.Secret($\"children-{range.Key}\", new()\n            {\n                Namespace = range.Value.Namespace,\n                Path = $\"{range.Value.Path}/secret\",\n                DataJson = JsonSerializer.Serialize(new Dictionary\u003cstring, object?\u003e\n                {\n                    [\"ns\"] = range.Key,\n                }),\n            }));\n        }\n        return 0;\n    });\n});\n```\n```go\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/generic\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tchildNamespaces := []string{\n\t\t\t\"child_0\",\n\t\t\t\"child_1\",\n\t\t\t\"child_2\",\n\t\t}\n\t\tif param := cfg.GetObject(\"childNamespaces\"); param != nil {\n\t\t\tchildNamespaces = param\n\t\t}\n\t\tparent, err := vault.NewNamespace(ctx, \"parent\", \u0026vault.NamespaceArgs{\n\t\t\tPath: pulumi.String(\"parent\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tvar children []*vault.Namespace\n\t\tfor key0, _ := range childNamespaces {\n\t\t\t__res, err := vault.NewNamespace(ctx, fmt.Sprintf(\"children-%v\", key0), \u0026vault.NamespaceArgs{\n\t\t\t\tNamespace: parent.Path,\n\t\t\t\tPath:      pulumi.Int(key0),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tchildren = append(children, __res)\n\t\t}\n\t\tvar childrenMount []*vault.Mount\n\t\tfor key0, val0 := range children {\n\t\t\t__res, err := vault.NewMount(ctx, fmt.Sprintf(\"children-%v\", key0), \u0026vault.MountArgs{\n\t\t\t\tNamespace: pulumi.String(val0),\n\t\t\t\tPath:      pulumi.String(\"secrets\"),\n\t\t\t\tType:      pulumi.String(\"kv\"),\n\t\t\t\tOptions: pulumi.StringMap{\n\t\t\t\t\t\"version\": pulumi.String(\"1\"),\n\t\t\t\t},\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tchildrenMount = append(childrenMount, __res)\n\t\t}\n\t\ttmpJSON0, err := json.Marshal(map[string]interface{}{\n\t\t\t\"ns\": key0,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tjson0 := string(tmpJSON0)\n\t\tvar childrenSecret []*generic.Secret\n\t\tfor key0, val0 := range childrenMount {\n\t\t\t__res, err := generic.NewSecret(ctx, fmt.Sprintf(\"children-%v\", key0), \u0026generic.SecretArgs{\n\t\t\t\tNamespace: pulumi.String(val0),\n\t\t\t\tPath:      pulumi.Sprintf(\"%v/secret\", val0),\n\t\t\t\tDataJson:  pulumi.String(json0),\n\t\t\t})\n\t\t\tif err != nil {\n\t\t\t\treturn err\n\t\t\t}\n\t\t\tchildrenSecret = append(childrenSecret, __res)\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_namespace\" \"parent\" {\n  path = \"parent\"\n}\nresource \"vault_namespace\" \"children\" {\n  for_each  = {  for  __key,  __value  in  var.childNamespaces  :  tostring(__key)  =\u003e  __value  }\n  namespace = vault_namespace.parent.path\n  path      = each.key\n}\nresource \"vault_mount\" \"children\" {\n  for_each  = {  for  __key,  __value  in  vault_namespace.children  :  tostring(__key)  =\u003e  __value  }\n  namespace = each.value.pathFq\n  path      = \"secrets\"\n  type      = \"kv\"\n  options = {\n    \"version\" = \"1\"\n  }\n}\nresource \"vault_generic_secret\" \"children\" {\n  for_each  = {  for  __key,  __value  in  vault_mount.children  :  tostring(__key)  =\u003e  __value  }\n  namespace = each.value.namespace\n  path      =\"${each.value.path}/secret\"\n  data_json = jsonencode({\n    \"ns\" = each.key\n  })\n}\nvariable \"childNamespaces\" {\n  type    = list(string)\n  default = [\"child_0\", \"child_1\", \"child_2\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Namespace;\nimport com.pulumi.vault.NamespaceArgs;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.generic.Secret;\nimport com.pulumi.vault.generic.SecretArgs;\nimport static com.pulumi.codegen.internal.Serialization.*;\nimport com.pulumi.codegen.internal.KeyedValue;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var childNamespaces = config.get(\"childNamespaces\").orElse(Arrays.asList(        \n            \"child_0\",\n            \"child_1\",\n            \"child_2\"));\n        var parent = new Namespace(\"parent\", NamespaceArgs.builder()\n            .path(\"parent\")\n            .build());\n\n        for (var range : KeyedValue.of(childNamespaces)) {\n            new Namespace(\"children-\" + range.key(), NamespaceArgs.builder()\n                .namespace(parent.path())\n                .path(range.key())\n                .build());\n        }\n\n        for (var range : KeyedValue.of(children)) {\n            new Mount(\"childrenMount-\" + range.key(), MountArgs.builder()\n                .namespace(range.value().pathFq())\n                .path(\"secrets\")\n                .type(\"kv\")\n                .options(Map.of(\"version\", \"1\"))\n                .build());\n        }\n\n        for (var range : KeyedValue.of(childrenMount)) {\n            new Secret(\"childrenSecret-\" + range.key(), SecretArgs.builder()\n                .namespace(range.value().namespace())\n                .path(String.format(\"%s/secret\", range.value().path()))\n                .dataJson(serializeJson(\n                    jsonObject(\n                        jsonProperty(\"ns\", range.key())\n                    )))\n                .build());\n        }\n\n    }\n}\n```\n```yaml\nconfiguration:\n  childNamespaces:\n    type: list\u003cstring\u003e\n    default:\n      - child_0\n      - child_1\n      - child_2\nresources:\n  parent:\n    type: vault:Namespace\n    properties:\n      path: parent\n  children:\n    type: vault:Namespace\n    properties:\n      namespace: ${parent.path}\n      path: ${range.key}\n    options: {}\n  childrenMount:\n    type: vault:Mount\n    name: children\n    properties:\n      namespace: ${range.value.pathFq}\n      path: secrets\n      type: kv\n      options:\n        version: '1'\n    options: {}\n  childrenSecret:\n    type: vault:generic:Secret\n    name: children\n    properties:\n      namespace: ${range.value.namespace}\n      path: ${range.value.path}/secret\n      dataJson:\n        fn::toJSON:\n          ns: ${range.key}\n    options: {}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Tutorials\n\nRefer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples using Vault namespaces.\n\n## Import\n\nNamespaces can be imported using its \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\" pulumi-lang-hcl=\"`name`\"\u003e`name`\u003c/span\u003e as accessor id\n\n```sh\n$ pulumi import vault:index/namespace:Namespace example \u003cname\u003e\n```\n\nIf the declared resource is imported and intends to support namespaces using a provider alias, then the name is relative to the namespace path.\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example2 = new vault.Namespace(\"example2\", {path: \"example2\"});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample2 = vault.Namespace(\"example2\", path=\"example2\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example2 = new Vault.Namespace(\"example2\", new()\n    {\n        Path = \"example2\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewNamespace(ctx, \"example2\", \u0026vault.NamespaceArgs{\n\t\t\tPath: pulumi.String(\"example2\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_namespace\" \"example2\" {\n  path = \"example2\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Namespace;\nimport com.pulumi.vault.NamespaceArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example2 = new Namespace(\"example2\", NamespaceArgs.builder()\n            .path(\"example2\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example2:\n    type: vault:Namespace\n    properties:\n      path: example2\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n```sh\n$ pulumi import vault:index/namespace:Namespace example2 example2\n\n$ terraform state show vault_namespace.example2\n```\n\nvault_namespace.example2:\nresource \u003cspan pulumi-lang-nodejs=\"\"vault.Namespace\"\" pulumi-lang-dotnet=\"\"vault.Namespace\"\" pulumi-lang-go=\"\"Namespace\"\" pulumi-lang-python=\"\"Namespace\"\" pulumi-lang-yaml=\"\"vault.Namespace\"\" pulumi-lang-java=\"\"vault.Namespace\"\" pulumi-lang-hcl=\"\"vault_namespace\"\"\u003e\"vault.Namespace\"\u003c/span\u003e \"example2\" {\nid           = \"example/example2/\"\u003cspan pulumi-lang-nodejs=\"\nnamespaceId \" pulumi-lang-dotnet=\"\nNamespaceId \" pulumi-lang-go=\"\nnamespaceId \" pulumi-lang-python=\"\nnamespace_id \" pulumi-lang-yaml=\"\nnamespaceId \" pulumi-lang-java=\"\nnamespaceId \" pulumi-lang-hcl=\"\nnamespace_id \"\u003e\nnamespaceId \u003c/span\u003e= \u003cknown after import\u003e\npath         = \"example2\"\u003cspan pulumi-lang-nodejs=\"\npathFq \" pulumi-lang-dotnet=\"\nPathFq \" pulumi-lang-go=\"\npathFq \" pulumi-lang-python=\"\npath_fq \" pulumi-lang-yaml=\"\npathFq \" pulumi-lang-java=\"\npathFq \" pulumi-lang-hcl=\"\npath_fq \"\u003e\npathFq \u003c/span\u003e     = \"example2\"\n}\n\n",
             "properties": {
                 "customMetadata": {
                     "type": "object",
@@ -22171,8 +22208,13 @@
             }
         },
         "vault:index/policy:Policy": {
-            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Policy(\"example\", {\n    name: \"dev-team\",\n    policy: `path \\\\\"secret/my_app\\\\\" {\n  capabilities = [\\\\\"update\\\\\"]\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Policy(\"example\",\n    name=\"dev-team\",\n    policy=\"\"\"path \\\"secret/my_app\\\" {\n  capabilities = [\\\"update\\\"]\n}\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Policy(\"example\", new()\n    {\n        Name = \"dev-team\",\n        PolicyContents = @\"path \\\"\"secret/my_app\\\"\" {\n  capabilities = [\\\"\"update\\\"\"]\n}\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewPolicy(ctx, \"example\", \u0026vault.PolicyArgs{\n\t\t\tName:   pulumi.String(\"dev-team\"),\n\t\t\tPolicy: pulumi.String(\"path \\\\\\\"secret/my_app\\\\\\\" {\\n  capabilities = [\\\\\\\"update\\\\\\\"]\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_policy\" \"example\" {\n  name   = \"dev-team\"\n  policy = \"path \\\\\\\"secret/my_app\\\\\\\" {\\n  capabilities = [\\\\\\\"update\\\\\\\"]\\n}\\n\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Policy;\nimport com.pulumi.vault.PolicyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Policy(\"example\", PolicyArgs.builder()\n            .name(\"dev-team\")\n            .policy(\"\"\"\npath \\\"secret/my_app\\\" {\n  capabilities = [\\\"update\\\"]\n}\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:Policy\n    properties:\n      name: dev-team\n      policy: |\n        path \\\"secret/my_app\\\" {\n          capabilities = [\\\"update\\\"]\n        }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Tutorials \n\nRefer to the following tutorials for additional usage examples:\n\n- [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)\n\n- [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)\n\n## Import\n\nPolicies can be imported using the \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\" pulumi-lang-hcl=\"`name`\"\u003e`name`\u003c/span\u003e, e.g.\n\n```sh\n$ pulumi import vault:index/policy:Policy example dev-team\n```\n\n",
+            "description": "## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Policy(\"example\", {\n    name: \"dev-team\",\n    allowOverwrite: false,\n    policy: `path \\\\\"secret/my_app\\\\\" {\n  capabilities = [\\\\\"update\\\\\"]\n}\n`,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Policy(\"example\",\n    name=\"dev-team\",\n    allow_overwrite=False,\n    policy=\"\"\"path \\\"secret/my_app\\\" {\n  capabilities = [\\\"update\\\"]\n}\n\"\"\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Policy(\"example\", new()\n    {\n        Name = \"dev-team\",\n        AllowOverwrite = false,\n        PolicyContents = @\"path \\\"\"secret/my_app\\\"\" {\n  capabilities = [\\\"\"update\\\"\"]\n}\n\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewPolicy(ctx, \"example\", \u0026vault.PolicyArgs{\n\t\t\tName:           pulumi.String(\"dev-team\"),\n\t\t\tAllowOverwrite: pulumi.Bool(false),\n\t\t\tPolicy:         pulumi.String(\"path \\\\\\\"secret/my_app\\\\\\\" {\\n  capabilities = [\\\\\\\"update\\\\\\\"]\\n}\\n\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_policy\" \"example\" {\n  name            = \"dev-team\"\n  allow_overwrite = false\n  policy          = \"path \\\\\\\"secret/my_app\\\\\\\" {\\n  capabilities = [\\\\\\\"update\\\\\\\"]\\n}\\n\"\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Policy;\nimport com.pulumi.vault.PolicyArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Policy(\"example\", PolicyArgs.builder()\n            .name(\"dev-team\")\n            .allowOverwrite(false)\n            .policy(\"\"\"\npath \\\"secret/my_app\\\" {\n  capabilities = [\\\"update\\\"]\n}\n            \"\"\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:Policy\n    properties:\n      name: dev-team\n      allowOverwrite: false\n      policy: |\n        path \\\"secret/my_app\\\" {\n          capabilities = [\\\"update\\\"]\n        }\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Tutorials \n\nRefer to the following tutorials for additional usage examples:\n\n- [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise)\n\n- [Codify Management of Vault Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-oss)\n\n## Import\n\nPolicies can be imported using the \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\" pulumi-lang-hcl=\"`name`\"\u003e`name`\u003c/span\u003e, e.g.\n\n```sh\n$ pulumi import vault:index/policy:Policy example dev-team\n```\n\n",
             "properties": {
+                "allowOverwrite": {
+                    "type": "boolean",
+                    "description": "Allow overwriting policies with the same name. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e. This will be removed in the next major release and the default behavior will be not overwrite policies.\n",
+                    "deprecationMessage": "Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies."
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the policy\n"
@@ -22192,10 +22234,16 @@
                 }
             },
             "required": [
+                "allowOverwrite",
                 "name",
                 "policy"
             ],
             "inputProperties": {
+                "allowOverwrite": {
+                    "type": "boolean",
+                    "description": "Allow overwriting policies with the same name. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e. This will be removed in the next major release and the default behavior will be not overwrite policies.\n",
+                    "deprecationMessage": "Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies."
+                },
                 "name": {
                     "type": "string",
                     "description": "The name of the policy\n",
@@ -22222,6 +22270,11 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Policy resources.\n",
                 "properties": {
+                    "allowOverwrite": {
+                        "type": "boolean",
+                        "description": "Allow overwriting policies with the same name. Defaults to \u003cspan pulumi-lang-nodejs=\"`true`\" pulumi-lang-dotnet=\"`True`\" pulumi-lang-go=\"`true`\" pulumi-lang-python=\"`true`\" pulumi-lang-yaml=\"`true`\" pulumi-lang-java=\"`true`\" pulumi-lang-hcl=\"`true`\"\u003e`true`\u003c/span\u003e. This will be removed in the next major release and the default behavior will be not overwrite policies.\n",
+                        "deprecationMessage": "Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies."
+                    },
                     "name": {
                         "type": "string",
                         "description": "The name of the policy\n",
@@ -22596,408 +22649,6 @@
                     "serverStabilizationTime": {
                         "type": "string",
                         "description": "Minimum amount of time a server must be \nstable in the 'healthy' state before being added to the cluster.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig": {
-            "description": "Creates a Raft Snapshot Agent Configuration for Vault. This configures Vault\nto take regular snapshots of its Raft storage backend and store them in a \nconfigurable location.\n\n**Note** this feature is available only with Vault Enterprise.\n\n\u003e **Important** All data provided in the resource configuration will be\nwritten in cleartext to state and plan files generated by Terraform, and\nwill appear in the console output when Terraform runs. Protect these\nartifacts accordingly. See\nthe main provider documentation\nfor more details.\n\n## Example Usage\n\n### Local Storage\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst localBackups = new vault.RaftSnapshotAgentConfig(\"local_backups\", {\n    name: \"local\",\n    intervalSeconds: 86400,\n    retain: 7,\n    pathPrefix: \"/opt/vault/snapshots/\",\n    storageType: \"local\",\n    localMaxSpace: 10000000,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nlocal_backups = vault.RaftSnapshotAgentConfig(\"local_backups\",\n    name=\"local\",\n    interval_seconds=86400,\n    retain=7,\n    path_prefix=\"/opt/vault/snapshots/\",\n    storage_type=\"local\",\n    local_max_space=10000000)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var localBackups = new Vault.RaftSnapshotAgentConfig(\"local_backups\", new()\n    {\n        Name = \"local\",\n        IntervalSeconds = 86400,\n        Retain = 7,\n        PathPrefix = \"/opt/vault/snapshots/\",\n        StorageType = \"local\",\n        LocalMaxSpace = 10000000,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := vault.NewRaftSnapshotAgentConfig(ctx, \"local_backups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tName:            pulumi.String(\"local\"),\n\t\t\tIntervalSeconds: pulumi.Int(86400),\n\t\t\tRetain:          pulumi.Int(7),\n\t\t\tPathPrefix:      pulumi.String(\"/opt/vault/snapshots/\"),\n\t\t\tStorageType:     pulumi.String(\"local\"),\n\t\t\tLocalMaxSpace:   pulumi.Int(10000000),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_raftsnapshotagentconfig\" \"local_backups\" {\n  name             = \"local\"\n  interval_seconds = 86400 # 24h\n  retain           = 7\n  path_prefix      = \"/opt/vault/snapshots/\"\n  storage_type     = \"local\"\n  local_max_space  = 10000000\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var localBackups = new RaftSnapshotAgentConfig(\"localBackups\", RaftSnapshotAgentConfigArgs.builder()\n            .name(\"local\")\n            .intervalSeconds(86400)\n            .retain(7)\n            .pathPrefix(\"/opt/vault/snapshots/\")\n            .storageType(\"local\")\n            .localMaxSpace(10000000)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  localBackups:\n    type: vault:RaftSnapshotAgentConfig\n    name: local_backups\n    properties:\n      name: local\n      intervalSeconds: 86400 # 24h\n      retain: 7\n      pathPrefix: /opt/vault/snapshots/\n      storageType: local\n      localMaxSpace: 1e+07\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Azure BLOB (Shared Key Authentication)\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst azureAccountName = config.requireObject\u003cany\u003e(\"azureAccountName\");\nconst azureAccountKey = config.requireObject\u003cany\u003e(\"azureAccountKey\");\nconst azureBackups = new vault.RaftSnapshotAgentConfig(\"azure_backups\", {\n    name: \"azure_backup\",\n    intervalSeconds: 86400,\n    retain: 7,\n    pathPrefix: \"/\",\n    storageType: \"azure-blob\",\n    autoloadEnabled: true,\n    azureContainerName: \"vault-blob\",\n    azureAccountName: azureAccountName,\n    azureAccountKey: azureAccountKey,\n    azureAuthMode: \"shared\",\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\nazure_account_name = config.require_object(\"azureAccountName\")\nazure_account_key = config.require_object(\"azureAccountKey\")\nazure_backups = vault.RaftSnapshotAgentConfig(\"azure_backups\",\n    name=\"azure_backup\",\n    interval_seconds=86400,\n    retain=7,\n    path_prefix=\"/\",\n    storage_type=\"azure-blob\",\n    autoload_enabled=True,\n    azure_container_name=\"vault-blob\",\n    azure_account_name=azure_account_name,\n    azure_account_key=azure_account_key,\n    azure_auth_mode=\"shared\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var azureAccountName = config.RequireObject\u003cdynamic\u003e(\"azureAccountName\");\n    var azureAccountKey = config.RequireObject\u003cdynamic\u003e(\"azureAccountKey\");\n    var azureBackups = new Vault.RaftSnapshotAgentConfig(\"azure_backups\", new()\n    {\n        Name = \"azure_backup\",\n        IntervalSeconds = 86400,\n        Retain = 7,\n        PathPrefix = \"/\",\n        StorageType = \"azure-blob\",\n        AutoloadEnabled = true,\n        AzureContainerName = \"vault-blob\",\n        AzureAccountName = azureAccountName,\n        AzureAccountKey = azureAccountKey,\n        AzureAuthMode = \"shared\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tvar azureAccountName interface{}\n\t\tcfg.RequireObject(\"azureAccountName\", \u0026azureAccountName)\n\t\tvar azureAccountKey interface{}\n\t\tcfg.RequireObject(\"azureAccountKey\", \u0026azureAccountKey)\n\t\t_, err := vault.NewRaftSnapshotAgentConfig(ctx, \"azure_backups\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tName:               pulumi.String(\"azure_backup\"),\n\t\t\tIntervalSeconds:    pulumi.Int(86400),\n\t\t\tRetain:             pulumi.Int(7),\n\t\t\tPathPrefix:         pulumi.String(\"/\"),\n\t\t\tStorageType:        pulumi.String(\"azure-blob\"),\n\t\t\tAutoloadEnabled:    pulumi.Bool(true),\n\t\t\tAzureContainerName: pulumi.String(\"vault-blob\"),\n\t\t\tAzureAccountName:   pulumi.Any(azureAccountName),\n\t\t\tAzureAccountKey:    pulumi.Any(azureAccountKey),\n\t\t\tAzureAuthMode:      pulumi.String(\"shared\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_raftsnapshotagentconfig\" \"azure_backups\" {\n  name             = \"azure_backup\"\n  interval_seconds = 86400 # 24h\n  retain           = 7\n  path_prefix      = \"/\"\n  storage_type     = \"azure-blob\"\n  autoload_enabled = true\n  # Storage Type Configuration\n  azure_container_name = \"vault-blob\"\n  azure_account_name   = var.azureAccountName\n  azure_account_key    = var.azureAccountKey\n  azure_auth_mode      = \"shared\"\n}\nvariable \"azureAccountName\" {\n}\nvariable \"azureAccountKey\" {\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var azureAccountName = config.require(\"azureAccountName\");\n        final var azureAccountKey = config.require(\"azureAccountKey\");\n        var azureBackups = new RaftSnapshotAgentConfig(\"azureBackups\", RaftSnapshotAgentConfigArgs.builder()\n            .name(\"azure_backup\")\n            .intervalSeconds(86400)\n            .retain(7)\n            .pathPrefix(\"/\")\n            .storageType(\"azure-blob\")\n            .autoloadEnabled(true)\n            .azureContainerName(\"vault-blob\")\n            .azureAccountName(azureAccountName)\n            .azureAccountKey(azureAccountKey)\n            .azureAuthMode(\"shared\")\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  azureAccountName:\n    type: object\n  azureAccountKey:\n    type: object\nresources:\n  azureBackups:\n    type: vault:RaftSnapshotAgentConfig\n    name: azure_backups\n    properties:\n      name: azure_backup\n      intervalSeconds: 86400 # 24h\n      retain: 7\n      pathPrefix: /\n      storageType: azure-blob\n      autoloadEnabled: true # Storage Type Configuration\n      azureContainerName: vault-blob\n      azureAccountName: ${azureAccountName}\n      azureAccountKey: ${azureAccountKey}\n      azureAuthMode: shared\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Azure BLOB (Managed Identity Authentication)\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst config = new pulumi.Config();\nconst azureAccountName = config.requireObject\u003cany\u003e(\"azureAccountName\");\nconst azureClientId = config.requireObject\u003cany\u003e(\"azureClientId\");\nconst azureManagedIdentity = new vault.RaftSnapshotAgentConfig(\"azure_managed_identity\", {\n    name: \"azure_managed\",\n    intervalSeconds: 86400,\n    retain: 7,\n    pathPrefix: \"/\",\n    storageType: \"azure-blob\",\n    autoloadEnabled: true,\n    azureContainerName: \"vault-blob\",\n    azureAccountName: azureAccountName,\n    azureAuthMode: \"managed\",\n    azureClientId: azureClientId,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nconfig = pulumi.Config()\nazure_account_name = config.require_object(\"azureAccountName\")\nazure_client_id = config.require_object(\"azureClientId\")\nazure_managed_identity = vault.RaftSnapshotAgentConfig(\"azure_managed_identity\",\n    name=\"azure_managed\",\n    interval_seconds=86400,\n    retain=7,\n    path_prefix=\"/\",\n    storage_type=\"azure-blob\",\n    autoload_enabled=True,\n    azure_container_name=\"vault-blob\",\n    azure_account_name=azure_account_name,\n    azure_auth_mode=\"managed\",\n    azure_client_id=azure_client_id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var config = new Config();\n    var azureAccountName = config.RequireObject\u003cdynamic\u003e(\"azureAccountName\");\n    var azureClientId = config.RequireObject\u003cdynamic\u003e(\"azureClientId\");\n    var azureManagedIdentity = new Vault.RaftSnapshotAgentConfig(\"azure_managed_identity\", new()\n    {\n        Name = \"azure_managed\",\n        IntervalSeconds = 86400,\n        Retain = 7,\n        PathPrefix = \"/\",\n        StorageType = \"azure-blob\",\n        AutoloadEnabled = true,\n        AzureContainerName = \"vault-blob\",\n        AzureAccountName = azureAccountName,\n        AzureAuthMode = \"managed\",\n        AzureClientId = azureClientId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcfg := config.New(ctx, \"\")\n\t\tvar azureAccountName interface{}\n\t\tcfg.RequireObject(\"azureAccountName\", \u0026azureAccountName)\n\t\tvar azureClientId interface{}\n\t\tcfg.RequireObject(\"azureClientId\", \u0026azureClientId)\n\t\t_, err := vault.NewRaftSnapshotAgentConfig(ctx, \"azure_managed_identity\", \u0026vault.RaftSnapshotAgentConfigArgs{\n\t\t\tName:               pulumi.String(\"azure_managed\"),\n\t\t\tIntervalSeconds:    pulumi.Int(86400),\n\t\t\tRetain:             pulumi.Int(7),\n\t\t\tPathPrefix:         pulumi.String(\"/\"),\n\t\t\tStorageType:        pulumi.String(\"azure-blob\"),\n\t\t\tAutoloadEnabled:    pulumi.Bool(true),\n\t\t\tAzureContainerName: pulumi.String(\"vault-blob\"),\n\t\t\tAzureAccountName:   pulumi.Any(azureAccountName),\n\t\t\tAzureAuthMode:      pulumi.String(\"managed\"),\n\t\t\tAzureClientId:      pulumi.Any(azureClientId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_raftsnapshotagentconfig\" \"azure_managed_identity\" {\n  name             = \"azure_managed\"\n  interval_seconds = 86400 # 24h\n  retain           = 7\n  path_prefix      = \"/\"\n  storage_type     = \"azure-blob\"\n  autoload_enabled = true\n  # Storage Type Configuration\n  azure_container_name = \"vault-blob\"\n  azure_account_name   = var.azureAccountName\n  azure_auth_mode      = \"managed\"\n  azure_client_id      = var.azureClientId\n}\nvariable \"azureAccountName\" {\n}\nvariable \"azureClientId\" {\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.RaftSnapshotAgentConfig;\nimport com.pulumi.vault.RaftSnapshotAgentConfigArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var config = ctx.config();\n        final var azureAccountName = config.require(\"azureAccountName\");\n        final var azureClientId = config.require(\"azureClientId\");\n        var azureManagedIdentity = new RaftSnapshotAgentConfig(\"azureManagedIdentity\", RaftSnapshotAgentConfigArgs.builder()\n            .name(\"azure_managed\")\n            .intervalSeconds(86400)\n            .retain(7)\n            .pathPrefix(\"/\")\n            .storageType(\"azure-blob\")\n            .autoloadEnabled(true)\n            .azureContainerName(\"vault-blob\")\n            .azureAccountName(azureAccountName)\n            .azureAuthMode(\"managed\")\n            .azureClientId(azureClientId)\n            .build());\n\n    }\n}\n```\n```yaml\nconfiguration:\n  azureAccountName:\n    type: object\n  azureClientId:\n    type: object\nresources:\n  azureManagedIdentity:\n    type: vault:RaftSnapshotAgentConfig\n    name: azure_managed_identity\n    properties:\n      name: azure_managed\n      intervalSeconds: 86400 # 24h\n      retain: 7\n      pathPrefix: /\n      storageType: azure-blob\n      autoloadEnabled: true # Storage Type Configuration\n      azureContainerName: vault-blob\n      azureAccountName: ${azureAccountName}\n      azureAuthMode: managed\n      azureClientId: ${azureClientId}\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nRaft Snapshot Agent Configurations can be imported using the \u003cspan pulumi-lang-nodejs=\"`name`\" pulumi-lang-dotnet=\"`Name`\" pulumi-lang-go=\"`name`\" pulumi-lang-python=\"`name`\" pulumi-lang-yaml=\"`name`\" pulumi-lang-java=\"`name`\" pulumi-lang-hcl=\"`name`\"\u003e`name`\u003c/span\u003e, e.g.\n\n```sh\n$ pulumi import vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig local local\n```\n\n",
-            "properties": {
-                "autoloadEnabled": {
-                    "type": "boolean",
-                    "description": "Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.\n**Note:** Not supported with \u003cspan pulumi-lang-nodejs=\"`storageType \" pulumi-lang-dotnet=\"`StorageType \" pulumi-lang-go=\"`storageType \" pulumi-lang-python=\"`storage_type \" pulumi-lang-yaml=\"`storageType \" pulumi-lang-java=\"`storageType \" pulumi-lang-hcl=\"`storage_type \"\u003e`storageType \u003c/span\u003e= \"local\"`.\n\n*Requires Vault Enterprise 1.21.0+*.\n"
-                },
-                "awsAccessKeyId": {
-                    "type": "string",
-                    "description": "AWS access key ID."
-                },
-                "awsS3Bucket": {
-                    "type": "string",
-                    "description": "S3 bucket to write snapshots to."
-                },
-                "awsS3DisableTls": {
-                    "type": "boolean",
-                    "description": "Disable TLS for the S3 endpoint. This should only be used for testing purposes."
-                },
-                "awsS3EnableKms": {
-                    "type": "boolean",
-                    "description": "Use KMS to encrypt bucket contents."
-                },
-                "awsS3Endpoint": {
-                    "type": "string",
-                    "description": "AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio."
-                },
-                "awsS3ForcePathStyle": {
-                    "type": "boolean",
-                    "description": "Use the endpoint/bucket URL style instead of bucket.endpoint."
-                },
-                "awsS3KmsKey": {
-                    "type": "string",
-                    "description": "Use named KMS key, when aws_s3_enable_kms=true"
-                },
-                "awsS3Region": {
-                    "type": "string",
-                    "description": "AWS region bucket is in."
-                },
-                "awsS3ServerSideEncryption": {
-                    "type": "boolean",
-                    "description": "Use AES256 to encrypt bucket contents."
-                },
-                "awsSecretAccessKey": {
-                    "type": "string",
-                    "description": "AWS secret access key."
-                },
-                "awsSessionToken": {
-                    "type": "string",
-                    "description": "AWS session token."
-                },
-                "azureAccountKey": {
-                    "type": "string",
-                    "description": "Azure account key. Required when\u003cspan pulumi-lang-nodejs=\" azureAuthMode \" pulumi-lang-dotnet=\" AzureAuthMode \" pulumi-lang-go=\" azureAuthMode \" pulumi-lang-python=\" azure_auth_mode \" pulumi-lang-yaml=\" azureAuthMode \" pulumi-lang-java=\" azureAuthMode \" pulumi-lang-hcl=\" azure_auth_mode \"\u003e azureAuthMode \u003c/span\u003eis 'shared'."
-                },
-                "azureAccountName": {
-                    "type": "string",
-                    "description": "Azure account name."
-                },
-                "azureAuthMode": {
-                    "type": "string",
-                    "description": "Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+."
-                },
-                "azureBlobEnvironment": {
-                    "type": "string",
-                    "description": "Azure blob environment."
-                },
-                "azureClientId": {
-                    "type": "string",
-                    "description": "Azure client ID for authentication. Required when\u003cspan pulumi-lang-nodejs=\" azureAuthMode \" pulumi-lang-dotnet=\" AzureAuthMode \" pulumi-lang-go=\" azureAuthMode \" pulumi-lang-python=\" azure_auth_mode \" pulumi-lang-yaml=\" azureAuthMode \" pulumi-lang-java=\" azureAuthMode \" pulumi-lang-hcl=\" azure_auth_mode \"\u003e azureAuthMode \u003c/span\u003eis 'managed'. Requires Vault Enterprise 1.18.0+."
-                },
-                "azureContainerName": {
-                    "type": "string",
-                    "description": "Azure container name to write snapshots to."
-                },
-                "azureEndpoint": {
-                    "type": "string",
-                    "description": "Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite."
-                },
-                "filePrefix": {
-                    "type": "string",
-                    "description": "Within the directory or bucket\nprefix given by \u003cspan pulumi-lang-nodejs=\"`pathPrefix`\" pulumi-lang-dotnet=\"`PathPrefix`\" pulumi-lang-go=\"`pathPrefix`\" pulumi-lang-python=\"`path_prefix`\" pulumi-lang-yaml=\"`pathPrefix`\" pulumi-lang-java=\"`pathPrefix`\" pulumi-lang-hcl=\"`path_prefix`\"\u003e`pathPrefix`\u003c/span\u003e, the file or object name of snapshot files\nwill start with this string.\n"
-                },
-                "googleDisableTls": {
-                    "type": "boolean",
-                    "description": "Disable TLS for the GCS endpoint."
-                },
-                "googleEndpoint": {
-                    "type": "string",
-                    "description": "GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server."
-                },
-                "googleGcsBucket": {
-                    "type": "string",
-                    "description": "GCS bucket to write snapshots to."
-                },
-                "googleServiceAccountKey": {
-                    "type": "string",
-                    "description": "Google service account key in JSON format."
-                },
-                "intervalSeconds": {
-                    "type": "integer",
-                    "description": "`\u003crequired\u003e` - Time (in seconds) between snapshots.\n"
-                },
-                "localMaxSpace": {
-                    "type": "integer",
-                    "description": "The maximum space, in bytes, to use for snapshots."
-                },
-                "name": {
-                    "type": "string",
-                    "description": "`\u003crequired\u003e` – Name of the configuration to modify.\n"
-                },
-                "namespace": {
-                    "type": "string",
-                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe \u003cspan pulumi-lang-nodejs=\"`namespace`\" pulumi-lang-dotnet=\"`Namespace`\" pulumi-lang-go=\"`namespace`\" pulumi-lang-python=\"`namespace`\" pulumi-lang-yaml=\"`namespace`\" pulumi-lang-java=\"`namespace`\" pulumi-lang-hcl=\"`namespace`\"\u003e`namespace`\u003c/span\u003e is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n"
-                },
-                "pathPrefix": {
-                    "type": "string",
-                    "description": "`\u003crequired\u003e` - For \u003cspan pulumi-lang-nodejs=\"`storageType \" pulumi-lang-dotnet=\"`StorageType \" pulumi-lang-go=\"`storageType \" pulumi-lang-python=\"`storage_type \" pulumi-lang-yaml=\"`storageType \" pulumi-lang-java=\"`storageType \" pulumi-lang-hcl=\"`storage_type \"\u003e`storageType \u003c/span\u003e= \"local\"`, the directory to\nwrite the snapshots in. For cloud storage types, the bucket prefix to use.\nTypes `azure-s3` and `google-gcs` require a trailing `/` (slash).\nTypes \u003cspan pulumi-lang-nodejs=\"`local`\" pulumi-lang-dotnet=\"`Local`\" pulumi-lang-go=\"`local`\" pulumi-lang-python=\"`local`\" pulumi-lang-yaml=\"`local`\" pulumi-lang-java=\"`local`\" pulumi-lang-hcl=\"`local`\"\u003e`local`\u003c/span\u003e and `aws-s3` the trailing `/` is optional.\n"
-                },
-                "retain": {
-                    "type": "integer",
-                    "description": "How many snapshots are to be kept; when writing a\nsnapshot, if there are more snapshots already stored than this number, the\noldest ones will be deleted.\n"
-                },
-                "storageType": {
-                    "type": "string",
-                    "description": "`\u003crequired\u003e` - One of \"local\", \"azure-blob\", \"aws-s3\",\nor \"google-gcs\". The remaining parameters described below are all specific to\nthe selected \u003cspan pulumi-lang-nodejs=\"`storageType`\" pulumi-lang-dotnet=\"`StorageType`\" pulumi-lang-go=\"`storageType`\" pulumi-lang-python=\"`storage_type`\" pulumi-lang-yaml=\"`storageType`\" pulumi-lang-java=\"`storageType`\" pulumi-lang-hcl=\"`storage_type`\"\u003e`storageType`\u003c/span\u003e and prefixed accordingly.\n"
-                }
-            },
-            "required": [
-                "intervalSeconds",
-                "name",
-                "pathPrefix",
-                "storageType"
-            ],
-            "inputProperties": {
-                "autoloadEnabled": {
-                    "type": "boolean",
-                    "description": "Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.\n**Note:** Not supported with \u003cspan pulumi-lang-nodejs=\"`storageType \" pulumi-lang-dotnet=\"`StorageType \" pulumi-lang-go=\"`storageType \" pulumi-lang-python=\"`storage_type \" pulumi-lang-yaml=\"`storageType \" pulumi-lang-java=\"`storageType \" pulumi-lang-hcl=\"`storage_type \"\u003e`storageType \u003c/span\u003e= \"local\"`.\n\n*Requires Vault Enterprise 1.21.0+*.\n"
-                },
-                "awsAccessKeyId": {
-                    "type": "string",
-                    "description": "AWS access key ID."
-                },
-                "awsS3Bucket": {
-                    "type": "string",
-                    "description": "S3 bucket to write snapshots to."
-                },
-                "awsS3DisableTls": {
-                    "type": "boolean",
-                    "description": "Disable TLS for the S3 endpoint. This should only be used for testing purposes."
-                },
-                "awsS3EnableKms": {
-                    "type": "boolean",
-                    "description": "Use KMS to encrypt bucket contents."
-                },
-                "awsS3Endpoint": {
-                    "type": "string",
-                    "description": "AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio."
-                },
-                "awsS3ForcePathStyle": {
-                    "type": "boolean",
-                    "description": "Use the endpoint/bucket URL style instead of bucket.endpoint."
-                },
-                "awsS3KmsKey": {
-                    "type": "string",
-                    "description": "Use named KMS key, when aws_s3_enable_kms=true"
-                },
-                "awsS3Region": {
-                    "type": "string",
-                    "description": "AWS region bucket is in."
-                },
-                "awsS3ServerSideEncryption": {
-                    "type": "boolean",
-                    "description": "Use AES256 to encrypt bucket contents."
-                },
-                "awsSecretAccessKey": {
-                    "type": "string",
-                    "description": "AWS secret access key."
-                },
-                "awsSessionToken": {
-                    "type": "string",
-                    "description": "AWS session token."
-                },
-                "azureAccountKey": {
-                    "type": "string",
-                    "description": "Azure account key. Required when\u003cspan pulumi-lang-nodejs=\" azureAuthMode \" pulumi-lang-dotnet=\" AzureAuthMode \" pulumi-lang-go=\" azureAuthMode \" pulumi-lang-python=\" azure_auth_mode \" pulumi-lang-yaml=\" azureAuthMode \" pulumi-lang-java=\" azureAuthMode \" pulumi-lang-hcl=\" azure_auth_mode \"\u003e azureAuthMode \u003c/span\u003eis 'shared'."
-                },
-                "azureAccountName": {
-                    "type": "string",
-                    "description": "Azure account name."
-                },
-                "azureAuthMode": {
-                    "type": "string",
-                    "description": "Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+."
-                },
-                "azureBlobEnvironment": {
-                    "type": "string",
-                    "description": "Azure blob environment."
-                },
-                "azureClientId": {
-                    "type": "string",
-                    "description": "Azure client ID for authentication. Required when\u003cspan pulumi-lang-nodejs=\" azureAuthMode \" pulumi-lang-dotnet=\" AzureAuthMode \" pulumi-lang-go=\" azureAuthMode \" pulumi-lang-python=\" azure_auth_mode \" pulumi-lang-yaml=\" azureAuthMode \" pulumi-lang-java=\" azureAuthMode \" pulumi-lang-hcl=\" azure_auth_mode \"\u003e azureAuthMode \u003c/span\u003eis 'managed'. Requires Vault Enterprise 1.18.0+."
-                },
-                "azureContainerName": {
-                    "type": "string",
-                    "description": "Azure container name to write snapshots to."
-                },
-                "azureEndpoint": {
-                    "type": "string",
-                    "description": "Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite."
-                },
-                "filePrefix": {
-                    "type": "string",
-                    "description": "Within the directory or bucket\nprefix given by \u003cspan pulumi-lang-nodejs=\"`pathPrefix`\" pulumi-lang-dotnet=\"`PathPrefix`\" pulumi-lang-go=\"`pathPrefix`\" pulumi-lang-python=\"`path_prefix`\" pulumi-lang-yaml=\"`pathPrefix`\" pulumi-lang-java=\"`pathPrefix`\" pulumi-lang-hcl=\"`path_prefix`\"\u003e`pathPrefix`\u003c/span\u003e, the file or object name of snapshot files\nwill start with this string.\n"
-                },
-                "googleDisableTls": {
-                    "type": "boolean",
-                    "description": "Disable TLS for the GCS endpoint."
-                },
-                "googleEndpoint": {
-                    "type": "string",
-                    "description": "GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server."
-                },
-                "googleGcsBucket": {
-                    "type": "string",
-                    "description": "GCS bucket to write snapshots to."
-                },
-                "googleServiceAccountKey": {
-                    "type": "string",
-                    "description": "Google service account key in JSON format."
-                },
-                "intervalSeconds": {
-                    "type": "integer",
-                    "description": "`\u003crequired\u003e` - Time (in seconds) between snapshots.\n"
-                },
-                "localMaxSpace": {
-                    "type": "integer",
-                    "description": "The maximum space, in bytes, to use for snapshots."
-                },
-                "name": {
-                    "type": "string",
-                    "description": "`\u003crequired\u003e` – Name of the configuration to modify.\n",
-                    "willReplaceOnChanges": true
-                },
-                "namespace": {
-                    "type": "string",
-                    "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe \u003cspan pulumi-lang-nodejs=\"`namespace`\" pulumi-lang-dotnet=\"`Namespace`\" pulumi-lang-go=\"`namespace`\" pulumi-lang-python=\"`namespace`\" pulumi-lang-yaml=\"`namespace`\" pulumi-lang-java=\"`namespace`\" pulumi-lang-hcl=\"`namespace`\"\u003e`namespace`\u003c/span\u003e is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
-                    "willReplaceOnChanges": true
-                },
-                "pathPrefix": {
-                    "type": "string",
-                    "description": "`\u003crequired\u003e` - For \u003cspan pulumi-lang-nodejs=\"`storageType \" pulumi-lang-dotnet=\"`StorageType \" pulumi-lang-go=\"`storageType \" pulumi-lang-python=\"`storage_type \" pulumi-lang-yaml=\"`storageType \" pulumi-lang-java=\"`storageType \" pulumi-lang-hcl=\"`storage_type \"\u003e`storageType \u003c/span\u003e= \"local\"`, the directory to\nwrite the snapshots in. For cloud storage types, the bucket prefix to use.\nTypes `azure-s3` and `google-gcs` require a trailing `/` (slash).\nTypes \u003cspan pulumi-lang-nodejs=\"`local`\" pulumi-lang-dotnet=\"`Local`\" pulumi-lang-go=\"`local`\" pulumi-lang-python=\"`local`\" pulumi-lang-yaml=\"`local`\" pulumi-lang-java=\"`local`\" pulumi-lang-hcl=\"`local`\"\u003e`local`\u003c/span\u003e and `aws-s3` the trailing `/` is optional.\n"
-                },
-                "retain": {
-                    "type": "integer",
-                    "description": "How many snapshots are to be kept; when writing a\nsnapshot, if there are more snapshots already stored than this number, the\noldest ones will be deleted.\n"
-                },
-                "storageType": {
-                    "type": "string",
-                    "description": "`\u003crequired\u003e` - One of \"local\", \"azure-blob\", \"aws-s3\",\nor \"google-gcs\". The remaining parameters described below are all specific to\nthe selected \u003cspan pulumi-lang-nodejs=\"`storageType`\" pulumi-lang-dotnet=\"`StorageType`\" pulumi-lang-go=\"`storageType`\" pulumi-lang-python=\"`storage_type`\" pulumi-lang-yaml=\"`storageType`\" pulumi-lang-java=\"`storageType`\" pulumi-lang-hcl=\"`storage_type`\"\u003e`storageType`\u003c/span\u003e and prefixed accordingly.\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "intervalSeconds",
-                "pathPrefix",
-                "storageType"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.\n",
-                "properties": {
-                    "autoloadEnabled": {
-                        "type": "boolean",
-                        "description": "Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.\n**Note:** Not supported with \u003cspan pulumi-lang-nodejs=\"`storageType \" pulumi-lang-dotnet=\"`StorageType \" pulumi-lang-go=\"`storageType \" pulumi-lang-python=\"`storage_type \" pulumi-lang-yaml=\"`storageType \" pulumi-lang-java=\"`storageType \" pulumi-lang-hcl=\"`storage_type \"\u003e`storageType \u003c/span\u003e= \"local\"`.\n\n*Requires Vault Enterprise 1.21.0+*.\n"
-                    },
-                    "awsAccessKeyId": {
-                        "type": "string",
-                        "description": "AWS access key ID."
-                    },
-                    "awsS3Bucket": {
-                        "type": "string",
-                        "description": "S3 bucket to write snapshots to."
-                    },
-                    "awsS3DisableTls": {
-                        "type": "boolean",
-                        "description": "Disable TLS for the S3 endpoint. This should only be used for testing purposes."
-                    },
-                    "awsS3EnableKms": {
-                        "type": "boolean",
-                        "description": "Use KMS to encrypt bucket contents."
-                    },
-                    "awsS3Endpoint": {
-                        "type": "string",
-                        "description": "AWS endpoint. This is typically only set when using a non-AWS S3 implementation like Minio."
-                    },
-                    "awsS3ForcePathStyle": {
-                        "type": "boolean",
-                        "description": "Use the endpoint/bucket URL style instead of bucket.endpoint."
-                    },
-                    "awsS3KmsKey": {
-                        "type": "string",
-                        "description": "Use named KMS key, when aws_s3_enable_kms=true"
-                    },
-                    "awsS3Region": {
-                        "type": "string",
-                        "description": "AWS region bucket is in."
-                    },
-                    "awsS3ServerSideEncryption": {
-                        "type": "boolean",
-                        "description": "Use AES256 to encrypt bucket contents."
-                    },
-                    "awsSecretAccessKey": {
-                        "type": "string",
-                        "description": "AWS secret access key."
-                    },
-                    "awsSessionToken": {
-                        "type": "string",
-                        "description": "AWS session token."
-                    },
-                    "azureAccountKey": {
-                        "type": "string",
-                        "description": "Azure account key. Required when\u003cspan pulumi-lang-nodejs=\" azureAuthMode \" pulumi-lang-dotnet=\" AzureAuthMode \" pulumi-lang-go=\" azureAuthMode \" pulumi-lang-python=\" azure_auth_mode \" pulumi-lang-yaml=\" azureAuthMode \" pulumi-lang-java=\" azureAuthMode \" pulumi-lang-hcl=\" azure_auth_mode \"\u003e azureAuthMode \u003c/span\u003eis 'shared'."
-                    },
-                    "azureAccountName": {
-                        "type": "string",
-                        "description": "Azure account name."
-                    },
-                    "azureAuthMode": {
-                        "type": "string",
-                        "description": "Azure authentication mode. Required for azure-blob storage. Possible values are 'shared', 'managed', or 'environment'. Requires Vault Enterprise 1.18.0+."
-                    },
-                    "azureBlobEnvironment": {
-                        "type": "string",
-                        "description": "Azure blob environment."
-                    },
-                    "azureClientId": {
-                        "type": "string",
-                        "description": "Azure client ID for authentication. Required when\u003cspan pulumi-lang-nodejs=\" azureAuthMode \" pulumi-lang-dotnet=\" AzureAuthMode \" pulumi-lang-go=\" azureAuthMode \" pulumi-lang-python=\" azure_auth_mode \" pulumi-lang-yaml=\" azureAuthMode \" pulumi-lang-java=\" azureAuthMode \" pulumi-lang-hcl=\" azure_auth_mode \"\u003e azureAuthMode \u003c/span\u003eis 'managed'. Requires Vault Enterprise 1.18.0+."
-                    },
-                    "azureContainerName": {
-                        "type": "string",
-                        "description": "Azure container name to write snapshots to."
-                    },
-                    "azureEndpoint": {
-                        "type": "string",
-                        "description": "Azure blob storage endpoint. This is typically only set when using a non-Azure implementation like Azurite."
-                    },
-                    "filePrefix": {
-                        "type": "string",
-                        "description": "Within the directory or bucket\nprefix given by \u003cspan pulumi-lang-nodejs=\"`pathPrefix`\" pulumi-lang-dotnet=\"`PathPrefix`\" pulumi-lang-go=\"`pathPrefix`\" pulumi-lang-python=\"`path_prefix`\" pulumi-lang-yaml=\"`pathPrefix`\" pulumi-lang-java=\"`pathPrefix`\" pulumi-lang-hcl=\"`path_prefix`\"\u003e`pathPrefix`\u003c/span\u003e, the file or object name of snapshot files\nwill start with this string.\n"
-                    },
-                    "googleDisableTls": {
-                        "type": "boolean",
-                        "description": "Disable TLS for the GCS endpoint."
-                    },
-                    "googleEndpoint": {
-                        "type": "string",
-                        "description": "GCS endpoint. This is typically only set when using a non-Google GCS implementation like fake-gcs-server."
-                    },
-                    "googleGcsBucket": {
-                        "type": "string",
-                        "description": "GCS bucket to write snapshots to."
-                    },
-                    "googleServiceAccountKey": {
-                        "type": "string",
-                        "description": "Google service account key in JSON format."
-                    },
-                    "intervalSeconds": {
-                        "type": "integer",
-                        "description": "`\u003crequired\u003e` - Time (in seconds) between snapshots.\n"
-                    },
-                    "localMaxSpace": {
-                        "type": "integer",
-                        "description": "The maximum space, in bytes, to use for snapshots."
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "`\u003crequired\u003e` – Name of the configuration to modify.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "namespace": {
-                        "type": "string",
-                        "description": "The namespace to provision the resource in.\nThe value should not contain leading or trailing forward slashes.\nThe \u003cspan pulumi-lang-nodejs=\"`namespace`\" pulumi-lang-dotnet=\"`Namespace`\" pulumi-lang-go=\"`namespace`\" pulumi-lang-python=\"`namespace`\" pulumi-lang-yaml=\"`namespace`\" pulumi-lang-java=\"`namespace`\" pulumi-lang-hcl=\"`namespace`\"\u003e`namespace`\u003c/span\u003e is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).\n*Available only for Vault Enterprise*.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "pathPrefix": {
-                        "type": "string",
-                        "description": "`\u003crequired\u003e` - For \u003cspan pulumi-lang-nodejs=\"`storageType \" pulumi-lang-dotnet=\"`StorageType \" pulumi-lang-go=\"`storageType \" pulumi-lang-python=\"`storage_type \" pulumi-lang-yaml=\"`storageType \" pulumi-lang-java=\"`storageType \" pulumi-lang-hcl=\"`storage_type \"\u003e`storageType \u003c/span\u003e= \"local\"`, the directory to\nwrite the snapshots in. For cloud storage types, the bucket prefix to use.\nTypes `azure-s3` and `google-gcs` require a trailing `/` (slash).\nTypes \u003cspan pulumi-lang-nodejs=\"`local`\" pulumi-lang-dotnet=\"`Local`\" pulumi-lang-go=\"`local`\" pulumi-lang-python=\"`local`\" pulumi-lang-yaml=\"`local`\" pulumi-lang-java=\"`local`\" pulumi-lang-hcl=\"`local`\"\u003e`local`\u003c/span\u003e and `aws-s3` the trailing `/` is optional.\n"
-                    },
-                    "retain": {
-                        "type": "integer",
-                        "description": "How many snapshots are to be kept; when writing a\nsnapshot, if there are more snapshots already stored than this number, the\noldest ones will be deleted.\n"
-                    },
-                    "storageType": {
-                        "type": "string",
-                        "description": "`\u003crequired\u003e` - One of \"local\", \"azure-blob\", \"aws-s3\",\nor \"google-gcs\". The remaining parameters described below are all specific to\nthe selected \u003cspan pulumi-lang-nodejs=\"`storageType`\" pulumi-lang-dotnet=\"`StorageType`\" pulumi-lang-go=\"`storageType`\" pulumi-lang-python=\"`storage_type`\" pulumi-lang-yaml=\"`storageType`\" pulumi-lang-java=\"`storageType`\" pulumi-lang-hcl=\"`storage_type`\"\u003e`storageType`\u003c/span\u003e and prefixed accordingly.\n",
-                        "willReplaceOnChanges": true
                     }
                 },
                 "type": "object"
@@ -31221,7 +30872,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "The format of data\n"
+                    "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e or \"der\".\n"
                 },
                 "ipSans": {
                     "type": "array",
@@ -31360,7 +31011,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "The format of data\n",
+                    "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e or \"der\".\n",
                     "willReplaceOnChanges": true
                 },
                 "ipSans": {
@@ -31492,7 +31143,7 @@
                     },
                     "format": {
                         "type": "string",
-                        "description": "The format of data\n",
+                        "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e or \"der\".\n",
                         "willReplaceOnChanges": true
                     },
                     "ipSans": {
@@ -33930,7 +33581,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "The format of data\n"
+                    "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e, or \"der\".\n"
                 },
                 "ipSans": {
                     "type": "array",
@@ -34172,7 +33823,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "The format of data\n",
+                    "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e, or \"der\".\n",
                     "willReplaceOnChanges": true
                 },
                 "ipSans": {
@@ -34421,7 +34072,7 @@
                     },
                     "format": {
                         "type": "string",
-                        "description": "The format of data\n",
+                        "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e, or \"der\".\n",
                         "willReplaceOnChanges": true
                     },
                     "ipSans": {
@@ -35355,7 +35006,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "The format of data\n"
+                    "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e or \"der\".\n"
                 },
                 "ipSans": {
                     "type": "array",
@@ -35470,7 +35121,7 @@
                 },
                 "format": {
                     "type": "string",
-                    "description": "The format of data\n",
+                    "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e or \"der\".\n",
                     "willReplaceOnChanges": true
                 },
                 "ipSans": {
@@ -35590,7 +35241,7 @@
                     },
                     "format": {
                         "type": "string",
-                        "description": "The format of data\n",
+                        "description": "The format of data. Valid values are \"pem\", \u003cspan pulumi-lang-nodejs=\"\"pemBundle\"\" pulumi-lang-dotnet=\"\"PemBundle\"\" pulumi-lang-go=\"\"pemBundle\"\" pulumi-lang-python=\"\"pem_bundle\"\" pulumi-lang-yaml=\"\"pemBundle\"\" pulumi-lang-java=\"\"pemBundle\"\" pulumi-lang-hcl=\"\"pem_bundle\"\"\u003e\"pemBundle\"\u003c/span\u003e or \"der\".\n",
                         "willReplaceOnChanges": true
                     },
                     "ipSans": {
@@ -40275,7 +39926,7 @@
             }
         },
         "vault:transform/transformation:Transformation": {
-            "description": "This resource supports the \"/transform/transformation/{name}\" Vault endpoint.\n\nIt creates or updates a transformation with the given name. If a transformation with the name does not exist,\nit will be created. If the transformation exists, it will be updated with the new attributes.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Mount(\"example\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst exampleTransformation = new vault.transform.Transformation(\"example\", {\n    path: example.path,\n    name: \"ccn-fpe\",\n    type: \"fpe\",\n    template: \"ccn\",\n    tweakSource: \"internal\",\n    allowedRoles: [\"payments\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Mount(\"example\",\n    path=\"transform\",\n    type=\"transform\")\nexample_transformation = vault.transform.Transformation(\"example\",\n    path=example.path,\n    name=\"ccn-fpe\",\n    type=\"fpe\",\n    template=\"ccn\",\n    tweak_source=\"internal\",\n    allowed_roles=[\"payments\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Mount(\"example\", new()\n    {\n        Path = \"transform\",\n        Type = \"transform\",\n    });\n\n    var exampleTransformation = new Vault.Transform.Transformation(\"example\", new()\n    {\n        Path = example.Path,\n        Name = \"ccn-fpe\",\n        Type = \"fpe\",\n        Template = \"ccn\",\n        TweakSource = \"internal\",\n        AllowedRoles = new[]\n        {\n            \"payments\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := vault.NewMount(ctx, \"example\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"example\", \u0026transform.TransformationArgs{\n\t\t\tPath:        example.Path,\n\t\t\tName:        pulumi.String(\"ccn-fpe\"),\n\t\t\tType:        pulumi.String(\"fpe\"),\n\t\t\tTemplate:    pulumi.String(\"ccn\"),\n\t\t\tTweakSource: pulumi.String(\"internal\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_mount\" \"example\" {\n  path = \"transform\"\n  type = \"transform\"\n}\nresource \"vault_transform_transformation\" \"example\" {\n  path          = vault_mount.example.path\n  name          = \"ccn-fpe\"\n  type          = \"fpe\"\n  template      = \"ccn\"\n  tweak_source  = \"internal\"\n  allowed_roles = [\"payments\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.transform.Transformation;\nimport com.pulumi.vault.transform.TransformationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Mount(\"example\", MountArgs.builder()\n            .path(\"transform\")\n            .type(\"transform\")\n            .build());\n\n        var exampleTransformation = new Transformation(\"exampleTransformation\", TransformationArgs.builder()\n            .path(example.path())\n            .name(\"ccn-fpe\")\n            .type(\"fpe\")\n            .template(\"ccn\")\n            .tweakSource(\"internal\")\n            .allowedRoles(\"payments\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:Mount\n    properties:\n      path: transform\n      type: transform\n  exampleTransformation:\n    type: vault:transform:Transformation\n    name: example\n    properties:\n      path: ${example.path}\n      name: ccn-fpe\n      type: fpe\n      template: ccn\n      tweakSource: internal\n      allowedRoles:\n        - payments\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Tutorials\n\nRefer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.\n",
+            "description": "This resource supports the \"/transform/transformation/{name}\" Vault endpoint.\n\nIt creates or updates a transformation with the given name. If a transformation with the name does not exist,\nit will be created. If the transformation exists, it will be updated with the new attributes.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst example = new vault.Mount(\"example\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst exampleTransformation = new vault.transform.Transformation(\"example\", {\n    path: example.path,\n    name: \"ccn-fpe\",\n    type: \"fpe\",\n    template: \"ccn\",\n    tweakSource: \"internal\",\n    allowedRoles: [\"payments\"],\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\nexample = vault.Mount(\"example\",\n    path=\"transform\",\n    type=\"transform\")\nexample_transformation = vault.transform.Transformation(\"example\",\n    path=example.path,\n    name=\"ccn-fpe\",\n    type=\"fpe\",\n    template=\"ccn\",\n    tweak_source=\"internal\",\n    allowed_roles=[\"payments\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Vault.Mount(\"example\", new()\n    {\n        Path = \"transform\",\n        Type = \"transform\",\n    });\n\n    var exampleTransformation = new Vault.Transform.Transformation(\"example\", new()\n    {\n        Path = example.Path,\n        Name = \"ccn-fpe\",\n        Type = \"fpe\",\n        Template = \"ccn\",\n        TweakSource = \"internal\",\n        AllowedRoles = new[]\n        {\n            \"payments\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texample, err := vault.NewMount(ctx, \"example\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"example\", \u0026transform.TransformationArgs{\n\t\t\tPath:        example.Path,\n\t\t\tName:        pulumi.String(\"ccn-fpe\"),\n\t\t\tType:        pulumi.String(\"fpe\"),\n\t\t\tTemplate:    pulumi.String(\"ccn\"),\n\t\t\tTweakSource: pulumi.String(\"internal\"),\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_mount\" \"example\" {\n  path = \"transform\"\n  type = \"transform\"\n}\nresource \"vault_transform_transformation\" \"example\" {\n  path          = vault_mount.example.path\n  name          = \"ccn-fpe\"\n  type          = \"fpe\"\n  template      = \"ccn\"\n  tweak_source  = \"internal\"\n  allowed_roles = [\"payments\"]\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.transform.Transformation;\nimport com.pulumi.vault.transform.TransformationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new Mount(\"example\", MountArgs.builder()\n            .path(\"transform\")\n            .type(\"transform\")\n            .build());\n\n        var exampleTransformation = new Transformation(\"exampleTransformation\", TransformationArgs.builder()\n            .path(example.path())\n            .name(\"ccn-fpe\")\n            .type(\"fpe\")\n            .template(\"ccn\")\n            .tweakSource(\"internal\")\n            .allowedRoles(\"payments\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: vault:Mount\n    properties:\n      path: transform\n      type: transform\n  exampleTransformation:\n    type: vault:transform:Transformation\n    name: example\n    properties:\n      path: ${example.path}\n      name: ccn-fpe\n      type: fpe\n      template: ccn\n      tweakSource: internal\n      allowedRoles:\n        - payments\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n### Tokenization Example\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as vault from \"@pulumi/vault\";\n\nconst transform = new vault.Mount(\"transform\", {\n    path: \"transform\",\n    type: \"transform\",\n});\nconst tokenization = new vault.transform.Transformation(\"tokenization\", {\n    path: transform.path,\n    name: \"ssn-tokenization\",\n    type: \"tokenization\",\n    mappingMode: \"default\",\n    stores: [\"my-store\"],\n    allowedRoles: [\"payments\"],\n    convergent: true,\n});\n```\n```python\nimport pulumi\nimport pulumi_vault as vault\n\ntransform = vault.Mount(\"transform\",\n    path=\"transform\",\n    type=\"transform\")\ntokenization = vault.transform.Transformation(\"tokenization\",\n    path=transform.path,\n    name=\"ssn-tokenization\",\n    type=\"tokenization\",\n    mapping_mode=\"default\",\n    stores=[\"my-store\"],\n    allowed_roles=[\"payments\"],\n    convergent=True)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Vault = Pulumi.Vault;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var transform = new Vault.Mount(\"transform\", new()\n    {\n        Path = \"transform\",\n        Type = \"transform\",\n    });\n\n    var tokenization = new Vault.Transform.Transformation(\"tokenization\", new()\n    {\n        Path = transform.Path,\n        Name = \"ssn-tokenization\",\n        Type = \"tokenization\",\n        MappingMode = \"default\",\n        Stores = new[]\n        {\n            \"my-store\",\n        },\n        AllowedRoles = new[]\n        {\n            \"payments\",\n        },\n        Convergent = true,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault\"\n\t\"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transform\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\ttransform2, err := vault.NewMount(ctx, \"transform\", \u0026vault.MountArgs{\n\t\t\tPath: pulumi.String(\"transform\"),\n\t\t\tType: pulumi.String(\"transform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = transform.NewTransformation(ctx, \"tokenization\", \u0026transform.TransformationArgs{\n\t\t\tPath:        transform2.Path,\n\t\t\tName:        pulumi.String(\"ssn-tokenization\"),\n\t\t\tType:        pulumi.String(\"tokenization\"),\n\t\t\tMappingMode: pulumi.String(\"default\"),\n\t\t\tStores: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"my-store\"),\n\t\t\t},\n\t\t\tAllowedRoles: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"payments\"),\n\t\t\t},\n\t\t\tConvergent: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```hcl\npulumi {\n  required_providers {\n    vault = {\n      source = \"pulumi/vault\"\n    }\n  }\n}\n\nresource \"vault_mount\" \"transform\" {\n  path = \"transform\"\n  type = \"transform\"\n}\nresource \"vault_transform_transformation\" \"tokenization\" {\n  path          = vault_mount.transform.path\n  name          = \"ssn-tokenization\"\n  type          = \"tokenization\"\n  mapping_mode  = \"default\"\n  stores        = [\"my-store\"]\n  allowed_roles = [\"payments\"]\n  convergent    = true\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.vault.Mount;\nimport com.pulumi.vault.MountArgs;\nimport com.pulumi.vault.transform.Transformation;\nimport com.pulumi.vault.transform.TransformationArgs;\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var transform = new Mount(\"transform\", MountArgs.builder()\n            .path(\"transform\")\n            .type(\"transform\")\n            .build());\n\n        var tokenization = new Transformation(\"tokenization\", TransformationArgs.builder()\n            .path(transform.path())\n            .name(\"ssn-tokenization\")\n            .type(\"tokenization\")\n            .mappingMode(\"default\")\n            .stores(\"my-store\")\n            .allowedRoles(\"payments\")\n            .convergent(true)\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  transform:\n    type: vault:Mount\n    properties:\n      path: transform\n      type: transform\n  tokenization:\n    type: vault:transform:Transformation\n    properties:\n      path: ${transform.path}\n      name: ssn-tokenization\n      type: tokenization\n      mappingMode: default\n      stores:\n        - my-store\n      allowedRoles:\n        - payments\n      convergent: true\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Tutorials\n\nRefer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.\n",
             "properties": {
                 "allowedRoles": {
                     "type": "array",
@@ -40284,9 +39935,17 @@
                     },
                     "description": "The set of roles allowed to perform this transformation.\n"
                 },
+                "convergent": {
+                    "type": "boolean",
+                    "description": "If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\". Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e\n"
+                },
                 "deletionAllowed": {
                     "type": "boolean",
                     "description": "If true, this transform can be deleted.\nOtherwise, deletion is blocked while this value remains false. Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e\n*Only supported on vault-1.12+*\n"
+                },
+                "mappingMode": {
+                    "type": "string",
+                    "description": "Specifies the mapping mode for stored values. \nCan be \"default\" or \"exportable\". Only used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\".\n**Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.\n"
                 },
                 "maskingCharacter": {
                     "type": "string",
@@ -40303,6 +39962,13 @@
                 "path": {
                     "type": "string",
                     "description": "Path to where the back-end is mounted within Vault.\n"
+                },
+                "stores": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of stores to use for tokenization state. \nOnly used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\".\n**Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.\n"
                 },
                 "template": {
                     "type": "string",
@@ -40337,9 +40003,19 @@
                     },
                     "description": "The set of roles allowed to perform this transformation.\n"
                 },
+                "convergent": {
+                    "type": "boolean",
+                    "description": "If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\". Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e\n",
+                    "willReplaceOnChanges": true
+                },
                 "deletionAllowed": {
                     "type": "boolean",
                     "description": "If true, this transform can be deleted.\nOtherwise, deletion is blocked while this value remains false. Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e\n*Only supported on vault-1.12+*\n"
+                },
+                "mappingMode": {
+                    "type": "string",
+                    "description": "Specifies the mapping mode for stored values. \nCan be \"default\" or \"exportable\". Only used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\".\n**Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.\n",
+                    "willReplaceOnChanges": true
                 },
                 "maskingCharacter": {
                     "type": "string",
@@ -40358,6 +40034,14 @@
                 "path": {
                     "type": "string",
                     "description": "Path to where the back-end is mounted within Vault.\n",
+                    "willReplaceOnChanges": true
+                },
+                "stores": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of stores to use for tokenization state. \nOnly used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\".\n**Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.\n",
                     "willReplaceOnChanges": true
                 },
                 "template": {
@@ -40393,9 +40077,19 @@
                         },
                         "description": "The set of roles allowed to perform this transformation.\n"
                     },
+                    "convergent": {
+                        "type": "boolean",
+                        "description": "If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\". Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e\n",
+                        "willReplaceOnChanges": true
+                    },
                     "deletionAllowed": {
                         "type": "boolean",
                         "description": "If true, this transform can be deleted.\nOtherwise, deletion is blocked while this value remains false. Default: \u003cspan pulumi-lang-nodejs=\"`false`\" pulumi-lang-dotnet=\"`False`\" pulumi-lang-go=\"`false`\" pulumi-lang-python=\"`false`\" pulumi-lang-yaml=\"`false`\" pulumi-lang-java=\"`false`\" pulumi-lang-hcl=\"`false`\"\u003e`false`\u003c/span\u003e\n*Only supported on vault-1.12+*\n"
+                    },
+                    "mappingMode": {
+                        "type": "string",
+                        "description": "Specifies the mapping mode for stored values. \nCan be \"default\" or \"exportable\". Only used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\".\n**Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.\n",
+                        "willReplaceOnChanges": true
                     },
                     "maskingCharacter": {
                         "type": "string",
@@ -40414,6 +40108,14 @@
                     "path": {
                         "type": "string",
                         "description": "Path to where the back-end is mounted within Vault.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "stores": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of stores to use for tokenization state. \nOnly used when \u003cspan pulumi-lang-nodejs=\"`type`\" pulumi-lang-dotnet=\"`Type`\" pulumi-lang-go=\"`type`\" pulumi-lang-python=\"`type`\" pulumi-lang-yaml=\"`type`\" pulumi-lang-java=\"`type`\" pulumi-lang-hcl=\"`type`\"\u003e`type`\u003c/span\u003e is \"tokenization\".\n**Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.\n",
                         "willReplaceOnChanges": true
                     },
                     "template": {
