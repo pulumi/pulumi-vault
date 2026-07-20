@@ -35,16 +35,6 @@ export type CertAuthBackendRole = import("./certAuthBackendRole").CertAuthBacken
 export const CertAuthBackendRole: typeof import("./certAuthBackendRole").CertAuthBackendRole = null as any;
 utilities.lazyLoad(exports, ["CertAuthBackendRole"], () => require("./certAuthBackendRole"));
 
-export { CfAuthBackendConfigArgs, CfAuthBackendConfigState } from "./cfAuthBackendConfig";
-export type CfAuthBackendConfig = import("./cfAuthBackendConfig").CfAuthBackendConfig;
-export const CfAuthBackendConfig: typeof import("./cfAuthBackendConfig").CfAuthBackendConfig = null as any;
-utilities.lazyLoad(exports, ["CfAuthBackendConfig"], () => require("./cfAuthBackendConfig"));
-
-export { CfAuthBackendRoleArgs, CfAuthBackendRoleState } from "./cfAuthBackendRole";
-export type CfAuthBackendRole = import("./cfAuthBackendRole").CfAuthBackendRole;
-export const CfAuthBackendRole: typeof import("./cfAuthBackendRole").CfAuthBackendRole = null as any;
-utilities.lazyLoad(exports, ["CfAuthBackendRole"], () => require("./cfAuthBackendRole"));
-
 export { EgpPolicyArgs, EgpPolicyState } from "./egpPolicy";
 export type EgpPolicy = import("./egpPolicy").EgpPolicy;
 export const EgpPolicy: typeof import("./egpPolicy").EgpPolicy = null as any;
@@ -80,11 +70,6 @@ export const getNomadAccessToken: typeof import("./getNomadAccessToken").getNoma
 export const getNomadAccessTokenOutput: typeof import("./getNomadAccessToken").getNomadAccessTokenOutput = null as any;
 utilities.lazyLoad(exports, ["getNomadAccessToken","getNomadAccessTokenOutput"], () => require("./getNomadAccessToken"));
 
-export { GetPkiExternalCaSecretBackendOrderChallengeArgs, GetPkiExternalCaSecretBackendOrderChallengeResult, GetPkiExternalCaSecretBackendOrderChallengeOutputArgs } from "./getPkiExternalCaSecretBackendOrderChallenge";
-export const getPkiExternalCaSecretBackendOrderChallenge: typeof import("./getPkiExternalCaSecretBackendOrderChallenge").getPkiExternalCaSecretBackendOrderChallenge = null as any;
-export const getPkiExternalCaSecretBackendOrderChallengeOutput: typeof import("./getPkiExternalCaSecretBackendOrderChallenge").getPkiExternalCaSecretBackendOrderChallengeOutput = null as any;
-utilities.lazyLoad(exports, ["getPkiExternalCaSecretBackendOrderChallenge","getPkiExternalCaSecretBackendOrderChallengeOutput"], () => require("./getPkiExternalCaSecretBackendOrderChallenge"));
-
 export { GetPluginRuntimesArgs, GetPluginRuntimesResult, GetPluginRuntimesOutputArgs } from "./getPluginRuntimes";
 export const getPluginRuntimes: typeof import("./getPluginRuntimes").getPluginRuntimes = null as any;
 export const getPluginRuntimesOutput: typeof import("./getPluginRuntimes").getPluginRuntimesOutput = null as any;
@@ -104,41 +89,6 @@ export { GetSysConfigCorsResult } from "./getSysConfigCors";
 export const getSysConfigCors: typeof import("./getSysConfigCors").getSysConfigCors = null as any;
 export const getSysConfigCorsOutput: typeof import("./getSysConfigCors").getSysConfigCorsOutput = null as any;
 utilities.lazyLoad(exports, ["getSysConfigCors","getSysConfigCorsOutput"], () => require("./getSysConfigCors"));
-
-export { KeymgmtAwsKmsArgs, KeymgmtAwsKmsState } from "./keymgmtAwsKms";
-export type KeymgmtAwsKms = import("./keymgmtAwsKms").KeymgmtAwsKms;
-export const KeymgmtAwsKms: typeof import("./keymgmtAwsKms").KeymgmtAwsKms = null as any;
-utilities.lazyLoad(exports, ["KeymgmtAwsKms"], () => require("./keymgmtAwsKms"));
-
-export { KeymgmtAzureKmsArgs, KeymgmtAzureKmsState } from "./keymgmtAzureKms";
-export type KeymgmtAzureKms = import("./keymgmtAzureKms").KeymgmtAzureKms;
-export const KeymgmtAzureKms: typeof import("./keymgmtAzureKms").KeymgmtAzureKms = null as any;
-utilities.lazyLoad(exports, ["KeymgmtAzureKms"], () => require("./keymgmtAzureKms"));
-
-export { KeymgmtDistributeKeyArgs, KeymgmtDistributeKeyState } from "./keymgmtDistributeKey";
-export type KeymgmtDistributeKey = import("./keymgmtDistributeKey").KeymgmtDistributeKey;
-export const KeymgmtDistributeKey: typeof import("./keymgmtDistributeKey").KeymgmtDistributeKey = null as any;
-utilities.lazyLoad(exports, ["KeymgmtDistributeKey"], () => require("./keymgmtDistributeKey"));
-
-export { KeymgmtGcpKmsArgs, KeymgmtGcpKmsState } from "./keymgmtGcpKms";
-export type KeymgmtGcpKms = import("./keymgmtGcpKms").KeymgmtGcpKms;
-export const KeymgmtGcpKms: typeof import("./keymgmtGcpKms").KeymgmtGcpKms = null as any;
-utilities.lazyLoad(exports, ["KeymgmtGcpKms"], () => require("./keymgmtGcpKms"));
-
-export { KeymgmtKeyArgs, KeymgmtKeyState } from "./keymgmtKey";
-export type KeymgmtKey = import("./keymgmtKey").KeymgmtKey;
-export const KeymgmtKey: typeof import("./keymgmtKey").KeymgmtKey = null as any;
-utilities.lazyLoad(exports, ["KeymgmtKey"], () => require("./keymgmtKey"));
-
-export { KeymgmtKeyRotateArgs, KeymgmtKeyRotateState } from "./keymgmtKeyRotate";
-export type KeymgmtKeyRotate = import("./keymgmtKeyRotate").KeymgmtKeyRotate;
-export const KeymgmtKeyRotate: typeof import("./keymgmtKeyRotate").KeymgmtKeyRotate = null as any;
-utilities.lazyLoad(exports, ["KeymgmtKeyRotate"], () => require("./keymgmtKeyRotate"));
-
-export { KeymgmtReplicateKeyArgs, KeymgmtReplicateKeyState } from "./keymgmtReplicateKey";
-export type KeymgmtReplicateKey = import("./keymgmtReplicateKey").KeymgmtReplicateKey;
-export const KeymgmtReplicateKey: typeof import("./keymgmtReplicateKey").KeymgmtReplicateKey = null as any;
-utilities.lazyLoad(exports, ["KeymgmtReplicateKey"], () => require("./keymgmtReplicateKey"));
 
 export { MfaDuoArgs, MfaDuoState } from "./mfaDuo";
 export type MfaDuo = import("./mfaDuo").MfaDuo;
@@ -195,50 +145,10 @@ export type OciAuthBackendRole = import("./ociAuthBackendRole").OciAuthBackendRo
 export const OciAuthBackendRole: typeof import("./ociAuthBackendRole").OciAuthBackendRole = null as any;
 utilities.lazyLoad(exports, ["OciAuthBackendRole"], () => require("./ociAuthBackendRole"));
 
-export { OsSecretBackendArgs, OsSecretBackendState } from "./osSecretBackend";
-export type OsSecretBackend = import("./osSecretBackend").OsSecretBackend;
-export const OsSecretBackend: typeof import("./osSecretBackend").OsSecretBackend = null as any;
-utilities.lazyLoad(exports, ["OsSecretBackend"], () => require("./osSecretBackend"));
-
-export { OsSecretBackendAccountArgs, OsSecretBackendAccountState } from "./osSecretBackendAccount";
-export type OsSecretBackendAccount = import("./osSecretBackendAccount").OsSecretBackendAccount;
-export const OsSecretBackendAccount: typeof import("./osSecretBackendAccount").OsSecretBackendAccount = null as any;
-utilities.lazyLoad(exports, ["OsSecretBackendAccount"], () => require("./osSecretBackendAccount"));
-
-export { OsSecretBackendHostArgs, OsSecretBackendHostState } from "./osSecretBackendHost";
-export type OsSecretBackendHost = import("./osSecretBackendHost").OsSecretBackendHost;
-export const OsSecretBackendHost: typeof import("./osSecretBackendHost").OsSecretBackendHost = null as any;
-utilities.lazyLoad(exports, ["OsSecretBackendHost"], () => require("./osSecretBackendHost"));
-
 export { PasswordPolicyArgs, PasswordPolicyState } from "./passwordPolicy";
 export type PasswordPolicy = import("./passwordPolicy").PasswordPolicy;
 export const PasswordPolicy: typeof import("./passwordPolicy").PasswordPolicy = null as any;
 utilities.lazyLoad(exports, ["PasswordPolicy"], () => require("./passwordPolicy"));
-
-export { PkiExternalCaSecretBackendAcmeAccountArgs, PkiExternalCaSecretBackendAcmeAccountState } from "./pkiExternalCaSecretBackendAcmeAccount";
-export type PkiExternalCaSecretBackendAcmeAccount = import("./pkiExternalCaSecretBackendAcmeAccount").PkiExternalCaSecretBackendAcmeAccount;
-export const PkiExternalCaSecretBackendAcmeAccount: typeof import("./pkiExternalCaSecretBackendAcmeAccount").PkiExternalCaSecretBackendAcmeAccount = null as any;
-utilities.lazyLoad(exports, ["PkiExternalCaSecretBackendAcmeAccount"], () => require("./pkiExternalCaSecretBackendAcmeAccount"));
-
-export { PkiExternalCaSecretBackendOrderArgs, PkiExternalCaSecretBackendOrderState } from "./pkiExternalCaSecretBackendOrder";
-export type PkiExternalCaSecretBackendOrder = import("./pkiExternalCaSecretBackendOrder").PkiExternalCaSecretBackendOrder;
-export const PkiExternalCaSecretBackendOrder: typeof import("./pkiExternalCaSecretBackendOrder").PkiExternalCaSecretBackendOrder = null as any;
-utilities.lazyLoad(exports, ["PkiExternalCaSecretBackendOrder"], () => require("./pkiExternalCaSecretBackendOrder"));
-
-export { PkiExternalCaSecretBackendOrderCertificateArgs, PkiExternalCaSecretBackendOrderCertificateState } from "./pkiExternalCaSecretBackendOrderCertificate";
-export type PkiExternalCaSecretBackendOrderCertificate = import("./pkiExternalCaSecretBackendOrderCertificate").PkiExternalCaSecretBackendOrderCertificate;
-export const PkiExternalCaSecretBackendOrderCertificate: typeof import("./pkiExternalCaSecretBackendOrderCertificate").PkiExternalCaSecretBackendOrderCertificate = null as any;
-utilities.lazyLoad(exports, ["PkiExternalCaSecretBackendOrderCertificate"], () => require("./pkiExternalCaSecretBackendOrderCertificate"));
-
-export { PkiExternalCaSecretBackendOrderChallengeFulfilledArgs, PkiExternalCaSecretBackendOrderChallengeFulfilledState } from "./pkiExternalCaSecretBackendOrderChallengeFulfilled";
-export type PkiExternalCaSecretBackendOrderChallengeFulfilled = import("./pkiExternalCaSecretBackendOrderChallengeFulfilled").PkiExternalCaSecretBackendOrderChallengeFulfilled;
-export const PkiExternalCaSecretBackendOrderChallengeFulfilled: typeof import("./pkiExternalCaSecretBackendOrderChallengeFulfilled").PkiExternalCaSecretBackendOrderChallengeFulfilled = null as any;
-utilities.lazyLoad(exports, ["PkiExternalCaSecretBackendOrderChallengeFulfilled"], () => require("./pkiExternalCaSecretBackendOrderChallengeFulfilled"));
-
-export { PkiExternalCaSecretBackendRoleArgs, PkiExternalCaSecretBackendRoleState } from "./pkiExternalCaSecretBackendRole";
-export type PkiExternalCaSecretBackendRole = import("./pkiExternalCaSecretBackendRole").PkiExternalCaSecretBackendRole;
-export const PkiExternalCaSecretBackendRole: typeof import("./pkiExternalCaSecretBackendRole").PkiExternalCaSecretBackendRole = null as any;
-utilities.lazyLoad(exports, ["PkiExternalCaSecretBackendRole"], () => require("./pkiExternalCaSecretBackendRole"));
 
 export { PluginArgs, PluginState } from "./plugin";
 export type Plugin = import("./plugin").Plugin;
@@ -278,16 +188,6 @@ export type QuotaRateLimit = import("./quotaRateLimit").QuotaRateLimit;
 export const QuotaRateLimit: typeof import("./quotaRateLimit").QuotaRateLimit = null as any;
 utilities.lazyLoad(exports, ["QuotaRateLimit"], () => require("./quotaRateLimit"));
 
-export { RadiusAuthBackendArgs, RadiusAuthBackendState } from "./radiusAuthBackend";
-export type RadiusAuthBackend = import("./radiusAuthBackend").RadiusAuthBackend;
-export const RadiusAuthBackend: typeof import("./radiusAuthBackend").RadiusAuthBackend = null as any;
-utilities.lazyLoad(exports, ["RadiusAuthBackend"], () => require("./radiusAuthBackend"));
-
-export { RadiusAuthBackendUserArgs, RadiusAuthBackendUserState } from "./radiusAuthBackendUser";
-export type RadiusAuthBackendUser = import("./radiusAuthBackendUser").RadiusAuthBackendUser;
-export const RadiusAuthBackendUser: typeof import("./radiusAuthBackendUser").RadiusAuthBackendUser = null as any;
-utilities.lazyLoad(exports, ["RadiusAuthBackendUser"], () => require("./radiusAuthBackendUser"));
-
 export { RaftAutopilotArgs, RaftAutopilotState } from "./raftAutopilot";
 export type RaftAutopilot = import("./raftAutopilot").RaftAutopilot;
 export const RaftAutopilot: typeof import("./raftAutopilot").RaftAutopilot = null as any;
@@ -313,26 +213,6 @@ export type ScepAuthBackendRole = import("./scepAuthBackendRole").ScepAuthBacken
 export const ScepAuthBackendRole: typeof import("./scepAuthBackendRole").ScepAuthBackendRole = null as any;
 utilities.lazyLoad(exports, ["ScepAuthBackendRole"], () => require("./scepAuthBackendRole"));
 
-export { SpiffeAuthBackendConfigArgs, SpiffeAuthBackendConfigState } from "./spiffeAuthBackendConfig";
-export type SpiffeAuthBackendConfig = import("./spiffeAuthBackendConfig").SpiffeAuthBackendConfig;
-export const SpiffeAuthBackendConfig: typeof import("./spiffeAuthBackendConfig").SpiffeAuthBackendConfig = null as any;
-utilities.lazyLoad(exports, ["SpiffeAuthBackendConfig"], () => require("./spiffeAuthBackendConfig"));
-
-export { SpiffeAuthBackendRoleArgs, SpiffeAuthBackendRoleState } from "./spiffeAuthBackendRole";
-export type SpiffeAuthBackendRole = import("./spiffeAuthBackendRole").SpiffeAuthBackendRole;
-export const SpiffeAuthBackendRole: typeof import("./spiffeAuthBackendRole").SpiffeAuthBackendRole = null as any;
-utilities.lazyLoad(exports, ["SpiffeAuthBackendRole"], () => require("./spiffeAuthBackendRole"));
-
-export { SpiffeSecretBackendConfigArgs, SpiffeSecretBackendConfigState } from "./spiffeSecretBackendConfig";
-export type SpiffeSecretBackendConfig = import("./spiffeSecretBackendConfig").SpiffeSecretBackendConfig;
-export const SpiffeSecretBackendConfig: typeof import("./spiffeSecretBackendConfig").SpiffeSecretBackendConfig = null as any;
-utilities.lazyLoad(exports, ["SpiffeSecretBackendConfig"], () => require("./spiffeSecretBackendConfig"));
-
-export { SpiffeSecretBackendRoleArgs, SpiffeSecretBackendRoleState } from "./spiffeSecretBackendRole";
-export type SpiffeSecretBackendRole = import("./spiffeSecretBackendRole").SpiffeSecretBackendRole;
-export const SpiffeSecretBackendRole: typeof import("./spiffeSecretBackendRole").SpiffeSecretBackendRole = null as any;
-utilities.lazyLoad(exports, ["SpiffeSecretBackendRole"], () => require("./spiffeSecretBackendRole"));
-
 export { SysConfigCorsArgs, SysConfigCorsState } from "./sysConfigCors";
 export type SysConfigCors = import("./sysConfigCors").SysConfigCors;
 export const SysConfigCors: typeof import("./sysConfigCors").SysConfigCors = null as any;
@@ -355,6 +235,7 @@ import * as alicloud from "./alicloud";
 import * as approle from "./approle";
 import * as aws from "./aws";
 import * as azure from "./azure";
+import * as cf from "./cf";
 import * as config from "./config";
 import * as consul from "./consul";
 import * as database from "./database";
@@ -363,6 +244,7 @@ import * as generic from "./generic";
 import * as github from "./github";
 import * as identity from "./identity";
 import * as jwt from "./jwt";
+import * as keymgmt from "./keymgmt";
 import * as kmip from "./kmip";
 import * as kubernetes from "./kubernetes";
 import * as kv from "./kv";
@@ -370,10 +252,14 @@ import * as ldap from "./ldap";
 import * as managed from "./managed";
 import * as mongodbatlas from "./mongodbatlas";
 import * as okta from "./okta";
+import * as os from "./os";
+import * as pkiexternalca from "./pkiexternalca";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
+import * as radius from "./radius";
 import * as saml from "./saml";
 import * as secrets from "./secrets";
+import * as spiffe from "./spiffe";
 import * as ssh from "./ssh";
 import * as terraformcloud from "./terraformcloud";
 import * as tokenauth from "./tokenauth";
@@ -387,6 +273,7 @@ export {
     approle,
     aws,
     azure,
+    cf,
     config,
     consul,
     database,
@@ -395,6 +282,7 @@ export {
     github,
     identity,
     jwt,
+    keymgmt,
     kmip,
     kubernetes,
     kv,
@@ -402,10 +290,14 @@ export {
     managed,
     mongodbatlas,
     okta,
+    os,
+    pkiexternalca,
     pkisecret,
     rabbitmq,
+    radius,
     saml,
     secrets,
+    spiffe,
     ssh,
     terraformcloud,
     tokenauth,
@@ -430,26 +322,8 @@ const _module = {
                 return new AuthBackend(name, <any>undefined, { urn })
             case "vault:index/certAuthBackendRole:CertAuthBackendRole":
                 return new CertAuthBackendRole(name, <any>undefined, { urn })
-            case "vault:index/cfAuthBackendConfig:CfAuthBackendConfig":
-                return new CfAuthBackendConfig(name, <any>undefined, { urn })
-            case "vault:index/cfAuthBackendRole:CfAuthBackendRole":
-                return new CfAuthBackendRole(name, <any>undefined, { urn })
             case "vault:index/egpPolicy:EgpPolicy":
                 return new EgpPolicy(name, <any>undefined, { urn })
-            case "vault:index/keymgmtAwsKms:KeymgmtAwsKms":
-                return new KeymgmtAwsKms(name, <any>undefined, { urn })
-            case "vault:index/keymgmtAzureKms:KeymgmtAzureKms":
-                return new KeymgmtAzureKms(name, <any>undefined, { urn })
-            case "vault:index/keymgmtDistributeKey:KeymgmtDistributeKey":
-                return new KeymgmtDistributeKey(name, <any>undefined, { urn })
-            case "vault:index/keymgmtGcpKms:KeymgmtGcpKms":
-                return new KeymgmtGcpKms(name, <any>undefined, { urn })
-            case "vault:index/keymgmtKey:KeymgmtKey":
-                return new KeymgmtKey(name, <any>undefined, { urn })
-            case "vault:index/keymgmtKeyRotate:KeymgmtKeyRotate":
-                return new KeymgmtKeyRotate(name, <any>undefined, { urn })
-            case "vault:index/keymgmtReplicateKey:KeymgmtReplicateKey":
-                return new KeymgmtReplicateKey(name, <any>undefined, { urn })
             case "vault:index/mfaDuo:MfaDuo":
                 return new MfaDuo(name, <any>undefined, { urn })
             case "vault:index/mfaOkta:MfaOkta":
@@ -472,24 +346,8 @@ const _module = {
                 return new OciAuthBackend(name, <any>undefined, { urn })
             case "vault:index/ociAuthBackendRole:OciAuthBackendRole":
                 return new OciAuthBackendRole(name, <any>undefined, { urn })
-            case "vault:index/osSecretBackend:OsSecretBackend":
-                return new OsSecretBackend(name, <any>undefined, { urn })
-            case "vault:index/osSecretBackendAccount:OsSecretBackendAccount":
-                return new OsSecretBackendAccount(name, <any>undefined, { urn })
-            case "vault:index/osSecretBackendHost:OsSecretBackendHost":
-                return new OsSecretBackendHost(name, <any>undefined, { urn })
             case "vault:index/passwordPolicy:PasswordPolicy":
                 return new PasswordPolicy(name, <any>undefined, { urn })
-            case "vault:index/pkiExternalCaSecretBackendAcmeAccount:PkiExternalCaSecretBackendAcmeAccount":
-                return new PkiExternalCaSecretBackendAcmeAccount(name, <any>undefined, { urn })
-            case "vault:index/pkiExternalCaSecretBackendOrder:PkiExternalCaSecretBackendOrder":
-                return new PkiExternalCaSecretBackendOrder(name, <any>undefined, { urn })
-            case "vault:index/pkiExternalCaSecretBackendOrderCertificate:PkiExternalCaSecretBackendOrderCertificate":
-                return new PkiExternalCaSecretBackendOrderCertificate(name, <any>undefined, { urn })
-            case "vault:index/pkiExternalCaSecretBackendOrderChallengeFulfilled:PkiExternalCaSecretBackendOrderChallengeFulfilled":
-                return new PkiExternalCaSecretBackendOrderChallengeFulfilled(name, <any>undefined, { urn })
-            case "vault:index/pkiExternalCaSecretBackendRole:PkiExternalCaSecretBackendRole":
-                return new PkiExternalCaSecretBackendRole(name, <any>undefined, { urn })
             case "vault:index/plugin:Plugin":
                 return new Plugin(name, <any>undefined, { urn })
             case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
@@ -504,10 +362,6 @@ const _module = {
                 return new QuotaLeaseCount(name, <any>undefined, { urn })
             case "vault:index/quotaRateLimit:QuotaRateLimit":
                 return new QuotaRateLimit(name, <any>undefined, { urn })
-            case "vault:index/radiusAuthBackend:RadiusAuthBackend":
-                return new RadiusAuthBackend(name, <any>undefined, { urn })
-            case "vault:index/radiusAuthBackendUser:RadiusAuthBackendUser":
-                return new RadiusAuthBackendUser(name, <any>undefined, { urn })
             case "vault:index/raftAutopilot:RaftAutopilot":
                 return new RaftAutopilot(name, <any>undefined, { urn })
             case "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig":
@@ -518,14 +372,6 @@ const _module = {
                 return new RotationPolicy(name, <any>undefined, { urn })
             case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
                 return new ScepAuthBackendRole(name, <any>undefined, { urn })
-            case "vault:index/spiffeAuthBackendConfig:SpiffeAuthBackendConfig":
-                return new SpiffeAuthBackendConfig(name, <any>undefined, { urn })
-            case "vault:index/spiffeAuthBackendRole:SpiffeAuthBackendRole":
-                return new SpiffeAuthBackendRole(name, <any>undefined, { urn })
-            case "vault:index/spiffeSecretBackendConfig:SpiffeSecretBackendConfig":
-                return new SpiffeSecretBackendConfig(name, <any>undefined, { urn })
-            case "vault:index/spiffeSecretBackendRole:SpiffeSecretBackendRole":
-                return new SpiffeSecretBackendRole(name, <any>undefined, { urn })
             case "vault:index/sysConfigCors:SysConfigCors":
                 return new SysConfigCors(name, <any>undefined, { urn })
             case "vault:index/token:Token":
@@ -543,16 +389,7 @@ pulumi.runtime.registerResourceModule("vault", "index/audit", _module)
 pulumi.runtime.registerResourceModule("vault", "index/auditRequestHeader", _module)
 pulumi.runtime.registerResourceModule("vault", "index/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/certAuthBackendRole", _module)
-pulumi.runtime.registerResourceModule("vault", "index/cfAuthBackendConfig", _module)
-pulumi.runtime.registerResourceModule("vault", "index/cfAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/egpPolicy", _module)
-pulumi.runtime.registerResourceModule("vault", "index/keymgmtAwsKms", _module)
-pulumi.runtime.registerResourceModule("vault", "index/keymgmtAzureKms", _module)
-pulumi.runtime.registerResourceModule("vault", "index/keymgmtDistributeKey", _module)
-pulumi.runtime.registerResourceModule("vault", "index/keymgmtGcpKms", _module)
-pulumi.runtime.registerResourceModule("vault", "index/keymgmtKey", _module)
-pulumi.runtime.registerResourceModule("vault", "index/keymgmtKeyRotate", _module)
-pulumi.runtime.registerResourceModule("vault", "index/keymgmtReplicateKey", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mfaDuo", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mfaOkta", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mfaPingid", _module)
@@ -564,15 +401,7 @@ pulumi.runtime.registerResourceModule("vault", "index/nomadSecretRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/oauthResourceServerConfigProfile", _module)
 pulumi.runtime.registerResourceModule("vault", "index/ociAuthBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/ociAuthBackendRole", _module)
-pulumi.runtime.registerResourceModule("vault", "index/osSecretBackend", _module)
-pulumi.runtime.registerResourceModule("vault", "index/osSecretBackendAccount", _module)
-pulumi.runtime.registerResourceModule("vault", "index/osSecretBackendHost", _module)
 pulumi.runtime.registerResourceModule("vault", "index/passwordPolicy", _module)
-pulumi.runtime.registerResourceModule("vault", "index/pkiExternalCaSecretBackendAcmeAccount", _module)
-pulumi.runtime.registerResourceModule("vault", "index/pkiExternalCaSecretBackendOrder", _module)
-pulumi.runtime.registerResourceModule("vault", "index/pkiExternalCaSecretBackendOrderCertificate", _module)
-pulumi.runtime.registerResourceModule("vault", "index/pkiExternalCaSecretBackendOrderChallengeFulfilled", _module)
-pulumi.runtime.registerResourceModule("vault", "index/pkiExternalCaSecretBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("vault", "index/pluginPinnedVersion", _module)
 pulumi.runtime.registerResourceModule("vault", "index/pluginRuntime", _module)
@@ -580,17 +409,11 @@ pulumi.runtime.registerResourceModule("vault", "index/policy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaLeaseCount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaRateLimit", _module)
-pulumi.runtime.registerResourceModule("vault", "index/radiusAuthBackend", _module)
-pulumi.runtime.registerResourceModule("vault", "index/radiusAuthBackendUser", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftAutopilot", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftSnapshotAgentConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rotationPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/scepAuthBackendRole", _module)
-pulumi.runtime.registerResourceModule("vault", "index/spiffeAuthBackendConfig", _module)
-pulumi.runtime.registerResourceModule("vault", "index/spiffeAuthBackendRole", _module)
-pulumi.runtime.registerResourceModule("vault", "index/spiffeSecretBackendConfig", _module)
-pulumi.runtime.registerResourceModule("vault", "index/spiffeSecretBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/sysConfigCors", _module)
 pulumi.runtime.registerResourceModule("vault", "index/token", _module)
 pulumi.runtime.registerResourceModule("vault", "index/userpassAuthBackendUser", _module)
