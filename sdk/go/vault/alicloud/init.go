@@ -23,6 +23,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "vault:alicloud/authBackendRole:AuthBackendRole":
 		r = &AuthBackendRole{}
+	case "vault:alicloud/secretBackend:SecretBackend":
+		r = &SecretBackend{}
+	case "vault:alicloud/secretBackendRole:SecretBackendRole":
+		r = &SecretBackendRole{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -39,6 +43,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"alicloud/authBackendRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"alicloud/secretBackend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"alicloud/secretBackendRole",
 		&module{version},
 	)
 }

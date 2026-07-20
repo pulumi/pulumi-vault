@@ -172,6 +172,17 @@ export interface GetPolicyDocumentRuleDeniedParameterArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface OauthResourceServerConfigProfilePublicKey {
+    /**
+     * The key ID (kid) for this public key. Must be unique within the profile.
+     */
+    keyId: pulumi.Input<string>;
+    /**
+     * The PEM-encoded public key.
+     */
+    pem: pulumi.Input<string>;
+}
+
 export interface OciAuthBackendTune {
     /**
      * List of headers to whitelist and allowing
@@ -619,6 +630,32 @@ export interface ProviderHeader {
      */
     value: pulumi.Input<string>;
 }
+export namespace alicloud {
+    export interface SecretBackendRoleInlinePolicy {
+        /**
+         * A JSON-encoded inline RAM policy document.
+         */
+        policyDocument: pulumi.Input<string>;
+    }
+
+    export interface SecretBackendRoleRemotePolicy {
+        /**
+         * The name of the remote RAM policy.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The type of the remote policy. Must be `System` (for
+         * AliCloud managed policies) or `Custom` (for customer-managed policies).
+         *
+         * > **Note:** You must specify  either `roleArn` or at least one `inlinePolicies` block,
+         * or `remotePolicies` block, or a combination of `inlinePolicies`
+         * and `remotePolicies`. The role will fail validation if none is provided.
+         * `roleArn` cannot be combined with `inlinePolicies` or `remotePolicies`.
+         */
+        type: pulumi.Input<string>;
+    }
+}
+
 export namespace azure {
     export interface BackendRoleAzureGroup {
         groupName: pulumi.Input<string>;

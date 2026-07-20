@@ -50,6 +50,37 @@ export interface AuthBackendTune {
     tokenType?: string;
 }
 
+export interface GetPluginRuntimesRuntime {
+    /**
+     * The parent cgroup for plugin containers, when set.
+     */
+    cgroupParent: string;
+    /**
+     * CPU quota in nanoseconds per second, when set.
+     */
+    cpuNanos: number;
+    /**
+     * Memory limit in bytes, when set.
+     */
+    memoryBytes: number;
+    /**
+     * The runtime name.
+     */
+    name: string;
+    /**
+     * The OCI runtime used for plugin containers, when set.
+     */
+    ociRuntime: string;
+    /**
+     * Whether the runtime runs as a non-root user.
+     */
+    rootless: boolean;
+    /**
+     * The plugin runtime type to list. Currently only `container` is supported.
+     */
+    type: string;
+}
+
 export interface GetPolicyDocumentRule {
     /**
      * Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
@@ -111,6 +142,17 @@ export interface GetPolicyDocumentRuleDeniedParameter {
     values: string[];
 }
 
+export interface OauthResourceServerConfigProfilePublicKey {
+    /**
+     * The key ID (kid) for this public key. Must be unique within the profile.
+     */
+    keyId: string;
+    /**
+     * The PEM-encoded public key.
+     */
+    pem: string;
+}
+
 export interface OciAuthBackendTune {
     /**
      * List of headers to whitelist and allowing
@@ -156,6 +198,33 @@ export interface OciAuthBackendTune {
      * For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
      */
     tokenType?: string;
+}
+
+export namespace alicloud {
+    export interface SecretBackendRoleInlinePolicy {
+        /**
+         * A JSON-encoded inline RAM policy document.
+         */
+        policyDocument: string;
+    }
+
+    export interface SecretBackendRoleRemotePolicy {
+        /**
+         * The name of the remote RAM policy.
+         */
+        name: string;
+        /**
+         * The type of the remote policy. Must be `System` (for
+         * AliCloud managed policies) or `Custom` (for customer-managed policies).
+         *
+         * > **Note:** You must specify  either `roleArn` or at least one `inlinePolicies` block,
+         * or `remotePolicies` block, or a combination of `inlinePolicies`
+         * and `remotePolicies`. The role will fail validation if none is provided.
+         * `roleArn` cannot be combined with `inlinePolicies` or `remotePolicies`.
+         */
+        type: string;
+    }
+
 }
 
 export namespace azure {

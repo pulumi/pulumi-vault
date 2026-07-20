@@ -30,6 +30,11 @@ export const getAccessCredentials: typeof import("./getAccessCredentials").getAc
 export const getAccessCredentialsOutput: typeof import("./getAccessCredentials").getAccessCredentialsOutput = null as any;
 utilities.lazyLoad(exports, ["getAccessCredentials","getAccessCredentialsOutput"], () => require("./getAccessCredentials"));
 
+export { SecretBackendStaticRoleArgs, SecretBackendStaticRoleState } from "./secretBackendStaticRole";
+export type SecretBackendStaticRole = import("./secretBackendStaticRole").SecretBackendStaticRole;
+export const SecretBackendStaticRole: typeof import("./secretBackendStaticRole").SecretBackendStaticRole = null as any;
+utilities.lazyLoad(exports, ["SecretBackendStaticRole"], () => require("./secretBackendStaticRole"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -43,6 +48,8 @@ const _module = {
                 return new Backend(name, <any>undefined, { urn })
             case "vault:azure/backendRole:BackendRole":
                 return new BackendRole(name, <any>undefined, { urn })
+            case "vault:azure/secretBackendStaticRole:SecretBackendStaticRole":
+                return new SecretBackendStaticRole(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -52,3 +59,4 @@ pulumi.runtime.registerResourceModule("vault", "azure/authBackendConfig", _modul
 pulumi.runtime.registerResourceModule("vault", "azure/authBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "azure/backend", _module)
 pulumi.runtime.registerResourceModule("vault", "azure/backendRole", _module)
+pulumi.runtime.registerResourceModule("vault", "azure/secretBackendStaticRole", _module)

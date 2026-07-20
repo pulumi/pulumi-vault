@@ -21,8 +21,16 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "vault:config/controlGroup:ControlGroup":
+		r = &ControlGroup{}
+	case "vault:config/groupPolicyApplication:GroupPolicyApplication":
+		r = &GroupPolicyApplication{}
 	case "vault:config/uiCustomMessage:UiCustomMessage":
 		r = &UiCustomMessage{}
+	case "vault:config/uiDefaultAuth:UiDefaultAuth":
+		r = &UiDefaultAuth{}
+	case "vault:config/uiHeader:UiHeader":
+		r = &UiHeader{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -38,7 +46,27 @@ func init() {
 	}
 	pulumi.RegisterResourceModule(
 		"vault",
+		"config/controlGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"config/groupPolicyApplication",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"config/uiCustomMessage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"config/uiDefaultAuth",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"config/uiHeader",
 		&module{version},
 	)
 }

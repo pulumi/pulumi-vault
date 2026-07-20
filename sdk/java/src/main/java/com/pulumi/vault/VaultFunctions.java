@@ -8,6 +8,7 @@ import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.deployment.InvokeOutputOptions;
+import com.pulumi.resources.InvokeArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.GetAuthBackendArgs;
 import com.pulumi.vault.inputs.GetAuthBackendPlainArgs;
@@ -19,20 +20,371 @@ import com.pulumi.vault.inputs.GetNamespacesArgs;
 import com.pulumi.vault.inputs.GetNamespacesPlainArgs;
 import com.pulumi.vault.inputs.GetNomadAccessTokenArgs;
 import com.pulumi.vault.inputs.GetNomadAccessTokenPlainArgs;
+import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengePlainArgs;
+import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+import com.pulumi.vault.inputs.GetPluginRuntimesPlainArgs;
 import com.pulumi.vault.inputs.GetPolicyDocumentArgs;
 import com.pulumi.vault.inputs.GetPolicyDocumentPlainArgs;
 import com.pulumi.vault.inputs.GetRaftAutopilotStateArgs;
 import com.pulumi.vault.inputs.GetRaftAutopilotStatePlainArgs;
+import com.pulumi.vault.outputs.GetActivationFlagsResult;
 import com.pulumi.vault.outputs.GetAuthBackendResult;
 import com.pulumi.vault.outputs.GetAuthBackendsResult;
 import com.pulumi.vault.outputs.GetNamespaceResult;
 import com.pulumi.vault.outputs.GetNamespacesResult;
 import com.pulumi.vault.outputs.GetNomadAccessTokenResult;
+import com.pulumi.vault.outputs.GetPkiExternalCaSecretBackendOrderChallengeResult;
+import com.pulumi.vault.outputs.GetPluginRuntimesResult;
 import com.pulumi.vault.outputs.GetPolicyDocumentResult;
 import com.pulumi.vault.outputs.GetRaftAutopilotStateResult;
+import com.pulumi.vault.outputs.GetSysConfigCorsResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class VaultFunctions {
+    /**
+     * Reads activation flags from Vault.
+     * 
+     * &gt; **Important** Activation flags require Vault 1.16 or later.
+     * 
+     * &gt; **Important** Activation flags are available only in Vault Enterprise and are exposed through a singleton system endpoint.
+     * 
+     * &gt; **Important** The activation flags endpoint is root-namespace-only. This data source does not accept a `namespace` argument.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getActivationFlags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Notes
+     * 
+     * * Activation flag names are returned exactly as reported by Vault.
+     * * This data source reads from `GET /sys/activation-flags`.
+     * * The provider returns both `activatedFlags` and `unactivatedFlags` as Terraform sets.
+     * 
+     */
+    public static Output<GetActivationFlagsResult> getActivationFlags() {
+        return getActivationFlags(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Reads activation flags from Vault.
+     * 
+     * &gt; **Important** Activation flags require Vault 1.16 or later.
+     * 
+     * &gt; **Important** Activation flags are available only in Vault Enterprise and are exposed through a singleton system endpoint.
+     * 
+     * &gt; **Important** The activation flags endpoint is root-namespace-only. This data source does not accept a `namespace` argument.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getActivationFlags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Notes
+     * 
+     * * Activation flag names are returned exactly as reported by Vault.
+     * * This data source reads from `GET /sys/activation-flags`.
+     * * The provider returns both `activatedFlags` and `unactivatedFlags` as Terraform sets.
+     * 
+     */
+    public static CompletableFuture<GetActivationFlagsResult> getActivationFlagsPlain() {
+        return getActivationFlagsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Reads activation flags from Vault.
+     * 
+     * &gt; **Important** Activation flags require Vault 1.16 or later.
+     * 
+     * &gt; **Important** Activation flags are available only in Vault Enterprise and are exposed through a singleton system endpoint.
+     * 
+     * &gt; **Important** The activation flags endpoint is root-namespace-only. This data source does not accept a `namespace` argument.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getActivationFlags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Notes
+     * 
+     * * Activation flag names are returned exactly as reported by Vault.
+     * * This data source reads from `GET /sys/activation-flags`.
+     * * The provider returns both `activatedFlags` and `unactivatedFlags` as Terraform sets.
+     * 
+     */
+    public static Output<GetActivationFlagsResult> getActivationFlags(InvokeArgs args) {
+        return getActivationFlags(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads activation flags from Vault.
+     * 
+     * &gt; **Important** Activation flags require Vault 1.16 or later.
+     * 
+     * &gt; **Important** Activation flags are available only in Vault Enterprise and are exposed through a singleton system endpoint.
+     * 
+     * &gt; **Important** The activation flags endpoint is root-namespace-only. This data source does not accept a `namespace` argument.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getActivationFlags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Notes
+     * 
+     * * Activation flag names are returned exactly as reported by Vault.
+     * * This data source reads from `GET /sys/activation-flags`.
+     * * The provider returns both `activatedFlags` and `unactivatedFlags` as Terraform sets.
+     * 
+     */
+    public static CompletableFuture<GetActivationFlagsResult> getActivationFlagsPlain(InvokeArgs args) {
+        return getActivationFlagsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads activation flags from Vault.
+     * 
+     * &gt; **Important** Activation flags require Vault 1.16 or later.
+     * 
+     * &gt; **Important** Activation flags are available only in Vault Enterprise and are exposed through a singleton system endpoint.
+     * 
+     * &gt; **Important** The activation flags endpoint is root-namespace-only. This data source does not accept a `namespace` argument.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getActivationFlags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Notes
+     * 
+     * * Activation flag names are returned exactly as reported by Vault.
+     * * This data source reads from `GET /sys/activation-flags`.
+     * * The provider returns both `activatedFlags` and `unactivatedFlags` as Terraform sets.
+     * 
+     */
+    public static Output<GetActivationFlagsResult> getActivationFlags(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getActivationFlags:getActivationFlags", TypeShape.of(GetActivationFlagsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads activation flags from Vault.
+     * 
+     * &gt; **Important** Activation flags require Vault 1.16 or later.
+     * 
+     * &gt; **Important** Activation flags are available only in Vault Enterprise and are exposed through a singleton system endpoint.
+     * 
+     * &gt; **Important** The activation flags endpoint is root-namespace-only. This data source does not accept a `namespace` argument.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getActivationFlags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Notes
+     * 
+     * * Activation flag names are returned exactly as reported by Vault.
+     * * This data source reads from `GET /sys/activation-flags`.
+     * * The provider returns both `activatedFlags` and `unactivatedFlags` as Terraform sets.
+     * 
+     */
+    public static Output<GetActivationFlagsResult> getActivationFlags(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getActivationFlags:getActivationFlags", TypeShape.of(GetActivationFlagsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads activation flags from Vault.
+     * 
+     * &gt; **Important** Activation flags require Vault 1.16 or later.
+     * 
+     * &gt; **Important** Activation flags are available only in Vault Enterprise and are exposed through a singleton system endpoint.
+     * 
+     * &gt; **Important** The activation flags endpoint is root-namespace-only. This data source does not accept a `namespace` argument.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getActivationFlags(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Notes
+     * 
+     * * Activation flag names are returned exactly as reported by Vault.
+     * * This data source reads from `GET /sys/activation-flags`.
+     * * The provider returns both `activatedFlags` and `unactivatedFlags` as Terraform sets.
+     * 
+     */
+    public static CompletableFuture<GetActivationFlagsResult> getActivationFlagsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getActivationFlags:getActivationFlags", TypeShape.of(GetActivationFlagsResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * ## Example Usage
      * 
@@ -2410,6 +2762,1608 @@ public final class VaultFunctions {
         return Deployment.getInstance().invokeAsync("vault:index/getNomadAccessToken:getNomadAccessToken", TypeShape.of(GetNomadAccessTokenResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * Retrieves ACME challenge details for a specific identifier in an order. This data source provides the information needed to fulfill ACME challenges (HTTP-01, DNS-01, or TLS-ALPN-01) for domain validation.
+     * 
+     * &gt; **Note** This data source will poll the order status until it reaches the `awaiting-challenge-fulfillment` or `completed` state. Use this data source after creating an order with `vault.PkiExternalCaSecretBackendOrder`.
+     * 
+     * ## Example Usage
+     * 
+     * ### With HTTP-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccount;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRole;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRoleArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrder;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrderArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var pki_external_ca = new Mount("pki-external-ca", MountArgs.builder()
+     *             .path("pki-external-ca")
+     *             .type("pki-external-ca")
+     *             .build());
+     * 
+     *         var example = new PkiExternalCaSecretBackendAcmeAccount("example", PkiExternalCaSecretBackendAcmeAccountArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("my-acme-account")
+     *             .directoryUrl("https://acme-v02.api.letsencrypt.org/directory")
+     *             .emailContacts("admin}{@literal @}{@code example.com")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendRole = new PkiExternalCaSecretBackendRole("examplePkiExternalCaSecretBackendRole", PkiExternalCaSecretBackendRoleArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("example-role")
+     *             .acmeAccountName(example.name())
+     *             .allowedDomains("example.com")
+     *             .allowedDomainOptions(            
+     *                 "bare_domains",
+     *                 "subdomains")
+     *             .allowedChallengeTypes("http-01")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendOrder = new PkiExternalCaSecretBackendOrder("examplePkiExternalCaSecretBackendOrder", PkiExternalCaSecretBackendOrderArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .identifiers("www.example.com")
+     *             .build());
+     * 
+     *         // Retrieve HTTP-01 challenge details
+     *         final var http = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .orderId(examplePkiExternalCaSecretBackendOrder.orderId())
+     *             .challengeType("http-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Deploy the challenge file
+     *         var acmeChallenge = new File("acmeChallenge", FileArgs.builder()
+     *             .filename(String.format("/var/www/html/.well-known/acme-challenge/%s", http.token()))
+     *             .content(http.keyAuthorization())
+     *             .build());
+     * 
+     *         ctx.export("challengeToken", http.applyValue(_http -> _http.token()));
+     *         ctx.export("challengeUrl", http.applyValue(_http -> String.format("http://www.example.com/.well-known/acme-challenge/%s", _http.token())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * 
+     * ### With DNS-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.aws.Route53Record;
+     * import com.pulumi.aws.Route53RecordArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve DNS-01 challenge details
+     *         final var dns = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("dns-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Create DNS TXT record using AWS Route53
+     *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
+     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .name("_acme-challenge.www.example.com")
+     *             .type("TXT")
+     *             .ttl(60)
+     *             .records(Arrays.asList(dns.keyAuthorization()))
+     *             .build());
+     * 
+     *         ctx.export("dnsRecordName", "_acme-challenge.www.example.com");
+     *         ctx.export("dnsRecordValue", dns.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With TLS-ALPN-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve TLS-ALPN-01 challenge details
+     *         final var tlsAlpn = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("tls-alpn-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         ctx.export("tlsAlpnKeyAuth", tlsAlpn.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Challenge Type Details
+     * 
+     * ### HTTP-01 Challenge
+     * 
+     * For HTTP-01 challenges, you must serve the `keyAuthorization` value at:
+     * 
+     * The response must:
+     * - Return HTTP 200 status
+     * - Have Content-Type: `text/plain` or no Content-Type header
+     * - Contain only the `keyAuthorization` value
+     * 
+     * ### DNS-01 Challenge
+     * 
+     * For DNS-01 challenges, you must create a TXT record at:
+     * 
+     * The TXT record value must be the `keyAuthorization` value. DNS propagation may take time, so ensure the record is resolvable before marking the challenge as fulfilled.
+     * 
+     * ### TLS-ALPN-01 Challenge
+     * 
+     * For TLS-ALPN-01 challenges, you must configure your TLS server to:
+     * - Present a self-signed certificate for the identifier
+     * - Include the `acme-tls/1` ALPN protocol
+     * - Include a specific extension with the `keyAuthorization` value
+     * 
+     * This challenge type is more complex and typically requires custom TLS server configuration.
+     * 
+     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * 
+     */
+    public static Output<GetPkiExternalCaSecretBackendOrderChallengeResult> getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs args) {
+        return getPkiExternalCaSecretBackendOrderChallenge(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieves ACME challenge details for a specific identifier in an order. This data source provides the information needed to fulfill ACME challenges (HTTP-01, DNS-01, or TLS-ALPN-01) for domain validation.
+     * 
+     * &gt; **Note** This data source will poll the order status until it reaches the `awaiting-challenge-fulfillment` or `completed` state. Use this data source after creating an order with `vault.PkiExternalCaSecretBackendOrder`.
+     * 
+     * ## Example Usage
+     * 
+     * ### With HTTP-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccount;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRole;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRoleArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrder;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrderArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var pki_external_ca = new Mount("pki-external-ca", MountArgs.builder()
+     *             .path("pki-external-ca")
+     *             .type("pki-external-ca")
+     *             .build());
+     * 
+     *         var example = new PkiExternalCaSecretBackendAcmeAccount("example", PkiExternalCaSecretBackendAcmeAccountArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("my-acme-account")
+     *             .directoryUrl("https://acme-v02.api.letsencrypt.org/directory")
+     *             .emailContacts("admin}{@literal @}{@code example.com")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendRole = new PkiExternalCaSecretBackendRole("examplePkiExternalCaSecretBackendRole", PkiExternalCaSecretBackendRoleArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("example-role")
+     *             .acmeAccountName(example.name())
+     *             .allowedDomains("example.com")
+     *             .allowedDomainOptions(            
+     *                 "bare_domains",
+     *                 "subdomains")
+     *             .allowedChallengeTypes("http-01")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendOrder = new PkiExternalCaSecretBackendOrder("examplePkiExternalCaSecretBackendOrder", PkiExternalCaSecretBackendOrderArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .identifiers("www.example.com")
+     *             .build());
+     * 
+     *         // Retrieve HTTP-01 challenge details
+     *         final var http = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .orderId(examplePkiExternalCaSecretBackendOrder.orderId())
+     *             .challengeType("http-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Deploy the challenge file
+     *         var acmeChallenge = new File("acmeChallenge", FileArgs.builder()
+     *             .filename(String.format("/var/www/html/.well-known/acme-challenge/%s", http.token()))
+     *             .content(http.keyAuthorization())
+     *             .build());
+     * 
+     *         ctx.export("challengeToken", http.applyValue(_http -> _http.token()));
+     *         ctx.export("challengeUrl", http.applyValue(_http -> String.format("http://www.example.com/.well-known/acme-challenge/%s", _http.token())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * 
+     * ### With DNS-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.aws.Route53Record;
+     * import com.pulumi.aws.Route53RecordArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve DNS-01 challenge details
+     *         final var dns = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("dns-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Create DNS TXT record using AWS Route53
+     *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
+     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .name("_acme-challenge.www.example.com")
+     *             .type("TXT")
+     *             .ttl(60)
+     *             .records(Arrays.asList(dns.keyAuthorization()))
+     *             .build());
+     * 
+     *         ctx.export("dnsRecordName", "_acme-challenge.www.example.com");
+     *         ctx.export("dnsRecordValue", dns.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With TLS-ALPN-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve TLS-ALPN-01 challenge details
+     *         final var tlsAlpn = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("tls-alpn-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         ctx.export("tlsAlpnKeyAuth", tlsAlpn.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Challenge Type Details
+     * 
+     * ### HTTP-01 Challenge
+     * 
+     * For HTTP-01 challenges, you must serve the `keyAuthorization` value at:
+     * 
+     * The response must:
+     * - Return HTTP 200 status
+     * - Have Content-Type: `text/plain` or no Content-Type header
+     * - Contain only the `keyAuthorization` value
+     * 
+     * ### DNS-01 Challenge
+     * 
+     * For DNS-01 challenges, you must create a TXT record at:
+     * 
+     * The TXT record value must be the `keyAuthorization` value. DNS propagation may take time, so ensure the record is resolvable before marking the challenge as fulfilled.
+     * 
+     * ### TLS-ALPN-01 Challenge
+     * 
+     * For TLS-ALPN-01 challenges, you must configure your TLS server to:
+     * - Present a self-signed certificate for the identifier
+     * - Include the `acme-tls/1` ALPN protocol
+     * - Include a specific extension with the `keyAuthorization` value
+     * 
+     * This challenge type is more complex and typically requires custom TLS server configuration.
+     * 
+     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * 
+     */
+    public static CompletableFuture<GetPkiExternalCaSecretBackendOrderChallengeResult> getPkiExternalCaSecretBackendOrderChallengePlain(GetPkiExternalCaSecretBackendOrderChallengePlainArgs args) {
+        return getPkiExternalCaSecretBackendOrderChallengePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieves ACME challenge details for a specific identifier in an order. This data source provides the information needed to fulfill ACME challenges (HTTP-01, DNS-01, or TLS-ALPN-01) for domain validation.
+     * 
+     * &gt; **Note** This data source will poll the order status until it reaches the `awaiting-challenge-fulfillment` or `completed` state. Use this data source after creating an order with `vault.PkiExternalCaSecretBackendOrder`.
+     * 
+     * ## Example Usage
+     * 
+     * ### With HTTP-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccount;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRole;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRoleArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrder;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrderArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var pki_external_ca = new Mount("pki-external-ca", MountArgs.builder()
+     *             .path("pki-external-ca")
+     *             .type("pki-external-ca")
+     *             .build());
+     * 
+     *         var example = new PkiExternalCaSecretBackendAcmeAccount("example", PkiExternalCaSecretBackendAcmeAccountArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("my-acme-account")
+     *             .directoryUrl("https://acme-v02.api.letsencrypt.org/directory")
+     *             .emailContacts("admin}{@literal @}{@code example.com")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendRole = new PkiExternalCaSecretBackendRole("examplePkiExternalCaSecretBackendRole", PkiExternalCaSecretBackendRoleArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("example-role")
+     *             .acmeAccountName(example.name())
+     *             .allowedDomains("example.com")
+     *             .allowedDomainOptions(            
+     *                 "bare_domains",
+     *                 "subdomains")
+     *             .allowedChallengeTypes("http-01")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendOrder = new PkiExternalCaSecretBackendOrder("examplePkiExternalCaSecretBackendOrder", PkiExternalCaSecretBackendOrderArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .identifiers("www.example.com")
+     *             .build());
+     * 
+     *         // Retrieve HTTP-01 challenge details
+     *         final var http = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .orderId(examplePkiExternalCaSecretBackendOrder.orderId())
+     *             .challengeType("http-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Deploy the challenge file
+     *         var acmeChallenge = new File("acmeChallenge", FileArgs.builder()
+     *             .filename(String.format("/var/www/html/.well-known/acme-challenge/%s", http.token()))
+     *             .content(http.keyAuthorization())
+     *             .build());
+     * 
+     *         ctx.export("challengeToken", http.applyValue(_http -> _http.token()));
+     *         ctx.export("challengeUrl", http.applyValue(_http -> String.format("http://www.example.com/.well-known/acme-challenge/%s", _http.token())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * 
+     * ### With DNS-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.aws.Route53Record;
+     * import com.pulumi.aws.Route53RecordArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve DNS-01 challenge details
+     *         final var dns = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("dns-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Create DNS TXT record using AWS Route53
+     *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
+     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .name("_acme-challenge.www.example.com")
+     *             .type("TXT")
+     *             .ttl(60)
+     *             .records(Arrays.asList(dns.keyAuthorization()))
+     *             .build());
+     * 
+     *         ctx.export("dnsRecordName", "_acme-challenge.www.example.com");
+     *         ctx.export("dnsRecordValue", dns.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With TLS-ALPN-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve TLS-ALPN-01 challenge details
+     *         final var tlsAlpn = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("tls-alpn-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         ctx.export("tlsAlpnKeyAuth", tlsAlpn.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Challenge Type Details
+     * 
+     * ### HTTP-01 Challenge
+     * 
+     * For HTTP-01 challenges, you must serve the `keyAuthorization` value at:
+     * 
+     * The response must:
+     * - Return HTTP 200 status
+     * - Have Content-Type: `text/plain` or no Content-Type header
+     * - Contain only the `keyAuthorization` value
+     * 
+     * ### DNS-01 Challenge
+     * 
+     * For DNS-01 challenges, you must create a TXT record at:
+     * 
+     * The TXT record value must be the `keyAuthorization` value. DNS propagation may take time, so ensure the record is resolvable before marking the challenge as fulfilled.
+     * 
+     * ### TLS-ALPN-01 Challenge
+     * 
+     * For TLS-ALPN-01 challenges, you must configure your TLS server to:
+     * - Present a self-signed certificate for the identifier
+     * - Include the `acme-tls/1` ALPN protocol
+     * - Include a specific extension with the `keyAuthorization` value
+     * 
+     * This challenge type is more complex and typically requires custom TLS server configuration.
+     * 
+     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * 
+     */
+    public static Output<GetPkiExternalCaSecretBackendOrderChallengeResult> getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getPkiExternalCaSecretBackendOrderChallenge:getPkiExternalCaSecretBackendOrderChallenge", TypeShape.of(GetPkiExternalCaSecretBackendOrderChallengeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieves ACME challenge details for a specific identifier in an order. This data source provides the information needed to fulfill ACME challenges (HTTP-01, DNS-01, or TLS-ALPN-01) for domain validation.
+     * 
+     * &gt; **Note** This data source will poll the order status until it reaches the `awaiting-challenge-fulfillment` or `completed` state. Use this data source after creating an order with `vault.PkiExternalCaSecretBackendOrder`.
+     * 
+     * ## Example Usage
+     * 
+     * ### With HTTP-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccount;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRole;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRoleArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrder;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrderArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var pki_external_ca = new Mount("pki-external-ca", MountArgs.builder()
+     *             .path("pki-external-ca")
+     *             .type("pki-external-ca")
+     *             .build());
+     * 
+     *         var example = new PkiExternalCaSecretBackendAcmeAccount("example", PkiExternalCaSecretBackendAcmeAccountArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("my-acme-account")
+     *             .directoryUrl("https://acme-v02.api.letsencrypt.org/directory")
+     *             .emailContacts("admin}{@literal @}{@code example.com")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendRole = new PkiExternalCaSecretBackendRole("examplePkiExternalCaSecretBackendRole", PkiExternalCaSecretBackendRoleArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("example-role")
+     *             .acmeAccountName(example.name())
+     *             .allowedDomains("example.com")
+     *             .allowedDomainOptions(            
+     *                 "bare_domains",
+     *                 "subdomains")
+     *             .allowedChallengeTypes("http-01")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendOrder = new PkiExternalCaSecretBackendOrder("examplePkiExternalCaSecretBackendOrder", PkiExternalCaSecretBackendOrderArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .identifiers("www.example.com")
+     *             .build());
+     * 
+     *         // Retrieve HTTP-01 challenge details
+     *         final var http = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .orderId(examplePkiExternalCaSecretBackendOrder.orderId())
+     *             .challengeType("http-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Deploy the challenge file
+     *         var acmeChallenge = new File("acmeChallenge", FileArgs.builder()
+     *             .filename(String.format("/var/www/html/.well-known/acme-challenge/%s", http.token()))
+     *             .content(http.keyAuthorization())
+     *             .build());
+     * 
+     *         ctx.export("challengeToken", http.applyValue(_http -> _http.token()));
+     *         ctx.export("challengeUrl", http.applyValue(_http -> String.format("http://www.example.com/.well-known/acme-challenge/%s", _http.token())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * 
+     * ### With DNS-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.aws.Route53Record;
+     * import com.pulumi.aws.Route53RecordArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve DNS-01 challenge details
+     *         final var dns = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("dns-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Create DNS TXT record using AWS Route53
+     *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
+     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .name("_acme-challenge.www.example.com")
+     *             .type("TXT")
+     *             .ttl(60)
+     *             .records(Arrays.asList(dns.keyAuthorization()))
+     *             .build());
+     * 
+     *         ctx.export("dnsRecordName", "_acme-challenge.www.example.com");
+     *         ctx.export("dnsRecordValue", dns.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With TLS-ALPN-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve TLS-ALPN-01 challenge details
+     *         final var tlsAlpn = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("tls-alpn-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         ctx.export("tlsAlpnKeyAuth", tlsAlpn.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Challenge Type Details
+     * 
+     * ### HTTP-01 Challenge
+     * 
+     * For HTTP-01 challenges, you must serve the `keyAuthorization` value at:
+     * 
+     * The response must:
+     * - Return HTTP 200 status
+     * - Have Content-Type: `text/plain` or no Content-Type header
+     * - Contain only the `keyAuthorization` value
+     * 
+     * ### DNS-01 Challenge
+     * 
+     * For DNS-01 challenges, you must create a TXT record at:
+     * 
+     * The TXT record value must be the `keyAuthorization` value. DNS propagation may take time, so ensure the record is resolvable before marking the challenge as fulfilled.
+     * 
+     * ### TLS-ALPN-01 Challenge
+     * 
+     * For TLS-ALPN-01 challenges, you must configure your TLS server to:
+     * - Present a self-signed certificate for the identifier
+     * - Include the `acme-tls/1` ALPN protocol
+     * - Include a specific extension with the `keyAuthorization` value
+     * 
+     * This challenge type is more complex and typically requires custom TLS server configuration.
+     * 
+     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * 
+     */
+    public static Output<GetPkiExternalCaSecretBackendOrderChallengeResult> getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getPkiExternalCaSecretBackendOrderChallenge:getPkiExternalCaSecretBackendOrderChallenge", TypeShape.of(GetPkiExternalCaSecretBackendOrderChallengeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieves ACME challenge details for a specific identifier in an order. This data source provides the information needed to fulfill ACME challenges (HTTP-01, DNS-01, or TLS-ALPN-01) for domain validation.
+     * 
+     * &gt; **Note** This data source will poll the order status until it reaches the `awaiting-challenge-fulfillment` or `completed` state. Use this data source after creating an order with `vault.PkiExternalCaSecretBackendOrder`.
+     * 
+     * ## Example Usage
+     * 
+     * ### With HTTP-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccount;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendAcmeAccountArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRole;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendRoleArgs;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrder;
+     * import com.pulumi.vault.PkiExternalCaSecretBackendOrderArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.local.File;
+     * import com.pulumi.local.FileArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App }{{@code
+     *     public static void main(String[] args) }{{@code
+     *         Pulumi.run(App::stack);
+     *     }}{@code
+     * 
+     *     public static void stack(Context ctx) }{{@code
+     *         var pki_external_ca = new Mount("pki-external-ca", MountArgs.builder()
+     *             .path("pki-external-ca")
+     *             .type("pki-external-ca")
+     *             .build());
+     * 
+     *         var example = new PkiExternalCaSecretBackendAcmeAccount("example", PkiExternalCaSecretBackendAcmeAccountArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("my-acme-account")
+     *             .directoryUrl("https://acme-v02.api.letsencrypt.org/directory")
+     *             .emailContacts("admin}{@literal @}{@code example.com")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendRole = new PkiExternalCaSecretBackendRole("examplePkiExternalCaSecretBackendRole", PkiExternalCaSecretBackendRoleArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .name("example-role")
+     *             .acmeAccountName(example.name())
+     *             .allowedDomains("example.com")
+     *             .allowedDomainOptions(            
+     *                 "bare_domains",
+     *                 "subdomains")
+     *             .allowedChallengeTypes("http-01")
+     *             .build());
+     * 
+     *         var examplePkiExternalCaSecretBackendOrder = new PkiExternalCaSecretBackendOrder("examplePkiExternalCaSecretBackendOrder", PkiExternalCaSecretBackendOrderArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .identifiers("www.example.com")
+     *             .build());
+     * 
+     *         // Retrieve HTTP-01 challenge details
+     *         final var http = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(examplePkiExternalCaSecretBackendRole.name())
+     *             .orderId(examplePkiExternalCaSecretBackendOrder.orderId())
+     *             .challengeType("http-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Deploy the challenge file
+     *         var acmeChallenge = new File("acmeChallenge", FileArgs.builder()
+     *             .filename(String.format("/var/www/html/.well-known/acme-challenge/%s", http.token()))
+     *             .content(http.keyAuthorization())
+     *             .build());
+     * 
+     *         ctx.export("challengeToken", http.applyValue(_http -> _http.token()));
+     *         ctx.export("challengeUrl", http.applyValue(_http -> String.format("http://www.example.com/.well-known/acme-challenge/%s", _http.token())));
+     *     }}{@code
+     * }}{@code
+     * }
+     * </pre>
+     * 
+     * ### With DNS-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import com.pulumi.aws.Route53Record;
+     * import com.pulumi.aws.Route53RecordArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve DNS-01 challenge details
+     *         final var dns = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("dns-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         // Create DNS TXT record using AWS Route53
+     *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
+     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .name("_acme-challenge.www.example.com")
+     *             .type("TXT")
+     *             .ttl(60)
+     *             .records(Arrays.asList(dns.keyAuthorization()))
+     *             .build());
+     * 
+     *         ctx.export("dnsRecordName", "_acme-challenge.www.example.com");
+     *         ctx.export("dnsRecordValue", dns.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### With TLS-ALPN-01 Challenge
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPkiExternalCaSecretBackendOrderChallengeArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Retrieve TLS-ALPN-01 challenge details
+     *         final var tlsAlpn = VaultFunctions.getPkiExternalCaSecretBackendOrderChallenge(GetPkiExternalCaSecretBackendOrderChallengeArgs.builder()
+     *             .mount(pki_external_ca.path())
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
+     *             .orderId(example.orderId())
+     *             .challengeType("tls-alpn-01")
+     *             .identifier("www.example.com")
+     *             .build());
+     * 
+     *         ctx.export("tlsAlpnKeyAuth", tlsAlpn.keyAuthorization());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Challenge Type Details
+     * 
+     * ### HTTP-01 Challenge
+     * 
+     * For HTTP-01 challenges, you must serve the `keyAuthorization` value at:
+     * 
+     * The response must:
+     * - Return HTTP 200 status
+     * - Have Content-Type: `text/plain` or no Content-Type header
+     * - Contain only the `keyAuthorization` value
+     * 
+     * ### DNS-01 Challenge
+     * 
+     * For DNS-01 challenges, you must create a TXT record at:
+     * 
+     * The TXT record value must be the `keyAuthorization` value. DNS propagation may take time, so ensure the record is resolvable before marking the challenge as fulfilled.
+     * 
+     * ### TLS-ALPN-01 Challenge
+     * 
+     * For TLS-ALPN-01 challenges, you must configure your TLS server to:
+     * - Present a self-signed certificate for the identifier
+     * - Include the `acme-tls/1` ALPN protocol
+     * - Include a specific extension with the `keyAuthorization` value
+     * 
+     * This challenge type is more complex and typically requires custom TLS server configuration.
+     * 
+     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * 
+     */
+    public static CompletableFuture<GetPkiExternalCaSecretBackendOrderChallengeResult> getPkiExternalCaSecretBackendOrderChallengePlain(GetPkiExternalCaSecretBackendOrderChallengePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getPkiExternalCaSecretBackendOrderChallenge:getPkiExternalCaSecretBackendOrderChallenge", TypeShape.of(GetPkiExternalCaSecretBackendOrderChallengeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Lists plugin runtimes registered in Vault&#39;s plugin runtimes catalog.
+     * 
+     * &gt; **Important** This data source requires Vault 1.15 or later.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all plugin runtimes
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filter by runtime type
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var containers = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .type("container")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetPluginRuntimesResult> getPluginRuntimes() {
+        return getPluginRuntimes(GetPluginRuntimesArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Lists plugin runtimes registered in Vault&#39;s plugin runtimes catalog.
+     * 
+     * &gt; **Important** This data source requires Vault 1.15 or later.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all plugin runtimes
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filter by runtime type
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var containers = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .type("container")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetPluginRuntimesResult> getPluginRuntimesPlain() {
+        return getPluginRuntimesPlain(GetPluginRuntimesPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Lists plugin runtimes registered in Vault&#39;s plugin runtimes catalog.
+     * 
+     * &gt; **Important** This data source requires Vault 1.15 or later.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all plugin runtimes
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filter by runtime type
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var containers = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .type("container")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetPluginRuntimesResult> getPluginRuntimes(GetPluginRuntimesArgs args) {
+        return getPluginRuntimes(args, InvokeOptions.Empty);
+    }
+    /**
+     * Lists plugin runtimes registered in Vault&#39;s plugin runtimes catalog.
+     * 
+     * &gt; **Important** This data source requires Vault 1.15 or later.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all plugin runtimes
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filter by runtime type
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var containers = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .type("container")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetPluginRuntimesResult> getPluginRuntimesPlain(GetPluginRuntimesPlainArgs args) {
+        return getPluginRuntimesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Lists plugin runtimes registered in Vault&#39;s plugin runtimes catalog.
+     * 
+     * &gt; **Important** This data source requires Vault 1.15 or later.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all plugin runtimes
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filter by runtime type
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var containers = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .type("container")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetPluginRuntimesResult> getPluginRuntimes(GetPluginRuntimesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getPluginRuntimes:getPluginRuntimes", TypeShape.of(GetPluginRuntimesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Lists plugin runtimes registered in Vault&#39;s plugin runtimes catalog.
+     * 
+     * &gt; **Important** This data source requires Vault 1.15 or later.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all plugin runtimes
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filter by runtime type
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var containers = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .type("container")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetPluginRuntimesResult> getPluginRuntimes(GetPluginRuntimesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getPluginRuntimes:getPluginRuntimes", TypeShape.of(GetPluginRuntimesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Lists plugin runtimes registered in Vault&#39;s plugin runtimes catalog.
+     * 
+     * &gt; **Important** This data source requires Vault 1.15 or later.
+     * 
+     * ## Example Usage
+     * 
+     * ### List all plugin runtimes
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var all = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Filter by runtime type
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import com.pulumi.vault.inputs.GetPluginRuntimesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var containers = VaultFunctions.getPluginRuntimes(GetPluginRuntimesArgs.builder()
+     *             .type("container")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetPluginRuntimesResult> getPluginRuntimesPlain(GetPluginRuntimesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getPluginRuntimes:getPluginRuntimes", TypeShape.of(GetPluginRuntimesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * This is a data source which can be used to construct a HCL representation of an Vault policy document, for use with resources which expect policy documents, such as the `vault.Policy` resource.
      * 
      * ## Example Usage
@@ -3115,5 +5069,677 @@ public final class VaultFunctions {
      */
     public static CompletableFuture<GetRaftAutopilotStateResult> getRaftAutopilotStatePlain(GetRaftAutopilotStatePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:index/getRaftAutopilotState:getRaftAutopilotState", TypeShape.of(GetRaftAutopilotStateResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
+     * 
+     * &gt; **Important** This data source reads from the root namespace only.
+     * 
+     * **Note** This feature is available in Vault 1.14+
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsEnabled", current.enabled());
+     *         ctx.export("allowedOrigins", current.allowedOrigins());
+     *         ctx.export("allowedHeaders", current.allowedHeaders());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Using with resource
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.SysConfigCors;
+     * import com.pulumi.vault.SysConfigCorsArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var production = new SysConfigCors("production", SysConfigCorsArgs.builder()
+     *             .allowedOrigins(            
+     *                 "https://app.example.com",
+     *                 "https://admin.example.com",
+     *                 "https://api.example.com")
+     *             .allowedHeaders(            
+     *                 "X-Custom-Header",
+     *                 "X-Request-ID",
+     *                 "X-Application-Version")
+     *             .build());
+     * 
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsConfiguration", Map.ofEntries(
+     *             Map.entry("enabled", current.enabled()),
+     *             Map.entry("allowedOrigins", current.allowedOrigins()),
+     *             Map.entry("allowedHeaders", current.allowedHeaders())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## API Documentation
+     * 
+     * For more information on the Vault CORS configuration API, see the [Vault API documentation](https://developer.hashicorp.com/vault/api-docs/system/config-cors).
+     * 
+     */
+    public static Output<GetSysConfigCorsResult> getSysConfigCors() {
+        return getSysConfigCors(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
+     * 
+     * &gt; **Important** This data source reads from the root namespace only.
+     * 
+     * **Note** This feature is available in Vault 1.14+
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsEnabled", current.enabled());
+     *         ctx.export("allowedOrigins", current.allowedOrigins());
+     *         ctx.export("allowedHeaders", current.allowedHeaders());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Using with resource
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.SysConfigCors;
+     * import com.pulumi.vault.SysConfigCorsArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var production = new SysConfigCors("production", SysConfigCorsArgs.builder()
+     *             .allowedOrigins(            
+     *                 "https://app.example.com",
+     *                 "https://admin.example.com",
+     *                 "https://api.example.com")
+     *             .allowedHeaders(            
+     *                 "X-Custom-Header",
+     *                 "X-Request-ID",
+     *                 "X-Application-Version")
+     *             .build());
+     * 
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsConfiguration", Map.ofEntries(
+     *             Map.entry("enabled", current.enabled()),
+     *             Map.entry("allowedOrigins", current.allowedOrigins()),
+     *             Map.entry("allowedHeaders", current.allowedHeaders())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## API Documentation
+     * 
+     * For more information on the Vault CORS configuration API, see the [Vault API documentation](https://developer.hashicorp.com/vault/api-docs/system/config-cors).
+     * 
+     */
+    public static CompletableFuture<GetSysConfigCorsResult> getSysConfigCorsPlain() {
+        return getSysConfigCorsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
+     * 
+     * &gt; **Important** This data source reads from the root namespace only.
+     * 
+     * **Note** This feature is available in Vault 1.14+
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsEnabled", current.enabled());
+     *         ctx.export("allowedOrigins", current.allowedOrigins());
+     *         ctx.export("allowedHeaders", current.allowedHeaders());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Using with resource
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.SysConfigCors;
+     * import com.pulumi.vault.SysConfigCorsArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var production = new SysConfigCors("production", SysConfigCorsArgs.builder()
+     *             .allowedOrigins(            
+     *                 "https://app.example.com",
+     *                 "https://admin.example.com",
+     *                 "https://api.example.com")
+     *             .allowedHeaders(            
+     *                 "X-Custom-Header",
+     *                 "X-Request-ID",
+     *                 "X-Application-Version")
+     *             .build());
+     * 
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsConfiguration", Map.ofEntries(
+     *             Map.entry("enabled", current.enabled()),
+     *             Map.entry("allowedOrigins", current.allowedOrigins()),
+     *             Map.entry("allowedHeaders", current.allowedHeaders())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## API Documentation
+     * 
+     * For more information on the Vault CORS configuration API, see the [Vault API documentation](https://developer.hashicorp.com/vault/api-docs/system/config-cors).
+     * 
+     */
+    public static Output<GetSysConfigCorsResult> getSysConfigCors(InvokeArgs args) {
+        return getSysConfigCors(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
+     * 
+     * &gt; **Important** This data source reads from the root namespace only.
+     * 
+     * **Note** This feature is available in Vault 1.14+
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsEnabled", current.enabled());
+     *         ctx.export("allowedOrigins", current.allowedOrigins());
+     *         ctx.export("allowedHeaders", current.allowedHeaders());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Using with resource
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.SysConfigCors;
+     * import com.pulumi.vault.SysConfigCorsArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var production = new SysConfigCors("production", SysConfigCorsArgs.builder()
+     *             .allowedOrigins(            
+     *                 "https://app.example.com",
+     *                 "https://admin.example.com",
+     *                 "https://api.example.com")
+     *             .allowedHeaders(            
+     *                 "X-Custom-Header",
+     *                 "X-Request-ID",
+     *                 "X-Application-Version")
+     *             .build());
+     * 
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsConfiguration", Map.ofEntries(
+     *             Map.entry("enabled", current.enabled()),
+     *             Map.entry("allowedOrigins", current.allowedOrigins()),
+     *             Map.entry("allowedHeaders", current.allowedHeaders())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## API Documentation
+     * 
+     * For more information on the Vault CORS configuration API, see the [Vault API documentation](https://developer.hashicorp.com/vault/api-docs/system/config-cors).
+     * 
+     */
+    public static CompletableFuture<GetSysConfigCorsResult> getSysConfigCorsPlain(InvokeArgs args) {
+        return getSysConfigCorsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
+     * 
+     * &gt; **Important** This data source reads from the root namespace only.
+     * 
+     * **Note** This feature is available in Vault 1.14+
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsEnabled", current.enabled());
+     *         ctx.export("allowedOrigins", current.allowedOrigins());
+     *         ctx.export("allowedHeaders", current.allowedHeaders());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Using with resource
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.SysConfigCors;
+     * import com.pulumi.vault.SysConfigCorsArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var production = new SysConfigCors("production", SysConfigCorsArgs.builder()
+     *             .allowedOrigins(            
+     *                 "https://app.example.com",
+     *                 "https://admin.example.com",
+     *                 "https://api.example.com")
+     *             .allowedHeaders(            
+     *                 "X-Custom-Header",
+     *                 "X-Request-ID",
+     *                 "X-Application-Version")
+     *             .build());
+     * 
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsConfiguration", Map.ofEntries(
+     *             Map.entry("enabled", current.enabled()),
+     *             Map.entry("allowedOrigins", current.allowedOrigins()),
+     *             Map.entry("allowedHeaders", current.allowedHeaders())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## API Documentation
+     * 
+     * For more information on the Vault CORS configuration API, see the [Vault API documentation](https://developer.hashicorp.com/vault/api-docs/system/config-cors).
+     * 
+     */
+    public static Output<GetSysConfigCorsResult> getSysConfigCors(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getSysConfigCors:getSysConfigCors", TypeShape.of(GetSysConfigCorsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
+     * 
+     * &gt; **Important** This data source reads from the root namespace only.
+     * 
+     * **Note** This feature is available in Vault 1.14+
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsEnabled", current.enabled());
+     *         ctx.export("allowedOrigins", current.allowedOrigins());
+     *         ctx.export("allowedHeaders", current.allowedHeaders());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Using with resource
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.SysConfigCors;
+     * import com.pulumi.vault.SysConfigCorsArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var production = new SysConfigCors("production", SysConfigCorsArgs.builder()
+     *             .allowedOrigins(            
+     *                 "https://app.example.com",
+     *                 "https://admin.example.com",
+     *                 "https://api.example.com")
+     *             .allowedHeaders(            
+     *                 "X-Custom-Header",
+     *                 "X-Request-ID",
+     *                 "X-Application-Version")
+     *             .build());
+     * 
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsConfiguration", Map.ofEntries(
+     *             Map.entry("enabled", current.enabled()),
+     *             Map.entry("allowedOrigins", current.allowedOrigins()),
+     *             Map.entry("allowedHeaders", current.allowedHeaders())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## API Documentation
+     * 
+     * For more information on the Vault CORS configuration API, see the [Vault API documentation](https://developer.hashicorp.com/vault/api-docs/system/config-cors).
+     * 
+     */
+    public static Output<GetSysConfigCorsResult> getSysConfigCors(InvokeArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:index/getSysConfigCors:getSysConfigCors", TypeShape.of(GetSysConfigCorsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
+     * 
+     * &gt; **Important** This data source reads from the root namespace only.
+     * 
+     * **Note** This feature is available in Vault 1.14+
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsEnabled", current.enabled());
+     *         ctx.export("allowedOrigins", current.allowedOrigins());
+     *         ctx.export("allowedHeaders", current.allowedHeaders());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ### Using with resource
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.SysConfigCors;
+     * import com.pulumi.vault.SysConfigCorsArgs;
+     * import com.pulumi.vault.VaultFunctions;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var production = new SysConfigCors("production", SysConfigCorsArgs.builder()
+     *             .allowedOrigins(            
+     *                 "https://app.example.com",
+     *                 "https://admin.example.com",
+     *                 "https://api.example.com")
+     *             .allowedHeaders(            
+     *                 "X-Custom-Header",
+     *                 "X-Request-ID",
+     *                 "X-Application-Version")
+     *             .build());
+     * 
+     *         final var current = VaultFunctions.getSysConfigCors(%!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference);
+     * 
+     *         ctx.export("corsConfiguration", Map.ofEntries(
+     *             Map.entry("enabled", current.enabled()),
+     *             Map.entry("allowedOrigins", current.allowedOrigins()),
+     *             Map.entry("allowedHeaders", current.allowedHeaders())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## API Documentation
+     * 
+     * For more information on the Vault CORS configuration API, see the [Vault API documentation](https://developer.hashicorp.com/vault/api-docs/system/config-cors).
+     * 
+     */
+    public static CompletableFuture<GetSysConfigCorsResult> getSysConfigCorsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:index/getSysConfigCors:getSysConfigCors", TypeShape.of(GetSysConfigCorsResult.class), args, Utilities.withVersion(options));
     }
 }

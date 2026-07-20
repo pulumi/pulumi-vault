@@ -6,18 +6,33 @@ import builtins as _builtins
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .activation_flags import *
+from .agent_registration import *
 from .audit import *
 from .audit_request_header import *
 from .auth_backend import *
 from .cert_auth_backend_role import *
+from .cf_auth_backend_config import *
+from .cf_auth_backend_role import *
 from .egp_policy import *
+from .get_activation_flags import *
 from .get_auth_backend import *
 from .get_auth_backends import *
 from .get_namespace import *
 from .get_namespaces import *
 from .get_nomad_access_token import *
+from .get_pki_external_ca_secret_backend_order_challenge import *
+from .get_plugin_runtimes import *
 from .get_policy_document import *
 from .get_raft_autopilot_state import *
+from .get_sys_config_cors import *
+from .keymgmt_aws_kms import *
+from .keymgmt_azure_kms import *
+from .keymgmt_distribute_key import *
+from .keymgmt_gcp_kms import *
+from .keymgmt_key import *
+from .keymgmt_key_rotate import *
+from .keymgmt_replicate_key import *
 from .mfa_duo import *
 from .mfa_okta import *
 from .mfa_pingid import *
@@ -26,18 +41,40 @@ from .mount import *
 from .namespace import *
 from .nomad_secret_backend import *
 from .nomad_secret_role import *
+from .oauth_resource_server_config_profile import *
 from .oci_auth_backend import *
 from .oci_auth_backend_role import *
+from .os_secret_backend import *
+from .os_secret_backend_account import *
+from .os_secret_backend_host import *
+from .password_policy import *
+from .pki_external_ca_secret_backend_acme_account import *
+from .pki_external_ca_secret_backend_order import *
+from .pki_external_ca_secret_backend_order_certificate import *
+from .pki_external_ca_secret_backend_order_challenge_fulfilled import *
+from .pki_external_ca_secret_backend_role import *
 from .plugin import *
 from .plugin_pinned_version import *
+from .plugin_runtime import *
 from .policy import *
 from .provider import *
+from .quota_config import *
 from .quota_lease_count import *
 from .quota_rate_limit import *
+from .radius_auth_backend import *
+from .radius_auth_backend_user import *
 from .raft_autopilot import *
+from .raft_snapshot_agent_config import *
 from .rgp_policy import *
+from .rotation_policy import *
 from .scep_auth_backend_role import *
+from .spiffe_auth_backend_config import *
+from .spiffe_auth_backend_role import *
+from .spiffe_secret_backend_config import *
+from .spiffe_secret_backend_role import *
+from .sys_config_cors import *
 from .token import *
+from .userpass_auth_backend_user import *
 from ._inputs import *
 from . import outputs
 
@@ -165,6 +202,22 @@ _utilities.register(
   "fqn": "pulumi_vault.alicloud",
   "classes": {
    "vault:alicloud/authBackendRole:AuthBackendRole": "AuthBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "alicloud/secretBackend",
+  "fqn": "pulumi_vault.alicloud",
+  "classes": {
+   "vault:alicloud/secretBackend:SecretBackend": "SecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "alicloud/secretBackendRole",
+  "fqn": "pulumi_vault.alicloud",
+  "classes": {
+   "vault:alicloud/secretBackendRole:SecretBackendRole": "SecretBackendRole"
   }
  },
  {
@@ -321,10 +374,50 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "azure/secretBackendStaticRole",
+  "fqn": "pulumi_vault.azure",
+  "classes": {
+   "vault:azure/secretBackendStaticRole:SecretBackendStaticRole": "SecretBackendStaticRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "config/controlGroup",
+  "fqn": "pulumi_vault.config",
+  "classes": {
+   "vault:config/controlGroup:ControlGroup": "ControlGroup"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "config/groupPolicyApplication",
+  "fqn": "pulumi_vault.config",
+  "classes": {
+   "vault:config/groupPolicyApplication:GroupPolicyApplication": "GroupPolicyApplication"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "config/uiCustomMessage",
   "fqn": "pulumi_vault.config",
   "classes": {
    "vault:config/uiCustomMessage:UiCustomMessage": "UiCustomMessage"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "config/uiDefaultAuth",
+  "fqn": "pulumi_vault.config",
+  "classes": {
+   "vault:config/uiDefaultAuth:UiDefaultAuth": "UiDefaultAuth"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "config/uiHeader",
+  "fqn": "pulumi_vault.config",
+  "classes": {
+   "vault:config/uiHeader:UiHeader": "UiHeader"
   }
  },
  {
@@ -633,6 +726,22 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/activationFlags",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/activationFlags:ActivationFlags": "ActivationFlags"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/agentRegistration",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/agentRegistration:AgentRegistration": "AgentRegistration"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/audit",
   "fqn": "pulumi_vault",
   "classes": {
@@ -665,10 +774,82 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/cfAuthBackendConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/cfAuthBackendConfig:CfAuthBackendConfig": "CfAuthBackendConfig"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/cfAuthBackendRole",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/cfAuthBackendRole:CfAuthBackendRole": "CfAuthBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/egpPolicy",
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/egpPolicy:EgpPolicy": "EgpPolicy"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/keymgmtAwsKms",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/keymgmtAwsKms:KeymgmtAwsKms": "KeymgmtAwsKms"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/keymgmtAzureKms",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/keymgmtAzureKms:KeymgmtAzureKms": "KeymgmtAzureKms"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/keymgmtDistributeKey",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/keymgmtDistributeKey:KeymgmtDistributeKey": "KeymgmtDistributeKey"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/keymgmtGcpKms",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/keymgmtGcpKms:KeymgmtGcpKms": "KeymgmtGcpKms"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/keymgmtKey",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/keymgmtKey:KeymgmtKey": "KeymgmtKey"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/keymgmtKeyRotate",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/keymgmtKeyRotate:KeymgmtKeyRotate": "KeymgmtKeyRotate"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/keymgmtReplicateKey",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/keymgmtReplicateKey:KeymgmtReplicateKey": "KeymgmtReplicateKey"
   }
  },
  {
@@ -737,6 +918,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/oauthResourceServerConfigProfile",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile": "OauthResourceServerConfigProfile"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/ociAuthBackend",
   "fqn": "pulumi_vault",
   "classes": {
@@ -749,6 +938,78 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/ociAuthBackendRole:OciAuthBackendRole": "OciAuthBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/osSecretBackend",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/osSecretBackend:OsSecretBackend": "OsSecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/osSecretBackendAccount",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/osSecretBackendAccount:OsSecretBackendAccount": "OsSecretBackendAccount"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/osSecretBackendHost",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/osSecretBackendHost:OsSecretBackendHost": "OsSecretBackendHost"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/passwordPolicy",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/passwordPolicy:PasswordPolicy": "PasswordPolicy"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/pkiExternalCaSecretBackendAcmeAccount",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/pkiExternalCaSecretBackendAcmeAccount:PkiExternalCaSecretBackendAcmeAccount": "PkiExternalCaSecretBackendAcmeAccount"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/pkiExternalCaSecretBackendOrder",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/pkiExternalCaSecretBackendOrder:PkiExternalCaSecretBackendOrder": "PkiExternalCaSecretBackendOrder"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/pkiExternalCaSecretBackendOrderCertificate",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/pkiExternalCaSecretBackendOrderCertificate:PkiExternalCaSecretBackendOrderCertificate": "PkiExternalCaSecretBackendOrderCertificate"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/pkiExternalCaSecretBackendOrderChallengeFulfilled",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/pkiExternalCaSecretBackendOrderChallengeFulfilled:PkiExternalCaSecretBackendOrderChallengeFulfilled": "PkiExternalCaSecretBackendOrderChallengeFulfilled"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/pkiExternalCaSecretBackendRole",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/pkiExternalCaSecretBackendRole:PkiExternalCaSecretBackendRole": "PkiExternalCaSecretBackendRole"
   }
  },
  {
@@ -769,10 +1030,26 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/pluginRuntime",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/pluginRuntime:PluginRuntime": "PluginRuntime"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/policy",
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/policy:Policy": "Policy"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/quotaConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/quotaConfig:QuotaConfig": "QuotaConfig"
   }
  },
  {
@@ -793,10 +1070,34 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/radiusAuthBackend",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/radiusAuthBackend:RadiusAuthBackend": "RadiusAuthBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/radiusAuthBackendUser",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/radiusAuthBackendUser:RadiusAuthBackendUser": "RadiusAuthBackendUser"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/raftAutopilot",
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/raftAutopilot:RaftAutopilot": "RaftAutopilot"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/raftSnapshotAgentConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig": "RaftSnapshotAgentConfig"
   }
  },
  {
@@ -809,6 +1110,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/rotationPolicy",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/rotationPolicy:RotationPolicy": "RotationPolicy"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/scepAuthBackendRole",
   "fqn": "pulumi_vault",
   "classes": {
@@ -817,10 +1126,58 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/spiffeAuthBackendConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/spiffeAuthBackendConfig:SpiffeAuthBackendConfig": "SpiffeAuthBackendConfig"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/spiffeAuthBackendRole",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/spiffeAuthBackendRole:SpiffeAuthBackendRole": "SpiffeAuthBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/spiffeSecretBackendConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/spiffeSecretBackendConfig:SpiffeSecretBackendConfig": "SpiffeSecretBackendConfig"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/spiffeSecretBackendRole",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/spiffeSecretBackendRole:SpiffeSecretBackendRole": "SpiffeSecretBackendRole"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/sysConfigCors",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/sysConfigCors:SysConfigCors": "SysConfigCors"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/token",
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/token:Token": "Token"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/userpassAuthBackendUser",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser": "UserpassAuthBackendUser"
   }
  },
  {
@@ -845,6 +1202,30 @@ _utilities.register(
   "fqn": "pulumi_vault.kmip",
   "classes": {
    "vault:kmip/secretBackend:SecretBackend": "SecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kmip/secretCaGenerated",
+  "fqn": "pulumi_vault.kmip",
+  "classes": {
+   "vault:kmip/secretCaGenerated:SecretCaGenerated": "SecretCaGenerated"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kmip/secretCaImported",
+  "fqn": "pulumi_vault.kmip",
+  "classes": {
+   "vault:kmip/secretCaImported:SecretCaImported": "SecretCaImported"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "kmip/secretListener",
+  "fqn": "pulumi_vault.kmip",
+  "classes": {
+   "vault:kmip/secretListener:SecretListener": "SecretListener"
   }
  },
  {

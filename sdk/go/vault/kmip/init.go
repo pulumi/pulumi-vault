@@ -23,6 +23,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "vault:kmip/secretBackend:SecretBackend":
 		r = &SecretBackend{}
+	case "vault:kmip/secretCaGenerated:SecretCaGenerated":
+		r = &SecretCaGenerated{}
+	case "vault:kmip/secretCaImported:SecretCaImported":
+		r = &SecretCaImported{}
+	case "vault:kmip/secretListener:SecretListener":
+		r = &SecretListener{}
 	case "vault:kmip/secretRole:SecretRole":
 		r = &SecretRole{}
 	case "vault:kmip/secretScope:SecretScope":
@@ -43,6 +49,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"kmip/secretBackend",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"kmip/secretCaGenerated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"kmip/secretCaImported",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"kmip/secretListener",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

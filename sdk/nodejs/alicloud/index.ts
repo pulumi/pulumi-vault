@@ -10,6 +10,16 @@ export type AuthBackendRole = import("./authBackendRole").AuthBackendRole;
 export const AuthBackendRole: typeof import("./authBackendRole").AuthBackendRole = null as any;
 utilities.lazyLoad(exports, ["AuthBackendRole"], () => require("./authBackendRole"));
 
+export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
+export type SecretBackend = import("./secretBackend").SecretBackend;
+export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
+utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
+
+export { SecretBackendRoleArgs, SecretBackendRoleState } from "./secretBackendRole";
+export type SecretBackendRole = import("./secretBackendRole").SecretBackendRole;
+export const SecretBackendRole: typeof import("./secretBackendRole").SecretBackendRole = null as any;
+utilities.lazyLoad(exports, ["SecretBackendRole"], () => require("./secretBackendRole"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -17,9 +27,15 @@ const _module = {
         switch (type) {
             case "vault:alicloud/authBackendRole:AuthBackendRole":
                 return new AuthBackendRole(name, <any>undefined, { urn })
+            case "vault:alicloud/secretBackend:SecretBackend":
+                return new SecretBackend(name, <any>undefined, { urn })
+            case "vault:alicloud/secretBackendRole:SecretBackendRole":
+                return new SecretBackendRole(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("vault", "alicloud/authBackendRole", _module)
+pulumi.runtime.registerResourceModule("vault", "alicloud/secretBackend", _module)
+pulumi.runtime.registerResourceModule("vault", "alicloud/secretBackendRole", _module)

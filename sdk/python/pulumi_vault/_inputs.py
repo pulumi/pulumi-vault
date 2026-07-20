@@ -17,6 +17,8 @@ from . import _utilities
 __all__ = [
     'AuthBackendTuneArgs',
     'AuthBackendTuneArgsDict',
+    'OauthResourceServerConfigProfilePublicKeyArgs',
+    'OauthResourceServerConfigProfilePublicKeyArgsDict',
     'OciAuthBackendTuneArgs',
     'OciAuthBackendTuneArgsDict',
     'ProviderAuthLoginArgs',
@@ -252,6 +254,53 @@ class AuthBackendTuneArgs:
     @token_type.setter
     def token_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_type", value)
+
+
+class OauthResourceServerConfigProfilePublicKeyArgsDict(TypedDict):
+    key_id: pulumi.Input[_builtins.str]
+    """
+    The key ID (kid) for this public key. Must be unique within the profile.
+    """
+    pem: pulumi.Input[_builtins.str]
+    """
+    The PEM-encoded public key.
+    """
+
+@pulumi.input_type
+class OauthResourceServerConfigProfilePublicKeyArgs:
+    def __init__(__self__, *,
+                 key_id: pulumi.Input[_builtins.str],
+                 pem: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] key_id: The key ID (kid) for this public key. Must be unique within the profile.
+        :param pulumi.Input[_builtins.str] pem: The PEM-encoded public key.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "pem", pem)
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The key ID (kid) for this public key. Must be unique within the profile.
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def pem(self) -> pulumi.Input[_builtins.str]:
+        """
+        The PEM-encoded public key.
+        """
+        return pulumi.get(self, "pem")
+
+    @pem.setter
+    def pem(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "pem", value)
 
 
 class OciAuthBackendTuneArgsDict(TypedDict):
