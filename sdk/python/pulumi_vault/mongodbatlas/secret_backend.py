@@ -38,7 +38,7 @@ class SecretBackendArgs:
                with `private_key_wo`. **Note:** This field will be stored in Terraform state. Consider using `private_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
-        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update
                to the private key. Required when using `private_key_wo`.
         """
         pulumi.set(__self__, "mount", mount)
@@ -121,7 +121,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="privateKeyWoVersion")
     def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        An incrementing version counter. Increment this value to force an update 
+        An incrementing version counter. Increment this value to force an update
         to the private key. Required when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")
@@ -154,7 +154,7 @@ class _SecretBackendState:
                with `private_key_wo`. **Note:** This field will be stored in Terraform state. Consider using `private_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
-        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update
                to the private key. Required when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         """
@@ -242,7 +242,7 @@ class _SecretBackendState:
     @pulumi.getter(name="privateKeyWoVersion")
     def private_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        An incrementing version counter. Increment this value to force an update 
+        An incrementing version counter. Increment this value to force an update
         to the private key. Required when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")
@@ -352,7 +352,7 @@ class SecretBackend(pulumi.CustomResource):
                with `private_key_wo`. **Note:** This field will be stored in Terraform state. Consider using `private_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
-        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update
                to the private key. Required when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         """
@@ -503,7 +503,7 @@ class SecretBackend(pulumi.CustomResource):
                with `private_key_wo`. **Note:** This field will be stored in Terraform state. Consider using `private_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] private_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The Private Programmatic API Key used to connect with MongoDB Atlas API. This is a write-only field that is not stored in state.
-        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update 
+        :param pulumi.Input[_builtins.int] private_key_wo_version: An incrementing version counter. Increment this value to force an update
                to the private key. Required when using `private_key_wo`.
         :param pulumi.Input[_builtins.str] public_key: Specifies the Public API Key used to authenticate with the MongoDB Atlas API.
         """
@@ -569,7 +569,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="privateKeyWoVersion")
     def private_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        An incrementing version counter. Increment this value to force an update 
+        An incrementing version counter. Increment this value to force an update
         to the private key. Required when using `private_key_wo`.
         """
         return pulumi.get(self, "private_key_wo_version")

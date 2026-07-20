@@ -109,7 +109,7 @@ export class SecretRole extends pulumi.CustomResource {
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
-     * Unique identifier for the organization to which the target API Key belongs. 
+     * Unique identifier for the organization to which the target API Key belongs.
      * Required if `projectId` is not set.
      */
     declare public readonly organizationId: pulumi.Output<string | undefined>;
@@ -212,7 +212,7 @@ export interface SecretRoleState {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
-     * Unique identifier for the organization to which the target API Key belongs. 
+     * Unique identifier for the organization to which the target API Key belongs.
      * Required if `projectId` is not set.
      */
     organizationId?: pulumi.Input<string | undefined>;
@@ -267,7 +267,7 @@ export interface SecretRoleArgs {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
-     * Unique identifier for the organization to which the target API Key belongs. 
+     * Unique identifier for the organization to which the target API Key belongs.
      * Required if `projectId` is not set.
      */
     organizationId?: pulumi.Input<string | undefined>;

@@ -101,7 +101,7 @@ class GetOidcOpenidConfigResult:
     @pulumi.getter(name="idTokenSigningAlgValuesSupporteds")
     def id_token_signing_alg_values_supporteds(self) -> Sequence[_builtins.str]:
         """
-        The signing algorithms supported by 
+        The signing algorithms supported by
         the provider.
         """
         return pulumi.get(self, "id_token_signing_alg_values_supporteds")
@@ -136,7 +136,7 @@ class GetOidcOpenidConfigResult:
     @pulumi.getter(name="requestUriParameterSupported")
     def request_uri_parameter_supported(self) -> _builtins.bool:
         """
-        Specifies whether Request URI Parameter is 
+        Specifies whether Request URI Parameter is
         supported by the provider.
         """
         return pulumi.get(self, "request_uri_parameter_supported")

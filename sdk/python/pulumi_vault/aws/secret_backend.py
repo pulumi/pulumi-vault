@@ -99,7 +99,7 @@ class SecretBackendArgs:
                allow Terraform to detect (and thus correct) drift in the `region` parameter,
                while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
                defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -553,7 +553,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The amount of time in seconds Vault should wait before rotating the root credential. 
+        The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "rotation_period")
@@ -802,7 +802,7 @@ class _SecretBackendState:
                allow Terraform to detect (and thus correct) drift in the `region` parameter,
                while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
                defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -1270,7 +1270,7 @@ class _SecretBackendState:
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The amount of time in seconds Vault should wait before rotating the root credential. 
+        The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "rotation_period")
@@ -1616,7 +1616,7 @@ class SecretBackend(pulumi.CustomResource):
                allow Terraform to detect (and thus correct) drift in the `region` parameter,
                while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
                defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -1955,7 +1955,7 @@ class SecretBackend(pulumi.CustomResource):
                allow Terraform to detect (and thus correct) drift in the `region` parameter,
                while newer versions of Vault will.
         :param pulumi.Input[_builtins.str] role_arn: Role ARN to assume for plugin identity token federation. Requires Vault 1.16+.
-        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential. 
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
                defining the schedule on which Vault should rotate the root token. Requires Vault Enterprise 1.19+.
@@ -2276,7 +2276,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The amount of time in seconds Vault should wait before rotating the root credential. 
+        The amount of time in seconds Vault should wait before rotating the root credential.
         A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "rotation_period")

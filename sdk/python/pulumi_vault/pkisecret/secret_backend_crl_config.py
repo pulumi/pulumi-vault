@@ -42,17 +42,17 @@ class SecretBackendCrlConfigArgs:
         :param pulumi.Input[_builtins.bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[_builtins.str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[_builtins.bool] disable: Disables or enables CRL building.
-        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
+        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information,
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[_builtins.str] expiry: Specifies the time until expiration.
-        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent
                accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
-        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling
                refresh durations. **Vault 1.12+**
         :param pulumi.Input[_builtins.bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
         :param pulumi.Input[_builtins.bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
@@ -162,7 +162,7 @@ class SecretBackendCrlConfigArgs:
     @pulumi.getter(name="enableDelta")
     def enable_delta(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Enables building of delta CRLs with up-to-date revocation information, 
+        Enables building of delta CRLs with up-to-date revocation information,
         augmenting the last complete CRL.  **Vault 1.12+**
         """
         return pulumi.get(self, "enable_delta")
@@ -187,7 +187,7 @@ class SecretBackendCrlConfigArgs:
     @pulumi.getter(name="maxCrlEntries")
     def max_crl_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The maximum number of entries a CRL can contain. This option exists to prevent 
+        The maximum number of entries a CRL can contain. This option exists to prevent
         accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         """
         return pulumi.get(self, "max_crl_entries")
@@ -227,7 +227,7 @@ class SecretBackendCrlConfigArgs:
     @pulumi.getter(name="ocspExpiry")
     def ocsp_expiry(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        The amount of time an OCSP response can be cached for, useful for OCSP stapling
         refresh durations. **Vault 1.12+**
         """
         return pulumi.get(self, "ocsp_expiry")
@@ -288,17 +288,17 @@ class _SecretBackendCrlConfigState:
         :param pulumi.Input[_builtins.bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[_builtins.str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[_builtins.bool] disable: Disables or enables CRL building.
-        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
+        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information,
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[_builtins.str] expiry: Specifies the time until expiration.
-        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent
                accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
-        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling
                refresh durations. **Vault 1.12+**
         :param pulumi.Input[_builtins.bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
         :param pulumi.Input[_builtins.bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
@@ -409,7 +409,7 @@ class _SecretBackendCrlConfigState:
     @pulumi.getter(name="enableDelta")
     def enable_delta(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Enables building of delta CRLs with up-to-date revocation information, 
+        Enables building of delta CRLs with up-to-date revocation information,
         augmenting the last complete CRL.  **Vault 1.12+**
         """
         return pulumi.get(self, "enable_delta")
@@ -434,7 +434,7 @@ class _SecretBackendCrlConfigState:
     @pulumi.getter(name="maxCrlEntries")
     def max_crl_entries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The maximum number of entries a CRL can contain. This option exists to prevent 
+        The maximum number of entries a CRL can contain. This option exists to prevent
         accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         """
         return pulumi.get(self, "max_crl_entries")
@@ -474,7 +474,7 @@ class _SecretBackendCrlConfigState:
     @pulumi.getter(name="ocspExpiry")
     def ocsp_expiry(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        The amount of time an OCSP response can be cached for, useful for OCSP stapling
         refresh durations. **Vault 1.12+**
         """
         return pulumi.get(self, "ocsp_expiry")
@@ -559,17 +559,17 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[_builtins.str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[_builtins.bool] disable: Disables or enables CRL building.
-        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
+        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information,
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[_builtins.str] expiry: Specifies the time until expiration.
-        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent
                accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
-        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling
                refresh durations. **Vault 1.12+**
         :param pulumi.Input[_builtins.bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
         :param pulumi.Input[_builtins.bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
@@ -693,17 +693,17 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] cross_cluster_revocation: Enable cross-cluster revocation request queues. **Vault 1.13+**
         :param pulumi.Input[_builtins.str] delta_rebuild_interval: Interval to check for new revocations on, to regenerate the delta CRL.
         :param pulumi.Input[_builtins.bool] disable: Disables or enables CRL building.
-        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information, 
+        :param pulumi.Input[_builtins.bool] enable_delta: Enables building of delta CRLs with up-to-date revocation information,
                augmenting the last complete CRL.  **Vault 1.12+**
         :param pulumi.Input[_builtins.str] expiry: Specifies the time until expiration.
-        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent 
+        :param pulumi.Input[_builtins.int] max_crl_entries: The maximum number of entries a CRL can contain. This option exists to prevent
                accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] ocsp_disable: Disables the OCSP responder in Vault. **Vault 1.12+**
-        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        :param pulumi.Input[_builtins.str] ocsp_expiry: The amount of time an OCSP response can be cached for, useful for OCSP stapling
                refresh durations. **Vault 1.12+**
         :param pulumi.Input[_builtins.bool] unified_crl: Enables unified CRL and OCSP building. **Vault 1.13+**
         :param pulumi.Input[_builtins.bool] unified_crl_on_existing_paths: Enables serving the unified CRL and OCSP on the existing, previously
@@ -781,7 +781,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     @pulumi.getter(name="enableDelta")
     def enable_delta(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Enables building of delta CRLs with up-to-date revocation information, 
+        Enables building of delta CRLs with up-to-date revocation information,
         augmenting the last complete CRL.  **Vault 1.12+**
         """
         return pulumi.get(self, "enable_delta")
@@ -798,7 +798,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     @pulumi.getter(name="maxCrlEntries")
     def max_crl_entries(self) -> pulumi.Output[_builtins.int]:
         """
-        The maximum number of entries a CRL can contain. This option exists to prevent 
+        The maximum number of entries a CRL can contain. This option exists to prevent
         accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         """
         return pulumi.get(self, "max_crl_entries")
@@ -826,7 +826,7 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
     @pulumi.getter(name="ocspExpiry")
     def ocsp_expiry(self) -> pulumi.Output[_builtins.str]:
         """
-        The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        The amount of time an OCSP response can be cached for, useful for OCSP stapling
         refresh durations. **Vault 1.12+**
         """
         return pulumi.get(self, "ocsp_expiry")

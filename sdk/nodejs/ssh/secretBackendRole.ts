@@ -117,7 +117,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     declare public readonly allowedExtensions: pulumi.Output<string | undefined>;
     /**
-     * Set of configuration blocks to define allowed  
+     * Set of configuration blocks to define allowed\
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      */
@@ -341,7 +341,7 @@ export interface SecretBackendRoleState {
      */
     allowedExtensions?: pulumi.Input<string | undefined>;
     /**
-     * Set of configuration blocks to define allowed  
+     * Set of configuration blocks to define allowed\
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      */
@@ -479,7 +479,7 @@ export interface SecretBackendRoleArgs {
      */
     allowedExtensions?: pulumi.Input<string | undefined>;
     /**
-     * Set of configuration blocks to define allowed  
+     * Set of configuration blocks to define allowed\
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      */

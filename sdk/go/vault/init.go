@@ -63,8 +63,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &QuotaRateLimit{}
 	case "vault:index/raftAutopilot:RaftAutopilot":
 		r = &RaftAutopilot{}
-	case "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig":
-		r = &RaftSnapshotAgentConfig{}
 	case "vault:index/rgpPolicy:RgpPolicy":
 		r = &RgpPolicy{}
 	case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
@@ -205,11 +203,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/raftAutopilot",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/raftSnapshotAgentConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

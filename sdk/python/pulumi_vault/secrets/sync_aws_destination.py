@@ -62,7 +62,7 @@ class SyncAwsDestinationArgs:
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
-        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
+        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
@@ -78,7 +78,7 @@ class SyncAwsDestinationArgs:
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
-        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role, 
+        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
                The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -230,7 +230,7 @@ class SyncAwsDestinationArgs:
     @pulumi.getter
     def granularity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Determines what level of information is synced as a distinct resource 
+        Determines what level of information is synced as a distinct resource
         at the destination. Supports `secret-path` and `secret-key`.
         """
         return pulumi.get(self, "granularity")
@@ -345,7 +345,7 @@ class SyncAwsDestinationArgs:
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies a role to assume when connecting to AWS. When assuming a role, 
+        Specifies a role to assume when connecting to AWS. When assuming a role,
         Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
         exist for Vault to be able to assume this role. The role can be in a different account.
         The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -432,7 +432,7 @@ class _SyncAwsDestinationState:
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
-        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
+        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
@@ -448,7 +448,7 @@ class _SyncAwsDestinationState:
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
-        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role, 
+        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
                The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -603,7 +603,7 @@ class _SyncAwsDestinationState:
     @pulumi.getter
     def granularity(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Determines what level of information is synced as a distinct resource 
+        Determines what level of information is synced as a distinct resource
         at the destination. Supports `secret-path` and `secret-key`.
         """
         return pulumi.get(self, "granularity")
@@ -718,7 +718,7 @@ class _SyncAwsDestinationState:
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies a role to assume when connecting to AWS. When assuming a role, 
+        Specifies a role to assume when connecting to AWS. When assuming a role,
         Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
         exist for Vault to be able to assume this role. The role can be in a different account.
         The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -902,7 +902,7 @@ class SyncAwsDestination(pulumi.CustomResource):
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
-        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
+        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
@@ -918,7 +918,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
-        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role, 
+        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
                The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -1141,7 +1141,7 @@ class SyncAwsDestination(pulumi.CustomResource):
                The field is mutable with no special condition, but users must be careful that the new value fits with the trust
                relationship condition they set on AWS otherwise sync operations will start to fail due to client-side access
                denied errors. Ignored if the `role_arn` field is empty.
-        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource 
+        :param pulumi.Input[_builtins.str] granularity: Determines what level of information is synced as a distinct resource
                at the destination. Supports `secret-path` and `secret-key`.
         :param pulumi.Input[_builtins.str] identity_token_audience_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The audience claim value for identity tokens. This is a write-only field and will not be read back from Vault.
@@ -1157,7 +1157,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
-        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role, 
+        :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
                The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -1269,7 +1269,7 @@ class SyncAwsDestination(pulumi.CustomResource):
     @pulumi.getter
     def granularity(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Determines what level of information is synced as a distinct resource 
+        Determines what level of information is synced as a distinct resource
         at the destination. Supports `secret-path` and `secret-key`.
         """
         return pulumi.get(self, "granularity")
@@ -1348,7 +1348,7 @@ class SyncAwsDestination(pulumi.CustomResource):
     @pulumi.getter(name="roleArn")
     def role_arn(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Specifies a role to assume when connecting to AWS. When assuming a role, 
+        Specifies a role to assume when connecting to AWS. When assuming a role,
         Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
         exist for Vault to be able to assume this role. The role can be in a different account.
         The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.

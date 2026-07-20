@@ -30,6 +30,27 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Tokenization Example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const transform = new vault.Mount("transform", {
+ *     path: "transform",
+ *     type: "transform",
+ * });
+ * const tokenization = new vault.transform.Transformation("tokenization", {
+ *     path: transform.path,
+ *     name: "ssn-tokenization",
+ *     type: "tokenization",
+ *     mappingMode: "default",
+ *     stores: ["my-store"],
+ *     allowedRoles: ["payments"],
+ *     convergent: true,
+ * });
+ * ```
+ *
  * ## Tutorials
  *
  * Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
@@ -67,11 +88,21 @@ export class Transformation extends pulumi.CustomResource {
      */
     declare public readonly allowedRoles: pulumi.Output<string[] | undefined>;
     /**
+     * If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+     */
+    declare public readonly convergent: pulumi.Output<boolean | undefined>;
+    /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
      */
     declare public readonly deletionAllowed: pulumi.Output<boolean | undefined>;
+    /**
+     * Specifies the mapping mode for stored values.
+     * Can be "default" or "exportable". Only used when `type` is "tokenization".
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    declare public readonly mappingMode: pulumi.Output<string | undefined>;
     /**
      * The character used to replace data when in masking mode
      */
@@ -91,6 +122,12 @@ export class Transformation extends pulumi.CustomResource {
      * Path to where the back-end is mounted within Vault.
      */
     declare public readonly path: pulumi.Output<string>;
+    /**
+     * List of stores to use for tokenization state.
+     * Only used when `type` is "tokenization".
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    declare public readonly stores: pulumi.Output<string[] | undefined>;
     /**
      * The name of the template to use.
      */
@@ -122,11 +159,14 @@ export class Transformation extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as TransformationState | undefined;
             resourceInputs["allowedRoles"] = state?.allowedRoles;
+            resourceInputs["convergent"] = state?.convergent;
             resourceInputs["deletionAllowed"] = state?.deletionAllowed;
+            resourceInputs["mappingMode"] = state?.mappingMode;
             resourceInputs["maskingCharacter"] = state?.maskingCharacter;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["path"] = state?.path;
+            resourceInputs["stores"] = state?.stores;
             resourceInputs["template"] = state?.template;
             resourceInputs["templates"] = state?.templates;
             resourceInputs["tweakSource"] = state?.tweakSource;
@@ -137,11 +177,14 @@ export class Transformation extends pulumi.CustomResource {
                 throw new Error("Missing required property 'path'");
             }
             resourceInputs["allowedRoles"] = args?.allowedRoles;
+            resourceInputs["convergent"] = args?.convergent;
             resourceInputs["deletionAllowed"] = args?.deletionAllowed;
+            resourceInputs["mappingMode"] = args?.mappingMode;
             resourceInputs["maskingCharacter"] = args?.maskingCharacter;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["path"] = args?.path;
+            resourceInputs["stores"] = args?.stores;
             resourceInputs["template"] = args?.template;
             resourceInputs["templates"] = args?.templates;
             resourceInputs["tweakSource"] = args?.tweakSource;
@@ -161,11 +204,21 @@ export interface TransformationState {
      */
     allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+     */
+    convergent?: pulumi.Input<boolean | undefined>;
+    /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
      */
     deletionAllowed?: pulumi.Input<boolean | undefined>;
+    /**
+     * Specifies the mapping mode for stored values.
+     * Can be "default" or "exportable". Only used when `type` is "tokenization".
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    mappingMode?: pulumi.Input<string | undefined>;
     /**
      * The character used to replace data when in masking mode
      */
@@ -185,6 +238,12 @@ export interface TransformationState {
      * Path to where the back-end is mounted within Vault.
      */
     path?: pulumi.Input<string | undefined>;
+    /**
+     * List of stores to use for tokenization state.
+     * Only used when `type` is "tokenization".
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    stores?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the template to use.
      */
@@ -212,11 +271,21 @@ export interface TransformationArgs {
      */
     allowedRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+     */
+    convergent?: pulumi.Input<boolean | undefined>;
+    /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
      */
     deletionAllowed?: pulumi.Input<boolean | undefined>;
+    /**
+     * Specifies the mapping mode for stored values.
+     * Can be "default" or "exportable". Only used when `type` is "tokenization".
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    mappingMode?: pulumi.Input<string | undefined>;
     /**
      * The character used to replace data when in masking mode
      */
@@ -236,6 +305,12 @@ export interface TransformationArgs {
      * Path to where the back-end is mounted within Vault.
      */
     path: pulumi.Input<string>;
+    /**
+     * List of stores to use for tokenization state.
+     * Only used when `type` is "tokenization".
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    stores?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the template to use.
      */

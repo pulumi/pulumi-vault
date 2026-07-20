@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -198,6 +199,21 @@ public final class KeysGcpArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    @Import(name="usages")
+    private @Nullable Output<List<String>> usages;
+
+    /**
+     * @return A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    public Optional<Output<List<String>>> usages() {
+        return Optional.ofNullable(this.usages);
+    }
+
+    /**
      * ID of the managed key read from Vault
      * 
      */
@@ -227,6 +243,7 @@ public final class KeysGcpArgs extends com.pulumi.resources.ResourceArgs {
         this.name = $.name;
         this.project = $.project;
         this.region = $.region;
+        this.usages = $.usages;
         this.uuid = $.uuid;
     }
 
@@ -498,6 +515,37 @@ public final class KeysGcpArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param usages A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usages(@Nullable Output<List<String>> usages) {
+            $.usages = usages;
+            return this;
+        }
+
+        /**
+         * @param usages A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usages(List<String> usages) {
+            return usages(Output.of(usages));
+        }
+
+        /**
+         * @param usages A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder usages(String... usages) {
+            return usages(List.of(usages));
         }
 
         /**

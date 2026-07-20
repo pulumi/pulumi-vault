@@ -125,7 +125,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly privateKeyWo: pulumi.Output<string | undefined>;
     /**
-     * An incrementing version counter. Increment this value to force an update 
+     * An incrementing version counter. Increment this value to force an update
      * to the private key. Required when using `privateKeyWo`.
      */
     declare public readonly privateKeyWoVersion: pulumi.Output<number | undefined>;
@@ -207,7 +207,7 @@ export interface SecretBackendState {
      */
     privateKeyWo?: pulumi.Input<string | undefined>;
     /**
-     * An incrementing version counter. Increment this value to force an update 
+     * An incrementing version counter. Increment this value to force an update
      * to the private key. Required when using `privateKeyWo`.
      */
     privateKeyWoVersion?: pulumi.Input<number | undefined>;
@@ -243,7 +243,7 @@ export interface SecretBackendArgs {
      */
     privateKeyWo?: pulumi.Input<string | undefined>;
     /**
-     * An incrementing version counter. Increment this value to force an update 
+     * An incrementing version counter. Increment this value to force an update
      * to the private key. Required when using `privateKeyWo`.
      */
     privateKeyWoVersion?: pulumi.Input<number | undefined>;

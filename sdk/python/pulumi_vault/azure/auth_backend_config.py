@@ -66,7 +66,7 @@ class AuthBackendConfigArgs:
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
                Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
                Requires Vault 1.17+. *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests.
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
                Defaults to `60`.
@@ -273,7 +273,7 @@ class AuthBackendConfigArgs:
     @pulumi.getter(name="maxRetries")
     def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Maximum number of retries for Azure API requests. 
+        Maximum number of retries for Azure API requests.
         Defaults to `3`.
         """
         return pulumi.get(self, "max_retries")
@@ -413,7 +413,7 @@ class _AuthBackendConfigState:
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
                Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
                Requires Vault 1.17+. *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests.
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
                Defaults to `60`.
@@ -600,7 +600,7 @@ class _AuthBackendConfigState:
     @pulumi.getter(name="maxRetries")
     def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Maximum number of retries for Azure API requests. 
+        Maximum number of retries for Azure API requests.
         Defaults to `3`.
         """
         return pulumi.get(self, "max_retries")
@@ -855,7 +855,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
                Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
                Requires Vault 1.17+. *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests.
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
                Defaults to `60`.
@@ -1095,7 +1095,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds.
                Defaults to 1 hour. Uses [duration format strings](https://developer.hashicorp.com/vault/docs/concepts/duration-format).
                Requires Vault 1.17+. *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests. 
+        :param pulumi.Input[_builtins.int] max_retries: Maximum number of retries for Azure API requests.
                Defaults to `3`.
         :param pulumi.Input[_builtins.int] max_retry_delay: The maximum delay in seconds between retries for Azure API requests.
                Defaults to `60`.
@@ -1233,7 +1233,7 @@ class AuthBackendConfig(pulumi.CustomResource):
     @pulumi.getter(name="maxRetries")
     def max_retries(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Maximum number of retries for Azure API requests. 
+        Maximum number of retries for Azure API requests.
         Defaults to `3`.
         """
         return pulumi.get(self, "max_retries")

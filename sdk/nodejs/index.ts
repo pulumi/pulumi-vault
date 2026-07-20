@@ -148,11 +148,6 @@ export type RaftAutopilot = import("./raftAutopilot").RaftAutopilot;
 export const RaftAutopilot: typeof import("./raftAutopilot").RaftAutopilot = null as any;
 utilities.lazyLoad(exports, ["RaftAutopilot"], () => require("./raftAutopilot"));
 
-export { RaftSnapshotAgentConfigArgs, RaftSnapshotAgentConfigState } from "./raftSnapshotAgentConfig";
-export type RaftSnapshotAgentConfig = import("./raftSnapshotAgentConfig").RaftSnapshotAgentConfig;
-export const RaftSnapshotAgentConfig: typeof import("./raftSnapshotAgentConfig").RaftSnapshotAgentConfig = null as any;
-utilities.lazyLoad(exports, ["RaftSnapshotAgentConfig"], () => require("./raftSnapshotAgentConfig"));
-
 export { RgpPolicyArgs, RgpPolicyState } from "./rgpPolicy";
 export type RgpPolicy = import("./rgpPolicy").RgpPolicy;
 export const RgpPolicy: typeof import("./rgpPolicy").RgpPolicy = null as any;
@@ -280,8 +275,6 @@ const _module = {
                 return new QuotaRateLimit(name, <any>undefined, { urn })
             case "vault:index/raftAutopilot:RaftAutopilot":
                 return new RaftAutopilot(name, <any>undefined, { urn })
-            case "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig":
-                return new RaftSnapshotAgentConfig(name, <any>undefined, { urn })
             case "vault:index/rgpPolicy:RgpPolicy":
                 return new RgpPolicy(name, <any>undefined, { urn })
             case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
@@ -314,7 +307,6 @@ pulumi.runtime.registerResourceModule("vault", "index/policy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaLeaseCount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaRateLimit", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftAutopilot", _module)
-pulumi.runtime.registerResourceModule("vault", "index/raftSnapshotAgentConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/scepAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/token", _module)

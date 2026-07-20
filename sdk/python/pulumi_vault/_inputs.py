@@ -297,7 +297,6 @@ class OciAuthBackendTuneArgsDict(TypedDict):
     Specifies the type of tokens that should be returned by
     the mount. Valid values are "default-service", "default-batch", "service", "batch".
 
-
     For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
     """
 
@@ -331,7 +330,6 @@ class OciAuthBackendTuneArgs:
                pass from the request to the backend.
         :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-               
                
                For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
@@ -451,7 +449,6 @@ class OciAuthBackendTuneArgs:
         """
         Specifies the type of tokens that should be returned by
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
-
 
         For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """

@@ -58,6 +58,50 @@ import (
 //
 // ```
 //
+// ### Tokenization Example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transform"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			transform2, err := vault.NewMount(ctx, "transform", &vault.MountArgs{
+//				Path: pulumi.String("transform"),
+//				Type: pulumi.String("transform"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = transform.NewTransformation(ctx, "tokenization", &transform.TransformationArgs{
+//				Path:        transform2.Path,
+//				Name:        pulumi.String("ssn-tokenization"),
+//				Type:        pulumi.String("tokenization"),
+//				MappingMode: pulumi.String("default"),
+//				Stores: pulumi.StringArray{
+//					pulumi.String("my-store"),
+//				},
+//				AllowedRoles: pulumi.StringArray{
+//					pulumi.String("payments"),
+//				},
+//				Convergent: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Tutorials
 //
 // Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
@@ -66,10 +110,16 @@ type Transformation struct {
 
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles pulumi.StringArrayOutput `pulumi:"allowedRoles"`
+	// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+	Convergent pulumi.BoolPtrOutput `pulumi:"convergent"`
 	// If true, this transform can be deleted.
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed pulumi.BoolPtrOutput `pulumi:"deletionAllowed"`
+	// Specifies the mapping mode for stored values.
+	// Can be "default" or "exportable". Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MappingMode pulumi.StringPtrOutput `pulumi:"mappingMode"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrOutput `pulumi:"maskingCharacter"`
 	// The name of the transformation.
@@ -81,6 +131,10 @@ type Transformation struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringOutput `pulumi:"path"`
+	// List of stores to use for tokenization state.
+	// Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	Stores pulumi.StringArrayOutput `pulumi:"stores"`
 	// The name of the template to use.
 	Template pulumi.StringPtrOutput `pulumi:"template"`
 	// Templates configured for transformation.
@@ -126,10 +180,16 @@ func GetTransformation(ctx *pulumi.Context,
 type transformationState struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+	Convergent *bool `pulumi:"convergent"`
 	// If true, this transform can be deleted.
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed *bool `pulumi:"deletionAllowed"`
+	// Specifies the mapping mode for stored values.
+	// Can be "default" or "exportable". Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MappingMode *string `pulumi:"mappingMode"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
@@ -141,6 +201,10 @@ type transformationState struct {
 	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path *string `pulumi:"path"`
+	// List of stores to use for tokenization state.
+	// Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	Stores []string `pulumi:"stores"`
 	// The name of the template to use.
 	Template *string `pulumi:"template"`
 	// Templates configured for transformation.
@@ -154,10 +218,16 @@ type transformationState struct {
 type TransformationState struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles pulumi.StringArrayInput
+	// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+	Convergent pulumi.BoolPtrInput
 	// If true, this transform can be deleted.
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed pulumi.BoolPtrInput
+	// Specifies the mapping mode for stored values.
+	// Can be "default" or "exportable". Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MappingMode pulumi.StringPtrInput
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
@@ -169,6 +239,10 @@ type TransformationState struct {
 	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringPtrInput
+	// List of stores to use for tokenization state.
+	// Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	Stores pulumi.StringArrayInput
 	// The name of the template to use.
 	Template pulumi.StringPtrInput
 	// Templates configured for transformation.
@@ -186,10 +260,16 @@ func (TransformationState) ElementType() reflect.Type {
 type transformationArgs struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles []string `pulumi:"allowedRoles"`
+	// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+	Convergent *bool `pulumi:"convergent"`
 	// If true, this transform can be deleted.
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed *bool `pulumi:"deletionAllowed"`
+	// Specifies the mapping mode for stored values.
+	// Can be "default" or "exportable". Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MappingMode *string `pulumi:"mappingMode"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
 	// The name of the transformation.
@@ -201,6 +281,10 @@ type transformationArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// Path to where the back-end is mounted within Vault.
 	Path string `pulumi:"path"`
+	// List of stores to use for tokenization state.
+	// Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	Stores []string `pulumi:"stores"`
 	// The name of the template to use.
 	Template *string `pulumi:"template"`
 	// Templates configured for transformation.
@@ -215,10 +299,16 @@ type transformationArgs struct {
 type TransformationArgs struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles pulumi.StringArrayInput
+	// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+	Convergent pulumi.BoolPtrInput
 	// If true, this transform can be deleted.
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed pulumi.BoolPtrInput
+	// Specifies the mapping mode for stored values.
+	// Can be "default" or "exportable". Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MappingMode pulumi.StringPtrInput
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrInput
 	// The name of the transformation.
@@ -230,6 +320,10 @@ type TransformationArgs struct {
 	Namespace pulumi.StringPtrInput
 	// Path to where the back-end is mounted within Vault.
 	Path pulumi.StringInput
+	// List of stores to use for tokenization state.
+	// Only used when `type` is "tokenization".
+	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	Stores pulumi.StringArrayInput
 	// The name of the template to use.
 	Template pulumi.StringPtrInput
 	// Templates configured for transformation.
@@ -332,11 +426,23 @@ func (o TransformationOutput) AllowedRoles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.StringArrayOutput { return v.AllowedRoles }).(pulumi.StringArrayOutput)
 }
 
+// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+func (o TransformationOutput) Convergent() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.BoolPtrOutput { return v.Convergent }).(pulumi.BoolPtrOutput)
+}
+
 // If true, this transform can be deleted.
 // Otherwise, deletion is blocked while this value remains false. Default: `false`
 // *Only supported on vault-1.12+*
 func (o TransformationOutput) DeletionAllowed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.BoolPtrOutput { return v.DeletionAllowed }).(pulumi.BoolPtrOutput)
+}
+
+// Specifies the mapping mode for stored values.
+// Can be "default" or "exportable". Only used when `type` is "tokenization".
+// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+func (o TransformationOutput) MappingMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.MappingMode }).(pulumi.StringPtrOutput)
 }
 
 // The character used to replace data when in masking mode
@@ -360,6 +466,13 @@ func (o TransformationOutput) Namespace() pulumi.StringPtrOutput {
 // Path to where the back-end is mounted within Vault.
 func (o TransformationOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// List of stores to use for tokenization state.
+// Only used when `type` is "tokenization".
+// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+func (o TransformationOutput) Stores() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringArrayOutput { return v.Stores }).(pulumi.StringArrayOutput)
 }
 
 // The name of the template to use.

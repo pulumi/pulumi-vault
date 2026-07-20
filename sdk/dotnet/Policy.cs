@@ -23,6 +23,7 @@ namespace Pulumi.Vault
     ///     var example = new Vault.Policy("example", new()
     ///     {
     ///         Name = "dev-team",
+    ///         AllowOverwrite = false,
     ///         PolicyContents = @"path \""secret/my_app\"" {
     ///   capabilities = [\""update\""]
     /// }
@@ -51,6 +52,12 @@ namespace Pulumi.Vault
     [VaultResourceType("vault:index/policy:Policy")]
     public partial class Policy : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Allow overwriting policies with the same name. Defaults to `True`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+        /// </summary>
+        [Output("allowOverwrite")]
+        public Output<bool> AllowOverwrite { get; private set; } = null!;
+
         /// <summary>
         /// The name of the policy
         /// </summary>
@@ -119,6 +126,12 @@ namespace Pulumi.Vault
     public sealed class PolicyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Allow overwriting policies with the same name. Defaults to `True`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+        /// </summary>
+        [Input("allowOverwrite")]
+        public Input<bool>? AllowOverwrite { get; set; }
+
+        /// <summary>
         /// The name of the policy
         /// </summary>
         [Input("name")]
@@ -147,6 +160,12 @@ namespace Pulumi.Vault
 
     public sealed class PolicyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow overwriting policies with the same name. Defaults to `True`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+        /// </summary>
+        [Input("allowOverwrite")]
+        public Input<bool>? AllowOverwrite { get; set; }
+
         /// <summary>
         /// The name of the policy
         /// </summary>

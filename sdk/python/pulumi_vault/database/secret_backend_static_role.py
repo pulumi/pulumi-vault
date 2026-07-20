@@ -51,7 +51,7 @@ class SecretBackendStaticRoleArgs:
                The password corresponding to the username in the database.
                This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
                Cannot be used with `self_managed_password`.
-        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field.
                Used for tracking changes to the write-only password field. For more info see
                updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
@@ -205,7 +205,7 @@ class SecretBackendStaticRoleArgs:
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The version of the `password_wo` field. 
+        The version of the `password_wo` field.
         Used for tracking changes to the write-only password field. For more info see
         updating write-only attributes.
         """
@@ -332,7 +332,7 @@ class _SecretBackendStaticRoleState:
                The password corresponding to the username in the database.
                This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
                Cannot be used with `self_managed_password`.
-        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field.
                Used for tracking changes to the write-only password field. For more info see
                updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
@@ -478,7 +478,7 @@ class _SecretBackendStaticRoleState:
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The version of the `password_wo` field. 
+        The version of the `password_wo` field.
         Used for tracking changes to the write-only password field. For more info see
         updating write-only attributes.
         """
@@ -679,7 +679,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                The password corresponding to the username in the database.
                This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
                Cannot be used with `self_managed_password`.
-        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field.
                Used for tracking changes to the write-only password field. For more info see
                updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
@@ -872,7 +872,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                The password corresponding to the username in the database.
                This is a write-only field. Requires Vault 1.19+. Deprecates `self_managed_password` which was introduced in Vault 1.18.
                Cannot be used with `self_managed_password`.
-        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field. 
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo` field.
                Used for tracking changes to the write-only password field. For more info see
                updating write-only attributes.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time Vault should wait before rotating the password, in seconds.
@@ -980,7 +980,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The version of the `password_wo` field. 
+        The version of the `password_wo` field.
         Used for tracking changes to the write-only password field. For more info see
         updating write-only attributes.
         """

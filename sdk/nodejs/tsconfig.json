@@ -211,7 +211,6 @@
         "rabbitmq/secretBackend.ts",
         "rabbitmq/secretBackendRole.ts",
         "raftAutopilot.ts",
-        "raftSnapshotAgentConfig.ts",
         "rgpPolicy.ts",
         "saml/authBackend.ts",
         "saml/authBackendRole.ts",

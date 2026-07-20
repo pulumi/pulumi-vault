@@ -221,14 +221,14 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.excludedUriDomains);
     }
     /**
-     * The format of data
+     * The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34;, or &#34;der&#34;.
      * 
      */
     @Export(name="format", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> format;
 
     /**
-     * @return The format of data
+     * @return The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34;, or &#34;der&#34;.
      * 
      */
     public Output<Optional<String>> format() {

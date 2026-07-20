@@ -32,11 +32,11 @@ class SecretBackendKeyArgs:
 
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
-        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys. 
+        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys.
                Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
                2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
                384, or 521; ignored with `key_type=ed25519`.
-        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this. 
+        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
@@ -89,7 +89,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Specifies the number of bits to use for the generated keys. 
+        Specifies the number of bits to use for the generated keys.
         Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
         2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
         384, or 521; ignored with `key_type=ed25519`.
@@ -104,7 +104,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        When a new key is created with this request, optionally specifies the name for this. 
+        When a new key is created with this request, optionally specifies the name for this.
         The global ref `default` may not be used as a name.
         """
         return pulumi.get(self, "key_name")
@@ -181,12 +181,12 @@ class _SecretBackendKeyState:
         Input properties used for looking up and filtering SecretBackendKey resources.
 
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys. 
+        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys.
                Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
                2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
                384, or 521; ignored with `key_type=ed25519`.
         :param pulumi.Input[_builtins.str] key_id: ID of the generated key.
-        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this. 
+        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
@@ -232,7 +232,7 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Specifies the number of bits to use for the generated keys. 
+        Specifies the number of bits to use for the generated keys.
         Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
         2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
         384, or 521; ignored with `key_type=ed25519`.
@@ -259,7 +259,7 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        When a new key is created with this request, optionally specifies the name for this. 
+        When a new key is created with this request, optionally specifies the name for this.
         The global ref `default` may not be used as a name.
         """
         return pulumi.get(self, "key_name")
@@ -381,11 +381,11 @@ class SecretBackendKey(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys. 
+        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys.
                Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
                2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
                384, or 521; ignored with `key_type=ed25519`.
-        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this. 
+        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
@@ -505,12 +505,12 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys. 
+        :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys.
                Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
                2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
                384, or 521; ignored with `key_type=ed25519`.
         :param pulumi.Input[_builtins.str] key_id: ID of the generated key.
-        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this. 
+        :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
@@ -548,7 +548,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="keyBits")
     def key_bits(self) -> pulumi.Output[_builtins.int]:
         """
-        Specifies the number of bits to use for the generated keys. 
+        Specifies the number of bits to use for the generated keys.
         Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
         2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
         384, or 521; ignored with `key_type=ed25519`.
@@ -567,7 +567,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        When a new key is created with this request, optionally specifies the name for this. 
+        When a new key is created with this request, optionally specifies the name for this.
         The global ref `default` may not be used as a name.
         """
         return pulumi.get(self, "key_name")

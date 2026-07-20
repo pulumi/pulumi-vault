@@ -97,7 +97,7 @@ class _SecretCredsState:
 
         :param pulumi.Input[_builtins.str] backend: The path to the Terraform Cloud secret backend to
                read credentials from, with no leading or trailing `/`s.
-        :param pulumi.Input[_builtins.str] lease_id: The lease associated with the token. Only user tokens will have a 
+        :param pulumi.Input[_builtins.str] lease_id: The lease associated with the token. Only user tokens will have a
                Vault lease associated with them.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -109,7 +109,7 @@ class _SecretCredsState:
         :param pulumi.Input[_builtins.str] team_id: The team id associated with the token provided.
         :param pulumi.Input[_builtins.str] token: The actual token that was generated and can be used with API calls
                to identify the user of the call.
-        :param pulumi.Input[_builtins.str] token_id: The public identifier for a specific token. It can be used 
+        :param pulumi.Input[_builtins.str] token_id: The public identifier for a specific token. It can be used
                to look up information about a token or to revoke a token.
         """
         if backend is not None:
@@ -146,7 +146,7 @@ class _SecretCredsState:
     @pulumi.getter(name="leaseId")
     def lease_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The lease associated with the token. Only user tokens will have a 
+        The lease associated with the token. Only user tokens will have a
         Vault lease associated with them.
         """
         return pulumi.get(self, "lease_id")
@@ -224,7 +224,7 @@ class _SecretCredsState:
     @pulumi.getter(name="tokenId")
     def token_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The public identifier for a specific token. It can be used 
+        The public identifier for a specific token. It can be used
         to look up information about a token or to revoke a token.
         """
         return pulumi.get(self, "token_id")
@@ -393,7 +393,7 @@ class SecretCreds(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path to the Terraform Cloud secret backend to
                read credentials from, with no leading or trailing `/`s.
-        :param pulumi.Input[_builtins.str] lease_id: The lease associated with the token. Only user tokens will have a 
+        :param pulumi.Input[_builtins.str] lease_id: The lease associated with the token. Only user tokens will have a
                Vault lease associated with them.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -405,7 +405,7 @@ class SecretCreds(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] team_id: The team id associated with the token provided.
         :param pulumi.Input[_builtins.str] token: The actual token that was generated and can be used with API calls
                to identify the user of the call.
-        :param pulumi.Input[_builtins.str] token_id: The public identifier for a specific token. It can be used 
+        :param pulumi.Input[_builtins.str] token_id: The public identifier for a specific token. It can be used
                to look up information about a token or to revoke a token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -435,7 +435,7 @@ class SecretCreds(pulumi.CustomResource):
     @pulumi.getter(name="leaseId")
     def lease_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The lease associated with the token. Only user tokens will have a 
+        The lease associated with the token. Only user tokens will have a
         Vault lease associated with them.
         """
         return pulumi.get(self, "lease_id")
@@ -489,7 +489,7 @@ class SecretCreds(pulumi.CustomResource):
     @pulumi.getter(name="tokenId")
     def token_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The public identifier for a specific token. It can be used 
+        The public identifier for a specific token. It can be used
         to look up information about a token or to revoke a token.
         """
         return pulumi.get(self, "token_id")

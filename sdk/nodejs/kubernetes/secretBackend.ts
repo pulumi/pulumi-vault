@@ -119,7 +119,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
-     * Disable defaulting to the local CA certificate and 
+     * Disable defaulting to the local CA certificate and
      * service account JWT when Vault is running in a Kubernetes pod.
      */
     declare public readonly disableLocalCaJwt: pulumi.Output<boolean | undefined>;
@@ -136,14 +136,14 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly identityTokenKey: pulumi.Output<string | undefined>;
     /**
-     * A PEM-encoded CA certificate used by the 
+     * A PEM-encoded CA certificate used by the
      * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
     declare public readonly kubernetesCaCert: pulumi.Output<string | undefined>;
     /**
-     * The Kubernetes API URL to connect to. Required if the 
+     * The Kubernetes API URL to connect to. Required if the
      * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
      * are not set on the host that Vault is running on.
      */
@@ -320,7 +320,7 @@ export interface SecretBackendState {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * Disable defaulting to the local CA certificate and 
+     * Disable defaulting to the local CA certificate and
      * service account JWT when Vault is running in a Kubernetes pod.
      */
     disableLocalCaJwt?: pulumi.Input<boolean | undefined>;
@@ -337,14 +337,14 @@ export interface SecretBackendState {
      */
     identityTokenKey?: pulumi.Input<string | undefined>;
     /**
-     * A PEM-encoded CA certificate used by the 
+     * A PEM-encoded CA certificate used by the
      * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
     kubernetesCaCert?: pulumi.Input<string | undefined>;
     /**
-     * The Kubernetes API URL to connect to. Required if the 
+     * The Kubernetes API URL to connect to. Required if the
      * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
      * are not set on the host that Vault is running on.
      */
@@ -440,7 +440,7 @@ export interface SecretBackendArgs {
      */
     description?: pulumi.Input<string | undefined>;
     /**
-     * Disable defaulting to the local CA certificate and 
+     * Disable defaulting to the local CA certificate and
      * service account JWT when Vault is running in a Kubernetes pod.
      */
     disableLocalCaJwt?: pulumi.Input<boolean | undefined>;
@@ -457,14 +457,14 @@ export interface SecretBackendArgs {
      */
     identityTokenKey?: pulumi.Input<string | undefined>;
     /**
-     * A PEM-encoded CA certificate used by the 
+     * A PEM-encoded CA certificate used by the
      * secrets engine to verify the Kubernetes API server certificate. Defaults to the local
      * pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
      * Vault is running.
      */
     kubernetesCaCert?: pulumi.Input<string | undefined>;
     /**
-     * The Kubernetes API URL to connect to. Required if the 
+     * The Kubernetes API URL to connect to. Required if the
      * standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
      * are not set on the host that Vault is running on.
      */

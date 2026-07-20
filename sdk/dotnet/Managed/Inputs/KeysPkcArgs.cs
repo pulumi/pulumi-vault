@@ -73,6 +73,12 @@ namespace Pulumi.Vault.Managed.Inputs
         public Input<string> Library { get; set; } = null!;
 
         /// <summary>
+        /// The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+        /// </summary>
+        [Input("maxParallel")]
+        public Input<int>? MaxParallel { get; set; }
+
+        /// <summary>
         /// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
         /// </summary>
         [Input("mechanism", required: true)]
@@ -101,6 +107,18 @@ namespace Pulumi.Vault.Managed.Inputs
         /// </summary>
         [Input("tokenLabel")]
         public Input<string>? TokenLabel { get; set; }
+
+        [Input("usages")]
+        private InputList<string>? _usages;
+
+        /// <summary>
+        /// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        /// </summary>
+        public InputList<string> Usages
+        {
+            get => _usages ?? (_usages = new InputList<string>());
+            set => _usages = value;
+        }
 
         /// <summary>
         /// ID of the managed key read from Vault

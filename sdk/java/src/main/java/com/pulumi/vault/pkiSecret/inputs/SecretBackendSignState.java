@@ -169,14 +169,14 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The format of data
+     * The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34; or &#34;der&#34;.
      * 
      */
     @Import(name="format")
     private @Nullable Output<String> format;
 
     /**
-     * @return The format of data
+     * @return The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34; or &#34;der&#34;.
      * 
      */
     public Optional<Output<String>> format() {
@@ -668,7 +668,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param format The format of data
+         * @param format The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34; or &#34;der&#34;.
          * 
          * @return builder
          * 
@@ -679,7 +679,7 @@ public final class SecretBackendSignState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param format The format of data
+         * @param format The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34; or &#34;der&#34;.
          * 
          * @return builder
          * 

@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.PolicyArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.PolicyState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -41,6 +42,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var example = new Policy("example", PolicyArgs.builder()
  *             .name("dev-team")
+ *             .allowOverwrite(false)
  *             .policy("""
  * path \"secret/my_app\" {
  *   capabilities = [\"update\"]
@@ -72,6 +74,24 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:index/policy:Policy")
 public class Policy extends com.pulumi.resources.CustomResource {
+    /**
+     * Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+     * 
+     * @deprecated
+     * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+     * 
+     */
+    @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+    @Export(name="allowOverwrite", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> allowOverwrite;
+
+    /**
+     * @return Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+     * 
+     */
+    public Output<Boolean> allowOverwrite() {
+        return this.allowOverwrite;
+    }
     /**
      * The name of the policy
      * 

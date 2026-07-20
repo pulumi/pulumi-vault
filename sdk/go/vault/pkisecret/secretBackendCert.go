@@ -71,7 +71,7 @@ type SecretBackendCert struct {
 	ExcludeCnFromSans pulumi.BoolPtrOutput `pulumi:"excludeCnFromSans"`
 	// The expiration date of the certificate in unix epoch format
 	Expiration pulumi.IntOutput `pulumi:"expiration"`
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle" or "der".
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
@@ -174,7 +174,7 @@ type secretBackendCertState struct {
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
 	// The expiration date of the certificate in unix epoch format
 	Expiration *int `pulumi:"expiration"`
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle" or "der".
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -238,7 +238,7 @@ type SecretBackendCertState struct {
 	ExcludeCnFromSans pulumi.BoolPtrInput
 	// The expiration date of the certificate in unix epoch format
 	Expiration pulumi.IntPtrInput
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle" or "der".
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -300,7 +300,7 @@ type secretBackendCertArgs struct {
 	CommonName string `pulumi:"commonName"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle" or "der".
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -349,7 +349,7 @@ type SecretBackendCertArgs struct {
 	CommonName pulumi.StringInput
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrInput
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle" or "der".
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -516,7 +516,7 @@ func (o SecretBackendCertOutput) Expiration() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.IntOutput { return v.Expiration }).(pulumi.IntOutput)
 }
 
-// The format of data
+// The format of data. Valid values are "pem", "pemBundle" or "der".
 func (o SecretBackendCertOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
 }

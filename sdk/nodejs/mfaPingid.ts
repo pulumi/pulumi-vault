@@ -82,7 +82,7 @@ export class MfaPingid extends pulumi.CustomResource {
      */
     declare public readonly mfaPingidId: pulumi.Output<string>;
     /**
-     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     declare public readonly mountAccessor: pulumi.Output<string>;
@@ -119,7 +119,7 @@ export class MfaPingid extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly useSignature: pulumi.Output<boolean>;
     /**
-     * `(string)` - A format string for mapping Identity names to MFA method names. 
+     * `(string)` - A format string for mapping Identity names to MFA method names.
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
      * If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
@@ -203,7 +203,7 @@ export interface MfaPingidState {
      */
     mfaPingidId?: pulumi.Input<string | undefined>;
     /**
-     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     mountAccessor?: pulumi.Input<string | undefined>;
@@ -240,7 +240,7 @@ export interface MfaPingidState {
      */
     useSignature?: pulumi.Input<boolean | undefined>;
     /**
-     * `(string)` - A format string for mapping Identity names to MFA method names. 
+     * `(string)` - A format string for mapping Identity names to MFA method names.
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
      * If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter
@@ -260,7 +260,7 @@ export interface MfaPingidArgs {
      */
     mfaPingidId?: pulumi.Input<string | undefined>;
     /**
-     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+     * `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
      * The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
      */
     mountAccessor: pulumi.Input<string>;
@@ -281,7 +281,7 @@ export interface MfaPingidArgs {
      */
     settingsFileBase64: pulumi.Input<string>;
     /**
-     * `(string)` - A format string for mapping Identity names to MFA method names. 
+     * `(string)` - A format string for mapping Identity names to MFA method names.
      * Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
      * If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
      * - alias.name: The name returned by the mount configured via the `mountAccessor` parameter

@@ -75,10 +75,10 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The Terraform Cloud management token this backend should 
+               The Terraform Cloud management token this backend should
                use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
                
@@ -411,7 +411,7 @@ class SecretBackendArgs:
     @pulumi.getter
     def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Terraform Cloud management token this backend should 
+        The Terraform Cloud management token this backend should
         use to issue new tokens.
         """
         return pulumi.get(self, "token")
@@ -425,7 +425,7 @@ class SecretBackendArgs:
     def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The Terraform Cloud management token this backend should 
+        The Terraform Cloud management token this backend should
         use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "token_wo")
@@ -512,10 +512,10 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The Terraform Cloud management token this backend should 
+               The Terraform Cloud management token this backend should
                use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
                
@@ -862,7 +862,7 @@ class _SecretBackendState:
     @pulumi.getter
     def token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Terraform Cloud management token this backend should 
+        The Terraform Cloud management token this backend should
         use to issue new tokens.
         """
         return pulumi.get(self, "token")
@@ -876,7 +876,7 @@ class _SecretBackendState:
     def token_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The Terraform Cloud management token this backend should 
+        The Terraform Cloud management token this backend should
         use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "token_wo")
@@ -997,10 +997,10 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The Terraform Cloud management token this backend should 
+               The Terraform Cloud management token this backend should
                use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
                
@@ -1196,10 +1196,10 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should 
+        :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The Terraform Cloud management token this backend should 
+               The Terraform Cloud management token this backend should
                use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         :param pulumi.Input[_builtins.int] token_wo_version: The version of the `token_wo`. For more info see updating write-only attributes.
                
@@ -1433,7 +1433,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter
     def token(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The Terraform Cloud management token this backend should 
+        The Terraform Cloud management token this backend should
         use to issue new tokens.
         """
         return pulumi.get(self, "token")
@@ -1443,7 +1443,7 @@ class SecretBackend(pulumi.CustomResource):
     def token_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The Terraform Cloud management token this backend should 
+        The Terraform Cloud management token this backend should
         use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         """
         return pulumi.get(self, "token_wo")

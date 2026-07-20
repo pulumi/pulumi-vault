@@ -287,17 +287,17 @@ def get_access_credentials(backend: Optional[_builtins.str] = None,
            Defaults to the environment configured in the Vault backend.
            Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
            *See the caveats section for more information on this field.*
-    :param _builtins.int max_cred_validation_seconds: If 'validate_creds' is true, 
+    :param _builtins.int max_cred_validation_seconds: If 'validate_creds' is true,
            the number of seconds after which to give up validating credentials. Defaults
            to 300.
     :param _builtins.str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
-    :param _builtins.int num_seconds_between_tests: If 'validate_creds' is true, 
+    :param _builtins.int num_seconds_between_tests: If 'validate_creds' is true,
            the number of seconds to wait between each test of generated credentials.
            Defaults to 1.
-    :param _builtins.int num_sequential_successes: If 'validate_creds' is true, 
+    :param _builtins.int num_sequential_successes: If 'validate_creds' is true,
            the number of sequential successes required to validate generated
            credentials. Defaults to 8.
     :param _builtins.str role: The name of the Azure secret backend role to read
@@ -308,7 +308,7 @@ def get_access_credentials(backend: Optional[_builtins.str] = None,
     :param _builtins.str tenant_id: The tenant ID to use during credential validation.
            Defaults to the tenant ID configured in the Vault `backend`.
            *See the caveats section for more information on this field.*
-    :param _builtins.bool validate_creds: Whether generated credentials should be 
+    :param _builtins.bool validate_creds: Whether generated credentials should be
            validated before being returned. Defaults to `false`, which returns
            credentials without checking whether they have fully propagated throughout
            Azure Active Directory. Designating `true` activates testing.
@@ -412,17 +412,17 @@ def get_access_credentials_output(backend: pulumi.Input[Optional[_builtins.str]]
            Defaults to the environment configured in the Vault backend.
            Some possible values: `AzurePublicCloud`, `AzureGovernmentCloud`
            *See the caveats section for more information on this field.*
-    :param _builtins.int max_cred_validation_seconds: If 'validate_creds' is true, 
+    :param _builtins.int max_cred_validation_seconds: If 'validate_creds' is true,
            the number of seconds after which to give up validating credentials. Defaults
            to 300.
     :param _builtins.str namespace: The namespace of the target resource.
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
-    :param _builtins.int num_seconds_between_tests: If 'validate_creds' is true, 
+    :param _builtins.int num_seconds_between_tests: If 'validate_creds' is true,
            the number of seconds to wait between each test of generated credentials.
            Defaults to 1.
-    :param _builtins.int num_sequential_successes: If 'validate_creds' is true, 
+    :param _builtins.int num_sequential_successes: If 'validate_creds' is true,
            the number of sequential successes required to validate generated
            credentials. Defaults to 8.
     :param _builtins.str role: The name of the Azure secret backend role to read
@@ -433,7 +433,7 @@ def get_access_credentials_output(backend: pulumi.Input[Optional[_builtins.str]]
     :param _builtins.str tenant_id: The tenant ID to use during credential validation.
            Defaults to the tenant ID configured in the Vault `backend`.
            *See the caveats section for more information on this field.*
-    :param _builtins.bool validate_creds: Whether generated credentials should be 
+    :param _builtins.bool validate_creds: Whether generated credentials should be
            validated before being returned. Defaults to `false`, which returns
            credentials without checking whether they have fully propagated throughout
            Azure Active Directory. Designating `true` activates testing.

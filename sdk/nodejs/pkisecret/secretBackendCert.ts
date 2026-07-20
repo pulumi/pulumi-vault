@@ -94,7 +94,7 @@ export class SecretBackendCert extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly expiration: pulumi.Output<number>;
     /**
-     * The format of data
+     * The format of data. Valid values are "pem", "pemBundle" or "der".
      */
     declare public readonly format: pulumi.Output<string | undefined>;
     /**
@@ -305,7 +305,7 @@ export interface SecretBackendCertState {
      */
     expiration?: pulumi.Input<number | undefined>;
     /**
-     * The format of data
+     * The format of data. Valid values are "pem", "pemBundle" or "der".
      */
     format?: pulumi.Input<string | undefined>;
     /**
@@ -418,7 +418,7 @@ export interface SecretBackendCertArgs {
      */
     excludeCnFromSans?: pulumi.Input<boolean | undefined>;
     /**
-     * The format of data
+     * The format of data. Valid values are "pem", "pemBundle" or "der".
      */
     format?: pulumi.Input<string | undefined>;
     /**

@@ -48,7 +48,7 @@ class SecretBackendRoleArgs:
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
-        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds. 
+        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds.
                Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
@@ -68,7 +68,7 @@ class SecretBackendRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions 
+        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
                policy will be attached.
@@ -90,7 +90,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] session_tags: A map of strings representing key/value pairs to be set
                during assume role creds creation. Valid only when `credential_type` is set to
                `assumed_role`.
-        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when 
+        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when
                `credential_type` is `iam_user`. Default is `/`.
         """
         pulumi.set(__self__, "backend", backend)
@@ -171,7 +171,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="externalId")
     def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        External ID to set for assume role creds. 
+        External ID to set for assume role creds.
         Valid only when `credential_type` is set to `assumed_role`.
         """
         return pulumi.get(self, "external_id")
@@ -268,7 +268,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="permissionsBoundaryArn")
     def permissions_boundary_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ARN of the AWS Permissions 
+        The ARN of the AWS Permissions
         Boundary to attach to IAM users created in the role. Valid only when
         `credential_type` is `iam_user`. If not specified, then no permissions boundary
         policy will be attached.
@@ -345,7 +345,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="userPath")
     def user_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The path for the user name. Valid only when 
+        The path for the user name. Valid only when
         `credential_type` is `iam_user`. Default is `/`.
         """
         return pulumi.get(self, "user_path")
@@ -387,7 +387,7 @@ class _SecretBackendRoleState:
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
-        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds. 
+        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds.
                Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
@@ -407,7 +407,7 @@ class _SecretBackendRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions 
+        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
                policy will be attached.
@@ -429,7 +429,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] session_tags: A map of strings representing key/value pairs to be set
                during assume role creds creation. Valid only when `credential_type` is set to
                `assumed_role`.
-        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when 
+        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when
                `credential_type` is `iam_user`. Default is `/`.
         """
         if backend is not None:
@@ -512,7 +512,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="externalId")
     def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        External ID to set for assume role creds. 
+        External ID to set for assume role creds.
         Valid only when `credential_type` is set to `assumed_role`.
         """
         return pulumi.get(self, "external_id")
@@ -609,7 +609,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="permissionsBoundaryArn")
     def permissions_boundary_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ARN of the AWS Permissions 
+        The ARN of the AWS Permissions
         Boundary to attach to IAM users created in the role. Valid only when
         `credential_type` is `iam_user`. If not specified, then no permissions boundary
         policy will be attached.
@@ -686,7 +686,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="userPath")
     def user_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The path for the user name. Valid only when 
+        The path for the user name. Valid only when
         `credential_type` is `iam_user`. Default is `/`.
         """
         return pulumi.get(self, "user_path")
@@ -777,7 +777,7 @@ class SecretBackendRole(pulumi.CustomResource):
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
-        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds. 
+        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds.
                Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
@@ -797,7 +797,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions 
+        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
                policy will be attached.
@@ -819,7 +819,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] session_tags: A map of strings representing key/value pairs to be set
                during assume role creds creation. Valid only when `credential_type` is set to
                `assumed_role`.
-        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when 
+        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when
                `credential_type` is `iam_user`. Default is `/`.
         """
         ...
@@ -977,7 +977,7 @@ class SecretBackendRole(pulumi.CustomResource):
                and a default TTL is specified on the role,
                then this default TTL will be used. Valid only when `credential_type` is one of
                `assumed_role` or `federation_token`.
-        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds. 
+        :param pulumi.Input[_builtins.str] external_id: External ID to set for assume role creds.
                Valid only when `credential_type` is set to `assumed_role`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_groups: A list of IAM group names. IAM users generated
                against this vault role will be added to these IAM Groups. For a credential
@@ -997,7 +997,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions 
+        :param pulumi.Input[_builtins.str] permissions_boundary_arn: The ARN of the AWS Permissions
                Boundary to attach to IAM users created in the role. Valid only when
                `credential_type` is `iam_user`. If not specified, then no permissions boundary
                policy will be attached.
@@ -1019,7 +1019,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] session_tags: A map of strings representing key/value pairs to be set
                during assume role creds creation. Valid only when `credential_type` is set to
                `assumed_role`.
-        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when 
+        :param pulumi.Input[_builtins.str] user_path: The path for the user name. Valid only when
                `credential_type` is `iam_user`. Default is `/`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1079,7 +1079,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="externalId")
     def external_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        External ID to set for assume role creds. 
+        External ID to set for assume role creds.
         Valid only when `credential_type` is set to `assumed_role`.
         """
         return pulumi.get(self, "external_id")
@@ -1148,7 +1148,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="permissionsBoundaryArn")
     def permissions_boundary_arn(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The ARN of the AWS Permissions 
+        The ARN of the AWS Permissions
         Boundary to attach to IAM users created in the role. Valid only when
         `credential_type` is `iam_user`. If not specified, then no permissions boundary
         policy will be attached.
@@ -1205,7 +1205,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="userPath")
     def user_path(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The path for the user name. Valid only when 
+        The path for the user name. Valid only when
         `credential_type` is `iam_user`. Default is `/`.
         """
         return pulumi.get(self, "user_path")

@@ -168,7 +168,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly clientKeyWo: pulumi.Output<string | undefined>;
     /**
-     * Version counter for the write-only client key. Increment this value to trigger 
+     * Version counter for the write-only client key. Increment this value to trigger
      * an update of the client key in Vault. Required when using `clientKeyWo`.
      */
     declare public readonly clientKeyWoVersion: pulumi.Output<number | undefined>;
@@ -260,7 +260,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly tokenWo: pulumi.Output<string | undefined>;
     /**
-     * Version counter for the write-only token. Increment this value to trigger an update 
+     * Version counter for the write-only token. Increment this value to trigger an update
      * of the token in Vault. Required when using `tokenWo`.
      */
     declare public readonly tokenWoVersion: pulumi.Output<number | undefined>;
@@ -412,7 +412,7 @@ export interface SecretBackendState {
      */
     clientKeyWo?: pulumi.Input<string | undefined>;
     /**
-     * Version counter for the write-only client key. Increment this value to trigger 
+     * Version counter for the write-only client key. Increment this value to trigger
      * an update of the client key in Vault. Required when using `clientKeyWo`.
      */
     clientKeyWoVersion?: pulumi.Input<number | undefined>;
@@ -504,7 +504,7 @@ export interface SecretBackendState {
      */
     tokenWo?: pulumi.Input<string | undefined>;
     /**
-     * Version counter for the write-only token. Increment this value to trigger an update 
+     * Version counter for the write-only token. Increment this value to trigger an update
      * of the token in Vault. Required when using `tokenWo`.
      */
     tokenWoVersion?: pulumi.Input<number | undefined>;
@@ -563,7 +563,7 @@ export interface SecretBackendArgs {
      */
     clientKeyWo?: pulumi.Input<string | undefined>;
     /**
-     * Version counter for the write-only client key. Increment this value to trigger 
+     * Version counter for the write-only client key. Increment this value to trigger
      * an update of the client key in Vault. Required when using `clientKeyWo`.
      */
     clientKeyWoVersion?: pulumi.Input<number | undefined>;
@@ -655,7 +655,7 @@ export interface SecretBackendArgs {
      */
     tokenWo?: pulumi.Input<string | undefined>;
     /**
-     * Version counter for the write-only token. Increment this value to trigger an update 
+     * Version counter for the write-only token. Increment this value to trigger an update
      * of the token in Vault. Required when using `tokenWo`.
      */
     tokenWoVersion?: pulumi.Input<number | undefined>;

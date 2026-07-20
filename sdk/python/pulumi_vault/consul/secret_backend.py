@@ -71,7 +71,7 @@ class SecretBackendArgs:
                Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger
                an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -103,7 +103,7 @@ class SecretBackendArgs:
                and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update
                of the token in Vault. Required when using `token_wo`.
         """
         pulumi.set(__self__, "address", address)
@@ -300,7 +300,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="clientKeyWoVersion")
     def client_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Version counter for the write-only client key. Increment this value to trigger 
+        Version counter for the write-only client key. Increment this value to trigger
         an update of the client key in Vault. Required when using `client_key_wo`.
         """
         return pulumi.get(self, "client_key_wo_version")
@@ -552,7 +552,7 @@ class SecretBackendArgs:
     @pulumi.getter(name="tokenWoVersion")
     def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Version counter for the write-only token. Increment this value to trigger an update 
+        Version counter for the write-only token. Increment this value to trigger an update
         of the token in Vault. Required when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")
@@ -619,7 +619,7 @@ class _SecretBackendState:
                Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger
                an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -651,7 +651,7 @@ class _SecretBackendState:
                and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update
                of the token in Vault. Required when using `token_wo`.
         """
         if accessor is not None:
@@ -863,7 +863,7 @@ class _SecretBackendState:
     @pulumi.getter(name="clientKeyWoVersion")
     def client_key_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Version counter for the write-only client key. Increment this value to trigger 
+        Version counter for the write-only client key. Increment this value to trigger
         an update of the client key in Vault. Required when using `client_key_wo`.
         """
         return pulumi.get(self, "client_key_wo_version")
@@ -1115,7 +1115,7 @@ class _SecretBackendState:
     @pulumi.getter(name="tokenWoVersion")
     def token_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Version counter for the write-only token. Increment this value to trigger an update 
+        Version counter for the write-only token. Increment this value to trigger an update
         of the token in Vault. Required when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")
@@ -1260,7 +1260,7 @@ class SecretBackend(pulumi.CustomResource):
                Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger
                an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -1292,7 +1292,7 @@ class SecretBackend(pulumi.CustomResource):
                and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update
                of the token in Vault. Required when using `token_wo`.
         """
         ...
@@ -1537,7 +1537,7 @@ class SecretBackend(pulumi.CustomResource):
                Terraform state. Consider using `client_key_wo` instead for enhanced security.
         :param pulumi.Input[_builtins.str] client_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Client key used for Consul's TLS communication, must be x509 PEM encoded. This field is write-only and will never be stored in state. Mutually exclusive with 'client_key'. Requires 'client_key_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger 
+        :param pulumi.Input[_builtins.int] client_key_wo_version: Version counter for the write-only client key. Increment this value to trigger
                an update of the client key in Vault. Required when using `client_key_wo`.
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
@@ -1569,7 +1569,7 @@ class SecretBackend(pulumi.CustomResource):
                and correct drift on `token`. Changing the value, however, _will_ overwrite the previously stored values.
         :param pulumi.Input[_builtins.str] token_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Specifies the Consul token to use when managing or issuing new tokens. This field is write-only and will never be stored in state. Mutually exclusive with 'token'. Requires 'token_wo_version' to trigger updates.
-        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update 
+        :param pulumi.Input[_builtins.int] token_wo_version: Version counter for the write-only token. Increment this value to trigger an update
                of the token in Vault. Required when using `token_wo`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1710,7 +1710,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="clientKeyWoVersion")
     def client_key_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Version counter for the write-only client key. Increment this value to trigger 
+        Version counter for the write-only client key. Increment this value to trigger
         an update of the client key in Vault. Required when using `client_key_wo`.
         """
         return pulumi.get(self, "client_key_wo_version")
@@ -1882,7 +1882,7 @@ class SecretBackend(pulumi.CustomResource):
     @pulumi.getter(name="tokenWoVersion")
     def token_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Version counter for the write-only token. Increment this value to trigger an update 
+        Version counter for the write-only token. Increment this value to trigger an update
         of the token in Vault. Required when using `token_wo`.
         """
         return pulumi.get(self, "token_wo_version")

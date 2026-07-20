@@ -121,7 +121,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> ExcludedUriDomains { get; private set; } = null!;
 
         /// <summary>
-        /// The format of data
+        /// The format of data. Valid values are "pem", "PemBundle", or "der".
         /// </summary>
         [Output("format")]
         public Output<string?> Format { get; private set; } = null!;
@@ -470,7 +470,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The format of data
+        /// The format of data. Valid values are "pem", "PemBundle", or "der".
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -811,7 +811,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// The format of data
+        /// The format of data. Valid values are "pem", "PemBundle", or "der".
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }

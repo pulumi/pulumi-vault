@@ -33,6 +33,21 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is &#34;tokenization&#34;. Default: `false`
+     * 
+     */
+    @Import(name="convergent")
+    private @Nullable Output<Boolean> convergent;
+
+    /**
+     * @return If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is &#34;tokenization&#34;. Default: `false`
+     * 
+     */
+    public Optional<Output<Boolean>> convergent() {
+        return Optional.ofNullable(this.convergent);
+    }
+
+    /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
@@ -49,6 +64,25 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<Boolean>> deletionAllowed() {
         return Optional.ofNullable(this.deletionAllowed);
+    }
+
+    /**
+     * Specifies the mapping mode for stored values.
+     * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    @Import(name="mappingMode")
+    private @Nullable Output<String> mappingMode;
+
+    /**
+     * @return Specifies the mapping mode for stored values.
+     * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    public Optional<Output<String>> mappingMode() {
+        return Optional.ofNullable(this.mappingMode);
     }
 
     /**
@@ -118,6 +152,25 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * List of stores to use for tokenization state.
+     * Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    @Import(name="stores")
+    private @Nullable Output<List<String>> stores;
+
+    /**
+     * @return List of stores to use for tokenization state.
+     * Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    public Optional<Output<List<String>>> stores() {
+        return Optional.ofNullable(this.stores);
+    }
+
+    /**
      * The name of the template to use.
      * 
      */
@@ -181,11 +234,14 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
 
     private TransformationState(TransformationState $) {
         this.allowedRoles = $.allowedRoles;
+        this.convergent = $.convergent;
         this.deletionAllowed = $.deletionAllowed;
+        this.mappingMode = $.mappingMode;
         this.maskingCharacter = $.maskingCharacter;
         this.name = $.name;
         this.namespace = $.namespace;
         this.path = $.path;
+        this.stores = $.stores;
         this.template = $.template;
         this.templates = $.templates;
         this.tweakSource = $.tweakSource;
@@ -242,6 +298,27 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param convergent If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is &#34;tokenization&#34;. Default: `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder convergent(@Nullable Output<Boolean> convergent) {
+            $.convergent = convergent;
+            return this;
+        }
+
+        /**
+         * @param convergent If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is &#34;tokenization&#34;. Default: `false`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder convergent(Boolean convergent) {
+            return convergent(Output.of(convergent));
+        }
+
+        /**
          * @param deletionAllowed If true, this transform can be deleted.
          * Otherwise, deletion is blocked while this value remains false. Default: `false`
          * *Only supported on vault-1.12+*
@@ -264,6 +341,31 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
          */
         public Builder deletionAllowed(Boolean deletionAllowed) {
             return deletionAllowed(Output.of(deletionAllowed));
+        }
+
+        /**
+         * @param mappingMode Specifies the mapping mode for stored values.
+         * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
+         * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mappingMode(@Nullable Output<String> mappingMode) {
+            $.mappingMode = mappingMode;
+            return this;
+        }
+
+        /**
+         * @param mappingMode Specifies the mapping mode for stored values.
+         * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
+         * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder mappingMode(String mappingMode) {
+            return mappingMode(Output.of(mappingMode));
         }
 
         /**
@@ -354,6 +456,43 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
          */
         public Builder path(String path) {
             return path(Output.of(path));
+        }
+
+        /**
+         * @param stores List of stores to use for tokenization state.
+         * Only used when `type` is &#34;tokenization&#34;.
+         * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stores(@Nullable Output<List<String>> stores) {
+            $.stores = stores;
+            return this;
+        }
+
+        /**
+         * @param stores List of stores to use for tokenization state.
+         * Only used when `type` is &#34;tokenization&#34;.
+         * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stores(List<String> stores) {
+            return stores(Output.of(stores));
+        }
+
+        /**
+         * @param stores List of stores to use for tokenization state.
+         * Only used when `type` is &#34;tokenization&#34;.
+         * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder stores(String... stores) {
+            return stores(List.of(stores));
         }
 
         /**

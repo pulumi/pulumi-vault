@@ -130,7 +130,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     declare public readonly passwordWo: pulumi.Output<string | undefined>;
     /**
-     * The version of the `passwordWo` field. 
+     * The version of the `passwordWo` field.
      * Used for tracking changes to the write-only password field. For more info see
      * updating write-only attributes.
      */
@@ -275,7 +275,7 @@ export interface SecretBackendStaticRoleState {
      */
     passwordWo?: pulumi.Input<string | undefined>;
     /**
-     * The version of the `passwordWo` field. 
+     * The version of the `passwordWo` field.
      * Used for tracking changes to the write-only password field. For more info see
      * updating write-only attributes.
      */
@@ -359,7 +359,7 @@ export interface SecretBackendStaticRoleArgs {
      */
     passwordWo?: pulumi.Input<string | undefined>;
     /**
-     * The version of the `passwordWo` field. 
+     * The version of the `passwordWo` field.
      * Used for tracking changes to the write-only password field. For more info see
      * updating write-only attributes.
      */

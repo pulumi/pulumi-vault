@@ -214,7 +214,6 @@ export interface OciAuthBackendTune {
      * Specifies the type of tokens that should be returned by
      * the mount. Valid values are "default-service", "default-batch", "service", "batch".
      *
-     *
      * For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
      */
     tokenType?: pulumi.Input<string | undefined>;
@@ -3481,7 +3480,6 @@ export namespace gcp {
          * Specifies the type of tokens that should be returned by
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          *
-         *
          * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
          */
         tokenType?: pulumi.Input<string | undefined>;
@@ -3733,6 +3731,10 @@ export namespace managed {
          */
         secretKey: pulumi.Input<string>;
         /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
          * ID of the managed key read from Vault
          */
         uuid?: pulumi.Input<string | undefined>;
@@ -3791,6 +3793,10 @@ export namespace managed {
          * The tenant id for the Azure Active Directory organization
          */
         tenantId: pulumi.Input<string>;
+        /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * ID of the managed key read from Vault
          */
@@ -3851,6 +3857,10 @@ export namespace managed {
          */
         region: pulumi.Input<string>;
         /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
          * ID of the managed key read from Vault
          */
         uuid?: pulumi.Input<string | undefined>;
@@ -3898,6 +3908,10 @@ export namespace managed {
          */
         library: pulumi.Input<string>;
         /**
+         * The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+         */
+        maxParallel?: pulumi.Input<number | undefined>;
+        /**
          * The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
          */
         mechanism: pulumi.Input<string>;
@@ -3917,6 +3931,10 @@ export namespace managed {
          * The slot token label to use
          */
         tokenLabel?: pulumi.Input<string | undefined>;
+        /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * ID of the managed key read from Vault
          */

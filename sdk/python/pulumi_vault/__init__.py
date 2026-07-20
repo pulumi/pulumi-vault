@@ -35,7 +35,6 @@ from .provider import *
 from .quota_lease_count import *
 from .quota_rate_limit import *
 from .raft_autopilot import *
-from .raft_snapshot_agent_config import *
 from .rgp_policy import *
 from .scep_auth_backend_role import *
 from .token import *
@@ -798,14 +797,6 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/raftAutopilot:RaftAutopilot": "RaftAutopilot"
-  }
- },
- {
-  "pkg": "vault",
-  "mod": "index/raftSnapshotAgentConfig",
-  "fqn": "pulumi_vault",
-  "classes": {
-   "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig": "RaftSnapshotAgentConfig"
   }
  },
  {

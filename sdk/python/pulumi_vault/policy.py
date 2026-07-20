@@ -20,12 +20,14 @@ __all__ = ['PolicyArgs', 'Policy']
 class PolicyArgs:
     def __init__(__self__, *,
                  policy: pulumi.Input[_builtins.str],
+                 allow_overwrite: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Policy resource.
 
         :param pulumi.Input[_builtins.str] policy: String containing a Vault policy
+        :param pulumi.Input[_builtins.bool] allow_overwrite: Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
         :param pulumi.Input[_builtins.str] name: The name of the policy
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -33,6 +35,11 @@ class PolicyArgs:
                *Available only for Vault Enterprise*.
         """
         pulumi.set(__self__, "policy", policy)
+        if allow_overwrite is not None:
+            warnings.warn("""Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""", DeprecationWarning)
+            pulumi.log.warn("""allow_overwrite is deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""")
+        if allow_overwrite is not None:
+            pulumi.set(__self__, "allow_overwrite", allow_overwrite)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -49,6 +56,19 @@ class PolicyArgs:
     @policy.setter
     def policy(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "policy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="allowOverwrite")
+    @_utilities.deprecated("""Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""")
+    def allow_overwrite(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+        """
+        return pulumi.get(self, "allow_overwrite")
+
+    @allow_overwrite.setter
+    def allow_overwrite(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_overwrite", value)
 
     @_builtins.property
     @pulumi.getter
@@ -81,12 +101,14 @@ class PolicyArgs:
 @pulumi.input_type
 class _PolicyState:
     def __init__(__self__, *,
+                 allow_overwrite: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  policy: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Policy resources.
 
+        :param pulumi.Input[_builtins.bool] allow_overwrite: Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
         :param pulumi.Input[_builtins.str] name: The name of the policy
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -94,12 +116,30 @@ class _PolicyState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] policy: String containing a Vault policy
         """
+        if allow_overwrite is not None:
+            warnings.warn("""Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""", DeprecationWarning)
+            pulumi.log.warn("""allow_overwrite is deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""")
+        if allow_overwrite is not None:
+            pulumi.set(__self__, "allow_overwrite", allow_overwrite)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
+
+    @_builtins.property
+    @pulumi.getter(name="allowOverwrite")
+    @_utilities.deprecated("""Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""")
+    def allow_overwrite(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+        """
+        return pulumi.get(self, "allow_overwrite")
+
+    @allow_overwrite.setter
+    def allow_overwrite(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "allow_overwrite", value)
 
     @_builtins.property
     @pulumi.getter
@@ -147,6 +187,7 @@ class Policy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_overwrite: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -160,6 +201,7 @@ class Policy(pulumi.CustomResource):
 
         example = vault.Policy("example",
             name="dev-team",
+            allow_overwrite=False,
             policy=\"\"\"path \\"secret/my_app\\" {
           capabilities = [\\"update\\"]
         }
@@ -185,6 +227,7 @@ class Policy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] allow_overwrite: Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
         :param pulumi.Input[_builtins.str] name: The name of the policy
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -207,6 +250,7 @@ class Policy(pulumi.CustomResource):
 
         example = vault.Policy("example",
             name="dev-team",
+            allow_overwrite=False,
             policy=\"\"\"path \\"secret/my_app\\" {
           capabilities = [\\"update\\"]
         }
@@ -245,6 +289,7 @@ class Policy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 allow_overwrite: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -257,6 +302,7 @@ class Policy(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = PolicyArgs.__new__(PolicyArgs)
 
+            __props__.__dict__["allow_overwrite"] = allow_overwrite
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             if policy is None and not opts.urn:
@@ -272,6 +318,7 @@ class Policy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            allow_overwrite: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             policy: pulumi.Input[Optional[_builtins.str]] = None) -> 'Policy':
@@ -282,6 +329,7 @@ class Policy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] allow_overwrite: Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
         :param pulumi.Input[_builtins.str] name: The name of the policy
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -293,10 +341,20 @@ class Policy(pulumi.CustomResource):
 
         __props__ = _PolicyState.__new__(_PolicyState)
 
+        __props__.__dict__["allow_overwrite"] = allow_overwrite
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["policy"] = policy
         return Policy(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="allowOverwrite")
+    @_utilities.deprecated("""Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""")
+    def allow_overwrite(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+        """
+        return pulumi.get(self, "allow_overwrite")
 
     @_builtins.property
     @pulumi.getter
