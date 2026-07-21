@@ -33,26 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthBackend{}
 	case "vault:index/certAuthBackendRole:CertAuthBackendRole":
 		r = &CertAuthBackendRole{}
-	case "vault:index/cfAuthBackendConfig:CfAuthBackendConfig":
-		r = &CfAuthBackendConfig{}
-	case "vault:index/cfAuthBackendRole:CfAuthBackendRole":
-		r = &CfAuthBackendRole{}
 	case "vault:index/egpPolicy:EgpPolicy":
 		r = &EgpPolicy{}
-	case "vault:index/keymgmtAwsKms:KeymgmtAwsKms":
-		r = &KeymgmtAwsKms{}
-	case "vault:index/keymgmtAzureKms:KeymgmtAzureKms":
-		r = &KeymgmtAzureKms{}
-	case "vault:index/keymgmtDistributeKey:KeymgmtDistributeKey":
-		r = &KeymgmtDistributeKey{}
-	case "vault:index/keymgmtGcpKms:KeymgmtGcpKms":
-		r = &KeymgmtGcpKms{}
-	case "vault:index/keymgmtKey:KeymgmtKey":
-		r = &KeymgmtKey{}
-	case "vault:index/keymgmtKeyRotate:KeymgmtKeyRotate":
-		r = &KeymgmtKeyRotate{}
-	case "vault:index/keymgmtReplicateKey:KeymgmtReplicateKey":
-		r = &KeymgmtReplicateKey{}
 	case "vault:index/mfaDuo:MfaDuo":
 		r = &MfaDuo{}
 	case "vault:index/mfaOkta:MfaOkta":
@@ -75,24 +57,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OciAuthBackend{}
 	case "vault:index/ociAuthBackendRole:OciAuthBackendRole":
 		r = &OciAuthBackendRole{}
-	case "vault:index/osSecretBackend:OsSecretBackend":
-		r = &OsSecretBackend{}
-	case "vault:index/osSecretBackendAccount:OsSecretBackendAccount":
-		r = &OsSecretBackendAccount{}
-	case "vault:index/osSecretBackendHost:OsSecretBackendHost":
-		r = &OsSecretBackendHost{}
 	case "vault:index/passwordPolicy:PasswordPolicy":
 		r = &PasswordPolicy{}
-	case "vault:index/pkiExternalCaSecretBackendAcmeAccount:PkiExternalCaSecretBackendAcmeAccount":
-		r = &PkiExternalCaSecretBackendAcmeAccount{}
-	case "vault:index/pkiExternalCaSecretBackendOrder:PkiExternalCaSecretBackendOrder":
-		r = &PkiExternalCaSecretBackendOrder{}
-	case "vault:index/pkiExternalCaSecretBackendOrderCertificate:PkiExternalCaSecretBackendOrderCertificate":
-		r = &PkiExternalCaSecretBackendOrderCertificate{}
-	case "vault:index/pkiExternalCaSecretBackendOrderChallengeFulfilled:PkiExternalCaSecretBackendOrderChallengeFulfilled":
-		r = &PkiExternalCaSecretBackendOrderChallengeFulfilled{}
-	case "vault:index/pkiExternalCaSecretBackendRole:PkiExternalCaSecretBackendRole":
-		r = &PkiExternalCaSecretBackendRole{}
 	case "vault:index/plugin:Plugin":
 		r = &Plugin{}
 	case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
@@ -107,10 +73,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &QuotaLeaseCount{}
 	case "vault:index/quotaRateLimit:QuotaRateLimit":
 		r = &QuotaRateLimit{}
-	case "vault:index/radiusAuthBackend:RadiusAuthBackend":
-		r = &RadiusAuthBackend{}
-	case "vault:index/radiusAuthBackendUser:RadiusAuthBackendUser":
-		r = &RadiusAuthBackendUser{}
 	case "vault:index/raftAutopilot:RaftAutopilot":
 		r = &RaftAutopilot{}
 	case "vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig":
@@ -121,14 +83,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RotationPolicy{}
 	case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
 		r = &ScepAuthBackendRole{}
-	case "vault:index/spiffeAuthBackendConfig:SpiffeAuthBackendConfig":
-		r = &SpiffeAuthBackendConfig{}
-	case "vault:index/spiffeAuthBackendRole:SpiffeAuthBackendRole":
-		r = &SpiffeAuthBackendRole{}
-	case "vault:index/spiffeSecretBackendConfig:SpiffeSecretBackendConfig":
-		r = &SpiffeSecretBackendConfig{}
-	case "vault:index/spiffeSecretBackendRole:SpiffeSecretBackendRole":
-		r = &SpiffeSecretBackendRole{}
 	case "vault:index/sysConfigCors:SysConfigCors":
 		r = &SysConfigCors{}
 	case "vault:index/token:Token":
@@ -198,52 +152,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
-		"index/cfAuthBackendConfig",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/cfAuthBackendRole",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
 		"index/egpPolicy",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/keymgmtAwsKms",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/keymgmtAzureKms",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/keymgmtDistributeKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/keymgmtGcpKms",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/keymgmtKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/keymgmtKeyRotate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/keymgmtReplicateKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -303,47 +212,7 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
-		"index/osSecretBackend",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/osSecretBackendAccount",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/osSecretBackendHost",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
 		"index/passwordPolicy",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/pkiExternalCaSecretBackendAcmeAccount",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/pkiExternalCaSecretBackendOrder",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/pkiExternalCaSecretBackendOrderCertificate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/pkiExternalCaSecretBackendOrderChallengeFulfilled",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/pkiExternalCaSecretBackendRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -383,16 +252,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
-		"index/radiusAuthBackend",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/radiusAuthBackendUser",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
 		"index/raftAutopilot",
 		&module{version},
 	)
@@ -414,26 +273,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/scepAuthBackendRole",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/spiffeAuthBackendConfig",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/spiffeAuthBackendRole",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/spiffeSecretBackendConfig",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"vault",
-		"index/spiffeSecretBackendRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
