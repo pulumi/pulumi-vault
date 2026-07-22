@@ -16,6 +16,7 @@ package provider
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -28,6 +29,7 @@ import (
 	"github.com/hashicorp/terraform-provider-vault/schema"
 	"github.com/hashicorp/terraform-provider-vault/vault"
 
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfgen"
@@ -81,6 +83,7 @@ var moduleMap = map[string]string{
 	"approle":         appRoleMod,
 	"aws":             awsMod,
 	"azure":           azureMod,
+	"cf":              "Cf",
 	"consul":          consulMod,
 	"config":          "Config",
 	"database":        databaseMod,
@@ -89,6 +92,7 @@ var moduleMap = map[string]string{
 	"github":          githubMod,
 	"identity":        identityMod,
 	"jwt":             jwtMod,
+	"keymgmt":         "KeyMgmt",
 	"kmip":            kmipMod,
 	"kubernetes":      kubernetesMod,
 	"kv":              kvMod,
@@ -96,10 +100,14 @@ var moduleMap = map[string]string{
 	"managed":         managedMod,
 	"mongodbatlas":    mongoDBAtlasMod,
 	"okta":            oktaMod,
+	"os":              "Os",
+	"pki_external_ca": "PkiExternalCa",
 	"pki_secret":      pkiSecretMod,
 	"rabbitmq":        rabbitMqMod,
+	"radius":          "Radius",
 	"saml":            samlMod,
 	"secrets":         secretsMod,
+	"spiffe":          "Spiffe",
 	"ssh":             sshMod,
 	"terraform_cloud": terraformCloudMod,
 	"token":           tokenMod,
@@ -149,8 +157,18 @@ var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider.
 func Provider() tfbridge.ProviderInfo {
+	ctx := context.Background()
+
+	// The upstream provider muxes an SDKv2 provider with a Plugin Framework
+	// provider. Both must share the same primary so the Framework provider can
+	// read the configured client from primary.Meta().
+	primary := schema.NewProvider(vault.Provider())
+
 	prov := tfbridge.ProviderInfo{
-		P:                shimv2.NewProvider(schema.NewProvider(vault.Provider()).SchemaProvider()),
+		P: pfbridge.MuxShimWithPF(ctx,
+			shimv2.NewProvider(primary.SchemaProvider()),
+			vault.NewFrameworkProvider(primary),
+		),
 		Name:             "vault",
 		DisplayName:      "HashiCorp Vault",
 		Description:      "A Pulumi package for creating and managing HashiCorp Vault cloud resources.",
@@ -216,14 +234,13 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
-			"vault_rgp_policy":                 {Tok: makeResource(mainMod, "RgpPolicy")},
-			"vault_token":                      {Tok: makeResource(mainMod, "Token")},
-			"vault_quota_rate_limit":           {Tok: makeResource(mainMod, "QuotaRateLimit")},
-			"vault_nomad_secret_backend":       {Tok: makeResource(mainMod, "NomadSecretBackend")},
-			"vault_nomad_secret_role":          {Tok: makeResource(mainMod, "NomadSecretRole")},
-			"vault_quota_lease_count":          {Tok: makeResource(mainMod, "QuotaLeaseCount")},
-			"vault_raft_snapshot_agent_config": {Tok: makeResource(mainMod, "RaftSnapshotAgentConfig")},
-			"vault_raft_autopilot":             {Tok: makeResource(mainMod, "RaftAutopilot")},
+			"vault_rgp_policy":           {Tok: makeResource(mainMod, "RgpPolicy")},
+			"vault_token":                {Tok: makeResource(mainMod, "Token")},
+			"vault_quota_rate_limit":     {Tok: makeResource(mainMod, "QuotaRateLimit")},
+			"vault_nomad_secret_backend": {Tok: makeResource(mainMod, "NomadSecretBackend")},
+			"vault_nomad_secret_role":    {Tok: makeResource(mainMod, "NomadSecretRole")},
+			"vault_quota_lease_count":    {Tok: makeResource(mainMod, "QuotaLeaseCount")},
+			"vault_raft_autopilot":       {Tok: makeResource(mainMod, "RaftAutopilot")},
 
 			// AD
 			"vault_ad_secret_backend": {Tok: makeResource(adMod, "SecretBackend")},

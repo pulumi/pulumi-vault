@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -78,6 +79,11 @@ public final class KeysAzure {
      * 
      */
     private String tenantId;
+    /**
+     * @return A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    private @Nullable List<String> usages;
     /**
      * @return ID of the managed key read from Vault
      * 
@@ -182,6 +188,13 @@ public final class KeysAzure {
         return this.tenantId;
     }
     /**
+     * @return A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    public List<String> usages() {
+        return this.usages == null ? List.of() : this.usages;
+    }
+    /**
      * @return ID of the managed key read from Vault
      * 
      */
@@ -218,6 +231,7 @@ public final class KeysAzure {
         private String name;
         private @Nullable String resource;
         private String tenantId;
+        private @Nullable List<String> usages;
         private @Nullable String uuid;
         private String vaultName;
         public Builder() {}
@@ -236,6 +250,7 @@ public final class KeysAzure {
     	      this.name = defaults.name;
     	      this.resource = defaults.resource;
     	      this.tenantId = defaults.tenantId;
+    	      this.usages = defaults.usages;
     	      this.uuid = defaults.uuid;
     	      this.vaultName = defaults.vaultName;
         }
@@ -331,6 +346,15 @@ public final class KeysAzure {
             return this;
         }
         @CustomType.Setter
+        public Builder usages(@Nullable List<String> usages) {
+
+            this.usages = usages;
+            return this;
+        }
+        public Builder usages(String... usages) {
+            return usages(List.of(usages));
+        }
+        @CustomType.Setter
         public Builder uuid(@Nullable String uuid) {
 
             this.uuid = uuid;
@@ -359,6 +383,7 @@ public final class KeysAzure {
             _resultValue.name = name;
             _resultValue.resource = resource;
             _resultValue.tenantId = tenantId;
+            _resultValue.usages = usages;
             _resultValue.uuid = uuid;
             _resultValue.vaultName = vaultName;
             return _resultValue;

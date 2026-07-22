@@ -241,16 +241,16 @@ class Namespace(pulumi.CustomResource):
                 "child_2",
             ]
         parent = vault.Namespace("parent", path="parent")
-        children: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
-            children.append(vault.Namespace(f"children-{range['key']}",
+        children: list[vault.Namespace] = []
+        for children_range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
+            children.append(vault.Namespace(f"children-{children_range['key']}",
                 namespace=parent.path,
-                path=str(range["key"])))
-        children_mount: list[Any] = []
+                path=str(children_range["key"])))
+        children_mount: list[vault.Mount] = []
         def create_children(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                children_mount.append(vault.Mount(f"children-{range['key']}",
-                    namespace=range["value"].path_fq,
+            for children_mount_range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_mount.append(vault.Mount(f"children-{children_mount_range['key']}",
+                    namespace=children_mount_range["value"].path_fq,
                     path="secrets",
                     type="kv",
                     options={
@@ -258,14 +258,14 @@ class Namespace(pulumi.CustomResource):
                     }))
 
         children.apply(create_children)
-        children_secret: list[Any] = []
+        children_secret: list[vault.generic.Secret] = []
         def create_children(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                children_secret.append(vault.generic.Secret(f"children-{range['key']}",
-                    namespace=range["value"].namespace,
-                    path=f"{range['value'].path}/secret",
+            for children_secret_range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_secret.append(vault.generic.Secret(f"children-{children_secret_range['key']}",
+                    namespace=children_secret_range["value"].namespace,
+                    path=f"{children_secret_range['value'].path}/secret",
                     data_json=json.dumps({
-                        "ns": range["key"],
+                        "ns": children_secret_range["key"],
                     })))
 
         children_mount.apply(create_children)
@@ -358,16 +358,16 @@ class Namespace(pulumi.CustomResource):
                 "child_2",
             ]
         parent = vault.Namespace("parent", path="parent")
-        children: list[Any] = []
-        for range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
-            children.append(vault.Namespace(f"children-{range['key']}",
+        children: list[vault.Namespace] = []
+        for children_range in [{"key": k, "value": v} for [k, v] in enumerate(child_namespaces)]:
+            children.append(vault.Namespace(f"children-{children_range['key']}",
                 namespace=parent.path,
-                path=str(range["key"])))
-        children_mount: list[Any] = []
+                path=str(children_range["key"])))
+        children_mount: list[vault.Mount] = []
         def create_children(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                children_mount.append(vault.Mount(f"children-{range['key']}",
-                    namespace=range["value"].path_fq,
+            for children_mount_range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_mount.append(vault.Mount(f"children-{children_mount_range['key']}",
+                    namespace=children_mount_range["value"].path_fq,
                     path="secrets",
                     type="kv",
                     options={
@@ -375,14 +375,14 @@ class Namespace(pulumi.CustomResource):
                     }))
 
         children.apply(create_children)
-        children_secret: list[Any] = []
+        children_secret: list[vault.generic.Secret] = []
         def create_children(range_body):
-            for range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
-                children_secret.append(vault.generic.Secret(f"children-{range['key']}",
-                    namespace=range["value"].namespace,
-                    path=f"{range['value'].path}/secret",
+            for children_secret_range in [{"key": k, "value": v} for [k, v] in enumerate(range_body)]:
+                children_secret.append(vault.generic.Secret(f"children-{children_secret_range['key']}",
+                    namespace=children_secret_range["value"].namespace,
+                    path=f"{children_secret_range['value'].path}/secret",
                     data_json=json.dumps({
-                        "ns": range["key"],
+                        "ns": children_secret_range["key"],
                     })))
 
         children_mount.apply(create_children)

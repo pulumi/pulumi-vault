@@ -79,7 +79,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      */
     declare public readonly disable: pulumi.Output<boolean | undefined>;
     /**
-     * Enables building of delta CRLs with up-to-date revocation information, 
+     * Enables building of delta CRLs with up-to-date revocation information,
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
     declare public readonly enableDelta: pulumi.Output<boolean | undefined>;
@@ -88,7 +88,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      */
     declare public readonly expiry: pulumi.Output<string | undefined>;
     /**
-     * The maximum number of entries a CRL can contain. This option exists to prevent 
+     * The maximum number of entries a CRL can contain. This option exists to prevent
      * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
      */
     declare public readonly maxCrlEntries: pulumi.Output<number>;
@@ -104,7 +104,7 @@ export class SecretBackendCrlConfig extends pulumi.CustomResource {
      */
     declare public readonly ocspDisable: pulumi.Output<boolean | undefined>;
     /**
-     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
      * refresh durations. **Vault 1.12+**
      */
     declare public readonly ocspExpiry: pulumi.Output<string>;
@@ -199,7 +199,7 @@ export interface SecretBackendCrlConfigState {
      */
     disable?: pulumi.Input<boolean | undefined>;
     /**
-     * Enables building of delta CRLs with up-to-date revocation information, 
+     * Enables building of delta CRLs with up-to-date revocation information,
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
     enableDelta?: pulumi.Input<boolean | undefined>;
@@ -208,7 +208,7 @@ export interface SecretBackendCrlConfigState {
      */
     expiry?: pulumi.Input<string | undefined>;
     /**
-     * The maximum number of entries a CRL can contain. This option exists to prevent 
+     * The maximum number of entries a CRL can contain. This option exists to prevent
      * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
      */
     maxCrlEntries?: pulumi.Input<number | undefined>;
@@ -224,7 +224,7 @@ export interface SecretBackendCrlConfigState {
      */
     ocspDisable?: pulumi.Input<boolean | undefined>;
     /**
-     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
      * refresh durations. **Vault 1.12+**
      */
     ocspExpiry?: pulumi.Input<string | undefined>;
@@ -268,7 +268,7 @@ export interface SecretBackendCrlConfigArgs {
      */
     disable?: pulumi.Input<boolean | undefined>;
     /**
-     * Enables building of delta CRLs with up-to-date revocation information, 
+     * Enables building of delta CRLs with up-to-date revocation information,
      * augmenting the last complete CRL.  **Vault 1.12+**
      */
     enableDelta?: pulumi.Input<boolean | undefined>;
@@ -277,7 +277,7 @@ export interface SecretBackendCrlConfigArgs {
      */
     expiry?: pulumi.Input<string | undefined>;
     /**
-     * The maximum number of entries a CRL can contain. This option exists to prevent 
+     * The maximum number of entries a CRL can contain. This option exists to prevent
      * accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
      */
     maxCrlEntries?: pulumi.Input<number | undefined>;
@@ -293,7 +293,7 @@ export interface SecretBackendCrlConfigArgs {
      */
     ocspDisable?: pulumi.Input<boolean | undefined>;
     /**
-     * The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+     * The amount of time an OCSP response can be cached for, useful for OCSP stapling
      * refresh durations. **Vault 1.12+**
      */
     ocspExpiry?: pulumi.Input<string | undefined>;

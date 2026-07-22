@@ -103,7 +103,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<int> Expiration { get; private set; } = null!;
 
         /// <summary>
-        /// The format of data
+        /// The format of data. Valid values are "pem", "PemBundle" or "der".
         /// </summary>
         [Output("format")]
         public Output<string?> Format { get; private set; } = null!;
@@ -318,7 +318,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? ExcludeCnFromSans { get; set; }
 
         /// <summary>
-        /// The format of data
+        /// The format of data. Valid values are "pem", "PemBundle" or "der".
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -503,7 +503,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? Expiration { get; set; }
 
         /// <summary>
-        /// The format of data
+        /// The format of data. Valid values are "pem", "PemBundle" or "der".
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }

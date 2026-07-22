@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
+export { ActivationFlagsArgs, ActivationFlagsState } from "./activationFlags";
+export type ActivationFlags = import("./activationFlags").ActivationFlags;
+export const ActivationFlags: typeof import("./activationFlags").ActivationFlags = null as any;
+utilities.lazyLoad(exports, ["ActivationFlags"], () => require("./activationFlags"));
+
+export { AgentRegistrationArgs, AgentRegistrationState } from "./agentRegistration";
+export type AgentRegistration = import("./agentRegistration").AgentRegistration;
+export const AgentRegistration: typeof import("./agentRegistration").AgentRegistration = null as any;
+utilities.lazyLoad(exports, ["AgentRegistration"], () => require("./agentRegistration"));
+
 export { AuditArgs, AuditState } from "./audit";
 export type Audit = import("./audit").Audit;
 export const Audit: typeof import("./audit").Audit = null as any;
@@ -29,6 +39,11 @@ export { EgpPolicyArgs, EgpPolicyState } from "./egpPolicy";
 export type EgpPolicy = import("./egpPolicy").EgpPolicy;
 export const EgpPolicy: typeof import("./egpPolicy").EgpPolicy = null as any;
 utilities.lazyLoad(exports, ["EgpPolicy"], () => require("./egpPolicy"));
+
+export { GetActivationFlagsResult } from "./getActivationFlags";
+export const getActivationFlags: typeof import("./getActivationFlags").getActivationFlags = null as any;
+export const getActivationFlagsOutput: typeof import("./getActivationFlags").getActivationFlagsOutput = null as any;
+utilities.lazyLoad(exports, ["getActivationFlags","getActivationFlagsOutput"], () => require("./getActivationFlags"));
 
 export { GetAuthBackendArgs, GetAuthBackendResult, GetAuthBackendOutputArgs } from "./getAuthBackend";
 export const getAuthBackend: typeof import("./getAuthBackend").getAuthBackend = null as any;
@@ -55,6 +70,11 @@ export const getNomadAccessToken: typeof import("./getNomadAccessToken").getNoma
 export const getNomadAccessTokenOutput: typeof import("./getNomadAccessToken").getNomadAccessTokenOutput = null as any;
 utilities.lazyLoad(exports, ["getNomadAccessToken","getNomadAccessTokenOutput"], () => require("./getNomadAccessToken"));
 
+export { GetPluginRuntimesArgs, GetPluginRuntimesResult, GetPluginRuntimesOutputArgs } from "./getPluginRuntimes";
+export const getPluginRuntimes: typeof import("./getPluginRuntimes").getPluginRuntimes = null as any;
+export const getPluginRuntimesOutput: typeof import("./getPluginRuntimes").getPluginRuntimesOutput = null as any;
+utilities.lazyLoad(exports, ["getPluginRuntimes","getPluginRuntimesOutput"], () => require("./getPluginRuntimes"));
+
 export { GetPolicyDocumentArgs, GetPolicyDocumentResult, GetPolicyDocumentOutputArgs } from "./getPolicyDocument";
 export const getPolicyDocument: typeof import("./getPolicyDocument").getPolicyDocument = null as any;
 export const getPolicyDocumentOutput: typeof import("./getPolicyDocument").getPolicyDocumentOutput = null as any;
@@ -64,6 +84,11 @@ export { GetRaftAutopilotStateArgs, GetRaftAutopilotStateResult, GetRaftAutopilo
 export const getRaftAutopilotState: typeof import("./getRaftAutopilotState").getRaftAutopilotState = null as any;
 export const getRaftAutopilotStateOutput: typeof import("./getRaftAutopilotState").getRaftAutopilotStateOutput = null as any;
 utilities.lazyLoad(exports, ["getRaftAutopilotState","getRaftAutopilotStateOutput"], () => require("./getRaftAutopilotState"));
+
+export { GetSysConfigCorsResult } from "./getSysConfigCors";
+export const getSysConfigCors: typeof import("./getSysConfigCors").getSysConfigCors = null as any;
+export const getSysConfigCorsOutput: typeof import("./getSysConfigCors").getSysConfigCorsOutput = null as any;
+utilities.lazyLoad(exports, ["getSysConfigCors","getSysConfigCorsOutput"], () => require("./getSysConfigCors"));
 
 export { MfaDuoArgs, MfaDuoState } from "./mfaDuo";
 export type MfaDuo = import("./mfaDuo").MfaDuo;
@@ -105,6 +130,11 @@ export type NomadSecretRole = import("./nomadSecretRole").NomadSecretRole;
 export const NomadSecretRole: typeof import("./nomadSecretRole").NomadSecretRole = null as any;
 utilities.lazyLoad(exports, ["NomadSecretRole"], () => require("./nomadSecretRole"));
 
+export { OauthResourceServerConfigProfileArgs, OauthResourceServerConfigProfileState } from "./oauthResourceServerConfigProfile";
+export type OauthResourceServerConfigProfile = import("./oauthResourceServerConfigProfile").OauthResourceServerConfigProfile;
+export const OauthResourceServerConfigProfile: typeof import("./oauthResourceServerConfigProfile").OauthResourceServerConfigProfile = null as any;
+utilities.lazyLoad(exports, ["OauthResourceServerConfigProfile"], () => require("./oauthResourceServerConfigProfile"));
+
 export { OciAuthBackendArgs, OciAuthBackendState } from "./ociAuthBackend";
 export type OciAuthBackend = import("./ociAuthBackend").OciAuthBackend;
 export const OciAuthBackend: typeof import("./ociAuthBackend").OciAuthBackend = null as any;
@@ -114,6 +144,11 @@ export { OciAuthBackendRoleArgs, OciAuthBackendRoleState } from "./ociAuthBacken
 export type OciAuthBackendRole = import("./ociAuthBackendRole").OciAuthBackendRole;
 export const OciAuthBackendRole: typeof import("./ociAuthBackendRole").OciAuthBackendRole = null as any;
 utilities.lazyLoad(exports, ["OciAuthBackendRole"], () => require("./ociAuthBackendRole"));
+
+export { PasswordPolicyArgs, PasswordPolicyState } from "./passwordPolicy";
+export type PasswordPolicy = import("./passwordPolicy").PasswordPolicy;
+export const PasswordPolicy: typeof import("./passwordPolicy").PasswordPolicy = null as any;
+utilities.lazyLoad(exports, ["PasswordPolicy"], () => require("./passwordPolicy"));
 
 export { PluginArgs, PluginState } from "./plugin";
 export type Plugin = import("./plugin").Plugin;
@@ -125,6 +160,11 @@ export type PluginPinnedVersion = import("./pluginPinnedVersion").PluginPinnedVe
 export const PluginPinnedVersion: typeof import("./pluginPinnedVersion").PluginPinnedVersion = null as any;
 utilities.lazyLoad(exports, ["PluginPinnedVersion"], () => require("./pluginPinnedVersion"));
 
+export { PluginRuntimeArgs, PluginRuntimeState } from "./pluginRuntime";
+export type PluginRuntime = import("./pluginRuntime").PluginRuntime;
+export const PluginRuntime: typeof import("./pluginRuntime").PluginRuntime = null as any;
+utilities.lazyLoad(exports, ["PluginRuntime"], () => require("./pluginRuntime"));
+
 export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
@@ -132,6 +172,11 @@ utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
 
 export * from "./provider";
 import { Provider } from "./provider";
+
+export { QuotaConfigArgs, QuotaConfigState } from "./quotaConfig";
+export type QuotaConfig = import("./quotaConfig").QuotaConfig;
+export const QuotaConfig: typeof import("./quotaConfig").QuotaConfig = null as any;
+utilities.lazyLoad(exports, ["QuotaConfig"], () => require("./quotaConfig"));
 
 export { QuotaLeaseCountArgs, QuotaLeaseCountState } from "./quotaLeaseCount";
 export type QuotaLeaseCount = import("./quotaLeaseCount").QuotaLeaseCount;
@@ -158,15 +203,30 @@ export type RgpPolicy = import("./rgpPolicy").RgpPolicy;
 export const RgpPolicy: typeof import("./rgpPolicy").RgpPolicy = null as any;
 utilities.lazyLoad(exports, ["RgpPolicy"], () => require("./rgpPolicy"));
 
+export { RotationPolicyArgs, RotationPolicyState } from "./rotationPolicy";
+export type RotationPolicy = import("./rotationPolicy").RotationPolicy;
+export const RotationPolicy: typeof import("./rotationPolicy").RotationPolicy = null as any;
+utilities.lazyLoad(exports, ["RotationPolicy"], () => require("./rotationPolicy"));
+
 export { ScepAuthBackendRoleArgs, ScepAuthBackendRoleState } from "./scepAuthBackendRole";
 export type ScepAuthBackendRole = import("./scepAuthBackendRole").ScepAuthBackendRole;
 export const ScepAuthBackendRole: typeof import("./scepAuthBackendRole").ScepAuthBackendRole = null as any;
 utilities.lazyLoad(exports, ["ScepAuthBackendRole"], () => require("./scepAuthBackendRole"));
 
+export { SysConfigCorsArgs, SysConfigCorsState } from "./sysConfigCors";
+export type SysConfigCors = import("./sysConfigCors").SysConfigCors;
+export const SysConfigCors: typeof import("./sysConfigCors").SysConfigCors = null as any;
+utilities.lazyLoad(exports, ["SysConfigCors"], () => require("./sysConfigCors"));
+
 export { TokenArgs, TokenState } from "./token";
 export type Token = import("./token").Token;
 export const Token: typeof import("./token").Token = null as any;
 utilities.lazyLoad(exports, ["Token"], () => require("./token"));
+
+export { UserpassAuthBackendUserArgs, UserpassAuthBackendUserState } from "./userpassAuthBackendUser";
+export type UserpassAuthBackendUser = import("./userpassAuthBackendUser").UserpassAuthBackendUser;
+export const UserpassAuthBackendUser: typeof import("./userpassAuthBackendUser").UserpassAuthBackendUser = null as any;
+utilities.lazyLoad(exports, ["UserpassAuthBackendUser"], () => require("./userpassAuthBackendUser"));
 
 
 // Export sub-modules:
@@ -175,6 +235,7 @@ import * as alicloud from "./alicloud";
 import * as approle from "./approle";
 import * as aws from "./aws";
 import * as azure from "./azure";
+import * as cf from "./cf";
 import * as config from "./config";
 import * as consul from "./consul";
 import * as database from "./database";
@@ -183,6 +244,7 @@ import * as generic from "./generic";
 import * as github from "./github";
 import * as identity from "./identity";
 import * as jwt from "./jwt";
+import * as keymgmt from "./keymgmt";
 import * as kmip from "./kmip";
 import * as kubernetes from "./kubernetes";
 import * as kv from "./kv";
@@ -190,10 +252,14 @@ import * as ldap from "./ldap";
 import * as managed from "./managed";
 import * as mongodbatlas from "./mongodbatlas";
 import * as okta from "./okta";
+import * as os from "./os";
+import * as pkiexternalca from "./pkiexternalca";
 import * as pkisecret from "./pkisecret";
 import * as rabbitmq from "./rabbitmq";
+import * as radius from "./radius";
 import * as saml from "./saml";
 import * as secrets from "./secrets";
+import * as spiffe from "./spiffe";
 import * as ssh from "./ssh";
 import * as terraformcloud from "./terraformcloud";
 import * as tokenauth from "./tokenauth";
@@ -207,6 +273,7 @@ export {
     approle,
     aws,
     azure,
+    cf,
     config,
     consul,
     database,
@@ -215,6 +282,7 @@ export {
     github,
     identity,
     jwt,
+    keymgmt,
     kmip,
     kubernetes,
     kv,
@@ -222,10 +290,14 @@ export {
     managed,
     mongodbatlas,
     okta,
+    os,
+    pkiexternalca,
     pkisecret,
     rabbitmq,
+    radius,
     saml,
     secrets,
+    spiffe,
     ssh,
     terraformcloud,
     tokenauth,
@@ -238,6 +310,10 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "vault:index/activationFlags:ActivationFlags":
+                return new ActivationFlags(name, <any>undefined, { urn })
+            case "vault:index/agentRegistration:AgentRegistration":
+                return new AgentRegistration(name, <any>undefined, { urn })
             case "vault:index/audit:Audit":
                 return new Audit(name, <any>undefined, { urn })
             case "vault:index/auditRequestHeader:AuditRequestHeader":
@@ -264,16 +340,24 @@ const _module = {
                 return new NomadSecretBackend(name, <any>undefined, { urn })
             case "vault:index/nomadSecretRole:NomadSecretRole":
                 return new NomadSecretRole(name, <any>undefined, { urn })
+            case "vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile":
+                return new OauthResourceServerConfigProfile(name, <any>undefined, { urn })
             case "vault:index/ociAuthBackend:OciAuthBackend":
                 return new OciAuthBackend(name, <any>undefined, { urn })
             case "vault:index/ociAuthBackendRole:OciAuthBackendRole":
                 return new OciAuthBackendRole(name, <any>undefined, { urn })
+            case "vault:index/passwordPolicy:PasswordPolicy":
+                return new PasswordPolicy(name, <any>undefined, { urn })
             case "vault:index/plugin:Plugin":
                 return new Plugin(name, <any>undefined, { urn })
             case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
                 return new PluginPinnedVersion(name, <any>undefined, { urn })
+            case "vault:index/pluginRuntime:PluginRuntime":
+                return new PluginRuntime(name, <any>undefined, { urn })
             case "vault:index/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
+            case "vault:index/quotaConfig:QuotaConfig":
+                return new QuotaConfig(name, <any>undefined, { urn })
             case "vault:index/quotaLeaseCount:QuotaLeaseCount":
                 return new QuotaLeaseCount(name, <any>undefined, { urn })
             case "vault:index/quotaRateLimit:QuotaRateLimit":
@@ -284,15 +368,23 @@ const _module = {
                 return new RaftSnapshotAgentConfig(name, <any>undefined, { urn })
             case "vault:index/rgpPolicy:RgpPolicy":
                 return new RgpPolicy(name, <any>undefined, { urn })
+            case "vault:index/rotationPolicy:RotationPolicy":
+                return new RotationPolicy(name, <any>undefined, { urn })
             case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
                 return new ScepAuthBackendRole(name, <any>undefined, { urn })
+            case "vault:index/sysConfigCors:SysConfigCors":
+                return new SysConfigCors(name, <any>undefined, { urn })
             case "vault:index/token:Token":
                 return new Token(name, <any>undefined, { urn })
+            case "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser":
+                return new UserpassAuthBackendUser(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("vault", "index/activationFlags", _module)
+pulumi.runtime.registerResourceModule("vault", "index/agentRegistration", _module)
 pulumi.runtime.registerResourceModule("vault", "index/audit", _module)
 pulumi.runtime.registerResourceModule("vault", "index/auditRequestHeader", _module)
 pulumi.runtime.registerResourceModule("vault", "index/authBackend", _module)
@@ -306,18 +398,25 @@ pulumi.runtime.registerResourceModule("vault", "index/mount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/namespace", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/nomadSecretRole", _module)
+pulumi.runtime.registerResourceModule("vault", "index/oauthResourceServerConfigProfile", _module)
 pulumi.runtime.registerResourceModule("vault", "index/ociAuthBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/ociAuthBackendRole", _module)
+pulumi.runtime.registerResourceModule("vault", "index/passwordPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/plugin", _module)
 pulumi.runtime.registerResourceModule("vault", "index/pluginPinnedVersion", _module)
+pulumi.runtime.registerResourceModule("vault", "index/pluginRuntime", _module)
 pulumi.runtime.registerResourceModule("vault", "index/policy", _module)
+pulumi.runtime.registerResourceModule("vault", "index/quotaConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaLeaseCount", _module)
 pulumi.runtime.registerResourceModule("vault", "index/quotaRateLimit", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftAutopilot", _module)
 pulumi.runtime.registerResourceModule("vault", "index/raftSnapshotAgentConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)
+pulumi.runtime.registerResourceModule("vault", "index/rotationPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/scepAuthBackendRole", _module)
+pulumi.runtime.registerResourceModule("vault", "index/sysConfigCors", _module)
 pulumi.runtime.registerResourceModule("vault", "index/token", _module)
+pulumi.runtime.registerResourceModule("vault", "index/userpassAuthBackendUser", _module)
 pulumi.runtime.registerResourcePackage("vault", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

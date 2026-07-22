@@ -91,7 +91,7 @@ export interface GetSecretSubkeysV2Args {
      */
     namespace?: string;
     /**
-     * Specifies the version to return. If not 
+     * Specifies the version to return. If not
      * set the latest version is returned.
      */
     version?: number;
@@ -210,7 +210,7 @@ export interface GetSecretSubkeysV2OutputArgs {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the version to return. If not 
+     * Specifies the version to return. If not
      * set the latest version is returned.
      */
     version?: pulumi.Input<number | undefined>;

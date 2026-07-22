@@ -171,7 +171,7 @@ export class AuthBackendConfig extends pulumi.CustomResource {
      */
     declare public readonly identityTokenTtl: pulumi.Output<number>;
     /**
-     * Maximum number of retries for Azure API requests. 
+     * Maximum number of retries for Azure API requests.
      * Defaults to `3`.
      */
     declare public readonly maxRetries: pulumi.Output<number | undefined>;
@@ -341,7 +341,7 @@ export interface AuthBackendConfigState {
      */
     identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
-     * Maximum number of retries for Azure API requests. 
+     * Maximum number of retries for Azure API requests.
      * Defaults to `3`.
      */
     maxRetries?: pulumi.Input<number | undefined>;
@@ -447,7 +447,7 @@ export interface AuthBackendConfigArgs {
      */
     identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
-     * Maximum number of retries for Azure API requests. 
+     * Maximum number of retries for Azure API requests.
      * Defaults to `3`.
      */
     maxRetries?: pulumi.Input<number | undefined>;

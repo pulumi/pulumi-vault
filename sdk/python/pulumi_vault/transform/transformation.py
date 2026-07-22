@@ -21,10 +21,13 @@ class TransformationArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[_builtins.str],
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 convergent: pulumi.Input[Optional[_builtins.bool]] = None,
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None,
                  templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
@@ -34,15 +37,22 @@ class TransformationArgs:
 
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[_builtins.bool] convergent: If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
+        :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
+               Can be "default" or "exportable". Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] stores: List of stores to use for tokenization state.
+               Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] templates: Templates configured for transformation.
         :param pulumi.Input[_builtins.str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
@@ -51,14 +61,20 @@ class TransformationArgs:
         pulumi.set(__self__, "path", path)
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if convergent is not None:
+            pulumi.set(__self__, "convergent", convergent)
         if deletion_allowed is not None:
             pulumi.set(__self__, "deletion_allowed", deletion_allowed)
+        if mapping_mode is not None:
+            pulumi.set(__self__, "mapping_mode", mapping_mode)
         if masking_character is not None:
             pulumi.set(__self__, "masking_character", masking_character)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if stores is not None:
+            pulumi.set(__self__, "stores", stores)
         if template is not None:
             pulumi.set(__self__, "template", template)
         if templates is not None:
@@ -93,6 +109,18 @@ class TransformationArgs:
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
+    @pulumi.getter
+    def convergent(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+        """
+        return pulumi.get(self, "convergent")
+
+    @convergent.setter
+    def convergent(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "convergent", value)
+
+    @_builtins.property
     @pulumi.getter(name="deletionAllowed")
     def deletion_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -105,6 +133,20 @@ class TransformationArgs:
     @deletion_allowed.setter
     def deletion_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deletion_allowed", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mappingMode")
+    def mapping_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the mapping mode for stored values.
+        Can be "default" or "exportable". Only used when `type` is "tokenization".
+        **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "mapping_mode")
+
+    @mapping_mode.setter
+    def mapping_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "mapping_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="maskingCharacter")
@@ -144,6 +186,20 @@ class TransformationArgs:
     @namespace.setter
     def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def stores(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of stores to use for tokenization state.
+        Only used when `type` is "tokenization".
+        **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "stores")
+
+    @stores.setter
+    def stores(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "stores", value)
 
     @_builtins.property
     @pulumi.getter
@@ -198,11 +254,14 @@ class TransformationArgs:
 class _TransformationState:
     def __init__(__self__, *,
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 convergent: pulumi.Input[Optional[_builtins.bool]] = None,
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
+                 stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None,
                  templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
@@ -211,9 +270,13 @@ class _TransformationState:
         Input properties used for looking up and filtering Transformation resources.
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[_builtins.bool] convergent: If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
+        :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
+               Can be "default" or "exportable". Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -221,6 +284,9 @@ class _TransformationState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] stores: List of stores to use for tokenization state.
+               Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] templates: Templates configured for transformation.
         :param pulumi.Input[_builtins.str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
@@ -228,8 +294,12 @@ class _TransformationState:
         """
         if allowed_roles is not None:
             pulumi.set(__self__, "allowed_roles", allowed_roles)
+        if convergent is not None:
+            pulumi.set(__self__, "convergent", convergent)
         if deletion_allowed is not None:
             pulumi.set(__self__, "deletion_allowed", deletion_allowed)
+        if mapping_mode is not None:
+            pulumi.set(__self__, "mapping_mode", mapping_mode)
         if masking_character is not None:
             pulumi.set(__self__, "masking_character", masking_character)
         if name is not None:
@@ -238,6 +308,8 @@ class _TransformationState:
             pulumi.set(__self__, "namespace", namespace)
         if path is not None:
             pulumi.set(__self__, "path", path)
+        if stores is not None:
+            pulumi.set(__self__, "stores", stores)
         if template is not None:
             pulumi.set(__self__, "template", template)
         if templates is not None:
@@ -260,6 +332,18 @@ class _TransformationState:
         pulumi.set(self, "allowed_roles", value)
 
     @_builtins.property
+    @pulumi.getter
+    def convergent(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+        """
+        return pulumi.get(self, "convergent")
+
+    @convergent.setter
+    def convergent(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "convergent", value)
+
+    @_builtins.property
     @pulumi.getter(name="deletionAllowed")
     def deletion_allowed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -272,6 +356,20 @@ class _TransformationState:
     @deletion_allowed.setter
     def deletion_allowed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "deletion_allowed", value)
+
+    @_builtins.property
+    @pulumi.getter(name="mappingMode")
+    def mapping_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the mapping mode for stored values.
+        Can be "default" or "exportable". Only used when `type` is "tokenization".
+        **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "mapping_mode")
+
+    @mapping_mode.setter
+    def mapping_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "mapping_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="maskingCharacter")
@@ -323,6 +421,20 @@ class _TransformationState:
     @path.setter
     def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def stores(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of stores to use for tokenization state.
+        Only used when `type` is "tokenization".
+        **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "stores")
+
+    @stores.setter
+    def stores(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "stores", value)
 
     @_builtins.property
     @pulumi.getter
@@ -380,11 +492,14 @@ class Transformation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 convergent: pulumi.Input[Optional[_builtins.bool]] = None,
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
+                 stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None,
                  templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
@@ -414,6 +529,25 @@ class Transformation(pulumi.CustomResource):
             allowed_roles=["payments"])
         ```
 
+        ### Tokenization Example
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transform = vault.Mount("transform",
+            path="transform",
+            type="transform")
+        tokenization = vault.transform.Transformation("tokenization",
+            path=transform.path,
+            name="ssn-tokenization",
+            type="tokenization",
+            mapping_mode="default",
+            stores=["my-store"],
+            allowed_roles=["payments"],
+            convergent=True)
+        ```
+
         ## Tutorials
 
         Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
@@ -422,9 +556,13 @@ class Transformation(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[_builtins.bool] convergent: If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
+        :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
+               Can be "default" or "exportable". Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -432,6 +570,9 @@ class Transformation(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] stores: List of stores to use for tokenization state.
+               Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] templates: Templates configured for transformation.
         :param pulumi.Input[_builtins.str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
@@ -467,6 +608,25 @@ class Transformation(pulumi.CustomResource):
             allowed_roles=["payments"])
         ```
 
+        ### Tokenization Example
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        transform = vault.Mount("transform",
+            path="transform",
+            type="transform")
+        tokenization = vault.transform.Transformation("tokenization",
+            path=transform.path,
+            name="ssn-tokenization",
+            type="tokenization",
+            mapping_mode="default",
+            stores=["my-store"],
+            allowed_roles=["payments"],
+            convergent=True)
+        ```
+
         ## Tutorials
 
         Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
@@ -488,11 +648,14 @@ class Transformation(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 convergent: pulumi.Input[Optional[_builtins.bool]] = None,
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
+                 stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  template: pulumi.Input[Optional[_builtins.str]] = None,
                  templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
@@ -507,13 +670,16 @@ class Transformation(pulumi.CustomResource):
             __props__ = TransformationArgs.__new__(TransformationArgs)
 
             __props__.__dict__["allowed_roles"] = allowed_roles
+            __props__.__dict__["convergent"] = convergent
             __props__.__dict__["deletion_allowed"] = deletion_allowed
+            __props__.__dict__["mapping_mode"] = mapping_mode
             __props__.__dict__["masking_character"] = masking_character
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
+            __props__.__dict__["stores"] = stores
             __props__.__dict__["template"] = template
             __props__.__dict__["templates"] = templates
             __props__.__dict__["tweak_source"] = tweak_source
@@ -529,11 +695,14 @@ class Transformation(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            convergent: pulumi.Input[Optional[_builtins.bool]] = None,
             deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
             masking_character: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
+            stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             template: pulumi.Input[Optional[_builtins.str]] = None,
             templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
@@ -546,9 +715,13 @@ class Transformation(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_roles: The set of roles allowed to perform this transformation.
+        :param pulumi.Input[_builtins.bool] convergent: If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
+        :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
+               Can be "default" or "exportable". Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -556,6 +729,9 @@ class Transformation(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path to where the back-end is mounted within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] stores: List of stores to use for tokenization state.
+               Only used when `type` is "tokenization".
+               **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] template: The name of the template to use.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] templates: Templates configured for transformation.
         :param pulumi.Input[_builtins.str] tweak_source: The source of where the tweak value comes from. Only valid when in FPE mode.
@@ -566,11 +742,14 @@ class Transformation(pulumi.CustomResource):
         __props__ = _TransformationState.__new__(_TransformationState)
 
         __props__.__dict__["allowed_roles"] = allowed_roles
+        __props__.__dict__["convergent"] = convergent
         __props__.__dict__["deletion_allowed"] = deletion_allowed
+        __props__.__dict__["mapping_mode"] = mapping_mode
         __props__.__dict__["masking_character"] = masking_character
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
+        __props__.__dict__["stores"] = stores
         __props__.__dict__["template"] = template
         __props__.__dict__["templates"] = templates
         __props__.__dict__["tweak_source"] = tweak_source
@@ -586,6 +765,14 @@ class Transformation(pulumi.CustomResource):
         return pulumi.get(self, "allowed_roles")
 
     @_builtins.property
+    @pulumi.getter
+    def convergent(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is "tokenization". Default: `false`
+        """
+        return pulumi.get(self, "convergent")
+
+    @_builtins.property
     @pulumi.getter(name="deletionAllowed")
     def deletion_allowed(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
@@ -594,6 +781,16 @@ class Transformation(pulumi.CustomResource):
         *Only supported on vault-1.12+*
         """
         return pulumi.get(self, "deletion_allowed")
+
+    @_builtins.property
+    @pulumi.getter(name="mappingMode")
+    def mapping_mode(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the mapping mode for stored values.
+        Can be "default" or "exportable". Only used when `type` is "tokenization".
+        **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "mapping_mode")
 
     @_builtins.property
     @pulumi.getter(name="maskingCharacter")
@@ -629,6 +826,16 @@ class Transformation(pulumi.CustomResource):
         Path to where the back-end is mounted within Vault.
         """
         return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter
+    def stores(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        List of stores to use for tokenization state.
+        Only used when `type` is "tokenization".
+        **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "stores")
 
     @_builtins.property
     @pulumi.getter

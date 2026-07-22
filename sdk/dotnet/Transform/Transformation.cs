@@ -47,6 +47,42 @@ namespace Pulumi.Vault.Transform
     /// });
     /// ```
     /// 
+    /// ### Tokenization Example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var transform = new Vault.Mount("transform", new()
+    ///     {
+    ///         Path = "transform",
+    ///         Type = "transform",
+    ///     });
+    /// 
+    ///     var tokenization = new Vault.Transform.Transformation("tokenization", new()
+    ///     {
+    ///         Path = transform.Path,
+    ///         Name = "ssn-tokenization",
+    ///         Type = "tokenization",
+    ///         MappingMode = "default",
+    ///         Stores = new[]
+    ///         {
+    ///             "my-store",
+    ///         },
+    ///         AllowedRoles = new[]
+    ///         {
+    ///             "payments",
+    ///         },
+    ///         Convergent = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Tutorials
     /// 
     /// Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
@@ -61,12 +97,26 @@ namespace Pulumi.Vault.Transform
         public Output<ImmutableArray<string>> AllowedRoles { get; private set; } = null!;
 
         /// <summary>
+        /// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `Type` is "tokenization". Default: `False`
+        /// </summary>
+        [Output("convergent")]
+        public Output<bool?> Convergent { get; private set; } = null!;
+
+        /// <summary>
         /// If true, this transform can be deleted.
         /// Otherwise, deletion is blocked while this value remains false. Default: `False`
         /// *Only supported on vault-1.12+*
         /// </summary>
         [Output("deletionAllowed")]
         public Output<bool?> DeletionAllowed { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies the mapping mode for stored values. 
+        /// Can be "default" or "exportable". Only used when `Type` is "tokenization".
+        /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// </summary>
+        [Output("mappingMode")]
+        public Output<string?> MappingMode { get; private set; } = null!;
 
         /// <summary>
         /// The character used to replace data when in masking mode
@@ -94,6 +144,14 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Output("path")]
         public Output<string> Path { get; private set; } = null!;
+
+        /// <summary>
+        /// List of stores to use for tokenization state. 
+        /// Only used when `Type` is "tokenization".
+        /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// </summary>
+        [Output("stores")]
+        public Output<ImmutableArray<string>> Stores { get; private set; } = null!;
 
         /// <summary>
         /// The name of the template to use.
@@ -178,12 +236,26 @@ namespace Pulumi.Vault.Transform
         }
 
         /// <summary>
+        /// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `Type` is "tokenization". Default: `False`
+        /// </summary>
+        [Input("convergent")]
+        public Input<bool>? Convergent { get; set; }
+
+        /// <summary>
         /// If true, this transform can be deleted.
         /// Otherwise, deletion is blocked while this value remains false. Default: `False`
         /// *Only supported on vault-1.12+*
         /// </summary>
         [Input("deletionAllowed")]
         public Input<bool>? DeletionAllowed { get; set; }
+
+        /// <summary>
+        /// Specifies the mapping mode for stored values. 
+        /// Can be "default" or "exportable". Only used when `Type` is "tokenization".
+        /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// </summary>
+        [Input("mappingMode")]
+        public Input<string>? MappingMode { get; set; }
 
         /// <summary>
         /// The character used to replace data when in masking mode
@@ -211,6 +283,20 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
+
+        [Input("stores")]
+        private InputList<string>? _stores;
+
+        /// <summary>
+        /// List of stores to use for tokenization state. 
+        /// Only used when `Type` is "tokenization".
+        /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// </summary>
+        public InputList<string> Stores
+        {
+            get => _stores ?? (_stores = new InputList<string>());
+            set => _stores = value;
+        }
 
         /// <summary>
         /// The name of the template to use.
@@ -263,12 +349,26 @@ namespace Pulumi.Vault.Transform
         }
 
         /// <summary>
+        /// If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `Type` is "tokenization". Default: `False`
+        /// </summary>
+        [Input("convergent")]
+        public Input<bool>? Convergent { get; set; }
+
+        /// <summary>
         /// If true, this transform can be deleted.
         /// Otherwise, deletion is blocked while this value remains false. Default: `False`
         /// *Only supported on vault-1.12+*
         /// </summary>
         [Input("deletionAllowed")]
         public Input<bool>? DeletionAllowed { get; set; }
+
+        /// <summary>
+        /// Specifies the mapping mode for stored values. 
+        /// Can be "default" or "exportable". Only used when `Type` is "tokenization".
+        /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// </summary>
+        [Input("mappingMode")]
+        public Input<string>? MappingMode { get; set; }
 
         /// <summary>
         /// The character used to replace data when in masking mode
@@ -296,6 +396,20 @@ namespace Pulumi.Vault.Transform
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
+
+        [Input("stores")]
+        private InputList<string>? _stores;
+
+        /// <summary>
+        /// List of stores to use for tokenization state. 
+        /// Only used when `Type` is "tokenization".
+        /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// </summary>
+        public InputList<string> Stores
+        {
+            get => _stores ?? (_stores = new InputList<string>());
+            set => _stores = value;
+        }
 
         /// <summary>
         /// The name of the template to use.

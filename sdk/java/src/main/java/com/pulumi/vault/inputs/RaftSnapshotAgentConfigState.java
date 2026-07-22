@@ -176,16 +176,41 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
     /**
      * AWS secret access key.
      * 
+     * @deprecated
+     * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+     * 
      */
+    @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
     @Import(name="awsSecretAccessKey")
     private @Nullable Output<String> awsSecretAccessKey;
 
     /**
      * @return AWS secret access key.
      * 
+     * @deprecated
+     * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+     * 
      */
+    @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
     public Optional<Output<String>> awsSecretAccessKey() {
         return Optional.ofNullable(this.awsSecretAccessKey);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * AWS secret access key. Write-only: never stored in state. If secretsWoVersion is not set, changes are automatically detected via a hash stored in private state.
+     * 
+     */
+    @Import(name="awsSecretAccessKeyWo")
+    private @Nullable Output<String> awsSecretAccessKeyWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * AWS secret access key. Write-only: never stored in state. If secretsWoVersion is not set, changes are automatically detected via a hash stored in private state.
+     * 
+     */
+    public Optional<Output<String>> awsSecretAccessKeyWo() {
+        return Optional.ofNullable(this.awsSecretAccessKeyWo);
     }
 
     /**
@@ -456,7 +481,7 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
     /**
      * `&lt;required&gt;` - For `storageType = &#34;local&#34;`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
-     * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+     * Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
      * 
      */
@@ -466,7 +491,7 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
     /**
      * @return `&lt;required&gt;` - For `storageType = &#34;local&#34;`, the directory to
      * write the snapshots in. For cloud storage types, the bucket prefix to use.
-     * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+     * Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
      * Types `local` and `aws-s3` the trailing `/` is optional.
      * 
      */
@@ -491,6 +516,21 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
      */
     public Optional<Output<Integer>> retain() {
         return Optional.ofNullable(this.retain);
+    }
+
+    /**
+     * Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
+     * 
+     */
+    @Import(name="secretsWoVersion")
+    private @Nullable Output<Integer> secretsWoVersion;
+
+    /**
+     * @return Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
+     * 
+     */
+    public Optional<Output<Integer>> secretsWoVersion() {
+        return Optional.ofNullable(this.secretsWoVersion);
     }
 
     /**
@@ -526,6 +566,7 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
         this.awsS3Region = $.awsS3Region;
         this.awsS3ServerSideEncryption = $.awsS3ServerSideEncryption;
         this.awsSecretAccessKey = $.awsSecretAccessKey;
+        this.awsSecretAccessKeyWo = $.awsSecretAccessKeyWo;
         this.awsSessionToken = $.awsSessionToken;
         this.azureAccountKey = $.azureAccountKey;
         this.azureAccountName = $.azureAccountName;
@@ -545,6 +586,7 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
         this.namespace = $.namespace;
         this.pathPrefix = $.pathPrefix;
         this.retain = $.retain;
+        this.secretsWoVersion = $.secretsWoVersion;
         this.storageType = $.storageType;
     }
 
@@ -787,7 +829,11 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+         * 
          */
+        @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
         public Builder awsSecretAccessKey(@Nullable Output<String> awsSecretAccessKey) {
             $.awsSecretAccessKey = awsSecretAccessKey;
             return this;
@@ -798,9 +844,36 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
          * 
          * @return builder
          * 
+         * @deprecated
+         * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+         * 
          */
+        @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
         public Builder awsSecretAccessKey(String awsSecretAccessKey) {
             return awsSecretAccessKey(Output.of(awsSecretAccessKey));
+        }
+
+        /**
+         * @param awsSecretAccessKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * AWS secret access key. Write-only: never stored in state. If secretsWoVersion is not set, changes are automatically detected via a hash stored in private state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsSecretAccessKeyWo(@Nullable Output<String> awsSecretAccessKeyWo) {
+            $.awsSecretAccessKeyWo = awsSecretAccessKeyWo;
+            return this;
+        }
+
+        /**
+         * @param awsSecretAccessKeyWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * AWS secret access key. Write-only: never stored in state. If secretsWoVersion is not set, changes are automatically detected via a hash stored in private state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder awsSecretAccessKeyWo(String awsSecretAccessKeyWo) {
+            return awsSecretAccessKeyWo(Output.of(awsSecretAccessKeyWo));
         }
 
         /**
@@ -1173,7 +1246,7 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
         /**
          * @param pathPrefix `&lt;required&gt;` - For `storageType = &#34;local&#34;`, the directory to
          * write the snapshots in. For cloud storage types, the bucket prefix to use.
-         * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+         * Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
          * Types `local` and `aws-s3` the trailing `/` is optional.
          * 
          * @return builder
@@ -1187,7 +1260,7 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
         /**
          * @param pathPrefix `&lt;required&gt;` - For `storageType = &#34;local&#34;`, the directory to
          * write the snapshots in. For cloud storage types, the bucket prefix to use.
-         * Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+         * Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
          * Types `local` and `aws-s3` the trailing `/` is optional.
          * 
          * @return builder
@@ -1220,6 +1293,27 @@ public final class RaftSnapshotAgentConfigState extends com.pulumi.resources.Res
          */
         public Builder retain(Integer retain) {
             return retain(Output.of(retain));
+        }
+
+        /**
+         * @param secretsWoVersion Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretsWoVersion(@Nullable Output<Integer> secretsWoVersion) {
+            $.secretsWoVersion = secretsWoVersion;
+            return this;
+        }
+
+        /**
+         * @param secretsWoVersion Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder secretsWoVersion(Integer secretsWoVersion) {
+            return secretsWoVersion(Output.of(secretsWoVersion));
         }
 
         /**

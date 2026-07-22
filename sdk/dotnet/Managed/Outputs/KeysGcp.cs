@@ -62,6 +62,10 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly string Region;
         /// <summary>
+        /// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        /// </summary>
+        public readonly ImmutableArray<string> Usages;
+        /// <summary>
         /// ID of the managed key read from Vault
         /// </summary>
         public readonly string? Uuid;
@@ -92,6 +96,8 @@ namespace Pulumi.Vault.Managed.Outputs
 
             string region,
 
+            ImmutableArray<string> usages,
+
             string? uuid)
         {
             Algorithm = algorithm;
@@ -106,6 +112,7 @@ namespace Pulumi.Vault.Managed.Outputs
             Name = name;
             Project = project;
             Region = region;
+            Usages = usages;
             Uuid = uuid;
         }
     }

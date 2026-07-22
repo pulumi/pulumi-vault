@@ -70,6 +70,7 @@ class KeysAw(dict):
                  curve: Optional[_builtins.str] = None,
                  endpoint: Optional[_builtins.str] = None,
                  region: Optional[_builtins.str] = None,
+                 usages: Optional[Sequence[_builtins.str]] = None,
                  uuid: Optional[_builtins.str] = None):
         """
         :param _builtins.str access_key: The AWS access key to use
@@ -85,6 +86,7 @@ class KeysAw(dict):
         :param _builtins.str curve: The curve to use for an ECDSA key. Used when key_type is 'ECDSA'. Required if 'allow_generate_key' is true
         :param _builtins.str endpoint: Used to specify a custom AWS endpoint
         :param _builtins.str region: The AWS region where the keys are stored (or will be stored)
+        :param Sequence[_builtins.str] usages: A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
         :param _builtins.str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "access_key", access_key)
@@ -107,6 +109,8 @@ class KeysAw(dict):
             pulumi.set(__self__, "endpoint", endpoint)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if usages is not None:
+            pulumi.set(__self__, "usages", usages)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
 
@@ -216,6 +220,14 @@ class KeysAw(dict):
 
     @_builtins.property
     @pulumi.getter
+    def usages(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        """
+        return pulumi.get(self, "usages")
+
+    @_builtins.property
+    @pulumi.getter
     def uuid(self) -> Optional[_builtins.str]:
         """
         ID of the managed key read from Vault
@@ -277,6 +289,7 @@ class KeysAzure(dict):
                  environment: Optional[_builtins.str] = None,
                  key_bits: Optional[_builtins.str] = None,
                  resource: Optional[_builtins.str] = None,
+                 usages: Optional[Sequence[_builtins.str]] = None,
                  uuid: Optional[_builtins.str] = None):
         """
         :param _builtins.str client_id: The client id for credentials to query the Azure APIs
@@ -293,6 +306,7 @@ class KeysAzure(dict):
         :param _builtins.str environment: The Azure Cloud environment API endpoints to use
         :param _builtins.str key_bits: The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
         :param _builtins.str resource: The Azure Key Vault resource's DNS Suffix to connect to
+        :param Sequence[_builtins.str] usages: A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
         :param _builtins.str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "client_id", client_id)
@@ -316,6 +330,8 @@ class KeysAzure(dict):
             pulumi.set(__self__, "key_bits", key_bits)
         if resource is not None:
             pulumi.set(__self__, "resource", resource)
+        if usages is not None:
+            pulumi.set(__self__, "usages", usages)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
 
@@ -433,6 +449,14 @@ class KeysAzure(dict):
 
     @_builtins.property
     @pulumi.getter
+    def usages(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        """
+        return pulumi.get(self, "usages")
+
+    @_builtins.property
+    @pulumi.getter
     def uuid(self) -> Optional[_builtins.str]:
         """
         ID of the managed key read from Vault
@@ -484,6 +508,7 @@ class KeysGcp(dict):
                  allow_store_key: Optional[_builtins.bool] = None,
                  any_mount: Optional[_builtins.bool] = None,
                  crypto_key_version: Optional[_builtins.str] = None,
+                 usages: Optional[Sequence[_builtins.str]] = None,
                  uuid: Optional[_builtins.str] = None):
         """
         :param _builtins.str algorithm: The signature algorithm to be used with the key. Supported values: ec_sign_p256_sha256, ec_sign_p384_sha384, rsa_sign_pss_2048_sha256, rsa_sign_pss_3072_sha256, rsa_sign_pss_4096_sha256, rsa_sign_pss_4096_sha512, rsa_sign_pkcs1_2048_sha256, rsa_sign_pkcs1_3072_sha256, rsa_sign_pkcs1_4096_sha256, rsa_sign_pkcs1_4096_sha512
@@ -498,6 +523,7 @@ class KeysGcp(dict):
         :param _builtins.bool allow_store_key: Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         :param _builtins.bool any_mount: Allow usage from any mount point within the namespace if 'true'
         :param _builtins.str crypto_key_version: The version of the key to use. (Default: 1)
+        :param Sequence[_builtins.str] usages: A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
         :param _builtins.str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "algorithm", algorithm)
@@ -517,6 +543,8 @@ class KeysGcp(dict):
             pulumi.set(__self__, "any_mount", any_mount)
         if crypto_key_version is not None:
             pulumi.set(__self__, "crypto_key_version", crypto_key_version)
+        if usages is not None:
+            pulumi.set(__self__, "usages", usages)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
 
@@ -618,6 +646,14 @@ class KeysGcp(dict):
 
     @_builtins.property
     @pulumi.getter
+    def usages(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        """
+        return pulumi.get(self, "usages")
+
+    @_builtins.property
+    @pulumi.getter
     def uuid(self) -> Optional[_builtins.str]:
         """
         ID of the managed key read from Vault
@@ -646,6 +682,8 @@ class KeysPkc(dict):
             suggest = "key_id"
         elif key == "keyLabel":
             suggest = "key_label"
+        elif key == "maxParallel":
+            suggest = "max_parallel"
         elif key == "tokenLabel":
             suggest = "token_label"
 
@@ -674,8 +712,10 @@ class KeysPkc(dict):
                  key_bits: Optional[_builtins.str] = None,
                  key_id: Optional[_builtins.str] = None,
                  key_label: Optional[_builtins.str] = None,
+                 max_parallel: Optional[_builtins.int] = None,
                  slot: Optional[_builtins.str] = None,
                  token_label: Optional[_builtins.str] = None,
+                 usages: Optional[Sequence[_builtins.str]] = None,
                  uuid: Optional[_builtins.str] = None):
         """
         :param _builtins.str library: The name of the kms_library stanza to use from Vault's config to lookup the local library path
@@ -691,8 +731,10 @@ class KeysPkc(dict):
         :param _builtins.str key_bits: Supplies the size in bits of the key when using 'CKM_RSA_PKCS_PSS', 'CKM_RSA_PKCS_OAEP' or 'CKM_RSA_PKCS' as a value for 'mechanism'. Required if 'allow_generate_key' is true
         :param _builtins.str key_id: The id of a PKCS#11 key to use
         :param _builtins.str key_label: The label of the key to use
+        :param _builtins.int max_parallel: The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
         :param _builtins.str slot: The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
         :param _builtins.str token_label: The slot token label to use
+        :param Sequence[_builtins.str] usages: A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
         :param _builtins.str uuid: ID of the managed key read from Vault
         """
         pulumi.set(__self__, "library", library)
@@ -717,10 +759,14 @@ class KeysPkc(dict):
             pulumi.set(__self__, "key_id", key_id)
         if key_label is not None:
             pulumi.set(__self__, "key_label", key_label)
+        if max_parallel is not None:
+            pulumi.set(__self__, "max_parallel", max_parallel)
         if slot is not None:
             pulumi.set(__self__, "slot", slot)
         if token_label is not None:
             pulumi.set(__self__, "token_label", token_label)
+        if usages is not None:
+            pulumi.set(__self__, "usages", usages)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
 
@@ -829,6 +875,14 @@ class KeysPkc(dict):
         return pulumi.get(self, "key_label")
 
     @_builtins.property
+    @pulumi.getter(name="maxParallel")
+    def max_parallel(self) -> Optional[_builtins.int]:
+        """
+        The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+        """
+        return pulumi.get(self, "max_parallel")
+
+    @_builtins.property
     @pulumi.getter
     def slot(self) -> Optional[_builtins.str]:
         """
@@ -843,6 +897,14 @@ class KeysPkc(dict):
         The slot token label to use
         """
         return pulumi.get(self, "token_label")
+
+    @_builtins.property
+    @pulumi.getter
+    def usages(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        """
+        return pulumi.get(self, "usages")
 
     @_builtins.property
     @pulumi.getter

@@ -110,7 +110,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     declare public readonly excludedUriDomains: pulumi.Output<string[] | undefined>;
     /**
-     * The format of data
+     * The format of data. Valid values are "pem", "pemBundle", or "der".
      */
     declare public readonly format: pulumi.Output<string | undefined>;
     /**
@@ -424,7 +424,7 @@ export interface SecretBackendRootCertState {
      */
     excludedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * The format of data
+     * The format of data. Valid values are "pem", "pemBundle", or "der".
      */
     format?: pulumi.Input<string | undefined>;
     /**
@@ -615,7 +615,7 @@ export interface SecretBackendRootCertArgs {
      */
     excludedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * The format of data
+     * The format of data. Valid values are "pem", "pemBundle", or "der".
      */
     format?: pulumi.Input<string | undefined>;
     /**

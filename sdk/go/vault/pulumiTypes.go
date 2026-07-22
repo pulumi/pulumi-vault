@@ -323,6 +323,112 @@ func (o AuthBackendTunePtrOutput) TokenType() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type OauthResourceServerConfigProfilePublicKey struct {
+	// The key ID (kid) for this public key. Must be unique within the profile.
+	KeyId string `pulumi:"keyId"`
+	// The PEM-encoded public key.
+	Pem string `pulumi:"pem"`
+}
+
+// OauthResourceServerConfigProfilePublicKeyInput is an input type that accepts OauthResourceServerConfigProfilePublicKeyArgs and OauthResourceServerConfigProfilePublicKeyOutput values.
+// You can construct a concrete instance of `OauthResourceServerConfigProfilePublicKeyInput` via:
+//
+//	OauthResourceServerConfigProfilePublicKeyArgs{...}
+type OauthResourceServerConfigProfilePublicKeyInput interface {
+	pulumi.Input
+
+	ToOauthResourceServerConfigProfilePublicKeyOutput() OauthResourceServerConfigProfilePublicKeyOutput
+	ToOauthResourceServerConfigProfilePublicKeyOutputWithContext(context.Context) OauthResourceServerConfigProfilePublicKeyOutput
+}
+
+type OauthResourceServerConfigProfilePublicKeyArgs struct {
+	// The key ID (kid) for this public key. Must be unique within the profile.
+	KeyId pulumi.StringInput `pulumi:"keyId"`
+	// The PEM-encoded public key.
+	Pem pulumi.StringInput `pulumi:"pem"`
+}
+
+func (OauthResourceServerConfigProfilePublicKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthResourceServerConfigProfilePublicKey)(nil)).Elem()
+}
+
+func (i OauthResourceServerConfigProfilePublicKeyArgs) ToOauthResourceServerConfigProfilePublicKeyOutput() OauthResourceServerConfigProfilePublicKeyOutput {
+	return i.ToOauthResourceServerConfigProfilePublicKeyOutputWithContext(context.Background())
+}
+
+func (i OauthResourceServerConfigProfilePublicKeyArgs) ToOauthResourceServerConfigProfilePublicKeyOutputWithContext(ctx context.Context) OauthResourceServerConfigProfilePublicKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OauthResourceServerConfigProfilePublicKeyOutput)
+}
+
+// OauthResourceServerConfigProfilePublicKeyArrayInput is an input type that accepts OauthResourceServerConfigProfilePublicKeyArray and OauthResourceServerConfigProfilePublicKeyArrayOutput values.
+// You can construct a concrete instance of `OauthResourceServerConfigProfilePublicKeyArrayInput` via:
+//
+//	OauthResourceServerConfigProfilePublicKeyArray{ OauthResourceServerConfigProfilePublicKeyArgs{...} }
+type OauthResourceServerConfigProfilePublicKeyArrayInput interface {
+	pulumi.Input
+
+	ToOauthResourceServerConfigProfilePublicKeyArrayOutput() OauthResourceServerConfigProfilePublicKeyArrayOutput
+	ToOauthResourceServerConfigProfilePublicKeyArrayOutputWithContext(context.Context) OauthResourceServerConfigProfilePublicKeyArrayOutput
+}
+
+type OauthResourceServerConfigProfilePublicKeyArray []OauthResourceServerConfigProfilePublicKeyInput
+
+func (OauthResourceServerConfigProfilePublicKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OauthResourceServerConfigProfilePublicKey)(nil)).Elem()
+}
+
+func (i OauthResourceServerConfigProfilePublicKeyArray) ToOauthResourceServerConfigProfilePublicKeyArrayOutput() OauthResourceServerConfigProfilePublicKeyArrayOutput {
+	return i.ToOauthResourceServerConfigProfilePublicKeyArrayOutputWithContext(context.Background())
+}
+
+func (i OauthResourceServerConfigProfilePublicKeyArray) ToOauthResourceServerConfigProfilePublicKeyArrayOutputWithContext(ctx context.Context) OauthResourceServerConfigProfilePublicKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OauthResourceServerConfigProfilePublicKeyArrayOutput)
+}
+
+type OauthResourceServerConfigProfilePublicKeyOutput struct{ *pulumi.OutputState }
+
+func (OauthResourceServerConfigProfilePublicKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OauthResourceServerConfigProfilePublicKey)(nil)).Elem()
+}
+
+func (o OauthResourceServerConfigProfilePublicKeyOutput) ToOauthResourceServerConfigProfilePublicKeyOutput() OauthResourceServerConfigProfilePublicKeyOutput {
+	return o
+}
+
+func (o OauthResourceServerConfigProfilePublicKeyOutput) ToOauthResourceServerConfigProfilePublicKeyOutputWithContext(ctx context.Context) OauthResourceServerConfigProfilePublicKeyOutput {
+	return o
+}
+
+// The key ID (kid) for this public key. Must be unique within the profile.
+func (o OauthResourceServerConfigProfilePublicKeyOutput) KeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthResourceServerConfigProfilePublicKey) string { return v.KeyId }).(pulumi.StringOutput)
+}
+
+// The PEM-encoded public key.
+func (o OauthResourceServerConfigProfilePublicKeyOutput) Pem() pulumi.StringOutput {
+	return o.ApplyT(func(v OauthResourceServerConfigProfilePublicKey) string { return v.Pem }).(pulumi.StringOutput)
+}
+
+type OauthResourceServerConfigProfilePublicKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (OauthResourceServerConfigProfilePublicKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OauthResourceServerConfigProfilePublicKey)(nil)).Elem()
+}
+
+func (o OauthResourceServerConfigProfilePublicKeyArrayOutput) ToOauthResourceServerConfigProfilePublicKeyArrayOutput() OauthResourceServerConfigProfilePublicKeyArrayOutput {
+	return o
+}
+
+func (o OauthResourceServerConfigProfilePublicKeyArrayOutput) ToOauthResourceServerConfigProfilePublicKeyArrayOutputWithContext(ctx context.Context) OauthResourceServerConfigProfilePublicKeyArrayOutput {
+	return o
+}
+
+func (o OauthResourceServerConfigProfilePublicKeyArrayOutput) Index(i pulumi.IntInput) OauthResourceServerConfigProfilePublicKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OauthResourceServerConfigProfilePublicKey {
+		return vs[0].([]OauthResourceServerConfigProfilePublicKey)[vs[1].(int)]
+	}).(OauthResourceServerConfigProfilePublicKeyOutput)
+}
+
 type OciAuthBackendTune struct {
 	// List of headers to whitelist and allowing
 	// a plugin to include them in the response.
@@ -3979,6 +4085,157 @@ func (o ProviderHeaderArrayOutput) Index(i pulumi.IntInput) ProviderHeaderOutput
 	}).(ProviderHeaderOutput)
 }
 
+type GetPluginRuntimesRuntime struct {
+	// The parent cgroup for plugin containers, when set.
+	CgroupParent string `pulumi:"cgroupParent"`
+	// CPU quota in nanoseconds per second, when set.
+	CpuNanos int `pulumi:"cpuNanos"`
+	// Memory limit in bytes, when set.
+	MemoryBytes int `pulumi:"memoryBytes"`
+	// The runtime name.
+	Name string `pulumi:"name"`
+	// The OCI runtime used for plugin containers, when set.
+	OciRuntime string `pulumi:"ociRuntime"`
+	// Whether the runtime runs as a non-root user.
+	Rootless bool `pulumi:"rootless"`
+	// The plugin runtime type to list. Currently only `container` is supported.
+	Type string `pulumi:"type"`
+}
+
+// GetPluginRuntimesRuntimeInput is an input type that accepts GetPluginRuntimesRuntimeArgs and GetPluginRuntimesRuntimeOutput values.
+// You can construct a concrete instance of `GetPluginRuntimesRuntimeInput` via:
+//
+//	GetPluginRuntimesRuntimeArgs{...}
+type GetPluginRuntimesRuntimeInput interface {
+	pulumi.Input
+
+	ToGetPluginRuntimesRuntimeOutput() GetPluginRuntimesRuntimeOutput
+	ToGetPluginRuntimesRuntimeOutputWithContext(context.Context) GetPluginRuntimesRuntimeOutput
+}
+
+type GetPluginRuntimesRuntimeArgs struct {
+	// The parent cgroup for plugin containers, when set.
+	CgroupParent pulumi.StringInput `pulumi:"cgroupParent"`
+	// CPU quota in nanoseconds per second, when set.
+	CpuNanos pulumi.IntInput `pulumi:"cpuNanos"`
+	// Memory limit in bytes, when set.
+	MemoryBytes pulumi.IntInput `pulumi:"memoryBytes"`
+	// The runtime name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The OCI runtime used for plugin containers, when set.
+	OciRuntime pulumi.StringInput `pulumi:"ociRuntime"`
+	// Whether the runtime runs as a non-root user.
+	Rootless pulumi.BoolInput `pulumi:"rootless"`
+	// The plugin runtime type to list. Currently only `container` is supported.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetPluginRuntimesRuntimeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginRuntimesRuntime)(nil)).Elem()
+}
+
+func (i GetPluginRuntimesRuntimeArgs) ToGetPluginRuntimesRuntimeOutput() GetPluginRuntimesRuntimeOutput {
+	return i.ToGetPluginRuntimesRuntimeOutputWithContext(context.Background())
+}
+
+func (i GetPluginRuntimesRuntimeArgs) ToGetPluginRuntimesRuntimeOutputWithContext(ctx context.Context) GetPluginRuntimesRuntimeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPluginRuntimesRuntimeOutput)
+}
+
+// GetPluginRuntimesRuntimeArrayInput is an input type that accepts GetPluginRuntimesRuntimeArray and GetPluginRuntimesRuntimeArrayOutput values.
+// You can construct a concrete instance of `GetPluginRuntimesRuntimeArrayInput` via:
+//
+//	GetPluginRuntimesRuntimeArray{ GetPluginRuntimesRuntimeArgs{...} }
+type GetPluginRuntimesRuntimeArrayInput interface {
+	pulumi.Input
+
+	ToGetPluginRuntimesRuntimeArrayOutput() GetPluginRuntimesRuntimeArrayOutput
+	ToGetPluginRuntimesRuntimeArrayOutputWithContext(context.Context) GetPluginRuntimesRuntimeArrayOutput
+}
+
+type GetPluginRuntimesRuntimeArray []GetPluginRuntimesRuntimeInput
+
+func (GetPluginRuntimesRuntimeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPluginRuntimesRuntime)(nil)).Elem()
+}
+
+func (i GetPluginRuntimesRuntimeArray) ToGetPluginRuntimesRuntimeArrayOutput() GetPluginRuntimesRuntimeArrayOutput {
+	return i.ToGetPluginRuntimesRuntimeArrayOutputWithContext(context.Background())
+}
+
+func (i GetPluginRuntimesRuntimeArray) ToGetPluginRuntimesRuntimeArrayOutputWithContext(ctx context.Context) GetPluginRuntimesRuntimeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPluginRuntimesRuntimeArrayOutput)
+}
+
+type GetPluginRuntimesRuntimeOutput struct{ *pulumi.OutputState }
+
+func (GetPluginRuntimesRuntimeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPluginRuntimesRuntime)(nil)).Elem()
+}
+
+func (o GetPluginRuntimesRuntimeOutput) ToGetPluginRuntimesRuntimeOutput() GetPluginRuntimesRuntimeOutput {
+	return o
+}
+
+func (o GetPluginRuntimesRuntimeOutput) ToGetPluginRuntimesRuntimeOutputWithContext(ctx context.Context) GetPluginRuntimesRuntimeOutput {
+	return o
+}
+
+// The parent cgroup for plugin containers, when set.
+func (o GetPluginRuntimesRuntimeOutput) CgroupParent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginRuntimesRuntime) string { return v.CgroupParent }).(pulumi.StringOutput)
+}
+
+// CPU quota in nanoseconds per second, when set.
+func (o GetPluginRuntimesRuntimeOutput) CpuNanos() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginRuntimesRuntime) int { return v.CpuNanos }).(pulumi.IntOutput)
+}
+
+// Memory limit in bytes, when set.
+func (o GetPluginRuntimesRuntimeOutput) MemoryBytes() pulumi.IntOutput {
+	return o.ApplyT(func(v GetPluginRuntimesRuntime) int { return v.MemoryBytes }).(pulumi.IntOutput)
+}
+
+// The runtime name.
+func (o GetPluginRuntimesRuntimeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginRuntimesRuntime) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The OCI runtime used for plugin containers, when set.
+func (o GetPluginRuntimesRuntimeOutput) OciRuntime() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginRuntimesRuntime) string { return v.OciRuntime }).(pulumi.StringOutput)
+}
+
+// Whether the runtime runs as a non-root user.
+func (o GetPluginRuntimesRuntimeOutput) Rootless() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetPluginRuntimesRuntime) bool { return v.Rootless }).(pulumi.BoolOutput)
+}
+
+// The plugin runtime type to list. Currently only `container` is supported.
+func (o GetPluginRuntimesRuntimeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPluginRuntimesRuntime) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetPluginRuntimesRuntimeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPluginRuntimesRuntimeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPluginRuntimesRuntime)(nil)).Elem()
+}
+
+func (o GetPluginRuntimesRuntimeArrayOutput) ToGetPluginRuntimesRuntimeArrayOutput() GetPluginRuntimesRuntimeArrayOutput {
+	return o
+}
+
+func (o GetPluginRuntimesRuntimeArrayOutput) ToGetPluginRuntimesRuntimeArrayOutputWithContext(ctx context.Context) GetPluginRuntimesRuntimeArrayOutput {
+	return o
+}
+
+func (o GetPluginRuntimesRuntimeArrayOutput) Index(i pulumi.IntInput) GetPluginRuntimesRuntimeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPluginRuntimesRuntime {
+		return vs[0].([]GetPluginRuntimesRuntime)[vs[1].(int)]
+	}).(GetPluginRuntimesRuntimeOutput)
+}
+
 type GetPolicyDocumentRule struct {
 	// Whitelists a list of keys and values that are permitted on the given path. See Parameters below.
 	AllowedParameters []GetPolicyDocumentRuleAllowedParameter `pulumi:"allowedParameters"`
@@ -4363,6 +4620,8 @@ func (o GetPolicyDocumentRuleDeniedParameterArrayOutput) Index(i pulumi.IntInput
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTuneInput)(nil)).Elem(), AuthBackendTuneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AuthBackendTunePtrInput)(nil)).Elem(), AuthBackendTuneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OauthResourceServerConfigProfilePublicKeyInput)(nil)).Elem(), OauthResourceServerConfigProfilePublicKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OauthResourceServerConfigProfilePublicKeyArrayInput)(nil)).Elem(), OauthResourceServerConfigProfilePublicKeyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OciAuthBackendTuneInput)(nil)).Elem(), OciAuthBackendTuneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OciAuthBackendTunePtrInput)(nil)).Elem(), OciAuthBackendTuneArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderAuthLoginInput)(nil)).Elem(), ProviderAuthLoginArgs{})
@@ -4393,6 +4652,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderClientAuthPtrInput)(nil)).Elem(), ProviderClientAuthArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderInput)(nil)).Elem(), ProviderHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProviderHeaderArrayInput)(nil)).Elem(), ProviderHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginRuntimesRuntimeInput)(nil)).Elem(), GetPluginRuntimesRuntimeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPluginRuntimesRuntimeArrayInput)(nil)).Elem(), GetPluginRuntimesRuntimeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleInput)(nil)).Elem(), GetPolicyDocumentRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleArrayInput)(nil)).Elem(), GetPolicyDocumentRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleAllowedParameterInput)(nil)).Elem(), GetPolicyDocumentRuleAllowedParameterArgs{})
@@ -4401,6 +4662,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyDocumentRuleDeniedParameterArrayInput)(nil)).Elem(), GetPolicyDocumentRuleDeniedParameterArray{})
 	pulumi.RegisterOutputType(AuthBackendTuneOutput{})
 	pulumi.RegisterOutputType(AuthBackendTunePtrOutput{})
+	pulumi.RegisterOutputType(OauthResourceServerConfigProfilePublicKeyOutput{})
+	pulumi.RegisterOutputType(OauthResourceServerConfigProfilePublicKeyArrayOutput{})
 	pulumi.RegisterOutputType(OciAuthBackendTuneOutput{})
 	pulumi.RegisterOutputType(OciAuthBackendTunePtrOutput{})
 	pulumi.RegisterOutputType(ProviderAuthLoginOutput{})
@@ -4431,6 +4694,8 @@ func init() {
 	pulumi.RegisterOutputType(ProviderClientAuthPtrOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderOutput{})
 	pulumi.RegisterOutputType(ProviderHeaderArrayOutput{})
+	pulumi.RegisterOutputType(GetPluginRuntimesRuntimeOutput{})
+	pulumi.RegisterOutputType(GetPluginRuntimesRuntimeArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyDocumentRuleOutput{})
 	pulumi.RegisterOutputType(GetPolicyDocumentRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetPolicyDocumentRuleAllowedParameterOutput{})

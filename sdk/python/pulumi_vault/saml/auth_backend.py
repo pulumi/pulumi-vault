@@ -49,7 +49,7 @@ class AuthBackendArgs:
         :param pulumi.Input[_builtins.str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -60,9 +60,9 @@ class AuthBackendArgs:
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of
                the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
-        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of
                the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
@@ -187,7 +187,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="idpSsoUrl")
     def idp_sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The SSO URL of the identity provider. Mutually exclusive with 
+        The SSO URL of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
         """
         return pulumi.get(self, "idp_sso_url")
@@ -242,7 +242,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="validateAssertionSignature")
     def validate_assertion_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        If set to `true`, validates the signature of 
+        If set to `true`, validates the signature of
         the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
         """
         return pulumi.get(self, "validate_assertion_signature")
@@ -255,7 +255,7 @@ class AuthBackendArgs:
     @pulumi.getter(name="validateResponseSignature")
     def validate_response_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        If set to `true`, validates the signature of 
+        If set to `true`, validates the signature of
         the SAML response. Defaults to `false`. Requires Vault 1.19+.
         """
         return pulumi.get(self, "validate_response_signature")
@@ -310,7 +310,7 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -321,9 +321,9 @@ class _AuthBackendState:
         :param pulumi.Input['AuthBackendTuneArgs'] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of
                the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
-        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of
                the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
@@ -450,7 +450,7 @@ class _AuthBackendState:
     @pulumi.getter(name="idpSsoUrl")
     def idp_sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The SSO URL of the identity provider. Mutually exclusive with 
+        The SSO URL of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
         """
         return pulumi.get(self, "idp_sso_url")
@@ -505,7 +505,7 @@ class _AuthBackendState:
     @pulumi.getter(name="validateAssertionSignature")
     def validate_assertion_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        If set to `true`, validates the signature of 
+        If set to `true`, validates the signature of
         the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
         """
         return pulumi.get(self, "validate_assertion_signature")
@@ -518,7 +518,7 @@ class _AuthBackendState:
     @pulumi.getter(name="validateResponseSignature")
     def validate_response_signature(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        If set to `true`, validates the signature of 
+        If set to `true`, validates the signature of
         the SAML response. Defaults to `false`. Requires Vault 1.19+.
         """
         return pulumi.get(self, "validate_response_signature")
@@ -604,7 +604,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -615,9 +615,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of
                the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
-        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of
                the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
@@ -755,7 +755,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] idp_entity_id: The entity ID of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] idp_metadata_url: The metadata URL of the identity provider.
-        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with 
+        :param pulumi.Input[_builtins.str] idp_sso_url: The SSO URL of the identity provider. Mutually exclusive with
                `idp_metadata_url`.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -766,9 +766,9 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of
                the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
-        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of 
+        :param pulumi.Input[_builtins.bool] validate_response_signature: If set to `true`, validates the signature of
                the SAML response. Defaults to `false`. Requires Vault 1.19+.
         :param pulumi.Input[_builtins.bool] verbose_logging: If set to `true`, logs additional, potentially sensitive
                information during the SAML exchange according to the current logging level. Not
@@ -858,7 +858,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="idpSsoUrl")
     def idp_sso_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The SSO URL of the identity provider. Mutually exclusive with 
+        The SSO URL of the identity provider. Mutually exclusive with
         `idp_metadata_url`.
         """
         return pulumi.get(self, "idp_sso_url")
@@ -897,7 +897,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="validateAssertionSignature")
     def validate_assertion_signature(self) -> pulumi.Output[_builtins.bool]:
         """
-        If set to `true`, validates the signature of 
+        If set to `true`, validates the signature of
         the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
         """
         return pulumi.get(self, "validate_assertion_signature")
@@ -906,7 +906,7 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="validateResponseSignature")
     def validate_response_signature(self) -> pulumi.Output[_builtins.bool]:
         """
-        If set to `true`, validates the signature of 
+        If set to `true`, validates the signature of
         the SAML response. Defaults to `false`. Requires Vault 1.19+.
         """
         return pulumi.get(self, "validate_response_signature")

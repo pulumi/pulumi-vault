@@ -49,7 +49,7 @@ class SecretBackendCertArgs:
         :param pulumi.Input[_builtins.bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[_builtins.str] cert_metadata: A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[_builtins.int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -185,7 +185,7 @@ class SecretBackendCertArgs:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data
+        The format of data. Valid values are "pem", "pem_bundle" or "der".
         """
         return pulumi.get(self, "format")
 
@@ -409,7 +409,7 @@ class _SecretBackendCertState:
         :param pulumi.Input[_builtins.str] common_name: CN of certificate to create
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[_builtins.int] expiration: The expiration date of the certificate in unix epoch format
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA
@@ -604,7 +604,7 @@ class _SecretBackendCertState:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data
+        The format of data. Valid values are "pem", "pem_bundle" or "der".
         """
         return pulumi.get(self, "format")
 
@@ -904,7 +904,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cert_metadata: A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
         :param pulumi.Input[_builtins.str] common_name: CN of certificate to create
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[_builtins.int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -1088,7 +1088,7 @@ class SecretBackendCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] common_name: CN of certificate to create
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[_builtins.int] expiration: The expiration date of the certificate in unix epoch format
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA
@@ -1223,7 +1223,7 @@ class SecretBackendCert(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The format of data
+        The format of data. Valid values are "pem", "pem_bundle" or "der".
         """
         return pulumi.get(self, "format")
 

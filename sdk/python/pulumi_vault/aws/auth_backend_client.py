@@ -58,11 +58,11 @@ class AuthBackendClientArgs:
         :param pulumi.Input[_builtins.str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
-        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`.
                Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors. 
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
                The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -87,9 +87,9 @@ class AuthBackendClientArgs:
                Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
-        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
+        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
-        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set,
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
                This can be useful when you have client requests coming from different
@@ -234,7 +234,7 @@ class AuthBackendClientArgs:
     @pulumi.getter(name="identityTokenAudience")
     def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The audience claim value. Mutually exclusive with `access_key`. 
+        The audience claim value. Mutually exclusive with `access_key`.
         Requires Vault 1.17+. *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "identity_token_audience")
@@ -260,7 +260,7 @@ class AuthBackendClientArgs:
     @pulumi.getter(name="maxRetries")
     def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of max retries the client should use for recoverable errors. 
+        Number of max retries the client should use for recoverable errors.
         The default `-1` falls back to the AWS SDK's default behavior.
         """
         return pulumi.get(self, "max_retries")
@@ -395,7 +395,7 @@ class AuthBackendClientArgs:
     @pulumi.getter(name="stsRegion")
     def sts_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Override the default region when making STS API 
+        Override the default region when making STS API
         calls. The `sts_endpoint` argument must be set when using `sts_region`.
         """
         return pulumi.get(self, "sts_region")
@@ -408,7 +408,7 @@ class AuthBackendClientArgs:
     @pulumi.getter(name="useStsRegionFromClient")
     def use_sts_region_from_client(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Available in Vault v1.15+. If set, 
+        Available in Vault v1.15+. If set,
         overrides both `sts_endpoint` and `sts_region` to instead use the region
         specified in the client request headers for IAM-based authentication.
         This can be useful when you have client requests coming from different
@@ -463,11 +463,11 @@ class _AuthBackendClientState:
         :param pulumi.Input[_builtins.str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
-        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`.
                Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors. 
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
                The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -492,9 +492,9 @@ class _AuthBackendClientState:
                Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
-        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
+        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
-        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set,
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
                This can be useful when you have client requests coming from different
@@ -639,7 +639,7 @@ class _AuthBackendClientState:
     @pulumi.getter(name="identityTokenAudience")
     def identity_token_audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The audience claim value. Mutually exclusive with `access_key`. 
+        The audience claim value. Mutually exclusive with `access_key`.
         Requires Vault 1.17+. *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "identity_token_audience")
@@ -665,7 +665,7 @@ class _AuthBackendClientState:
     @pulumi.getter(name="maxRetries")
     def max_retries(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Number of max retries the client should use for recoverable errors. 
+        Number of max retries the client should use for recoverable errors.
         The default `-1` falls back to the AWS SDK's default behavior.
         """
         return pulumi.get(self, "max_retries")
@@ -800,7 +800,7 @@ class _AuthBackendClientState:
     @pulumi.getter(name="stsRegion")
     def sts_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Override the default region when making STS API 
+        Override the default region when making STS API
         calls. The `sts_endpoint` argument must be set when using `sts_region`.
         """
         return pulumi.get(self, "sts_region")
@@ -813,7 +813,7 @@ class _AuthBackendClientState:
     @pulumi.getter(name="useStsRegionFromClient")
     def use_sts_region_from_client(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Available in Vault v1.15+. If set, 
+        Available in Vault v1.15+. If set,
         overrides both `sts_endpoint` and `sts_region` to instead use the region
         specified in the client request headers for IAM-based authentication.
         This can be useful when you have client requests coming from different
@@ -960,11 +960,11 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
-        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`.
                Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors. 
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
                The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -989,9 +989,9 @@ class AuthBackendClient(pulumi.CustomResource):
                Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
-        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
+        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
-        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set,
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
                This can be useful when you have client requests coming from different
@@ -1213,11 +1213,11 @@ class AuthBackendClient(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] iam_server_id_header_value: The value to require in the
                `X-Vault-AWS-IAM-Server-ID` header as part of `GetCallerIdentity` requests
                that are used in the IAM auth method.
-        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`. 
+        :param pulumi.Input[_builtins.str] identity_token_audience: The audience claim value. Mutually exclusive with `access_key`.
                Requires Vault 1.17+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated identity tokens in seconds. Requires Vault 1.17+.
                *Available only for Vault Enterprise*
-        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors. 
+        :param pulumi.Input[_builtins.int] max_retries: Number of max retries the client should use for recoverable errors.
                The default `-1` falls back to the AWS SDK's default behavior.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1242,9 +1242,9 @@ class AuthBackendClient(pulumi.CustomResource):
                Increment this value to rotate the secret key. Required when `secret_key_wo` is set.
         :param pulumi.Input[_builtins.str] sts_endpoint: Override the URL Vault uses when making STS API
                calls.
-        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API 
+        :param pulumi.Input[_builtins.str] sts_region: Override the default region when making STS API
                calls. The `sts_endpoint` argument must be set when using `sts_region`.
-        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set, 
+        :param pulumi.Input[_builtins.bool] use_sts_region_from_client: Available in Vault v1.15+. If set,
                overrides both `sts_endpoint` and `sts_region` to instead use the region
                specified in the client request headers for IAM-based authentication.
                This can be useful when you have client requests coming from different
@@ -1345,7 +1345,7 @@ class AuthBackendClient(pulumi.CustomResource):
     @pulumi.getter(name="identityTokenAudience")
     def identity_token_audience(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The audience claim value. Mutually exclusive with `access_key`. 
+        The audience claim value. Mutually exclusive with `access_key`.
         Requires Vault 1.17+. *Available only for Vault Enterprise*
         """
         return pulumi.get(self, "identity_token_audience")
@@ -1363,7 +1363,7 @@ class AuthBackendClient(pulumi.CustomResource):
     @pulumi.getter(name="maxRetries")
     def max_retries(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Number of max retries the client should use for recoverable errors. 
+        Number of max retries the client should use for recoverable errors.
         The default `-1` falls back to the AWS SDK's default behavior.
         """
         return pulumi.get(self, "max_retries")
@@ -1458,7 +1458,7 @@ class AuthBackendClient(pulumi.CustomResource):
     @pulumi.getter(name="stsRegion")
     def sts_region(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Override the default region when making STS API 
+        Override the default region when making STS API
         calls. The `sts_endpoint` argument must be set when using `sts_region`.
         """
         return pulumi.get(self, "sts_region")
@@ -1467,7 +1467,7 @@ class AuthBackendClient(pulumi.CustomResource):
     @pulumi.getter(name="useStsRegionFromClient")
     def use_sts_region_from_client(self) -> pulumi.Output[_builtins.bool]:
         """
-        Available in Vault v1.15+. If set, 
+        Available in Vault v1.15+. If set,
         overrides both `sts_endpoint` and `sts_region` to instead use the region
         specified in the client request headers for IAM-based authentication.
         This can be useful when you have client requests coming from different

@@ -17,7 +17,9 @@ from . import outputs
 
 __all__ = [
     'AuthBackendTune',
+    'OauthResourceServerConfigProfilePublicKey',
     'OciAuthBackendTune',
+    'GetPluginRuntimesRuntimeResult',
     'GetPolicyDocumentRuleResult',
     'GetPolicyDocumentRuleAllowedParameterResult',
     'GetPolicyDocumentRuleDeniedParameterResult',
@@ -178,6 +180,52 @@ class AuthBackendTune(dict):
 
 
 @pulumi.output_type
+class OauthResourceServerConfigProfilePublicKey(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keyId":
+            suggest = "key_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OauthResourceServerConfigProfilePublicKey. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OauthResourceServerConfigProfilePublicKey.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OauthResourceServerConfigProfilePublicKey.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key_id: _builtins.str,
+                 pem: _builtins.str):
+        """
+        :param _builtins.str key_id: The key ID (kid) for this public key. Must be unique within the profile.
+        :param _builtins.str pem: The PEM-encoded public key.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "pem", pem)
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> _builtins.str:
+        """
+        The key ID (kid) for this public key. Must be unique within the profile.
+        """
+        return pulumi.get(self, "key_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def pem(self) -> _builtins.str:
+        """
+        The PEM-encoded public key.
+        """
+        return pulumi.get(self, "pem")
+
+
+@pulumi.output_type
 class OciAuthBackendTune(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -238,7 +286,6 @@ class OciAuthBackendTune(dict):
                pass from the request to the backend.
         :param _builtins.str token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-               
                
                For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
@@ -331,10 +378,93 @@ class OciAuthBackendTune(dict):
         Specifies the type of tokens that should be returned by
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
 
-
         For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
         return pulumi.get(self, "token_type")
+
+
+@pulumi.output_type
+class GetPluginRuntimesRuntimeResult(dict):
+    def __init__(__self__, *,
+                 cgroup_parent: _builtins.str,
+                 cpu_nanos: _builtins.int,
+                 memory_bytes: _builtins.int,
+                 name: _builtins.str,
+                 oci_runtime: _builtins.str,
+                 rootless: _builtins.bool,
+                 type: _builtins.str):
+        """
+        :param _builtins.str cgroup_parent: The parent cgroup for plugin containers, when set.
+        :param _builtins.int cpu_nanos: CPU quota in nanoseconds per second, when set.
+        :param _builtins.int memory_bytes: Memory limit in bytes, when set.
+        :param _builtins.str name: The runtime name.
+        :param _builtins.str oci_runtime: The OCI runtime used for plugin containers, when set.
+        :param _builtins.bool rootless: Whether the runtime runs as a non-root user.
+        :param _builtins.str type: The plugin runtime type to list. Currently only `container` is supported.
+        """
+        pulumi.set(__self__, "cgroup_parent", cgroup_parent)
+        pulumi.set(__self__, "cpu_nanos", cpu_nanos)
+        pulumi.set(__self__, "memory_bytes", memory_bytes)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "oci_runtime", oci_runtime)
+        pulumi.set(__self__, "rootless", rootless)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="cgroupParent")
+    def cgroup_parent(self) -> _builtins.str:
+        """
+        The parent cgroup for plugin containers, when set.
+        """
+        return pulumi.get(self, "cgroup_parent")
+
+    @_builtins.property
+    @pulumi.getter(name="cpuNanos")
+    def cpu_nanos(self) -> _builtins.int:
+        """
+        CPU quota in nanoseconds per second, when set.
+        """
+        return pulumi.get(self, "cpu_nanos")
+
+    @_builtins.property
+    @pulumi.getter(name="memoryBytes")
+    def memory_bytes(self) -> _builtins.int:
+        """
+        Memory limit in bytes, when set.
+        """
+        return pulumi.get(self, "memory_bytes")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The runtime name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="ociRuntime")
+    def oci_runtime(self) -> _builtins.str:
+        """
+        The OCI runtime used for plugin containers, when set.
+        """
+        return pulumi.get(self, "oci_runtime")
+
+    @_builtins.property
+    @pulumi.getter
+    def rootless(self) -> _builtins.bool:
+        """
+        Whether the runtime runs as a non-root user.
+        """
+        return pulumi.get(self, "rootless")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The plugin runtime type to list. Currently only `container` is supported.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

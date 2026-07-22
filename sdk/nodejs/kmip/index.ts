@@ -10,6 +10,21 @@ export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
 utilities.lazyLoad(exports, ["SecretBackend"], () => require("./secretBackend"));
 
+export { SecretCaGeneratedArgs, SecretCaGeneratedState } from "./secretCaGenerated";
+export type SecretCaGenerated = import("./secretCaGenerated").SecretCaGenerated;
+export const SecretCaGenerated: typeof import("./secretCaGenerated").SecretCaGenerated = null as any;
+utilities.lazyLoad(exports, ["SecretCaGenerated"], () => require("./secretCaGenerated"));
+
+export { SecretCaImportedArgs, SecretCaImportedState } from "./secretCaImported";
+export type SecretCaImported = import("./secretCaImported").SecretCaImported;
+export const SecretCaImported: typeof import("./secretCaImported").SecretCaImported = null as any;
+utilities.lazyLoad(exports, ["SecretCaImported"], () => require("./secretCaImported"));
+
+export { SecretListenerArgs, SecretListenerState } from "./secretListener";
+export type SecretListener = import("./secretListener").SecretListener;
+export const SecretListener: typeof import("./secretListener").SecretListener = null as any;
+utilities.lazyLoad(exports, ["SecretListener"], () => require("./secretListener"));
+
 export { SecretRoleArgs, SecretRoleState } from "./secretRole";
 export type SecretRole = import("./secretRole").SecretRole;
 export const SecretRole: typeof import("./secretRole").SecretRole = null as any;
@@ -27,6 +42,12 @@ const _module = {
         switch (type) {
             case "vault:kmip/secretBackend:SecretBackend":
                 return new SecretBackend(name, <any>undefined, { urn })
+            case "vault:kmip/secretCaGenerated:SecretCaGenerated":
+                return new SecretCaGenerated(name, <any>undefined, { urn })
+            case "vault:kmip/secretCaImported:SecretCaImported":
+                return new SecretCaImported(name, <any>undefined, { urn })
+            case "vault:kmip/secretListener:SecretListener":
+                return new SecretListener(name, <any>undefined, { urn })
             case "vault:kmip/secretRole:SecretRole":
                 return new SecretRole(name, <any>undefined, { urn })
             case "vault:kmip/secretScope:SecretScope":
@@ -37,5 +58,8 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("vault", "kmip/secretBackend", _module)
+pulumi.runtime.registerResourceModule("vault", "kmip/secretCaGenerated", _module)
+pulumi.runtime.registerResourceModule("vault", "kmip/secretCaImported", _module)
+pulumi.runtime.registerResourceModule("vault", "kmip/secretListener", _module)
 pulumi.runtime.registerResourceModule("vault", "kmip/secretRole", _module)
 pulumi.runtime.registerResourceModule("vault", "kmip/secretScope", _module)

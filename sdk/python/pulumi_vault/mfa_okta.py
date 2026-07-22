@@ -32,10 +32,10 @@ class MfaOktaArgs:
         The set of arguments for constructing a MfaOkta resource.
 
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
-        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
-        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
                `oktapreview.com`, and `okta-emea.com`.
         :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
@@ -43,9 +43,9 @@ class MfaOktaArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
+        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the
                primary email for the account.
-        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -85,7 +85,7 @@ class MfaOktaArgs:
     @pulumi.getter(name="mountAccessor")
     def mount_accessor(self) -> pulumi.Input[_builtins.str]:
         """
-        `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
         The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
@@ -110,7 +110,7 @@ class MfaOktaArgs:
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+        `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
         `oktapreview.com`, and `okta-emea.com`.
         """
         return pulumi.get(self, "base_url")
@@ -162,7 +162,7 @@ class MfaOktaArgs:
     @pulumi.getter(name="primaryEmail")
     def primary_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        `(string: <required>)` - If set to true, the username will only match the 
+        `(string: <required>)` - If set to true, the username will only match the
         primary email for the account.
         """
         return pulumi.get(self, "primary_email")
@@ -175,7 +175,7 @@ class MfaOktaArgs:
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        `(string)` - A format string for mapping Identity names to MFA method names. 
+        `(string)` - A format string for mapping Identity names to MFA method names.
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -206,10 +206,10 @@ class _MfaOktaState:
         Input properties used for looking up and filtering MfaOkta resources.
 
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
-        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
                `oktapreview.com`, and `okta-emea.com`.
         :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
-        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -217,9 +217,9 @@ class _MfaOktaState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
-        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
+        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the
                primary email for the account.
-        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -262,7 +262,7 @@ class _MfaOktaState:
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+        `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
         `oktapreview.com`, and `okta-emea.com`.
         """
         return pulumi.get(self, "base_url")
@@ -287,7 +287,7 @@ class _MfaOktaState:
     @pulumi.getter(name="mountAccessor")
     def mount_accessor(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
         The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
@@ -339,7 +339,7 @@ class _MfaOktaState:
     @pulumi.getter(name="primaryEmail")
     def primary_email(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        `(string: <required>)` - If set to true, the username will only match the 
+        `(string: <required>)` - If set to true, the username will only match the
         primary email for the account.
         """
         return pulumi.get(self, "primary_email")
@@ -352,7 +352,7 @@ class _MfaOktaState:
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        `(string)` - A format string for mapping Identity names to MFA method names. 
+        `(string)` - A format string for mapping Identity names to MFA method names.
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -417,10 +417,10 @@ class MfaOkta(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
-        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
                `oktapreview.com`, and `okta-emea.com`.
         :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
-        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -428,9 +428,9 @@ class MfaOkta(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
-        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
+        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the
                primary email for the account.
-        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -552,10 +552,10 @@ class MfaOkta(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] api_token: `(string: <required>)` - Okta API key.
-        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+        :param pulumi.Input[_builtins.str] base_url: `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
                `oktapreview.com`, and `okta-emea.com`.
         :param pulumi.Input[_builtins.str] mfa_okta_id: ID computed by Vault.
-        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        :param pulumi.Input[_builtins.str] mount_accessor: `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
                The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         :param pulumi.Input[_builtins.str] name: `(string: <required>)` – Name of the MFA method.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -563,9 +563,9 @@ class MfaOkta(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] org_name: `(string: <required>)` - Name of the organization to be used in the Okta API.
-        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the 
+        :param pulumi.Input[_builtins.bool] primary_email: `(string: <required>)` - If set to true, the username will only match the
                primary email for the account.
-        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names. 
+        :param pulumi.Input[_builtins.str] username_format: `(string)` - A format string for mapping Identity names to MFA method names.
                Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
                If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
                - alias.name: The name returned by the mount configured via the `mount_accessor` parameter
@@ -600,7 +600,7 @@ class MfaOkta(pulumi.CustomResource):
     @pulumi.getter(name="baseUrl")
     def base_url(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`, 
+        `(string)` - If set, will be used as the base domain for API requests. Examples are `okta.com`,
         `oktapreview.com`, and `okta-emea.com`.
         """
         return pulumi.get(self, "base_url")
@@ -617,7 +617,7 @@ class MfaOkta(pulumi.CustomResource):
     @pulumi.getter(name="mountAccessor")
     def mount_accessor(self) -> pulumi.Output[_builtins.str]:
         """
-        `(string: <required>)` - The mount to tie this method to for use in automatic mappings. 
+        `(string: <required>)` - The mount to tie this method to for use in automatic mappings.
         The mapping will use the Name field of Aliases associated with this mount as the username in the mapping.
         """
         return pulumi.get(self, "mount_accessor")
@@ -653,7 +653,7 @@ class MfaOkta(pulumi.CustomResource):
     @pulumi.getter(name="primaryEmail")
     def primary_email(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        `(string: <required>)` - If set to true, the username will only match the 
+        `(string: <required>)` - If set to true, the username will only match the
         primary email for the account.
         """
         return pulumi.get(self, "primary_email")
@@ -662,7 +662,7 @@ class MfaOkta(pulumi.CustomResource):
     @pulumi.getter(name="usernameFormat")
     def username_format(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        `(string)` - A format string for mapping Identity names to MFA method names. 
+        `(string)` - A format string for mapping Identity names to MFA method names.
         Values to substitute should be placed in `{{}}`. For example, `"{{alias.name}}@example.com"`.
         If blank, the Alias's Name field will be used as-is. Currently-supported mappings:
         - alias.name: The name returned by the mount configured via the `mount_accessor` parameter

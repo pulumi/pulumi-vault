@@ -189,7 +189,7 @@ class GetBackendIssuerResult:
     @pulumi.getter(name="manualChains")
     def manual_chains(self) -> Sequence[_builtins.str]:
         """
-        Chain of issuer references to build this issuer's computed 
+        Chain of issuer references to build this issuer's computed
         CAChain field from, when non-empty.
         """
         return pulumi.get(self, "manual_chains")

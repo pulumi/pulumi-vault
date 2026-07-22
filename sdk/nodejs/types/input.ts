@@ -172,6 +172,17 @@ export interface GetPolicyDocumentRuleDeniedParameterArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface OauthResourceServerConfigProfilePublicKey {
+    /**
+     * The key ID (kid) for this public key. Must be unique within the profile.
+     */
+    keyId: pulumi.Input<string>;
+    /**
+     * The PEM-encoded public key.
+     */
+    pem: pulumi.Input<string>;
+}
+
 export interface OciAuthBackendTune {
     /**
      * List of headers to whitelist and allowing
@@ -213,7 +224,6 @@ export interface OciAuthBackendTune {
     /**
      * Specifies the type of tokens that should be returned by
      * the mount. Valid values are "default-service", "default-batch", "service", "batch".
-     *
      *
      * For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
      */
@@ -620,6 +630,32 @@ export interface ProviderHeader {
      */
     value: pulumi.Input<string>;
 }
+export namespace alicloud {
+    export interface SecretBackendRoleInlinePolicy {
+        /**
+         * A JSON-encoded inline RAM policy document.
+         */
+        policyDocument: pulumi.Input<string>;
+    }
+
+    export interface SecretBackendRoleRemotePolicy {
+        /**
+         * The name of the remote RAM policy.
+         */
+        name: pulumi.Input<string>;
+        /**
+         * The type of the remote policy. Must be `System` (for
+         * AliCloud managed policies) or `Custom` (for customer-managed policies).
+         *
+         * > **Note:** You must specify  either `roleArn` or at least one `inlinePolicies` block,
+         * or `remotePolicies` block, or a combination of `inlinePolicies`
+         * and `remotePolicies`. The role will fail validation if none is provided.
+         * `roleArn` cannot be combined with `inlinePolicies` or `remotePolicies`.
+         */
+        type: pulumi.Input<string>;
+    }
+}
+
 export namespace azure {
     export interface BackendRoleAzureGroup {
         groupName: pulumi.Input<string>;
@@ -3481,7 +3517,6 @@ export namespace gcp {
          * Specifies the type of tokens that should be returned by
          * the mount. Valid values are "default-service", "default-batch", "service", "batch".
          *
-         *
          * For more details on the usage of each argument consult the [Vault GCP API documentation](https://www.vaultproject.io/api-docs/auth/gcp#configure).
          */
         tokenType?: pulumi.Input<string | undefined>;
@@ -3733,6 +3768,10 @@ export namespace managed {
          */
         secretKey: pulumi.Input<string>;
         /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
          * ID of the managed key read from Vault
          */
         uuid?: pulumi.Input<string | undefined>;
@@ -3791,6 +3830,10 @@ export namespace managed {
          * The tenant id for the Azure Active Directory organization
          */
         tenantId: pulumi.Input<string>;
+        /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * ID of the managed key read from Vault
          */
@@ -3851,6 +3894,10 @@ export namespace managed {
          */
         region: pulumi.Input<string>;
         /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
          * ID of the managed key read from Vault
          */
         uuid?: pulumi.Input<string | undefined>;
@@ -3898,6 +3945,10 @@ export namespace managed {
          */
         library: pulumi.Input<string>;
         /**
+         * The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+         */
+        maxParallel?: pulumi.Input<number | undefined>;
+        /**
          * The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
          */
         mechanism: pulumi.Input<string>;
@@ -3917,6 +3968,10 @@ export namespace managed {
          * The slot token label to use
          */
         tokenLabel?: pulumi.Input<string | undefined>;
+        /**
+         * A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+         */
+        usages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
         /**
          * ID of the managed key read from Vault
          */

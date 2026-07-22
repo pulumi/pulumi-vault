@@ -95,7 +95,7 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly idpMetadataUrl: pulumi.Output<string | undefined>;
     /**
-     * The SSO URL of the identity provider. Mutually exclusive with 
+     * The SSO URL of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
     declare public readonly idpSsoUrl: pulumi.Output<string | undefined>;
@@ -118,12 +118,12 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly tune: pulumi.Output<outputs.saml.AuthBackendTune>;
     /**
-     * If set to `true`, validates the signature of 
+     * If set to `true`, validates the signature of
      * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
      */
     declare public readonly validateAssertionSignature: pulumi.Output<boolean>;
     /**
-     * If set to `true`, validates the signature of 
+     * If set to `true`, validates the signature of
      * the SAML response. Defaults to `false`. Requires Vault 1.19+.
      */
     declare public readonly validateResponseSignature: pulumi.Output<boolean>;
@@ -226,7 +226,7 @@ export interface AuthBackendState {
      */
     idpMetadataUrl?: pulumi.Input<string | undefined>;
     /**
-     * The SSO URL of the identity provider. Mutually exclusive with 
+     * The SSO URL of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
     idpSsoUrl?: pulumi.Input<string | undefined>;
@@ -249,12 +249,12 @@ export interface AuthBackendState {
      */
     tune?: pulumi.Input<inputs.saml.AuthBackendTune | undefined>;
     /**
-     * If set to `true`, validates the signature of 
+     * If set to `true`, validates the signature of
      * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
      */
     validateAssertionSignature?: pulumi.Input<boolean | undefined>;
     /**
-     * If set to `true`, validates the signature of 
+     * If set to `true`, validates the signature of
      * the SAML response. Defaults to `false`. Requires Vault 1.19+.
      */
     validateResponseSignature?: pulumi.Input<boolean | undefined>;
@@ -303,7 +303,7 @@ export interface AuthBackendArgs {
      */
     idpMetadataUrl?: pulumi.Input<string | undefined>;
     /**
-     * The SSO URL of the identity provider. Mutually exclusive with 
+     * The SSO URL of the identity provider. Mutually exclusive with
      * `idpMetadataUrl`.
      */
     idpSsoUrl?: pulumi.Input<string | undefined>;
@@ -326,12 +326,12 @@ export interface AuthBackendArgs {
      */
     tune?: pulumi.Input<inputs.saml.AuthBackendTune | undefined>;
     /**
-     * If set to `true`, validates the signature of 
+     * If set to `true`, validates the signature of
      * the SAML assertion. Defaults to `false`. Requires Vault 1.19+.
      */
     validateAssertionSignature?: pulumi.Input<boolean | undefined>;
     /**
-     * If set to `true`, validates the signature of 
+     * If set to `true`, validates the signature of
      * the SAML response. Defaults to `false`. Requires Vault 1.19+.
      */
     validateResponseSignature?: pulumi.Input<boolean | undefined>;

@@ -5,10 +5,30 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { ControlGroupArgs, ControlGroupState } from "./controlGroup";
+export type ControlGroup = import("./controlGroup").ControlGroup;
+export const ControlGroup: typeof import("./controlGroup").ControlGroup = null as any;
+utilities.lazyLoad(exports, ["ControlGroup"], () => require("./controlGroup"));
+
+export { GroupPolicyApplicationArgs, GroupPolicyApplicationState } from "./groupPolicyApplication";
+export type GroupPolicyApplication = import("./groupPolicyApplication").GroupPolicyApplication;
+export const GroupPolicyApplication: typeof import("./groupPolicyApplication").GroupPolicyApplication = null as any;
+utilities.lazyLoad(exports, ["GroupPolicyApplication"], () => require("./groupPolicyApplication"));
+
 export { UiCustomMessageArgs, UiCustomMessageState } from "./uiCustomMessage";
 export type UiCustomMessage = import("./uiCustomMessage").UiCustomMessage;
 export const UiCustomMessage: typeof import("./uiCustomMessage").UiCustomMessage = null as any;
 utilities.lazyLoad(exports, ["UiCustomMessage"], () => require("./uiCustomMessage"));
+
+export { UiDefaultAuthArgs, UiDefaultAuthState } from "./uiDefaultAuth";
+export type UiDefaultAuth = import("./uiDefaultAuth").UiDefaultAuth;
+export const UiDefaultAuth: typeof import("./uiDefaultAuth").UiDefaultAuth = null as any;
+utilities.lazyLoad(exports, ["UiDefaultAuth"], () => require("./uiDefaultAuth"));
+
+export { UiHeaderArgs, UiHeaderState } from "./uiHeader";
+export type UiHeader = import("./uiHeader").UiHeader;
+export const UiHeader: typeof import("./uiHeader").UiHeader = null as any;
+utilities.lazyLoad(exports, ["UiHeader"], () => require("./uiHeader"));
 
 export * from "./vars";
 
@@ -16,11 +36,23 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "vault:config/controlGroup:ControlGroup":
+                return new ControlGroup(name, <any>undefined, { urn })
+            case "vault:config/groupPolicyApplication:GroupPolicyApplication":
+                return new GroupPolicyApplication(name, <any>undefined, { urn })
             case "vault:config/uiCustomMessage:UiCustomMessage":
                 return new UiCustomMessage(name, <any>undefined, { urn })
+            case "vault:config/uiDefaultAuth:UiDefaultAuth":
+                return new UiDefaultAuth(name, <any>undefined, { urn })
+            case "vault:config/uiHeader:UiHeader":
+                return new UiHeader(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
+pulumi.runtime.registerResourceModule("vault", "config/controlGroup", _module)
+pulumi.runtime.registerResourceModule("vault", "config/groupPolicyApplication", _module)
 pulumi.runtime.registerResourceModule("vault", "config/uiCustomMessage", _module)
+pulumi.runtime.registerResourceModule("vault", "config/uiDefaultAuth", _module)
+pulumi.runtime.registerResourceModule("vault", "config/uiHeader", _module)

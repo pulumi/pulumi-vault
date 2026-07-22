@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -73,6 +74,11 @@ public final class KeysGcp {
      * 
      */
     private String region;
+    /**
+     * @return A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    private @Nullable List<String> usages;
     /**
      * @return ID of the managed key read from Vault
      * 
@@ -165,6 +171,13 @@ public final class KeysGcp {
         return this.region;
     }
     /**
+     * @return A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    public List<String> usages() {
+        return this.usages == null ? List.of() : this.usages;
+    }
+    /**
      * @return ID of the managed key read from Vault
      * 
      */
@@ -193,6 +206,7 @@ public final class KeysGcp {
         private String name;
         private String project;
         private String region;
+        private @Nullable List<String> usages;
         private @Nullable String uuid;
         public Builder() {}
         public Builder(KeysGcp defaults) {
@@ -209,6 +223,7 @@ public final class KeysGcp {
     	      this.name = defaults.name;
     	      this.project = defaults.project;
     	      this.region = defaults.region;
+    	      this.usages = defaults.usages;
     	      this.uuid = defaults.uuid;
         }
 
@@ -299,6 +314,15 @@ public final class KeysGcp {
             return this;
         }
         @CustomType.Setter
+        public Builder usages(@Nullable List<String> usages) {
+
+            this.usages = usages;
+            return this;
+        }
+        public Builder usages(String... usages) {
+            return usages(List.of(usages));
+        }
+        @CustomType.Setter
         public Builder uuid(@Nullable String uuid) {
 
             this.uuid = uuid;
@@ -318,6 +342,7 @@ public final class KeysGcp {
             _resultValue.name = name;
             _resultValue.project = project;
             _resultValue.region = region;
+            _resultValue.usages = usages;
             _resultValue.uuid = uuid;
             return _resultValue;
         }

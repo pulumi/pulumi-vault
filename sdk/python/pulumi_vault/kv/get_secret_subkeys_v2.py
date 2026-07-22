@@ -193,7 +193,7 @@ def get_secret_subkeys_v2(depth: Optional[_builtins.int] = None,
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
-    :param _builtins.int version: Specifies the version to return. If not 
+    :param _builtins.int version: Specifies the version to return. If not
            set the latest version is returned.
     """
     __args__ = dict()
@@ -278,7 +278,7 @@ def get_secret_subkeys_v2_output(depth: pulumi.Input[Optional[Optional[_builtins
            The value should not contain leading or trailing forward slashes.
            The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
            *Available only for Vault Enterprise*.
-    :param _builtins.int version: Specifies the version to return. If not 
+    :param _builtins.int version: Specifies the version to return. If not
            set the latest version is returned.
     """
     __args__ = dict()

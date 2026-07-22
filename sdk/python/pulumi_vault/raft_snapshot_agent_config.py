@@ -33,6 +33,7 @@ class RaftSnapshotAgentConfigArgs:
                  aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
                  aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -49,14 +50,15 @@ class RaftSnapshotAgentConfigArgs:
                  local_max_space: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
-                 retain: pulumi.Input[Optional[_builtins.int]] = None):
+                 retain: pulumi.Input[Optional[_builtins.int]] = None,
+                 secrets_wo_version: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a RaftSnapshotAgentConfig resource.
 
         :param pulumi.Input[_builtins.int] interval_seconds: `<required>` - Time (in seconds) between snapshots.
         :param pulumi.Input[_builtins.str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
-               Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+               Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
                Types `local` and `aws-s3` the trailing `/` is optional.
         :param pulumi.Input[_builtins.str] storage_type: `<required>` - One of "local", "azure-blob", "aws-s3",
                or "google-gcs". The remaining parameters described below are all specific to
@@ -75,6 +77,8 @@ class RaftSnapshotAgentConfigArgs:
         :param pulumi.Input[_builtins.str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] aws_secret_access_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               AWS secret access key. Write-only: never stored in state. If secrets_wo_version is not set, changes are automatically detected via a hash stored in private state.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
         :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
@@ -99,6 +103,7 @@ class RaftSnapshotAgentConfigArgs:
         :param pulumi.Input[_builtins.int] retain: How many snapshots are to be kept; when writing a
                snapshot, if there are more snapshots already stored than this number, the
                oldest ones will be deleted.
+        :param pulumi.Input[_builtins.int] secrets_wo_version: Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
         """
         pulumi.set(__self__, "interval_seconds", interval_seconds)
         pulumi.set(__self__, "path_prefix", path_prefix)
@@ -124,7 +129,12 @@ class RaftSnapshotAgentConfigArgs:
         if aws_s3_server_side_encryption is not None:
             pulumi.set(__self__, "aws_s3_server_side_encryption", aws_s3_server_side_encryption)
         if aws_secret_access_key is not None:
+            warnings.warn("""Use aws_secret_access_key_wo instead, which is a write-only attribute that is never stored in state.""", DeprecationWarning)
+            pulumi.log.warn("""aws_secret_access_key is deprecated: Use aws_secret_access_key_wo instead, which is a write-only attribute that is never stored in state.""")
+        if aws_secret_access_key is not None:
             pulumi.set(__self__, "aws_secret_access_key", aws_secret_access_key)
+        if aws_secret_access_key_wo is not None:
+            pulumi.set(__self__, "aws_secret_access_key_wo", aws_secret_access_key_wo)
         if aws_session_token is not None:
             pulumi.set(__self__, "aws_session_token", aws_session_token)
         if azure_account_key is not None:
@@ -159,6 +169,8 @@ class RaftSnapshotAgentConfigArgs:
             pulumi.set(__self__, "namespace", namespace)
         if retain is not None:
             pulumi.set(__self__, "retain", retain)
+        if secrets_wo_version is not None:
+            pulumi.set(__self__, "secrets_wo_version", secrets_wo_version)
 
     @_builtins.property
     @pulumi.getter(name="intervalSeconds")
@@ -178,7 +190,7 @@ class RaftSnapshotAgentConfigArgs:
         """
         `<required>` - For `storage_type = "local"`, the directory to
         write the snapshots in. For cloud storage types, the bucket prefix to use.
-        Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+        Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
         Types `local` and `aws-s3` the trailing `/` is optional.
         """
         return pulumi.get(self, "path_prefix")
@@ -326,6 +338,7 @@ class RaftSnapshotAgentConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
+    @_utilities.deprecated("""Use aws_secret_access_key_wo instead, which is a write-only attribute that is never stored in state.""")
     def aws_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key.
@@ -335,6 +348,19 @@ class RaftSnapshotAgentConfigArgs:
     @aws_secret_access_key.setter
     def aws_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="awsSecretAccessKeyWo")
+    def aws_secret_access_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        AWS secret access key. Write-only: never stored in state. If secrets_wo_version is not set, changes are automatically detected via a hash stored in private state.
+        """
+        return pulumi.get(self, "aws_secret_access_key_wo")
+
+    @aws_secret_access_key_wo.setter
+    def aws_secret_access_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "aws_secret_access_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSessionToken")
@@ -547,6 +573,18 @@ class RaftSnapshotAgentConfigArgs:
     def retain(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retain", value)
 
+    @_builtins.property
+    @pulumi.getter(name="secretsWoVersion")
+    def secrets_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
+        """
+        return pulumi.get(self, "secrets_wo_version")
+
+    @secrets_wo_version.setter
+    def secrets_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "secrets_wo_version", value)
+
 
 @pulumi.input_type
 class _RaftSnapshotAgentConfigState:
@@ -562,6 +600,7 @@ class _RaftSnapshotAgentConfigState:
                  aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
                  aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -581,6 +620,7 @@ class _RaftSnapshotAgentConfigState:
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
                  retain: pulumi.Input[Optional[_builtins.int]] = None,
+                 secrets_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RaftSnapshotAgentConfig resources.
@@ -599,6 +639,8 @@ class _RaftSnapshotAgentConfigState:
         :param pulumi.Input[_builtins.str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] aws_secret_access_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               AWS secret access key. Write-only: never stored in state. If secrets_wo_version is not set, changes are automatically detected via a hash stored in private state.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
         :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
@@ -623,11 +665,12 @@ class _RaftSnapshotAgentConfigState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
-               Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+               Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
                Types `local` and `aws-s3` the trailing `/` is optional.
         :param pulumi.Input[_builtins.int] retain: How many snapshots are to be kept; when writing a
                snapshot, if there are more snapshots already stored than this number, the
                oldest ones will be deleted.
+        :param pulumi.Input[_builtins.int] secrets_wo_version: Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
         :param pulumi.Input[_builtins.str] storage_type: `<required>` - One of "local", "azure-blob", "aws-s3",
                or "google-gcs". The remaining parameters described below are all specific to
                the selected `storage_type` and prefixed accordingly.
@@ -653,7 +696,12 @@ class _RaftSnapshotAgentConfigState:
         if aws_s3_server_side_encryption is not None:
             pulumi.set(__self__, "aws_s3_server_side_encryption", aws_s3_server_side_encryption)
         if aws_secret_access_key is not None:
+            warnings.warn("""Use aws_secret_access_key_wo instead, which is a write-only attribute that is never stored in state.""", DeprecationWarning)
+            pulumi.log.warn("""aws_secret_access_key is deprecated: Use aws_secret_access_key_wo instead, which is a write-only attribute that is never stored in state.""")
+        if aws_secret_access_key is not None:
             pulumi.set(__self__, "aws_secret_access_key", aws_secret_access_key)
+        if aws_secret_access_key_wo is not None:
+            pulumi.set(__self__, "aws_secret_access_key_wo", aws_secret_access_key_wo)
         if aws_session_token is not None:
             pulumi.set(__self__, "aws_session_token", aws_session_token)
         if azure_account_key is not None:
@@ -692,6 +740,8 @@ class _RaftSnapshotAgentConfigState:
             pulumi.set(__self__, "path_prefix", path_prefix)
         if retain is not None:
             pulumi.set(__self__, "retain", retain)
+        if secrets_wo_version is not None:
+            pulumi.set(__self__, "secrets_wo_version", secrets_wo_version)
         if storage_type is not None:
             pulumi.set(__self__, "storage_type", storage_type)
 
@@ -820,6 +870,7 @@ class _RaftSnapshotAgentConfigState:
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
+    @_utilities.deprecated("""Use aws_secret_access_key_wo instead, which is a write-only attribute that is never stored in state.""")
     def aws_secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         AWS secret access key.
@@ -829,6 +880,19 @@ class _RaftSnapshotAgentConfigState:
     @aws_secret_access_key.setter
     def aws_secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_secret_access_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="awsSecretAccessKeyWo")
+    def aws_secret_access_key_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        AWS secret access key. Write-only: never stored in state. If secrets_wo_version is not set, changes are automatically detected via a hash stored in private state.
+        """
+        return pulumi.get(self, "aws_secret_access_key_wo")
+
+    @aws_secret_access_key_wo.setter
+    def aws_secret_access_key_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "aws_secret_access_key_wo", value)
 
     @_builtins.property
     @pulumi.getter(name="awsSessionToken")
@@ -1045,7 +1109,7 @@ class _RaftSnapshotAgentConfigState:
         """
         `<required>` - For `storage_type = "local"`, the directory to
         write the snapshots in. For cloud storage types, the bucket prefix to use.
-        Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+        Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
         Types `local` and `aws-s3` the trailing `/` is optional.
         """
         return pulumi.get(self, "path_prefix")
@@ -1067,6 +1131,18 @@ class _RaftSnapshotAgentConfigState:
     @retain.setter
     def retain(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retain", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretsWoVersion")
+    def secrets_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
+        """
+        return pulumi.get(self, "secrets_wo_version")
+
+    @secrets_wo_version.setter
+    def secrets_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "secrets_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="storageType")
@@ -1100,6 +1176,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
                  aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1119,6 +1196,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
                  retain: pulumi.Input[Optional[_builtins.int]] = None,
+                 secrets_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -1128,10 +1206,12 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
 
         **Note** this feature is available only with Vault Enterprise.
 
-        > **Important** All data provided in the resource configuration will be
+        > **Important** Most data provided in the resource configuration will be
         written in cleartext to state and plan files generated by Terraform, and
-        will appear in the console output when Terraform runs. Protect these
-        artifacts accordingly. See
+        will appear in the console output when Terraform runs. Use write-only
+        arguments for sensitive values when available (for example,
+        `aws_secret_access_key_wo`) to avoid storing those values in state. Protect
+        these artifacts accordingly. See
         the main provider documentation
         for more details.
 
@@ -1220,6 +1300,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] aws_secret_access_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               AWS secret access key. Write-only: never stored in state. If secrets_wo_version is not set, changes are automatically detected via a hash stored in private state.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
         :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
@@ -1244,11 +1326,12 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
-               Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+               Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
                Types `local` and `aws-s3` the trailing `/` is optional.
         :param pulumi.Input[_builtins.int] retain: How many snapshots are to be kept; when writing a
                snapshot, if there are more snapshots already stored than this number, the
                oldest ones will be deleted.
+        :param pulumi.Input[_builtins.int] secrets_wo_version: Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
         :param pulumi.Input[_builtins.str] storage_type: `<required>` - One of "local", "azure-blob", "aws-s3",
                or "google-gcs". The remaining parameters described below are all specific to
                the selected `storage_type` and prefixed accordingly.
@@ -1266,10 +1349,12 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
 
         **Note** this feature is available only with Vault Enterprise.
 
-        > **Important** All data provided in the resource configuration will be
+        > **Important** Most data provided in the resource configuration will be
         written in cleartext to state and plan files generated by Terraform, and
-        will appear in the console output when Terraform runs. Protect these
-        artifacts accordingly. See
+        will appear in the console output when Terraform runs. Use write-only
+        arguments for sensitive values when available (for example,
+        `aws_secret_access_key_wo`) to avoid storing those values in state. Protect
+        these artifacts accordingly. See
         the main provider documentation
         for more details.
 
@@ -1368,6 +1453,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
                  aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
                  azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1387,6 +1473,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
                  retain: pulumi.Input[Optional[_builtins.int]] = None,
+                 secrets_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  storage_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1407,7 +1494,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             __props__.__dict__["aws_s3_kms_key"] = aws_s3_kms_key
             __props__.__dict__["aws_s3_region"] = aws_s3_region
             __props__.__dict__["aws_s3_server_side_encryption"] = aws_s3_server_side_encryption
-            __props__.__dict__["aws_secret_access_key"] = aws_secret_access_key
+            __props__.__dict__["aws_secret_access_key"] = None if aws_secret_access_key is None else pulumi.Output.secret(aws_secret_access_key)
+            __props__.__dict__["aws_secret_access_key_wo"] = None if aws_secret_access_key_wo is None else pulumi.Output.secret(aws_secret_access_key_wo)
             __props__.__dict__["aws_session_token"] = aws_session_token
             __props__.__dict__["azure_account_key"] = azure_account_key
             __props__.__dict__["azure_account_name"] = azure_account_name
@@ -1431,9 +1519,12 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                 raise TypeError("Missing required property 'path_prefix'")
             __props__.__dict__["path_prefix"] = path_prefix
             __props__.__dict__["retain"] = retain
+            __props__.__dict__["secrets_wo_version"] = secrets_wo_version
             if storage_type is None and not opts.urn:
                 raise TypeError("Missing required property 'storage_type'")
             __props__.__dict__["storage_type"] = storage_type
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["awsSecretAccessKey", "awsSecretAccessKeyWo"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RaftSnapshotAgentConfig, __self__).__init__(
             'vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig',
             resource_name,
@@ -1455,6 +1546,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
             aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
             aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
             aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
             azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
             azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1474,6 +1566,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
             retain: pulumi.Input[Optional[_builtins.int]] = None,
+            secrets_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             storage_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'RaftSnapshotAgentConfig':
         """
         Get an existing RaftSnapshotAgentConfig resource's state with the given name, id, and optional extra
@@ -1496,6 +1589,8 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aws_s3_region: AWS region bucket is in.
         :param pulumi.Input[_builtins.bool] aws_s3_server_side_encryption: Use AES256 to encrypt bucket contents.
         :param pulumi.Input[_builtins.str] aws_secret_access_key: AWS secret access key.
+        :param pulumi.Input[_builtins.str] aws_secret_access_key_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               AWS secret access key. Write-only: never stored in state. If secrets_wo_version is not set, changes are automatically detected via a hash stored in private state.
         :param pulumi.Input[_builtins.str] aws_session_token: AWS session token.
         :param pulumi.Input[_builtins.str] azure_account_key: Azure account key. Required when azure_auth_mode is 'shared'.
         :param pulumi.Input[_builtins.str] azure_account_name: Azure account name.
@@ -1520,11 +1615,12 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path_prefix: `<required>` - For `storage_type = "local"`, the directory to
                write the snapshots in. For cloud storage types, the bucket prefix to use.
-               Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+               Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
                Types `local` and `aws-s3` the trailing `/` is optional.
         :param pulumi.Input[_builtins.int] retain: How many snapshots are to be kept; when writing a
                snapshot, if there are more snapshots already stored than this number, the
                oldest ones will be deleted.
+        :param pulumi.Input[_builtins.int] secrets_wo_version: Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
         :param pulumi.Input[_builtins.str] storage_type: `<required>` - One of "local", "azure-blob", "aws-s3",
                or "google-gcs". The remaining parameters described below are all specific to
                the selected `storage_type` and prefixed accordingly.
@@ -1544,6 +1640,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         __props__.__dict__["aws_s3_region"] = aws_s3_region
         __props__.__dict__["aws_s3_server_side_encryption"] = aws_s3_server_side_encryption
         __props__.__dict__["aws_secret_access_key"] = aws_secret_access_key
+        __props__.__dict__["aws_secret_access_key_wo"] = aws_secret_access_key_wo
         __props__.__dict__["aws_session_token"] = aws_session_token
         __props__.__dict__["azure_account_key"] = azure_account_key
         __props__.__dict__["azure_account_name"] = azure_account_name
@@ -1563,6 +1660,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path_prefix"] = path_prefix
         __props__.__dict__["retain"] = retain
+        __props__.__dict__["secrets_wo_version"] = secrets_wo_version
         __props__.__dict__["storage_type"] = storage_type
         return RaftSnapshotAgentConfig(resource_name, opts=opts, __props__=__props__)
 
@@ -1651,11 +1749,21 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="awsSecretAccessKey")
+    @_utilities.deprecated("""Use aws_secret_access_key_wo instead, which is a write-only attribute that is never stored in state.""")
     def aws_secret_access_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         AWS secret access key.
         """
         return pulumi.get(self, "aws_secret_access_key")
+
+    @_builtins.property
+    @pulumi.getter(name="awsSecretAccessKeyWo")
+    def aws_secret_access_key_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        AWS secret access key. Write-only: never stored in state. If secrets_wo_version is not set, changes are automatically detected via a hash stored in private state.
+        """
+        return pulumi.get(self, "aws_secret_access_key_wo")
 
     @_builtins.property
     @pulumi.getter(name="awsSessionToken")
@@ -1723,7 +1831,7 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="filePrefix")
-    def file_prefix(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def file_prefix(self) -> pulumi.Output[_builtins.str]:
         """
         Within the directory or bucket
         prefix given by `path_prefix`, the file or object name of snapshot files
@@ -1804,20 +1912,28 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         """
         `<required>` - For `storage_type = "local"`, the directory to
         write the snapshots in. For cloud storage types, the bucket prefix to use.
-        Types `azure-s3` and `google-gcs` require a trailing `/` (slash).
+        Types `azure-blob` and `google-gcs` require a trailing `/` (slash).
         Types `local` and `aws-s3` the trailing `/` is optional.
         """
         return pulumi.get(self, "path_prefix")
 
     @_builtins.property
     @pulumi.getter
-    def retain(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def retain(self) -> pulumi.Output[_builtins.int]:
         """
         How many snapshots are to be kept; when writing a
         snapshot, if there are more snapshots already stored than this number, the
         oldest ones will be deleted.
         """
         return pulumi.get(self, "retain")
+
+    @_builtins.property
+    @pulumi.getter(name="secretsWoVersion")
+    def secrets_wo_version(self) -> pulumi.Output[_builtins.int]:
+        """
+        Version number for write-only secret updates. If not set, the provider automatically detects changes to write-only secrets using a SHA-256 hash stored in private state. If set manually, you control when the secret is updated by incrementing this value.
+        """
+        return pulumi.get(self, "secrets_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="storageType")

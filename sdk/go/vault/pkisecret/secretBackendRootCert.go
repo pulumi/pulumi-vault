@@ -85,7 +85,7 @@ type SecretBackendRootCert struct {
 	ExcludedIpRanges pulumi.StringArrayOutput `pulumi:"excludedIpRanges"`
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains pulumi.StringArrayOutput `pulumi:"excludedUriDomains"`
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle", or "der".
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
@@ -225,7 +225,7 @@ type secretBackendRootCertState struct {
 	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle", or "der".
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -327,7 +327,7 @@ type SecretBackendRootCertState struct {
 	ExcludedIpRanges pulumi.StringArrayInput
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains pulumi.StringArrayInput
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle", or "der".
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -431,7 +431,7 @@ type secretBackendRootCertArgs struct {
 	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle", or "der".
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -524,7 +524,7 @@ type SecretBackendRootCertArgs struct {
 	ExcludedIpRanges pulumi.StringArrayInput
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains pulumi.StringArrayInput
-	// The format of data
+	// The format of data. Valid values are "pem", "pemBundle", or "der".
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -734,7 +734,7 @@ func (o SecretBackendRootCertOutput) ExcludedUriDomains() pulumi.StringArrayOutp
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.ExcludedUriDomains }).(pulumi.StringArrayOutput)
 }
 
-// The format of data
+// The format of data. Valid values are "pem", "pemBundle", or "der".
 func (o SecretBackendRootCertOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
 }

@@ -119,7 +119,6 @@ export class BackendConfigScep extends pulumi.CustomResource {
     /**
      * The level of logging verbosity, affects only SCEP logs on this mount.
      *
-     *
      * <a id="nestedatt--authenticators"></a>
      */
     declare public readonly logLevel: pulumi.Output<string>;
@@ -221,7 +220,6 @@ export interface BackendConfigScepState {
     /**
      * The level of logging verbosity, affects only SCEP logs on this mount.
      *
-     *
      * <a id="nestedatt--authenticators"></a>
      */
     logLevel?: pulumi.Input<string | undefined>;
@@ -273,7 +271,6 @@ export interface BackendConfigScepArgs {
     externalValidations?: pulumi.Input<pulumi.Input<inputs.pkiSecret.BackendConfigScepExternalValidation>[] | undefined>;
     /**
      * The level of logging verbosity, affects only SCEP logs on this mount.
-     *
      *
      * <a id="nestedatt--authenticators"></a>
      */

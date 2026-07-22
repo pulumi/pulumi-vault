@@ -44,7 +44,6 @@ class BackendConfigScepArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BackendConfigScepExternalValidationArgs']]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
         :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
                
-               
                <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
@@ -163,7 +162,6 @@ class BackendConfigScepArgs:
         """
         The level of logging verbosity, affects only SCEP logs on this mount.
 
-
         <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "log_level")
@@ -227,7 +225,6 @@ class _BackendConfigScepState:
         :param pulumi.Input[Sequence[pulumi.Input['BackendConfigScepExternalValidationArgs']]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
         :param pulumi.Input[_builtins.str] last_updated: A read-only timestamp representing the last time the configuration was updated.
         :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
-               
                
                <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
@@ -362,7 +359,6 @@ class _BackendConfigScepState:
         """
         The level of logging verbosity, affects only SCEP logs on this mount.
 
-
         <a id="nestedatt--authenticators"></a>
         """
         return pulumi.get(self, "log_level")
@@ -473,7 +469,6 @@ class BackendConfigScep(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether SCEP is enabled.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
         :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
-               
                
                <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
@@ -620,7 +615,6 @@ class BackendConfigScep(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] last_updated: A read-only timestamp representing the last time the configuration was updated.
         :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
                
-               
                <a id="nestedatt--authenticators"></a>
         :param pulumi.Input[_builtins.str] namespace: The namespace of the target resource.
                The value should not contain leading or trailing forward slashes.
@@ -715,7 +709,6 @@ class BackendConfigScep(pulumi.CustomResource):
     def log_level(self) -> pulumi.Output[_builtins.str]:
         """
         The level of logging verbosity, affects only SCEP logs on this mount.
-
 
         <a id="nestedatt--authenticators"></a>
         """

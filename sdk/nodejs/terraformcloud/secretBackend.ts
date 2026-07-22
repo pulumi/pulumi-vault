@@ -164,13 +164,13 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
-     * The Terraform Cloud management token this backend should 
+     * The Terraform Cloud management token this backend should
      * use to issue new tokens.
      */
     declare public readonly token: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The Terraform Cloud management token this backend should 
+     * The Terraform Cloud management token this backend should
      * use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
      */
     declare public readonly tokenWo: pulumi.Output<string | undefined>;
@@ -361,13 +361,13 @@ export interface SecretBackendState {
      */
     sealWrap?: pulumi.Input<boolean | undefined>;
     /**
-     * The Terraform Cloud management token this backend should 
+     * The Terraform Cloud management token this backend should
      * use to issue new tokens.
      */
     token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The Terraform Cloud management token this backend should 
+     * The Terraform Cloud management token this backend should
      * use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
      */
     tokenWo?: pulumi.Input<string | undefined>;
@@ -480,13 +480,13 @@ export interface SecretBackendArgs {
      */
     sealWrap?: pulumi.Input<boolean | undefined>;
     /**
-     * The Terraform Cloud management token this backend should 
+     * The Terraform Cloud management token this backend should
      * use to issue new tokens.
      */
     token?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The Terraform Cloud management token this backend should 
+     * The Terraform Cloud management token this backend should
      * use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
      */
     tokenWo?: pulumi.Input<string | undefined>;

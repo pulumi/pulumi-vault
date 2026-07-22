@@ -11,5 +11,6 @@ from .auth_backend_role import *
 from .backend import *
 from .backend_role import *
 from .get_access_credentials import *
+from .secret_backend_static_role import *
 from ._inputs import *
 from . import outputs

@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * const example = new vault.Policy("example", {
  *     name: "dev-team",
+ *     allowOverwrite: false,
  *     policy: `path \\"secret/my_app\\" {
  *   capabilities = [\\"update\\"]
  * }
@@ -65,6 +66,12 @@ export class Policy extends pulumi.CustomResource {
     }
 
     /**
+     * Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+     *
+     * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+     */
+    declare public readonly allowOverwrite: pulumi.Output<boolean>;
+    /**
      * The name of the policy
      */
     declare public readonly name: pulumi.Output<string>;
@@ -93,6 +100,7 @@ export class Policy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PolicyState | undefined;
+            resourceInputs["allowOverwrite"] = state?.allowOverwrite;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["policy"] = state?.policy;
@@ -101,6 +109,7 @@ export class Policy extends pulumi.CustomResource {
             if (args?.policy === undefined && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
+            resourceInputs["allowOverwrite"] = args?.allowOverwrite;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["policy"] = args?.policy;
@@ -114,6 +123,12 @@ export class Policy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Policy resources.
  */
 export interface PolicyState {
+    /**
+     * Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+     *
+     * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+     */
+    allowOverwrite?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the policy
      */
@@ -135,6 +150,12 @@ export interface PolicyState {
  * The set of arguments for constructing a Policy resource.
  */
 export interface PolicyArgs {
+    /**
+     * Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+     *
+     * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+     */
+    allowOverwrite?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the policy
      */

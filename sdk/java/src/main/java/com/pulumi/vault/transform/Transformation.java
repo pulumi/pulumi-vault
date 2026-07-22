@@ -67,6 +67,52 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Tokenization Example
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Mount;
+ * import com.pulumi.vault.MountArgs;
+ * import com.pulumi.vault.transform.Transformation;
+ * import com.pulumi.vault.transform.TransformationArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var transform = new Mount("transform", MountArgs.builder()
+ *             .path("transform")
+ *             .type("transform")
+ *             .build());
+ * 
+ *         var tokenization = new Transformation("tokenization", TransformationArgs.builder()
+ *             .path(transform.path())
+ *             .name("ssn-tokenization")
+ *             .type("tokenization")
+ *             .mappingMode("default")
+ *             .stores("my-store")
+ *             .allowedRoles("payments")
+ *             .convergent(true)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Tutorials
  * 
  * Refer to the [Codify Management of Vault Enterprise Using Terraform](https://learn.hashicorp.com/tutorials/vault/codify-mgmt-enterprise) tutorial for additional examples of configuring data transformation using the Transform secrets engine.
@@ -89,6 +135,20 @@ public class Transformation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedRoles);
     }
     /**
+     * If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is &#34;tokenization&#34;. Default: `false`
+     * 
+     */
+    @Export(name="convergent", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> convergent;
+
+    /**
+     * @return If true, multiple transformations of the same plaintext will produce the same ciphertext. Only used when `type` is &#34;tokenization&#34;. Default: `false`
+     * 
+     */
+    public Output<Optional<Boolean>> convergent() {
+        return Codegen.optional(this.convergent);
+    }
+    /**
      * If true, this transform can be deleted.
      * Otherwise, deletion is blocked while this value remains false. Default: `false`
      * *Only supported on vault-1.12+*
@@ -105,6 +165,24 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Boolean>> deletionAllowed() {
         return Codegen.optional(this.deletionAllowed);
+    }
+    /**
+     * Specifies the mapping mode for stored values.
+     * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    @Export(name="mappingMode", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> mappingMode;
+
+    /**
+     * @return Specifies the mapping mode for stored values.
+     * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    public Output<Optional<String>> mappingMode() {
+        return Codegen.optional(this.mappingMode);
     }
     /**
      * The character used to replace data when in masking mode
@@ -167,6 +245,24 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      */
     public Output<String> path() {
         return this.path;
+    }
+    /**
+     * List of stores to use for tokenization state.
+     * Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    @Export(name="stores", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> stores;
+
+    /**
+     * @return List of stores to use for tokenization state.
+     * Only used when `type` is &#34;tokenization&#34;.
+     * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    public Output<Optional<List<String>>> stores() {
+        return Codegen.optional(this.stores);
     }
     /**
      * The name of the template to use.

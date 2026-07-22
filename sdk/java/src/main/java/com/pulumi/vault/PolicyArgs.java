@@ -6,6 +6,7 @@ package com.pulumi.vault;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -15,6 +16,29 @@ import javax.annotation.Nullable;
 public final class PolicyArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final PolicyArgs Empty = new PolicyArgs();
+
+    /**
+     * Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+     * 
+     * @deprecated
+     * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+     * 
+     */
+    @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+    @Import(name="allowOverwrite")
+    private @Nullable Output<Boolean> allowOverwrite;
+
+    /**
+     * @return Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+     * 
+     * @deprecated
+     * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+     * 
+     */
+    @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+    public Optional<Output<Boolean>> allowOverwrite() {
+        return Optional.ofNullable(this.allowOverwrite);
+    }
 
     /**
      * The name of the policy
@@ -70,6 +94,7 @@ public final class PolicyArgs extends com.pulumi.resources.ResourceArgs {
     private PolicyArgs() {}
 
     private PolicyArgs(PolicyArgs $) {
+        this.allowOverwrite = $.allowOverwrite;
         this.name = $.name;
         this.namespace = $.namespace;
         this.policy = $.policy;
@@ -91,6 +116,35 @@ public final class PolicyArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(PolicyArgs defaults) {
             $ = new PolicyArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param allowOverwrite Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+         * 
+         */
+        @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+        public Builder allowOverwrite(@Nullable Output<Boolean> allowOverwrite) {
+            $.allowOverwrite = allowOverwrite;
+            return this;
+        }
+
+        /**
+         * @param allowOverwrite Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+         * 
+         */
+        @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+        public Builder allowOverwrite(Boolean allowOverwrite) {
+            return allowOverwrite(Output.of(allowOverwrite));
         }
 
         /**

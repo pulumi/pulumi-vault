@@ -17,6 +17,8 @@ from . import _utilities
 __all__ = [
     'AuthBackendTuneArgs',
     'AuthBackendTuneArgsDict',
+    'OauthResourceServerConfigProfilePublicKeyArgs',
+    'OauthResourceServerConfigProfilePublicKeyArgsDict',
     'OciAuthBackendTuneArgs',
     'OciAuthBackendTuneArgsDict',
     'ProviderAuthLoginArgs',
@@ -254,6 +256,53 @@ class AuthBackendTuneArgs:
         pulumi.set(self, "token_type", value)
 
 
+class OauthResourceServerConfigProfilePublicKeyArgsDict(TypedDict):
+    key_id: pulumi.Input[_builtins.str]
+    """
+    The key ID (kid) for this public key. Must be unique within the profile.
+    """
+    pem: pulumi.Input[_builtins.str]
+    """
+    The PEM-encoded public key.
+    """
+
+@pulumi.input_type
+class OauthResourceServerConfigProfilePublicKeyArgs:
+    def __init__(__self__, *,
+                 key_id: pulumi.Input[_builtins.str],
+                 pem: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] key_id: The key ID (kid) for this public key. Must be unique within the profile.
+        :param pulumi.Input[_builtins.str] pem: The PEM-encoded public key.
+        """
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "pem", pem)
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The key ID (kid) for this public key. Must be unique within the profile.
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def pem(self) -> pulumi.Input[_builtins.str]:
+        """
+        The PEM-encoded public key.
+        """
+        return pulumi.get(self, "pem")
+
+    @pem.setter
+    def pem(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "pem", value)
+
+
 class OciAuthBackendTuneArgsDict(TypedDict):
     allowed_response_headers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
@@ -297,7 +346,6 @@ class OciAuthBackendTuneArgsDict(TypedDict):
     Specifies the type of tokens that should be returned by
     the mount. Valid values are "default-service", "default-batch", "service", "batch".
 
-
     For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
     """
 
@@ -331,7 +379,6 @@ class OciAuthBackendTuneArgs:
                pass from the request to the backend.
         :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-               
                
                For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """
@@ -451,7 +498,6 @@ class OciAuthBackendTuneArgs:
         """
         Specifies the type of tokens that should be returned by
         the mount. Valid values are "default-service", "default-batch", "service", "batch".
-
 
         For more details on the usage of each argument, consult the [Vault OCI API documentation](https://developer.hashicorp.com/vault/api-docs/auth/oci#configure-home-tenancy-method).
         """

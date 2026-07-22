@@ -21,6 +21,10 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "vault:index/activationFlags:ActivationFlags":
+		r = &ActivationFlags{}
+	case "vault:index/agentRegistration:AgentRegistration":
+		r = &AgentRegistration{}
 	case "vault:index/audit:Audit":
 		r = &Audit{}
 	case "vault:index/auditRequestHeader:AuditRequestHeader":
@@ -47,16 +51,24 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NomadSecretBackend{}
 	case "vault:index/nomadSecretRole:NomadSecretRole":
 		r = &NomadSecretRole{}
+	case "vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile":
+		r = &OauthResourceServerConfigProfile{}
 	case "vault:index/ociAuthBackend:OciAuthBackend":
 		r = &OciAuthBackend{}
 	case "vault:index/ociAuthBackendRole:OciAuthBackendRole":
 		r = &OciAuthBackendRole{}
+	case "vault:index/passwordPolicy:PasswordPolicy":
+		r = &PasswordPolicy{}
 	case "vault:index/plugin:Plugin":
 		r = &Plugin{}
 	case "vault:index/pluginPinnedVersion:PluginPinnedVersion":
 		r = &PluginPinnedVersion{}
+	case "vault:index/pluginRuntime:PluginRuntime":
+		r = &PluginRuntime{}
 	case "vault:index/policy:Policy":
 		r = &Policy{}
+	case "vault:index/quotaConfig:QuotaConfig":
+		r = &QuotaConfig{}
 	case "vault:index/quotaLeaseCount:QuotaLeaseCount":
 		r = &QuotaLeaseCount{}
 	case "vault:index/quotaRateLimit:QuotaRateLimit":
@@ -67,10 +79,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RaftSnapshotAgentConfig{}
 	case "vault:index/rgpPolicy:RgpPolicy":
 		r = &RgpPolicy{}
+	case "vault:index/rotationPolicy:RotationPolicy":
+		r = &RotationPolicy{}
 	case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
 		r = &ScepAuthBackendRole{}
+	case "vault:index/sysConfigCors:SysConfigCors":
+		r = &SysConfigCors{}
 	case "vault:index/token:Token":
 		r = &Token{}
+	case "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser":
+		r = &UserpassAuthBackendUser{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -102,6 +120,16 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/activationFlags",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/agentRegistration",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/audit",
@@ -169,12 +197,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"index/oauthResourceServerConfigProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"index/ociAuthBackend",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/ociAuthBackendRole",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/passwordPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -189,7 +227,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"index/pluginRuntime",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"index/policy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/quotaConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -219,12 +267,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"index/rotationPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"index/scepAuthBackendRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"index/sysConfigCors",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"index/token",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/userpassAuthBackendUser",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

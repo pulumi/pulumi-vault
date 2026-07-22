@@ -54,6 +54,10 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly string Library;
         /// <summary>
+        /// The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+        /// </summary>
+        public readonly int? MaxParallel;
+        /// <summary>
         /// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
         /// </summary>
         public readonly string Mechanism;
@@ -73,6 +77,10 @@ namespace Pulumi.Vault.Managed.Outputs
         /// The slot token label to use
         /// </summary>
         public readonly string? TokenLabel;
+        /// <summary>
+        /// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        /// </summary>
+        public readonly ImmutableArray<string> Usages;
         /// <summary>
         /// ID of the managed key read from Vault
         /// </summary>
@@ -100,6 +108,8 @@ namespace Pulumi.Vault.Managed.Outputs
 
             string library,
 
+            int? maxParallel,
+
             string mechanism,
 
             string name,
@@ -109,6 +119,8 @@ namespace Pulumi.Vault.Managed.Outputs
             string? slot,
 
             string? tokenLabel,
+
+            ImmutableArray<string> usages,
 
             string? uuid)
         {
@@ -122,11 +134,13 @@ namespace Pulumi.Vault.Managed.Outputs
             KeyId = keyId;
             KeyLabel = keyLabel;
             Library = library;
+            MaxParallel = maxParallel;
             Mechanism = mechanism;
             Name = name;
             Pin = pin;
             Slot = slot;
             TokenLabel = tokenLabel;
+            Usages = usages;
             Uuid = uuid;
         }
     }

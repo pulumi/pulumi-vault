@@ -69,7 +69,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     declare public readonly backend: pulumi.Output<string>;
     /**
-     * Specifies the number of bits to use for the generated keys. 
+     * Specifies the number of bits to use for the generated keys.
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
      * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
      * 384, or 521; ignored with `key_type=ed25519`.
@@ -80,7 +80,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly keyId: pulumi.Output<string>;
     /**
-     * When a new key is created with this request, optionally specifies the name for this. 
+     * When a new key is created with this request, optionally specifies the name for this.
      * The global ref `default` may not be used as a name.
      */
     declare public readonly keyName: pulumi.Output<string | undefined>;
@@ -162,7 +162,7 @@ export interface SecretBackendKeyState {
      */
     backend?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the number of bits to use for the generated keys. 
+     * Specifies the number of bits to use for the generated keys.
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
      * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
      * 384, or 521; ignored with `key_type=ed25519`.
@@ -173,7 +173,7 @@ export interface SecretBackendKeyState {
      */
     keyId?: pulumi.Input<string | undefined>;
     /**
-     * When a new key is created with this request, optionally specifies the name for this. 
+     * When a new key is created with this request, optionally specifies the name for this.
      * The global ref `default` may not be used as a name.
      */
     keyName?: pulumi.Input<string | undefined>;
@@ -211,14 +211,14 @@ export interface SecretBackendKeyArgs {
      */
     backend: pulumi.Input<string>;
     /**
-     * Specifies the number of bits to use for the generated keys. 
+     * Specifies the number of bits to use for the generated keys.
      * Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
      * 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
      * 384, or 521; ignored with `key_type=ed25519`.
      */
     keyBits?: pulumi.Input<number | undefined>;
     /**
-     * When a new key is created with this request, optionally specifies the name for this. 
+     * When a new key is created with this request, optionally specifies the name for this.
      * The global ref `default` may not be used as a name.
      */
     keyName?: pulumi.Input<string | undefined>;

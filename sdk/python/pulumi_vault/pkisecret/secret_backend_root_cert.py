@@ -73,7 +73,7 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
                across all issuers and not be the reserved value `default`
@@ -315,7 +315,7 @@ class SecretBackendRootCertArgs:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data
+        The format of data. Valid values are "pem", "pem_bundle", or "der".
         """
         return pulumi.get(self, "format")
 
@@ -741,7 +741,7 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_id: The ID of the generated issuer.
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
@@ -1001,7 +1001,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data
+        The format of data. Valid values are "pem", "pem_bundle", or "der".
         """
         return pulumi.get(self, "format")
 
@@ -1521,7 +1521,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
                across all issuers and not be the reserved value `default`
@@ -1791,7 +1791,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", or "der".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_id: The ID of the generated issuer.
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
@@ -1971,7 +1971,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The format of data
+        The format of data. Valid values are "pem", "pem_bundle", or "der".
         """
         return pulumi.get(self, "format")
 

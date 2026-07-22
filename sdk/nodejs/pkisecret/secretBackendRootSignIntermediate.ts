@@ -70,7 +70,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly certificate: pulumi.Output<string>;
     /**
-     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
      * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
      */
     declare public /*out*/ readonly certificateBundle: pulumi.Output<string>;
@@ -145,7 +145,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
-     * Set the Not After field of the certificate with specified date value. 
+     * Set the Not After field of the certificate with specified date value.
      * The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
      * for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
@@ -360,7 +360,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     certificate?: pulumi.Input<string | undefined>;
     /**
-     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+     * The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
      * Requires the `format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
      */
     certificateBundle?: pulumi.Input<string | undefined>;
@@ -435,7 +435,7 @@ export interface SecretBackendRootSignIntermediateState {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
-     * Set the Not After field of the certificate with specified date value. 
+     * Set the Not After field of the certificate with specified date value.
      * The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
      * for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */
@@ -597,7 +597,7 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
-     * Set the Not After field of the certificate with specified date value. 
+     * Set the Not After field of the certificate with specified date value.
      * The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
      * for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
      */

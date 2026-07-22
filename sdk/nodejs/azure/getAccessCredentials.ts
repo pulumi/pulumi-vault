@@ -88,7 +88,7 @@ export interface GetAccessCredentialsArgs {
      */
     environment?: string;
     /**
-     * If 'validate_creds' is true, 
+     * If 'validate_creds' is true,
      * the number of seconds after which to give up validating credentials. Defaults
      * to 300.
      */
@@ -101,13 +101,13 @@ export interface GetAccessCredentialsArgs {
      */
     namespace?: string;
     /**
-     * If 'validate_creds' is true, 
+     * If 'validate_creds' is true,
      * the number of seconds to wait between each test of generated credentials.
      * Defaults to 1.
      */
     numSecondsBetweenTests?: number;
     /**
-     * If 'validate_creds' is true, 
+     * If 'validate_creds' is true,
      * the number of sequential successes required to validate generated
      * credentials. Defaults to 8.
      */
@@ -130,7 +130,7 @@ export interface GetAccessCredentialsArgs {
      */
     tenantId?: string;
     /**
-     * Whether generated credentials should be 
+     * Whether generated credentials should be
      * validated before being returned. Defaults to `false`, which returns
      * credentials without checking whether they have fully propagated throughout
      * Azure Active Directory. Designating `true` activates testing.
@@ -274,7 +274,7 @@ export interface GetAccessCredentialsOutputArgs {
      */
     environment?: pulumi.Input<string | undefined>;
     /**
-     * If 'validate_creds' is true, 
+     * If 'validate_creds' is true,
      * the number of seconds after which to give up validating credentials. Defaults
      * to 300.
      */
@@ -287,13 +287,13 @@ export interface GetAccessCredentialsOutputArgs {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
-     * If 'validate_creds' is true, 
+     * If 'validate_creds' is true,
      * the number of seconds to wait between each test of generated credentials.
      * Defaults to 1.
      */
     numSecondsBetweenTests?: pulumi.Input<number | undefined>;
     /**
-     * If 'validate_creds' is true, 
+     * If 'validate_creds' is true,
      * the number of sequential successes required to validate generated
      * credentials. Defaults to 8.
      */
@@ -316,7 +316,7 @@ export interface GetAccessCredentialsOutputArgs {
      */
     tenantId?: pulumi.Input<string | undefined>;
     /**
-     * Whether generated credentials should be 
+     * Whether generated credentials should be
      * validated before being returned. Defaults to `false`, which returns
      * credentials without checking whether they have fully propagated throughout
      * Azure Active Directory. Designating `true` activates testing.

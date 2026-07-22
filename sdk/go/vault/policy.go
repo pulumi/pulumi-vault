@@ -27,8 +27,9 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := vault.NewPolicy(ctx, "example", &vault.PolicyArgs{
-//				Name:   pulumi.String("dev-team"),
-//				Policy: pulumi.String("path \\\"secret/my_app\\\" {\n  capabilities = [\\\"update\\\"]\n}\n"),
+//				Name:           pulumi.String("dev-team"),
+//				AllowOverwrite: pulumi.Bool(false),
+//				Policy:         pulumi.String("path \\\"secret/my_app\\\" {\n  capabilities = [\\\"update\\\"]\n}\n"),
 //			})
 //			if err != nil {
 //				return err
@@ -57,6 +58,10 @@ import (
 type Policy struct {
 	pulumi.CustomResourceState
 
+	// Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+	//
+	// Deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+	AllowOverwrite pulumi.BoolOutput `pulumi:"allowOverwrite"`
 	// The name of the policy
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -101,6 +106,10 @@ func GetPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Policy resources.
 type policyState struct {
+	// Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+	//
+	// Deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+	AllowOverwrite *bool `pulumi:"allowOverwrite"`
 	// The name of the policy
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -113,6 +122,10 @@ type policyState struct {
 }
 
 type PolicyState struct {
+	// Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+	//
+	// Deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+	AllowOverwrite pulumi.BoolPtrInput
 	// The name of the policy
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -129,6 +142,10 @@ func (PolicyState) ElementType() reflect.Type {
 }
 
 type policyArgs struct {
+	// Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+	//
+	// Deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+	AllowOverwrite *bool `pulumi:"allowOverwrite"`
 	// The name of the policy
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -142,6 +159,10 @@ type policyArgs struct {
 
 // The set of arguments for constructing a Policy resource.
 type PolicyArgs struct {
+	// Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+	//
+	// Deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+	AllowOverwrite pulumi.BoolPtrInput
 	// The name of the policy
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -238,6 +259,13 @@ func (o PolicyOutput) ToPolicyOutput() PolicyOutput {
 
 func (o PolicyOutput) ToPolicyOutputWithContext(ctx context.Context) PolicyOutput {
 	return o
+}
+
+// Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
+//
+// Deprecated: Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.
+func (o PolicyOutput) AllowOverwrite() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Policy) pulumi.BoolOutput { return v.AllowOverwrite }).(pulumi.BoolOutput)
 }
 
 // The name of the policy

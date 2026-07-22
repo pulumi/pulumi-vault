@@ -40,6 +40,8 @@ type KeysAw struct {
 	Region *string `pulumi:"region"`
 	// The AWS secret key to use
 	SecretKey string `pulumi:"secretKey"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages []string `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid *string `pulumi:"uuid"`
 }
@@ -82,6 +84,8 @@ type KeysAwArgs struct {
 	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The AWS secret key to use
 	SecretKey pulumi.StringInput `pulumi:"secretKey"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages pulumi.StringArrayInput `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
 }
@@ -202,6 +206,11 @@ func (o KeysAwOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAw) string { return v.SecretKey }).(pulumi.StringOutput)
 }
 
+// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+func (o KeysAwOutput) Usages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KeysAw) []string { return v.Usages }).(pulumi.StringArrayOutput)
+}
+
 // ID of the managed key read from Vault
 func (o KeysAwOutput) Uuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAw) *string { return v.Uuid }).(pulumi.StringPtrOutput)
@@ -254,6 +263,8 @@ type KeysAzure struct {
 	Resource *string `pulumi:"resource"`
 	// The tenant id for the Azure Active Directory organization
 	TenantId string `pulumi:"tenantId"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages []string `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid *string `pulumi:"uuid"`
 	// The Key Vault vault to use the encryption keys for encryption and decryption
@@ -298,6 +309,8 @@ type KeysAzureArgs struct {
 	Resource pulumi.StringPtrInput `pulumi:"resource"`
 	// The tenant id for the Azure Active Directory organization
 	TenantId pulumi.StringInput `pulumi:"tenantId"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages pulumi.StringArrayInput `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
 	// The Key Vault vault to use the encryption keys for encryption and decryption
@@ -420,6 +433,11 @@ func (o KeysAzureOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.TenantId }).(pulumi.StringOutput)
 }
 
+// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+func (o KeysAzureOutput) Usages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KeysAzure) []string { return v.Usages }).(pulumi.StringArrayOutput)
+}
+
 // ID of the managed key read from Vault
 func (o KeysAzureOutput) Uuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysAzure) *string { return v.Uuid }).(pulumi.StringPtrOutput)
@@ -475,6 +493,8 @@ type KeysGcp struct {
 	Project string `pulumi:"project"`
 	// The GCP region where the key ring was created.
 	Region string `pulumi:"region"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages []string `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid *string `pulumi:"uuid"`
 }
@@ -515,6 +535,8 @@ type KeysGcpArgs struct {
 	Project pulumi.StringInput `pulumi:"project"`
 	// The GCP region where the key ring was created.
 	Region pulumi.StringInput `pulumi:"region"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages pulumi.StringArrayInput `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
 }
@@ -630,6 +652,11 @@ func (o KeysGcpOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysGcp) string { return v.Region }).(pulumi.StringOutput)
 }
 
+// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+func (o KeysGcpOutput) Usages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KeysGcp) []string { return v.Usages }).(pulumi.StringArrayOutput)
+}
+
 // ID of the managed key read from Vault
 func (o KeysGcpOutput) Uuid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysGcp) *string { return v.Uuid }).(pulumi.StringPtrOutput)
@@ -676,6 +703,8 @@ type KeysPkc struct {
 	KeyLabel *string `pulumi:"keyLabel"`
 	// The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
 	Library string `pulumi:"library"`
+	// The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+	MaxParallel *int `pulumi:"maxParallel"`
 	// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
 	Mechanism string `pulumi:"mechanism"`
 	// A unique lowercase name that serves as identifying the key
@@ -686,6 +715,8 @@ type KeysPkc struct {
 	Slot *string `pulumi:"slot"`
 	// The slot token label to use
 	TokenLabel *string `pulumi:"tokenLabel"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages []string `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid *string `pulumi:"uuid"`
 }
@@ -722,6 +753,8 @@ type KeysPkcArgs struct {
 	KeyLabel pulumi.StringPtrInput `pulumi:"keyLabel"`
 	// The name of the kmsLibrary stanza to use from Vault's config to lookup the local library path
 	Library pulumi.StringInput `pulumi:"library"`
+	// The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+	MaxParallel pulumi.IntPtrInput `pulumi:"maxParallel"`
 	// The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
 	// A unique lowercase name that serves as identifying the key
@@ -732,6 +765,8 @@ type KeysPkcArgs struct {
 	Slot pulumi.StringPtrInput `pulumi:"slot"`
 	// The slot token label to use
 	TokenLabel pulumi.StringPtrInput `pulumi:"tokenLabel"`
+	// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+	Usages pulumi.StringArrayInput `pulumi:"usages"`
 	// ID of the managed key read from Vault
 	Uuid pulumi.StringPtrInput `pulumi:"uuid"`
 }
@@ -837,6 +872,11 @@ func (o KeysPkcOutput) Library() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.Library }).(pulumi.StringOutput)
 }
 
+// The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+func (o KeysPkcOutput) MaxParallel() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KeysPkc) *int { return v.MaxParallel }).(pulumi.IntPtrOutput)
+}
+
 // The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
 func (o KeysPkcOutput) Mechanism() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.Mechanism }).(pulumi.StringOutput)
@@ -860,6 +900,11 @@ func (o KeysPkcOutput) Slot() pulumi.StringPtrOutput {
 // The slot token label to use
 func (o KeysPkcOutput) TokenLabel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KeysPkc) *string { return v.TokenLabel }).(pulumi.StringPtrOutput)
+}
+
+// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+func (o KeysPkcOutput) Usages() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KeysPkc) []string { return v.Usages }).(pulumi.StringArrayOutput)
 }
 
 // ID of the managed key read from Vault

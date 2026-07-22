@@ -84,6 +84,18 @@ namespace Pulumi.Vault.Managed.Inputs
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
+        [Input("usages")]
+        private InputList<string>? _usages;
+
+        /// <summary>
+        /// A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+        /// </summary>
+        public InputList<string> Usages
+        {
+            get => _usages ?? (_usages = new InputList<string>());
+            set => _usages = value;
+        }
+
         /// <summary>
         /// ID of the managed key read from Vault
         /// </summary>

@@ -255,7 +255,7 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly roleArn: pulumi.Output<string | undefined>;
     /**
-     * The amount of time in seconds Vault should wait before rotating the root credential. 
+     * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
     declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
@@ -557,7 +557,7 @@ export interface SecretBackendState {
      */
     roleArn?: pulumi.Input<string | undefined>;
     /**
-     * The amount of time in seconds Vault should wait before rotating the root credential. 
+     * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
     rotationPeriod?: pulumi.Input<number | undefined>;
@@ -753,7 +753,7 @@ export interface SecretBackendArgs {
      */
     roleArn?: pulumi.Input<string | undefined>;
     /**
-     * The amount of time in seconds Vault should wait before rotating the root credential. 
+     * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
     rotationPeriod?: pulumi.Input<number | undefined>;

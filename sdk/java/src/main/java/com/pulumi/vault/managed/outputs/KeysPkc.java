@@ -6,7 +6,9 @@ package com.pulumi.vault.managed.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -64,6 +66,11 @@ public final class KeysPkc {
      */
     private String library;
     /**
+     * @return The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+     * 
+     */
+    private @Nullable Integer maxParallel;
+    /**
      * @return The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
      * 
      */
@@ -88,6 +95,11 @@ public final class KeysPkc {
      * 
      */
     private @Nullable String tokenLabel;
+    /**
+     * @return A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    private @Nullable List<String> usages;
     /**
      * @return ID of the managed key read from Vault
      * 
@@ -166,6 +178,13 @@ public final class KeysPkc {
         return this.library;
     }
     /**
+     * @return The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+     * 
+     */
+    public Optional<Integer> maxParallel() {
+        return Optional.ofNullable(this.maxParallel);
+    }
+    /**
      * @return The encryption/decryption mechanism to use, specified as a hexadecimal (prefixed by 0x) string.
      * 
      */
@@ -201,6 +220,13 @@ public final class KeysPkc {
         return Optional.ofNullable(this.tokenLabel);
     }
     /**
+     * @return A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
+     * 
+     */
+    public List<String> usages() {
+        return this.usages == null ? List.of() : this.usages;
+    }
+    /**
      * @return ID of the managed key read from Vault
      * 
      */
@@ -227,11 +253,13 @@ public final class KeysPkc {
         private @Nullable String keyId;
         private @Nullable String keyLabel;
         private String library;
+        private @Nullable Integer maxParallel;
         private String mechanism;
         private String name;
         private String pin;
         private @Nullable String slot;
         private @Nullable String tokenLabel;
+        private @Nullable List<String> usages;
         private @Nullable String uuid;
         public Builder() {}
         public Builder(KeysPkc defaults) {
@@ -246,11 +274,13 @@ public final class KeysPkc {
     	      this.keyId = defaults.keyId;
     	      this.keyLabel = defaults.keyLabel;
     	      this.library = defaults.library;
+    	      this.maxParallel = defaults.maxParallel;
     	      this.mechanism = defaults.mechanism;
     	      this.name = defaults.name;
     	      this.pin = defaults.pin;
     	      this.slot = defaults.slot;
     	      this.tokenLabel = defaults.tokenLabel;
+    	      this.usages = defaults.usages;
     	      this.uuid = defaults.uuid;
         }
 
@@ -317,6 +347,12 @@ public final class KeysPkc {
             return this;
         }
         @CustomType.Setter
+        public Builder maxParallel(@Nullable Integer maxParallel) {
+
+            this.maxParallel = maxParallel;
+            return this;
+        }
+        @CustomType.Setter
         public Builder mechanism(String mechanism) {
             if (mechanism == null) {
               throw new MissingRequiredPropertyException("KeysPkc", "mechanism");
@@ -353,6 +389,15 @@ public final class KeysPkc {
             return this;
         }
         @CustomType.Setter
+        public Builder usages(@Nullable List<String> usages) {
+
+            this.usages = usages;
+            return this;
+        }
+        public Builder usages(String... usages) {
+            return usages(List.of(usages));
+        }
+        @CustomType.Setter
         public Builder uuid(@Nullable String uuid) {
 
             this.uuid = uuid;
@@ -370,11 +415,13 @@ public final class KeysPkc {
             _resultValue.keyId = keyId;
             _resultValue.keyLabel = keyLabel;
             _resultValue.library = library;
+            _resultValue.maxParallel = maxParallel;
             _resultValue.mechanism = mechanism;
             _resultValue.name = name;
             _resultValue.pin = pin;
             _resultValue.slot = slot;
             _resultValue.tokenLabel = tokenLabel;
+            _resultValue.usages = usages;
             _resultValue.uuid = uuid;
             return _resultValue;
         }
