@@ -26,7 +26,7 @@ class GetSysConfigCorsResult:
     """
     A collection of values returned by getSysConfigCors.
     """
-    def __init__(__self__, allowed_headers=None, allowed_origins=None, enabled=None, id=None):
+    def __init__(__self__, allowed_headers=None, allowed_origins=None, enabled=None):
         if allowed_headers and not isinstance(allowed_headers, list):
             raise TypeError("Expected argument 'allowed_headers' to be a list")
         pulumi.set(__self__, "allowed_headers", allowed_headers)
@@ -36,9 +36,6 @@ class GetSysConfigCorsResult:
         if enabled and not isinstance(enabled, bool):
             raise TypeError("Expected argument 'enabled' to be a bool")
         pulumi.set(__self__, "enabled", enabled)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
 
     @_builtins.property
     @pulumi.getter(name="allowedHeaders")
@@ -64,14 +61,6 @@ class GetSysConfigCorsResult:
         """
         return pulumi.get(self, "enabled")
 
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
 
 class AwaitableGetSysConfigCorsResult(GetSysConfigCorsResult):
     # pylint: disable=using-constant-test
@@ -81,8 +70,7 @@ class AwaitableGetSysConfigCorsResult(GetSysConfigCorsResult):
         return GetSysConfigCorsResult(
             allowed_headers=self.allowed_headers,
             allowed_origins=self.allowed_origins,
-            enabled=self.enabled,
-            id=self.id)
+            enabled=self.enabled)
 
 
 def get_sys_config_cors(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSysConfigCorsResult:
@@ -141,8 +129,7 @@ def get_sys_config_cors(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitabl
     return AwaitableGetSysConfigCorsResult(
         allowed_headers=pulumi.get(__ret__, 'allowed_headers'),
         allowed_origins=pulumi.get(__ret__, 'allowed_origins'),
-        enabled=pulumi.get(__ret__, 'enabled'),
-        id=pulumi.get(__ret__, 'id'))
+        enabled=pulumi.get(__ret__, 'enabled'))
 def get_sys_config_cors_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSysConfigCorsResult]:
     """
     Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
@@ -198,5 +185,4 @@ def get_sys_config_cors_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi
     return __ret__.apply(lambda __response__: GetSysConfigCorsResult(
         allowed_headers=pulumi.get(__response__, 'allowed_headers'),
         allowed_origins=pulumi.get(__response__, 'allowed_origins'),
-        enabled=pulumi.get(__response__, 'enabled'),
-        id=pulumi.get(__response__, 'id')))
+        enabled=pulumi.get(__response__, 'enabled')))

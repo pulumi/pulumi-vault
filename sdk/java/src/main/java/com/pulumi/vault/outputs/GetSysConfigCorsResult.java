@@ -27,11 +27,6 @@ public final class GetSysConfigCorsResult {
      * 
      */
     private Boolean enabled;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
 
     private GetSysConfigCorsResult() {}
     /**
@@ -55,13 +50,6 @@ public final class GetSysConfigCorsResult {
     public Boolean enabled() {
         return this.enabled;
     }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
 
     public static Builder builder() {
         return new Builder();
@@ -75,14 +63,12 @@ public final class GetSysConfigCorsResult {
         private List<String> allowedHeaders;
         private List<String> allowedOrigins;
         private Boolean enabled;
-        private String id;
         public Builder() {}
         public Builder(GetSysConfigCorsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.allowedHeaders = defaults.allowedHeaders;
     	      this.allowedOrigins = defaults.allowedOrigins;
     	      this.enabled = defaults.enabled;
-    	      this.id = defaults.id;
         }
 
         @CustomType.Setter
@@ -115,20 +101,11 @@ public final class GetSysConfigCorsResult {
             this.enabled = enabled;
             return this;
         }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetSysConfigCorsResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         public GetSysConfigCorsResult build() {
             final var _resultValue = new GetSysConfigCorsResult();
             _resultValue.allowedHeaders = allowedHeaders;
             _resultValue.allowedOrigins = allowedOrigins;
             _resultValue.enabled = enabled;
-            _resultValue.id = id;
             return _resultValue;
         }
     }
