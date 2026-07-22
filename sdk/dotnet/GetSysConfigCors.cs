@@ -253,10 +253,6 @@ namespace Pulumi.Vault
         /// Whether CORS is currently enabled.
         /// </summary>
         public readonly bool Enabled;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
 
         [OutputConstructor]
         private GetSysConfigCorsResult(
@@ -264,14 +260,11 @@ namespace Pulumi.Vault
 
             ImmutableArray<string> allowedOrigins,
 
-            bool enabled,
-
-            string id)
+            bool enabled)
         {
             AllowedHeaders = allowedHeaders;
             AllowedOrigins = allowedOrigins;
             Enabled = enabled;
-            Id = id;
         }
     }
 }

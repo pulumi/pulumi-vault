@@ -109,8 +109,6 @@ type LookupSysConfigCorsResult struct {
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
 	// Whether CORS is currently enabled.
 	Enabled bool `pulumi:"enabled"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 }
 
 func LookupSysConfigCorsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupSysConfigCorsResultOutput {
@@ -148,11 +146,6 @@ func (o LookupSysConfigCorsResultOutput) AllowedOrigins() pulumi.StringArrayOutp
 // Whether CORS is currently enabled.
 func (o LookupSysConfigCorsResultOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupSysConfigCorsResult) bool { return v.Enabled }).(pulumi.BoolOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupSysConfigCorsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSysConfigCorsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -48493,17 +48493,12 @@
                     "enabled": {
                         "description": "Whether CORS is currently enabled.\n",
                         "type": "boolean"
-                    },
-                    "id": {
-                        "description": "The provider-assigned unique ID for this managed resource.",
-                        "type": "string"
                     }
                 },
                 "required": [
                     "allowedHeaders",
                     "allowedOrigins",
-                    "enabled",
-                    "id"
+                    "enabled"
                 ],
                 "type": "object"
             }

@@ -75,10 +75,6 @@ export interface GetSysConfigCorsResult {
      * Whether CORS is currently enabled.
      */
     readonly enabled: boolean;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
 }
 /**
  * Reads the current CORS (Cross-Origin Resource Sharing) configuration from Vault.
