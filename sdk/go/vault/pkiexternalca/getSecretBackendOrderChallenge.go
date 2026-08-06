@@ -97,9 +97,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ctx.Export("challengeToken", http.ApplyT(func(http pkiexternalca.GetSecretBackendOrderChallengeResult) (*string, error) {
-//				return http.Token, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("challengeToken", http.Token())
 //			ctx.Export("challengeUrl", http.ApplyT(func(http pkiexternalca.GetSecretBackendOrderChallengeResult) (string, error) {
 //				return fmt.Sprintf("http://www.example.com/.well-known/acme-challenge/%v", http.Token), nil
 //			}).(pulumi.StringOutput))

@@ -47,7 +47,7 @@ import (
 //					pulumi.String("test"),
 //				},
 //				Exclusive: pulumi.Bool(true),
-//				GroupId:   internal.ID(),
+//				GroupId:   internal.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -89,7 +89,7 @@ import (
 //					pulumi.String("test"),
 //				},
 //				Exclusive: pulumi.Bool(false),
-//				GroupId:   internal.ID(),
+//				GroupId:   internal.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -99,7 +99,7 @@ import (
 //					pulumi.String("others"),
 //				},
 //				Exclusive: pulumi.Bool(false),
-//				GroupId:   internal.ID(),
+//				GroupId:   internal.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err

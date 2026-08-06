@@ -104,7 +104,7 @@ import (
 //				}
 //				childrenMount = append(childrenMount, __res)
 //			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//			tmpJSON0, err := json.Marshal(map[string]int{
 //				"ns": key0,
 //			})
 //			if err != nil {

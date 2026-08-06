@@ -54,7 +54,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//			tmpJSON0, err := json.Marshal(map[string]string{
 //				"dev":  "B!gS3cr3t",
 //				"prod": "S3cureP4$$",
 //			})

@@ -53,7 +53,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//			tmpJSON0, err := json.Marshal(map[string]string{
 //				"sub": "spiffe://example.com/workload",
 //			})
 //			if err != nil {

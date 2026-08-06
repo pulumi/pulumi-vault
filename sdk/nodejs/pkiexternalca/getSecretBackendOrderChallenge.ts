@@ -57,8 +57,8 @@ import * as utilities from "../utilities";
  *     filename: `/var/www/html/.well-known/acme-challenge/${http.token}`,
  *     content: http.keyAuthorization,
  * });
- * export const challengeToken = http.apply(http => http.token);
- * export const challengeUrl = http.apply(http => `http://www.example.com/.well-known/acme-challenge/${http.token}`);
+ * export const challengeToken = http.token;
+ * export const challengeUrl = pulumi.interpolate`http://www.example.com/.well-known/acme-challenge/${http.token}`;
  * ```
  *
  * ### With DNS-01 Challenge
@@ -268,8 +268,8 @@ export interface GetSecretBackendOrderChallengeResult {
  *     filename: `/var/www/html/.well-known/acme-challenge/${http.token}`,
  *     content: http.keyAuthorization,
  * });
- * export const challengeToken = http.apply(http => http.token);
- * export const challengeUrl = http.apply(http => `http://www.example.com/.well-known/acme-challenge/${http.token}`);
+ * export const challengeToken = http.token;
+ * export const challengeUrl = pulumi.interpolate`http://www.example.com/.well-known/acme-challenge/${http.token}`;
  * ```
  *
  * ### With DNS-01 Challenge

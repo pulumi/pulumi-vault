@@ -68,7 +68,7 @@ import (
 //				Credentials:      pulumi.String(invokeFile.Result),
 //				RotationSchedule: pulumi.String("0 * * * SAT"),
 //				RotationWindow:   pulumi.Int(3600),
-//				CustomEndpoint: map[string]interface{}{
+//				CustomEndpoint: map[string]string{
 //					"api":     "www.googleapis.com",
 //					"iam":     "iam.googleapis.com",
 //					"crm":     "cloudresourcemanager.googleapis.com",

@@ -55,9 +55,9 @@ import (
 //			_, err = identity.NewGroupMemberGroupIds(ctx, "members", &identity.GroupMemberGroupIdsArgs{
 //				Exclusive: pulumi.Bool(true),
 //				MemberGroupIds: pulumi.StringArray{
-//					users.ID(),
+//					users.ID().ToIDOutput().ToStringOutput(),
 //				},
-//				GroupId: internal.ID(),
+//				GroupId: internal.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err
@@ -105,9 +105,9 @@ import (
 //			_, err = identity.NewGroupMemberGroupIds(ctx, "members", &identity.GroupMemberGroupIdsArgs{
 //				Exclusive: pulumi.Bool(false),
 //				MemberGroupIds: pulumi.StringArray{
-//					users.ID(),
+//					users.ID().ToIDOutput().ToStringOutput(),
 //				},
-//				GroupId: internal.ID(),
+//				GroupId: internal.ID().ToIDOutput().ToStringOutput(),
 //			})
 //			if err != nil {
 //				return err

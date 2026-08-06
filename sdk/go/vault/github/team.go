@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = github.NewTeam(ctx, "tf_devs", &github.TeamArgs{
-//				Backend: example.ID(),
+//				Backend: example.ID().ToIDOutput().ToStringOutput(),
 //				Team:    pulumi.String("terraform-developers"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("developer"),

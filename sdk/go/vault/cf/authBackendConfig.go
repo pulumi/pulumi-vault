@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			invokeTrimspace, err := std.Trimspace(ctx, &std.TrimspaceArgs{
-//				Input: std.File(ctx, &std.FileArgs{
+//				Input: std.File(ctx, std.FileArgs{
 //					Input: "ca.pem",
 //				}, nil).Result,
 //			}, nil)

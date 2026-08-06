@@ -51,10 +51,10 @@ import (
 //			_, err = identity.NewOidcAssignment(ctx, "default", &identity.OidcAssignmentArgs{
 //				Name: pulumi.String("assignment"),
 //				EntityIds: pulumi.StringArray{
-//					test.ID(),
+//					test.ID().ToIDOutput().ToStringOutput(),
 //				},
 //				GroupIds: pulumi.StringArray{
-//					internal.ID(),
+//					internal.ID().ToIDOutput().ToStringOutput(),
 //				},
 //			})
 //			if err != nil {
