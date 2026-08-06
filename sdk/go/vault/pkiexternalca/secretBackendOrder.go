@@ -107,8 +107,8 @@ import (
 //			}
 //			exampleCertRequest, err := tls.NewCertRequest(ctx, "example", &tls.CertRequestArgs{
 //				PrivateKeyPem: example.PrivateKeyPem,
-//				Subject: []map[string]interface{}{
-//					map[string]interface{}{
+//				Subject: []map[string]string{
+//					{
 //						"commonName": "www.example.com",
 //					},
 //				},

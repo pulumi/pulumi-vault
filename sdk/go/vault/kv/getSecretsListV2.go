@@ -53,7 +53,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON0, err := json.Marshal(map[string]interface{}{
+//			tmpJSON0, err := json.Marshal(map[string]string{
 //				"zip": "zap",
 //			})
 //			if err != nil {
@@ -68,7 +68,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON1, err := json.Marshal(map[string]interface{}{
+//			tmpJSON1, err := json.Marshal(map[string]string{
 //				"foo": "bar",
 //			})
 //			if err != nil {
@@ -83,7 +83,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON2, err := json.Marshal(map[string]interface{}{
+//			tmpJSON2, err := json.Marshal(map[string]string{
 //				"password": "test",
 //			})
 //			if err != nil {

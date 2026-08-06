@@ -84,9 +84,9 @@ import (
 //			_, err = database.NewSecretBackendRole(ctx, "dev1", &database.SecretBackendRoleArgs{
 //				Name:    pulumi.String("dev1"),
 //				Backend: db.Path,
-//				DbName: pulumi.String(db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (*string, error) {
+//				DbName: db.Mssqls.ApplyT(func(mssqls []database.SecretsMountMssql) (*string, error) {
 //					return mssqls[0].Name, nil
-//				}).(pulumi.StringPtrOutput)),
+//				}).(pulumi.StringPtrOutput),
 //				CreationStatements: pulumi.StringArray{
 //					pulumi.String("CREATE LOGIN [{{name}}] WITH PASSWORD = '{{password}}';"),
 //					pulumi.String("CREATE USER [{{name}}] FOR LOGIN [{{name}}];"),
@@ -99,9 +99,9 @@ import (
 //			_, err = database.NewSecretBackendRole(ctx, "dev2", &database.SecretBackendRoleArgs{
 //				Name:    pulumi.String("dev2"),
 //				Backend: db.Path,
-//				DbName: pulumi.String(db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (*string, error) {
+//				DbName: db.Postgresqls.ApplyT(func(postgresqls []database.SecretsMountPostgresql) (*string, error) {
 //					return postgresqls[0].Name, nil
-//				}).(pulumi.StringPtrOutput)),
+//				}).(pulumi.StringPtrOutput),
 //				CreationStatements: pulumi.StringArray{
 //					pulumi.String("CREATE ROLE \"{{name}}\" WITH LOGIN PASSWORD '{{password}}' VALID UNTIL '{{expiration}}';"),
 //					pulumi.String("GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"{{name}}\";"),
