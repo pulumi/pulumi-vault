@@ -109,6 +109,45 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With KMS Key ID (Vault 2.2.0+)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcpKmsKeyId = new vault.secrets.SyncGcpDestination("gcp_kms_key_id", {
+ *     name: "gcp-dest-kms-key-id",
+ *     projectId: "gcp-project-id",
+ *     credentials: std.file({
+ *         input: credentialsFile,
+ *     }).then(invoke => invoke.result),
+ *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+ *     kmsKeyId: "projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key",
+ * });
+ * ```
+ *
+ * ### With Replica Regions (Vault 2.2.0+)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as std from "@pulumi/std";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const gcpReplicaRegions = new vault.secrets.SyncGcpDestination("gcp_replica_regions", {
+ *     name: "gcp-dest-replica-regions",
+ *     projectId: "gcp-project-id",
+ *     credentials: std.file({
+ *         input: credentialsFile,
+ *     }).then(invoke => invoke.result),
+ *     secretNameTemplate: "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+ *     replicaRegions: {
+ *         "us-central1": "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key",
+ *         "us-east1": "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key",
+ *     },
+ * });
+ * ```
+ *
  * ### Using Workload Identity Federation (Vault 2.0.0+)
  *
  * ```typescript
@@ -191,6 +230,8 @@ export class SyncGcpDestination extends pulumi.CustomResource {
     declare public readonly disableStrictNetworking: pulumi.Output<boolean | undefined>;
     /**
      * Global KMS key for encryption.
+     *
+     * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
      */
     declare public readonly globalKmsKey: pulumi.Output<string | undefined>;
     /**
@@ -221,7 +262,13 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      */
     declare public readonly identityTokenTtl: pulumi.Output<number>;
     /**
+     * Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+     */
+    declare public readonly kmsKeyId: pulumi.Output<string | undefined>;
+    /**
      * Locational KMS keys for encryption.
+     *
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      */
     declare public readonly locationalKmsKeys: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -242,7 +289,13 @@ export class SyncGcpDestination extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string | undefined>;
     /**
+     * Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+     */
+    declare public readonly replicaRegions: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
      * Replication locations for secrets.
+     *
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      */
     declare public readonly replicationLocations: pulumi.Output<string[] | undefined>;
     /**
@@ -285,10 +338,12 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             resourceInputs["identityTokenKeyWo"] = state?.identityTokenKeyWo;
             resourceInputs["identityTokenKeyWoVersion"] = state?.identityTokenKeyWoVersion;
             resourceInputs["identityTokenTtl"] = state?.identityTokenTtl;
+            resourceInputs["kmsKeyId"] = state?.kmsKeyId;
             resourceInputs["locationalKmsKeys"] = state?.locationalKmsKeys;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["replicaRegions"] = state?.replicaRegions;
             resourceInputs["replicationLocations"] = state?.replicationLocations;
             resourceInputs["secretNameTemplate"] = state?.secretNameTemplate;
             resourceInputs["serviceAccountEmail"] = state?.serviceAccountEmail;
@@ -308,10 +363,12 @@ export class SyncGcpDestination extends pulumi.CustomResource {
             resourceInputs["identityTokenKeyWo"] = args?.identityTokenKeyWo ? pulumi.secret(args.identityTokenKeyWo) : undefined;
             resourceInputs["identityTokenKeyWoVersion"] = args?.identityTokenKeyWoVersion;
             resourceInputs["identityTokenTtl"] = args?.identityTokenTtl;
+            resourceInputs["kmsKeyId"] = args?.kmsKeyId;
             resourceInputs["locationalKmsKeys"] = args?.locationalKmsKeys;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["replicaRegions"] = args?.replicaRegions;
             resourceInputs["replicationLocations"] = args?.replicationLocations;
             resourceInputs["secretNameTemplate"] = args?.secretNameTemplate;
             resourceInputs["serviceAccountEmail"] = args?.serviceAccountEmail;
@@ -356,6 +413,8 @@ export interface SyncGcpDestinationState {
     disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Global KMS key for encryption.
+     *
+     * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
      */
     globalKmsKey?: pulumi.Input<string | undefined>;
     /**
@@ -386,7 +445,13 @@ export interface SyncGcpDestinationState {
      */
     identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
+     * Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+     */
+    kmsKeyId?: pulumi.Input<string | undefined>;
+    /**
      * Locational KMS keys for encryption.
+     *
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      */
     locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -407,7 +472,13 @@ export interface SyncGcpDestinationState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
+     * Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+     */
+    replicaRegions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
      * Replication locations for secrets.
+     *
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      */
     replicationLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
@@ -457,6 +528,8 @@ export interface SyncGcpDestinationArgs {
     disableStrictNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Global KMS key for encryption.
+     *
+     * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
      */
     globalKmsKey?: pulumi.Input<string | undefined>;
     /**
@@ -487,7 +560,13 @@ export interface SyncGcpDestinationArgs {
      */
     identityTokenTtl?: pulumi.Input<number | undefined>;
     /**
+     * Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+     */
+    kmsKeyId?: pulumi.Input<string | undefined>;
+    /**
      * Locational KMS keys for encryption.
+     *
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      */
     locationalKmsKeys?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -508,7 +587,13 @@ export interface SyncGcpDestinationArgs {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
+     * Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+     */
+    replicaRegions?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
      * Replication locations for secrets.
+     *
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      */
     replicationLocations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**

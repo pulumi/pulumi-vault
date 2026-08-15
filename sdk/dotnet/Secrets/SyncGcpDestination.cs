@@ -154,6 +154,62 @@ namespace Pulumi.Vault.Secrets
     /// });
     /// ```
     /// 
+    /// ### With KMS Key ID (Vault 2.2.0+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpKmsKeyId = new Vault.Secrets.SyncGcpDestination("gcp_kms_key_id", new()
+    ///     {
+    ///         Name = "gcp-dest-kms-key-id",
+    ///         ProjectId = "gcp-project-id",
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = credentialsFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+    ///         KmsKeyId = "projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Replica Regions (Vault 2.2.0+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Std = Pulumi.Std;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var gcpReplicaRegions = new Vault.Secrets.SyncGcpDestination("gcp_replica_regions", new()
+    ///     {
+    ///         Name = "gcp-dest-replica-regions",
+    ///         ProjectId = "gcp-project-id",
+    ///         Credentials = Std.File.Invoke(new()
+    ///         {
+    ///             Input = credentialsFile,
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///         SecretNameTemplate = "vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+    ///         ReplicaRegions = 
+    ///         {
+    ///             { "us-central1", "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key" },
+    ///             { "us-east1", "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Using Workload Identity Federation (Vault 2.0.0+)
     /// 
     /// ```csharp
@@ -274,6 +330,12 @@ namespace Pulumi.Vault.Secrets
         public Output<int> IdentityTokenTtl { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+        /// </summary>
+        [Output("kmsKeyId")]
+        public Output<string?> KmsKeyId { get; private set; } = null!;
+
+        /// <summary>
         /// Locational KMS keys for encryption.
         /// </summary>
         [Output("locationalKmsKeys")]
@@ -301,6 +363,12 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Output("projectId")]
         public Output<string?> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+        /// </summary>
+        [Output("replicaRegions")]
+        public Output<ImmutableDictionary<string, string>?> ReplicaRegions { get; private set; } = null!;
 
         /// <summary>
         /// Replication locations for secrets.
@@ -516,12 +584,19 @@ namespace Pulumi.Vault.Secrets
         [Input("identityTokenTtl")]
         public Input<int>? IdentityTokenTtl { get; set; }
 
+        /// <summary>
+        /// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
+
         [Input("locationalKmsKeys")]
         private InputMap<string>? _locationalKmsKeys;
 
         /// <summary>
         /// Locational KMS keys for encryption.
         /// </summary>
+        [Obsolete(@"Deprecated in favor of ReplicaRegions for Vault Enterprise 2.2.0+.")]
         public InputMap<string> LocationalKmsKeys
         {
             get => _locationalKmsKeys ?? (_locationalKmsKeys = new InputMap<string>());
@@ -551,12 +626,25 @@ namespace Pulumi.Vault.Secrets
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("replicaRegions")]
+        private InputMap<string>? _replicaRegions;
+
+        /// <summary>
+        /// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+        /// </summary>
+        public InputMap<string> ReplicaRegions
+        {
+            get => _replicaRegions ?? (_replicaRegions = new InputMap<string>());
+            set => _replicaRegions = value;
+        }
+
         [Input("replicationLocations")]
         private InputList<string>? _replicationLocations;
 
         /// <summary>
         /// Replication locations for secrets.
         /// </summary>
+        [Obsolete(@"Deprecated in favor of ReplicaRegions for Vault Enterprise 2.2.0+.")]
         public InputList<string> ReplicationLocations
         {
             get => _replicationLocations ?? (_replicationLocations = new InputList<string>());
@@ -721,12 +809,19 @@ namespace Pulumi.Vault.Secrets
         [Input("identityTokenTtl")]
         public Input<int>? IdentityTokenTtl { get; set; }
 
+        /// <summary>
+        /// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
+
         [Input("locationalKmsKeys")]
         private InputMap<string>? _locationalKmsKeys;
 
         /// <summary>
         /// Locational KMS keys for encryption.
         /// </summary>
+        [Obsolete(@"Deprecated in favor of ReplicaRegions for Vault Enterprise 2.2.0+.")]
         public InputMap<string> LocationalKmsKeys
         {
             get => _locationalKmsKeys ?? (_locationalKmsKeys = new InputMap<string>());
@@ -756,12 +851,25 @@ namespace Pulumi.Vault.Secrets
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        [Input("replicaRegions")]
+        private InputMap<string>? _replicaRegions;
+
+        /// <summary>
+        /// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+        /// </summary>
+        public InputMap<string> ReplicaRegions
+        {
+            get => _replicaRegions ?? (_replicaRegions = new InputMap<string>());
+            set => _replicaRegions = value;
+        }
+
         [Input("replicationLocations")]
         private InputList<string>? _replicationLocations;
 
         /// <summary>
         /// Replication locations for secrets.
         /// </summary>
+        [Obsolete(@"Deprecated in favor of ReplicaRegions for Vault Enterprise 2.2.0+.")]
         public InputList<string> ReplicationLocations
         {
             get => _replicationLocations ?? (_replicationLocations = new InputList<string>());

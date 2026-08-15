@@ -47,6 +47,40 @@ public final class EntityAliasState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Unique external identifier from the external IdP.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="externalId")
+    private @Nullable Output<String> externalId;
+
+    /**
+     * @return Unique external identifier from the external IdP.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> externalId() {
+        return Optional.ofNullable(this.externalId);
+    }
+
+    /**
+     * Issuer name associated with this alias.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Import(name="issuer")
+    private @Nullable Output<String> issuer;
+
+    /**
+     * @return Issuer name associated with this alias.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Optional<Output<String>> issuer() {
+        return Optional.ofNullable(this.issuer);
+    }
+
+    /**
      * Accessor of the mount to which the alias should belong to.
      * 
      */
@@ -102,6 +136,8 @@ public final class EntityAliasState extends com.pulumi.resources.ResourceArgs {
     private EntityAliasState(EntityAliasState $) {
         this.canonicalId = $.canonicalId;
         this.customMetadata = $.customMetadata;
+        this.externalId = $.externalId;
+        this.issuer = $.issuer;
         this.mountAccessor = $.mountAccessor;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -165,6 +201,52 @@ public final class EntityAliasState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder customMetadata(Map<String,String> customMetadata) {
             return customMetadata(Output.of(customMetadata));
+        }
+
+        /**
+         * @param externalId Unique external identifier from the external IdP.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(@Nullable Output<String> externalId) {
+            $.externalId = externalId;
+            return this;
+        }
+
+        /**
+         * @param externalId Unique external identifier from the external IdP.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder externalId(String externalId) {
+            return externalId(Output.of(externalId));
+        }
+
+        /**
+         * @param issuer Issuer name associated with this alias.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuer(@Nullable Output<String> issuer) {
+            $.issuer = issuer;
+            return this;
+        }
+
+        /**
+         * @param issuer Issuer name associated with this alias.
+         * *Available only for Vault Enterprise*.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder issuer(String issuer) {
+            return issuer(Output.of(issuer));
         }
 
         /**

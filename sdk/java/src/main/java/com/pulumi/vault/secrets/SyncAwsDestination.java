@@ -157,6 +157,83 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### With Custom KMS Key (Vault 2.2.0+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncAwsDestination;
+ * import com.pulumi.vault.secrets.SyncAwsDestinationArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var awsKmsKeyId = new SyncAwsDestination("awsKmsKeyId", SyncAwsDestinationArgs.builder()
+ *             .name("aws-dest-kms-key-id")
+ *             .accessKeyId(accessKeyId)
+ *             .secretAccessKey(secretAccessKey)
+ *             .region("us-east-1")
+ *             .kmsKeyId("arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Replica Regions (Vault 2.2.0+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncAwsDestination;
+ * import com.pulumi.vault.secrets.SyncAwsDestinationArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var awsReplicaRegions = new SyncAwsDestination("awsReplicaRegions", SyncAwsDestinationArgs.builder()
+ *             .name("aws-dest-replica-regions")
+ *             .accessKeyId(accessKeyId)
+ *             .secretAccessKey(secretAccessKey)
+ *             .region("us-east-1")
+ *             .replicaRegions(Map.ofEntries(
+ *                 Map.entry("us-east-2", "arn:aws:kms:us-east-2:123456789012:key/mrk-1234567890abcdef1234567890abcdef"),
+ *                 Map.entry("us-west-1", "arn:aws:kms:us-west-1:123456789012:key/mrk-1234567890abcdef1234567890abcdef")
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Import
  * 
  * AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -385,6 +462,20 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
         return this.identityTokenTtl;
     }
     /**
+     * Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+     * 
+     */
+    @Export(name="kmsKeyId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> kmsKeyId;
+
+    /**
+     * @return Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+     * 
+     */
+    public Output<Optional<String>> kmsKeyId() {
+        return Codegen.optional(this.kmsKeyId);
+    }
+    /**
      * Unique name of the AWS destination.
      * 
      */
@@ -433,6 +524,20 @@ public class SyncAwsDestination extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> region() {
         return Codegen.optional(this.region);
+    }
+    /**
+     * Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+     * 
+     */
+    @Export(name="replicaRegions", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> replicaRegions;
+
+    /**
+     * @return Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> replicaRegions() {
+        return Codegen.optional(this.replicaRegions);
     }
     /**
      * Specifies a role to assume when connecting to AWS. When assuming a role,

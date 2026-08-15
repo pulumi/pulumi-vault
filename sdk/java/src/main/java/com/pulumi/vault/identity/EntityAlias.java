@@ -100,6 +100,38 @@ public class EntityAlias extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customMetadata);
     }
     /**
+     * Unique external identifier from the external IdP.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="externalId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> externalId;
+
+    /**
+     * @return Unique external identifier from the external IdP.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> externalId() {
+        return Codegen.optional(this.externalId);
+    }
+    /**
+     * Issuer name associated with this alias.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    @Export(name="issuer", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> issuer;
+
+    /**
+     * @return Issuer name associated with this alias.
+     * *Available only for Vault Enterprise*.
+     * 
+     */
+    public Output<Optional<String>> issuer() {
+        return Codegen.optional(this.issuer);
+    }
+    /**
      * Accessor of the mount to which the alias should belong to.
      * 
      */

@@ -151,6 +151,42 @@ import (
 //
 // ```
 //
+// Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := jwt.NewAuthBackend(ctx, "okta", &jwt.AuthBackendArgs{
+//				Description:      pulumi.String("OIDC backend"),
+//				OidcDiscoveryUrl: pulumi.String("https://mycompany.okta.com/oauth2/default"),
+//				Path:             pulumi.String("oidc"),
+//				Type:             pulumi.String("oidc"),
+//				ProviderConfig: pulumi.StringMap{
+//					"provider":     pulumi.String("okta"),
+//					"fetch_groups": pulumi.String("true"),
+//					"org_url":      pulumi.String("https://mycompany.okta.com"),
+//					"api_token":    pulumi.String("12345"),
+//					"groups_cap":   pulumi.String("200"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Ephemeral Attributes Reference
 //
 // The following write-only attributes are supported:

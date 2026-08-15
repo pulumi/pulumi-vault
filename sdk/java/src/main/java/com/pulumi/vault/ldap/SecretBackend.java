@@ -158,6 +158,26 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
         return this.auditNonHmacResponseKeys;
     }
     /**
+     * If true, Vault automatically attempts to unlock the admin managed LDAP account
+     * after every successful static-role password rotation. Applies to all static roles on this mount
+     * unless overridden at the role level. Defaults to false. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    @Export(name="autoUnlock", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> autoUnlock;
+
+    /**
+     * @return If true, Vault automatically attempts to unlock the admin managed LDAP account
+     * after every successful static-role password rotation. Applies to all static roles on this mount
+     * unless overridden at the role level. Defaults to false. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    public Output<Boolean> autoUnlock() {
+        return this.autoUnlock;
+    }
+    /**
      * Distinguished name of object to bind when performing user and group search.
      * 
      */
@@ -572,6 +592,40 @@ public class SecretBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> requestTimeout() {
         return this.requestTimeout;
+    }
+    /**
+     * If true, static role credentials are rotated on each read. Acts as
+     * the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Export(name="rotateOnRead", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> rotateOnRead;
+
+    /**
+     * @return If true, static role credentials are rotated on each read. Acts as
+     * the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    public Output<Boolean> rotateOnRead() {
+        return this.rotateOnRead;
+    }
+    /**
+     * Minimum number of seconds between rotate-on-read rotations.
+     * Acts as the default cooldown for all static roles that do not provide their own override.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Export(name="rotateOnReadCooldown", refs={Integer.class}, tree="[0]")
+    private Output<Integer> rotateOnReadCooldown;
+
+    /**
+     * @return Minimum number of seconds between rotate-on-read rotations.
+     * Acts as the default cooldown for all static roles that do not provide their own override.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    public Output<Integer> rotateOnReadCooldown() {
+        return this.rotateOnReadCooldown;
     }
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.

@@ -35,7 +35,7 @@ class AuthBackendConfigIdentityArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `ec2_alias`
         :param pulumi.Input[_builtins.str] iam_alias: How to generate the identity alias when using the iam auth method. Valid choices are
-               `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+               `role_id`, `unique_id`, `full_arn`, and `canonical_arn`. Defaults to `role_id`. `canonical_arn` requires Vault 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -100,7 +100,7 @@ class AuthBackendConfigIdentityArgs:
     def iam_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to generate the identity alias when using the iam auth method. Valid choices are
-        `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+        `role_id`, `unique_id`, `full_arn`, and `canonical_arn`. Defaults to `role_id`. `canonical_arn` requires Vault 1.16+.
         """
         return pulumi.get(self, "iam_alias")
 
@@ -156,7 +156,7 @@ class _AuthBackendConfigIdentityState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `ec2_alias`
         :param pulumi.Input[_builtins.str] iam_alias: How to generate the identity alias when using the iam auth method. Valid choices are
-               `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+               `role_id`, `unique_id`, `full_arn`, and `canonical_arn`. Defaults to `role_id`. `canonical_arn` requires Vault 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -221,7 +221,7 @@ class _AuthBackendConfigIdentityState:
     def iam_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         How to generate the identity alias when using the iam auth method. Valid choices are
-        `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+        `role_id`, `unique_id`, `full_arn`, and `canonical_arn`. Defaults to `role_id`. `canonical_arn` requires Vault 1.16+.
         """
         return pulumi.get(self, "iam_alias")
 
@@ -310,7 +310,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `ec2_alias`
         :param pulumi.Input[_builtins.str] iam_alias: How to generate the identity alias when using the iam auth method. Valid choices are
-               `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+               `role_id`, `unique_id`, `full_arn`, and `canonical_arn`. Defaults to `role_id`. `canonical_arn` requires Vault 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -420,7 +420,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ec2_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `ec2_alias`
         :param pulumi.Input[_builtins.str] iam_alias: How to generate the identity alias when using the iam auth method. Valid choices are
-               `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+               `role_id`, `unique_id`, `full_arn`, and `canonical_arn`. Defaults to `role_id`. `canonical_arn` requires Vault 1.16+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] iam_metadatas: The metadata to include on the token returned by the `login` endpoint. This metadata will be
                added to both audit logs, and on the `iam_alias`
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -472,7 +472,7 @@ class AuthBackendConfigIdentity(pulumi.CustomResource):
     def iam_alias(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         How to generate the identity alias when using the iam auth method. Valid choices are
-        `role_id`, `unique_id`, and `full_arn`. Defaults to `role_id`
+        `role_id`, `unique_id`, `full_arn`, and `canonical_arn`. Defaults to `role_id`. `canonical_arn` requires Vault 1.16+.
         """
         return pulumi.get(self, "iam_alias")
 

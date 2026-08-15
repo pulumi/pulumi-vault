@@ -29,7 +29,9 @@ class SecretBackendArgs:
                  default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
                  identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -40,6 +42,9 @@ class SecretBackendArgs:
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
                  token: pulumi.Input[Optional[_builtins.str]] = None,
                  token_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -59,8 +64,13 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root token
+               until unset. Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.int] explicit_max_ttl: The maximum amount of time in seconds the root token
+               issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+               default token lifetime. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -74,6 +84,17 @@ class SecretBackendArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before
+               rotating the root token. A zero value tells Vault not to rotate the root token. The
+               minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+               exclusive with `rotation_schedule`.
+        :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in cron-style time format
+               defining the schedule on which Vault should rotate the root token. Requires Vault
+               Enterprise 2.2.0+. Mutually exclusive with `rotation_period`.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Only valid with `rotation_schedule`.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
@@ -106,8 +127,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if explicit_max_ttl is not None:
+            pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
         if force_no_cache is not None:
@@ -128,6 +153,12 @@ class SecretBackendArgs:
             pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if plugin_version is not None:
             pulumi.set(__self__, "plugin_version", plugin_version)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
@@ -260,6 +291,19 @@ class SecretBackendArgs:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Cancels all upcoming rotations of the root token
+        until unset. Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
+
+    @_builtins.property
     @pulumi.getter(name="disableRemount")
     def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -271,6 +315,20 @@ class SecretBackendArgs:
     @disable_remount.setter
     def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The maximum amount of time in seconds the root token
+        issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+        default token lifetime. Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "explicit_max_ttl")
+
+    @explicit_max_ttl.setter
+    def explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="externalEntropyAccess")
@@ -396,6 +454,50 @@ class SecretBackendArgs:
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The amount of time in seconds Vault should wait before
+        rotating the root token. A zero value tells Vault not to rotate the root token. The
+        minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+        exclusive with `rotation_schedule`.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The schedule, in cron-style time format
+        defining the schedule on which Vault should rotate the root token. Requires Vault
+        Enterprise 2.2.0+. Mutually exclusive with `rotation_period`.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Only valid with `rotation_schedule`.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
     @pulumi.getter(name="sealWrap")
     def seal_wrap(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -465,7 +567,9 @@ class _SecretBackendState:
                  default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
                  identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -476,6 +580,9 @@ class _SecretBackendState:
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
                  token: pulumi.Input[Optional[_builtins.str]] = None,
                  token_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -496,8 +603,13 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root token
+               until unset. Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.int] explicit_max_ttl: The maximum amount of time in seconds the root token
+               issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+               default token lifetime. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -511,6 +623,17 @@ class _SecretBackendState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before
+               rotating the root token. A zero value tells Vault not to rotate the root token. The
+               minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+               exclusive with `rotation_schedule`.
+        :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in cron-style time format
+               defining the schedule on which Vault should rotate the root token. Requires Vault
+               Enterprise 2.2.0+. Mutually exclusive with `rotation_period`.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Only valid with `rotation_schedule`.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
@@ -545,8 +668,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "delegated_auth_accessors", delegated_auth_accessors)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disable_automated_rotation is not None:
+            pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if disable_remount is not None:
             pulumi.set(__self__, "disable_remount", disable_remount)
+        if explicit_max_ttl is not None:
+            pulumi.set(__self__, "explicit_max_ttl", explicit_max_ttl)
         if external_entropy_access is not None:
             pulumi.set(__self__, "external_entropy_access", external_entropy_access)
         if force_no_cache is not None:
@@ -567,6 +694,12 @@ class _SecretBackendState:
             pulumi.set(__self__, "passthrough_request_headers", passthrough_request_headers)
         if plugin_version is not None:
             pulumi.set(__self__, "plugin_version", plugin_version)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if rotation_schedule is not None:
+            pulumi.set(__self__, "rotation_schedule", rotation_schedule)
+        if rotation_window is not None:
+            pulumi.set(__self__, "rotation_window", rotation_window)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
         if token is not None:
@@ -711,6 +844,19 @@ class _SecretBackendState:
         pulumi.set(self, "description", value)
 
     @_builtins.property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Cancels all upcoming rotations of the root token
+        until unset. Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @disable_automated_rotation.setter
+    def disable_automated_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "disable_automated_rotation", value)
+
+    @_builtins.property
     @pulumi.getter(name="disableRemount")
     def disable_remount(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -722,6 +868,20 @@ class _SecretBackendState:
     @disable_remount.setter
     def disable_remount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disable_remount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The maximum amount of time in seconds the root token
+        issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+        default token lifetime. Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "explicit_max_ttl")
+
+    @explicit_max_ttl.setter
+    def explicit_max_ttl(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "explicit_max_ttl", value)
 
     @_builtins.property
     @pulumi.getter(name="externalEntropyAccess")
@@ -847,6 +1007,50 @@ class _SecretBackendState:
         pulumi.set(self, "plugin_version", value)
 
     @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The amount of time in seconds Vault should wait before
+        rotating the root token. A zero value tells Vault not to rotate the root token. The
+        minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+        exclusive with `rotation_schedule`.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The schedule, in cron-style time format
+        defining the schedule on which Vault should rotate the root token. Requires Vault
+        Enterprise 2.2.0+. Mutually exclusive with `rotation_period`.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @rotation_schedule.setter
+    def rotation_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "rotation_schedule", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Only valid with `rotation_schedule`.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotation_window")
+
+    @rotation_window.setter
+    def rotation_window(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_window", value)
+
+    @_builtins.property
     @pulumi.getter(name="sealWrap")
     def seal_wrap(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -918,7 +1122,9 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
                  identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -929,6 +1135,9 @@ class SecretBackend(pulumi.CustomResource):
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
                  token: pulumi.Input[Optional[_builtins.str]] = None,
                  token_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -981,8 +1190,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root token
+               until unset. Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.int] explicit_max_ttl: The maximum amount of time in seconds the root token
+               issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+               default token lifetime. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -996,6 +1210,17 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before
+               rotating the root token. A zero value tells Vault not to rotate the root token. The
+               minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+               exclusive with `rotation_schedule`.
+        :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in cron-style time format
+               defining the schedule on which Vault should rotate the root token. Requires Vault
+               Enterprise 2.2.0+. Mutually exclusive with `rotation_period`.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Only valid with `rotation_schedule`.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
@@ -1072,7 +1297,9 @@ class SecretBackend(pulumi.CustomResource):
                  default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
                  identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1083,6 +1310,9 @@ class SecretBackend(pulumi.CustomResource):
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
                  token: pulumi.Input[Optional[_builtins.str]] = None,
                  token_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1106,7 +1336,9 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
             __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
             __props__.__dict__["description"] = description
+            __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["disable_remount"] = disable_remount
+            __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
             __props__.__dict__["external_entropy_access"] = external_entropy_access
             __props__.__dict__["force_no_cache"] = force_no_cache
             __props__.__dict__["identity_token_key"] = identity_token_key
@@ -1117,6 +1349,9 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["options"] = options
             __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
             __props__.__dict__["plugin_version"] = plugin_version
+            __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["rotation_schedule"] = rotation_schedule
+            __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["seal_wrap"] = seal_wrap
             __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             __props__.__dict__["token_wo"] = None if token_wo is None else pulumi.Output.secret(token_wo)
@@ -1145,7 +1380,9 @@ class SecretBackend(pulumi.CustomResource):
             default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
             delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
             external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
             force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
             identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1156,6 +1393,9 @@ class SecretBackend(pulumi.CustomResource):
             options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
             seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
             token: pulumi.Input[Optional[_builtins.str]] = None,
             token_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1180,8 +1420,13 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount for the backend.
+        :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the root token
+               until unset. Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
+        :param pulumi.Input[_builtins.int] explicit_max_ttl: The maximum amount of time in seconds the root token
+               issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+               default token lifetime. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
@@ -1195,6 +1440,17 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
+        :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before
+               rotating the root token. A zero value tells Vault not to rotate the root token. The
+               minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+               exclusive with `rotation_schedule`.
+        :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in cron-style time format
+               defining the schedule on which Vault should rotate the root token. Requires Vault
+               Enterprise 2.2.0+. Mutually exclusive with `rotation_period`.
+        :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
+               a rotation when a scheduled token rotation occurs. The default rotation window is
+               unbound and the minimum allowable window is `3600`. Only valid with `rotation_schedule`.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         :param pulumi.Input[_builtins.str] token: The Terraform Cloud management token this backend should
                use to issue new tokens.
@@ -1222,7 +1478,9 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["default_lease_ttl_seconds"] = default_lease_ttl_seconds
         __props__.__dict__["delegated_auth_accessors"] = delegated_auth_accessors
         __props__.__dict__["description"] = description
+        __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["disable_remount"] = disable_remount
+        __props__.__dict__["explicit_max_ttl"] = explicit_max_ttl
         __props__.__dict__["external_entropy_access"] = external_entropy_access
         __props__.__dict__["force_no_cache"] = force_no_cache
         __props__.__dict__["identity_token_key"] = identity_token_key
@@ -1233,6 +1491,9 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["options"] = options
         __props__.__dict__["passthrough_request_headers"] = passthrough_request_headers
         __props__.__dict__["plugin_version"] = plugin_version
+        __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["rotation_schedule"] = rotation_schedule
+        __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["seal_wrap"] = seal_wrap
         __props__.__dict__["token"] = token
         __props__.__dict__["token_wo"] = token_wo
@@ -1330,6 +1591,15 @@ class SecretBackend(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @_builtins.property
+    @pulumi.getter(name="disableAutomatedRotation")
+    def disable_automated_rotation(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Cancels all upcoming rotations of the root token
+        until unset. Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "disable_automated_rotation")
+
+    @_builtins.property
     @pulumi.getter(name="disableRemount")
     def disable_remount(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
@@ -1337,6 +1607,16 @@ class SecretBackend(pulumi.CustomResource):
         See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         """
         return pulumi.get(self, "disable_remount")
+
+    @_builtins.property
+    @pulumi.getter(name="explicitMaxTtl")
+    def explicit_max_ttl(self) -> pulumi.Output[_builtins.int]:
+        """
+        The maximum amount of time in seconds the root token
+        issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+        default token lifetime. Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "explicit_max_ttl")
 
     @_builtins.property
     @pulumi.getter(name="externalEntropyAccess")
@@ -1420,6 +1700,38 @@ class SecretBackend(pulumi.CustomResource):
         Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         """
         return pulumi.get(self, "plugin_version")
+
+    @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The amount of time in seconds Vault should wait before
+        rotating the root token. A zero value tells Vault not to rotate the root token. The
+        minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+        exclusive with `rotation_schedule`.
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @_builtins.property
+    @pulumi.getter(name="rotationSchedule")
+    def rotation_schedule(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The schedule, in cron-style time format
+        defining the schedule on which Vault should rotate the root token. Requires Vault
+        Enterprise 2.2.0+. Mutually exclusive with `rotation_period`.
+        """
+        return pulumi.get(self, "rotation_schedule")
+
+    @_builtins.property
+    @pulumi.getter(name="rotationWindow")
+    def rotation_window(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The maximum amount of time in seconds allowed to complete
+        a rotation when a scheduled token rotation occurs. The default rotation window is
+        unbound and the minimum allowable window is `3600`. Only valid with `rotation_schedule`.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotation_window")
 
     @_builtins.property
     @pulumi.getter(name="sealWrap")

@@ -24,6 +24,7 @@ class SecretBackendArgs:
                  allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  bindpass: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -51,6 +52,8 @@ class SecretBackendArgs:
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
                  request_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
@@ -71,6 +74,10 @@ class SecretBackendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
+               after every successful static-role password rotation. Applies to all static roles on this mount
+               unless overridden at the role level. Defaults to false. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
         :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -110,6 +117,11 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, static role credentials are rotated on each read. Acts as
+               the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations.
+               Acts as the default cooldown for all static roles that do not provide their own override.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -140,6 +152,8 @@ class SecretBackendArgs:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
+        if auto_unlock is not None:
+            pulumi.set(__self__, "auto_unlock", auto_unlock)
         if bindpass is not None:
             pulumi.set(__self__, "bindpass", bindpass)
         if bindpass_wo is not None:
@@ -194,6 +208,10 @@ class SecretBackendArgs:
             pulumi.set(__self__, "plugin_version", plugin_version)
         if request_timeout is not None:
             pulumi.set(__self__, "request_timeout", request_timeout)
+        if rotate_on_read is not None:
+            pulumi.set(__self__, "rotate_on_read", rotate_on_read)
+        if rotate_on_read_cooldown is not None:
+            pulumi.set(__self__, "rotate_on_read_cooldown", rotate_on_read_cooldown)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -278,6 +296,21 @@ class SecretBackendArgs:
     @audit_non_hmac_response_keys.setter
     def audit_non_hmac_response_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoUnlock")
+    def auto_unlock(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, Vault automatically attempts to unlock the admin managed LDAP account
+        after every successful static-role password rotation. Applies to all static roles on this mount
+        unless overridden at the role level. Defaults to false. Active Directory schema only.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auto_unlock")
+
+    @auto_unlock.setter
+    def auto_unlock(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_unlock", value)
 
     @_builtins.property
     @pulumi.getter
@@ -616,6 +649,33 @@ class SecretBackendArgs:
         pulumi.set(self, "request_timeout", value)
 
     @_builtins.property
+    @pulumi.getter(name="rotateOnRead")
+    def rotate_on_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, static role credentials are rotated on each read. Acts as
+        the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read")
+
+    @rotate_on_read.setter
+    def rotate_on_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "rotate_on_read", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnReadCooldown")
+    def rotate_on_read_cooldown(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Minimum number of seconds between rotate-on-read rotations.
+        Acts as the default cooldown for all static roles that do not provide their own override.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read_cooldown")
+
+    @rotate_on_read_cooldown.setter
+    def rotate_on_read_cooldown(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotate_on_read_cooldown", value)
+
+    @_builtins.property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
@@ -776,6 +836,7 @@ class _SecretBackendState:
                  allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  binddn: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -804,6 +865,8 @@ class _SecretBackendState:
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
                  request_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
@@ -824,6 +887,10 @@ class _SecretBackendState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
+               after every successful static-role password rotation. Applies to all static roles on this mount
+               unless overridden at the role level. Defaults to false. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
@@ -864,6 +931,11 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, static role credentials are rotated on each read. Acts as
+               the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations.
+               Acts as the default cooldown for all static roles that do not provide their own override.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -895,6 +967,8 @@ class _SecretBackendState:
             pulumi.set(__self__, "audit_non_hmac_request_keys", audit_non_hmac_request_keys)
         if audit_non_hmac_response_keys is not None:
             pulumi.set(__self__, "audit_non_hmac_response_keys", audit_non_hmac_response_keys)
+        if auto_unlock is not None:
+            pulumi.set(__self__, "auto_unlock", auto_unlock)
         if binddn is not None:
             pulumi.set(__self__, "binddn", binddn)
         if bindpass is not None:
@@ -951,6 +1025,10 @@ class _SecretBackendState:
             pulumi.set(__self__, "plugin_version", plugin_version)
         if request_timeout is not None:
             pulumi.set(__self__, "request_timeout", request_timeout)
+        if rotate_on_read is not None:
+            pulumi.set(__self__, "rotate_on_read", rotate_on_read)
+        if rotate_on_read_cooldown is not None:
+            pulumi.set(__self__, "rotate_on_read_cooldown", rotate_on_read_cooldown)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_schedule is not None:
@@ -1035,6 +1113,21 @@ class _SecretBackendState:
     @audit_non_hmac_response_keys.setter
     def audit_non_hmac_response_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audit_non_hmac_response_keys", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoUnlock")
+    def auto_unlock(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, Vault automatically attempts to unlock the admin managed LDAP account
+        after every successful static-role password rotation. Applies to all static roles on this mount
+        unless overridden at the role level. Defaults to false. Active Directory schema only.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auto_unlock")
+
+    @auto_unlock.setter
+    def auto_unlock(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_unlock", value)
 
     @_builtins.property
     @pulumi.getter
@@ -1385,6 +1478,33 @@ class _SecretBackendState:
         pulumi.set(self, "request_timeout", value)
 
     @_builtins.property
+    @pulumi.getter(name="rotateOnRead")
+    def rotate_on_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, static role credentials are rotated on each read. Acts as
+        the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read")
+
+    @rotate_on_read.setter
+    def rotate_on_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "rotate_on_read", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnReadCooldown")
+    def rotate_on_read_cooldown(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Minimum number of seconds between rotate-on-read rotations.
+        Acts as the default cooldown for all static roles that do not provide their own override.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read_cooldown")
+
+    @rotate_on_read_cooldown.setter
+    def rotate_on_read_cooldown(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotate_on_read_cooldown", value)
+
+    @_builtins.property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
@@ -1547,6 +1667,7 @@ class SecretBackend(pulumi.CustomResource):
                  allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  binddn: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1575,6 +1696,8 @@ class SecretBackend(pulumi.CustomResource):
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
                  request_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1638,6 +1761,10 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
+               after every successful static-role password rotation. Applies to all static roles on this mount
+               unless overridden at the role level. Defaults to false. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
@@ -1678,6 +1805,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, static role credentials are rotated on each read. Acts as
+               the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations.
+               Acts as the default cooldown for all static roles that do not provide their own override.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -1768,6 +1900,7 @@ class SecretBackend(pulumi.CustomResource):
                  allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  binddn: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass: pulumi.Input[Optional[_builtins.str]] = None,
                  bindpass_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1796,6 +1929,8 @@ class SecretBackend(pulumi.CustomResource):
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
                  request_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1821,6 +1956,7 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["allowed_response_headers"] = allowed_response_headers
             __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
             __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
+            __props__.__dict__["auto_unlock"] = auto_unlock
             if binddn is None and not opts.urn:
                 raise TypeError("Missing required property 'binddn'")
             __props__.__dict__["binddn"] = binddn
@@ -1851,6 +1987,8 @@ class SecretBackend(pulumi.CustomResource):
             __props__.__dict__["path"] = path
             __props__.__dict__["plugin_version"] = plugin_version
             __props__.__dict__["request_timeout"] = request_timeout
+            __props__.__dict__["rotate_on_read"] = rotate_on_read
+            __props__.__dict__["rotate_on_read_cooldown"] = rotate_on_read_cooldown
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
@@ -1881,6 +2019,7 @@ class SecretBackend(pulumi.CustomResource):
             allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
             binddn: pulumi.Input[Optional[_builtins.str]] = None,
             bindpass: pulumi.Input[Optional[_builtins.str]] = None,
             bindpass_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1909,6 +2048,8 @@ class SecretBackend(pulumi.CustomResource):
             path: pulumi.Input[Optional[_builtins.str]] = None,
             plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
             request_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+            rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1933,6 +2074,10 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
+        :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
+               after every successful static-role password rotation. Applies to all static roles on this mount
+               unless overridden at the role level. Defaults to false. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
@@ -1973,6 +2118,11 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
         :param pulumi.Input[_builtins.int] request_timeout: Timeout, in seconds, for the connection when making requests against the server
                before returning back an error.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, static role credentials are rotated on each read. Acts as
+               the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations.
+               Acts as the default cooldown for all static roles that do not provide their own override.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the root credential.
                A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] rotation_schedule: The schedule, in [cron-style time format](https://en.wikipedia.org/wiki/Cron),
@@ -2003,6 +2153,7 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["allowed_response_headers"] = allowed_response_headers
         __props__.__dict__["audit_non_hmac_request_keys"] = audit_non_hmac_request_keys
         __props__.__dict__["audit_non_hmac_response_keys"] = audit_non_hmac_response_keys
+        __props__.__dict__["auto_unlock"] = auto_unlock
         __props__.__dict__["binddn"] = binddn
         __props__.__dict__["bindpass"] = bindpass
         __props__.__dict__["bindpass_wo"] = bindpass_wo
@@ -2031,6 +2182,8 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         __props__.__dict__["plugin_version"] = plugin_version
         __props__.__dict__["request_timeout"] = request_timeout
+        __props__.__dict__["rotate_on_read"] = rotate_on_read
+        __props__.__dict__["rotate_on_read_cooldown"] = rotate_on_read_cooldown
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
@@ -2084,6 +2237,17 @@ class SecretBackend(pulumi.CustomResource):
         Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
         """
         return pulumi.get(self, "audit_non_hmac_response_keys")
+
+    @_builtins.property
+    @pulumi.getter(name="autoUnlock")
+    def auto_unlock(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If true, Vault automatically attempts to unlock the admin managed LDAP account
+        after every successful static-role password rotation. Applies to all static roles on this mount
+        unless overridden at the role level. Defaults to false. Active Directory schema only.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auto_unlock")
 
     @_builtins.property
     @pulumi.getter
@@ -2320,6 +2484,25 @@ class SecretBackend(pulumi.CustomResource):
         before returning back an error.
         """
         return pulumi.get(self, "request_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnRead")
+    def rotate_on_read(self) -> pulumi.Output[_builtins.bool]:
+        """
+        If true, static role credentials are rotated on each read. Acts as
+        the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read")
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnReadCooldown")
+    def rotate_on_read_cooldown(self) -> pulumi.Output[_builtins.int]:
+        """
+        Minimum number of seconds between rotate-on-read rotations.
+        Acts as the default cooldown for all static roles that do not provide their own override.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read_cooldown")
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")

@@ -87,6 +87,27 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const okta = new vault.jwt.AuthBackend("okta", {
+ *     description: "OIDC backend",
+ *     oidcDiscoveryUrl: "https://mycompany.okta.com/oauth2/default",
+ *     path: "oidc",
+ *     type: "oidc",
+ *     providerConfig: {
+ *         provider: "okta",
+ *         fetch_groups: "true",
+ *         org_url: "https://mycompany.okta.com",
+ *         api_token: "12345",
+ *         groups_cap: "200",
+ *     },
+ * });
+ * ```
+ *
  * ## Ephemeral Attributes Reference
  *
  * The following write-only attributes are supported:

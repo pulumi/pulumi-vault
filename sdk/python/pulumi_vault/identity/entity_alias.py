@@ -22,6 +22,8 @@ class EntityAliasArgs:
                  canonical_id: pulumi.Input[_builtins.str],
                  mount_accessor: pulumi.Input[_builtins.str],
                  custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -30,6 +32,10 @@ class EntityAliasArgs:
         :param pulumi.Input[_builtins.str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[_builtins.str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata to be associated with this alias.
+        :param pulumi.Input[_builtins.str] external_id: Unique external identifier from the external IdP.
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] issuer: Issuer name associated with this alias.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -40,6 +46,10 @@ class EntityAliasArgs:
         pulumi.set(__self__, "mount_accessor", mount_accessor)
         if custom_metadata is not None:
             pulumi.set(__self__, "custom_metadata", custom_metadata)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -82,6 +92,32 @@ class EntityAliasArgs:
         pulumi.set(self, "custom_metadata", value)
 
     @_builtins.property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unique external identifier from the external IdP.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "external_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Issuer name associated with this alias.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "issuer", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -114,6 +150,8 @@ class _EntityAliasState:
     def __init__(__self__, *,
                  canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
                  custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
                  mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None):
@@ -122,6 +160,10 @@ class _EntityAliasState:
 
         :param pulumi.Input[_builtins.str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata to be associated with this alias.
+        :param pulumi.Input[_builtins.str] external_id: Unique external identifier from the external IdP.
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] issuer: Issuer name associated with this alias.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[_builtins.str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -133,6 +175,10 @@ class _EntityAliasState:
             pulumi.set(__self__, "canonical_id", canonical_id)
         if custom_metadata is not None:
             pulumi.set(__self__, "custom_metadata", custom_metadata)
+        if external_id is not None:
+            pulumi.set(__self__, "external_id", external_id)
+        if issuer is not None:
+            pulumi.set(__self__, "issuer", issuer)
         if mount_accessor is not None:
             pulumi.set(__self__, "mount_accessor", mount_accessor)
         if name is not None:
@@ -163,6 +209,32 @@ class _EntityAliasState:
     @custom_metadata.setter
     def custom_metadata(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_metadata", value)
+
+    @_builtins.property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unique external identifier from the external IdP.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "external_id")
+
+    @external_id.setter
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "external_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def issuer(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Issuer name associated with this alias.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "issuer")
+
+    @issuer.setter
+    def issuer(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "issuer", value)
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")
@@ -212,6 +284,8 @@ class EntityAlias(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
                  custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
                  mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -251,6 +325,10 @@ class EntityAlias(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata to be associated with this alias.
+        :param pulumi.Input[_builtins.str] external_id: Unique external identifier from the external IdP.
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] issuer: Issuer name associated with this alias.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[_builtins.str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -312,6 +390,8 @@ class EntityAlias(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
                  custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer: pulumi.Input[Optional[_builtins.str]] = None,
                  mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -328,6 +408,8 @@ class EntityAlias(pulumi.CustomResource):
                 raise TypeError("Missing required property 'canonical_id'")
             __props__.__dict__["canonical_id"] = canonical_id
             __props__.__dict__["custom_metadata"] = custom_metadata
+            __props__.__dict__["external_id"] = external_id
+            __props__.__dict__["issuer"] = issuer
             if mount_accessor is None and not opts.urn:
                 raise TypeError("Missing required property 'mount_accessor'")
             __props__.__dict__["mount_accessor"] = mount_accessor
@@ -345,6 +427,8 @@ class EntityAlias(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
             custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
             mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'EntityAlias':
@@ -357,6 +441,10 @@ class EntityAlias(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] canonical_id: Entity ID to which this alias belongs to.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] custom_metadata: Custom metadata to be associated with this alias.
+        :param pulumi.Input[_builtins.str] external_id: Unique external identifier from the external IdP.
+               *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] issuer: Issuer name associated with this alias.
+               *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] mount_accessor: Accessor of the mount to which the alias should belong to.
         :param pulumi.Input[_builtins.str] name: Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -370,6 +458,8 @@ class EntityAlias(pulumi.CustomResource):
 
         __props__.__dict__["canonical_id"] = canonical_id
         __props__.__dict__["custom_metadata"] = custom_metadata
+        __props__.__dict__["external_id"] = external_id
+        __props__.__dict__["issuer"] = issuer
         __props__.__dict__["mount_accessor"] = mount_accessor
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -390,6 +480,24 @@ class EntityAlias(pulumi.CustomResource):
         Custom metadata to be associated with this alias.
         """
         return pulumi.get(self, "custom_metadata")
+
+    @_builtins.property
+    @pulumi.getter(name="externalId")
+    def external_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Unique external identifier from the external IdP.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "external_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def issuer(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Issuer name associated with this alias.
+        *Available only for Vault Enterprise*.
+        """
+        return pulumi.get(self, "issuer")
 
     @_builtins.property
     @pulumi.getter(name="mountAccessor")

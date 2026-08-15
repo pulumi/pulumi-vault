@@ -1015,6 +1015,37 @@
                     }
                 }
             },
+            "vault_gcpkms_secret_backend": {
+                "current": "vault:gcp/kmsSecretBackend:KmsSecretBackend",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_managed_keys": {
+                        "maxItemsOne": false
+                    },
+                    "allowed_response_headers": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_request_keys": {
+                        "maxItemsOne": false
+                    },
+                    "audit_non_hmac_response_keys": {
+                        "maxItemsOne": false
+                    },
+                    "delegated_auth_accessors": {
+                        "maxItemsOne": false
+                    },
+                    "passthrough_request_headers": {
+                        "maxItemsOne": false
+                    },
+                    "scopes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_gcpkms_secret_backend_key": {
+                "current": "vault:gcp/kmsSecretBackendKey:KmsSecretBackendKey",
+                "majorVersion": 7
+            },
             "vault_generic_endpoint": {
                 "current": "vault:generic/endpoint:Endpoint",
                 "majorVersion": 7,
@@ -1293,6 +1324,31 @@
                     "oidc_scopes": {
                         "maxItemsOne": false
                     },
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_kerberos_auth_backend_config": {
+                "current": "vault:index/kerberosAuthBackendConfig:KerberosAuthBackendConfig",
+                "majorVersion": 7
+            },
+            "vault_kerberos_auth_backend_group": {
+                "current": "vault:index/kerberosAuthBackendGroup:KerberosAuthBackendGroup",
+                "majorVersion": 7,
+                "fields": {
+                    "policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_kerberos_auth_backend_ldap_config": {
+                "current": "vault:index/kerberosAuthBackendLdapConfig:KerberosAuthBackendLdapConfig",
+                "majorVersion": 7,
+                "fields": {
                     "token_bound_cidrs": {
                         "maxItemsOne": false
                     },
@@ -2684,6 +2740,10 @@
                 "current": "vault:transform/alphabet:Alphabet",
                 "majorVersion": 7
             },
+            "vault_transform_key_configuration": {
+                "current": "vault:transform/keyConfiguration:KeyConfiguration",
+                "majorVersion": 7
+            },
             "vault_transform_role": {
                 "current": "vault:transform/role:Role",
                 "majorVersion": 7,
@@ -2816,6 +2876,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "vault_gcpkms_verify": {
+                "current": "vault:gcp/getKmsVerify:getKmsVerify",
+                "majorVersion": 7
             },
             "vault_generic_secret": {
                 "current": "vault:generic/getSecret:getSecret",
@@ -3271,6 +3335,27 @@
                     "kind": "missing"
                 }
             },
+            "vault_gcpkms_secret_backend": {},
+            "vault_gcpkms_secret_backend_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_kerberos_auth_backend_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_kerberos_auth_backend_group": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_kerberos_auth_backend_ldap_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "vault_keymgmt_aws_kms": {
                 "computeID": {
                     "kind": "missing"
@@ -3456,6 +3541,8 @@
             "vault:database/secretsMount:SecretsMount": 0,
             "vault:gcp/authBackend:AuthBackend": 0,
             "vault:gcp/authBackendRole:AuthBackendRole": 0,
+            "vault:gcp/kmsSecretBackend:KmsSecretBackend": 1,
+            "vault:gcp/kmsSecretBackendKey:KmsSecretBackendKey": 1,
             "vault:gcp/secretBackend:SecretBackend": 0,
             "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount": 0,
             "vault:gcp/secretRoleset:SecretRoleset": 0,
@@ -3493,6 +3580,9 @@
             "vault:index/authBackend:AuthBackend": 0,
             "vault:index/certAuthBackendRole:CertAuthBackendRole": 0,
             "vault:index/egpPolicy:EgpPolicy": 0,
+            "vault:index/kerberosAuthBackendConfig:KerberosAuthBackendConfig": 1,
+            "vault:index/kerberosAuthBackendGroup:KerberosAuthBackendGroup": 1,
+            "vault:index/kerberosAuthBackendLdapConfig:KerberosAuthBackendLdapConfig": 1,
             "vault:index/mfaDuo:MfaDuo": 0,
             "vault:index/mfaOkta:MfaOkta": 0,
             "vault:index/mfaPingid:MfaPingid": 0,
@@ -3608,6 +3698,7 @@
             "vault:terraformcloud/secretRole:SecretRole": 0,
             "vault:tokenauth/authBackendRole:AuthBackendRole": 0,
             "vault:transform/alphabet:Alphabet": 0,
+            "vault:transform/keyConfiguration:KeyConfiguration": 0,
             "vault:transform/role:Role": 0,
             "vault:transform/template:Template": 0,
             "vault:transform/transformation:Transformation": 0,
@@ -3621,6 +3712,7 @@
             "vault:aws/getStaticAccessCredentials:getStaticAccessCredentials": 0,
             "vault:azure/getAccessCredentials:getAccessCredentials": 0,
             "vault:gcp/getAuthBackendRole:getAuthBackendRole": 0,
+            "vault:gcp/getKmsVerify:getKmsVerify": 1,
             "vault:generic/getSecret:getSecret": 0,
             "vault:identity/getEntity:getEntity": 0,
             "vault:identity/getGroup:getGroup": 0,

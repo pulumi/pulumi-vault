@@ -73,7 +73,7 @@ type AuthBackendConfigIdentity struct {
 	// added to both audit logs, and on the `ec2Alias`
 	Ec2Metadatas pulumi.StringArrayOutput `pulumi:"ec2Metadatas"`
 	// How to generate the identity alias when using the iam auth method. Valid choices are
-	// `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+	// `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
 	IamAlias pulumi.StringPtrOutput `pulumi:"iamAlias"`
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
@@ -125,7 +125,7 @@ type authBackendConfigIdentityState struct {
 	// added to both audit logs, and on the `ec2Alias`
 	Ec2Metadatas []string `pulumi:"ec2Metadatas"`
 	// How to generate the identity alias when using the iam auth method. Valid choices are
-	// `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+	// `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
 	IamAlias *string `pulumi:"iamAlias"`
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
@@ -148,7 +148,7 @@ type AuthBackendConfigIdentityState struct {
 	// added to both audit logs, and on the `ec2Alias`
 	Ec2Metadatas pulumi.StringArrayInput
 	// How to generate the identity alias when using the iam auth method. Valid choices are
-	// `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+	// `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
 	IamAlias pulumi.StringPtrInput
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
@@ -175,7 +175,7 @@ type authBackendConfigIdentityArgs struct {
 	// added to both audit logs, and on the `ec2Alias`
 	Ec2Metadatas []string `pulumi:"ec2Metadatas"`
 	// How to generate the identity alias when using the iam auth method. Valid choices are
-	// `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+	// `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
 	IamAlias *string `pulumi:"iamAlias"`
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
@@ -199,7 +199,7 @@ type AuthBackendConfigIdentityArgs struct {
 	// added to both audit logs, and on the `ec2Alias`
 	Ec2Metadatas pulumi.StringArrayInput
 	// How to generate the identity alias when using the iam auth method. Valid choices are
-	// `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+	// `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
 	IamAlias pulumi.StringPtrInput
 	// The metadata to include on the token returned by the `login` endpoint. This metadata will be
 	// added to both audit logs, and on the `iamAlias`
@@ -317,7 +317,7 @@ func (o AuthBackendConfigIdentityOutput) Ec2Metadatas() pulumi.StringArrayOutput
 }
 
 // How to generate the identity alias when using the iam auth method. Valid choices are
-// `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+// `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
 func (o AuthBackendConfigIdentityOutput) IamAlias() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackendConfigIdentity) pulumi.StringPtrOutput { return v.IamAlias }).(pulumi.StringPtrOutput)
 }

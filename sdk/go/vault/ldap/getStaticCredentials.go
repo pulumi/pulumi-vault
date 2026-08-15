@@ -39,6 +39,7 @@ type GetStaticCredentialsResult struct {
 	Namespace         *string `pulumi:"namespace"`
 	Password          string  `pulumi:"password"`
 	RoleName          string  `pulumi:"roleName"`
+	RotatedOnRead     bool    `pulumi:"rotatedOnRead"`
 	RotationPeriod    int     `pulumi:"rotationPeriod"`
 	Ttl               int     `pulumi:"ttl"`
 	Username          string  `pulumi:"username"`
@@ -110,6 +111,10 @@ func (o GetStaticCredentialsResultOutput) Password() pulumi.StringOutput {
 
 func (o GetStaticCredentialsResultOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStaticCredentialsResult) string { return v.RoleName }).(pulumi.StringOutput)
+}
+
+func (o GetStaticCredentialsResultOutput) RotatedOnRead() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStaticCredentialsResult) bool { return v.RotatedOnRead }).(pulumi.BoolOutput)
 }
 
 func (o GetStaticCredentialsResultOutput) RotationPeriod() pulumi.IntOutput {

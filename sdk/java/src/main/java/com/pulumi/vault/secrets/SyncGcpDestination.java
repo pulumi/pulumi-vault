@@ -210,6 +210,91 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### With KMS Key ID (Vault 2.2.0+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncGcpDestination;
+ * import com.pulumi.vault.secrets.SyncGcpDestinationArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpKmsKeyId = new SyncGcpDestination("gcpKmsKeyId", SyncGcpDestinationArgs.builder()
+ *             .name("gcp-dest-kms-key-id")
+ *             .projectId("gcp-project-id")
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(credentialsFile)
+ *                 .build()).result())
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .kmsKeyId("projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Replica Regions (Vault 2.2.0+)
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.secrets.SyncGcpDestination;
+ * import com.pulumi.vault.secrets.SyncGcpDestinationArgs;
+ * import com.pulumi.std.StdFunctions;
+ * import com.pulumi.std.inputs.FileArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var gcpReplicaRegions = new SyncGcpDestination("gcpReplicaRegions", SyncGcpDestinationArgs.builder()
+ *             .name("gcp-dest-replica-regions")
+ *             .projectId("gcp-project-id")
+ *             .credentials(StdFunctions.file(FileArgs.builder()
+ *                 .input(credentialsFile)
+ *                 .build()).result())
+ *             .secretNameTemplate("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}")
+ *             .replicaRegions(Map.ofEntries(
+ *                 Map.entry("us-central1", "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key"),
+ *                 Map.entry("us-east1", "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key")
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Using Workload Identity Federation (Vault 2.0.0+)
  * 
  * <pre>
@@ -352,7 +437,11 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
     /**
      * Global KMS key for encryption.
      * 
+     * @deprecated
+     * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+     * 
      */
+    @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
     @Export(name="globalKmsKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> globalKmsKey;
 
@@ -454,9 +543,27 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
         return this.identityTokenTtl;
     }
     /**
-     * Locational KMS keys for encryption.
+     * Specifies the ID of the GCP KMS key to be used to encrypt the secret.
      * 
      */
+    @Export(name="kmsKeyId", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> kmsKeyId;
+
+    /**
+     * @return Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+     * 
+     */
+    public Output<Optional<String>> kmsKeyId() {
+        return Codegen.optional(this.kmsKeyId);
+    }
+    /**
+     * Locational KMS keys for encryption.
+     * 
+     * @deprecated
+     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
     @Export(name="locationalKmsKeys", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> locationalKmsKeys;
 
@@ -520,9 +627,27 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.projectId);
     }
     /**
-     * Replication locations for secrets.
+     * Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
      * 
      */
+    @Export(name="replicaRegions", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output</* @Nullable */ Map<String,String>> replicaRegions;
+
+    /**
+     * @return Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+     * 
+     */
+    public Output<Optional<Map<String,String>>> replicaRegions() {
+        return Codegen.optional(this.replicaRegions);
+    }
+    /**
+     * Replication locations for secrets.
+     * 
+     * @deprecated
+     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
     @Export(name="replicationLocations", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> replicationLocations;
 

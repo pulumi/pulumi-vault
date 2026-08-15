@@ -9,6 +9,7 @@ import typing
 from .alphabet import *
 from .get_decode import *
 from .get_encode import *
+from .key_configuration import *
 from .role import *
 from .template import *
 from .transformation import *

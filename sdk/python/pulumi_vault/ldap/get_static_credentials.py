@@ -26,7 +26,7 @@ class GetStaticCredentialsResult:
     """
     A collection of values returned by getStaticCredentials.
     """
-    def __init__(__self__, dn=None, id=None, last_password=None, last_vault_rotation=None, mount=None, namespace=None, password=None, role_name=None, rotation_period=None, ttl=None, username=None):
+    def __init__(__self__, dn=None, id=None, last_password=None, last_vault_rotation=None, mount=None, namespace=None, password=None, role_name=None, rotated_on_read=None, rotation_period=None, ttl=None, username=None):
         if dn and not isinstance(dn, str):
             raise TypeError("Expected argument 'dn' to be a str")
         pulumi.set(__self__, "dn", dn)
@@ -51,6 +51,9 @@ class GetStaticCredentialsResult:
         if role_name and not isinstance(role_name, str):
             raise TypeError("Expected argument 'role_name' to be a str")
         pulumi.set(__self__, "role_name", role_name)
+        if rotated_on_read and not isinstance(rotated_on_read, bool):
+            raise TypeError("Expected argument 'rotated_on_read' to be a bool")
+        pulumi.set(__self__, "rotated_on_read", rotated_on_read)
         if rotation_period and not isinstance(rotation_period, int):
             raise TypeError("Expected argument 'rotation_period' to be a int")
         pulumi.set(__self__, "rotation_period", rotation_period)
@@ -105,6 +108,11 @@ class GetStaticCredentialsResult:
         return pulumi.get(self, "role_name")
 
     @_builtins.property
+    @pulumi.getter(name="rotatedOnRead")
+    def rotated_on_read(self) -> _builtins.bool:
+        return pulumi.get(self, "rotated_on_read")
+
+    @_builtins.property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> _builtins.int:
         return pulumi.get(self, "rotation_period")
@@ -134,6 +142,7 @@ class AwaitableGetStaticCredentialsResult(GetStaticCredentialsResult):
             namespace=self.namespace,
             password=self.password,
             role_name=self.role_name,
+            rotated_on_read=self.rotated_on_read,
             rotation_period=self.rotation_period,
             ttl=self.ttl,
             username=self.username)
@@ -162,6 +171,7 @@ def get_static_credentials(mount: Optional[_builtins.str] = None,
         namespace=pulumi.get(__ret__, 'namespace'),
         password=pulumi.get(__ret__, 'password'),
         role_name=pulumi.get(__ret__, 'role_name'),
+        rotated_on_read=pulumi.get(__ret__, 'rotated_on_read'),
         rotation_period=pulumi.get(__ret__, 'rotation_period'),
         ttl=pulumi.get(__ret__, 'ttl'),
         username=pulumi.get(__ret__, 'username'))
@@ -187,6 +197,7 @@ def get_static_credentials_output(mount: pulumi.Input[Optional[_builtins.str]] =
         namespace=pulumi.get(__response__, 'namespace'),
         password=pulumi.get(__response__, 'password'),
         role_name=pulumi.get(__response__, 'role_name'),
+        rotated_on_read=pulumi.get(__response__, 'rotated_on_read'),
         rotation_period=pulumi.get(__response__, 'rotation_period'),
         ttl=pulumi.get(__response__, 'ttl'),
         username=pulumi.get(__response__, 'username')))

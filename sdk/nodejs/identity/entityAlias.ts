@@ -72,6 +72,16 @@ export class EntityAlias extends pulumi.CustomResource {
      */
     declare public readonly customMetadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
+     * Unique external identifier from the external IdP.
+     * *Available only for Vault Enterprise*.
+     */
+    declare public readonly externalId: pulumi.Output<string | undefined>;
+    /**
+     * Issuer name associated with this alias.
+     * *Available only for Vault Enterprise*.
+     */
+    declare public readonly issuer: pulumi.Output<string | undefined>;
+    /**
      * Accessor of the mount to which the alias should belong to.
      */
     declare public readonly mountAccessor: pulumi.Output<string>;
@@ -102,6 +112,8 @@ export class EntityAlias extends pulumi.CustomResource {
             const state = argsOrState as EntityAliasState | undefined;
             resourceInputs["canonicalId"] = state?.canonicalId;
             resourceInputs["customMetadata"] = state?.customMetadata;
+            resourceInputs["externalId"] = state?.externalId;
+            resourceInputs["issuer"] = state?.issuer;
             resourceInputs["mountAccessor"] = state?.mountAccessor;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -115,6 +127,8 @@ export class EntityAlias extends pulumi.CustomResource {
             }
             resourceInputs["canonicalId"] = args?.canonicalId;
             resourceInputs["customMetadata"] = args?.customMetadata;
+            resourceInputs["externalId"] = args?.externalId;
+            resourceInputs["issuer"] = args?.issuer;
             resourceInputs["mountAccessor"] = args?.mountAccessor;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
@@ -136,6 +150,16 @@ export interface EntityAliasState {
      * Custom metadata to be associated with this alias.
      */
     customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Unique external identifier from the external IdP.
+     * *Available only for Vault Enterprise*.
+     */
+    externalId?: pulumi.Input<string | undefined>;
+    /**
+     * Issuer name associated with this alias.
+     * *Available only for Vault Enterprise*.
+     */
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */
@@ -165,6 +189,16 @@ export interface EntityAliasArgs {
      * Custom metadata to be associated with this alias.
      */
     customMetadata?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    /**
+     * Unique external identifier from the external IdP.
+     * *Available only for Vault Enterprise*.
+     */
+    externalId?: pulumi.Input<string | undefined>;
+    /**
+     * Issuer name associated with this alias.
+     * *Available only for Vault Enterprise*.
+     */
+    issuer?: pulumi.Input<string | undefined>;
     /**
      * Accessor of the mount to which the alias should belong to.
      */

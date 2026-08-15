@@ -97,6 +97,13 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly auditNonHmacResponseKeys: pulumi.Output<string[]>;
     /**
+     * If true, Vault automatically attempts to unlock the admin managed LDAP account
+     * after every successful static-role password rotation. Applies to all static roles on this mount
+     * unless overridden at the role level. Defaults to false. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     */
+    declare public readonly autoUnlock: pulumi.Output<boolean>;
+    /**
      * Distinguished name of object to bind when performing user and group search.
      */
     declare public readonly binddn: pulumi.Output<string>;
@@ -221,6 +228,17 @@ export class SecretBackend extends pulumi.CustomResource {
      */
     declare public readonly requestTimeout: pulumi.Output<number>;
     /**
+     * If true, static role credentials are rotated on each read. Acts as
+     * the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+     */
+    declare public readonly rotateOnRead: pulumi.Output<boolean>;
+    /**
+     * Minimum number of seconds between rotate-on-read rotations.
+     * Acts as the default cooldown for all static roles that do not provide their own override.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    declare public readonly rotateOnReadCooldown: pulumi.Output<number>;
+    /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
@@ -295,6 +313,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["allowedResponseHeaders"] = state?.allowedResponseHeaders;
             resourceInputs["auditNonHmacRequestKeys"] = state?.auditNonHmacRequestKeys;
             resourceInputs["auditNonHmacResponseKeys"] = state?.auditNonHmacResponseKeys;
+            resourceInputs["autoUnlock"] = state?.autoUnlock;
             resourceInputs["binddn"] = state?.binddn;
             resourceInputs["bindpass"] = state?.bindpass;
             resourceInputs["bindpassWo"] = state?.bindpassWo;
@@ -323,6 +342,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["path"] = state?.path;
             resourceInputs["pluginVersion"] = state?.pluginVersion;
             resourceInputs["requestTimeout"] = state?.requestTimeout;
+            resourceInputs["rotateOnRead"] = state?.rotateOnRead;
+            resourceInputs["rotateOnReadCooldown"] = state?.rotateOnReadCooldown;
             resourceInputs["rotationPeriod"] = state?.rotationPeriod;
             resourceInputs["rotationSchedule"] = state?.rotationSchedule;
             resourceInputs["rotationWindow"] = state?.rotationWindow;
@@ -344,6 +365,7 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["allowedResponseHeaders"] = args?.allowedResponseHeaders;
             resourceInputs["auditNonHmacRequestKeys"] = args?.auditNonHmacRequestKeys;
             resourceInputs["auditNonHmacResponseKeys"] = args?.auditNonHmacResponseKeys;
+            resourceInputs["autoUnlock"] = args?.autoUnlock;
             resourceInputs["binddn"] = args?.binddn;
             resourceInputs["bindpass"] = args?.bindpass ? pulumi.secret(args.bindpass) : undefined;
             resourceInputs["bindpassWo"] = args?.bindpassWo ? pulumi.secret(args.bindpassWo) : undefined;
@@ -372,6 +394,8 @@ export class SecretBackend extends pulumi.CustomResource {
             resourceInputs["path"] = args?.path;
             resourceInputs["pluginVersion"] = args?.pluginVersion;
             resourceInputs["requestTimeout"] = args?.requestTimeout;
+            resourceInputs["rotateOnRead"] = args?.rotateOnRead;
+            resourceInputs["rotateOnReadCooldown"] = args?.rotateOnReadCooldown;
             resourceInputs["rotationPeriod"] = args?.rotationPeriod;
             resourceInputs["rotationSchedule"] = args?.rotationSchedule;
             resourceInputs["rotationWindow"] = args?.rotationWindow;
@@ -417,6 +441,13 @@ export interface SecretBackendState {
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
     auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * If true, Vault automatically attempts to unlock the admin managed LDAP account
+     * after every successful static-role password rotation. Applies to all static roles on this mount
+     * unless overridden at the role level. Defaults to false. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     */
+    autoUnlock?: pulumi.Input<boolean | undefined>;
     /**
      * Distinguished name of object to bind when performing user and group search.
      */
@@ -542,6 +573,17 @@ export interface SecretBackendState {
      */
     requestTimeout?: pulumi.Input<number | undefined>;
     /**
+     * If true, static role credentials are rotated on each read. Acts as
+     * the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnRead?: pulumi.Input<boolean | undefined>;
+    /**
+     * Minimum number of seconds between rotate-on-read rotations.
+     * Acts as the default cooldown for all static roles that do not provide their own override.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnReadCooldown?: pulumi.Input<number | undefined>;
+    /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
      */
@@ -619,6 +661,13 @@ export interface SecretBackendArgs {
      * Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
      */
     auditNonHmacResponseKeys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * If true, Vault automatically attempts to unlock the admin managed LDAP account
+     * after every successful static-role password rotation. Applies to all static roles on this mount
+     * unless overridden at the role level. Defaults to false. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     */
+    autoUnlock?: pulumi.Input<boolean | undefined>;
     /**
      * Distinguished name of object to bind when performing user and group search.
      */
@@ -743,6 +792,17 @@ export interface SecretBackendArgs {
      * before returning back an error.
      */
     requestTimeout?: pulumi.Input<number | undefined>;
+    /**
+     * If true, static role credentials are rotated on each read. Acts as
+     * the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnRead?: pulumi.Input<boolean | undefined>;
+    /**
+     * Minimum number of seconds between rotate-on-read rotations.
+     * Acts as the default cooldown for all static roles that do not provide their own override.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnReadCooldown?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the root credential.
      * A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.

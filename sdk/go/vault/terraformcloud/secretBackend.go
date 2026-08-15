@@ -84,9 +84,16 @@ type SecretBackend struct {
 	DelegatedAuthAccessors pulumi.StringArrayOutput `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Cancels all upcoming rotations of the root token
+	// until unset. Requires Vault Enterprise 2.2.0+.
+	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrOutput `pulumi:"disableRemount"`
+	// The maximum amount of time in seconds the root token
+	// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+	// default token lifetime. Requires Vault 2.2.0+.
+	ExplicitMaxTtl pulumi.IntOutput `pulumi:"explicitMaxTtl"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrOutput `pulumi:"externalEntropyAccess"`
 	// If set to true, disables caching.
@@ -110,6 +117,20 @@ type SecretBackend struct {
 	PassthroughRequestHeaders pulumi.StringArrayOutput `pulumi:"passthroughRequestHeaders"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrOutput `pulumi:"pluginVersion"`
+	// The amount of time in seconds Vault should wait before
+	// rotating the root token. A zero value tells Vault not to rotate the root token. The
+	// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+	// exclusive with `rotationSchedule`.
+	RotationPeriod pulumi.IntPtrOutput `pulumi:"rotationPeriod"`
+	// The schedule, in cron-style time format
+	// defining the schedule on which Vault should rotate the root token. Requires Vault
+	// Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+	RotationSchedule pulumi.StringPtrOutput `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+	// Requires Vault Enterprise 2.2.0+.
+	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
 	// The Terraform Cloud management token this backend should
@@ -192,9 +213,16 @@ type secretBackendState struct {
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root token
+	// until unset. Requires Vault Enterprise 2.2.0+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The maximum amount of time in seconds the root token
+	// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+	// default token lifetime. Requires Vault 2.2.0+.
+	ExplicitMaxTtl *int `pulumi:"explicitMaxTtl"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
 	// If set to true, disables caching.
@@ -218,6 +246,20 @@ type secretBackendState struct {
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion *string `pulumi:"pluginVersion"`
+	// The amount of time in seconds Vault should wait before
+	// rotating the root token. A zero value tells Vault not to rotate the root token. The
+	// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+	// exclusive with `rotationSchedule`.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in cron-style time format
+	// defining the schedule on which Vault should rotate the root token. Requires Vault
+	// Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+	// Requires Vault Enterprise 2.2.0+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// The Terraform Cloud management token this backend should
@@ -260,9 +302,16 @@ type SecretBackendState struct {
 	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root token
+	// until unset. Requires Vault Enterprise 2.2.0+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The maximum amount of time in seconds the root token
+	// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+	// default token lifetime. Requires Vault 2.2.0+.
+	ExplicitMaxTtl pulumi.IntPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
 	// If set to true, disables caching.
@@ -286,6 +335,20 @@ type SecretBackendState struct {
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before
+	// rotating the root token. A zero value tells Vault not to rotate the root token. The
+	// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+	// exclusive with `rotationSchedule`.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in cron-style time format
+	// defining the schedule on which Vault should rotate the root token. Requires Vault
+	// Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+	// Requires Vault Enterprise 2.2.0+.
+	RotationWindow pulumi.IntPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// The Terraform Cloud management token this backend should
@@ -330,9 +393,16 @@ type secretBackendArgs struct {
 	DelegatedAuthAccessors []string `pulumi:"delegatedAuthAccessors"`
 	// Human-friendly description of the mount for the backend.
 	Description *string `pulumi:"description"`
+	// Cancels all upcoming rotations of the root token
+	// until unset. Requires Vault Enterprise 2.2.0+.
+	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount *bool `pulumi:"disableRemount"`
+	// The maximum amount of time in seconds the root token
+	// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+	// default token lifetime. Requires Vault 2.2.0+.
+	ExplicitMaxTtl *int `pulumi:"explicitMaxTtl"`
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess *bool `pulumi:"externalEntropyAccess"`
 	// If set to true, disables caching.
@@ -356,6 +426,20 @@ type secretBackendArgs struct {
 	PassthroughRequestHeaders []string `pulumi:"passthroughRequestHeaders"`
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion *string `pulumi:"pluginVersion"`
+	// The amount of time in seconds Vault should wait before
+	// rotating the root token. A zero value tells Vault not to rotate the root token. The
+	// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+	// exclusive with `rotationSchedule`.
+	RotationPeriod *int `pulumi:"rotationPeriod"`
+	// The schedule, in cron-style time format
+	// defining the schedule on which Vault should rotate the root token. Requires Vault
+	// Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+	RotationSchedule *string `pulumi:"rotationSchedule"`
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+	// Requires Vault Enterprise 2.2.0+.
+	RotationWindow *int `pulumi:"rotationWindow"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
 	// The Terraform Cloud management token this backend should
@@ -397,9 +481,16 @@ type SecretBackendArgs struct {
 	DelegatedAuthAccessors pulumi.StringArrayInput
 	// Human-friendly description of the mount for the backend.
 	Description pulumi.StringPtrInput
+	// Cancels all upcoming rotations of the root token
+	// until unset. Requires Vault Enterprise 2.2.0+.
+	DisableAutomatedRotation pulumi.BoolPtrInput
 	// If set, opts out of mount migration on path updates.
 	// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 	DisableRemount pulumi.BoolPtrInput
+	// The maximum amount of time in seconds the root token
+	// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+	// default token lifetime. Requires Vault 2.2.0+.
+	ExplicitMaxTtl pulumi.IntPtrInput
 	// Enable the secrets engine to access Vault's external entropy source
 	ExternalEntropyAccess pulumi.BoolPtrInput
 	// If set to true, disables caching.
@@ -423,6 +514,20 @@ type SecretBackendArgs struct {
 	PassthroughRequestHeaders pulumi.StringArrayInput
 	// Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 	PluginVersion pulumi.StringPtrInput
+	// The amount of time in seconds Vault should wait before
+	// rotating the root token. A zero value tells Vault not to rotate the root token. The
+	// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+	// exclusive with `rotationSchedule`.
+	RotationPeriod pulumi.IntPtrInput
+	// The schedule, in cron-style time format
+	// defining the schedule on which Vault should rotate the root token. Requires Vault
+	// Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+	RotationSchedule pulumi.StringPtrInput
+	// The maximum amount of time in seconds allowed to complete
+	// a rotation when a scheduled token rotation occurs. The default rotation window is
+	// unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+	// Requires Vault Enterprise 2.2.0+.
+	RotationWindow pulumi.IntPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
 	// The Terraform Cloud management token this backend should
@@ -584,10 +689,23 @@ func (o SecretBackendOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Cancels all upcoming rotations of the root token
+// until unset. Requires Vault Enterprise 2.2.0+.
+func (o SecretBackendOutput) DisableAutomatedRotation() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableAutomatedRotation }).(pulumi.BoolPtrOutput)
+}
+
 // If set, opts out of mount migration on path updates.
 // See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
 func (o SecretBackendOutput) DisableRemount() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolPtrOutput { return v.DisableRemount }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum amount of time in seconds the root token
+// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+// default token lifetime. Requires Vault 2.2.0+.
+func (o SecretBackendOutput) ExplicitMaxTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntOutput { return v.ExplicitMaxTtl }).(pulumi.IntOutput)
 }
 
 // Enable the secrets engine to access Vault's external entropy source
@@ -641,6 +759,29 @@ func (o SecretBackendOutput) PassthroughRequestHeaders() pulumi.StringArrayOutpu
 // Specifies the semantic version of the plugin to use, e.g. 'v1.0.0'
 func (o SecretBackendOutput) PluginVersion() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.PluginVersion }).(pulumi.StringPtrOutput)
+}
+
+// The amount of time in seconds Vault should wait before
+// rotating the root token. A zero value tells Vault not to rotate the root token. The
+// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+// exclusive with `rotationSchedule`.
+func (o SecretBackendOutput) RotationPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationPeriod }).(pulumi.IntPtrOutput)
+}
+
+// The schedule, in cron-style time format
+// defining the schedule on which Vault should rotate the root token. Requires Vault
+// Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+func (o SecretBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.StringPtrOutput { return v.RotationSchedule }).(pulumi.StringPtrOutput)
+}
+
+// The maximum amount of time in seconds allowed to complete
+// a rotation when a scheduled token rotation occurs. The default rotation window is
+// unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+// Requires Vault Enterprise 2.2.0+.
+func (o SecretBackendOutput) RotationWindow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SecretBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
 }
 
 // Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability

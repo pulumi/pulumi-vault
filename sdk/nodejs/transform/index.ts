@@ -20,6 +20,11 @@ export const getEncode: typeof import("./getEncode").getEncode = null as any;
 export const getEncodeOutput: typeof import("./getEncode").getEncodeOutput = null as any;
 utilities.lazyLoad(exports, ["getEncode","getEncodeOutput"], () => require("./getEncode"));
 
+export { KeyConfigurationArgs, KeyConfigurationState } from "./keyConfiguration";
+export type KeyConfiguration = import("./keyConfiguration").KeyConfiguration;
+export const KeyConfiguration: typeof import("./keyConfiguration").KeyConfiguration = null as any;
+utilities.lazyLoad(exports, ["KeyConfiguration"], () => require("./keyConfiguration"));
+
 export { RoleArgs, RoleState } from "./role";
 export type Role = import("./role").Role;
 export const Role: typeof import("./role").Role = null as any;
@@ -42,6 +47,8 @@ const _module = {
         switch (type) {
             case "vault:transform/alphabet:Alphabet":
                 return new Alphabet(name, <any>undefined, { urn })
+            case "vault:transform/keyConfiguration:KeyConfiguration":
+                return new KeyConfiguration(name, <any>undefined, { urn })
             case "vault:transform/role:Role":
                 return new Role(name, <any>undefined, { urn })
             case "vault:transform/template:Template":
@@ -54,6 +61,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("vault", "transform/alphabet", _module)
+pulumi.runtime.registerResourceModule("vault", "transform/keyConfiguration", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/role", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/template", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/transformation", _module)

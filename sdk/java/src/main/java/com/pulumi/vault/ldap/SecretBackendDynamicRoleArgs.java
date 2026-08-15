@@ -140,6 +140,23 @@ public final class SecretBackendDynamicRoleArgs extends com.pulumi.resources.Res
     }
 
     /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    @Import(name="passwordPolicy")
+    private @Nullable Output<String> passwordPolicy;
+
+    /**
+     * @return Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    public Optional<Output<String>> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+
+    /**
      * Name of the role.
      * 
      */
@@ -207,6 +224,7 @@ public final class SecretBackendDynamicRoleArgs extends com.pulumi.resources.Res
         this.maxTtl = $.maxTtl;
         this.mount = $.mount;
         this.namespace = $.namespace;
+        this.passwordPolicy = $.passwordPolicy;
         this.roleName = $.roleName;
         this.rollbackLdif = $.rollbackLdif;
         this.usernameTemplate = $.usernameTemplate;
@@ -386,6 +404,29 @@ public final class SecretBackendDynamicRoleArgs extends com.pulumi.resources.Res
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param passwordPolicy Name of the password policy to use to generate passwords for this role.
+         * Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(@Nullable Output<String> passwordPolicy) {
+            $.passwordPolicy = passwordPolicy;
+            return this;
+        }
+
+        /**
+         * @param passwordPolicy Name of the password policy to use to generate passwords for this role.
+         * Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(String passwordPolicy) {
+            return passwordPolicy(Output.of(passwordPolicy));
         }
 
         /**

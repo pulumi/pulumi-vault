@@ -956,6 +956,26 @@ class AuthBackend(pulumi.CustomResource):
             })
         ```
 
+        Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        okta = vault.jwt.AuthBackend("okta",
+            description="OIDC backend",
+            oidc_discovery_url="https://mycompany.okta.com/oauth2/default",
+            path="oidc",
+            type="oidc",
+            provider_config={
+                "provider": "okta",
+                "fetch_groups": "true",
+                "org_url": "https://mycompany.okta.com",
+                "api_token": "12345",
+                "groups_cap": "200",
+            })
+        ```
+
         ## Ephemeral Attributes Reference
 
         The following write-only attributes are supported:
@@ -1092,6 +1112,26 @@ class AuthBackend(pulumi.CustomResource):
                 "fetch_groups": "true",
                 "fetch_user_info": "true",
                 "groups_recurse_max_depth": "1",
+            })
+        ```
+
+        Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        okta = vault.jwt.AuthBackend("okta",
+            description="OIDC backend",
+            oidc_discovery_url="https://mycompany.okta.com/oauth2/default",
+            path="oidc",
+            type="oidc",
+            provider_config={
+                "provider": "okta",
+                "fetch_groups": "true",
+                "org_url": "https://mycompany.okta.com",
+                "api_token": "12345",
+                "groups_cap": "200",
             })
         ```
 

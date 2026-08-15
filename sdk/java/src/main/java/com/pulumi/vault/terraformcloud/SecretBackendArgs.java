@@ -174,6 +174,23 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Cancels all upcoming rotations of the root token
+     * until unset. Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Import(name="disableAutomatedRotation")
+    private @Nullable Output<Boolean> disableAutomatedRotation;
+
+    /**
+     * @return Cancels all upcoming rotations of the root token
+     * until unset. Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    public Optional<Output<Boolean>> disableAutomatedRotation() {
+        return Optional.ofNullable(this.disableAutomatedRotation);
+    }
+
+    /**
      * If set, opts out of mount migration on path updates.
      * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
      * 
@@ -188,6 +205,25 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> disableRemount() {
         return Optional.ofNullable(this.disableRemount);
+    }
+
+    /**
+     * The maximum amount of time in seconds the root token
+     * issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+     * default token lifetime. Requires Vault 2.2.0+.
+     * 
+     */
+    @Import(name="explicitMaxTtl")
+    private @Nullable Output<Integer> explicitMaxTtl;
+
+    /**
+     * @return The maximum amount of time in seconds the root token
+     * issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+     * default token lifetime. Requires Vault 2.2.0+.
+     * 
+     */
+    public Optional<Output<Integer>> explicitMaxTtl() {
+        return Optional.ofNullable(this.explicitMaxTtl);
     }
 
     /**
@@ -347,6 +383,67 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The amount of time in seconds Vault should wait before
+     * rotating the root token. A zero value tells Vault not to rotate the root token. The
+     * minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+     * exclusive with `rotationSchedule`.
+     * 
+     */
+    @Import(name="rotationPeriod")
+    private @Nullable Output<Integer> rotationPeriod;
+
+    /**
+     * @return The amount of time in seconds Vault should wait before
+     * rotating the root token. A zero value tells Vault not to rotate the root token. The
+     * minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+     * exclusive with `rotationSchedule`.
+     * 
+     */
+    public Optional<Output<Integer>> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+
+    /**
+     * The schedule, in cron-style time format
+     * defining the schedule on which Vault should rotate the root token. Requires Vault
+     * Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+     * 
+     */
+    @Import(name="rotationSchedule")
+    private @Nullable Output<String> rotationSchedule;
+
+    /**
+     * @return The schedule, in cron-style time format
+     * defining the schedule on which Vault should rotate the root token. Requires Vault
+     * Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+     * 
+     */
+    public Optional<Output<String>> rotationSchedule() {
+        return Optional.ofNullable(this.rotationSchedule);
+    }
+
+    /**
+     * The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Import(name="rotationWindow")
+    private @Nullable Output<Integer> rotationWindow;
+
+    /**
+     * @return The maximum amount of time in seconds allowed to complete
+     * a rotation when a scheduled token rotation occurs. The default rotation window is
+     * unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    public Optional<Output<Integer>> rotationWindow() {
+        return Optional.ofNullable(this.rotationWindow);
+    }
+
+    /**
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal&#39;s encryption capability
      * 
      */
@@ -433,7 +530,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.defaultLeaseTtlSeconds = $.defaultLeaseTtlSeconds;
         this.delegatedAuthAccessors = $.delegatedAuthAccessors;
         this.description = $.description;
+        this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.disableRemount = $.disableRemount;
+        this.explicitMaxTtl = $.explicitMaxTtl;
         this.externalEntropyAccess = $.externalEntropyAccess;
         this.forceNoCache = $.forceNoCache;
         this.identityTokenKey = $.identityTokenKey;
@@ -444,6 +543,9 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.options = $.options;
         this.passthroughRequestHeaders = $.passthroughRequestHeaders;
         this.pluginVersion = $.pluginVersion;
+        this.rotationPeriod = $.rotationPeriod;
+        this.rotationSchedule = $.rotationSchedule;
+        this.rotationWindow = $.rotationWindow;
         this.sealWrap = $.sealWrap;
         this.token = $.token;
         this.tokenWo = $.tokenWo;
@@ -733,6 +835,29 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the root token
+         * until unset. Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(@Nullable Output<Boolean> disableAutomatedRotation) {
+            $.disableAutomatedRotation = disableAutomatedRotation;
+            return this;
+        }
+
+        /**
+         * @param disableAutomatedRotation Cancels all upcoming rotations of the root token
+         * until unset. Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder disableAutomatedRotation(Boolean disableAutomatedRotation) {
+            return disableAutomatedRotation(Output.of(disableAutomatedRotation));
+        }
+
+        /**
          * @param disableRemount If set, opts out of mount migration on path updates.
          * See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
          * 
@@ -753,6 +878,31 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder disableRemount(Boolean disableRemount) {
             return disableRemount(Output.of(disableRemount));
+        }
+
+        /**
+         * @param explicitMaxTtl The maximum amount of time in seconds the root token
+         * issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+         * default token lifetime. Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder explicitMaxTtl(@Nullable Output<Integer> explicitMaxTtl) {
+            $.explicitMaxTtl = explicitMaxTtl;
+            return this;
+        }
+
+        /**
+         * @param explicitMaxTtl The maximum amount of time in seconds the root token
+         * issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+         * default token lifetime. Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder explicitMaxTtl(Integer explicitMaxTtl) {
+            return explicitMaxTtl(Output.of(explicitMaxTtl));
         }
 
         /**
@@ -979,6 +1129,85 @@ public final class SecretBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder pluginVersion(String pluginVersion) {
             return pluginVersion(Output.of(pluginVersion));
+        }
+
+        /**
+         * @param rotationPeriod The amount of time in seconds Vault should wait before
+         * rotating the root token. A zero value tells Vault not to rotate the root token. The
+         * minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+         * exclusive with `rotationSchedule`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(@Nullable Output<Integer> rotationPeriod) {
+            $.rotationPeriod = rotationPeriod;
+            return this;
+        }
+
+        /**
+         * @param rotationPeriod The amount of time in seconds Vault should wait before
+         * rotating the root token. A zero value tells Vault not to rotate the root token. The
+         * minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+         * exclusive with `rotationSchedule`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(Integer rotationPeriod) {
+            return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in cron-style time format
+         * defining the schedule on which Vault should rotate the root token. Requires Vault
+         * Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(@Nullable Output<String> rotationSchedule) {
+            $.rotationSchedule = rotationSchedule;
+            return this;
+        }
+
+        /**
+         * @param rotationSchedule The schedule, in cron-style time format
+         * defining the schedule on which Vault should rotate the root token. Requires Vault
+         * Enterprise 2.2.0+. Mutually exclusive with `rotationPeriod`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationSchedule(String rotationSchedule) {
+            return rotationSchedule(Output.of(rotationSchedule));
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+         * Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(@Nullable Output<Integer> rotationWindow) {
+            $.rotationWindow = rotationWindow;
+            return this;
+        }
+
+        /**
+         * @param rotationWindow The maximum amount of time in seconds allowed to complete
+         * a rotation when a scheduled token rotation occurs. The default rotation window is
+         * unbound and the minimum allowable window is `3600`. Only valid with `rotationSchedule`.
+         * Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationWindow(Integer rotationWindow) {
+            return rotationWindow(Output.of(rotationWindow));
         }
 
         /**

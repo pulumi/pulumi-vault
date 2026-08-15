@@ -20,6 +20,21 @@ export const getAuthBackendRole: typeof import("./getAuthBackendRole").getAuthBa
 export const getAuthBackendRoleOutput: typeof import("./getAuthBackendRole").getAuthBackendRoleOutput = null as any;
 utilities.lazyLoad(exports, ["getAuthBackendRole","getAuthBackendRoleOutput"], () => require("./getAuthBackendRole"));
 
+export { GetKmsVerifyArgs, GetKmsVerifyResult, GetKmsVerifyOutputArgs } from "./getKmsVerify";
+export const getKmsVerify: typeof import("./getKmsVerify").getKmsVerify = null as any;
+export const getKmsVerifyOutput: typeof import("./getKmsVerify").getKmsVerifyOutput = null as any;
+utilities.lazyLoad(exports, ["getKmsVerify","getKmsVerifyOutput"], () => require("./getKmsVerify"));
+
+export { KmsSecretBackendArgs, KmsSecretBackendState } from "./kmsSecretBackend";
+export type KmsSecretBackend = import("./kmsSecretBackend").KmsSecretBackend;
+export const KmsSecretBackend: typeof import("./kmsSecretBackend").KmsSecretBackend = null as any;
+utilities.lazyLoad(exports, ["KmsSecretBackend"], () => require("./kmsSecretBackend"));
+
+export { KmsSecretBackendKeyArgs, KmsSecretBackendKeyState } from "./kmsSecretBackendKey";
+export type KmsSecretBackendKey = import("./kmsSecretBackendKey").KmsSecretBackendKey;
+export const KmsSecretBackendKey: typeof import("./kmsSecretBackendKey").KmsSecretBackendKey = null as any;
+utilities.lazyLoad(exports, ["KmsSecretBackendKey"], () => require("./kmsSecretBackendKey"));
+
 export { SecretBackendArgs, SecretBackendState } from "./secretBackend";
 export type SecretBackend = import("./secretBackend").SecretBackend;
 export const SecretBackend: typeof import("./secretBackend").SecretBackend = null as any;
@@ -49,6 +64,10 @@ const _module = {
                 return new AuthBackend(name, <any>undefined, { urn })
             case "vault:gcp/authBackendRole:AuthBackendRole":
                 return new AuthBackendRole(name, <any>undefined, { urn })
+            case "vault:gcp/kmsSecretBackend:KmsSecretBackend":
+                return new KmsSecretBackend(name, <any>undefined, { urn })
+            case "vault:gcp/kmsSecretBackendKey:KmsSecretBackendKey":
+                return new KmsSecretBackendKey(name, <any>undefined, { urn })
             case "vault:gcp/secretBackend:SecretBackend":
                 return new SecretBackend(name, <any>undefined, { urn })
             case "vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount":
@@ -64,6 +83,8 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("vault", "gcp/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/authBackendRole", _module)
+pulumi.runtime.registerResourceModule("vault", "gcp/kmsSecretBackend", _module)
+pulumi.runtime.registerResourceModule("vault", "gcp/kmsSecretBackendKey", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretImpersonatedAccount", _module)
 pulumi.runtime.registerResourceModule("vault", "gcp/secretRoleset", _module)

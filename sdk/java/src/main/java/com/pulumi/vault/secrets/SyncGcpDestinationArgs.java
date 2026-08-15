@@ -116,14 +116,22 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
     /**
      * Global KMS key for encryption.
      * 
+     * @deprecated
+     * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+     * 
      */
+    @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
     @Import(name="globalKmsKey")
     private @Nullable Output<String> globalKmsKey;
 
     /**
      * @return Global KMS key for encryption.
      * 
+     * @deprecated
+     * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+     * 
      */
+    @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
     public Optional<Output<String>> globalKmsKey() {
         return Optional.ofNullable(this.globalKmsKey);
     }
@@ -225,16 +233,39 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Locational KMS keys for encryption.
+     * Specifies the ID of the GCP KMS key to be used to encrypt the secret.
      * 
      */
+    @Import(name="kmsKeyId")
+    private @Nullable Output<String> kmsKeyId;
+
+    /**
+     * @return Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+     * 
+     */
+    public Optional<Output<String>> kmsKeyId() {
+        return Optional.ofNullable(this.kmsKeyId);
+    }
+
+    /**
+     * Locational KMS keys for encryption.
+     * 
+     * @deprecated
+     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
     @Import(name="locationalKmsKeys")
     private @Nullable Output<Map<String,String>> locationalKmsKeys;
 
     /**
      * @return Locational KMS keys for encryption.
      * 
+     * @deprecated
+     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * 
      */
+    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
     public Optional<Output<Map<String,String>>> locationalKmsKeys() {
         return Optional.ofNullable(this.locationalKmsKeys);
     }
@@ -295,16 +326,39 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Replication locations for secrets.
+     * Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
      * 
      */
+    @Import(name="replicaRegions")
+    private @Nullable Output<Map<String,String>> replicaRegions;
+
+    /**
+     * @return Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> replicaRegions() {
+        return Optional.ofNullable(this.replicaRegions);
+    }
+
+    /**
+     * Replication locations for secrets.
+     * 
+     * @deprecated
+     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
     @Import(name="replicationLocations")
     private @Nullable Output<List<String>> replicationLocations;
 
     /**
      * @return Replication locations for secrets.
      * 
+     * @deprecated
+     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * 
      */
+    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
     public Optional<Output<List<String>>> replicationLocations() {
         return Optional.ofNullable(this.replicationLocations);
     }
@@ -357,10 +411,12 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
         this.identityTokenKeyWo = $.identityTokenKeyWo;
         this.identityTokenKeyWoVersion = $.identityTokenKeyWoVersion;
         this.identityTokenTtl = $.identityTokenTtl;
+        this.kmsKeyId = $.kmsKeyId;
         this.locationalKmsKeys = $.locationalKmsKeys;
         this.name = $.name;
         this.namespace = $.namespace;
         this.projectId = $.projectId;
+        this.replicaRegions = $.replicaRegions;
         this.replicationLocations = $.replicationLocations;
         this.secretNameTemplate = $.secretNameTemplate;
         this.serviceAccountEmail = $.serviceAccountEmail;
@@ -549,7 +605,11 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+         * 
          */
+        @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
         public Builder globalKmsKey(@Nullable Output<String> globalKmsKey) {
             $.globalKmsKey = globalKmsKey;
             return this;
@@ -560,7 +620,11 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+         * 
          */
+        @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
         public Builder globalKmsKey(String globalKmsKey) {
             return globalKmsKey(Output.of(globalKmsKey));
         }
@@ -698,11 +762,36 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param locationalKmsKeys Locational KMS keys for encryption.
+         * @param kmsKeyId Specifies the ID of the GCP KMS key to be used to encrypt the secret.
          * 
          * @return builder
          * 
          */
+        public Builder kmsKeyId(@Nullable Output<String> kmsKeyId) {
+            $.kmsKeyId = kmsKeyId;
+            return this;
+        }
+
+        /**
+         * @param kmsKeyId Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kmsKeyId(String kmsKeyId) {
+            return kmsKeyId(Output.of(kmsKeyId));
+        }
+
+        /**
+         * @param locationalKmsKeys Locational KMS keys for encryption.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * 
+         */
+        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
         public Builder locationalKmsKeys(@Nullable Output<Map<String,String>> locationalKmsKeys) {
             $.locationalKmsKeys = locationalKmsKeys;
             return this;
@@ -713,7 +802,11 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * 
          */
+        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
         public Builder locationalKmsKeys(Map<String,String> locationalKmsKeys) {
             return locationalKmsKeys(Output.of(locationalKmsKeys));
         }
@@ -792,11 +885,36 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param replicationLocations Replication locations for secrets.
+         * @param replicaRegions Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
          * 
          * @return builder
          * 
          */
+        public Builder replicaRegions(@Nullable Output<Map<String,String>> replicaRegions) {
+            $.replicaRegions = replicaRegions;
+            return this;
+        }
+
+        /**
+         * @param replicaRegions Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicaRegions(Map<String,String> replicaRegions) {
+            return replicaRegions(Output.of(replicaRegions));
+        }
+
+        /**
+         * @param replicationLocations Replication locations for secrets.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * 
+         */
+        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
         public Builder replicationLocations(@Nullable Output<List<String>> replicationLocations) {
             $.replicationLocations = replicationLocations;
             return this;
@@ -807,7 +925,11 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * 
          */
+        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
         public Builder replicationLocations(List<String> replicationLocations) {
             return replicationLocations(Output.of(replicationLocations));
         }
@@ -817,7 +939,11 @@ public final class SyncGcpDestinationArgs extends com.pulumi.resources.ResourceA
          * 
          * @return builder
          * 
+         * @deprecated
+         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * 
          */
+        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
         public Builder replicationLocations(String... replicationLocations) {
             return replicationLocations(List.of(replicationLocations));
         }

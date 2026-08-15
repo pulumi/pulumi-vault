@@ -23,6 +23,9 @@ from .get_plugin_runtimes import *
 from .get_policy_document import *
 from .get_raft_autopilot_state import *
 from .get_sys_config_cors import *
+from .kerberos_auth_backend_config import *
+from .kerberos_auth_backend_group import *
+from .kerberos_auth_backend_ldap_config import *
 from .mfa_duo import *
 from .mfa_okta import *
 from .mfa_pingid import *
@@ -496,6 +499,22 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "gcp/kmsSecretBackend",
+  "fqn": "pulumi_vault.gcp",
+  "classes": {
+   "vault:gcp/kmsSecretBackend:KmsSecretBackend": "KmsSecretBackend"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "gcp/kmsSecretBackendKey",
+  "fqn": "pulumi_vault.gcp",
+  "classes": {
+   "vault:gcp/kmsSecretBackendKey:KmsSecretBackendKey": "KmsSecretBackendKey"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "gcp/secretBackend",
   "fqn": "pulumi_vault.gcp",
   "classes": {
@@ -788,6 +807,30 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/egpPolicy:EgpPolicy": "EgpPolicy"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/kerberosAuthBackendConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/kerberosAuthBackendConfig:KerberosAuthBackendConfig": "KerberosAuthBackendConfig"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/kerberosAuthBackendGroup",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/kerberosAuthBackendGroup:KerberosAuthBackendGroup": "KerberosAuthBackendGroup"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/kerberosAuthBackendLdapConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/kerberosAuthBackendLdapConfig:KerberosAuthBackendLdapConfig": "KerberosAuthBackendLdapConfig"
   }
  },
  {
@@ -1708,6 +1751,14 @@ _utilities.register(
   "fqn": "pulumi_vault.transform",
   "classes": {
    "vault:transform/alphabet:Alphabet": "Alphabet"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "transform/keyConfiguration",
+  "fqn": "pulumi_vault.transform",
+  "classes": {
+   "vault:transform/keyConfiguration:KeyConfiguration": "KeyConfiguration"
   }
  },
  {

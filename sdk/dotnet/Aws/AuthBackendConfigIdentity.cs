@@ -77,7 +77,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// How to generate the identity alias when using the iam auth method. Valid choices are
-        /// `RoleId`, `UniqueId`, and `FullArn`. Defaults to `RoleId`
+        /// `RoleId`, `UniqueId`, `FullArn`, and `CanonicalArn`. Defaults to `RoleId`. `CanonicalArn` requires Vault 1.16+.
         /// </summary>
         [Output("iamAlias")]
         public Output<string?> IamAlias { get; private set; } = null!;
@@ -173,7 +173,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// How to generate the identity alias when using the iam auth method. Valid choices are
-        /// `RoleId`, `UniqueId`, and `FullArn`. Defaults to `RoleId`
+        /// `RoleId`, `UniqueId`, `FullArn`, and `CanonicalArn`. Defaults to `RoleId`. `CanonicalArn` requires Vault 1.16+.
         /// </summary>
         [Input("iamAlias")]
         public Input<string>? IamAlias { get; set; }
@@ -237,7 +237,7 @@ namespace Pulumi.Vault.Aws
 
         /// <summary>
         /// How to generate the identity alias when using the iam auth method. Valid choices are
-        /// `RoleId`, `UniqueId`, and `FullArn`. Defaults to `RoleId`
+        /// `RoleId`, `UniqueId`, `FullArn`, and `CanonicalArn`. Defaults to `RoleId`. `CanonicalArn` requires Vault 1.16+.
         /// </summary>
         [Input("iamAlias")]
         public Input<string>? IamAlias { get; set; }

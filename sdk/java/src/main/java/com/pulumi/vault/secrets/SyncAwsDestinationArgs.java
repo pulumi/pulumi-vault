@@ -249,6 +249,21 @@ public final class SyncAwsDestinationArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+     * 
+     */
+    @Import(name="kmsKeyId")
+    private @Nullable Output<String> kmsKeyId;
+
+    /**
+     * @return Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+     * 
+     */
+    public Optional<Output<String>> kmsKeyId() {
+        return Optional.ofNullable(this.kmsKeyId);
+    }
+
+    /**
      * Unique name of the AWS destination.
      * 
      */
@@ -299,6 +314,21 @@ public final class SyncAwsDestinationArgs extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
+    }
+
+    /**
+     * Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+     * 
+     */
+    @Import(name="replicaRegions")
+    private @Nullable Output<Map<String,String>> replicaRegions;
+
+    /**
+     * @return Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> replicaRegions() {
+        return Optional.ofNullable(this.replicaRegions);
     }
 
     /**
@@ -376,9 +406,11 @@ public final class SyncAwsDestinationArgs extends com.pulumi.resources.ResourceA
         this.identityTokenKeyWo = $.identityTokenKeyWo;
         this.identityTokenKeyWoVersion = $.identityTokenKeyWoVersion;
         this.identityTokenTtl = $.identityTokenTtl;
+        this.kmsKeyId = $.kmsKeyId;
         this.name = $.name;
         this.namespace = $.namespace;
         this.region = $.region;
+        this.replicaRegions = $.replicaRegions;
         this.roleArn = $.roleArn;
         this.secretAccessKey = $.secretAccessKey;
         this.secretNameTemplate = $.secretNameTemplate;
@@ -746,6 +778,27 @@ public final class SyncAwsDestinationArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param kmsKeyId Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kmsKeyId(@Nullable Output<String> kmsKeyId) {
+            $.kmsKeyId = kmsKeyId;
+            return this;
+        }
+
+        /**
+         * @param kmsKeyId Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kmsKeyId(String kmsKeyId) {
+            return kmsKeyId(Output.of(kmsKeyId));
+        }
+
+        /**
          * @param name Unique name of the AWS destination.
          * 
          * @return builder
@@ -814,6 +867,27 @@ public final class SyncAwsDestinationArgs extends com.pulumi.resources.ResourceA
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param replicaRegions Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicaRegions(@Nullable Output<Map<String,String>> replicaRegions) {
+            $.replicaRegions = replicaRegions;
+            return this;
+        }
+
+        /**
+         * @param replicaRegions Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder replicaRegions(Map<String,String> replicaRegions) {
+            return replicaRegions(Output.of(replicaRegions));
         }
 
         /**

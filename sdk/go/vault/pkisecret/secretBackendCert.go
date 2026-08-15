@@ -71,7 +71,7 @@ type SecretBackendCert struct {
 	ExcludeCnFromSans pulumi.BoolPtrOutput `pulumi:"excludeCnFromSans"`
 	// The expiration date of the certificate in unix epoch format
 	Expiration pulumi.IntOutput `pulumi:"expiration"`
-	// The format of data. Valid values are "pem", "pemBundle" or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
@@ -79,6 +79,10 @@ type SecretBackendCert struct {
 	IssuerRef pulumi.StringPtrOutput `pulumi:"issuerRef"`
 	// The issuing CA
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword pulumi.StringPtrOutput `pulumi:"jksPassword"`
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias pulumi.StringPtrOutput `pulumi:"jksPrivateKeyAlias"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining pulumi.IntPtrOutput `pulumi:"minSecondsRemaining"`
 	// Name of the role to create the certificate against
@@ -92,6 +96,12 @@ type SecretBackendCert struct {
 	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder pulumi.StringPtrOutput `pulumi:"pkcs12Encoder"`
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided,defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password pulumi.StringPtrOutput `pulumi:"pkcs12Password"`
 	// The private key
 	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
 	// The private key format
@@ -174,7 +184,7 @@ type secretBackendCertState struct {
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
 	// The expiration date of the certificate in unix epoch format
 	Expiration *int `pulumi:"expiration"`
-	// The format of data. Valid values are "pem", "pemBundle" or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -182,6 +192,10 @@ type secretBackendCertState struct {
 	IssuerRef *string `pulumi:"issuerRef"`
 	// The issuing CA
 	IssuingCa *string `pulumi:"issuingCa"`
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword *string `pulumi:"jksPassword"`
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias *string `pulumi:"jksPrivateKeyAlias"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining *int `pulumi:"minSecondsRemaining"`
 	// Name of the role to create the certificate against
@@ -195,6 +209,12 @@ type secretBackendCertState struct {
 	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder *string `pulumi:"pkcs12Encoder"`
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided,defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password *string `pulumi:"pkcs12Password"`
 	// The private key
 	PrivateKey *string `pulumi:"privateKey"`
 	// The private key format
@@ -238,7 +258,7 @@ type SecretBackendCertState struct {
 	ExcludeCnFromSans pulumi.BoolPtrInput
 	// The expiration date of the certificate in unix epoch format
 	Expiration pulumi.IntPtrInput
-	// The format of data. Valid values are "pem", "pemBundle" or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -246,6 +266,10 @@ type SecretBackendCertState struct {
 	IssuerRef pulumi.StringPtrInput
 	// The issuing CA
 	IssuingCa pulumi.StringPtrInput
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword pulumi.StringPtrInput
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias pulumi.StringPtrInput
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining pulumi.IntPtrInput
 	// Name of the role to create the certificate against
@@ -259,6 +283,12 @@ type SecretBackendCertState struct {
 	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder pulumi.StringPtrInput
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided,defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password pulumi.StringPtrInput
 	// The private key
 	PrivateKey pulumi.StringPtrInput
 	// The private key format
@@ -300,12 +330,16 @@ type secretBackendCertArgs struct {
 	CommonName string `pulumi:"commonName"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
-	// The format of data. Valid values are "pem", "pemBundle" or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
 	// Specifies the default issuer of this request.
 	IssuerRef *string `pulumi:"issuerRef"`
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword *string `pulumi:"jksPassword"`
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias *string `pulumi:"jksPrivateKeyAlias"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining *int `pulumi:"minSecondsRemaining"`
 	// Name of the role to create the certificate against
@@ -319,6 +353,12 @@ type secretBackendCertArgs struct {
 	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder *string `pulumi:"pkcs12Encoder"`
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided,defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password *string `pulumi:"pkcs12Password"`
 	// The private key format
 	PrivateKeyFormat *string `pulumi:"privateKeyFormat"`
 	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
@@ -349,12 +389,16 @@ type SecretBackendCertArgs struct {
 	CommonName pulumi.StringInput
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrInput
-	// The format of data. Valid values are "pem", "pemBundle" or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
 	// Specifies the default issuer of this request.
 	IssuerRef pulumi.StringPtrInput
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword pulumi.StringPtrInput
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias pulumi.StringPtrInput
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining pulumi.IntPtrInput
 	// Name of the role to create the certificate against
@@ -368,6 +412,12 @@ type SecretBackendCertArgs struct {
 	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder pulumi.StringPtrInput
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided,defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password pulumi.StringPtrInput
 	// The private key format
 	PrivateKeyFormat pulumi.StringPtrInput
 	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
@@ -516,7 +566,7 @@ func (o SecretBackendCertOutput) Expiration() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.IntOutput { return v.Expiration }).(pulumi.IntOutput)
 }
 
-// The format of data. Valid values are "pem", "pemBundle" or "der".
+// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 func (o SecretBackendCertOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -534,6 +584,16 @@ func (o SecretBackendCertOutput) IssuerRef() pulumi.StringPtrOutput {
 // The issuing CA
 func (o SecretBackendCertOutput) IssuingCa() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
+}
+
+// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+func (o SecretBackendCertOutput) JksPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.JksPassword }).(pulumi.StringPtrOutput)
+}
+
+// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+func (o SecretBackendCertOutput) JksPrivateKeyAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.JksPrivateKeyAlias }).(pulumi.StringPtrOutput)
 }
 
 // Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -562,6 +622,18 @@ func (o SecretBackendCertOutput) NotAfter() pulumi.StringPtrOutput {
 // List of other SANs
 func (o SecretBackendCertOutput) OtherSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
+}
+
+// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+//
+// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+func (o SecretBackendCertOutput) Pkcs12Encoder() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Pkcs12Encoder }).(pulumi.StringPtrOutput)
+}
+
+// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided,defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+func (o SecretBackendCertOutput) Pkcs12Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendCert) pulumi.StringPtrOutput { return v.Pkcs12Password }).(pulumi.StringPtrOutput)
 }
 
 // The private key

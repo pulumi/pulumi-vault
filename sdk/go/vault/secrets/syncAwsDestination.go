@@ -134,6 +134,69 @@ import (
 //
 // ```
 //
+// ### With Custom KMS Key (Vault 2.2.0+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSyncAwsDestination(ctx, "aws_kms_key_id", &secrets.SyncAwsDestinationArgs{
+//				Name:            pulumi.String("aws-dest-kms-key-id"),
+//				AccessKeyId:     pulumi.Any(accessKeyId),
+//				SecretAccessKey: pulumi.Any(secretAccessKey),
+//				Region:          pulumi.String("us-east-1"),
+//				KmsKeyId:        pulumi.String("arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Replica Regions (Vault 2.2.0+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := secrets.NewSyncAwsDestination(ctx, "aws_replica_regions", &secrets.SyncAwsDestinationArgs{
+//				Name:            pulumi.String("aws-dest-replica-regions"),
+//				AccessKeyId:     pulumi.Any(accessKeyId),
+//				SecretAccessKey: pulumi.Any(secretAccessKey),
+//				Region:          pulumi.String("us-east-1"),
+//				ReplicaRegions: pulumi.StringMap{
+//					"us-east-2": pulumi.String("arn:aws:kms:us-east-2:123456789012:key/mrk-1234567890abcdef1234567890abcdef"),
+//					"us-west-1": pulumi.String("arn:aws:kms:us-west-1:123456789012:key/mrk-1234567890abcdef1234567890abcdef"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -187,6 +250,8 @@ type SyncAwsDestination struct {
 	IdentityTokenKeyWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenKeyWoVersion"`
 	// The TTL of generated tokens.
 	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
+	// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+	KmsKeyId pulumi.StringPtrOutput `pulumi:"kmsKeyId"`
 	// Unique name of the AWS destination.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -197,6 +262,8 @@ type SyncAwsDestination struct {
 	// Can be omitted and directly provided to Vault using the `AWS_REGION` environment
 	// variable.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+	ReplicaRegions pulumi.StringMapOutput `pulumi:"replicaRegions"`
 	// Specifies a role to assume when connecting to AWS. When assuming a role,
 	// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
 	// exist for Vault to be able to assume this role. The role can be in a different account.
@@ -302,6 +369,8 @@ type syncAwsDestinationState struct {
 	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
 	// The TTL of generated tokens.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// Unique name of the AWS destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -312,6 +381,8 @@ type syncAwsDestinationState struct {
 	// Can be omitted and directly provided to Vault using the `AWS_REGION` environment
 	// variable.
 	Region *string `pulumi:"region"`
+	// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+	ReplicaRegions map[string]string `pulumi:"replicaRegions"`
 	// Specifies a role to assume when connecting to AWS. When assuming a role,
 	// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
 	// exist for Vault to be able to assume this role. The role can be in a different account.
@@ -373,6 +444,8 @@ type SyncAwsDestinationState struct {
 	IdentityTokenKeyWoVersion pulumi.IntPtrInput
 	// The TTL of generated tokens.
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+	KmsKeyId pulumi.StringPtrInput
 	// Unique name of the AWS destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -383,6 +456,8 @@ type SyncAwsDestinationState struct {
 	// Can be omitted and directly provided to Vault using the `AWS_REGION` environment
 	// variable.
 	Region pulumi.StringPtrInput
+	// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+	ReplicaRegions pulumi.StringMapInput
 	// Specifies a role to assume when connecting to AWS. When assuming a role,
 	// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
 	// exist for Vault to be able to assume this role. The role can be in a different account.
@@ -448,6 +523,8 @@ type syncAwsDestinationArgs struct {
 	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
 	// The TTL of generated tokens.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// Unique name of the AWS destination.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -458,6 +535,8 @@ type syncAwsDestinationArgs struct {
 	// Can be omitted and directly provided to Vault using the `AWS_REGION` environment
 	// variable.
 	Region *string `pulumi:"region"`
+	// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+	ReplicaRegions map[string]string `pulumi:"replicaRegions"`
 	// Specifies a role to assume when connecting to AWS. When assuming a role,
 	// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
 	// exist for Vault to be able to assume this role. The role can be in a different account.
@@ -518,6 +597,8 @@ type SyncAwsDestinationArgs struct {
 	IdentityTokenKeyWoVersion pulumi.IntPtrInput
 	// The TTL of generated tokens.
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+	KmsKeyId pulumi.StringPtrInput
 	// Unique name of the AWS destination.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -528,6 +609,8 @@ type SyncAwsDestinationArgs struct {
 	// Can be omitted and directly provided to Vault using the `AWS_REGION` environment
 	// variable.
 	Region pulumi.StringPtrInput
+	// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+	ReplicaRegions pulumi.StringMapInput
 	// Specifies a role to assume when connecting to AWS. When assuming a role,
 	// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
 	// exist for Vault to be able to assume this role. The role can be in a different account.
@@ -712,6 +795,11 @@ func (o SyncAwsDestinationOutput) IdentityTokenTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SyncAwsDestination) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
+// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+func (o SyncAwsDestinationOutput) KmsKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringPtrOutput { return v.KmsKeyId }).(pulumi.StringPtrOutput)
+}
+
 // Unique name of the AWS destination.
 func (o SyncAwsDestinationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -729,6 +817,11 @@ func (o SyncAwsDestinationOutput) Namespace() pulumi.StringPtrOutput {
 // variable.
 func (o SyncAwsDestinationOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+func (o SyncAwsDestinationOutput) ReplicaRegions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SyncAwsDestination) pulumi.StringMapOutput { return v.ReplicaRegions }).(pulumi.StringMapOutput)
 }
 
 // Specifies a role to assume when connecting to AWS. When assuming a role,

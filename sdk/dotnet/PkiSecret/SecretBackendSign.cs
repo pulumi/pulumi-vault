@@ -137,7 +137,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<int> Expiration { get; private set; } = null!;
 
         /// <summary>
-        /// The format of data. Valid values are "pem", "PemBundle" or "der".
+        /// The format of data. Valid values are "pem", "PemBundle", "der", "Pkcs12Bundle" or "JksBundle". Values "Pkcs12Bundle" and "JksBundle" require Vault 2.0.5+.
         /// </summary>
         [Output("format")]
         public Output<string?> Format { get; private set; } = null!;
@@ -162,6 +162,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("issuingCa")]
         public Output<string> IssuingCa { get; private set; } = null!;
+
+        /// <summary>
+        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// </summary>
+        [Output("jksPassword")]
+        public Output<string?> JksPassword { get; private set; } = null!;
 
         /// <summary>
         /// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -195,6 +201,20 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Output("otherSans")]
         public Output<ImmutableArray<string>> OtherSans { get; private set; } = null!;
+
+        /// <summary>
+        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        /// 
+        /// **NOTE**: The `JksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `Pkcs12Bundle`.
+        /// </summary>
+        [Output("pkcs12Encoder")]
+        public Output<string?> Pkcs12Encoder { get; private set; } = null!;
+
+        /// <summary>
+        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// </summary>
+        [Output("pkcs12Password")]
+        public Output<string?> Pkcs12Password { get; private set; } = null!;
 
         /// <summary>
         /// If set to `True`, the returned `CaChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `False`.
@@ -321,7 +341,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? ExcludeCnFromSans { get; set; }
 
         /// <summary>
-        /// The format of data. Valid values are "pem", "PemBundle" or "der".
+        /// The format of data. Valid values are "pem", "PemBundle", "der", "Pkcs12Bundle" or "JksBundle". Values "Pkcs12Bundle" and "JksBundle" require Vault 2.0.5+.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -346,6 +366,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("issuerRef")]
         public Input<string>? IssuerRef { get; set; }
+
+        /// <summary>
+        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// </summary>
+        [Input("jksPassword")]
+        public Input<string>? JksPassword { get; set; }
 
         /// <summary>
         /// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -385,6 +411,20 @@ namespace Pulumi.Vault.PkiSecret
             get => _otherSans ?? (_otherSans = new InputList<string>());
             set => _otherSans = value;
         }
+
+        /// <summary>
+        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        /// 
+        /// **NOTE**: The `JksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `Pkcs12Bundle`.
+        /// </summary>
+        [Input("pkcs12Encoder")]
+        public Input<string>? Pkcs12Encoder { get; set; }
+
+        /// <summary>
+        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// </summary>
+        [Input("pkcs12Password")]
+        public Input<string>? Pkcs12Password { get; set; }
 
         /// <summary>
         /// If set to `True`, the returned `CaChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `False`.
@@ -491,7 +531,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? Expiration { get; set; }
 
         /// <summary>
-        /// The format of data. Valid values are "pem", "PemBundle" or "der".
+        /// The format of data. Valid values are "pem", "PemBundle", "der", "Pkcs12Bundle" or "JksBundle". Values "Pkcs12Bundle" and "JksBundle" require Vault 2.0.5+.
         /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
@@ -522,6 +562,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("issuingCa")]
         public Input<string>? IssuingCa { get; set; }
+
+        /// <summary>
+        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// </summary>
+        [Input("jksPassword")]
+        public Input<string>? JksPassword { get; set; }
 
         /// <summary>
         /// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
@@ -561,6 +607,20 @@ namespace Pulumi.Vault.PkiSecret
             get => _otherSans ?? (_otherSans = new InputList<string>());
             set => _otherSans = value;
         }
+
+        /// <summary>
+        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        /// 
+        /// **NOTE**: The `JksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `Pkcs12Bundle`.
+        /// </summary>
+        [Input("pkcs12Encoder")]
+        public Input<string>? Pkcs12Encoder { get; set; }
+
+        /// <summary>
+        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// </summary>
+        [Input("pkcs12Password")]
+        public Input<string>? Pkcs12Password { get; set; }
 
         /// <summary>
         /// If set to `True`, the returned `CaChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `False`.

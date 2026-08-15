@@ -35,6 +35,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CertAuthBackendRole{}
 	case "vault:index/egpPolicy:EgpPolicy":
 		r = &EgpPolicy{}
+	case "vault:index/kerberosAuthBackendConfig:KerberosAuthBackendConfig":
+		r = &KerberosAuthBackendConfig{}
+	case "vault:index/kerberosAuthBackendGroup:KerberosAuthBackendGroup":
+		r = &KerberosAuthBackendGroup{}
+	case "vault:index/kerberosAuthBackendLdapConfig:KerberosAuthBackendLdapConfig":
+		r = &KerberosAuthBackendLdapConfig{}
 	case "vault:index/mfaDuo:MfaDuo":
 		r = &MfaDuo{}
 	case "vault:index/mfaOkta:MfaOkta":
@@ -153,6 +159,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/egpPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/kerberosAuthBackendConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/kerberosAuthBackendGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/kerberosAuthBackendLdapConfig",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -121,11 +121,26 @@ namespace Pulumi.Vault.TerraformCloud
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root token
+        /// until unset. Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Output("disableAutomatedRotation")]
+        public Output<bool?> DisableAutomatedRotation { get; private set; } = null!;
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
         [Output("disableRemount")]
         public Output<bool?> DisableRemount { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time in seconds the root token
+        /// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+        /// default token lifetime. Requires Vault 2.2.0+.
+        /// </summary>
+        [Output("explicitMaxTtl")]
+        public Output<int> ExplicitMaxTtl { get; private set; } = null!;
 
         /// <summary>
         /// Enable the secrets engine to access Vault's external entropy source
@@ -189,6 +204,32 @@ namespace Pulumi.Vault.TerraformCloud
         /// </summary>
         [Output("pluginVersion")]
         public Output<string?> PluginVersion { get; private set; } = null!;
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before
+        /// rotating the root token. A zero value tells Vault not to rotate the root token. The
+        /// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+        /// exclusive with `RotationSchedule`.
+        /// </summary>
+        [Output("rotationPeriod")]
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// The schedule, in cron-style time format
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault
+        /// Enterprise 2.2.0+. Mutually exclusive with `RotationPeriod`.
+        /// </summary>
+        [Output("rotationSchedule")]
+        public Output<string?> RotationSchedule { get; private set; } = null!;
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Only valid with `RotationSchedule`.
+        /// Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Output("rotationWindow")]
+        public Output<int?> RotationWindow { get; private set; } = null!;
 
         /// <summary>
         /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -365,11 +406,26 @@ namespace Pulumi.Vault.TerraformCloud
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root token
+        /// until unset. Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
         [Input("disableRemount")]
         public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds the root token
+        /// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+        /// default token lifetime. Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("explicitMaxTtl")]
+        public Input<int>? ExplicitMaxTtl { get; set; }
 
         /// <summary>
         /// Enable the secrets engine to access Vault's external entropy source
@@ -445,6 +501,32 @@ namespace Pulumi.Vault.TerraformCloud
         /// </summary>
         [Input("pluginVersion")]
         public Input<string>? PluginVersion { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before
+        /// rotating the root token. A zero value tells Vault not to rotate the root token. The
+        /// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+        /// exclusive with `RotationSchedule`.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in cron-style time format
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault
+        /// Enterprise 2.2.0+. Mutually exclusive with `RotationPeriod`.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Only valid with `RotationSchedule`.
+        /// Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
         /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
@@ -604,11 +686,26 @@ namespace Pulumi.Vault.TerraformCloud
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// Cancels all upcoming rotations of the root token
+        /// until unset. Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("disableAutomatedRotation")]
+        public Input<bool>? DisableAutomatedRotation { get; set; }
+
+        /// <summary>
         /// If set, opts out of mount migration on path updates.
         /// See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
         /// </summary>
         [Input("disableRemount")]
         public Input<bool>? DisableRemount { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds the root token
+        /// issued by rotation is valid for. A value of `0` uses the Terraform Cloud/Enterprise
+        /// default token lifetime. Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("explicitMaxTtl")]
+        public Input<int>? ExplicitMaxTtl { get; set; }
 
         /// <summary>
         /// Enable the secrets engine to access Vault's external entropy source
@@ -684,6 +781,32 @@ namespace Pulumi.Vault.TerraformCloud
         /// </summary>
         [Input("pluginVersion")]
         public Input<string>? PluginVersion { get; set; }
+
+        /// <summary>
+        /// The amount of time in seconds Vault should wait before
+        /// rotating the root token. A zero value tells Vault not to rotate the root token. The
+        /// minimum rotation period is 10 seconds. Requires Vault Enterprise 2.2.0+. Mutually
+        /// exclusive with `RotationSchedule`.
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// The schedule, in cron-style time format
+        /// defining the schedule on which Vault should rotate the root token. Requires Vault
+        /// Enterprise 2.2.0+. Mutually exclusive with `RotationPeriod`.
+        /// </summary>
+        [Input("rotationSchedule")]
+        public Input<string>? RotationSchedule { get; set; }
+
+        /// <summary>
+        /// The maximum amount of time in seconds allowed to complete
+        /// a rotation when a scheduled token rotation occurs. The default rotation window is
+        /// unbound and the minimum allowable window is `3600`. Only valid with `RotationSchedule`.
+        /// Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("rotationWindow")]
+        public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
         /// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability

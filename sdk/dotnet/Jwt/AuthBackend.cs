@@ -121,6 +121,35 @@ namespace Pulumi.Vault.Jwt
     /// });
     /// ```
     /// 
+    /// Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var okta = new Vault.Jwt.AuthBackend("okta", new()
+    ///     {
+    ///         Description = "OIDC backend",
+    ///         OidcDiscoveryUrl = "https://mycompany.okta.com/oauth2/default",
+    ///         Path = "oidc",
+    ///         Type = "oidc",
+    ///         ProviderConfig = 
+    ///         {
+    ///             { "provider", "okta" },
+    ///             { "fetch_groups", "true" },
+    ///             { "org_url", "https://mycompany.okta.com" },
+    ///             { "api_token", "12345" },
+    ///             { "groups_cap", "200" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Ephemeral Attributes Reference
     /// 
     /// The following write-only attributes are supported:

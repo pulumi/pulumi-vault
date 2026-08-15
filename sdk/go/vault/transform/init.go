@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "vault:transform/alphabet:Alphabet":
 		r = &Alphabet{}
+	case "vault:transform/keyConfiguration:KeyConfiguration":
+		r = &KeyConfiguration{}
 	case "vault:transform/role:Role":
 		r = &Role{}
 	case "vault:transform/template:Template":
@@ -45,6 +47,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"transform/alphabet",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"transform/keyConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

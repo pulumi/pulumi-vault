@@ -190,6 +190,49 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.jwt.AuthBackend;
+ * import com.pulumi.vault.jwt.AuthBackendArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var okta = new AuthBackend("okta", AuthBackendArgs.builder()
+ *             .description("OIDC backend")
+ *             .oidcDiscoveryUrl("https://mycompany.okta.com/oauth2/default")
+ *             .path("oidc")
+ *             .type("oidc")
+ *             .providerConfig(Map.ofEntries(
+ *                 Map.entry("provider", "okta"),
+ *                 Map.entry("fetch_groups", "true"),
+ *                 Map.entry("org_url", "https://mycompany.okta.com"),
+ *                 Map.entry("api_token", "12345"),
+ *                 Map.entry("groups_cap", "200")
+ *             ))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Ephemeral Attributes Reference
  * 
  * The following write-only attributes are supported:

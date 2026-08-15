@@ -18,6 +18,29 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     public static final SecretBackendStaticRoleState Empty = new SecretBackendStaticRoleState();
 
     /**
+     * Overrides the mount-level autoUnlock setting for this role.
+     * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+     * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
+     * When unset, the role inherits the mount-level setting. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    @Import(name="autoUnlock")
+    private @Nullable Output<Boolean> autoUnlock;
+
+    /**
+     * @return Overrides the mount-level autoUnlock setting for this role.
+     * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+     * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
+     * When unset, the role inherits the mount-level setting. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    public Optional<Output<Boolean>> autoUnlock() {
+        return Optional.ofNullable(this.autoUnlock);
+    }
+
+    /**
      * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
      * 
      */
@@ -90,6 +113,23 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     }
 
     /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    @Import(name="passwordPolicy")
+    private @Nullable Output<String> passwordPolicy;
+
+    /**
+     * @return Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    public Optional<Output<String>> passwordPolicy() {
+        return Optional.ofNullable(this.passwordPolicy);
+    }
+
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
      * 
@@ -136,6 +176,50 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
      */
     public Optional<Output<String>> roleName() {
         return Optional.ofNullable(this.roleName);
+    }
+
+    /**
+     * If true, credentials are rotated on each read. When set, this overrides
+     * the engine-level `rotateOnRead` default. When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Import(name="rotateOnRead")
+    private @Nullable Output<Boolean> rotateOnRead;
+
+    /**
+     * @return If true, credentials are rotated on each read. When set, this overrides
+     * the engine-level `rotateOnRead` default. When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    public Optional<Output<Boolean>> rotateOnRead() {
+        return Optional.ofNullable(this.rotateOnRead);
+    }
+
+    /**
+     * Minimum number of seconds between rotate-on-read rotations
+     * for this role. When set, this overrides the engine-level `rotateOnReadCooldown` default.
+     * When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    @Import(name="rotateOnReadCooldown")
+    private @Nullable Output<Integer> rotateOnReadCooldown;
+
+    /**
+     * @return Minimum number of seconds between rotate-on-read rotations
+     * for this role. When set, this overrides the engine-level `rotateOnReadCooldown` default.
+     * When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     * 
+     */
+    public Optional<Output<Integer>> rotateOnReadCooldown() {
+        return Optional.ofNullable(this.rotateOnReadCooldown);
     }
 
     /**
@@ -241,13 +325,17 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     private SecretBackendStaticRoleState() {}
 
     private SecretBackendStaticRoleState(SecretBackendStaticRoleState $) {
+        this.autoUnlock = $.autoUnlock;
         this.disableAutomatedRotation = $.disableAutomatedRotation;
         this.dn = $.dn;
         this.mount = $.mount;
         this.namespace = $.namespace;
+        this.passwordPolicy = $.passwordPolicy;
         this.passwordWo = $.passwordWo;
         this.passwordWoVersion = $.passwordWoVersion;
         this.roleName = $.roleName;
+        this.rotateOnRead = $.rotateOnRead;
+        this.rotateOnReadCooldown = $.rotateOnReadCooldown;
         this.rotationPeriod = $.rotationPeriod;
         this.rotationPolicy = $.rotationPolicy;
         this.rotationSchedule = $.rotationSchedule;
@@ -272,6 +360,35 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
 
         public Builder(SecretBackendStaticRoleState defaults) {
             $ = new SecretBackendStaticRoleState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoUnlock Overrides the mount-level autoUnlock setting for this role.
+         * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+         * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
+         * When unset, the role inherits the mount-level setting. Active Directory schema only.
+         * Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoUnlock(@Nullable Output<Boolean> autoUnlock) {
+            $.autoUnlock = autoUnlock;
+            return this;
+        }
+
+        /**
+         * @param autoUnlock Overrides the mount-level autoUnlock setting for this role.
+         * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+         * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
+         * When unset, the role inherits the mount-level setting. Active Directory schema only.
+         * Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoUnlock(Boolean autoUnlock) {
+            return autoUnlock(Output.of(autoUnlock));
         }
 
         /**
@@ -371,6 +488,29 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         }
 
         /**
+         * @param passwordPolicy Name of the password policy to use to generate passwords for this role.
+         * Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(@Nullable Output<String> passwordPolicy) {
+            $.passwordPolicy = passwordPolicy;
+            return this;
+        }
+
+        /**
+         * @param passwordPolicy Name of the password policy to use to generate passwords for this role.
+         * Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordPolicy(String passwordPolicy) {
+            return passwordPolicy(Output.of(passwordPolicy));
+        }
+
+        /**
          * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
          * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
          * 
@@ -435,6 +575,62 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          */
         public Builder roleName(String roleName) {
             return roleName(Output.of(roleName));
+        }
+
+        /**
+         * @param rotateOnRead If true, credentials are rotated on each read. When set, this overrides
+         * the engine-level `rotateOnRead` default. When unset, the role inherits the engine-level value.
+         * Removing this attribute after it has been set is not supported without recreating the role.
+         * Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotateOnRead(@Nullable Output<Boolean> rotateOnRead) {
+            $.rotateOnRead = rotateOnRead;
+            return this;
+        }
+
+        /**
+         * @param rotateOnRead If true, credentials are rotated on each read. When set, this overrides
+         * the engine-level `rotateOnRead` default. When unset, the role inherits the engine-level value.
+         * Removing this attribute after it has been set is not supported without recreating the role.
+         * Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotateOnRead(Boolean rotateOnRead) {
+            return rotateOnRead(Output.of(rotateOnRead));
+        }
+
+        /**
+         * @param rotateOnReadCooldown Minimum number of seconds between rotate-on-read rotations
+         * for this role. When set, this overrides the engine-level `rotateOnReadCooldown` default.
+         * When unset, the role inherits the engine-level value.
+         * Removing this attribute after it has been set is not supported without recreating the role.
+         * Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotateOnReadCooldown(@Nullable Output<Integer> rotateOnReadCooldown) {
+            $.rotateOnReadCooldown = rotateOnReadCooldown;
+            return this;
+        }
+
+        /**
+         * @param rotateOnReadCooldown Minimum number of seconds between rotate-on-read rotations
+         * for this role. When set, this overrides the engine-level `rotateOnReadCooldown` default.
+         * When unset, the role inherits the engine-level value.
+         * Removing this attribute after it has been set is not supported without recreating the role.
+         * Requires Vault Enterprise 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotateOnReadCooldown(Integer rotateOnReadCooldown) {
+            return rotateOnReadCooldown(Output.of(rotateOnReadCooldown));
         }
 
         /**

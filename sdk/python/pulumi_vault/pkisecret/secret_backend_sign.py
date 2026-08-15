@@ -29,11 +29,14 @@ class SecretBackendSignArgs:
                  format: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  min_seconds_remaining: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  not_after: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  remove_roots_from_chain: pulumi.Input[Optional[_builtins.bool]] = None,
                  ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -47,12 +50,13 @@ class SecretBackendSignArgs:
         :param pulumi.Input[_builtins.bool] auto_renew: If set to `true`, certs will be renewed if the expiration is within `min_seconds_remaining`. Default `false`
         :param pulumi.Input[_builtins.str] cert_metadata: A base 64 encoded value or an empty string to associate with the certificate's serial number. The role's no_store_metadata must be set to false, otherwise an error is returned when specified.
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request. Can
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[_builtins.str] name: Name of the role to create the certificate against
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -61,6 +65,10 @@ class SecretBackendSignArgs:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
@@ -82,6 +90,8 @@ class SecretBackendSignArgs:
             pulumi.set(__self__, "ip_sans", ip_sans)
         if issuer_ref is not None:
             pulumi.set(__self__, "issuer_ref", issuer_ref)
+        if jks_password is not None:
+            pulumi.set(__self__, "jks_password", jks_password)
         if min_seconds_remaining is not None:
             pulumi.set(__self__, "min_seconds_remaining", min_seconds_remaining)
         if name is not None:
@@ -92,6 +102,10 @@ class SecretBackendSignArgs:
             pulumi.set(__self__, "not_after", not_after)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
+        if pkcs12_encoder is not None:
+            pulumi.set(__self__, "pkcs12_encoder", pkcs12_encoder)
+        if pkcs12_password is not None:
+            pulumi.set(__self__, "pkcs12_password", pkcs12_password)
         if remove_roots_from_chain is not None:
             pulumi.set(__self__, "remove_roots_from_chain", remove_roots_from_chain)
         if ttl is not None:
@@ -187,7 +201,7 @@ class SecretBackendSignArgs:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data. Valid values are "pem", "pem_bundle" or "der".
+        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
         """
         return pulumi.get(self, "format")
 
@@ -221,6 +235,18 @@ class SecretBackendSignArgs:
     @issuer_ref.setter
     def issuer_ref(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_ref", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jksPassword")
+    def jks_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "jks_password")
+
+    @jks_password.setter
+    def jks_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "jks_password", value)
 
     @_builtins.property
     @pulumi.getter(name="minSecondsRemaining")
@@ -286,6 +312,32 @@ class SecretBackendSignArgs:
         pulumi.set(self, "other_sans", value)
 
     @_builtins.property
+    @pulumi.getter(name="pkcs12Encoder")
+    def pkcs12_encoder(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+
+        **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        """
+        return pulumi.get(self, "pkcs12_encoder")
+
+    @pkcs12_encoder.setter
+    def pkcs12_encoder(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_encoder", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Password")
+    def pkcs12_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "pkcs12_password")
+
+    @pkcs12_password.setter
+    def pkcs12_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_password", value)
+
+    @_builtins.property
     @pulumi.getter(name="removeRootsFromChain")
     def remove_roots_from_chain(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -339,11 +391,14 @@ class _SecretBackendSignState:
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
                  issuing_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  min_seconds_remaining: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  not_after: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  remove_roots_from_chain: pulumi.Input[Optional[_builtins.bool]] = None,
                  renew_pending: pulumi.Input[Optional[_builtins.bool]] = None,
                  serial_number: pulumi.Input[Optional[_builtins.str]] = None,
@@ -362,13 +417,14 @@ class _SecretBackendSignState:
         :param pulumi.Input[_builtins.str] csr: The CSR
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[_builtins.int] expiration: The expiration date of the certificate in unix epoch format
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request. Can
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[_builtins.str] name: Name of the role to create the certificate against
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -377,6 +433,10 @@ class _SecretBackendSignState:
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[_builtins.str] serial_number: The certificate's serial number, hex formatted.
@@ -411,6 +471,8 @@ class _SecretBackendSignState:
             pulumi.set(__self__, "issuer_ref", issuer_ref)
         if issuing_ca is not None:
             pulumi.set(__self__, "issuing_ca", issuing_ca)
+        if jks_password is not None:
+            pulumi.set(__self__, "jks_password", jks_password)
         if min_seconds_remaining is not None:
             pulumi.set(__self__, "min_seconds_remaining", min_seconds_remaining)
         if name is not None:
@@ -421,6 +483,10 @@ class _SecretBackendSignState:
             pulumi.set(__self__, "not_after", not_after)
         if other_sans is not None:
             pulumi.set(__self__, "other_sans", other_sans)
+        if pkcs12_encoder is not None:
+            pulumi.set(__self__, "pkcs12_encoder", pkcs12_encoder)
+        if pkcs12_password is not None:
+            pulumi.set(__self__, "pkcs12_password", pkcs12_password)
         if remove_roots_from_chain is not None:
             pulumi.set(__self__, "remove_roots_from_chain", remove_roots_from_chain)
         if renew_pending is not None:
@@ -556,7 +622,7 @@ class _SecretBackendSignState:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data. Valid values are "pem", "pem_bundle" or "der".
+        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
         """
         return pulumi.get(self, "format")
 
@@ -602,6 +668,18 @@ class _SecretBackendSignState:
     @issuing_ca.setter
     def issuing_ca(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuing_ca", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jksPassword")
+    def jks_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "jks_password")
+
+    @jks_password.setter
+    def jks_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "jks_password", value)
 
     @_builtins.property
     @pulumi.getter(name="minSecondsRemaining")
@@ -665,6 +743,32 @@ class _SecretBackendSignState:
     @other_sans.setter
     def other_sans(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "other_sans", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Encoder")
+    def pkcs12_encoder(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+
+        **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        """
+        return pulumi.get(self, "pkcs12_encoder")
+
+    @pkcs12_encoder.setter
+    def pkcs12_encoder(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_encoder", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Password")
+    def pkcs12_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "pkcs12_password")
+
+    @pkcs12_password.setter
+    def pkcs12_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_password", value)
 
     @_builtins.property
     @pulumi.getter(name="removeRootsFromChain")
@@ -743,11 +847,14 @@ class SecretBackendSign(pulumi.CustomResource):
                  format: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  min_seconds_remaining: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  not_after: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  remove_roots_from_chain: pulumi.Input[Optional[_builtins.bool]] = None,
                  ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -813,12 +920,13 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] common_name: CN of certificate to create
         :param pulumi.Input[_builtins.str] csr: The CSR
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request. Can
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[_builtins.str] name: Name of the role to create the certificate against
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -827,6 +935,10 @@ class SecretBackendSign(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
@@ -914,11 +1026,14 @@ class SecretBackendSign(pulumi.CustomResource):
                  format: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  min_seconds_remaining: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  not_after: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  remove_roots_from_chain: pulumi.Input[Optional[_builtins.bool]] = None,
                  ttl: pulumi.Input[Optional[_builtins.str]] = None,
                  uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -947,11 +1062,14 @@ class SecretBackendSign(pulumi.CustomResource):
             __props__.__dict__["format"] = format
             __props__.__dict__["ip_sans"] = ip_sans
             __props__.__dict__["issuer_ref"] = issuer_ref
+            __props__.__dict__["jks_password"] = jks_password
             __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["not_after"] = not_after
             __props__.__dict__["other_sans"] = other_sans
+            __props__.__dict__["pkcs12_encoder"] = pkcs12_encoder
+            __props__.__dict__["pkcs12_password"] = pkcs12_password
             __props__.__dict__["remove_roots_from_chain"] = remove_roots_from_chain
             __props__.__dict__["ttl"] = ttl
             __props__.__dict__["uri_sans"] = uri_sans
@@ -985,11 +1103,14 @@ class SecretBackendSign(pulumi.CustomResource):
             ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
             issuing_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            jks_password: pulumi.Input[Optional[_builtins.str]] = None,
             min_seconds_remaining: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             not_after: pulumi.Input[Optional[_builtins.str]] = None,
             other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+            pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
             remove_roots_from_chain: pulumi.Input[Optional[_builtins.bool]] = None,
             renew_pending: pulumi.Input[Optional[_builtins.bool]] = None,
             serial_number: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1012,13 +1133,14 @@ class SecretBackendSign(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] csr: The CSR
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
         :param pulumi.Input[_builtins.int] expiration: The expiration date of the certificate in unix epoch format
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle" or "der".
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_ref: Specifies the default issuer of this request. Can
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.int] min_seconds_remaining: Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
         :param pulumi.Input[_builtins.str] name: Name of the role to create the certificate against
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1027,6 +1149,10 @@ class SecretBackendSign(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] not_after: Set the Not After field of the certificate with specified date value. The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.bool] remove_roots_from_chain: If set to `true`, the returned `ca_chain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
         :param pulumi.Input[_builtins.bool] renew_pending: `true` if the current time (during refresh) is after the start of the early renewal window declared by `min_seconds_remaining`, and `false` otherwise; if `auto_renew` is set to `true` then the provider will plan to replace the certificate once renewal is pending.
         :param pulumi.Input[_builtins.str] serial_number: The certificate's serial number, hex formatted.
@@ -1051,11 +1177,14 @@ class SecretBackendSign(pulumi.CustomResource):
         __props__.__dict__["ip_sans"] = ip_sans
         __props__.__dict__["issuer_ref"] = issuer_ref
         __props__.__dict__["issuing_ca"] = issuing_ca
+        __props__.__dict__["jks_password"] = jks_password
         __props__.__dict__["min_seconds_remaining"] = min_seconds_remaining
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["not_after"] = not_after
         __props__.__dict__["other_sans"] = other_sans
+        __props__.__dict__["pkcs12_encoder"] = pkcs12_encoder
+        __props__.__dict__["pkcs12_password"] = pkcs12_password
         __props__.__dict__["remove_roots_from_chain"] = remove_roots_from_chain
         __props__.__dict__["renew_pending"] = renew_pending
         __props__.__dict__["serial_number"] = serial_number
@@ -1147,7 +1276,7 @@ class SecretBackendSign(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The format of data. Valid values are "pem", "pem_bundle" or "der".
+        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
         """
         return pulumi.get(self, "format")
 
@@ -1177,6 +1306,14 @@ class SecretBackendSign(pulumi.CustomResource):
         The issuing CA
         """
         return pulumi.get(self, "issuing_ca")
+
+    @_builtins.property
+    @pulumi.getter(name="jksPassword")
+    def jks_password(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "jks_password")
 
     @_builtins.property
     @pulumi.getter(name="minSecondsRemaining")
@@ -1220,6 +1357,24 @@ class SecretBackendSign(pulumi.CustomResource):
         List of other SANs
         """
         return pulumi.get(self, "other_sans")
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Encoder")
+    def pkcs12_encoder(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+
+        **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        """
+        return pulumi.get(self, "pkcs12_encoder")
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Password")
+    def pkcs12_password(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "pkcs12_password")
 
     @_builtins.property
     @pulumi.getter(name="removeRootsFromChain")

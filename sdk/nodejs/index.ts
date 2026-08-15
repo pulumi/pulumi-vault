@@ -90,6 +90,21 @@ export const getSysConfigCors: typeof import("./getSysConfigCors").getSysConfigC
 export const getSysConfigCorsOutput: typeof import("./getSysConfigCors").getSysConfigCorsOutput = null as any;
 utilities.lazyLoad(exports, ["getSysConfigCors","getSysConfigCorsOutput"], () => require("./getSysConfigCors"));
 
+export { KerberosAuthBackendConfigArgs, KerberosAuthBackendConfigState } from "./kerberosAuthBackendConfig";
+export type KerberosAuthBackendConfig = import("./kerberosAuthBackendConfig").KerberosAuthBackendConfig;
+export const KerberosAuthBackendConfig: typeof import("./kerberosAuthBackendConfig").KerberosAuthBackendConfig = null as any;
+utilities.lazyLoad(exports, ["KerberosAuthBackendConfig"], () => require("./kerberosAuthBackendConfig"));
+
+export { KerberosAuthBackendGroupArgs, KerberosAuthBackendGroupState } from "./kerberosAuthBackendGroup";
+export type KerberosAuthBackendGroup = import("./kerberosAuthBackendGroup").KerberosAuthBackendGroup;
+export const KerberosAuthBackendGroup: typeof import("./kerberosAuthBackendGroup").KerberosAuthBackendGroup = null as any;
+utilities.lazyLoad(exports, ["KerberosAuthBackendGroup"], () => require("./kerberosAuthBackendGroup"));
+
+export { KerberosAuthBackendLdapConfigArgs, KerberosAuthBackendLdapConfigState } from "./kerberosAuthBackendLdapConfig";
+export type KerberosAuthBackendLdapConfig = import("./kerberosAuthBackendLdapConfig").KerberosAuthBackendLdapConfig;
+export const KerberosAuthBackendLdapConfig: typeof import("./kerberosAuthBackendLdapConfig").KerberosAuthBackendLdapConfig = null as any;
+utilities.lazyLoad(exports, ["KerberosAuthBackendLdapConfig"], () => require("./kerberosAuthBackendLdapConfig"));
+
 export { MfaDuoArgs, MfaDuoState } from "./mfaDuo";
 export type MfaDuo = import("./mfaDuo").MfaDuo;
 export const MfaDuo: typeof import("./mfaDuo").MfaDuo = null as any;
@@ -324,6 +339,12 @@ const _module = {
                 return new CertAuthBackendRole(name, <any>undefined, { urn })
             case "vault:index/egpPolicy:EgpPolicy":
                 return new EgpPolicy(name, <any>undefined, { urn })
+            case "vault:index/kerberosAuthBackendConfig:KerberosAuthBackendConfig":
+                return new KerberosAuthBackendConfig(name, <any>undefined, { urn })
+            case "vault:index/kerberosAuthBackendGroup:KerberosAuthBackendGroup":
+                return new KerberosAuthBackendGroup(name, <any>undefined, { urn })
+            case "vault:index/kerberosAuthBackendLdapConfig:KerberosAuthBackendLdapConfig":
+                return new KerberosAuthBackendLdapConfig(name, <any>undefined, { urn })
             case "vault:index/mfaDuo:MfaDuo":
                 return new MfaDuo(name, <any>undefined, { urn })
             case "vault:index/mfaOkta:MfaOkta":
@@ -390,6 +411,9 @@ pulumi.runtime.registerResourceModule("vault", "index/auditRequestHeader", _modu
 pulumi.runtime.registerResourceModule("vault", "index/authBackend", _module)
 pulumi.runtime.registerResourceModule("vault", "index/certAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/egpPolicy", _module)
+pulumi.runtime.registerResourceModule("vault", "index/kerberosAuthBackendConfig", _module)
+pulumi.runtime.registerResourceModule("vault", "index/kerberosAuthBackendGroup", _module)
+pulumi.runtime.registerResourceModule("vault", "index/kerberosAuthBackendLdapConfig", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mfaDuo", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mfaOkta", _module)
 pulumi.runtime.registerResourceModule("vault", "index/mfaPingid", _module)
