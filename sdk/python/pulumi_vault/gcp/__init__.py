@@ -9,6 +9,9 @@ import typing
 from .auth_backend import *
 from .auth_backend_role import *
 from .get_auth_backend_role import *
+from .get_kms_verify import *
+from .kms_secret_backend import *
+from .kms_secret_backend_key import *
 from .secret_backend import *
 from .secret_impersonated_account import *
 from .secret_roleset import *

@@ -125,6 +125,11 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     */
+    declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
+    /**
      * Name of the role.
      */
     declare public readonly roleName: pulumi.Output<string>;
@@ -163,6 +168,7 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
             resourceInputs["maxTtl"] = state?.maxTtl;
             resourceInputs["mount"] = state?.mount;
             resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["passwordPolicy"] = state?.passwordPolicy;
             resourceInputs["roleName"] = state?.roleName;
             resourceInputs["rollbackLdif"] = state?.rollbackLdif;
             resourceInputs["usernameTemplate"] = state?.usernameTemplate;
@@ -183,6 +189,7 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
             resourceInputs["maxTtl"] = args?.maxTtl;
             resourceInputs["mount"] = args?.mount;
             resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["passwordPolicy"] = args?.passwordPolicy;
             resourceInputs["roleName"] = args?.roleName;
             resourceInputs["rollbackLdif"] = args?.rollbackLdif;
             resourceInputs["usernameTemplate"] = args?.usernameTemplate;
@@ -236,6 +243,11 @@ export interface SecretBackendDynamicRoleState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string | undefined>;
+    /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     */
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * Name of the role.
      */
@@ -301,6 +313,11 @@ export interface SecretBackendDynamicRoleArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string | undefined>;
+    /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     */
+    passwordPolicy?: pulumi.Input<string | undefined>;
     /**
      * Name of the role.
      */

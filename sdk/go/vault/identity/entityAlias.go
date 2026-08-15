@@ -63,6 +63,12 @@ type EntityAlias struct {
 	CanonicalId pulumi.StringOutput `pulumi:"canonicalId"`
 	// Custom metadata to be associated with this alias.
 	CustomMetadata pulumi.StringMapOutput `pulumi:"customMetadata"`
+	// Unique external identifier from the external IdP.
+	// *Available only for Vault Enterprise*.
+	ExternalId pulumi.StringPtrOutput `pulumi:"externalId"`
+	// Issuer name associated with this alias.
+	// *Available only for Vault Enterprise*.
+	Issuer pulumi.StringPtrOutput `pulumi:"issuer"`
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor pulumi.StringOutput `pulumi:"mountAccessor"`
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -114,6 +120,12 @@ type entityAliasState struct {
 	CanonicalId *string `pulumi:"canonicalId"`
 	// Custom metadata to be associated with this alias.
 	CustomMetadata map[string]string `pulumi:"customMetadata"`
+	// Unique external identifier from the external IdP.
+	// *Available only for Vault Enterprise*.
+	ExternalId *string `pulumi:"externalId"`
+	// Issuer name associated with this alias.
+	// *Available only for Vault Enterprise*.
+	Issuer *string `pulumi:"issuer"`
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor *string `pulumi:"mountAccessor"`
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -130,6 +142,12 @@ type EntityAliasState struct {
 	CanonicalId pulumi.StringPtrInput
 	// Custom metadata to be associated with this alias.
 	CustomMetadata pulumi.StringMapInput
+	// Unique external identifier from the external IdP.
+	// *Available only for Vault Enterprise*.
+	ExternalId pulumi.StringPtrInput
+	// Issuer name associated with this alias.
+	// *Available only for Vault Enterprise*.
+	Issuer pulumi.StringPtrInput
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor pulumi.StringPtrInput
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -150,6 +168,12 @@ type entityAliasArgs struct {
 	CanonicalId string `pulumi:"canonicalId"`
 	// Custom metadata to be associated with this alias.
 	CustomMetadata map[string]string `pulumi:"customMetadata"`
+	// Unique external identifier from the external IdP.
+	// *Available only for Vault Enterprise*.
+	ExternalId *string `pulumi:"externalId"`
+	// Issuer name associated with this alias.
+	// *Available only for Vault Enterprise*.
+	Issuer *string `pulumi:"issuer"`
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor string `pulumi:"mountAccessor"`
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -167,6 +191,12 @@ type EntityAliasArgs struct {
 	CanonicalId pulumi.StringInput
 	// Custom metadata to be associated with this alias.
 	CustomMetadata pulumi.StringMapInput
+	// Unique external identifier from the external IdP.
+	// *Available only for Vault Enterprise*.
+	ExternalId pulumi.StringPtrInput
+	// Issuer name associated with this alias.
+	// *Available only for Vault Enterprise*.
+	Issuer pulumi.StringPtrInput
 	// Accessor of the mount to which the alias should belong to.
 	MountAccessor pulumi.StringInput
 	// Name of the alias. Name should be the identifier of the client in the authentication source. For example, if the alias belongs to userpass backend, the name should be a valid username within userpass backend. If alias belongs to GitHub, it should be the GitHub username.
@@ -273,6 +303,18 @@ func (o EntityAliasOutput) CanonicalId() pulumi.StringOutput {
 // Custom metadata to be associated with this alias.
 func (o EntityAliasOutput) CustomMetadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *EntityAlias) pulumi.StringMapOutput { return v.CustomMetadata }).(pulumi.StringMapOutput)
+}
+
+// Unique external identifier from the external IdP.
+// *Available only for Vault Enterprise*.
+func (o EntityAliasOutput) ExternalId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EntityAlias) pulumi.StringPtrOutput { return v.ExternalId }).(pulumi.StringPtrOutput)
+}
+
+// Issuer name associated with this alias.
+// *Available only for Vault Enterprise*.
+func (o EntityAliasOutput) Issuer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EntityAlias) pulumi.StringPtrOutput { return v.Issuer }).(pulumi.StringPtrOutput)
 }
 
 // Accessor of the mount to which the alias should belong to.

@@ -81,6 +81,14 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
     }
 
     /**
+     * Overrides the mount-level autoUnlock setting for this role.
+     * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+     * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
+     * When unset, the role inherits the mount-level setting. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     */
+    declare public readonly autoUnlock: pulumi.Output<boolean>;
+    /**
      * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
      */
     declare public readonly disableAutomatedRotation: pulumi.Output<boolean | undefined>;
@@ -103,6 +111,11 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     */
+    declare public readonly passwordPolicy: pulumi.Output<string | undefined>;
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
      */
@@ -116,6 +129,21 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      * Name of the role.
      */
     declare public readonly roleName: pulumi.Output<string>;
+    /**
+     * If true, credentials are rotated on each read. When set, this overrides
+     * the engine-level `rotateOnRead` default. When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    declare public readonly rotateOnRead: pulumi.Output<boolean | undefined>;
+    /**
+     * Minimum number of seconds between rotate-on-read rotations
+     * for this role. When set, this overrides the engine-level `rotateOnReadCooldown` default.
+     * When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    declare public readonly rotateOnReadCooldown: pulumi.Output<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the static credential.
      * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
@@ -159,13 +187,17 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretBackendStaticRoleState | undefined;
+            resourceInputs["autoUnlock"] = state?.autoUnlock;
             resourceInputs["disableAutomatedRotation"] = state?.disableAutomatedRotation;
             resourceInputs["dn"] = state?.dn;
             resourceInputs["mount"] = state?.mount;
             resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["passwordPolicy"] = state?.passwordPolicy;
             resourceInputs["passwordWo"] = state?.passwordWo;
             resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["roleName"] = state?.roleName;
+            resourceInputs["rotateOnRead"] = state?.rotateOnRead;
+            resourceInputs["rotateOnReadCooldown"] = state?.rotateOnReadCooldown;
             resourceInputs["rotationPeriod"] = state?.rotationPeriod;
             resourceInputs["rotationPolicy"] = state?.rotationPolicy;
             resourceInputs["rotationSchedule"] = state?.rotationSchedule;
@@ -180,13 +212,17 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
+            resourceInputs["autoUnlock"] = args?.autoUnlock;
             resourceInputs["disableAutomatedRotation"] = args?.disableAutomatedRotation;
             resourceInputs["dn"] = args?.dn;
             resourceInputs["mount"] = args?.mount;
             resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["passwordPolicy"] = args?.passwordPolicy;
             resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
             resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["roleName"] = args?.roleName;
+            resourceInputs["rotateOnRead"] = args?.rotateOnRead;
+            resourceInputs["rotateOnReadCooldown"] = args?.rotateOnReadCooldown;
             resourceInputs["rotationPeriod"] = args?.rotationPeriod;
             resourceInputs["rotationPolicy"] = args?.rotationPolicy;
             resourceInputs["rotationSchedule"] = args?.rotationSchedule;
@@ -205,6 +241,14 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SecretBackendStaticRole resources.
  */
 export interface SecretBackendStaticRoleState {
+    /**
+     * Overrides the mount-level autoUnlock setting for this role.
+     * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+     * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
+     * When unset, the role inherits the mount-level setting. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     */
+    autoUnlock?: pulumi.Input<boolean | undefined>;
     /**
      * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
      */
@@ -228,6 +272,11 @@ export interface SecretBackendStaticRoleState {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     */
+    passwordPolicy?: pulumi.Input<string | undefined>;
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
      */
@@ -241,6 +290,21 @@ export interface SecretBackendStaticRoleState {
      * Name of the role.
      */
     roleName?: pulumi.Input<string | undefined>;
+    /**
+     * If true, credentials are rotated on each read. When set, this overrides
+     * the engine-level `rotateOnRead` default. When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnRead?: pulumi.Input<boolean | undefined>;
+    /**
+     * Minimum number of seconds between rotate-on-read rotations
+     * for this role. When set, this overrides the engine-level `rotateOnReadCooldown` default.
+     * When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnReadCooldown?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the static credential.
      * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
@@ -277,6 +341,14 @@ export interface SecretBackendStaticRoleState {
  */
 export interface SecretBackendStaticRoleArgs {
     /**
+     * Overrides the mount-level autoUnlock setting for this role.
+     * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+     * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
+     * When unset, the role inherits the mount-level setting. Active Directory schema only.
+     * Requires Vault 2.2.0+.
+     */
+    autoUnlock?: pulumi.Input<boolean | undefined>;
+    /**
      * Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
      */
     disableAutomatedRotation?: pulumi.Input<boolean | undefined>;
@@ -299,6 +371,11 @@ export interface SecretBackendStaticRoleArgs {
      */
     namespace?: pulumi.Input<string | undefined>;
     /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     */
+    passwordPolicy?: pulumi.Input<string | undefined>;
+    /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      * Password for the static role. This is required for Vault to manage an existing account and enable rotation.
      */
@@ -312,6 +389,21 @@ export interface SecretBackendStaticRoleArgs {
      * Name of the role.
      */
     roleName: pulumi.Input<string>;
+    /**
+     * If true, credentials are rotated on each read. When set, this overrides
+     * the engine-level `rotateOnRead` default. When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnRead?: pulumi.Input<boolean | undefined>;
+    /**
+     * Minimum number of seconds between rotate-on-read rotations
+     * for this role. When set, this overrides the engine-level `rotateOnReadCooldown` default.
+     * When unset, the role inherits the engine-level value.
+     * Removing this attribute after it has been set is not supported without recreating the role.
+     * Requires Vault Enterprise 2.2.0+.
+     */
+    rotateOnReadCooldown?: pulumi.Input<number | undefined>;
     /**
      * The amount of time in seconds Vault should wait before rotating the static credential.
      * A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.

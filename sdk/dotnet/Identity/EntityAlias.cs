@@ -63,6 +63,20 @@ namespace Pulumi.Vault.Identity
         public Output<ImmutableDictionary<string, string>?> CustomMetadata { get; private set; } = null!;
 
         /// <summary>
+        /// Unique external identifier from the external IdP.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("externalId")]
+        public Output<string?> ExternalId { get; private set; } = null!;
+
+        /// <summary>
+        /// Issuer name associated with this alias.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Output("issuer")]
+        public Output<string?> Issuer { get; private set; } = null!;
+
+        /// <summary>
         /// Accessor of the mount to which the alias should belong to.
         /// </summary>
         [Output("mountAccessor")]
@@ -148,6 +162,20 @@ namespace Pulumi.Vault.Identity
         }
 
         /// <summary>
+        /// Unique external identifier from the external IdP.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
+
+        /// <summary>
+        /// Issuer name associated with this alias.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
+
+        /// <summary>
         /// Accessor of the mount to which the alias should belong to.
         /// </summary>
         [Input("mountAccessor", required: true)]
@@ -193,6 +221,20 @@ namespace Pulumi.Vault.Identity
             get => _customMetadata ?? (_customMetadata = new InputMap<string>());
             set => _customMetadata = value;
         }
+
+        /// <summary>
+        /// Unique external identifier from the external IdP.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("externalId")]
+        public Input<string>? ExternalId { get; set; }
+
+        /// <summary>
+        /// Issuer name associated with this alias.
+        /// *Available only for Vault Enterprise*.
+        /// </summary>
+        [Input("issuer")]
+        public Input<string>? Issuer { get; set; }
 
         /// <summary>
         /// Accessor of the mount to which the alias should belong to.

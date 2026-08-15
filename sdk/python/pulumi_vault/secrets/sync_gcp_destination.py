@@ -32,10 +32,12 @@ class SyncGcpDestinationArgs:
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  locational_kms_keys: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  replication_locations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
                  service_account_email: pulumi.Input[Optional[_builtins.str]] = None):
@@ -60,6 +62,7 @@ class SyncGcpDestinationArgs:
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ID of the GCP KMS key to be used to encrypt the secret.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -69,6 +72,7 @@ class SyncGcpDestinationArgs:
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
@@ -87,6 +91,9 @@ class SyncGcpDestinationArgs:
         if disable_strict_networking is not None:
             pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if global_kms_key is not None:
+            warnings.warn("""Deprecated in favor of kms_key_id for Vault Enterprise 2.2.0+.""", DeprecationWarning)
+            pulumi.log.warn("""global_kms_key is deprecated: Deprecated in favor of kms_key_id for Vault Enterprise 2.2.0+.""")
+        if global_kms_key is not None:
             pulumi.set(__self__, "global_kms_key", global_kms_key)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
@@ -100,6 +107,11 @@ class SyncGcpDestinationArgs:
             pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if locational_kms_keys is not None:
+            warnings.warn("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""", DeprecationWarning)
+            pulumi.log.warn("""locational_kms_keys is deprecated: Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
         if locational_kms_keys is not None:
             pulumi.set(__self__, "locational_kms_keys", locational_kms_keys)
         if name is not None:
@@ -108,6 +120,11 @@ class SyncGcpDestinationArgs:
             pulumi.set(__self__, "namespace", namespace)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if replica_regions is not None:
+            pulumi.set(__self__, "replica_regions", replica_regions)
+        if replication_locations is not None:
+            warnings.warn("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""", DeprecationWarning)
+            pulumi.log.warn("""replication_locations is deprecated: Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
         if replication_locations is not None:
             pulumi.set(__self__, "replication_locations", replication_locations)
         if secret_name_template is not None:
@@ -191,6 +208,7 @@ class SyncGcpDestinationArgs:
 
     @_builtins.property
     @pulumi.getter(name="globalKmsKey")
+    @_utilities.deprecated("""Deprecated in favor of kms_key_id for Vault Enterprise 2.2.0+.""")
     def global_kms_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Global KMS key for encryption.
@@ -277,7 +295,20 @@ class SyncGcpDestinationArgs:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="locationalKmsKeys")
+    @_utilities.deprecated("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
     def locational_kms_keys(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Locational KMS keys for encryption.
@@ -330,7 +361,20 @@ class SyncGcpDestinationArgs:
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="replicaRegions")
+    def replica_regions(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+        """
+        return pulumi.get(self, "replica_regions")
+
+    @replica_regions.setter
+    def replica_regions(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "replica_regions", value)
+
+    @_builtins.property
     @pulumi.getter(name="replicationLocations")
+    @_utilities.deprecated("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
     def replication_locations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Replication locations for secrets.
@@ -383,10 +427,12 @@ class _SyncGcpDestinationState:
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  locational_kms_keys: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  replication_locations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
                  service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
@@ -412,6 +458,7 @@ class _SyncGcpDestinationState:
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ID of the GCP KMS key to be used to encrypt the secret.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -421,6 +468,7 @@ class _SyncGcpDestinationState:
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
@@ -440,6 +488,9 @@ class _SyncGcpDestinationState:
         if disable_strict_networking is not None:
             pulumi.set(__self__, "disable_strict_networking", disable_strict_networking)
         if global_kms_key is not None:
+            warnings.warn("""Deprecated in favor of kms_key_id for Vault Enterprise 2.2.0+.""", DeprecationWarning)
+            pulumi.log.warn("""global_kms_key is deprecated: Deprecated in favor of kms_key_id for Vault Enterprise 2.2.0+.""")
+        if global_kms_key is not None:
             pulumi.set(__self__, "global_kms_key", global_kms_key)
         if granularity is not None:
             pulumi.set(__self__, "granularity", granularity)
@@ -453,6 +504,11 @@ class _SyncGcpDestinationState:
             pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if locational_kms_keys is not None:
+            warnings.warn("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""", DeprecationWarning)
+            pulumi.log.warn("""locational_kms_keys is deprecated: Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
         if locational_kms_keys is not None:
             pulumi.set(__self__, "locational_kms_keys", locational_kms_keys)
         if name is not None:
@@ -461,6 +517,11 @@ class _SyncGcpDestinationState:
             pulumi.set(__self__, "namespace", namespace)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if replica_regions is not None:
+            pulumi.set(__self__, "replica_regions", replica_regions)
+        if replication_locations is not None:
+            warnings.warn("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""", DeprecationWarning)
+            pulumi.log.warn("""replication_locations is deprecated: Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
         if replication_locations is not None:
             pulumi.set(__self__, "replication_locations", replication_locations)
         if secret_name_template is not None:
@@ -546,6 +607,7 @@ class _SyncGcpDestinationState:
 
     @_builtins.property
     @pulumi.getter(name="globalKmsKey")
+    @_utilities.deprecated("""Deprecated in favor of kms_key_id for Vault Enterprise 2.2.0+.""")
     def global_kms_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Global KMS key for encryption.
@@ -632,7 +694,20 @@ class _SyncGcpDestinationState:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="locationalKmsKeys")
+    @_utilities.deprecated("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
     def locational_kms_keys(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Locational KMS keys for encryption.
@@ -685,7 +760,20 @@ class _SyncGcpDestinationState:
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="replicaRegions")
+    def replica_regions(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+        """
+        return pulumi.get(self, "replica_regions")
+
+    @replica_regions.setter
+    def replica_regions(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "replica_regions", value)
+
+    @_builtins.property
     @pulumi.getter(name="replicationLocations")
+    @_utilities.deprecated("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
     def replication_locations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Replication locations for secrets.
@@ -753,10 +841,12 @@ class SyncGcpDestination(pulumi.CustomResource):
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  locational_kms_keys: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  replication_locations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
                  service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
@@ -854,6 +944,39 @@ class SyncGcpDestination(pulumi.CustomResource):
             ])
         ```
 
+        ### With KMS Key ID (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_kms_key_id = vault.secrets.SyncGcpDestination("gcp_kms_key_id",
+            name="gcp-dest-kms-key-id",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            kms_key_id="projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key")
+        ```
+
+        ### With Replica Regions (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_replica_regions = vault.secrets.SyncGcpDestination("gcp_replica_regions",
+            name="gcp-dest-replica-regions",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            replica_regions={
+                "us-central1": "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key",
+                "us-east1": "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key",
+            })
+        ```
+
         ### Using Workload Identity Federation (Vault 2.0.0+)
 
         ```python
@@ -900,6 +1023,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ID of the GCP KMS key to be used to encrypt the secret.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -909,6 +1033,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
@@ -1013,6 +1138,39 @@ class SyncGcpDestination(pulumi.CustomResource):
             ])
         ```
 
+        ### With KMS Key ID (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_kms_key_id = vault.secrets.SyncGcpDestination("gcp_kms_key_id",
+            name="gcp-dest-kms-key-id",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            kms_key_id="projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key")
+        ```
+
+        ### With Replica Regions (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumi_vault as vault
+
+        gcp_replica_regions = vault.secrets.SyncGcpDestination("gcp_replica_regions",
+            name="gcp-dest-replica-regions",
+            project_id="gcp-project-id",
+            credentials=std.file(input=credentials_file).result,
+            secret_name_template="vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}",
+            replica_regions={
+                "us-central1": "projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key",
+                "us-east1": "projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key",
+            })
+        ```
+
         ### Using Workload Identity Federation (Vault 2.0.0+)
 
         ```python
@@ -1067,10 +1225,12 @@ class SyncGcpDestination(pulumi.CustomResource):
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  locational_kms_keys: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  replication_locations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
                  service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1096,10 +1256,12 @@ class SyncGcpDestination(pulumi.CustomResource):
             __props__.__dict__["identity_token_key_wo"] = None if identity_token_key_wo is None else pulumi.Output.secret(identity_token_key_wo)
             __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
             __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+            __props__.__dict__["kms_key_id"] = kms_key_id
             __props__.__dict__["locational_kms_keys"] = locational_kms_keys
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["replica_regions"] = replica_regions
             __props__.__dict__["replication_locations"] = replication_locations
             __props__.__dict__["secret_name_template"] = secret_name_template
             __props__.__dict__["service_account_email"] = service_account_email
@@ -1129,10 +1291,12 @@ class SyncGcpDestination(pulumi.CustomResource):
             identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
             identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             locational_kms_keys: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             replication_locations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
             service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1162,6 +1326,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ID of the GCP KMS key to be used to encrypt the secret.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] locational_kms_keys: Locational KMS keys for encryption.
         :param pulumi.Input[_builtins.str] name: Unique name of the GCP destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1171,6 +1336,7 @@ class SyncGcpDestination(pulumi.CustomResource):
                overrides the project ID derived from the service account JSON credentials or application
                default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
                to perform Secret Manager actions in the target project.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] replication_locations: Replication locations for secrets.
         :param pulumi.Input[_builtins.str] secret_name_template: Template describing how to generate external secret names.
                Supports a subset of the Go Template syntax.
@@ -1194,10 +1360,12 @@ class SyncGcpDestination(pulumi.CustomResource):
         __props__.__dict__["identity_token_key_wo"] = identity_token_key_wo
         __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
         __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+        __props__.__dict__["kms_key_id"] = kms_key_id
         __props__.__dict__["locational_kms_keys"] = locational_kms_keys
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["replica_regions"] = replica_regions
         __props__.__dict__["replication_locations"] = replication_locations
         __props__.__dict__["secret_name_template"] = secret_name_template
         __props__.__dict__["service_account_email"] = service_account_email
@@ -1256,6 +1424,7 @@ class SyncGcpDestination(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="globalKmsKey")
+    @_utilities.deprecated("""Deprecated in favor of kms_key_id for Vault Enterprise 2.2.0+.""")
     def global_kms_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Global KMS key for encryption.
@@ -1314,7 +1483,16 @@ class SyncGcpDestination(pulumi.CustomResource):
         return pulumi.get(self, "identity_token_ttl")
 
     @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @_builtins.property
     @pulumi.getter(name="locationalKmsKeys")
+    @_utilities.deprecated("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
     def locational_kms_keys(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
         Locational KMS keys for encryption.
@@ -1351,7 +1529,16 @@ class SyncGcpDestination(pulumi.CustomResource):
         return pulumi.get(self, "project_id")
 
     @_builtins.property
+    @pulumi.getter(name="replicaRegions")
+    def replica_regions(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+        """
+        return pulumi.get(self, "replica_regions")
+
+    @_builtins.property
     @pulumi.getter(name="replicationLocations")
+    @_utilities.deprecated("""Deprecated in favor of replica_regions for Vault Enterprise 2.2.0+.""")
     def replication_locations(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         Replication locations for secrets.

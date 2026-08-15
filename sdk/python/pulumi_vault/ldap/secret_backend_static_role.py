@@ -21,12 +21,16 @@ class SecretBackendStaticRoleArgs:
     def __init__(__self__, *,
                  role_name: pulumi.Input[_builtins.str],
                  username: pulumi.Input[_builtins.str],
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  dn: pulumi.Input[Optional[_builtins.str]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
@@ -37,6 +41,11 @@ class SecretBackendStaticRoleArgs:
 
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
         :param pulumi.Input[_builtins.str] username: The username of the existing LDAP entry to manage password rotation for.
+        :param pulumi.Input[_builtins.bool] auto_unlock: Overrides the mount-level auto_unlock setting for this role.
+               When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+               When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
+               When unset, the role inherits the mount-level setting. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -47,10 +56,21 @@ class SecretBackendStaticRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the static role. This is required for Vault to manage an existing account and enable rotation.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo`. For more info see updating write-only attributes.
                Requires Vault Enterprise 2.0+.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, credentials are rotated on each read. When set, this overrides
+               the engine-level `rotate_on_read` default. When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations
+               for this role. When set, this overrides the engine-level `rotate_on_read_cooldown` default.
+               When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the static credential.
                A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] rotation_policy: The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
@@ -64,6 +84,8 @@ class SecretBackendStaticRoleArgs:
         """
         pulumi.set(__self__, "role_name", role_name)
         pulumi.set(__self__, "username", username)
+        if auto_unlock is not None:
+            pulumi.set(__self__, "auto_unlock", auto_unlock)
         if disable_automated_rotation is not None:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if dn is not None:
@@ -72,10 +94,16 @@ class SecretBackendStaticRoleArgs:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
+        if rotate_on_read is not None:
+            pulumi.set(__self__, "rotate_on_read", rotate_on_read)
+        if rotate_on_read_cooldown is not None:
+            pulumi.set(__self__, "rotate_on_read_cooldown", rotate_on_read_cooldown)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_policy is not None:
@@ -110,6 +138,22 @@ class SecretBackendStaticRoleArgs:
     @username.setter
     def username(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "username", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoUnlock")
+    def auto_unlock(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Overrides the mount-level auto_unlock setting for this role.
+        When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+        When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
+        When unset, the role inherits the mount-level setting. Active Directory schema only.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auto_unlock")
+
+    @auto_unlock.setter
+    def auto_unlock(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_unlock", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
@@ -166,6 +210,19 @@ class SecretBackendStaticRoleArgs:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Name of the password policy to use to generate passwords for this role.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -190,6 +247,37 @@ class SecretBackendStaticRoleArgs:
     @password_wo_version.setter
     def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnRead")
+    def rotate_on_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, credentials are rotated on each read. When set, this overrides
+        the engine-level `rotate_on_read` default. When unset, the role inherits the engine-level value.
+        Removing this attribute after it has been set is not supported without recreating the role.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read")
+
+    @rotate_on_read.setter
+    def rotate_on_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "rotate_on_read", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnReadCooldown")
+    def rotate_on_read_cooldown(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Minimum number of seconds between rotate-on-read rotations
+        for this role. When set, this overrides the engine-level `rotate_on_read_cooldown` default.
+        When unset, the role inherits the engine-level value.
+        Removing this attribute after it has been set is not supported without recreating the role.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read_cooldown")
+
+    @rotate_on_read_cooldown.setter
+    def rotate_on_read_cooldown(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotate_on_read_cooldown", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -260,13 +348,17 @@ class SecretBackendStaticRoleArgs:
 @pulumi.input_type
 class _SecretBackendStaticRoleState:
     def __init__(__self__, *,
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  dn: pulumi.Input[Optional[_builtins.str]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
@@ -276,6 +368,11 @@ class _SecretBackendStaticRoleState:
         """
         Input properties used for looking up and filtering SecretBackendStaticRole resources.
 
+        :param pulumi.Input[_builtins.bool] auto_unlock: Overrides the mount-level auto_unlock setting for this role.
+               When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+               When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
+               When unset, the role inherits the mount-level setting. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -286,11 +383,22 @@ class _SecretBackendStaticRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the static role. This is required for Vault to manage an existing account and enable rotation.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo`. For more info see updating write-only attributes.
                Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, credentials are rotated on each read. When set, this overrides
+               the engine-level `rotate_on_read` default. When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations
+               for this role. When set, this overrides the engine-level `rotate_on_read_cooldown` default.
+               When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the static credential.
                A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] rotation_policy: The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
@@ -303,6 +411,8 @@ class _SecretBackendStaticRoleState:
                Requires Vault 1.16 or above.
         :param pulumi.Input[_builtins.str] username: The username of the existing LDAP entry to manage password rotation for.
         """
+        if auto_unlock is not None:
+            pulumi.set(__self__, "auto_unlock", auto_unlock)
         if disable_automated_rotation is not None:
             pulumi.set(__self__, "disable_automated_rotation", disable_automated_rotation)
         if dn is not None:
@@ -311,12 +421,18 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if password_wo is not None:
             pulumi.set(__self__, "password_wo", password_wo)
         if password_wo_version is not None:
             pulumi.set(__self__, "password_wo_version", password_wo_version)
         if role_name is not None:
             pulumi.set(__self__, "role_name", role_name)
+        if rotate_on_read is not None:
+            pulumi.set(__self__, "rotate_on_read", rotate_on_read)
+        if rotate_on_read_cooldown is not None:
+            pulumi.set(__self__, "rotate_on_read_cooldown", rotate_on_read_cooldown)
         if rotation_period is not None:
             pulumi.set(__self__, "rotation_period", rotation_period)
         if rotation_policy is not None:
@@ -329,6 +445,22 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "skip_import_rotation", skip_import_rotation)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="autoUnlock")
+    def auto_unlock(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Overrides the mount-level auto_unlock setting for this role.
+        When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+        When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
+        When unset, the role inherits the mount-level setting. Active Directory schema only.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auto_unlock")
+
+    @auto_unlock.setter
+    def auto_unlock(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_unlock", value)
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
@@ -385,6 +517,19 @@ class _SecretBackendStaticRoleState:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Name of the password policy to use to generate passwords for this role.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -421,6 +566,37 @@ class _SecretBackendStaticRoleState:
     @role_name.setter
     def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnRead")
+    def rotate_on_read(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If true, credentials are rotated on each read. When set, this overrides
+        the engine-level `rotate_on_read` default. When unset, the role inherits the engine-level value.
+        Removing this attribute after it has been set is not supported without recreating the role.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read")
+
+    @rotate_on_read.setter
+    def rotate_on_read(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "rotate_on_read", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnReadCooldown")
+    def rotate_on_read_cooldown(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Minimum number of seconds between rotate-on-read rotations
+        for this role. When set, this overrides the engine-level `rotate_on_read_cooldown` default.
+        When unset, the role inherits the engine-level value.
+        Removing this attribute after it has been set is not supported without recreating the role.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read_cooldown")
+
+    @rotate_on_read_cooldown.setter
+    def rotate_on_read_cooldown(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotate_on_read_cooldown", value)
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")
@@ -506,13 +682,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  dn: pulumi.Input[Optional[_builtins.str]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
@@ -569,6 +749,11 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] auto_unlock: Overrides the mount-level auto_unlock setting for this role.
+               When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+               When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
+               When unset, the role inherits the mount-level setting. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -579,11 +764,22 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the static role. This is required for Vault to manage an existing account and enable rotation.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo`. For more info see updating write-only attributes.
                Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, credentials are rotated on each read. When set, this overrides
+               the engine-level `rotate_on_read` default. When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations
+               for this role. When set, this overrides the engine-level `rotate_on_read_cooldown` default.
+               When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the static credential.
                A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] rotation_policy: The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
@@ -664,13 +860,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  dn: pulumi.Input[Optional[_builtins.str]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+                 rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
@@ -686,15 +886,19 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretBackendStaticRoleArgs.__new__(SecretBackendStaticRoleArgs)
 
+            __props__.__dict__["auto_unlock"] = auto_unlock
             __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
             __props__.__dict__["dn"] = dn
             __props__.__dict__["mount"] = mount
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["password_policy"] = password_policy
             __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
             __props__.__dict__["password_wo_version"] = password_wo_version
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
+            __props__.__dict__["rotate_on_read"] = rotate_on_read
+            __props__.__dict__["rotate_on_read_cooldown"] = rotate_on_read_cooldown
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_policy"] = rotation_policy
             __props__.__dict__["rotation_schedule"] = rotation_schedule
@@ -715,13 +919,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
             dn: pulumi.Input[Optional[_builtins.str]] = None,
             mount: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+            rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_policy: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
@@ -735,6 +943,11 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] auto_unlock: Overrides the mount-level auto_unlock setting for this role.
+               When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+               When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
+               When unset, the role inherits the mount-level setting. Active Directory schema only.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -745,11 +958,22 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Password for the static role. This is required for Vault to manage an existing account and enable rotation.
         :param pulumi.Input[_builtins.int] password_wo_version: The version of the `password_wo`. For more info see updating write-only attributes.
                Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
+        :param pulumi.Input[_builtins.bool] rotate_on_read: If true, credentials are rotated on each read. When set, this overrides
+               the engine-level `rotate_on_read` default. When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
+        :param pulumi.Input[_builtins.int] rotate_on_read_cooldown: Minimum number of seconds between rotate-on-read rotations
+               for this role. When set, this overrides the engine-level `rotate_on_read_cooldown` default.
+               When unset, the role inherits the engine-level value.
+               Removing this attribute after it has been set is not supported without recreating the role.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.int] rotation_period: The amount of time in seconds Vault should wait before rotating the static credential.
                A zero value tells Vault not to rotate the credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] rotation_policy: The rotation policy to use for this credential. Requires Vault Enterprise 2.0+.
@@ -766,13 +990,17 @@ class SecretBackendStaticRole(pulumi.CustomResource):
 
         __props__ = _SecretBackendStaticRoleState.__new__(_SecretBackendStaticRoleState)
 
+        __props__.__dict__["auto_unlock"] = auto_unlock
         __props__.__dict__["disable_automated_rotation"] = disable_automated_rotation
         __props__.__dict__["dn"] = dn
         __props__.__dict__["mount"] = mount
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["password_wo"] = password_wo
         __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["role_name"] = role_name
+        __props__.__dict__["rotate_on_read"] = rotate_on_read
+        __props__.__dict__["rotate_on_read_cooldown"] = rotate_on_read_cooldown
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_policy"] = rotation_policy
         __props__.__dict__["rotation_schedule"] = rotation_schedule
@@ -780,6 +1008,18 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["skip_import_rotation"] = skip_import_rotation
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="autoUnlock")
+    def auto_unlock(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Overrides the mount-level auto_unlock setting for this role.
+        When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
+        When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
+        When unset, the role inherits the mount-level setting. Active Directory schema only.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auto_unlock")
 
     @_builtins.property
     @pulumi.getter(name="disableAutomatedRotation")
@@ -820,6 +1060,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         return pulumi.get(self, "namespace")
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Name of the password policy to use to generate passwords for this role.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @_builtins.property
     @pulumi.getter(name="passwordWo")
     def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -844,6 +1093,29 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         Name of the role.
         """
         return pulumi.get(self, "role_name")
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnRead")
+    def rotate_on_read(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If true, credentials are rotated on each read. When set, this overrides
+        the engine-level `rotate_on_read` default. When unset, the role inherits the engine-level value.
+        Removing this attribute after it has been set is not supported without recreating the role.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read")
+
+    @_builtins.property
+    @pulumi.getter(name="rotateOnReadCooldown")
+    def rotate_on_read_cooldown(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Minimum number of seconds between rotate-on-read rotations
+        for this role. When set, this overrides the engine-level `rotate_on_read_cooldown` default.
+        When unset, the role inherits the engine-level value.
+        Removing this attribute after it has been set is not supported without recreating the role.
+        Requires Vault Enterprise 2.2.0+.
+        """
+        return pulumi.get(self, "rotate_on_read_cooldown")
 
     @_builtins.property
     @pulumi.getter(name="rotationPeriod")

@@ -71,6 +71,7 @@ namespace Pulumi.Vault.Ldap
         public readonly string? Namespace;
         public readonly string Password;
         public readonly string RoleName;
+        public readonly bool RotatedOnRead;
         public readonly int RotationPeriod;
         public readonly int Ttl;
         public readonly string Username;
@@ -93,6 +94,8 @@ namespace Pulumi.Vault.Ldap
 
             string roleName,
 
+            bool rotatedOnRead,
+
             int rotationPeriod,
 
             int ttl,
@@ -107,6 +110,7 @@ namespace Pulumi.Vault.Ldap
             Namespace = @namespace;
             Password = password;
             RoleName = roleName;
+            RotatedOnRead = rotatedOnRead;
             RotationPeriod = rotationPeriod;
             Ttl = ttl;
             Username = username;

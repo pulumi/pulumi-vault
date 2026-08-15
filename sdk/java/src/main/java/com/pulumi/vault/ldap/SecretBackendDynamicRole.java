@@ -215,6 +215,22 @@ public class SecretBackendDynamicRole extends com.pulumi.resources.CustomResourc
         return Codegen.optional(this.namespace);
     }
     /**
+     * Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    @Export(name="passwordPolicy", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordPolicy;
+
+    /**
+     * @return Name of the password policy to use to generate passwords for this role.
+     * Requires Vault 2.2.0+.
+     * 
+     */
+    public Output<Optional<String>> passwordPolicy() {
+        return Codegen.optional(this.passwordPolicy);
+    }
+    /**
      * Name of the role.
      * 
      */

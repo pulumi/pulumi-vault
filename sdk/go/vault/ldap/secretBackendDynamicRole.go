@@ -109,6 +109,9 @@ type SecretBackendDynamicRole struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// Name of the password policy to use to generate passwords for this role.
+	// Requires Vault 2.2.0+.
+	PasswordPolicy pulumi.StringPtrOutput `pulumi:"passwordPolicy"`
 	// Name of the role.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 	// A templatized LDIF string used to attempt to
@@ -191,6 +194,9 @@ type secretBackendDynamicRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Name of the password policy to use to generate passwords for this role.
+	// Requires Vault 2.2.0+.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Name of the role.
 	RoleName *string `pulumi:"roleName"`
 	// A templatized LDIF string used to attempt to
@@ -235,6 +241,9 @@ type SecretBackendDynamicRoleState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Name of the password policy to use to generate passwords for this role.
+	// Requires Vault 2.2.0+.
+	PasswordPolicy pulumi.StringPtrInput
 	// Name of the role.
 	RoleName pulumi.StringPtrInput
 	// A templatized LDIF string used to attempt to
@@ -283,6 +292,9 @@ type secretBackendDynamicRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// Name of the password policy to use to generate passwords for this role.
+	// Requires Vault 2.2.0+.
+	PasswordPolicy *string `pulumi:"passwordPolicy"`
 	// Name of the role.
 	RoleName string `pulumi:"roleName"`
 	// A templatized LDIF string used to attempt to
@@ -328,6 +340,9 @@ type SecretBackendDynamicRoleArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// Name of the password policy to use to generate passwords for this role.
+	// Requires Vault 2.2.0+.
+	PasswordPolicy pulumi.StringPtrInput
 	// Name of the role.
 	RoleName pulumi.StringInput
 	// A templatized LDIF string used to attempt to
@@ -474,6 +489,12 @@ func (o SecretBackendDynamicRoleOutput) Mount() pulumi.StringPtrOutput {
 // *Available only for Vault Enterprise*.
 func (o SecretBackendDynamicRoleOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendDynamicRole) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// Name of the password policy to use to generate passwords for this role.
+// Requires Vault 2.2.0+.
+func (o SecretBackendDynamicRoleOutput) PasswordPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendDynamicRole) pulumi.StringPtrOutput { return v.PasswordPolicy }).(pulumi.StringPtrOutput)
 }
 
 // Name of the role.

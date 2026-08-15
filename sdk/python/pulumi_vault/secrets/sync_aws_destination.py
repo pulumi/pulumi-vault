@@ -32,9 +32,11 @@ class SyncAwsDestinationArgs:
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  role_arn: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None):
@@ -71,6 +73,7 @@ class SyncAwsDestinationArgs:
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -78,6 +81,7 @@ class SyncAwsDestinationArgs:
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
         :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
@@ -115,12 +119,16 @@ class SyncAwsDestinationArgs:
             pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if replica_regions is not None:
+            pulumi.set(__self__, "replica_regions", replica_regions)
         if role_arn is not None:
             pulumi.set(__self__, "role_arn", role_arn)
         if secret_access_key is not None:
@@ -302,6 +310,18 @@ class SyncAwsDestinationArgs:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -340,6 +360,18 @@ class SyncAwsDestinationArgs:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="replicaRegions")
+    def replica_regions(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+        """
+        return pulumi.get(self, "replica_regions")
+
+    @replica_regions.setter
+    def replica_regions(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "replica_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
@@ -401,9 +433,11 @@ class _SyncAwsDestinationState:
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  role_arn: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
@@ -441,6 +475,7 @@ class _SyncAwsDestinationState:
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -448,6 +483,7 @@ class _SyncAwsDestinationState:
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
         :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
@@ -486,12 +522,16 @@ class _SyncAwsDestinationState:
             pulumi.set(__self__, "identity_token_key_wo_version", identity_token_key_wo_version)
         if identity_token_ttl is not None:
             pulumi.set(__self__, "identity_token_ttl", identity_token_ttl)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if replica_regions is not None:
+            pulumi.set(__self__, "replica_regions", replica_regions)
         if role_arn is not None:
             pulumi.set(__self__, "role_arn", role_arn)
         if secret_access_key is not None:
@@ -675,6 +715,18 @@ class _SyncAwsDestinationState:
         pulumi.set(self, "identity_token_ttl", value)
 
     @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -713,6 +765,18 @@ class _SyncAwsDestinationState:
     @region.setter
     def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="replicaRegions")
+    def replica_regions(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+        """
+        return pulumi.get(self, "replica_regions")
+
+    @replica_regions.setter
+    def replica_regions(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "replica_regions", value)
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
@@ -789,9 +853,11 @@ class SyncAwsDestination(pulumi.CustomResource):
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  role_arn: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
@@ -870,6 +936,37 @@ class SyncAwsDestination(pulumi.CustomResource):
             granularity="secret-path")
         ```
 
+        ### With Custom KMS Key (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws_kms_key_id = vault.secrets.SyncAwsDestination("aws_kms_key_id",
+            name="aws-dest-kms-key-id",
+            access_key_id=access_key_id,
+            secret_access_key=secret_access_key,
+            region="us-east-1",
+            kms_key_id="arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012")
+        ```
+
+        ### With Replica Regions (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws_replica_regions = vault.secrets.SyncAwsDestination("aws_replica_regions",
+            name="aws-dest-replica-regions",
+            access_key_id=access_key_id,
+            secret_access_key=secret_access_key,
+            region="us-east-1",
+            replica_regions={
+                "us-east-2": "arn:aws:kms:us-east-2:123456789012:key/mrk-1234567890abcdef1234567890abcdef",
+                "us-west-1": "arn:aws:kms:us-west-1:123456789012:key/mrk-1234567890abcdef1234567890abcdef",
+            })
+        ```
+
         ## Import
 
         AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -911,6 +1008,7 @@ class SyncAwsDestination(pulumi.CustomResource):
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -918,6 +1016,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
         :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
@@ -1009,6 +1108,37 @@ class SyncAwsDestination(pulumi.CustomResource):
             granularity="secret-path")
         ```
 
+        ### With Custom KMS Key (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws_kms_key_id = vault.secrets.SyncAwsDestination("aws_kms_key_id",
+            name="aws-dest-kms-key-id",
+            access_key_id=access_key_id,
+            secret_access_key=secret_access_key,
+            region="us-east-1",
+            kms_key_id="arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012")
+        ```
+
+        ### With Replica Regions (Vault 2.2.0+)
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        aws_replica_regions = vault.secrets.SyncAwsDestination("aws_replica_regions",
+            name="aws-dest-replica-regions",
+            access_key_id=access_key_id,
+            secret_access_key=secret_access_key,
+            region="us-east-1",
+            replica_regions={
+                "us-east-2": "arn:aws:kms:us-east-2:123456789012:key/mrk-1234567890abcdef1234567890abcdef",
+                "us-west-1": "arn:aws:kms:us-west-1:123456789012:key/mrk-1234567890abcdef1234567890abcdef",
+            })
+        ```
+
         ## Import
 
         AWS Secrets sync destinations can be imported using the `name`, e.g.
@@ -1046,9 +1176,11 @@ class SyncAwsDestination(pulumi.CustomResource):
                  identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  role_arn: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1074,9 +1206,11 @@ class SyncAwsDestination(pulumi.CustomResource):
             __props__.__dict__["identity_token_key_wo"] = None if identity_token_key_wo is None else pulumi.Output.secret(identity_token_key_wo)
             __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
             __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+            __props__.__dict__["kms_key_id"] = kms_key_id
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["region"] = region
+            __props__.__dict__["replica_regions"] = replica_regions
             __props__.__dict__["role_arn"] = role_arn
             __props__.__dict__["secret_access_key"] = None if secret_access_key is None else pulumi.Output.secret(secret_access_key)
             __props__.__dict__["secret_name_template"] = secret_name_template
@@ -1106,9 +1240,11 @@ class SyncAwsDestination(pulumi.CustomResource):
             identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
             identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             role_arn: pulumi.Input[Optional[_builtins.str]] = None,
             secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
             secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1150,6 +1286,7 @@ class SyncAwsDestination(pulumi.CustomResource):
                The key to use for signing identity tokens. This is a write-only field and will not be read back from Vault.
         :param pulumi.Input[_builtins.int] identity_token_key_wo_version: A version counter for the write-only identity_token_key_wo field. Incrementing this value will trigger an update.
         :param pulumi.Input[_builtins.int] identity_token_ttl: The TTL of generated tokens.
+        :param pulumi.Input[_builtins.str] kms_key_id: Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
         :param pulumi.Input[_builtins.str] name: Unique name of the AWS destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1157,6 +1294,7 @@ class SyncAwsDestination(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] region: Region where to manage the secrets manager entries.
                Can be omitted and directly provided to Vault using the `AWS_REGION` environment
                variable.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] replica_regions: Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
         :param pulumi.Input[_builtins.str] role_arn: Specifies a role to assume when connecting to AWS. When assuming a role,
                Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
                exist for Vault to be able to assume this role. The role can be in a different account.
@@ -1186,9 +1324,11 @@ class SyncAwsDestination(pulumi.CustomResource):
         __props__.__dict__["identity_token_key_wo"] = identity_token_key_wo
         __props__.__dict__["identity_token_key_wo_version"] = identity_token_key_wo_version
         __props__.__dict__["identity_token_ttl"] = identity_token_ttl
+        __props__.__dict__["kms_key_id"] = kms_key_id
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["region"] = region
+        __props__.__dict__["replica_regions"] = replica_regions
         __props__.__dict__["role_arn"] = role_arn
         __props__.__dict__["secret_access_key"] = secret_access_key
         __props__.__dict__["secret_name_template"] = secret_name_template
@@ -1317,6 +1457,14 @@ class SyncAwsDestination(pulumi.CustomResource):
         return pulumi.get(self, "identity_token_ttl")
 
     @_builtins.property
+    @pulumi.getter(name="kmsKeyId")
+    def kms_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+        """
+        return pulumi.get(self, "kms_key_id")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         """
@@ -1343,6 +1491,14 @@ class SyncAwsDestination(pulumi.CustomResource):
         variable.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="replicaRegions")
+    def replica_regions(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
+        """
+        Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+        """
+        return pulumi.get(self, "replica_regions")
 
     @_builtins.property
     @pulumi.getter(name="roleArn")

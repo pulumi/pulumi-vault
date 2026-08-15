@@ -5,6 +5,7 @@ package com.pulumi.vault.ldap.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -25,6 +26,7 @@ public final class GetStaticCredentialsResult {
     private @Nullable String namespace;
     private String password;
     private String roleName;
+    private Boolean rotatedOnRead;
     private Integer rotationPeriod;
     private Integer ttl;
     private String username;
@@ -58,6 +60,9 @@ public final class GetStaticCredentialsResult {
     public String roleName() {
         return this.roleName;
     }
+    public Boolean rotatedOnRead() {
+        return this.rotatedOnRead;
+    }
     public Integer rotationPeriod() {
         return this.rotationPeriod;
     }
@@ -85,6 +90,7 @@ public final class GetStaticCredentialsResult {
         private @Nullable String namespace;
         private String password;
         private String roleName;
+        private Boolean rotatedOnRead;
         private Integer rotationPeriod;
         private Integer ttl;
         private String username;
@@ -99,6 +105,7 @@ public final class GetStaticCredentialsResult {
     	      this.namespace = defaults.namespace;
     	      this.password = defaults.password;
     	      this.roleName = defaults.roleName;
+    	      this.rotatedOnRead = defaults.rotatedOnRead;
     	      this.rotationPeriod = defaults.rotationPeriod;
     	      this.ttl = defaults.ttl;
     	      this.username = defaults.username;
@@ -167,6 +174,14 @@ public final class GetStaticCredentialsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder rotatedOnRead(Boolean rotatedOnRead) {
+            if (rotatedOnRead == null) {
+              throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "rotatedOnRead");
+            }
+            this.rotatedOnRead = rotatedOnRead;
+            return this;
+        }
+        @CustomType.Setter
         public Builder rotationPeriod(Integer rotationPeriod) {
             if (rotationPeriod == null) {
               throw new MissingRequiredPropertyException("GetStaticCredentialsResult", "rotationPeriod");
@@ -200,6 +215,7 @@ public final class GetStaticCredentialsResult {
             _resultValue.namespace = namespace;
             _resultValue.password = password;
             _resultValue.roleName = roleName;
+            _resultValue.rotatedOnRead = rotatedOnRead;
             _resultValue.rotationPeriod = rotationPeriod;
             _resultValue.ttl = ttl;
             _resultValue.username = username;

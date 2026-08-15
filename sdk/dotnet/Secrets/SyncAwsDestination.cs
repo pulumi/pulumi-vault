@@ -113,6 +113,54 @@ namespace Pulumi.Vault.Secrets
     /// });
     /// ```
     /// 
+    /// ### With Custom KMS Key (Vault 2.2.0+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var awsKmsKeyId = new Vault.Secrets.SyncAwsDestination("aws_kms_key_id", new()
+    ///     {
+    ///         Name = "aws-dest-kms-key-id",
+    ///         AccessKeyId = accessKeyId,
+    ///         SecretAccessKey = secretAccessKey,
+    ///         Region = "us-east-1",
+    ///         KmsKeyId = "arn:aws:kms:us-east-1:123456789012:key/12345678-1234-1234-1234-123456789012",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Replica Regions (Vault 2.2.0+)
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var awsReplicaRegions = new Vault.Secrets.SyncAwsDestination("aws_replica_regions", new()
+    ///     {
+    ///         Name = "aws-dest-replica-regions",
+    ///         AccessKeyId = accessKeyId,
+    ///         SecretAccessKey = secretAccessKey,
+    ///         Region = "us-east-1",
+    ///         ReplicaRegions = 
+    ///         {
+    ///             { "us-east-2", "arn:aws:kms:us-east-2:123456789012:key/mrk-1234567890abcdef1234567890abcdef" },
+    ///             { "us-west-1", "arn:aws:kms:us-west-1:123456789012:key/mrk-1234567890abcdef1234567890abcdef" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// AWS Secrets sync destinations can be imported using the `Name`, e.g.
@@ -220,6 +268,12 @@ namespace Pulumi.Vault.Secrets
         public Output<int> IdentityTokenTtl { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+        /// </summary>
+        [Output("kmsKeyId")]
+        public Output<string?> KmsKeyId { get; private set; } = null!;
+
+        /// <summary>
         /// Unique name of the AWS destination.
         /// </summary>
         [Output("name")]
@@ -240,6 +294,12 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+        /// </summary>
+        [Output("replicaRegions")]
+        public Output<ImmutableDictionary<string, string>?> ReplicaRegions { get; private set; } = null!;
 
         /// <summary>
         /// Specifies a role to assume when connecting to AWS. When assuming a role, 
@@ -464,6 +524,12 @@ namespace Pulumi.Vault.Secrets
         public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
+        /// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
+
+        /// <summary>
         /// Unique name of the AWS destination.
         /// </summary>
         [Input("name")]
@@ -484,6 +550,18 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("replicaRegions")]
+        private InputMap<string>? _replicaRegions;
+
+        /// <summary>
+        /// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+        /// </summary>
+        public InputMap<string> ReplicaRegions
+        {
+            get => _replicaRegions ?? (_replicaRegions = new InputMap<string>());
+            set => _replicaRegions = value;
+        }
 
         /// <summary>
         /// Specifies a role to assume when connecting to AWS. When assuming a role, 
@@ -668,6 +746,12 @@ namespace Pulumi.Vault.Secrets
         public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
+        /// Specifies the ARN of the AWS KMS key to be used to encrypt the secret.
+        /// </summary>
+        [Input("kmsKeyId")]
+        public Input<string>? KmsKeyId { get; set; }
+
+        /// <summary>
         /// Unique name of the AWS destination.
         /// </summary>
         [Input("name")]
@@ -688,6 +772,18 @@ namespace Pulumi.Vault.Secrets
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("replicaRegions")]
+        private InputMap<string>? _replicaRegions;
+
+        /// <summary>
+        /// Map of regions to KMS key ARN values for replica region encryption. KMS key values are optional.
+        /// </summary>
+        public InputMap<string> ReplicaRegions
+        {
+            get => _replicaRegions ?? (_replicaRegions = new InputMap<string>());
+            set => _replicaRegions = value;
+        }
 
         /// <summary>
         /// Specifies a role to assume when connecting to AWS. When assuming a role, 

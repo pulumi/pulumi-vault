@@ -26,6 +26,7 @@ class SecretBackendDynamicRoleArgs:
                  max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
                  username_template: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -54,6 +55,8 @@ class SecretBackendDynamicRoleArgs:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] rollback_ldif: A templatized LDIF string used to attempt to
                rollback any changes in the event that execution of the `creation_ldif` results
                in an error. This may contain multiple LDIF entries. All LDIF entries are
@@ -75,6 +78,8 @@ class SecretBackendDynamicRoleArgs:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if rollback_ldif is not None:
             pulumi.set(__self__, "rollback_ldif", rollback_ldif)
         if username_template is not None:
@@ -181,6 +186,19 @@ class SecretBackendDynamicRoleArgs:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Name of the password policy to use to generate passwords for this role.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="rollbackLdif")
     def rollback_ldif(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -221,6 +239,7 @@ class _SecretBackendDynamicRoleState:
                  max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
                  rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
                  username_template: pulumi.Input[Optional[_builtins.str]] = None):
@@ -249,6 +268,8 @@ class _SecretBackendDynamicRoleState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
         :param pulumi.Input[_builtins.str] rollback_ldif: A templatized LDIF string used to attempt to
                rollback any changes in the event that execution of the `creation_ldif` results
@@ -272,6 +293,8 @@ class _SecretBackendDynamicRoleState:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if password_policy is not None:
+            pulumi.set(__self__, "password_policy", password_policy)
         if role_name is not None:
             pulumi.set(__self__, "role_name", role_name)
         if rollback_ldif is not None:
@@ -368,6 +391,19 @@ class _SecretBackendDynamicRoleState:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Name of the password policy to use to generate passwords for this role.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "password_policy")
+
+    @password_policy.setter
+    def password_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_policy", value)
+
+    @_builtins.property
     @pulumi.getter(name="roleName")
     def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -423,6 +459,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
                  max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
                  rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
                  username_template: pulumi.Input[Optional[_builtins.str]] = None,
@@ -502,6 +539,8 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
         :param pulumi.Input[_builtins.str] rollback_ldif: A templatized LDIF string used to attempt to
                rollback any changes in the event that execution of the `creation_ldif` results
@@ -591,6 +630,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
                  max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
                  rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
                  username_template: pulumi.Input[Optional[_builtins.str]] = None,
@@ -613,6 +653,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
             __props__.__dict__["max_ttl"] = max_ttl
             __props__.__dict__["mount"] = mount
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["password_policy"] = password_policy
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
@@ -634,6 +675,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
             max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
             mount: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
             role_name: pulumi.Input[Optional[_builtins.str]] = None,
             rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
             username_template: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendDynamicRole':
@@ -666,6 +708,8 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] password_policy: Name of the password policy to use to generate passwords for this role.
+               Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] role_name: Name of the role.
         :param pulumi.Input[_builtins.str] rollback_ldif: A templatized LDIF string used to attempt to
                rollback any changes in the event that execution of the `creation_ldif` results
@@ -687,6 +731,7 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         __props__.__dict__["max_ttl"] = max_ttl
         __props__.__dict__["mount"] = mount
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["password_policy"] = password_policy
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["rollback_ldif"] = rollback_ldif
         __props__.__dict__["username_template"] = username_template
@@ -755,6 +800,15 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordPolicy")
+    def password_policy(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Name of the password policy to use to generate passwords for this role.
+        Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "password_policy")
 
     @_builtins.property
     @pulumi.getter(name="roleName")

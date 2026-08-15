@@ -37,6 +37,7 @@ export interface GetStaticCredentialsResult {
     readonly namespace?: string;
     readonly password: string;
     readonly roleName: string;
+    readonly rotatedOnRead: boolean;
     readonly rotationPeriod: number;
     readonly ttl: number;
     readonly username: string;

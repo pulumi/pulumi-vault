@@ -85,7 +85,7 @@ type SecretBackendRootCert struct {
 	ExcludedIpRanges pulumi.StringArrayOutput `pulumi:"excludedIpRanges"`
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains pulumi.StringArrayOutput `pulumi:"excludedUriDomains"`
-	// The format of data. Valid values are "pem", "pemBundle", or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
@@ -96,6 +96,10 @@ type SecretBackendRootCert struct {
 	IssuerName pulumi.StringOutput `pulumi:"issuerName"`
 	// The issuing CA certificate.
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword pulumi.StringPtrOutput `pulumi:"jksPassword"`
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias pulumi.StringPtrOutput `pulumi:"jksPrivateKeyAlias"`
 	// The number of bits to use
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
 	// The ID of the generated key.
@@ -143,6 +147,12 @@ type SecretBackendRootCert struct {
 	PermittedIpRanges pulumi.StringArrayOutput `pulumi:"permittedIpRanges"`
 	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
 	PermittedUriDomains pulumi.StringArrayOutput `pulumi:"permittedUriDomains"`
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder pulumi.StringPtrOutput `pulumi:"pkcs12Encoder"`
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password pulumi.StringPtrOutput `pulumi:"pkcs12Password"`
 	// The postal code
 	PostalCode pulumi.StringPtrOutput `pulumi:"postalCode"`
 	// The private key format
@@ -225,7 +235,7 @@ type secretBackendRootCertState struct {
 	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
-	// The format of data. Valid values are "pem", "pemBundle", or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -236,6 +246,10 @@ type secretBackendRootCertState struct {
 	IssuerName *string `pulumi:"issuerName"`
 	// The issuing CA certificate.
 	IssuingCa *string `pulumi:"issuingCa"`
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword *string `pulumi:"jksPassword"`
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias *string `pulumi:"jksPrivateKeyAlias"`
 	// The number of bits to use
 	KeyBits *int `pulumi:"keyBits"`
 	// The ID of the generated key.
@@ -283,6 +297,12 @@ type secretBackendRootCertState struct {
 	PermittedIpRanges []string `pulumi:"permittedIpRanges"`
 	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
 	PermittedUriDomains []string `pulumi:"permittedUriDomains"`
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder *string `pulumi:"pkcs12Encoder"`
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password *string `pulumi:"pkcs12Password"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The private key format
@@ -327,7 +347,7 @@ type SecretBackendRootCertState struct {
 	ExcludedIpRanges pulumi.StringArrayInput
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains pulumi.StringArrayInput
-	// The format of data. Valid values are "pem", "pemBundle", or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -338,6 +358,10 @@ type SecretBackendRootCertState struct {
 	IssuerName pulumi.StringPtrInput
 	// The issuing CA certificate.
 	IssuingCa pulumi.StringPtrInput
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword pulumi.StringPtrInput
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias pulumi.StringPtrInput
 	// The number of bits to use
 	KeyBits pulumi.IntPtrInput
 	// The ID of the generated key.
@@ -385,6 +409,12 @@ type SecretBackendRootCertState struct {
 	PermittedIpRanges pulumi.StringArrayInput
 	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
 	PermittedUriDomains pulumi.StringArrayInput
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder pulumi.StringPtrInput
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password pulumi.StringPtrInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The private key format
@@ -431,13 +461,17 @@ type secretBackendRootCertArgs struct {
 	ExcludedIpRanges []string `pulumi:"excludedIpRanges"`
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains []string `pulumi:"excludedUriDomains"`
-	// The format of data. Valid values are "pem", "pemBundle", or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
 	// Provides a name to the specified issuer. The name must be unique
 	// across all issuers and not be the reserved value `default`
 	IssuerName *string `pulumi:"issuerName"`
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword *string `pulumi:"jksPassword"`
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias *string `pulumi:"jksPrivateKeyAlias"`
 	// The number of bits to use
 	KeyBits *int `pulumi:"keyBits"`
 	// When a new key is created with this request, optionally specifies
@@ -483,6 +517,12 @@ type secretBackendRootCertArgs struct {
 	PermittedIpRanges []string `pulumi:"permittedIpRanges"`
 	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
 	PermittedUriDomains []string `pulumi:"permittedUriDomains"`
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder *string `pulumi:"pkcs12Encoder"`
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password *string `pulumi:"pkcs12Password"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The private key format
@@ -524,13 +564,17 @@ type SecretBackendRootCertArgs struct {
 	ExcludedIpRanges pulumi.StringArrayInput
 	// List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
 	ExcludedUriDomains pulumi.StringArrayInput
-	// The format of data. Valid values are "pem", "pemBundle", or "der".
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
 	// Provides a name to the specified issuer. The name must be unique
 	// across all issuers and not be the reserved value `default`
 	IssuerName pulumi.StringPtrInput
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	JksPassword pulumi.StringPtrInput
+	// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+	JksPrivateKeyAlias pulumi.StringPtrInput
 	// The number of bits to use
 	KeyBits pulumi.IntPtrInput
 	// When a new key is created with this request, optionally specifies
@@ -576,6 +620,12 @@ type SecretBackendRootCertArgs struct {
 	PermittedIpRanges pulumi.StringArrayInput
 	// List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
 	PermittedUriDomains pulumi.StringArrayInput
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	//
+	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+	Pkcs12Encoder pulumi.StringPtrInput
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	Pkcs12Password pulumi.StringPtrInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The private key format
@@ -734,7 +784,7 @@ func (o SecretBackendRootCertOutput) ExcludedUriDomains() pulumi.StringArrayOutp
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.ExcludedUriDomains }).(pulumi.StringArrayOutput)
 }
 
-// The format of data. Valid values are "pem", "pemBundle", or "der".
+// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
 func (o SecretBackendRootCertOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -758,6 +808,16 @@ func (o SecretBackendRootCertOutput) IssuerName() pulumi.StringOutput {
 // The issuing CA certificate.
 func (o SecretBackendRootCertOutput) IssuingCa() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
+}
+
+// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+func (o SecretBackendRootCertOutput) JksPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.JksPassword }).(pulumi.StringPtrOutput)
+}
+
+// The entry alias in the Java keystore (JKS) when format is set to "jksBundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+func (o SecretBackendRootCertOutput) JksPrivateKeyAlias() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.JksPrivateKeyAlias }).(pulumi.StringPtrOutput)
 }
 
 // The number of bits to use
@@ -865,6 +925,18 @@ func (o SecretBackendRootCertOutput) PermittedIpRanges() pulumi.StringArrayOutpu
 // List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
 func (o SecretBackendRootCertOutput) PermittedUriDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringArrayOutput { return v.PermittedUriDomains }).(pulumi.StringArrayOutput)
+}
+
+// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+//
+// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+func (o SecretBackendRootCertOutput) Pkcs12Encoder() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Pkcs12Encoder }).(pulumi.StringPtrOutput)
+}
+
+// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+func (o SecretBackendRootCertOutput) Pkcs12Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Pkcs12Password }).(pulumi.StringPtrOutput)
 }
 
 // The postal code

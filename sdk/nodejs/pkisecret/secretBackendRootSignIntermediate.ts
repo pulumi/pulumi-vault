@@ -126,6 +126,10 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly issuingCa: pulumi.Output<string>;
     /**
+     * Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     */
+    declare public readonly jksPassword: pulumi.Output<string | undefined>;
+    /**
      * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
      */
     declare public readonly keyUsages: pulumi.Output<string[] | undefined>;
@@ -182,6 +186,16 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
      * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
     declare public readonly permittedUriDomains: pulumi.Output<string[] | undefined>;
+    /**
+     * Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     *
+     * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+     */
+    declare public readonly pkcs12Encoder: pulumi.Output<string | undefined>;
+    /**
+     * Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     */
+    declare public readonly pkcs12Password: pulumi.Output<string | undefined>;
     /**
      * The postal code
      */
@@ -257,6 +271,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["ipSans"] = state?.ipSans;
             resourceInputs["issuerRef"] = state?.issuerRef;
             resourceInputs["issuingCa"] = state?.issuingCa;
+            resourceInputs["jksPassword"] = state?.jksPassword;
             resourceInputs["keyUsages"] = state?.keyUsages;
             resourceInputs["locality"] = state?.locality;
             resourceInputs["maxPathLength"] = state?.maxPathLength;
@@ -270,6 +285,8 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["permittedEmailAddresses"] = state?.permittedEmailAddresses;
             resourceInputs["permittedIpRanges"] = state?.permittedIpRanges;
             resourceInputs["permittedUriDomains"] = state?.permittedUriDomains;
+            resourceInputs["pkcs12Encoder"] = state?.pkcs12Encoder;
+            resourceInputs["pkcs12Password"] = state?.pkcs12Password;
             resourceInputs["postalCode"] = state?.postalCode;
             resourceInputs["province"] = state?.province;
             resourceInputs["revoke"] = state?.revoke;
@@ -305,6 +322,7 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["format"] = args?.format;
             resourceInputs["ipSans"] = args?.ipSans;
             resourceInputs["issuerRef"] = args?.issuerRef;
+            resourceInputs["jksPassword"] = args?.jksPassword;
             resourceInputs["keyUsages"] = args?.keyUsages;
             resourceInputs["locality"] = args?.locality;
             resourceInputs["maxPathLength"] = args?.maxPathLength;
@@ -318,6 +336,8 @@ export class SecretBackendRootSignIntermediate extends pulumi.CustomResource {
             resourceInputs["permittedEmailAddresses"] = args?.permittedEmailAddresses;
             resourceInputs["permittedIpRanges"] = args?.permittedIpRanges;
             resourceInputs["permittedUriDomains"] = args?.permittedUriDomains;
+            resourceInputs["pkcs12Encoder"] = args?.pkcs12Encoder;
+            resourceInputs["pkcs12Password"] = args?.pkcs12Password;
             resourceInputs["postalCode"] = args?.postalCode;
             resourceInputs["province"] = args?.province;
             resourceInputs["revoke"] = args?.revoke;
@@ -416,6 +436,10 @@ export interface SecretBackendRootSignIntermediateState {
      */
     issuingCa?: pulumi.Input<string | undefined>;
     /**
+     * Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     */
+    jksPassword?: pulumi.Input<string | undefined>;
+    /**
      * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
      */
     keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -472,6 +496,16 @@ export interface SecretBackendRootSignIntermediateState {
      * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
     permittedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     *
+     * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+     */
+    pkcs12Encoder?: pulumi.Input<string | undefined>;
+    /**
+     * Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     */
+    pkcs12Password?: pulumi.Input<string | undefined>;
     /**
      * The postal code
      */
@@ -578,6 +612,10 @@ export interface SecretBackendRootSignIntermediateArgs {
      */
     issuerRef?: pulumi.Input<string | undefined>;
     /**
+     * Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     */
+    jksPassword?: pulumi.Input<string | undefined>;
+    /**
      * Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
      */
     keyUsages?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -634,6 +672,16 @@ export interface SecretBackendRootSignIntermediateArgs {
      * List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
      */
     permittedUriDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     *
+     * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+     */
+    pkcs12Encoder?: pulumi.Input<string | undefined>;
+    /**
+     * Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     */
+    pkcs12Password?: pulumi.Input<string | undefined>;
     /**
      * The postal code
      */

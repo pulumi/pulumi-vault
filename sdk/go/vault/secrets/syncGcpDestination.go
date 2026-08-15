@@ -193,6 +193,83 @@ import (
 //
 // ```
 //
+// ### With KMS Key ID (Vault 2.2.0+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: credentialsFile,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = secrets.NewSyncGcpDestination(ctx, "gcp_kms_key_id", &secrets.SyncGcpDestinationArgs{
+//				Name:               pulumi.String("gcp-dest-kms-key-id"),
+//				ProjectId:          pulumi.String("gcp-project-id"),
+//				Credentials:        pulumi.String(invokeFile.Result),
+//				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
+//				KmsKeyId:           pulumi.String("projects/my-project/locations/global/keyRings/my-keyring/cryptoKeys/my-key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Replica Regions (Vault 2.2.0+)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/secrets"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: credentialsFile,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = secrets.NewSyncGcpDestination(ctx, "gcp_replica_regions", &secrets.SyncGcpDestinationArgs{
+//				Name:               pulumi.String("gcp-dest-replica-regions"),
+//				ProjectId:          pulumi.String("gcp-project-id"),
+//				Credentials:        pulumi.String(invokeFile.Result),
+//				SecretNameTemplate: pulumi.String("vault_{{ .MountAccessor | lowercase }}_{{ .SecretPath | lowercase }}"),
+//				ReplicaRegions: pulumi.StringMap{
+//					"us-central1": pulumi.String("projects/my-project/locations/us-central1/keyRings/kr/cryptoKeys/key"),
+//					"us-east1":    pulumi.String("projects/my-project/locations/us-east1/keyRings/kr/cryptoKeys/key"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Using Workload Identity Federation (Vault 2.0.0+)
 //
 // ```go
@@ -251,6 +328,8 @@ type SyncGcpDestination struct {
 	// Disable strict networking requirements.
 	DisableStrictNetworking pulumi.BoolPtrOutput `pulumi:"disableStrictNetworking"`
 	// Global KMS key for encryption.
+	//
+	// Deprecated: Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
 	GlobalKmsKey pulumi.StringPtrOutput `pulumi:"globalKmsKey"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
@@ -267,7 +346,11 @@ type SyncGcpDestination struct {
 	IdentityTokenKeyWoVersion pulumi.IntPtrOutput `pulumi:"identityTokenKeyWoVersion"`
 	// The TTL of generated tokens.
 	IdentityTokenTtl pulumi.IntOutput `pulumi:"identityTokenTtl"`
+	// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+	KmsKeyId pulumi.StringPtrOutput `pulumi:"kmsKeyId"`
 	// Locational KMS keys for encryption.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	LocationalKmsKeys pulumi.StringMapOutput `pulumi:"locationalKmsKeys"`
 	// Unique name of the GCP destination.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -280,7 +363,11 @@ type SyncGcpDestination struct {
 	// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
 	// to perform Secret Manager actions in the target project.
 	ProjectId pulumi.StringPtrOutput `pulumi:"projectId"`
+	// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+	ReplicaRegions pulumi.StringMapOutput `pulumi:"replicaRegions"`
 	// Replication locations for secrets.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	ReplicationLocations pulumi.StringArrayOutput `pulumi:"replicationLocations"`
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -351,6 +438,8 @@ type syncGcpDestinationState struct {
 	// Disable strict networking requirements.
 	DisableStrictNetworking *bool `pulumi:"disableStrictNetworking"`
 	// Global KMS key for encryption.
+	//
+	// Deprecated: Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
 	GlobalKmsKey *string `pulumi:"globalKmsKey"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
@@ -367,7 +456,11 @@ type syncGcpDestinationState struct {
 	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
 	// The TTL of generated tokens.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// Locational KMS keys for encryption.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	LocationalKmsKeys map[string]string `pulumi:"locationalKmsKeys"`
 	// Unique name of the GCP destination.
 	Name *string `pulumi:"name"`
@@ -380,7 +473,11 @@ type syncGcpDestinationState struct {
 	// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
 	// to perform Secret Manager actions in the target project.
 	ProjectId *string `pulumi:"projectId"`
+	// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+	ReplicaRegions map[string]string `pulumi:"replicaRegions"`
 	// Replication locations for secrets.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	ReplicationLocations []string `pulumi:"replicationLocations"`
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -407,6 +504,8 @@ type SyncGcpDestinationState struct {
 	// Disable strict networking requirements.
 	DisableStrictNetworking pulumi.BoolPtrInput
 	// Global KMS key for encryption.
+	//
+	// Deprecated: Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
 	GlobalKmsKey pulumi.StringPtrInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
@@ -423,7 +522,11 @@ type SyncGcpDestinationState struct {
 	IdentityTokenKeyWoVersion pulumi.IntPtrInput
 	// The TTL of generated tokens.
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+	KmsKeyId pulumi.StringPtrInput
 	// Locational KMS keys for encryption.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	LocationalKmsKeys pulumi.StringMapInput
 	// Unique name of the GCP destination.
 	Name pulumi.StringPtrInput
@@ -436,7 +539,11 @@ type SyncGcpDestinationState struct {
 	// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
 	// to perform Secret Manager actions in the target project.
 	ProjectId pulumi.StringPtrInput
+	// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+	ReplicaRegions pulumi.StringMapInput
 	// Replication locations for secrets.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	ReplicationLocations pulumi.StringArrayInput
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -467,6 +574,8 @@ type syncGcpDestinationArgs struct {
 	// Disable strict networking requirements.
 	DisableStrictNetworking *bool `pulumi:"disableStrictNetworking"`
 	// Global KMS key for encryption.
+	//
+	// Deprecated: Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
 	GlobalKmsKey *string `pulumi:"globalKmsKey"`
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
@@ -483,7 +592,11 @@ type syncGcpDestinationArgs struct {
 	IdentityTokenKeyWoVersion *int `pulumi:"identityTokenKeyWoVersion"`
 	// The TTL of generated tokens.
 	IdentityTokenTtl *int `pulumi:"identityTokenTtl"`
+	// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+	KmsKeyId *string `pulumi:"kmsKeyId"`
 	// Locational KMS keys for encryption.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	LocationalKmsKeys map[string]string `pulumi:"locationalKmsKeys"`
 	// Unique name of the GCP destination.
 	Name *string `pulumi:"name"`
@@ -496,7 +609,11 @@ type syncGcpDestinationArgs struct {
 	// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
 	// to perform Secret Manager actions in the target project.
 	ProjectId *string `pulumi:"projectId"`
+	// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+	ReplicaRegions map[string]string `pulumi:"replicaRegions"`
 	// Replication locations for secrets.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	ReplicationLocations []string `pulumi:"replicationLocations"`
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -522,6 +639,8 @@ type SyncGcpDestinationArgs struct {
 	// Disable strict networking requirements.
 	DisableStrictNetworking pulumi.BoolPtrInput
 	// Global KMS key for encryption.
+	//
+	// Deprecated: Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
 	GlobalKmsKey pulumi.StringPtrInput
 	// Determines what level of information is synced as a distinct resource
 	// at the destination. Supports `secret-path` and `secret-key`.
@@ -538,7 +657,11 @@ type SyncGcpDestinationArgs struct {
 	IdentityTokenKeyWoVersion pulumi.IntPtrInput
 	// The TTL of generated tokens.
 	IdentityTokenTtl pulumi.IntPtrInput
+	// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+	KmsKeyId pulumi.StringPtrInput
 	// Locational KMS keys for encryption.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	LocationalKmsKeys pulumi.StringMapInput
 	// Unique name of the GCP destination.
 	Name pulumi.StringPtrInput
@@ -551,7 +674,11 @@ type SyncGcpDestinationArgs struct {
 	// default credentials. The service account must be [authorized](https://cloud.google.com/iam/docs/service-account-overview#locations)
 	// to perform Secret Manager actions in the target project.
 	ProjectId pulumi.StringPtrInput
+	// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+	ReplicaRegions pulumi.StringMapInput
 	// Replication locations for secrets.
+	//
+	// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 	ReplicationLocations pulumi.StringArrayInput
 	// Template describing how to generate external secret names.
 	// Supports a subset of the Go Template syntax.
@@ -680,6 +807,8 @@ func (o SyncGcpDestinationOutput) DisableStrictNetworking() pulumi.BoolPtrOutput
 }
 
 // Global KMS key for encryption.
+//
+// Deprecated: Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
 func (o SyncGcpDestinationOutput) GlobalKmsKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringPtrOutput { return v.GlobalKmsKey }).(pulumi.StringPtrOutput)
 }
@@ -717,7 +846,14 @@ func (o SyncGcpDestinationOutput) IdentityTokenTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.IntOutput { return v.IdentityTokenTtl }).(pulumi.IntOutput)
 }
 
+// Specifies the ID of the GCP KMS key to be used to encrypt the secret.
+func (o SyncGcpDestinationOutput) KmsKeyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringPtrOutput { return v.KmsKeyId }).(pulumi.StringPtrOutput)
+}
+
 // Locational KMS keys for encryption.
+//
+// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 func (o SyncGcpDestinationOutput) LocationalKmsKeys() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringMapOutput { return v.LocationalKmsKeys }).(pulumi.StringMapOutput)
 }
@@ -742,7 +878,14 @@ func (o SyncGcpDestinationOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringPtrOutput { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
+// Map of regions to KMS key resource names for replica region encryption. KMS key values are optional.
+func (o SyncGcpDestinationOutput) ReplicaRegions() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringMapOutput { return v.ReplicaRegions }).(pulumi.StringMapOutput)
+}
+
 // Replication locations for secrets.
+//
+// Deprecated: Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
 func (o SyncGcpDestinationOutput) ReplicationLocations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SyncGcpDestination) pulumi.StringArrayOutput { return v.ReplicationLocations }).(pulumi.StringArrayOutput)
 }

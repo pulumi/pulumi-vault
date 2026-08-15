@@ -79,7 +79,7 @@ export class AuthBackendConfigIdentity extends pulumi.CustomResource {
     declare public readonly ec2Metadatas: pulumi.Output<string[] | undefined>;
     /**
      * How to generate the identity alias when using the iam auth method. Valid choices are
-     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+     * `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
      */
     declare public readonly iamAlias: pulumi.Output<string | undefined>;
     /**
@@ -149,7 +149,7 @@ export interface AuthBackendConfigIdentityState {
     ec2Metadatas?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * How to generate the identity alias when using the iam auth method. Valid choices are
-     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+     * `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
      */
     iamAlias?: pulumi.Input<string | undefined>;
     /**
@@ -187,7 +187,7 @@ export interface AuthBackendConfigIdentityArgs {
     ec2Metadatas?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * How to generate the identity alias when using the iam auth method. Valid choices are
-     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+     * `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
      */
     iamAlias?: pulumi.Input<string | undefined>;
     /**

@@ -124,7 +124,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
     }
     /**
      * How to generate the identity alias when using the iam auth method. Valid choices are
-     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+     * `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
      * 
      */
     @Export(name="iamAlias", refs={String.class}, tree="[0]")
@@ -132,7 +132,7 @@ public class AuthBackendConfigIdentity extends com.pulumi.resources.CustomResour
 
     /**
      * @return How to generate the identity alias when using the iam auth method. Valid choices are
-     * `roleId`, `uniqueId`, and `fullArn`. Defaults to `roleId`
+     * `roleId`, `uniqueId`, `fullArn`, and `canonicalArn`. Defaults to `roleId`. `canonicalArn` requires Vault 1.16+.
      * 
      */
     public Output<Optional<String>> iamAlias() {

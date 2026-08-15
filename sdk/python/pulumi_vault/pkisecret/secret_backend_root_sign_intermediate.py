@@ -32,6 +32,7 @@ class SecretBackendRootSignIntermediateArgs:
                  format: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: pulumi.Input[Optional[_builtins.str]] = None,
                  max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
@@ -45,6 +46,8 @@ class SecretBackendRootSignIntermediateArgs:
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  province: pulumi.Input[Optional[_builtins.str]] = None,
                  revoke: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -74,6 +77,7 @@ class SecretBackendRootSignIntermediateArgs:
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
@@ -92,6 +96,10 @@ class SecretBackendRootSignIntermediateArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] province: The province
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
@@ -126,6 +134,8 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "ip_sans", ip_sans)
         if issuer_ref is not None:
             pulumi.set(__self__, "issuer_ref", issuer_ref)
+        if jks_password is not None:
+            pulumi.set(__self__, "jks_password", jks_password)
         if key_usages is not None:
             pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
@@ -152,6 +162,10 @@ class SecretBackendRootSignIntermediateArgs:
             pulumi.set(__self__, "permitted_ip_ranges", permitted_ip_ranges)
         if permitted_uri_domains is not None:
             pulumi.set(__self__, "permitted_uri_domains", permitted_uri_domains)
+        if pkcs12_encoder is not None:
+            pulumi.set(__self__, "pkcs12_encoder", pkcs12_encoder)
+        if pkcs12_password is not None:
+            pulumi.set(__self__, "pkcs12_password", pkcs12_password)
         if postal_code is not None:
             pulumi.set(__self__, "postal_code", postal_code)
         if province is not None:
@@ -333,6 +347,18 @@ class SecretBackendRootSignIntermediateArgs:
         pulumi.set(self, "issuer_ref", value)
 
     @_builtins.property
+    @pulumi.getter(name="jksPassword")
+    def jks_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "jks_password")
+
+    @jks_password.setter
+    def jks_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "jks_password", value)
+
+    @_builtins.property
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -494,6 +520,32 @@ class SecretBackendRootSignIntermediateArgs:
         pulumi.set(self, "permitted_uri_domains", value)
 
     @_builtins.property
+    @pulumi.getter(name="pkcs12Encoder")
+    def pkcs12_encoder(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+
+        **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        """
+        return pulumi.get(self, "pkcs12_encoder")
+
+    @pkcs12_encoder.setter
+    def pkcs12_encoder(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_encoder", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Password")
+    def pkcs12_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "pkcs12_password")
+
+    @pkcs12_password.setter
+    def pkcs12_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_password", value)
+
+    @_builtins.property
     @pulumi.getter(name="postalCode")
     def postal_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -634,6 +686,7 @@ class _SecretBackendRootSignIntermediateState:
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
                  issuing_ca: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: pulumi.Input[Optional[_builtins.str]] = None,
                  max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
@@ -647,6 +700,8 @@ class _SecretBackendRootSignIntermediateState:
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  province: pulumi.Input[Optional[_builtins.str]] = None,
                  revoke: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -682,6 +737,7 @@ class _SecretBackendRootSignIntermediateState:
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA certificate in the `format` specified.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
@@ -700,6 +756,10 @@ class _SecretBackendRootSignIntermediateState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] province: The province
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
@@ -746,6 +806,8 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "issuer_ref", issuer_ref)
         if issuing_ca is not None:
             pulumi.set(__self__, "issuing_ca", issuing_ca)
+        if jks_password is not None:
+            pulumi.set(__self__, "jks_password", jks_password)
         if key_usages is not None:
             pulumi.set(__self__, "key_usages", key_usages)
         if locality is not None:
@@ -772,6 +834,10 @@ class _SecretBackendRootSignIntermediateState:
             pulumi.set(__self__, "permitted_ip_ranges", permitted_ip_ranges)
         if permitted_uri_domains is not None:
             pulumi.set(__self__, "permitted_uri_domains", permitted_uri_domains)
+        if pkcs12_encoder is not None:
+            pulumi.set(__self__, "pkcs12_encoder", pkcs12_encoder)
+        if pkcs12_password is not None:
+            pulumi.set(__self__, "pkcs12_password", pkcs12_password)
         if postal_code is not None:
             pulumi.set(__self__, "postal_code", postal_code)
         if province is not None:
@@ -1004,6 +1070,18 @@ class _SecretBackendRootSignIntermediateState:
         pulumi.set(self, "issuing_ca", value)
 
     @_builtins.property
+    @pulumi.getter(name="jksPassword")
+    def jks_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "jks_password")
+
+    @jks_password.setter
+    def jks_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "jks_password", value)
+
+    @_builtins.property
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -1165,6 +1243,32 @@ class _SecretBackendRootSignIntermediateState:
         pulumi.set(self, "permitted_uri_domains", value)
 
     @_builtins.property
+    @pulumi.getter(name="pkcs12Encoder")
+    def pkcs12_encoder(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+
+        **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        """
+        return pulumi.get(self, "pkcs12_encoder")
+
+    @pkcs12_encoder.setter
+    def pkcs12_encoder(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_encoder", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Password")
+    def pkcs12_password(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "pkcs12_password")
+
+    @pkcs12_password.setter
+    def pkcs12_password(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pkcs12_password", value)
+
+    @_builtins.property
     @pulumi.getter(name="postalCode")
     def postal_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1316,6 +1420,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  format: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: pulumi.Input[Optional[_builtins.str]] = None,
                  max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1329,6 +1434,8 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  province: pulumi.Input[Optional[_builtins.str]] = None,
                  revoke: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1378,6 +1485,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                be the value `default`, a name, or an issuer ID. Use ACLs to prevent access to
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
@@ -1396,6 +1504,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] province: The province
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
@@ -1461,6 +1573,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  format: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+                 jks_password: pulumi.Input[Optional[_builtins.str]] = None,
                  key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  locality: pulumi.Input[Optional[_builtins.str]] = None,
                  max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1474,6 +1587,8 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+                 pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  province: pulumi.Input[Optional[_builtins.str]] = None,
                  revoke: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1512,6 +1627,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["format"] = format
             __props__.__dict__["ip_sans"] = ip_sans
             __props__.__dict__["issuer_ref"] = issuer_ref
+            __props__.__dict__["jks_password"] = jks_password
             __props__.__dict__["key_usages"] = key_usages
             __props__.__dict__["locality"] = locality
             __props__.__dict__["max_path_length"] = max_path_length
@@ -1525,6 +1641,8 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             __props__.__dict__["permitted_email_addresses"] = permitted_email_addresses
             __props__.__dict__["permitted_ip_ranges"] = permitted_ip_ranges
             __props__.__dict__["permitted_uri_domains"] = permitted_uri_domains
+            __props__.__dict__["pkcs12_encoder"] = pkcs12_encoder
+            __props__.__dict__["pkcs12_password"] = pkcs12_password
             __props__.__dict__["postal_code"] = postal_code
             __props__.__dict__["province"] = province
             __props__.__dict__["revoke"] = revoke
@@ -1567,6 +1685,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
             issuing_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            jks_password: pulumi.Input[Optional[_builtins.str]] = None,
             key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             locality: pulumi.Input[Optional[_builtins.str]] = None,
             max_path_length: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1580,6 +1699,8 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
             permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             permitted_uri_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+            pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
             postal_code: pulumi.Input[Optional[_builtins.str]] = None,
             province: pulumi.Input[Optional[_builtins.str]] = None,
             revoke: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1619,6 +1740,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA certificate in the `format` specified.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the key usages to be added to the existing set of key usages ("CRL", "CertSign") on the generated certificate. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
@@ -1637,6 +1759,10 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+               
+               **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] province: The province
         :param pulumi.Input[_builtins.bool] revoke: If set to `true`, the certificate will be revoked on resource destruction.
@@ -1670,6 +1796,7 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["ip_sans"] = ip_sans
         __props__.__dict__["issuer_ref"] = issuer_ref
         __props__.__dict__["issuing_ca"] = issuing_ca
+        __props__.__dict__["jks_password"] = jks_password
         __props__.__dict__["key_usages"] = key_usages
         __props__.__dict__["locality"] = locality
         __props__.__dict__["max_path_length"] = max_path_length
@@ -1683,6 +1810,8 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         __props__.__dict__["permitted_email_addresses"] = permitted_email_addresses
         __props__.__dict__["permitted_ip_ranges"] = permitted_ip_ranges
         __props__.__dict__["permitted_uri_domains"] = permitted_uri_domains
+        __props__.__dict__["pkcs12_encoder"] = pkcs12_encoder
+        __props__.__dict__["pkcs12_password"] = pkcs12_password
         __props__.__dict__["postal_code"] = postal_code
         __props__.__dict__["province"] = province
         __props__.__dict__["revoke"] = revoke
@@ -1837,6 +1966,14 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         return pulumi.get(self, "issuing_ca")
 
     @_builtins.property
+    @pulumi.getter(name="jksPassword")
+    def jks_password(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "jks_password")
+
+    @_builtins.property
     @pulumi.getter(name="keyUsages")
     def key_usages(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
@@ -1944,6 +2081,24 @@ class SecretBackendRootSignIntermediate(pulumi.CustomResource):
         List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
         """
         return pulumi.get(self, "permitted_uri_domains")
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Encoder")
+    def pkcs12_encoder(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+
+        **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
+        """
+        return pulumi.get(self, "pkcs12_encoder")
+
+    @_builtins.property
+    @pulumi.getter(name="pkcs12Password")
+    def pkcs12_password(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        """
+        return pulumi.get(self, "pkcs12_password")
 
     @_builtins.property
     @pulumi.getter(name="postalCode")

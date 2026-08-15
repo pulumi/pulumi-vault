@@ -94,6 +94,15 @@ namespace Pulumi.Vault.Ldap
         public Output<ImmutableArray<string>> AuditNonHmacResponseKeys { get; private set; } = null!;
 
         /// <summary>
+        /// If true, Vault automatically attempts to unlock the admin managed LDAP account
+        /// after every successful static-role password rotation. Applies to all static roles on this mount
+        /// unless overridden at the role level. Defaults to false. Active Directory schema only.
+        /// Requires Vault 2.2.0+.
+        /// </summary>
+        [Output("autoUnlock")]
+        public Output<bool> AutoUnlock { get; private set; } = null!;
+
+        /// <summary>
         /// Distinguished name of object to bind when performing user and group search.
         /// </summary>
         [Output("binddn")]
@@ -272,6 +281,21 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("requestTimeout")]
         public Output<int> RequestTimeout { get; private set; } = null!;
+
+        /// <summary>
+        /// If true, static role credentials are rotated on each read. Acts as
+        /// the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Output("rotateOnRead")]
+        public Output<bool> RotateOnRead { get; private set; } = null!;
+
+        /// <summary>
+        /// Minimum number of seconds between rotate-on-read rotations.
+        /// Acts as the default cooldown for all static roles that do not provide their own override.
+        /// Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Output("rotateOnReadCooldown")]
+        public Output<int> RotateOnReadCooldown { get; private set; } = null!;
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.
@@ -453,6 +477,15 @@ namespace Pulumi.Vault.Ldap
             get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
             set => _auditNonHmacResponseKeys = value;
         }
+
+        /// <summary>
+        /// If true, Vault automatically attempts to unlock the admin managed LDAP account
+        /// after every successful static-role password rotation. Applies to all static roles on this mount
+        /// unless overridden at the role level. Defaults to false. Active Directory schema only.
+        /// Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("autoUnlock")]
+        public Input<bool>? AutoUnlock { get; set; }
 
         /// <summary>
         /// Distinguished name of object to bind when performing user and group search.
@@ -693,6 +726,21 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? RequestTimeout { get; set; }
 
         /// <summary>
+        /// If true, static role credentials are rotated on each read. Acts as
+        /// the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("rotateOnRead")]
+        public Input<bool>? RotateOnRead { get; set; }
+
+        /// <summary>
+        /// Minimum number of seconds between rotate-on-read rotations.
+        /// Acts as the default cooldown for all static roles that do not provide their own override.
+        /// Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("rotateOnReadCooldown")]
+        public Input<int>? RotateOnReadCooldown { get; set; }
+
+        /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.
         /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         /// </summary>
@@ -833,6 +881,15 @@ namespace Pulumi.Vault.Ldap
             get => _auditNonHmacResponseKeys ?? (_auditNonHmacResponseKeys = new InputList<string>());
             set => _auditNonHmacResponseKeys = value;
         }
+
+        /// <summary>
+        /// If true, Vault automatically attempts to unlock the admin managed LDAP account
+        /// after every successful static-role password rotation. Applies to all static roles on this mount
+        /// unless overridden at the role level. Defaults to false. Active Directory schema only.
+        /// Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("autoUnlock")]
+        public Input<bool>? AutoUnlock { get; set; }
 
         /// <summary>
         /// Distinguished name of object to bind when performing user and group search.
@@ -1071,6 +1128,21 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("requestTimeout")]
         public Input<int>? RequestTimeout { get; set; }
+
+        /// <summary>
+        /// If true, static role credentials are rotated on each read. Acts as
+        /// the default for all static roles that do not provide their own override. Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("rotateOnRead")]
+        public Input<bool>? RotateOnRead { get; set; }
+
+        /// <summary>
+        /// Minimum number of seconds between rotate-on-read rotations.
+        /// Acts as the default cooldown for all static roles that do not provide their own override.
+        /// Requires Vault Enterprise 2.2.0+.
+        /// </summary>
+        [Input("rotateOnReadCooldown")]
+        public Input<int>? RotateOnReadCooldown { get; set; }
 
         /// <summary>
         /// The amount of time in seconds Vault should wait before rotating the root credential.

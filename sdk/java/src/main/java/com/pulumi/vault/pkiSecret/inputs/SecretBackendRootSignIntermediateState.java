@@ -282,6 +282,21 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
+     * Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * 
+     */
+    @Import(name="jksPassword")
+    private @Nullable Output<String> jksPassword;
+
+    /**
+     * @return Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * 
+     */
+    public Optional<Output<String>> jksPassword() {
+        return Optional.ofNullable(this.jksPassword);
+    }
+
+    /**
      * Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
      * 
      */
@@ -487,6 +502,40 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
+     * Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     * 
+     * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+     * 
+     */
+    @Import(name="pkcs12Encoder")
+    private @Nullable Output<String> pkcs12Encoder;
+
+    /**
+     * @return Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     * 
+     * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+     * 
+     */
+    public Optional<Output<String>> pkcs12Encoder() {
+        return Optional.ofNullable(this.pkcs12Encoder);
+    }
+
+    /**
+     * Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * 
+     */
+    @Import(name="pkcs12Password")
+    private @Nullable Output<String> pkcs12Password;
+
+    /**
+     * @return Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * 
+     */
+    public Optional<Output<String>> pkcs12Password() {
+        return Optional.ofNullable(this.pkcs12Password);
+    }
+
+    /**
      * The postal code
      * 
      */
@@ -671,6 +720,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         this.ipSans = $.ipSans;
         this.issuerRef = $.issuerRef;
         this.issuingCa = $.issuingCa;
+        this.jksPassword = $.jksPassword;
         this.keyUsages = $.keyUsages;
         this.locality = $.locality;
         this.maxPathLength = $.maxPathLength;
@@ -684,6 +734,8 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         this.permittedEmailAddresses = $.permittedEmailAddresses;
         this.permittedIpRanges = $.permittedIpRanges;
         this.permittedUriDomains = $.permittedUriDomains;
+        this.pkcs12Encoder = $.pkcs12Encoder;
+        this.pkcs12Password = $.pkcs12Password;
         this.postalCode = $.postalCode;
         this.province = $.province;
         this.revoke = $.revoke;
@@ -1151,6 +1203,27 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
+         * @param jksPassword Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jksPassword(@Nullable Output<String> jksPassword) {
+            $.jksPassword = jksPassword;
+            return this;
+        }
+
+        /**
+         * @param jksPassword Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder jksPassword(String jksPassword) {
+            return jksPassword(Output.of(jksPassword));
+        }
+
+        /**
          * @param keyUsages Specify the key usages to be added to the existing set of key usages (&#34;CRL&#34;, &#34;CertSign&#34;) on the generated certificate. Requires Vault 1.19.2+.
          * 
          * @return builder
@@ -1491,6 +1564,52 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
          */
         public Builder permittedUriDomains(String... permittedUriDomains) {
             return permittedUriDomains(List.of(permittedUriDomains));
+        }
+
+        /**
+         * @param pkcs12Encoder Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+         * 
+         * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pkcs12Encoder(@Nullable Output<String> pkcs12Encoder) {
+            $.pkcs12Encoder = pkcs12Encoder;
+            return this;
+        }
+
+        /**
+         * @param pkcs12Encoder Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+         * 
+         * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pkcs12Encoder(String pkcs12Encoder) {
+            return pkcs12Encoder(Output.of(pkcs12Encoder));
+        }
+
+        /**
+         * @param pkcs12Password Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pkcs12Password(@Nullable Output<String> pkcs12Password) {
+            $.pkcs12Password = pkcs12Password;
+            return this;
+        }
+
+        /**
+         * @param pkcs12Password Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder pkcs12Password(String pkcs12Password) {
+            return pkcs12Password(Output.of(pkcs12Password));
         }
 
         /**

@@ -126,6 +126,13 @@ namespace Pulumi.Vault.Ldap
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
+        /// Name of the password policy to use to generate passwords for this role.
+        /// Requires Vault 2.2.0+.
+        /// </summary>
+        [Output("passwordPolicy")]
+        public Output<string?> PasswordPolicy { get; private set; } = null!;
+
+        /// <summary>
         /// Name of the role.
         /// </summary>
         [Output("roleName")]
@@ -249,6 +256,13 @@ namespace Pulumi.Vault.Ldap
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
+        /// Name of the password policy to use to generate passwords for this role.
+        /// Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
+
+        /// <summary>
         /// Name of the role.
         /// </summary>
         [Input("roleName", required: true)]
@@ -332,6 +346,13 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        /// <summary>
+        /// Name of the password policy to use to generate passwords for this role.
+        /// Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("passwordPolicy")]
+        public Input<string>? PasswordPolicy { get; set; }
 
         /// <summary>
         /// Name of the role.
