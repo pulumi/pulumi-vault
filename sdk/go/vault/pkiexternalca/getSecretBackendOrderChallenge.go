@@ -269,12 +269,8 @@ type GetSecretBackendOrderChallengeResult struct {
 }
 
 func GetSecretBackendOrderChallengeOutput(ctx *pulumi.Context, args GetSecretBackendOrderChallengeOutputArgs, opts ...pulumi.InvokeOption) GetSecretBackendOrderChallengeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetSecretBackendOrderChallengeResultOutput, error) {
-			args := v.(GetSecretBackendOrderChallengeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:pkiexternalca/getSecretBackendOrderChallenge:getSecretBackendOrderChallenge", args, GetSecretBackendOrderChallengeResultOutput{}, options).(GetSecretBackendOrderChallengeResultOutput), nil
-		}).(GetSecretBackendOrderChallengeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:pkiexternalca/getSecretBackendOrderChallenge:getSecretBackendOrderChallenge", args, GetSecretBackendOrderChallengeResultOutput{}, options).(GetSecretBackendOrderChallengeResultOutput)
 }
 
 // A collection of arguments for invoking getSecretBackendOrderChallenge.

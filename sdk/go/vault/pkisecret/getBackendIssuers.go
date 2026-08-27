@@ -99,12 +99,8 @@ type GetBackendIssuersResult struct {
 }
 
 func GetBackendIssuersOutput(ctx *pulumi.Context, args GetBackendIssuersOutputArgs, opts ...pulumi.InvokeOption) GetBackendIssuersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetBackendIssuersResultOutput, error) {
-			args := v.(GetBackendIssuersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:pkiSecret/getBackendIssuers:getBackendIssuers", args, GetBackendIssuersResultOutput{}, options).(GetBackendIssuersResultOutput), nil
-		}).(GetBackendIssuersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:pkiSecret/getBackendIssuers:getBackendIssuers", args, GetBackendIssuersResultOutput{}, options).(GetBackendIssuersResultOutput)
 }
 
 // A collection of arguments for invoking getBackendIssuers.

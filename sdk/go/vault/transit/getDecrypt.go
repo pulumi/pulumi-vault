@@ -73,12 +73,8 @@ type GetDecryptResult struct {
 }
 
 func GetDecryptOutput(ctx *pulumi.Context, args GetDecryptOutputArgs, opts ...pulumi.InvokeOption) GetDecryptResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDecryptResultOutput, error) {
-			args := v.(GetDecryptArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:transit/getDecrypt:getDecrypt", args, GetDecryptResultOutput{}, options).(GetDecryptResultOutput), nil
-		}).(GetDecryptResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:transit/getDecrypt:getDecrypt", args, GetDecryptResultOutput{}, options).(GetDecryptResultOutput)
 }
 
 // A collection of arguments for invoking getDecrypt.

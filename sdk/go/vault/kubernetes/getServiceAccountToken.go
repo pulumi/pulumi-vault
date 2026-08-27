@@ -151,12 +151,8 @@ type GetServiceAccountTokenResult struct {
 }
 
 func GetServiceAccountTokenOutput(ctx *pulumi.Context, args GetServiceAccountTokenOutputArgs, opts ...pulumi.InvokeOption) GetServiceAccountTokenResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetServiceAccountTokenResultOutput, error) {
-			args := v.(GetServiceAccountTokenArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args, GetServiceAccountTokenResultOutput{}, options).(GetServiceAccountTokenResultOutput), nil
-		}).(GetServiceAccountTokenResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:kubernetes/getServiceAccountToken:getServiceAccountToken", args, GetServiceAccountTokenResultOutput{}, options).(GetServiceAccountTokenResultOutput)
 }
 
 // A collection of arguments for invoking getServiceAccountToken.

@@ -92,12 +92,8 @@ type GetAuthBackendsResult struct {
 }
 
 func GetAuthBackendsOutput(ctx *pulumi.Context, args GetAuthBackendsOutputArgs, opts ...pulumi.InvokeOption) GetAuthBackendsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAuthBackendsResultOutput, error) {
-			args := v.(GetAuthBackendsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:index/getAuthBackends:getAuthBackends", args, GetAuthBackendsResultOutput{}, options).(GetAuthBackendsResultOutput), nil
-		}).(GetAuthBackendsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:index/getAuthBackends:getAuthBackends", args, GetAuthBackendsResultOutput{}, options).(GetAuthBackendsResultOutput)
 }
 
 // A collection of arguments for invoking getAuthBackends.

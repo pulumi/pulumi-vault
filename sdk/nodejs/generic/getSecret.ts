@@ -41,7 +41,7 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * function notImplemented(message: string) {
+ * function notImplemented(message: string): any {
  *     throw new Error(message);
  * }
  *
@@ -186,7 +186,7 @@ export interface GetSecretResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as vault from "@pulumi/vault";
  *
- * function notImplemented(message: string) {
+ * function notImplemented(message: string): any {
  *     throw new Error(message);
  * }
  *

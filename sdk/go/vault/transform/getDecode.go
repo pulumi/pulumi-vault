@@ -121,12 +121,8 @@ type GetDecodeResult struct {
 }
 
 func GetDecodeOutput(ctx *pulumi.Context, args GetDecodeOutputArgs, opts ...pulumi.InvokeOption) GetDecodeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDecodeResultOutput, error) {
-			args := v.(GetDecodeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:transform/getDecode:getDecode", args, GetDecodeResultOutput{}, options).(GetDecodeResultOutput), nil
-		}).(GetDecodeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:transform/getDecode:getDecode", args, GetDecodeResultOutput{}, options).(GetDecodeResultOutput)
 }
 
 // A collection of arguments for invoking getDecode.

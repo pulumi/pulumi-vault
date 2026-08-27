@@ -80,12 +80,8 @@ type LookupAuthBackendResult struct {
 }
 
 func LookupAuthBackendOutput(ctx *pulumi.Context, args LookupAuthBackendOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAuthBackendResultOutput, error) {
-			args := v.(LookupAuthBackendArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:index/getAuthBackend:getAuthBackend", args, LookupAuthBackendResultOutput{}, options).(LookupAuthBackendResultOutput), nil
-		}).(LookupAuthBackendResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:index/getAuthBackend:getAuthBackend", args, LookupAuthBackendResultOutput{}, options).(LookupAuthBackendResultOutput)
 }
 
 // A collection of arguments for invoking getAuthBackend.

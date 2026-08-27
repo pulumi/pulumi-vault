@@ -155,12 +155,8 @@ type GetAccessCredentialsResult struct {
 }
 
 func GetAccessCredentialsOutput(ctx *pulumi.Context, args GetAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetAccessCredentialsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAccessCredentialsResultOutput, error) {
-			args := v.(GetAccessCredentialsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:aws/getAccessCredentials:getAccessCredentials", args, GetAccessCredentialsResultOutput{}, options).(GetAccessCredentialsResultOutput), nil
-		}).(GetAccessCredentialsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:aws/getAccessCredentials:getAccessCredentials", args, GetAccessCredentialsResultOutput{}, options).(GetAccessCredentialsResultOutput)
 }
 
 // A collection of arguments for invoking getAccessCredentials.

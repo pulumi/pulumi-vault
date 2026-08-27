@@ -85,12 +85,8 @@ type GetCmacResult struct {
 }
 
 func GetCmacOutput(ctx *pulumi.Context, args GetCmacOutputArgs, opts ...pulumi.InvokeOption) GetCmacResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetCmacResultOutput, error) {
-			args := v.(GetCmacArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:transit/getCmac:getCmac", args, GetCmacResultOutput{}, options).(GetCmacResultOutput), nil
-		}).(GetCmacResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:transit/getCmac:getCmac", args, GetCmacResultOutput{}, options).(GetCmacResultOutput)
 }
 
 // A collection of arguments for invoking getCmac.

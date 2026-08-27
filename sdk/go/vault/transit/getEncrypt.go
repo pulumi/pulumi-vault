@@ -47,12 +47,8 @@ type GetEncryptResult struct {
 }
 
 func GetEncryptOutput(ctx *pulumi.Context, args GetEncryptOutputArgs, opts ...pulumi.InvokeOption) GetEncryptResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetEncryptResultOutput, error) {
-			args := v.(GetEncryptArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:transit/getEncrypt:getEncrypt", args, GetEncryptResultOutput{}, options).(GetEncryptResultOutput), nil
-		}).(GetEncryptResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:transit/getEncrypt:getEncrypt", args, GetEncryptResultOutput{}, options).(GetEncryptResultOutput)
 }
 
 // A collection of arguments for invoking getEncrypt.

@@ -40,12 +40,8 @@ type GetStaticAccessCredentialsResult struct {
 }
 
 func GetStaticAccessCredentialsOutput(ctx *pulumi.Context, args GetStaticAccessCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetStaticAccessCredentialsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetStaticAccessCredentialsResultOutput, error) {
-			args := v.(GetStaticAccessCredentialsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", args, GetStaticAccessCredentialsResultOutput{}, options).(GetStaticAccessCredentialsResultOutput), nil
-		}).(GetStaticAccessCredentialsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:aws/getStaticAccessCredentials:getStaticAccessCredentials", args, GetStaticAccessCredentialsResultOutput{}, options).(GetStaticAccessCredentialsResultOutput)
 }
 
 // A collection of arguments for invoking getStaticAccessCredentials.

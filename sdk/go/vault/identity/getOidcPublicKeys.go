@@ -110,12 +110,8 @@ type GetOidcPublicKeysResult struct {
 }
 
 func GetOidcPublicKeysOutput(ctx *pulumi.Context, args GetOidcPublicKeysOutputArgs, opts ...pulumi.InvokeOption) GetOidcPublicKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOidcPublicKeysResultOutput, error) {
-			args := v.(GetOidcPublicKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args, GetOidcPublicKeysResultOutput{}, options).(GetOidcPublicKeysResultOutput), nil
-		}).(GetOidcPublicKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:identity/getOidcPublicKeys:getOidcPublicKeys", args, GetOidcPublicKeysResultOutput{}, options).(GetOidcPublicKeysResultOutput)
 }
 
 // A collection of arguments for invoking getOidcPublicKeys.

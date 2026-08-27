@@ -112,10 +112,8 @@ type LookupSysConfigCorsResult struct {
 }
 
 func LookupSysConfigCorsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupSysConfigCorsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (LookupSysConfigCorsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("vault:index/getSysConfigCors:getSysConfigCors", nil, LookupSysConfigCorsResultOutput{}, options).(LookupSysConfigCorsResultOutput), nil
-	}).(LookupSysConfigCorsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:index/getSysConfigCors:getSysConfigCors", nil, LookupSysConfigCorsResultOutput{}, options).(LookupSysConfigCorsResultOutput)
 }
 
 // A collection of values returned by getSysConfigCors.

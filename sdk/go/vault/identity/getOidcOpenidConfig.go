@@ -133,12 +133,8 @@ type GetOidcOpenidConfigResult struct {
 }
 
 func GetOidcOpenidConfigOutput(ctx *pulumi.Context, args GetOidcOpenidConfigOutputArgs, opts ...pulumi.InvokeOption) GetOidcOpenidConfigResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOidcOpenidConfigResultOutput, error) {
-			args := v.(GetOidcOpenidConfigArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args, GetOidcOpenidConfigResultOutput{}, options).(GetOidcOpenidConfigResultOutput), nil
-		}).(GetOidcOpenidConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:identity/getOidcOpenidConfig:getOidcOpenidConfig", args, GetOidcOpenidConfigResultOutput{}, options).(GetOidcOpenidConfigResultOutput)
 }
 
 // A collection of arguments for invoking getOidcOpenidConfig.

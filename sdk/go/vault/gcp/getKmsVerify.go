@@ -119,12 +119,8 @@ type GetKmsVerifyResult struct {
 }
 
 func GetKmsVerifyOutput(ctx *pulumi.Context, args GetKmsVerifyOutputArgs, opts ...pulumi.InvokeOption) GetKmsVerifyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetKmsVerifyResultOutput, error) {
-			args := v.(GetKmsVerifyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:gcp/getKmsVerify:getKmsVerify", args, GetKmsVerifyResultOutput{}, options).(GetKmsVerifyResultOutput), nil
-		}).(GetKmsVerifyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:gcp/getKmsVerify:getKmsVerify", args, GetKmsVerifyResultOutput{}, options).(GetKmsVerifyResultOutput)
 }
 
 // A collection of arguments for invoking getKmsVerify.

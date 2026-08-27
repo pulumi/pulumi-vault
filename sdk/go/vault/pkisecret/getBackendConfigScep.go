@@ -103,12 +103,8 @@ type LookupBackendConfigScepResult struct {
 }
 
 func LookupBackendConfigScepOutput(ctx *pulumi.Context, args LookupBackendConfigScepOutputArgs, opts ...pulumi.InvokeOption) LookupBackendConfigScepResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBackendConfigScepResultOutput, error) {
-			args := v.(LookupBackendConfigScepArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:pkiSecret/getBackendConfigScep:getBackendConfigScep", args, LookupBackendConfigScepResultOutput{}, options).(LookupBackendConfigScepResultOutput), nil
-		}).(LookupBackendConfigScepResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:pkiSecret/getBackendConfigScep:getBackendConfigScep", args, LookupBackendConfigScepResultOutput{}, options).(LookupBackendConfigScepResultOutput)
 }
 
 // A collection of arguments for invoking getBackendConfigScep.

@@ -46,12 +46,8 @@ type GetStaticCredentialsResult struct {
 }
 
 func GetStaticCredentialsOutput(ctx *pulumi.Context, args GetStaticCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetStaticCredentialsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetStaticCredentialsResultOutput, error) {
-			args := v.(GetStaticCredentialsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:ldap/getStaticCredentials:getStaticCredentials", args, GetStaticCredentialsResultOutput{}, options).(GetStaticCredentialsResultOutput), nil
-		}).(GetStaticCredentialsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:ldap/getStaticCredentials:getStaticCredentials", args, GetStaticCredentialsResultOutput{}, options).(GetStaticCredentialsResultOutput)
 }
 
 // A collection of arguments for invoking getStaticCredentials.

@@ -68,7 +68,7 @@ import (
 //
 // )
 //
-//	func notImplemented(message string) pulumi.AnyOutput {
+//	func notImplemented(message string) any {
 //		panic(message)
 //	}
 //
@@ -160,12 +160,8 @@ type LookupSecretResult struct {
 }
 
 func LookupSecretOutput(ctx *pulumi.Context, args LookupSecretOutputArgs, opts ...pulumi.InvokeOption) LookupSecretResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSecretResultOutput, error) {
-			args := v.(LookupSecretArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:generic/getSecret:getSecret", args, LookupSecretResultOutput{}, options).(LookupSecretResultOutput), nil
-		}).(LookupSecretResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:generic/getSecret:getSecret", args, LookupSecretResultOutput{}, options).(LookupSecretResultOutput)
 }
 
 // A collection of arguments for invoking getSecret.

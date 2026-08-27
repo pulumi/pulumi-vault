@@ -163,12 +163,8 @@ type LookupAuthBackendRoleResult struct {
 }
 
 func LookupAuthBackendRoleOutput(ctx *pulumi.Context, args LookupAuthBackendRoleOutputArgs, opts ...pulumi.InvokeOption) LookupAuthBackendRoleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAuthBackendRoleResultOutput, error) {
-			args := v.(LookupAuthBackendRoleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:gcp/getAuthBackendRole:getAuthBackendRole", args, LookupAuthBackendRoleResultOutput{}, options).(LookupAuthBackendRoleResultOutput), nil
-		}).(LookupAuthBackendRoleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:gcp/getAuthBackendRole:getAuthBackendRole", args, LookupAuthBackendRoleResultOutput{}, options).(LookupAuthBackendRoleResultOutput)
 }
 
 // A collection of arguments for invoking getAuthBackendRole.

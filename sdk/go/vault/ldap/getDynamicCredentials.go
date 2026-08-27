@@ -44,12 +44,8 @@ type GetDynamicCredentialsResult struct {
 }
 
 func GetDynamicCredentialsOutput(ctx *pulumi.Context, args GetDynamicCredentialsOutputArgs, opts ...pulumi.InvokeOption) GetDynamicCredentialsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetDynamicCredentialsResultOutput, error) {
-			args := v.(GetDynamicCredentialsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:ldap/getDynamicCredentials:getDynamicCredentials", args, GetDynamicCredentialsResultOutput{}, options).(GetDynamicCredentialsResultOutput), nil
-		}).(GetDynamicCredentialsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:ldap/getDynamicCredentials:getDynamicCredentials", args, GetDynamicCredentialsResultOutput{}, options).(GetDynamicCredentialsResultOutput)
 }
 
 // A collection of arguments for invoking getDynamicCredentials.

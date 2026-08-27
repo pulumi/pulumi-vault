@@ -101,12 +101,8 @@ type GetPluginRuntimesResult struct {
 }
 
 func GetPluginRuntimesOutput(ctx *pulumi.Context, args GetPluginRuntimesOutputArgs, opts ...pulumi.InvokeOption) GetPluginRuntimesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPluginRuntimesResultOutput, error) {
-			args := v.(GetPluginRuntimesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:index/getPluginRuntimes:getPluginRuntimes", args, GetPluginRuntimesResultOutput{}, options).(GetPluginRuntimesResultOutput), nil
-		}).(GetPluginRuntimesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:index/getPluginRuntimes:getPluginRuntimes", args, GetPluginRuntimesResultOutput{}, options).(GetPluginRuntimesResultOutput)
 }
 
 // A collection of arguments for invoking getPluginRuntimes.
