@@ -99,12 +99,8 @@ type LookupBackendConfigEstResult struct {
 }
 
 func LookupBackendConfigEstOutput(ctx *pulumi.Context, args LookupBackendConfigEstOutputArgs, opts ...pulumi.InvokeOption) LookupBackendConfigEstResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBackendConfigEstResultOutput, error) {
-			args := v.(LookupBackendConfigEstArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", args, LookupBackendConfigEstResultOutput{}, options).(LookupBackendConfigEstResultOutput), nil
-		}).(LookupBackendConfigEstResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:pkiSecret/getBackendConfigEst:getBackendConfigEst", args, LookupBackendConfigEstResultOutput{}, options).(LookupBackendConfigEstResultOutput)
 }
 
 // A collection of arguments for invoking getBackendConfigEst.

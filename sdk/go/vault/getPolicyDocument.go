@@ -84,12 +84,8 @@ type GetPolicyDocumentResult struct {
 }
 
 func GetPolicyDocumentOutput(ctx *pulumi.Context, args GetPolicyDocumentOutputArgs, opts ...pulumi.InvokeOption) GetPolicyDocumentResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetPolicyDocumentResultOutput, error) {
-			args := v.(GetPolicyDocumentArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:index/getPolicyDocument:getPolicyDocument", args, GetPolicyDocumentResultOutput{}, options).(GetPolicyDocumentResultOutput), nil
-		}).(GetPolicyDocumentResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:index/getPolicyDocument:getPolicyDocument", args, GetPolicyDocumentResultOutput{}, options).(GetPolicyDocumentResultOutput)
 }
 
 // A collection of arguments for invoking getPolicyDocument.

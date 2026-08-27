@@ -136,12 +136,8 @@ type GetBackendCertMetadataResult struct {
 }
 
 func GetBackendCertMetadataOutput(ctx *pulumi.Context, args GetBackendCertMetadataOutputArgs, opts ...pulumi.InvokeOption) GetBackendCertMetadataResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetBackendCertMetadataResultOutput, error) {
-			args := v.(GetBackendCertMetadataArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata", args, GetBackendCertMetadataResultOutput{}, options).(GetBackendCertMetadataResultOutput), nil
-		}).(GetBackendCertMetadataResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:pkiSecret/getBackendCertMetadata:getBackendCertMetadata", args, GetBackendCertMetadataResultOutput{}, options).(GetBackendCertMetadataResultOutput)
 }
 
 // A collection of arguments for invoking getBackendCertMetadata.

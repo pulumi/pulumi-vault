@@ -94,12 +94,8 @@ type LookupBackendConfigCmpv2Result struct {
 }
 
 func LookupBackendConfigCmpv2Output(ctx *pulumi.Context, args LookupBackendConfigCmpv2OutputArgs, opts ...pulumi.InvokeOption) LookupBackendConfigCmpv2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBackendConfigCmpv2ResultOutput, error) {
-			args := v.(LookupBackendConfigCmpv2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2", args, LookupBackendConfigCmpv2ResultOutput{}, options).(LookupBackendConfigCmpv2ResultOutput), nil
-		}).(LookupBackendConfigCmpv2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:pkiSecret/getBackendConfigCmpv2:getBackendConfigCmpv2", args, LookupBackendConfigCmpv2ResultOutput{}, options).(LookupBackendConfigCmpv2ResultOutput)
 }
 
 // A collection of arguments for invoking getBackendConfigCmpv2.

@@ -156,12 +156,8 @@ type GetSecretsListV2Result struct {
 }
 
 func GetSecretsListV2Output(ctx *pulumi.Context, args GetSecretsListV2OutputArgs, opts ...pulumi.InvokeOption) GetSecretsListV2ResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetSecretsListV2ResultOutput, error) {
-			args := v.(GetSecretsListV2Args)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:kv/getSecretsListV2:getSecretsListV2", args, GetSecretsListV2ResultOutput{}, options).(GetSecretsListV2ResultOutput), nil
-		}).(GetSecretsListV2ResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:kv/getSecretsListV2:getSecretsListV2", args, GetSecretsListV2ResultOutput{}, options).(GetSecretsListV2ResultOutput)
 }
 
 // A collection of arguments for invoking getSecretsListV2.

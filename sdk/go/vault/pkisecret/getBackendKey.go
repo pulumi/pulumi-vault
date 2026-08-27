@@ -103,12 +103,8 @@ type GetBackendKeyResult struct {
 }
 
 func GetBackendKeyOutput(ctx *pulumi.Context, args GetBackendKeyOutputArgs, opts ...pulumi.InvokeOption) GetBackendKeyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetBackendKeyResultOutput, error) {
-			args := v.(GetBackendKeyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:pkiSecret/getBackendKey:getBackendKey", args, GetBackendKeyResultOutput{}, options).(GetBackendKeyResultOutput), nil
-		}).(GetBackendKeyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:pkiSecret/getBackendKey:getBackendKey", args, GetBackendKeyResultOutput{}, options).(GetBackendKeyResultOutput)
 }
 
 // A collection of arguments for invoking getBackendKey.

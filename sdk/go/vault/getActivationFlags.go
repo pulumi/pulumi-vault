@@ -69,10 +69,8 @@ type LookupActivationFlagsResult struct {
 }
 
 func LookupActivationFlagsOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) LookupActivationFlagsResultOutput {
-	return pulumi.ToOutput(0).ApplyT(func(int) (LookupActivationFlagsResultOutput, error) {
-		options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-		return ctx.InvokeOutput("vault:index/getActivationFlags:getActivationFlags", nil, LookupActivationFlagsResultOutput{}, options).(LookupActivationFlagsResultOutput), nil
-	}).(LookupActivationFlagsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:index/getActivationFlags:getActivationFlags", nil, LookupActivationFlagsResultOutput{}, options).(LookupActivationFlagsResultOutput)
 }
 
 // A collection of values returned by getActivationFlags.

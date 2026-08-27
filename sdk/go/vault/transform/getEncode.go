@@ -125,12 +125,8 @@ type GetEncodeResult struct {
 }
 
 func GetEncodeOutput(ctx *pulumi.Context, args GetEncodeOutputArgs, opts ...pulumi.InvokeOption) GetEncodeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetEncodeResultOutput, error) {
-			args := v.(GetEncodeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:transform/getEncode:getEncode", args, GetEncodeResultOutput{}, options).(GetEncodeResultOutput), nil
-		}).(GetEncodeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:transform/getEncode:getEncode", args, GetEncodeResultOutput{}, options).(GetEncodeResultOutput)
 }
 
 // A collection of arguments for invoking getEncode.

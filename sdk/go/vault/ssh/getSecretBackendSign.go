@@ -95,12 +95,8 @@ type GetSecretBackendSignResult struct {
 }
 
 func GetSecretBackendSignOutput(ctx *pulumi.Context, args GetSecretBackendSignOutputArgs, opts ...pulumi.InvokeOption) GetSecretBackendSignResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetSecretBackendSignResultOutput, error) {
-			args := v.(GetSecretBackendSignArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:ssh/getSecretBackendSign:getSecretBackendSign", args, GetSecretBackendSignResultOutput{}, options).(GetSecretBackendSignResultOutput), nil
-		}).(GetSecretBackendSignResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:ssh/getSecretBackendSign:getSecretBackendSign", args, GetSecretBackendSignResultOutput{}, options).(GetSecretBackendSignResultOutput)
 }
 
 // A collection of arguments for invoking getSecretBackendSign.

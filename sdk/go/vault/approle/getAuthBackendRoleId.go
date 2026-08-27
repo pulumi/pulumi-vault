@@ -76,12 +76,8 @@ type GetAuthBackendRoleIdResult struct {
 }
 
 func GetAuthBackendRoleIdOutput(ctx *pulumi.Context, args GetAuthBackendRoleIdOutputArgs, opts ...pulumi.InvokeOption) GetAuthBackendRoleIdResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAuthBackendRoleIdResultOutput, error) {
-			args := v.(GetAuthBackendRoleIdArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args, GetAuthBackendRoleIdResultOutput{}, options).(GetAuthBackendRoleIdResultOutput), nil
-		}).(GetAuthBackendRoleIdResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:appRole/getAuthBackendRoleId:getAuthBackendRoleId", args, GetAuthBackendRoleIdResultOutput{}, options).(GetAuthBackendRoleIdResultOutput)
 }
 
 // A collection of arguments for invoking getAuthBackendRoleId.

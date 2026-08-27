@@ -91,12 +91,8 @@ type GetOidcClientCredsResult struct {
 }
 
 func GetOidcClientCredsOutput(ctx *pulumi.Context, args GetOidcClientCredsOutputArgs, opts ...pulumi.InvokeOption) GetOidcClientCredsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetOidcClientCredsResultOutput, error) {
-			args := v.(GetOidcClientCredsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("vault:identity/getOidcClientCreds:getOidcClientCreds", args, GetOidcClientCredsResultOutput{}, options).(GetOidcClientCredsResultOutput), nil
-		}).(GetOidcClientCredsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("vault:identity/getOidcClientCreds:getOidcClientCreds", args, GetOidcClientCredsResultOutput{}, options).(GetOidcClientCredsResultOutput)
 }
 
 // A collection of arguments for invoking getOidcClientCreds.
