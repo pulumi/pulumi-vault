@@ -596,9 +596,12 @@ var oktaAuthBackedUserImport = tfbridge.DocsEdit{
 
 var missingDocs = &tfbridge.DocInfo{AllowMissing: true}
 
+// indexDocsPath is the upstream docs file covering the provider overview page.
+const indexDocsPath = "index.html.markdown"
+
 // Pulumi does encrypt secrets, so redact TF specific warnings.
 var cleanUpSecretsWarnings = tfbridge.DocsEdit{
-	Path: "index.html.markdown",
+	Path: indexDocsPath,
 	Edit: func(_ string, content []byte) ([]byte, error) {
 		files := []string{
 			"using-credentials",
@@ -633,7 +636,7 @@ var cleanUpSecretsWarnings = tfbridge.DocsEdit{
 
 // Removes a "Best Practices" section that includes TF-specific recommendations
 var skipBestPracticesSection = tfbridge.DocsEdit{
-	Path: "index.html.markdown",
+	Path: indexDocsPath,
 	Edit: func(_ string, content []byte) ([]byte, error) {
 		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
 			return headerText == "Best Practices"
@@ -643,7 +646,7 @@ var skipBestPracticesSection = tfbridge.DocsEdit{
 
 // Removes a "Configuring and Populating Vault" section that talks about secrets only
 var skipConfiguringAndPopulatingSection = tfbridge.DocsEdit{
-	Path: "index.html.markdown",
+	Path: indexDocsPath,
 	Edit: func(_ string, content []byte) ([]byte, error) {
 		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
 			return headerText == "Configuring and Populating Vault"
@@ -655,7 +658,7 @@ var skipConfiguringAndPopulatingSection = tfbridge.DocsEdit{
 // We should consider creating our own tutorial if the need arises.
 // See https://github.com/pulumi/pulumi-vault/issues/618.
 var skipNamespacesSection = tfbridge.DocsEdit{
-	Path: "index.html.markdown",
+	Path: indexDocsPath,
 	Edit: func(_ string, content []byte) ([]byte, error) {
 		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
 			return headerText == "Namespace support"
@@ -665,7 +668,7 @@ var skipNamespacesSection = tfbridge.DocsEdit{
 
 // Removes a TF-specific "Tutorials" section
 var skipTutorialsSection = tfbridge.DocsEdit{
-	Path: "index.html.markdown",
+	Path: indexDocsPath,
 	Edit: func(_ string, content []byte) ([]byte, error) {
 		return tfgen.SkipSectionByHeaderContent(content, func(headerText string) bool {
 			return headerText == "Tutorials"
