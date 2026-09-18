@@ -86,10 +86,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// When credentials_wo is not provided, Vault uses its own environment to
 //			// authenticate with Azure. Supported options include:
-//			//  1. Environment variables set on the Vault server:
-//			//     AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET
-//			//  2. Azure Managed Identity (when Vault runs on an Azure VM or service
-//			//     with an assigned identity)
+//			// 1. Environment variables set on the Vault server:
+//			//    AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET
+//			// 2. Azure Managed Identity (when Vault runs on an Azure VM or service
+//			//    with an assigned identity)
 //			keymgmt2, err := vault.NewMount(ctx, "keymgmt", &vault.MountArgs{
 //				Path: pulumi.String("keymgmt"),
 //				Type: pulumi.String("keymgmt"),

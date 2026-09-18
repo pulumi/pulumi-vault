@@ -31,6 +31,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Template{}
 	case "vault:transform/transformation:Transformation":
 		r = &Transformation{}
+	case "vault:transform/transformationTokenization:TransformationTokenization":
+		r = &TransformationTokenization{}
+	case "vault:transform/transformationTokenizationStore:TransformationTokenizationStore":
+		r = &TransformationTokenizationStore{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -67,6 +71,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"transform/transformation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"transform/transformationTokenization",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"transform/transformationTokenizationStore",
 		&module{version},
 	)
 }

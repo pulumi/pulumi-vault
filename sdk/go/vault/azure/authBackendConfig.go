@@ -144,6 +144,158 @@ import (
 //
 // ```
 //
+// You can configure the Azure auth engine to use static credentials with `rootCreds`. Requires Vault 2.2.0+:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
+//				Type: pulumi.String("azure"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
+//				Backend:      example.Path,
+//				TenantId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientId:     pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientSecret: pulumi.String("01234567890123456789"),
+//				Resource:     pulumi.String("https://vault.hashicorp.com"),
+//				AuthType:     pulumi.String("root_creds"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// You can configure the Azure auth engine to use Vault Plugin Workload Identity Federation with `pluginWif`. Requires Vault Enterprise 2.2.0+:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
+//				Type:             pulumi.String("azure"),
+//				IdentityTokenKey: pulumi.String("example-key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
+//				Backend:               example.Path,
+//				TenantId:              pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientId:              pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				Resource:              pulumi.String("https://vault.hashicorp.com"),
+//				AuthType:              pulumi.String("plugin_wif"),
+//				IdentityTokenAudience: pulumi.String("<TOKEN_AUDIENCE>"),
+//				IdentityTokenTtl:      pulumi.Int(3600),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// You can configure the Azure auth engine to use AKS Workload Identity Federation with `aksWif` for a secretless, cross-tenant setup. Requires Vault 2.2.0+:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
+//				Type: pulumi.String("azure"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
+//				Backend:  example.Path,
+//				TenantId: pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientId: pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				Resource: pulumi.String("https://management.azure.com"),
+//				AuthType: pulumi.String("aks_wif"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// You can configure the Azure auth engine to use Azure Managed Service Identity with `msi` for a secretless setup. Requires Vault 2.2.0+:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/azure"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := vault.NewAuthBackend(ctx, "example", &vault.AuthBackendArgs{
+//				Type: pulumi.String("azure"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = azure.NewAuthBackendConfig(ctx, "example", &azure.AuthBackendConfigArgs{
+//				Backend:  example.Path,
+//				TenantId: pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				ClientId: pulumi.String("11111111-2222-3333-4444-555555555555"),
+//				Resource: pulumi.String("https://management.azure.com"),
+//				AuthType: pulumi.String("msi"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Ephemeral Attributes Reference
 //
 // The following write-only attributes are supported:
@@ -163,6 +315,8 @@ import (
 type AuthBackendConfig struct {
 	pulumi.CustomResourceState
 
+	// The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+	AuthType pulumi.StringPtrOutput `pulumi:"authType"`
 	// The path the Azure auth backend being configured was
 	// mounted at.  Defaults to `azure`.
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
@@ -284,6 +438,8 @@ func GetAuthBackendConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AuthBackendConfig resources.
 type authBackendConfigState struct {
+	// The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+	AuthType *string `pulumi:"authType"`
 	// The path the Azure auth backend being configured was
 	// mounted at.  Defaults to `azure`.
 	Backend *string `pulumi:"backend"`
@@ -351,6 +507,8 @@ type authBackendConfigState struct {
 }
 
 type AuthBackendConfigState struct {
+	// The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+	AuthType pulumi.StringPtrInput
 	// The path the Azure auth backend being configured was
 	// mounted at.  Defaults to `azure`.
 	Backend pulumi.StringPtrInput
@@ -422,6 +580,8 @@ func (AuthBackendConfigState) ElementType() reflect.Type {
 }
 
 type authBackendConfigArgs struct {
+	// The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+	AuthType *string `pulumi:"authType"`
 	// The path the Azure auth backend being configured was
 	// mounted at.  Defaults to `azure`.
 	Backend *string `pulumi:"backend"`
@@ -490,6 +650,8 @@ type authBackendConfigArgs struct {
 
 // The set of arguments for constructing a AuthBackendConfig resource.
 type AuthBackendConfigArgs struct {
+	// The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+	AuthType pulumi.StringPtrInput
 	// The path the Azure auth backend being configured was
 	// mounted at.  Defaults to `azure`.
 	Backend pulumi.StringPtrInput
@@ -641,6 +803,11 @@ func (o AuthBackendConfigOutput) ToAuthBackendConfigOutput() AuthBackendConfigOu
 
 func (o AuthBackendConfigOutput) ToAuthBackendConfigOutputWithContext(ctx context.Context) AuthBackendConfigOutput {
 	return o
+}
+
+// The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+func (o AuthBackendConfigOutput) AuthType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackendConfig) pulumi.StringPtrOutput { return v.AuthType }).(pulumi.StringPtrOutput)
 }
 
 // The path the Azure auth backend being configured was

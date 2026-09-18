@@ -131,6 +131,20 @@ public class SecretBackendAcmeAccount extends com.pulumi.resources.CustomResourc
         return this.activeKeyVersion;
     }
     /**
+     * Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Export(name="defaultNameserver", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> defaultNameserver;
+
+    /**
+     * @return Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Output<Optional<String>> defaultNameserver() {
+        return Codegen.optional(this.defaultNameserver);
+    }
+    /**
      * ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let&#39;s Encrypt production).
      * 
      */

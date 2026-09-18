@@ -19,58 +19,11 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * &gt;  **Preview feature:** This feature is currently available as a preview and is possibly incomplete and subject to change. **We strongly discourage using preview or beta features with production workflows.**
- * 
  * Manages OAuth Resource Server Configuration profiles in Vault Enterprise. These profiles define how Vault validates JWT tokens from OAuth 2.0 resource servers, enabling JWT-based authentication for API requests.
  * 
- * &gt; **Important** This resource is only available in Vault Enterprise and requires Vault 2.0.1 or later.
+ * &gt; **Important** This resource is available only in Vault Enterprise and requires Vault 2.1.0 or later.
  * 
  * ## Example Usage
- * 
- * ### Enable the Feature
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.ActivationFlags;
- * import com.pulumi.vault.ActivationFlagsArgs;
- * import com.pulumi.vault.OauthResourceServerConfigProfile;
- * import com.pulumi.vault.OauthResourceServerConfigProfileArgs;
- * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.ArrayList;
- * import java.util.Arrays;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var oauth = new ActivationFlags("oauth", ActivationFlagsArgs.builder()
- *             .feature("oauth-resource-server")
- *             .build());
- * 
- *         var example = new OauthResourceServerConfigProfile("example", OauthResourceServerConfigProfileArgs.builder()
- *             .profileName("example-profile")
- *             .issuerId("https://example.com")
- *             .useJwks(true)
- *             .jwksUri("https://example.com/.well-known/jwks.json")
- *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(oauth)
- *                 .build());
- * 
- *     }
- * }
- * }
- * </pre>
  * 
  * ### JWKS-Based Profile
  * 
@@ -312,9 +265,9 @@ import javax.annotation.Nullable;
  * 
  * * **Clock Skew**: Use `clockSkewLeeway` to handle clock differences between systems. A value of 30-60 seconds is typically sufficient for most environments.
  * 
- * * **Enterprise Feature**: OAuth Resource Server Configuration is only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
+ * * **Enterprise Feature**: OAuth Resource Server Configuration is available only in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
  * 
- * * **Version Requirement**: This resource requires Vault 2.0.1 or later.
+ * * **Version Requirement**: This resource requires Vault 2.1.0 or later.
  * 
  * ## Security Considerations
  * 

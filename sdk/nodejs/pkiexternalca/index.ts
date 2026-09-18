@@ -15,6 +15,26 @@ export type SecretBackendAcmeAccount = import("./secretBackendAcmeAccount").Secr
 export const SecretBackendAcmeAccount: typeof import("./secretBackendAcmeAccount").SecretBackendAcmeAccount = null as any;
 utilities.lazyLoad(exports, ["SecretBackendAcmeAccount"], () => require("./secretBackendAcmeAccount"));
 
+export { SecretBackendDnsProviderAwsRoute53Args, SecretBackendDnsProviderAwsRoute53State } from "./secretBackendDnsProviderAwsRoute53";
+export type SecretBackendDnsProviderAwsRoute53 = import("./secretBackendDnsProviderAwsRoute53").SecretBackendDnsProviderAwsRoute53;
+export const SecretBackendDnsProviderAwsRoute53: typeof import("./secretBackendDnsProviderAwsRoute53").SecretBackendDnsProviderAwsRoute53 = null as any;
+utilities.lazyLoad(exports, ["SecretBackendDnsProviderAwsRoute53"], () => require("./secretBackendDnsProviderAwsRoute53"));
+
+export { SecretBackendDnsProviderAzureArgs, SecretBackendDnsProviderAzureState } from "./secretBackendDnsProviderAzure";
+export type SecretBackendDnsProviderAzure = import("./secretBackendDnsProviderAzure").SecretBackendDnsProviderAzure;
+export const SecretBackendDnsProviderAzure: typeof import("./secretBackendDnsProviderAzure").SecretBackendDnsProviderAzure = null as any;
+utilities.lazyLoad(exports, ["SecretBackendDnsProviderAzure"], () => require("./secretBackendDnsProviderAzure"));
+
+export { SecretBackendDnsProviderGcpArgs, SecretBackendDnsProviderGcpState } from "./secretBackendDnsProviderGcp";
+export type SecretBackendDnsProviderGcp = import("./secretBackendDnsProviderGcp").SecretBackendDnsProviderGcp;
+export const SecretBackendDnsProviderGcp: typeof import("./secretBackendDnsProviderGcp").SecretBackendDnsProviderGcp = null as any;
+utilities.lazyLoad(exports, ["SecretBackendDnsProviderGcp"], () => require("./secretBackendDnsProviderGcp"));
+
+export { SecretBackendDnsProviderRfc2136Args, SecretBackendDnsProviderRfc2136State } from "./secretBackendDnsProviderRfc2136";
+export type SecretBackendDnsProviderRfc2136 = import("./secretBackendDnsProviderRfc2136").SecretBackendDnsProviderRfc2136;
+export const SecretBackendDnsProviderRfc2136: typeof import("./secretBackendDnsProviderRfc2136").SecretBackendDnsProviderRfc2136 = null as any;
+utilities.lazyLoad(exports, ["SecretBackendDnsProviderRfc2136"], () => require("./secretBackendDnsProviderRfc2136"));
+
 export { SecretBackendOrderArgs, SecretBackendOrderState } from "./secretBackendOrder";
 export type SecretBackendOrder = import("./secretBackendOrder").SecretBackendOrder;
 export const SecretBackendOrder: typeof import("./secretBackendOrder").SecretBackendOrder = null as any;
@@ -42,6 +62,14 @@ const _module = {
         switch (type) {
             case "vault:pkiexternalca/secretBackendAcmeAccount:SecretBackendAcmeAccount":
                 return new SecretBackendAcmeAccount(name, <any>undefined, { urn })
+            case "vault:pkiexternalca/secretBackendDnsProviderAwsRoute53:SecretBackendDnsProviderAwsRoute53":
+                return new SecretBackendDnsProviderAwsRoute53(name, <any>undefined, { urn })
+            case "vault:pkiexternalca/secretBackendDnsProviderAzure:SecretBackendDnsProviderAzure":
+                return new SecretBackendDnsProviderAzure(name, <any>undefined, { urn })
+            case "vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp":
+                return new SecretBackendDnsProviderGcp(name, <any>undefined, { urn })
+            case "vault:pkiexternalca/secretBackendDnsProviderRfc2136:SecretBackendDnsProviderRfc2136":
+                return new SecretBackendDnsProviderRfc2136(name, <any>undefined, { urn })
             case "vault:pkiexternalca/secretBackendOrder:SecretBackendOrder":
                 return new SecretBackendOrder(name, <any>undefined, { urn })
             case "vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate":
@@ -56,6 +84,10 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendAcmeAccount", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendDnsProviderAwsRoute53", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendDnsProviderAzure", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendDnsProviderGcp", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendDnsProviderRfc2136", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendOrder", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendOrderCertificate", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiexternalca/secretBackendOrderChallengeFulfilled", _module)

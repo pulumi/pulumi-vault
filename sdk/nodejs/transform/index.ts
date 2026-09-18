@@ -40,6 +40,16 @@ export type Transformation = import("./transformation").Transformation;
 export const Transformation: typeof import("./transformation").Transformation = null as any;
 utilities.lazyLoad(exports, ["Transformation"], () => require("./transformation"));
 
+export { TransformationTokenizationArgs, TransformationTokenizationState } from "./transformationTokenization";
+export type TransformationTokenization = import("./transformationTokenization").TransformationTokenization;
+export const TransformationTokenization: typeof import("./transformationTokenization").TransformationTokenization = null as any;
+utilities.lazyLoad(exports, ["TransformationTokenization"], () => require("./transformationTokenization"));
+
+export { TransformationTokenizationStoreArgs, TransformationTokenizationStoreState } from "./transformationTokenizationStore";
+export type TransformationTokenizationStore = import("./transformationTokenizationStore").TransformationTokenizationStore;
+export const TransformationTokenizationStore: typeof import("./transformationTokenizationStore").TransformationTokenizationStore = null as any;
+utilities.lazyLoad(exports, ["TransformationTokenizationStore"], () => require("./transformationTokenizationStore"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -55,6 +65,10 @@ const _module = {
                 return new Template(name, <any>undefined, { urn })
             case "vault:transform/transformation:Transformation":
                 return new Transformation(name, <any>undefined, { urn })
+            case "vault:transform/transformationTokenization:TransformationTokenization":
+                return new TransformationTokenization(name, <any>undefined, { urn })
+            case "vault:transform/transformationTokenizationStore:TransformationTokenizationStore":
+                return new TransformationTokenizationStore(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -65,3 +79,5 @@ pulumi.runtime.registerResourceModule("vault", "transform/keyConfiguration", _mo
 pulumi.runtime.registerResourceModule("vault", "transform/role", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/template", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/transformation", _module)
+pulumi.runtime.registerResourceModule("vault", "transform/transformationTokenization", _module)
+pulumi.runtime.registerResourceModule("vault", "transform/transformationTokenizationStore", _module)

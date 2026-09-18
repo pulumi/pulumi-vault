@@ -282,14 +282,14 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
-     * Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     @Import(name="jksPassword")
     private @Nullable Output<String> jksPassword;
 
     /**
-     * @return Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * @return Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     public Optional<Output<String>> jksPassword() {
@@ -502,7 +502,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
-     * Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     * Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
      * 
      * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
      * 
@@ -511,7 +511,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     private @Nullable Output<String> pkcs12Encoder;
 
     /**
-     * @return Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     * @return Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
      * 
      * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
      * 
@@ -521,14 +521,14 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
     }
 
     /**
-     * Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     @Import(name="pkcs12Password")
     private @Nullable Output<String> pkcs12Password;
 
     /**
-     * @return Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * @return Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     public Optional<Output<String>> pkcs12Password() {
@@ -1203,7 +1203,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param jksPassword Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * @param jksPassword Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
          * 
          * @return builder
          * 
@@ -1214,7 +1214,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param jksPassword Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * @param jksPassword Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
          * 
          * @return builder
          * 
@@ -1567,7 +1567,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param pkcs12Encoder Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+         * @param pkcs12Encoder Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
          * 
          * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
          * 
@@ -1580,7 +1580,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param pkcs12Encoder Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+         * @param pkcs12Encoder Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
          * 
          * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
          * 
@@ -1592,7 +1592,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param pkcs12Password Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * @param pkcs12Password Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
          * 
          * @return builder
          * 
@@ -1603,7 +1603,7 @@ public final class SecretBackendRootSignIntermediateState extends com.pulumi.res
         }
 
         /**
-         * @param pkcs12Password Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+         * @param pkcs12Password Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
          * 
          * @return builder
          * 

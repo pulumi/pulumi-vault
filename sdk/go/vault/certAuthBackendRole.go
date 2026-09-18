@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -64,6 +63,57 @@ import (
 //	}
 //
 // ```
+//
+// ### With Write-Only Certificate
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cert, err := vault.NewAuthBackend(ctx, "cert", &vault.AuthBackendArgs{
+//				Path: pulumi.String("cert"),
+//				Type: pulumi.String("cert"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = vault.NewCertAuthBackendRole(ctx, "cert", &vault.CertAuthBackendRoleArgs{
+//				Name:                 pulumi.String("foo"),
+//				CertificateWo:        pulumi.Any(caCertificate),
+//				CertificateWoVersion: pulumi.Int(1),
+//				Backend:              cert.Path,
+//				AllowedNames: pulumi.StringArray{
+//					pulumi.String("foo.example.org"),
+//					pulumi.String("baz.example.org"),
+//				},
+//				TokenTtl:    pulumi.Int(300),
+//				TokenMaxTtl: pulumi.Int(600),
+//				TokenPolicies: pulumi.StringArray{
+//					pulumi.String("foo"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Ephemeral Attributes Reference
+//
+// The following write-only attributes are supported:
+//
+// * `certificateWo` - (Optional string) Write-only CA certificate used to validate client certificates. Use `certificateWo` to supply the certificate from an ephemeral resource. Exactly one of `certificateWo` or  `certificate` must be specified. This attribute conflicts with `certificate`. **Note**: This property is write-only and will not be read from the API.
 type CertAuthBackendRole struct {
 	pulumi.CustomResourceState
 
@@ -84,8 +134,12 @@ type CertAuthBackendRole struct {
 	AllowedUriSans pulumi.StringArrayOutput `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
 	Backend pulumi.StringPtrOutput `pulumi:"backend"`
-	// CA certificate used to validate client certificates
+	// CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	CertificateWo pulumi.StringPtrOutput `pulumi:"certificateWo"`
+	// The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+	CertificateWoVersion pulumi.IntPtrOutput `pulumi:"certificateWoVersion"`
 	// The name to display on tokens issued under this role.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
 	// Name of the role
@@ -153,12 +207,16 @@ type CertAuthBackendRole struct {
 func NewCertAuthBackendRole(ctx *pulumi.Context,
 	name string, args *CertAuthBackendRoleArgs, opts ...pulumi.ResourceOption) (*CertAuthBackendRole, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &CertAuthBackendRoleArgs{}
 	}
 
-	if args.Certificate == nil {
-		return nil, errors.New("invalid value for required argument 'Certificate'")
+	if args.CertificateWo != nil {
+		args.CertificateWo = pulumi.ToSecret(args.CertificateWo).(pulumi.StringPtrInput)
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"certificateWo",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CertAuthBackendRole
 	err := ctx.RegisterResource("vault:index/certAuthBackendRole:CertAuthBackendRole", name, args, &resource, opts...)
@@ -199,8 +257,12 @@ type certAuthBackendRoleState struct {
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
 	Backend *string `pulumi:"backend"`
-	// CA certificate used to validate client certificates
+	// CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
 	Certificate *string `pulumi:"certificate"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	CertificateWo *string `pulumi:"certificateWo"`
+	// The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+	CertificateWoVersion *int `pulumi:"certificateWoVersion"`
 	// The name to display on tokens issued under this role.
 	DisplayName *string `pulumi:"displayName"`
 	// Name of the role
@@ -282,8 +344,12 @@ type CertAuthBackendRoleState struct {
 	AllowedUriSans pulumi.StringArrayInput
 	// Path to the mounted Cert auth backend
 	Backend pulumi.StringPtrInput
-	// CA certificate used to validate client certificates
+	// CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
 	Certificate pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	CertificateWo pulumi.StringPtrInput
+	// The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+	CertificateWoVersion pulumi.IntPtrInput
 	// The name to display on tokens issued under this role.
 	DisplayName pulumi.StringPtrInput
 	// Name of the role
@@ -369,8 +435,12 @@ type certAuthBackendRoleArgs struct {
 	AllowedUriSans []string `pulumi:"allowedUriSans"`
 	// Path to the mounted Cert auth backend
 	Backend *string `pulumi:"backend"`
-	// CA certificate used to validate client certificates
-	Certificate string `pulumi:"certificate"`
+	// CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
+	Certificate *string `pulumi:"certificate"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	CertificateWo *string `pulumi:"certificateWo"`
+	// The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+	CertificateWoVersion *int `pulumi:"certificateWoVersion"`
 	// The name to display on tokens issued under this role.
 	DisplayName *string `pulumi:"displayName"`
 	// Name of the role
@@ -453,8 +523,12 @@ type CertAuthBackendRoleArgs struct {
 	AllowedUriSans pulumi.StringArrayInput
 	// Path to the mounted Cert auth backend
 	Backend pulumi.StringPtrInput
-	// CA certificate used to validate client certificates
-	Certificate pulumi.StringInput
+	// CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
+	Certificate pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	CertificateWo pulumi.StringPtrInput
+	// The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+	CertificateWoVersion pulumi.IntPtrInput
 	// The name to display on tokens issued under this role.
 	DisplayName pulumi.StringPtrInput
 	// Name of the role
@@ -647,9 +721,19 @@ func (o CertAuthBackendRoleOutput) Backend() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.Backend }).(pulumi.StringPtrOutput)
 }
 
-// CA certificate used to validate client certificates
+// CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
 func (o CertAuthBackendRoleOutput) Certificate() pulumi.StringOutput {
 	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringOutput { return v.Certificate }).(pulumi.StringOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o CertAuthBackendRoleOutput) CertificateWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.StringPtrOutput { return v.CertificateWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+func (o CertAuthBackendRoleOutput) CertificateWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CertAuthBackendRole) pulumi.IntPtrOutput { return v.CertificateWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The name to display on tokens issued under this role.

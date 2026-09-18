@@ -19,6 +19,21 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
     public static final AuthBackendConfigArgs Empty = new AuthBackendConfigArgs();
 
     /**
+     * The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+     * 
+     */
+    @Import(name="authType")
+    private @Nullable Output<String> authType;
+
+    /**
+     * @return The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+     * 
+     */
+    public Optional<Output<String>> authType() {
+        return Optional.ofNullable(this.authType);
+    }
+
+    /**
      * The path the Azure auth backend being configured was
      * mounted at.  Defaults to `azure`.
      * 
@@ -347,6 +362,7 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
     private AuthBackendConfigArgs() {}
 
     private AuthBackendConfigArgs(AuthBackendConfigArgs $) {
+        this.authType = $.authType;
         this.backend = $.backend;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
@@ -383,6 +399,27 @@ public final class AuthBackendConfigArgs extends com.pulumi.resources.ResourceAr
 
         public Builder(AuthBackendConfigArgs defaults) {
             $ = new AuthBackendConfigArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param authType The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(@Nullable Output<String> authType) {
+            $.authType = authType;
+            return this;
+        }
+
+        /**
+         * @param authType The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authType(String authType) {
+            return authType(Output.of(authType));
         }
 
         /**

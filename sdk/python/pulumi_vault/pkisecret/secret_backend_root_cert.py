@@ -77,12 +77,12 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.1+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
                across all issuers and not be the reserved value `default`
-        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
-        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
+        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.1+.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits to use
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
@@ -109,10 +109,10 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
                
                **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
-        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] province: The province
@@ -333,7 +333,7 @@ class SecretBackendRootCertArgs:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
+        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.1+.
         """
         return pulumi.get(self, "format")
 
@@ -370,7 +370,7 @@ class SecretBackendRootCertArgs:
     @pulumi.getter(name="jksPassword")
     def jks_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         """
         return pulumi.get(self, "jks_password")
 
@@ -382,7 +382,7 @@ class SecretBackendRootCertArgs:
     @pulumi.getter(name="jksPrivateKeyAlias")
     def jks_private_key_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+        The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.1+.
         """
         return pulumi.get(self, "jks_private_key_alias")
 
@@ -629,7 +629,7 @@ class SecretBackendRootCertArgs:
     @pulumi.getter(name="pkcs12Encoder")
     def pkcs12_encoder(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 
         **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
         """
@@ -643,7 +643,7 @@ class SecretBackendRootCertArgs:
     @pulumi.getter(name="pkcs12Password")
     def pkcs12_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         """
         return pulumi.get(self, "pkcs12_password")
 
@@ -813,14 +813,14 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.1+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_id: The ID of the generated issuer.
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
                across all issuers and not be the reserved value `default`
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA certificate.
-        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
-        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
+        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.1+.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits to use
         :param pulumi.Input[_builtins.str] key_id: The ID of the generated key.
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
@@ -848,10 +848,10 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
                
                **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
-        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] province: The province
@@ -1087,7 +1087,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter
     def format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
+        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.1+.
         """
         return pulumi.get(self, "format")
 
@@ -1148,7 +1148,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter(name="jksPassword")
     def jks_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         """
         return pulumi.get(self, "jks_password")
 
@@ -1160,7 +1160,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter(name="jksPrivateKeyAlias")
     def jks_private_key_alias(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+        The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.1+.
         """
         return pulumi.get(self, "jks_private_key_alias")
 
@@ -1419,7 +1419,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter(name="pkcs12Encoder")
     def pkcs12_encoder(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 
         **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
         """
@@ -1433,7 +1433,7 @@ class _SecretBackendRootCertState:
     @pulumi.getter(name="pkcs12Password")
     def pkcs12_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         """
         return pulumi.get(self, "pkcs12_password")
 
@@ -1661,12 +1661,12 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.1+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
                across all issuers and not be the reserved value `default`
-        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
-        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
+        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.1+.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits to use
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
@@ -1693,10 +1693,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
                
                **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
-        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] province: The province
@@ -1949,14 +1949,14 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_email_addresses: List of email addresses for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_ip_ranges: List of IP ranges for which certificates are not allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] excluded_uri_domains: List of URI domains for which certificates are not allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] format: The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.1+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_sans: List of alternative IPs
         :param pulumi.Input[_builtins.str] issuer_id: The ID of the generated issuer.
         :param pulumi.Input[_builtins.str] issuer_name: Provides a name to the specified issuer. The name must be unique
                across all issuers and not be the reserved value `default`
         :param pulumi.Input[_builtins.str] issuing_ca: The issuing CA certificate.
-        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
-        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] jks_password: Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
+        :param pulumi.Input[_builtins.str] jks_private_key_alias: The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.1+.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits to use
         :param pulumi.Input[_builtins.str] key_id: The ID of the generated key.
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
@@ -1984,10 +1984,10 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_uri_domains: List of URI domains for which certificates are allowed to be issued. Requires Vault version 1.19+.
-        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_encoder: Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
                
                **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
-        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        :param pulumi.Input[_builtins.str] pkcs12_password: Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] province: The province
@@ -2139,7 +2139,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.0.5+.
+        The format of data. Valid values are "pem", "pem_bundle", "der", "pkcs12_bundle" or "jks_bundle". Values "pkcs12_bundle" and "jks_bundle" require Vault 2.1+.
         """
         return pulumi.get(self, "format")
 
@@ -2180,7 +2180,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter(name="jksPassword")
     def jks_password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        Password for encrypting the Java keystore when format is set to "jks_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         """
         return pulumi.get(self, "jks_password")
 
@@ -2188,7 +2188,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter(name="jksPrivateKeyAlias")
     def jks_private_key_alias(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.0.5+.
+        The entry alias in the Java keystore (JKS) when format is set to "jks_bundle" and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to "1". This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at "1". Requires Vault 2.1+.
         """
         return pulumi.get(self, "jks_private_key_alias")
 
@@ -2363,7 +2363,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter(name="pkcs12Encoder")
     def pkcs12_encoder(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        Encoder profile to use for PKCS#12 archives when format is set to "pkcs12_bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 
         **NOTE**: The `jks_bundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12_bundle`.
         """
@@ -2373,7 +2373,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     @pulumi.getter(name="pkcs12Password")
     def pkcs12_password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        Password for encrypting the PKCS#12 archive when format is set to "pkcs12_bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         """
         return pulumi.get(self, "pkcs12_password")
 

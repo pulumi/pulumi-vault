@@ -21,6 +21,7 @@ class AuthBackendConfigArgs:
     def __init__(__self__, *,
                  resource: pulumi.Input[_builtins.str],
                  tenant_id: pulumi.Input[_builtins.str],
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -44,6 +45,7 @@ class AuthBackendConfigArgs:
                Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory
                organization.
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method used by Vault to access Azure APIs. The following values are supported: `root_creds`, `plugin_wif`, `msi`, `aks_wif`. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] backend: The path the Azure auth backend being configured was
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
@@ -89,6 +91,8 @@ class AuthBackendConfigArgs:
         """
         pulumi.set(__self__, "resource", resource)
         pulumi.set(__self__, "tenant_id", tenant_id)
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if client_id is not None:
@@ -147,6 +151,18 @@ class AuthBackendConfigArgs:
     @tenant_id.setter
     def tenant_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "tenant_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The authentication method used by Vault to access Azure APIs. The following values are supported: `root_creds`, `plugin_wif`, `msi`, `aks_wif`. Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter
@@ -370,6 +386,7 @@ class AuthBackendConfigArgs:
 @pulumi.input_type
 class _AuthBackendConfigState:
     def __init__(__self__, *,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -391,6 +408,7 @@ class _AuthBackendConfigState:
         """
         Input properties used for looking up and filtering AuthBackendConfig resources.
 
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method used by Vault to access Azure APIs. The following values are supported: `root_creds`, `plugin_wif`, `msi`, `aks_wif`. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] backend: The path the Azure auth backend being configured was
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
@@ -438,6 +456,8 @@ class _AuthBackendConfigState:
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory
                organization.
         """
+        if auth_type is not None:
+            pulumi.set(__self__, "auth_type", auth_type)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
         if client_id is not None:
@@ -474,6 +494,18 @@ class _AuthBackendConfigState:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The authentication method used by Vault to access Azure APIs. The following values are supported: `root_creds`, `plugin_wif`, `msi`, `aks_wif`. Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @auth_type.setter
+    def auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "auth_type", value)
 
     @_builtins.property
     @pulumi.getter
@@ -726,6 +758,7 @@ class AuthBackendConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -813,6 +846,71 @@ class AuthBackendConfig(pulumi.CustomResource):
             resource="https://vault.hashicorp.com")
         ```
 
+        You can configure the Azure auth engine to use static credentials with `root_creds`. Requires Vault 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret="01234567890123456789",
+            resource="https://vault.hashicorp.com",
+            auth_type="root_creds")
+        ```
+
+        You can configure the Azure auth engine to use Vault Plugin Workload Identity Federation with `plugin_wif`. Requires Vault Enterprise 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="azure",
+            identity_token_key="example-key")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            resource="https://vault.hashicorp.com",
+            auth_type="plugin_wif",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl=3600)
+        ```
+
+        You can configure the Azure auth engine to use AKS Workload Identity Federation with `aks_wif` for a secretless, cross-tenant setup. Requires Vault 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            resource="https://management.azure.com",
+            auth_type="aks_wif")
+        ```
+
+        You can configure the Azure auth engine to use Azure Managed Service Identity with `msi` for a secretless setup. Requires Vault 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            resource="https://management.azure.com",
+            auth_type="msi")
+        ```
+
         ## Ephemeral Attributes Reference
 
         The following write-only attributes are supported:
@@ -833,6 +931,7 @@ class AuthBackendConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method used by Vault to access Azure APIs. The following values are supported: `root_creds`, `plugin_wif`, `msi`, `aks_wif`. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] backend: The path the Azure auth backend being configured was
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
@@ -954,6 +1053,71 @@ class AuthBackendConfig(pulumi.CustomResource):
             resource="https://vault.hashicorp.com")
         ```
 
+        You can configure the Azure auth engine to use static credentials with `root_creds`. Requires Vault 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            client_secret="01234567890123456789",
+            resource="https://vault.hashicorp.com",
+            auth_type="root_creds")
+        ```
+
+        You can configure the Azure auth engine to use Vault Plugin Workload Identity Federation with `plugin_wif`. Requires Vault Enterprise 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example",
+            type="azure",
+            identity_token_key="example-key")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            resource="https://vault.hashicorp.com",
+            auth_type="plugin_wif",
+            identity_token_audience="<TOKEN_AUDIENCE>",
+            identity_token_ttl=3600)
+        ```
+
+        You can configure the Azure auth engine to use AKS Workload Identity Federation with `aks_wif` for a secretless, cross-tenant setup. Requires Vault 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            resource="https://management.azure.com",
+            auth_type="aks_wif")
+        ```
+
+        You can configure the Azure auth engine to use Azure Managed Service Identity with `msi` for a secretless setup. Requires Vault 2.2.0+:
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        example = vault.AuthBackend("example", type="azure")
+        example_auth_backend_config = vault.azure.AuthBackendConfig("example",
+            backend=example.path,
+            tenant_id="11111111-2222-3333-4444-555555555555",
+            client_id="11111111-2222-3333-4444-555555555555",
+            resource="https://management.azure.com",
+            auth_type="msi")
+        ```
+
         ## Ephemeral Attributes Reference
 
         The following write-only attributes are supported:
@@ -987,6 +1151,7 @@ class AuthBackendConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1014,6 +1179,7 @@ class AuthBackendConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AuthBackendConfigArgs.__new__(AuthBackendConfigArgs)
 
+            __props__.__dict__["auth_type"] = auth_type
             __props__.__dict__["backend"] = backend
             __props__.__dict__["client_id"] = None if client_id is None else pulumi.Output.secret(client_id)
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
@@ -1048,6 +1214,7 @@ class AuthBackendConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             client_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1073,6 +1240,7 @@ class AuthBackendConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] auth_type: The authentication method used by Vault to access Azure APIs. The following values are supported: `root_creds`, `plugin_wif`, `msi`, `aks_wif`. Requires Vault 2.2.0+.
         :param pulumi.Input[_builtins.str] backend: The path the Azure auth backend being configured was
                mounted at.  Defaults to `azure`.
         :param pulumi.Input[_builtins.str] client_id: The client id for credentials to query the Azure APIs.
@@ -1124,6 +1292,7 @@ class AuthBackendConfig(pulumi.CustomResource):
 
         __props__ = _AuthBackendConfigState.__new__(_AuthBackendConfigState)
 
+        __props__.__dict__["auth_type"] = auth_type
         __props__.__dict__["backend"] = backend
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
@@ -1143,6 +1312,14 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["tenant_id"] = tenant_id
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The authentication method used by Vault to access Azure APIs. The following values are supported: `root_creds`, `plugin_wif`, `msi`, `aks_wif`. Requires Vault 2.2.0+.
+        """
+        return pulumi.get(self, "auth_type")
 
     @_builtins.property
     @pulumi.getter

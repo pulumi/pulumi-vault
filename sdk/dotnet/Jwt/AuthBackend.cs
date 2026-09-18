@@ -121,7 +121,7 @@ namespace Pulumi.Vault.Jwt
     /// });
     /// ```
     /// 
-    /// Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+    /// Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

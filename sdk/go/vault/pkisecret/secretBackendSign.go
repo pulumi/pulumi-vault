@@ -103,7 +103,7 @@ type SecretBackendSign struct {
 	ExcludeCnFromSans pulumi.BoolPtrOutput `pulumi:"excludeCnFromSans"`
 	// The expiration date of the certificate in unix epoch format
 	Expiration pulumi.IntOutput `pulumi:"expiration"`
-	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.1+.
 	Format pulumi.StringPtrOutput `pulumi:"format"`
 	// List of alternative IPs
 	IpSans pulumi.StringArrayOutput `pulumi:"ipSans"`
@@ -114,7 +114,7 @@ type SecretBackendSign struct {
 	IssuerRef pulumi.StringPtrOutput `pulumi:"issuerRef"`
 	// The issuing CA
 	IssuingCa pulumi.StringOutput `pulumi:"issuingCa"`
-	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	JksPassword pulumi.StringPtrOutput `pulumi:"jksPassword"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining pulumi.IntPtrOutput `pulumi:"minSecondsRemaining"`
@@ -129,11 +129,11 @@ type SecretBackendSign struct {
 	NotAfter pulumi.StringPtrOutput `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
-	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 	//
 	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
 	Pkcs12Encoder pulumi.StringPtrOutput `pulumi:"pkcs12Encoder"`
-	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	Pkcs12Password pulumi.StringPtrOutput `pulumi:"pkcs12Password"`
 	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
 	RemoveRootsFromChain pulumi.BoolPtrOutput `pulumi:"removeRootsFromChain"`
@@ -206,7 +206,7 @@ type secretBackendSignState struct {
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
 	// The expiration date of the certificate in unix epoch format
 	Expiration *int `pulumi:"expiration"`
-	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.1+.
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -217,7 +217,7 @@ type secretBackendSignState struct {
 	IssuerRef *string `pulumi:"issuerRef"`
 	// The issuing CA
 	IssuingCa *string `pulumi:"issuingCa"`
-	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	JksPassword *string `pulumi:"jksPassword"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining *int `pulumi:"minSecondsRemaining"`
@@ -232,11 +232,11 @@ type secretBackendSignState struct {
 	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
-	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 	//
 	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
 	Pkcs12Encoder *string `pulumi:"pkcs12Encoder"`
-	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	Pkcs12Password *string `pulumi:"pkcs12Password"`
 	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
 	RemoveRootsFromChain *bool `pulumi:"removeRootsFromChain"`
@@ -271,7 +271,7 @@ type SecretBackendSignState struct {
 	ExcludeCnFromSans pulumi.BoolPtrInput
 	// The expiration date of the certificate in unix epoch format
 	Expiration pulumi.IntPtrInput
-	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.1+.
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -282,7 +282,7 @@ type SecretBackendSignState struct {
 	IssuerRef pulumi.StringPtrInput
 	// The issuing CA
 	IssuingCa pulumi.StringPtrInput
-	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	JksPassword pulumi.StringPtrInput
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining pulumi.IntPtrInput
@@ -297,11 +297,11 @@ type SecretBackendSignState struct {
 	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
-	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 	//
 	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
 	Pkcs12Encoder pulumi.StringPtrInput
-	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	Pkcs12Password pulumi.StringPtrInput
 	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
 	RemoveRootsFromChain pulumi.BoolPtrInput
@@ -334,7 +334,7 @@ type secretBackendSignArgs struct {
 	Csr string `pulumi:"csr"`
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans *bool `pulumi:"excludeCnFromSans"`
-	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.1+.
 	Format *string `pulumi:"format"`
 	// List of alternative IPs
 	IpSans []string `pulumi:"ipSans"`
@@ -343,7 +343,7 @@ type secretBackendSignArgs struct {
 	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
 	// overriding the role's `issuerRef` value.
 	IssuerRef *string `pulumi:"issuerRef"`
-	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	JksPassword *string `pulumi:"jksPassword"`
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining *int `pulumi:"minSecondsRemaining"`
@@ -358,11 +358,11 @@ type secretBackendSignArgs struct {
 	NotAfter *string `pulumi:"notAfter"`
 	// List of other SANs
 	OtherSans []string `pulumi:"otherSans"`
-	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 	//
 	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
 	Pkcs12Encoder *string `pulumi:"pkcs12Encoder"`
-	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	Pkcs12Password *string `pulumi:"pkcs12Password"`
 	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
 	RemoveRootsFromChain *bool `pulumi:"removeRootsFromChain"`
@@ -388,7 +388,7 @@ type SecretBackendSignArgs struct {
 	Csr pulumi.StringInput
 	// Flag to exclude CN from SANs
 	ExcludeCnFromSans pulumi.BoolPtrInput
-	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
+	// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.1+.
 	Format pulumi.StringPtrInput
 	// List of alternative IPs
 	IpSans pulumi.StringArrayInput
@@ -397,7 +397,7 @@ type SecretBackendSignArgs struct {
 	// the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
 	// overriding the role's `issuerRef` value.
 	IssuerRef pulumi.StringPtrInput
-	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	JksPassword pulumi.StringPtrInput
 	// Generate a new certificate when the expiration is within this number of seconds, default is 604800 (7 days)
 	MinSecondsRemaining pulumi.IntPtrInput
@@ -412,11 +412,11 @@ type SecretBackendSignArgs struct {
 	NotAfter pulumi.StringPtrInput
 	// List of other SANs
 	OtherSans pulumi.StringArrayInput
-	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+	// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 	//
 	// **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
 	Pkcs12Encoder pulumi.StringPtrInput
-	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+	// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 	Pkcs12Password pulumi.StringPtrInput
 	// If set to `true`, the returned `caChain` field will not include any self-signed CA certificates. Useful if end-users already have the root CA in their trust store. Default `false`.
 	RemoveRootsFromChain pulumi.BoolPtrInput
@@ -563,7 +563,7 @@ func (o SecretBackendSignOutput) Expiration() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.IntOutput { return v.Expiration }).(pulumi.IntOutput)
 }
 
-// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.0.5+.
+// The format of data. Valid values are "pem", "pemBundle", "der", "pkcs12Bundle" or "jksBundle". Values "pkcs12Bundle" and "jksBundle" require Vault 2.1+.
 func (o SecretBackendSignOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
 }
@@ -586,7 +586,7 @@ func (o SecretBackendSignOutput) IssuingCa() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringOutput { return v.IssuingCa }).(pulumi.StringOutput)
 }
 
-// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+// Password for encrypting the Java keystore when format is set to "jksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 func (o SecretBackendSignOutput) JksPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.JksPassword }).(pulumi.StringPtrOutput)
 }
@@ -619,14 +619,14 @@ func (o SecretBackendSignOutput) OtherSans() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringArrayOutput { return v.OtherSans }).(pulumi.StringArrayOutput)
 }
 
-// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+// Encoder profile to use for PKCS#12 archives when format is set to "pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
 //
 // **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
 func (o SecretBackendSignOutput) Pkcs12Encoder() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.Pkcs12Encoder }).(pulumi.StringPtrOutput)
 }
 
-// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+// Password for encrypting the PKCS#12 archive when format is set to "pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
 func (o SecretBackendSignOutput) Pkcs12Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendSign) pulumi.StringPtrOutput { return v.Pkcs12Password }).(pulumi.StringPtrOutput)
 }

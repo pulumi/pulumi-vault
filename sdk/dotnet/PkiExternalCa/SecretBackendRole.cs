@@ -145,6 +145,18 @@ namespace Pulumi.Vault.PkiExternalCa
         public Output<string> CsrIdentifierPopulation { get; private set; } = null!;
 
         /// <summary>
+        /// The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `Name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Output("dnsProviderName")]
+        public Output<string> DnsProviderName { get; private set; } = null!;
+
+        /// <summary>
+        /// The type of the DNS provider. Required when `DnsProviderName` is set. Valid values are `aws-route53`, `Rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Output("dnsProviderType")]
+        public Output<string> DnsProviderType { get; private set; } = null!;
+
+        /// <summary>
         /// Force deletion even when active orders exist. Defaults to `False`.
         /// </summary>
         [Output("force")]
@@ -153,8 +165,8 @@ namespace Pulumi.Vault.PkiExternalCa
         /// <summary>
         /// The date and time the role was last updated in RFC3339 format.
         /// </summary>
-        [Output("lastUpdateDate")]
-        public Output<string> LastUpdateDate { get; private set; } = null!;
+        [Output("lastUpdatedDate")]
+        public Output<string> LastUpdatedDate { get; private set; } = null!;
 
         /// <summary>
         /// The path where the PKI External CA secret backend is mounted.
@@ -278,6 +290,18 @@ namespace Pulumi.Vault.PkiExternalCa
         public Input<string>? CsrIdentifierPopulation { get; set; }
 
         /// <summary>
+        /// The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `Name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Input("dnsProviderName")]
+        public Input<string>? DnsProviderName { get; set; }
+
+        /// <summary>
+        /// The type of the DNS provider. Required when `DnsProviderName` is set. Valid values are `aws-route53`, `Rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Input("dnsProviderType")]
+        public Input<string>? DnsProviderType { get; set; }
+
+        /// <summary>
         /// Force deletion even when active orders exist. Defaults to `False`.
         /// </summary>
         [Input("force")]
@@ -373,6 +397,18 @@ namespace Pulumi.Vault.PkiExternalCa
         public Input<string>? CsrIdentifierPopulation { get; set; }
 
         /// <summary>
+        /// The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `Name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Input("dnsProviderName")]
+        public Input<string>? DnsProviderName { get; set; }
+
+        /// <summary>
+        /// The type of the DNS provider. Required when `DnsProviderName` is set. Valid values are `aws-route53`, `Rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Input("dnsProviderType")]
+        public Input<string>? DnsProviderType { get; set; }
+
+        /// <summary>
         /// Force deletion even when active orders exist. Defaults to `False`.
         /// </summary>
         [Input("force")]
@@ -381,8 +417,8 @@ namespace Pulumi.Vault.PkiExternalCa
         /// <summary>
         /// The date and time the role was last updated in RFC3339 format.
         /// </summary>
-        [Input("lastUpdateDate")]
-        public Input<string>? LastUpdateDate { get; set; }
+        [Input("lastUpdatedDate")]
+        public Input<string>? LastUpdatedDate { get; set; }
 
         /// <summary>
         /// The path where the PKI External CA secret backend is mounted.

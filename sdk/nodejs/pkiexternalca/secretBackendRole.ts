@@ -121,13 +121,21 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     declare public readonly csrIdentifierPopulation: pulumi.Output<string>;
     /**
+     * The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     */
+    declare public readonly dnsProviderName: pulumi.Output<string>;
+    /**
+     * The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     */
+    declare public readonly dnsProviderType: pulumi.Output<string>;
+    /**
      * Force deletion even when active orders exist. Defaults to `false`.
      */
     declare public readonly force: pulumi.Output<boolean>;
     /**
      * The date and time the role was last updated in RFC3339 format.
      */
-    declare public /*out*/ readonly lastUpdateDate: pulumi.Output<string>;
+    declare public /*out*/ readonly lastUpdatedDate: pulumi.Output<string>;
     /**
      * The path where the PKI External CA secret backend is mounted.
      */
@@ -164,8 +172,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["creationDate"] = state?.creationDate;
             resourceInputs["csrGenerateKeyType"] = state?.csrGenerateKeyType;
             resourceInputs["csrIdentifierPopulation"] = state?.csrIdentifierPopulation;
+            resourceInputs["dnsProviderName"] = state?.dnsProviderName;
+            resourceInputs["dnsProviderType"] = state?.dnsProviderType;
             resourceInputs["force"] = state?.force;
-            resourceInputs["lastUpdateDate"] = state?.lastUpdateDate;
+            resourceInputs["lastUpdatedDate"] = state?.lastUpdatedDate;
             resourceInputs["mount"] = state?.mount;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -183,12 +193,14 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedDomains"] = args?.allowedDomains;
             resourceInputs["csrGenerateKeyType"] = args?.csrGenerateKeyType;
             resourceInputs["csrIdentifierPopulation"] = args?.csrIdentifierPopulation;
+            resourceInputs["dnsProviderName"] = args?.dnsProviderName;
+            resourceInputs["dnsProviderType"] = args?.dnsProviderType;
             resourceInputs["force"] = args?.force;
             resourceInputs["mount"] = args?.mount;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["creationDate"] = undefined /*out*/;
-            resourceInputs["lastUpdateDate"] = undefined /*out*/;
+            resourceInputs["lastUpdatedDate"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretBackendRole.__pulumiType, name, resourceInputs, opts);
@@ -228,13 +240,21 @@ export interface SecretBackendRoleState {
      */
     csrIdentifierPopulation?: pulumi.Input<string | undefined>;
     /**
+     * The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     */
+    dnsProviderName?: pulumi.Input<string | undefined>;
+    /**
+     * The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     */
+    dnsProviderType?: pulumi.Input<string | undefined>;
+    /**
      * Force deletion even when active orders exist. Defaults to `false`.
      */
     force?: pulumi.Input<boolean | undefined>;
     /**
      * The date and time the role was last updated in RFC3339 format.
      */
-    lastUpdateDate?: pulumi.Input<string | undefined>;
+    lastUpdatedDate?: pulumi.Input<string | undefined>;
     /**
      * The path where the PKI External CA secret backend is mounted.
      */
@@ -280,6 +300,14 @@ export interface SecretBackendRoleArgs {
      * The technique used to populate a CSR from the provided identifiers in the identifier workflow. Valid values are:
      */
     csrIdentifierPopulation?: pulumi.Input<string | undefined>;
+    /**
+     * The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     */
+    dnsProviderName?: pulumi.Input<string | undefined>;
+    /**
+     * The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     */
+    dnsProviderType?: pulumi.Input<string | undefined>;
     /**
      * Force deletion even when active orders exist. Defaults to `false`.
      */

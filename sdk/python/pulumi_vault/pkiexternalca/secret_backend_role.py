@@ -26,6 +26,8 @@ class SecretBackendRoleArgs:
                  allowed_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  csr_generate_key_type: pulumi.Input[Optional[_builtins.str]] = None,
                  csr_identifier_population: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  force: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None):
@@ -39,6 +41,8 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_domains: A list of domains the role will accept certificates for. May contain templates, as with ACL Path Templating (e.g., `{{identity.entity.aliases.<mount accessor>.name}}`).
         :param pulumi.Input[_builtins.str] csr_generate_key_type: The key type and size/parameters to use when generating a new key if running in the identifier workflow. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] csr_identifier_population: The technique used to populate a CSR from the provided identifiers in the identifier workflow. Valid values are:
+        :param pulumi.Input[_builtins.str] dns_provider_name: The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        :param pulumi.Input[_builtins.str] dns_provider_type: The type of the DNS provider. Required when `dns_provider_name` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.bool] force: Force deletion even when active orders exist. Defaults to `false`.
         :param pulumi.Input[_builtins.str] name: Name of the role. Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -58,6 +62,10 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "csr_generate_key_type", csr_generate_key_type)
         if csr_identifier_population is not None:
             pulumi.set(__self__, "csr_identifier_population", csr_identifier_population)
+        if dns_provider_name is not None:
+            pulumi.set(__self__, "dns_provider_name", dns_provider_name)
+        if dns_provider_type is not None:
+            pulumi.set(__self__, "dns_provider_type", dns_provider_type)
         if force is not None:
             pulumi.set(__self__, "force", force)
         if name is not None:
@@ -150,6 +158,30 @@ class SecretBackendRoleArgs:
         pulumi.set(self, "csr_identifier_population", value)
 
     @_builtins.property
+    @pulumi.getter(name="dnsProviderName")
+    def dns_provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "dns_provider_name")
+
+    @dns_provider_name.setter
+    def dns_provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dns_provider_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dnsProviderType")
+    def dns_provider_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The type of the DNS provider. Required when `dns_provider_name` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "dns_provider_type")
+
+    @dns_provider_type.setter
+    def dns_provider_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dns_provider_type", value)
+
+    @_builtins.property
     @pulumi.getter
     def force(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -199,8 +231,10 @@ class _SecretBackendRoleState:
                  creation_date: pulumi.Input[Optional[_builtins.str]] = None,
                  csr_generate_key_type: pulumi.Input[Optional[_builtins.str]] = None,
                  csr_identifier_population: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  force: pulumi.Input[Optional[_builtins.bool]] = None,
-                 last_update_date: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None):
@@ -214,8 +248,10 @@ class _SecretBackendRoleState:
         :param pulumi.Input[_builtins.str] creation_date: The date and time the role was created in RFC3339 format.
         :param pulumi.Input[_builtins.str] csr_generate_key_type: The key type and size/parameters to use when generating a new key if running in the identifier workflow. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] csr_identifier_population: The technique used to populate a CSR from the provided identifiers in the identifier workflow. Valid values are:
+        :param pulumi.Input[_builtins.str] dns_provider_name: The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        :param pulumi.Input[_builtins.str] dns_provider_type: The type of the DNS provider. Required when `dns_provider_name` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.bool] force: Force deletion even when active orders exist. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] last_update_date: The date and time the role was last updated in RFC3339 format.
+        :param pulumi.Input[_builtins.str] last_updated_date: The date and time the role was last updated in RFC3339 format.
         :param pulumi.Input[_builtins.str] mount: The path where the PKI External CA secret backend is mounted.
         :param pulumi.Input[_builtins.str] name: Name of the role. Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -237,10 +273,14 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "csr_generate_key_type", csr_generate_key_type)
         if csr_identifier_population is not None:
             pulumi.set(__self__, "csr_identifier_population", csr_identifier_population)
+        if dns_provider_name is not None:
+            pulumi.set(__self__, "dns_provider_name", dns_provider_name)
+        if dns_provider_type is not None:
+            pulumi.set(__self__, "dns_provider_type", dns_provider_type)
         if force is not None:
             pulumi.set(__self__, "force", force)
-        if last_update_date is not None:
-            pulumi.set(__self__, "last_update_date", last_update_date)
+        if last_updated_date is not None:
+            pulumi.set(__self__, "last_updated_date", last_updated_date)
         if mount is not None:
             pulumi.set(__self__, "mount", mount)
         if name is not None:
@@ -333,6 +373,30 @@ class _SecretBackendRoleState:
         pulumi.set(self, "csr_identifier_population", value)
 
     @_builtins.property
+    @pulumi.getter(name="dnsProviderName")
+    def dns_provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "dns_provider_name")
+
+    @dns_provider_name.setter
+    def dns_provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dns_provider_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dnsProviderType")
+    def dns_provider_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The type of the DNS provider. Required when `dns_provider_name` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "dns_provider_type")
+
+    @dns_provider_type.setter
+    def dns_provider_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "dns_provider_type", value)
+
+    @_builtins.property
     @pulumi.getter
     def force(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -345,16 +409,16 @@ class _SecretBackendRoleState:
         pulumi.set(self, "force", value)
 
     @_builtins.property
-    @pulumi.getter(name="lastUpdateDate")
-    def last_update_date(self) -> pulumi.Input[Optional[_builtins.str]]:
+    @pulumi.getter(name="lastUpdatedDate")
+    def last_updated_date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date and time the role was last updated in RFC3339 format.
         """
-        return pulumi.get(self, "last_update_date")
+        return pulumi.get(self, "last_updated_date")
 
-    @last_update_date.setter
-    def last_update_date(self, value: pulumi.Input[Optional[_builtins.str]]):
-        pulumi.set(self, "last_update_date", value)
+    @last_updated_date.setter
+    def last_updated_date(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "last_updated_date", value)
 
     @_builtins.property
     @pulumi.getter
@@ -408,6 +472,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  csr_generate_key_type: pulumi.Input[Optional[_builtins.str]] = None,
                  csr_identifier_population: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  force: pulumi.Input[Optional[_builtins.bool]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -477,6 +543,8 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_domains: A list of domains the role will accept certificates for. May contain templates, as with ACL Path Templating (e.g., `{{identity.entity.aliases.<mount accessor>.name}}`).
         :param pulumi.Input[_builtins.str] csr_generate_key_type: The key type and size/parameters to use when generating a new key if running in the identifier workflow. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] csr_identifier_population: The technique used to populate a CSR from the provided identifiers in the identifier workflow. Valid values are:
+        :param pulumi.Input[_builtins.str] dns_provider_name: The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        :param pulumi.Input[_builtins.str] dns_provider_type: The type of the DNS provider. Required when `dns_provider_name` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.bool] force: Force deletion even when active orders exist. Defaults to `false`.
         :param pulumi.Input[_builtins.str] mount: The path where the PKI External CA secret backend is mounted.
         :param pulumi.Input[_builtins.str] name: Name of the role. Must be unique within the backend.
@@ -568,6 +636,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  csr_generate_key_type: pulumi.Input[Optional[_builtins.str]] = None,
                  csr_identifier_population: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 dns_provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  force: pulumi.Input[Optional[_builtins.bool]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -589,6 +659,8 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_domains"] = allowed_domains
             __props__.__dict__["csr_generate_key_type"] = csr_generate_key_type
             __props__.__dict__["csr_identifier_population"] = csr_identifier_population
+            __props__.__dict__["dns_provider_name"] = dns_provider_name
+            __props__.__dict__["dns_provider_type"] = dns_provider_type
             __props__.__dict__["force"] = force
             if mount is None and not opts.urn:
                 raise TypeError("Missing required property 'mount'")
@@ -596,7 +668,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["creation_date"] = None
-            __props__.__dict__["last_update_date"] = None
+            __props__.__dict__["last_updated_date"] = None
         super(SecretBackendRole, __self__).__init__(
             'vault:pkiexternalca/secretBackendRole:SecretBackendRole',
             resource_name,
@@ -614,8 +686,10 @@ class SecretBackendRole(pulumi.CustomResource):
             creation_date: pulumi.Input[Optional[_builtins.str]] = None,
             csr_generate_key_type: pulumi.Input[Optional[_builtins.str]] = None,
             csr_identifier_population: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_provider_type: pulumi.Input[Optional[_builtins.str]] = None,
             force: pulumi.Input[Optional[_builtins.bool]] = None,
-            last_update_date: pulumi.Input[Optional[_builtins.str]] = None,
+            last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
             mount: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendRole':
@@ -633,8 +707,10 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] creation_date: The date and time the role was created in RFC3339 format.
         :param pulumi.Input[_builtins.str] csr_generate_key_type: The key type and size/parameters to use when generating a new key if running in the identifier workflow. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] csr_identifier_population: The technique used to populate a CSR from the provided identifiers in the identifier workflow. Valid values are:
+        :param pulumi.Input[_builtins.str] dns_provider_name: The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        :param pulumi.Input[_builtins.str] dns_provider_type: The type of the DNS provider. Required when `dns_provider_name` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.bool] force: Force deletion even when active orders exist. Defaults to `false`.
-        :param pulumi.Input[_builtins.str] last_update_date: The date and time the role was last updated in RFC3339 format.
+        :param pulumi.Input[_builtins.str] last_updated_date: The date and time the role was last updated in RFC3339 format.
         :param pulumi.Input[_builtins.str] mount: The path where the PKI External CA secret backend is mounted.
         :param pulumi.Input[_builtins.str] name: Name of the role. Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -653,8 +729,10 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["creation_date"] = creation_date
         __props__.__dict__["csr_generate_key_type"] = csr_generate_key_type
         __props__.__dict__["csr_identifier_population"] = csr_identifier_population
+        __props__.__dict__["dns_provider_name"] = dns_provider_name
+        __props__.__dict__["dns_provider_type"] = dns_provider_type
         __props__.__dict__["force"] = force
-        __props__.__dict__["last_update_date"] = last_update_date
+        __props__.__dict__["last_updated_date"] = last_updated_date
         __props__.__dict__["mount"] = mount
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -717,6 +795,22 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "csr_identifier_population")
 
     @_builtins.property
+    @pulumi.getter(name="dnsProviderName")
+    def dns_provider_name(self) -> pulumi.Output[_builtins.str]:
+        """
+        The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "dns_provider_name")
+
+    @_builtins.property
+    @pulumi.getter(name="dnsProviderType")
+    def dns_provider_type(self) -> pulumi.Output[_builtins.str]:
+        """
+        The type of the DNS provider. Required when `dns_provider_name` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "dns_provider_type")
+
+    @_builtins.property
     @pulumi.getter
     def force(self) -> pulumi.Output[_builtins.bool]:
         """
@@ -725,12 +819,12 @@ class SecretBackendRole(pulumi.CustomResource):
         return pulumi.get(self, "force")
 
     @_builtins.property
-    @pulumi.getter(name="lastUpdateDate")
-    def last_update_date(self) -> pulumi.Output[_builtins.str]:
+    @pulumi.getter(name="lastUpdatedDate")
+    def last_updated_date(self) -> pulumi.Output[_builtins.str]:
         """
         The date and time the role was last updated in RFC3339 format.
         """
-        return pulumi.get(self, "last_update_date")
+        return pulumi.get(self, "last_updated_date")
 
     @_builtins.property
     @pulumi.getter

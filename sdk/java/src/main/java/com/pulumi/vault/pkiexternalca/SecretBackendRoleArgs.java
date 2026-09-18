@@ -109,6 +109,36 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Import(name="dnsProviderName")
+    private @Nullable Output<String> dnsProviderName;
+
+    /**
+     * @return The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Optional<Output<String>> dnsProviderName() {
+        return Optional.ofNullable(this.dnsProviderName);
+    }
+
+    /**
+     * The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Import(name="dnsProviderType")
+    private @Nullable Output<String> dnsProviderType;
+
+    /**
+     * @return The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Optional<Output<String>> dnsProviderType() {
+        return Optional.ofNullable(this.dnsProviderType);
+    }
+
+    /**
      * Force deletion even when active orders exist. Defaults to `false`.
      * 
      */
@@ -183,6 +213,8 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         this.allowedDomains = $.allowedDomains;
         this.csrGenerateKeyType = $.csrGenerateKeyType;
         this.csrIdentifierPopulation = $.csrIdentifierPopulation;
+        this.dnsProviderName = $.dnsProviderName;
+        this.dnsProviderType = $.dnsProviderType;
         this.force = $.force;
         this.mount = $.mount;
         this.name = $.name;
@@ -361,6 +393,48 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder csrIdentifierPopulation(String csrIdentifierPopulation) {
             return csrIdentifierPopulation(Output.of(csrIdentifierPopulation));
+        }
+
+        /**
+         * @param dnsProviderName The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderName(@Nullable Output<String> dnsProviderName) {
+            $.dnsProviderName = dnsProviderName;
+            return this;
+        }
+
+        /**
+         * @param dnsProviderName The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderName(String dnsProviderName) {
+            return dnsProviderName(Output.of(dnsProviderName));
+        }
+
+        /**
+         * @param dnsProviderType The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderType(@Nullable Output<String> dnsProviderType) {
+            $.dnsProviderType = dnsProviderType;
+            return this;
+        }
+
+        /**
+         * @param dnsProviderType The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderType(String dnsProviderType) {
+            return dnsProviderType(Output.of(dnsProviderType));
         }
 
         /**

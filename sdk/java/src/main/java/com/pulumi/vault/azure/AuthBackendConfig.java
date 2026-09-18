@@ -168,6 +168,182 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * You can configure the Azure auth engine to use static credentials with `rootCreds`. Requires Vault 2.2.0+:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.azure.AuthBackendConfig;
+ * import com.pulumi.vault.azure.AuthBackendConfigArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .type("azure")
+ *             .build());
+ * 
+ *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
+ *             .backend(example.path())
+ *             .tenantId("11111111-2222-3333-4444-555555555555")
+ *             .clientId("11111111-2222-3333-4444-555555555555")
+ *             .clientSecret("01234567890123456789")
+ *             .resource("https://vault.hashicorp.com")
+ *             .authType("root_creds")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * You can configure the Azure auth engine to use Vault Plugin Workload Identity Federation with `pluginWif`. Requires Vault Enterprise 2.2.0+:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.azure.AuthBackendConfig;
+ * import com.pulumi.vault.azure.AuthBackendConfigArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .type("azure")
+ *             .identityTokenKey("example-key")
+ *             .build());
+ * 
+ *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
+ *             .backend(example.path())
+ *             .tenantId("11111111-2222-3333-4444-555555555555")
+ *             .clientId("11111111-2222-3333-4444-555555555555")
+ *             .resource("https://vault.hashicorp.com")
+ *             .authType("plugin_wif")
+ *             .identityTokenAudience("<TOKEN_AUDIENCE>")
+ *             .identityTokenTtl(3600)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * You can configure the Azure auth engine to use AKS Workload Identity Federation with `aksWif` for a secretless, cross-tenant setup. Requires Vault 2.2.0+:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.azure.AuthBackendConfig;
+ * import com.pulumi.vault.azure.AuthBackendConfigArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .type("azure")
+ *             .build());
+ * 
+ *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
+ *             .backend(example.path())
+ *             .tenantId("11111111-2222-3333-4444-555555555555")
+ *             .clientId("11111111-2222-3333-4444-555555555555")
+ *             .resource("https://management.azure.com")
+ *             .authType("aks_wif")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * You can configure the Azure auth engine to use Azure Managed Service Identity with `msi` for a secretless setup. Requires Vault 2.2.0+:
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.azure.AuthBackendConfig;
+ * import com.pulumi.vault.azure.AuthBackendConfigArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new AuthBackend("example", AuthBackendArgs.builder()
+ *             .type("azure")
+ *             .build());
+ * 
+ *         var exampleAuthBackendConfig = new AuthBackendConfig("exampleAuthBackendConfig", AuthBackendConfigArgs.builder()
+ *             .backend(example.path())
+ *             .tenantId("11111111-2222-3333-4444-555555555555")
+ *             .clientId("11111111-2222-3333-4444-555555555555")
+ *             .resource("https://management.azure.com")
+ *             .authType("msi")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ## Ephemeral Attributes Reference
  * 
  * The following write-only attributes are supported:
@@ -188,6 +364,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:azure/authBackendConfig:AuthBackendConfig")
 public class AuthBackendConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+     * 
+     */
+    @Export(name="authType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> authType;
+
+    /**
+     * @return The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
+     * 
+     */
+    public Output<Optional<String>> authType() {
+        return Codegen.optional(this.authType);
+    }
     /**
      * The path the Azure auth backend being configured was
      * mounted at.  Defaults to `azure`.

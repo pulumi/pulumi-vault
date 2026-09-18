@@ -7,30 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * >  **Preview feature:** This feature is currently available as a preview and is possibly incomplete and subject to change. **We strongly discourage using preview or beta features with production workflows.**
- *
  * Manages OAuth Resource Server Configuration profiles in Vault Enterprise. These profiles define how Vault validates JWT tokens from OAuth 2.0 resource servers, enabling JWT-based authentication for API requests.
  *
- * > **Important** This resource is only available in Vault Enterprise and requires Vault 2.0.1 or later.
+ * > **Important** This resource is available only in Vault Enterprise and requires Vault 2.1.0 or later.
  *
  * ## Example Usage
- *
- * ### Enable the Feature
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const oauth = new vault.ActivationFlags("oauth", {feature: "oauth-resource-server"});
- * const example = new vault.OauthResourceServerConfigProfile("example", {
- *     profileName: "example-profile",
- *     issuerId: "https://example.com",
- *     useJwks: true,
- *     jwksUri: "https://example.com/.well-known/jwks.json",
- * }, {
- *     dependsOn: [oauth],
- * });
- * ```
  *
  * ### JWKS-Based Profile
  *
@@ -155,9 +136,9 @@ import * as utilities from "./utilities";
  *
  * * **Clock Skew**: Use `clockSkewLeeway` to handle clock differences between systems. A value of 30-60 seconds is typically sufficient for most environments.
  *
- * * **Enterprise Feature**: OAuth Resource Server Configuration is only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
+ * * **Enterprise Feature**: OAuth Resource Server Configuration is available only in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
  *
- * * **Version Requirement**: This resource requires Vault 2.0.1 or later.
+ * * **Version Requirement**: This resource requires Vault 2.1.0 or later.
  *
  * ## Security Considerations
  *

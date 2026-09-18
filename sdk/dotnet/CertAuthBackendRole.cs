@@ -52,6 +52,50 @@ namespace Pulumi.Vault
     /// 
     /// });
     /// ```
+    /// 
+    /// ### With Write-Only Certificate
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cert = new Vault.AuthBackend("cert", new()
+    ///     {
+    ///         Path = "cert",
+    ///         Type = "cert",
+    ///     });
+    /// 
+    ///     var certCertAuthBackendRole = new Vault.CertAuthBackendRole("cert", new()
+    ///     {
+    ///         Name = "foo",
+    ///         CertificateWo = caCertificate,
+    ///         CertificateWoVersion = 1,
+    ///         Backend = cert.Path,
+    ///         AllowedNames = new[]
+    ///         {
+    ///             "foo.example.org",
+    ///             "baz.example.org",
+    ///         },
+    ///         TokenTtl = 300,
+    ///         TokenMaxTtl = 600,
+    ///         TokenPolicies = new[]
+    ///         {
+    ///             "foo",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Ephemeral Attributes Reference
+    /// 
+    /// The following write-only attributes are supported:
+    /// 
+    /// * `CertificateWo` - (Optional string) Write-only CA certificate used to validate client certificates. Use `CertificateWo` to supply the certificate from an ephemeral resource. Exactly one of `CertificateWo` or  `Certificate` must be specified. This attribute conflicts with `Certificate`. **Note**: This property is write-only and will not be read from the API.
     /// </summary>
     [VaultResourceType("vault:index/certAuthBackendRole:CertAuthBackendRole")]
     public partial class CertAuthBackendRole : global::Pulumi.CustomResource
@@ -106,10 +150,22 @@ namespace Pulumi.Vault
         public Output<string?> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// CA certificate used to validate client certificates
+        /// CA certificate used to validate client certificates. Exactly one of `Certificate` or `CertificateWo` must be specified. Conflicts with `CertificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `CertificateWo` is used, this field is populated from the vault API response after apply.
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("certificateWo")]
+        public Output<string?> CertificateWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of `CertificateWo` to use during write operations. Required with `CertificateWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Output("certificateWoVersion")]
+        public Output<int?> CertificateWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The name to display on tokens issued under this role.
@@ -260,7 +316,7 @@ namespace Pulumi.Vault
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public CertAuthBackendRole(string name, CertAuthBackendRoleArgs args, CustomResourceOptions? options = null)
+        public CertAuthBackendRole(string name, CertAuthBackendRoleArgs? args = null, CustomResourceOptions? options = null)
             : base("vault:index/certAuthBackendRole:CertAuthBackendRole", name, args ?? new CertAuthBackendRoleArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -275,6 +331,10 @@ namespace Pulumi.Vault
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "certificateWo",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -390,10 +450,32 @@ namespace Pulumi.Vault
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// CA certificate used to validate client certificates
+        /// CA certificate used to validate client certificates. Exactly one of `Certificate` or `CertificateWo` must be specified. Conflicts with `CertificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `CertificateWo` is used, this field is populated from the vault API response after apply.
         /// </summary>
-        [Input("certificate", required: true)]
-        public Input<string> Certificate { get; set; } = null!;
+        [Input("certificate")]
+        public Input<string>? Certificate { get; set; }
+
+        [Input("certificateWo")]
+        private Input<string>? _certificateWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? CertificateWo
+        {
+            get => _certificateWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _certificateWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of `CertificateWo` to use during write operations. Required with `CertificateWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("certificateWoVersion")]
+        public Input<int>? CertificateWoVersion { get; set; }
 
         /// <summary>
         /// The name to display on tokens issued under this role.
@@ -660,10 +742,32 @@ namespace Pulumi.Vault
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// CA certificate used to validate client certificates
+        /// CA certificate used to validate client certificates. Exactly one of `Certificate` or `CertificateWo` must be specified. Conflicts with `CertificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `CertificateWo` is used, this field is populated from the vault API response after apply.
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
+
+        [Input("certificateWo")]
+        private Input<string>? _certificateWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? CertificateWo
+        {
+            get => _certificateWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _certificateWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of `CertificateWo` to use during write operations. Required with `CertificateWo`. For more info see updating write-only attributes.
+        /// </summary>
+        [Input("certificateWoVersion")]
+        public Input<int>? CertificateWoVersion { get; set; }
 
         /// <summary>
         /// The name to display on tokens issued under this role.

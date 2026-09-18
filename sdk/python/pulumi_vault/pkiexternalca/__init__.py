@@ -8,6 +8,10 @@ import typing
 # Export this package's modules as members:
 from .get_secret_backend_order_challenge import *
 from .secret_backend_acme_account import *
+from .secret_backend_dns_provider_aws_route53 import *
+from .secret_backend_dns_provider_azure import *
+from .secret_backend_dns_provider_gcp import *
+from .secret_backend_dns_provider_rfc2136 import *
 from .secret_backend_order import *
 from .secret_backend_order_certificate import *
 from .secret_backend_order_challenge_fulfilled import *
