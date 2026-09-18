@@ -6,7 +6,7 @@ Subject: [PATCH] Expose framework provider for Pulumi bridge muxing
 
 diff --git a/vault/pulumi_framework_provider.go b/vault/pulumi_framework_provider.go
 new file mode 100644
-index 00000000..22ad63e7
+index 000000000000..22ad63e76e69
 --- /dev/null
 +++ b/vault/pulumi_framework_provider.go
 @@ -0,0 +1,19 @@

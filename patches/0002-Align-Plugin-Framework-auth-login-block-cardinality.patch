@@ -8,7 +8,7 @@ same constraint to the duplicated Plugin Framework schema so consumers
 do not derive incompatible provider configuration shapes.
 
 diff --git a/internal/provider/fwprovider/auth.go b/internal/provider/fwprovider/auth.go
-index ecbf16f1..a868463f 100644
+index ecbf16f1989f..a868463f8db1 100644
 --- a/internal/provider/fwprovider/auth.go
 +++ b/internal/provider/fwprovider/auth.go
 @@ -7,6 +7,7 @@ import (
