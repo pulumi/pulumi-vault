@@ -87,6 +87,10 @@ export class SecretBackendAcmeAccount extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly activeKeyVersion: pulumi.Output<number>;
     /**
+     * Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+     */
+    declare public readonly defaultNameserver: pulumi.Output<string | undefined>;
+    /**
      * ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
      */
     declare public readonly directoryUrl: pulumi.Output<string>;
@@ -142,6 +146,7 @@ export class SecretBackendAcmeAccount extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SecretBackendAcmeAccountState | undefined;
             resourceInputs["activeKeyVersion"] = state?.activeKeyVersion;
+            resourceInputs["defaultNameserver"] = state?.defaultNameserver;
             resourceInputs["directoryUrl"] = state?.directoryUrl;
             resourceInputs["eabKey"] = state?.eabKey;
             resourceInputs["eabKid"] = state?.eabKid;
@@ -162,6 +167,7 @@ export class SecretBackendAcmeAccount extends pulumi.CustomResource {
             if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
+            resourceInputs["defaultNameserver"] = args?.defaultNameserver;
             resourceInputs["directoryUrl"] = args?.directoryUrl;
             resourceInputs["eabKey"] = args?.eabKey ? pulumi.secret(args.eabKey) : undefined;
             resourceInputs["eabKid"] = args?.eabKid ? pulumi.secret(args.eabKid) : undefined;
@@ -188,6 +194,10 @@ export interface SecretBackendAcmeAccountState {
      * Version of the active account key, starts at zero.
      */
     activeKeyVersion?: pulumi.Input<number | undefined>;
+    /**
+     * Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+     */
+    defaultNameserver?: pulumi.Input<string | undefined>;
     /**
      * ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
      */
@@ -235,6 +245,10 @@ export interface SecretBackendAcmeAccountState {
  * The set of arguments for constructing a SecretBackendAcmeAccount resource.
  */
 export interface SecretBackendAcmeAccountArgs {
+    /**
+     * Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+     */
+    defaultNameserver?: pulumi.Input<string | undefined>;
     /**
      * ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
      */

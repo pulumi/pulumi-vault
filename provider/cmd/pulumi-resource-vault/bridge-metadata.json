@@ -1932,6 +1932,42 @@
                     }
                 }
             },
+            "vault_pki_external_ca_secret_backend_dns_provider_aws_route53": {
+                "current": "vault:pkiexternalca/secretBackendDnsProviderAwsRoute53:SecretBackendDnsProviderAwsRoute53",
+                "majorVersion": 7,
+                "fields": {
+                    "identifiers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_pki_external_ca_secret_backend_dns_provider_azure": {
+                "current": "vault:pkiexternalca/secretBackendDnsProviderAzure:SecretBackendDnsProviderAzure",
+                "majorVersion": 7,
+                "fields": {
+                    "identifiers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_pki_external_ca_secret_backend_dns_provider_gcp": {
+                "current": "vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp",
+                "majorVersion": 7,
+                "fields": {
+                    "identifiers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_pki_external_ca_secret_backend_dns_provider_rfc2136": {
+                "current": "vault:pkiexternalca/secretBackendDnsProviderRfc2136:SecretBackendDnsProviderRfc2136",
+                "majorVersion": 7,
+                "fields": {
+                    "identifiers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_pki_external_ca_secret_backend_order": {
                 "current": "vault:pkiexternalca/secretBackendOrder:SecretBackendOrder",
                 "majorVersion": 7,
@@ -2772,6 +2808,27 @@
                     }
                 }
             },
+            "vault_transform_transformation_tokenization": {
+                "current": "vault:transform/transformationTokenization:TransformationTokenization",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_roles": {
+                        "maxItemsOne": false
+                    },
+                    "stores": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_transform_transformation_tokenization_store": {
+                "current": "vault:transform/transformationTokenizationStore:TransformationTokenizationStore",
+                "majorVersion": 7,
+                "fields": {
+                    "supported_transformations": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_transit_secret_backend_key": {
                 "current": "vault:transit/secretBackendKey:SecretBackendKey",
                 "majorVersion": 7,
@@ -3428,6 +3485,26 @@
                     "kind": "missing"
                 }
             },
+            "vault_pki_external_ca_secret_backend_dns_provider_aws_route53": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_external_ca_secret_backend_dns_provider_azure": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_external_ca_secret_backend_dns_provider_gcp": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_external_ca_secret_backend_dns_provider_rfc2136": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "vault_pki_external_ca_secret_backend_order": {
                 "computeID": {
                     "kind": "missing"
@@ -3669,6 +3746,10 @@
             "vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate": 0,
             "vault:pkiSecret/secretBackendSign:SecretBackendSign": 0,
             "vault:pkiexternalca/secretBackendAcmeAccount:SecretBackendAcmeAccount": 1,
+            "vault:pkiexternalca/secretBackendDnsProviderAwsRoute53:SecretBackendDnsProviderAwsRoute53": 1,
+            "vault:pkiexternalca/secretBackendDnsProviderAzure:SecretBackendDnsProviderAzure": 1,
+            "vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp": 1,
+            "vault:pkiexternalca/secretBackendDnsProviderRfc2136:SecretBackendDnsProviderRfc2136": 1,
             "vault:pkiexternalca/secretBackendOrder:SecretBackendOrder": 1,
             "vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate": 1,
             "vault:pkiexternalca/secretBackendOrderChallengeFulfilled:SecretBackendOrderChallengeFulfilled": 1,
@@ -3702,6 +3783,8 @@
             "vault:transform/role:Role": 0,
             "vault:transform/template:Template": 0,
             "vault:transform/transformation:Transformation": 0,
+            "vault:transform/transformationTokenization:TransformationTokenization": 0,
+            "vault:transform/transformationTokenizationStore:TransformationTokenizationStore": 0,
             "vault:transit/secretBackendKey:SecretBackendKey": 0,
             "vault:transit/secretCacheConfig:SecretCacheConfig": 0
         },

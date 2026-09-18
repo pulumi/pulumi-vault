@@ -1523,6 +1523,38 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "pkiexternalca/secretBackendDnsProviderAwsRoute53",
+  "fqn": "pulumi_vault.pkiexternalca",
+  "classes": {
+   "vault:pkiexternalca/secretBackendDnsProviderAwsRoute53:SecretBackendDnsProviderAwsRoute53": "SecretBackendDnsProviderAwsRoute53"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiexternalca/secretBackendDnsProviderAzure",
+  "fqn": "pulumi_vault.pkiexternalca",
+  "classes": {
+   "vault:pkiexternalca/secretBackendDnsProviderAzure:SecretBackendDnsProviderAzure": "SecretBackendDnsProviderAzure"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiexternalca/secretBackendDnsProviderGcp",
+  "fqn": "pulumi_vault.pkiexternalca",
+  "classes": {
+   "vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp": "SecretBackendDnsProviderGcp"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiexternalca/secretBackendDnsProviderRfc2136",
+  "fqn": "pulumi_vault.pkiexternalca",
+  "classes": {
+   "vault:pkiexternalca/secretBackendDnsProviderRfc2136:SecretBackendDnsProviderRfc2136": "SecretBackendDnsProviderRfc2136"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "pkiexternalca/secretBackendOrder",
   "fqn": "pulumi_vault.pkiexternalca",
   "classes": {
@@ -1783,6 +1815,22 @@ _utilities.register(
   "fqn": "pulumi_vault.transform",
   "classes": {
    "vault:transform/transformation:Transformation": "Transformation"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "transform/transformationTokenization",
+  "fqn": "pulumi_vault.transform",
+  "classes": {
+   "vault:transform/transformationTokenization:TransformationTokenization": "TransformationTokenization"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "transform/transformationTokenizationStore",
+  "fqn": "pulumi_vault.transform",
+  "classes": {
+   "vault:transform/transformationTokenizationStore:TransformationTokenizationStore": "TransformationTokenizationStore"
   }
  },
  {

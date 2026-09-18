@@ -92,10 +92,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// When credentials_wo is not provided, Vault uses its own environment to
 //			// authenticate with GCP. Supported options include:
-//			//  1. The GOOGLE_APPLICATION_CREDENTIALS environment variable set on the Vault
-//			//     server, pointing to a service account key file.
-//			//  2. Application Default Credentials (ADC) when Vault runs on GCP infrastructure
-//			//     with an attached service account.
+//			// 1. The GOOGLE_APPLICATION_CREDENTIALS environment variable set on the Vault
+//			//    server, pointing to a service account key file.
+//			// 2. Application Default Credentials (ADC) when Vault runs on GCP infrastructure
+//			//    with an attached service account.
 //			keymgmt2, err := vault.NewMount(ctx, "keymgmt", &vault.MountArgs{
 //				Path: pulumi.String("keymgmt"),
 //				Type: pulumi.String("keymgmt"),

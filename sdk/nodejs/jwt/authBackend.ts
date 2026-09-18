@@ -87,7 +87,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * Configuring the auth backend with Okta provider(requires Vault 2.2.0+):
+ * Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

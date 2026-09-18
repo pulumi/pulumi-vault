@@ -142,18 +142,48 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
     }
 
     /**
-     * CA certificate used to validate client certificates
+     * CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
      * 
      */
     @Import(name="certificate")
     private @Nullable Output<String> certificate;
 
     /**
-     * @return CA certificate used to validate client certificates
+     * @return CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
      * 
      */
     public Optional<Output<String>> certificate() {
         return Optional.ofNullable(this.certificate);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    @Import(name="certificateWo")
+    private @Nullable Output<String> certificateWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    public Optional<Output<String>> certificateWo() {
+        return Optional.ofNullable(this.certificateWo);
+    }
+
+    /**
+     * The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Import(name="certificateWoVersion")
+    private @Nullable Output<Integer> certificateWoVersion;
+
+    /**
+     * @return The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Optional<Output<Integer>> certificateWoVersion() {
+        return Optional.ofNullable(this.certificateWoVersion);
     }
 
     /**
@@ -510,6 +540,8 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         this.allowedUriSans = $.allowedUriSans;
         this.backend = $.backend;
         this.certificate = $.certificate;
+        this.certificateWo = $.certificateWo;
+        this.certificateWoVersion = $.certificateWoVersion;
         this.displayName = $.displayName;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -781,7 +813,7 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param certificate CA certificate used to validate client certificates
+         * @param certificate CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
          * 
          * @return builder
          * 
@@ -792,13 +824,55 @@ public final class CertAuthBackendRoleState extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param certificate CA certificate used to validate client certificates
+         * @param certificate CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
          * 
          * @return builder
          * 
          */
         public Builder certificate(String certificate) {
             return certificate(Output.of(certificate));
+        }
+
+        /**
+         * @param certificateWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWo(@Nullable Output<String> certificateWo) {
+            $.certificateWo = certificateWo;
+            return this;
+        }
+
+        /**
+         * @param certificateWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWo(String certificateWo) {
+            return certificateWo(Output.of(certificateWo));
+        }
+
+        /**
+         * @param certificateWoVersion The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWoVersion(@Nullable Output<Integer> certificateWoVersion) {
+            $.certificateWoVersion = certificateWoVersion;
+            return this;
+        }
+
+        /**
+         * @param certificateWoVersion The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder certificateWoVersion(Integer certificateWoVersion) {
+            return certificateWoVersion(Output.of(certificateWoVersion));
         }
 
         /**

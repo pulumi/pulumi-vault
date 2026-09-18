@@ -33,6 +33,21 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
     }
 
     /**
+     * Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Import(name="defaultNameserver")
+    private @Nullable Output<String> defaultNameserver;
+
+    /**
+     * @return Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Optional<Output<String>> defaultNameserver() {
+        return Optional.ofNullable(this.defaultNameserver);
+    }
+
+    /**
      * ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let&#39;s Encrypt production).
      * 
      */
@@ -181,6 +196,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
     private SecretBackendAcmeAccountState(SecretBackendAcmeAccountState $) {
         this.activeKeyVersion = $.activeKeyVersion;
+        this.defaultNameserver = $.defaultNameserver;
         this.directoryUrl = $.directoryUrl;
         this.eabKey = $.eabKey;
         this.eabKid = $.eabKid;
@@ -229,6 +245,27 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
          */
         public Builder activeKeyVersion(Integer activeKeyVersion) {
             return activeKeyVersion(Output.of(activeKeyVersion));
+        }
+
+        /**
+         * @param defaultNameserver Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultNameserver(@Nullable Output<String> defaultNameserver) {
+            $.defaultNameserver = defaultNameserver;
+            return this;
+        }
+
+        /**
+         * @param defaultNameserver Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder defaultNameserver(String defaultNameserver) {
+            return defaultNameserver(Output.of(defaultNameserver));
         }
 
         /**

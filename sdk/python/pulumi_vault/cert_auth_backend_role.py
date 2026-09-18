@@ -19,7 +19,6 @@ __all__ = ['CertAuthBackendRoleArgs', 'CertAuthBackendRole']
 @pulumi.input_type
 class CertAuthBackendRoleArgs:
     def __init__(__self__, *,
-                 certificate: pulumi.Input[_builtins.str],
                  alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  allowed_common_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_dns_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -28,6 +27,9 @@ class CertAuthBackendRoleArgs:
                  allowed_organizational_units: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -51,7 +53,6 @@ class CertAuthBackendRoleArgs:
         """
         The set of arguments for constructing a CertAuthBackendRole resource.
 
-        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] alias_metadata: The metadata to be tied to generated entity alias.
                  This should be a list or map containing the metadata in key value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_common_names: Allowed the common names for authenticated client certificates
@@ -61,6 +62,9 @@ class CertAuthBackendRoleArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[_builtins.str] backend: Path to the mounted Cert auth backend
+        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates. Exactly one of `certificate` or `certificate_wo` must be specified. Conflicts with `certificate_wo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificate_wo` is used, this field is populated from the vault API response after apply.
+        :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] certificate_wo_version: The version of `certificate_wo` to use during write operations. Required with `certificate_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.str] display_name: The name to display on tokens issued under this role.
         :param pulumi.Input[_builtins.str] name: Name of the role
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -103,7 +107,6 @@ class CertAuthBackendRoleArgs:
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
         """
-        pulumi.set(__self__, "certificate", certificate)
         if alias_metadata is not None:
             pulumi.set(__self__, "alias_metadata", alias_metadata)
         if allowed_common_names is not None:
@@ -120,6 +123,12 @@ class CertAuthBackendRoleArgs:
             pulumi.set(__self__, "allowed_uri_sans", allowed_uri_sans)
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
+        if certificate is not None:
+            pulumi.set(__self__, "certificate", certificate)
+        if certificate_wo is not None:
+            pulumi.set(__self__, "certificate_wo", certificate_wo)
+        if certificate_wo_version is not None:
+            pulumi.set(__self__, "certificate_wo_version", certificate_wo_version)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
         if name is not None:
@@ -160,18 +169,6 @@ class CertAuthBackendRoleArgs:
             pulumi.set(__self__, "token_ttl", token_ttl)
         if token_type is not None:
             pulumi.set(__self__, "token_type", token_type)
-
-    @_builtins.property
-    @pulumi.getter
-    def certificate(self) -> pulumi.Input[_builtins.str]:
-        """
-        CA certificate used to validate client certificates
-        """
-        return pulumi.get(self, "certificate")
-
-    @certificate.setter
-    def certificate(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
@@ -269,6 +266,42 @@ class CertAuthBackendRoleArgs:
     @backend.setter
     def backend(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backend", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        CA certificate used to validate client certificates. Exactly one of `certificate` or `certificate_wo` must be specified. Conflicts with `certificate_wo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificate_wo` is used, this field is populated from the vault API response after apply.
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWo")
+    def certificate_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "certificate_wo")
+
+    @certificate_wo.setter
+    def certificate_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "certificate_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWoVersion")
+    def certificate_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The version of `certificate_wo` to use during write operations. Required with `certificate_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "certificate_wo_version")
+
+    @certificate_wo_version.setter
+    def certificate_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "certificate_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
@@ -544,6 +577,8 @@ class _CertAuthBackendRoleState:
                  allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -576,7 +611,9 @@ class _CertAuthBackendRoleState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[_builtins.str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates
+        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates. Exactly one of `certificate` or `certificate_wo` must be specified. Conflicts with `certificate_wo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificate_wo` is used, this field is populated from the vault API response after apply.
+        :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] certificate_wo_version: The version of `certificate_wo` to use during write operations. Required with `certificate_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.str] display_name: The name to display on tokens issued under this role.
         :param pulumi.Input[_builtins.str] name: Name of the role
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -637,6 +674,10 @@ class _CertAuthBackendRoleState:
             pulumi.set(__self__, "backend", backend)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if certificate_wo is not None:
+            pulumi.set(__self__, "certificate_wo", certificate_wo)
+        if certificate_wo_version is not None:
+            pulumi.set(__self__, "certificate_wo_version", certificate_wo_version)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
         if name is not None:
@@ -779,13 +820,37 @@ class _CertAuthBackendRoleState:
     @pulumi.getter
     def certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        CA certificate used to validate client certificates
+        CA certificate used to validate client certificates. Exactly one of `certificate` or `certificate_wo` must be specified. Conflicts with `certificate_wo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificate_wo` is used, this field is populated from the vault API response after apply.
         """
         return pulumi.get(self, "certificate")
 
     @certificate.setter
     def certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "certificate", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWo")
+    def certificate_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "certificate_wo")
+
+    @certificate_wo.setter
+    def certificate_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "certificate_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWoVersion")
+    def certificate_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The version of `certificate_wo` to use during write operations. Required with `certificate_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "certificate_wo_version")
+
+    @certificate_wo_version.setter
+    def certificate_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "certificate_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="displayName")
@@ -1064,6 +1129,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1111,6 +1178,35 @@ class CertAuthBackendRole(pulumi.CustomResource):
             token_policies=["foo"])
         ```
 
+        ### With Write-Only Certificate
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        cert = vault.AuthBackend("cert",
+            path="cert",
+            type="cert")
+        cert_cert_auth_backend_role = vault.CertAuthBackendRole("cert",
+            name="foo",
+            certificate_wo=ca_certificate,
+            certificate_wo_version=1,
+            backend=cert.path,
+            allowed_names=[
+                "foo.example.org",
+                "baz.example.org",
+            ],
+            token_ttl=300,
+            token_max_ttl=600,
+            token_policies=["foo"])
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `certificate_wo` - (Optional string) Write-only CA certificate used to validate client certificates. Use `certificate_wo` to supply the certificate from an ephemeral resource. Exactly one of `certificate_wo` or  `certificate` must be specified. This attribute conflicts with `certificate`. **Note**: This property is write-only and will not be read from the API.
+
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1123,7 +1219,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[_builtins.str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates
+        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates. Exactly one of `certificate` or `certificate_wo` must be specified. Conflicts with `certificate_wo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificate_wo` is used, this field is populated from the vault API response after apply.
+        :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] certificate_wo_version: The version of `certificate_wo` to use during write operations. Required with `certificate_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.str] display_name: The name to display on tokens issued under this role.
         :param pulumi.Input[_builtins.str] name: Name of the role
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1170,7 +1268,7 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: CertAuthBackendRoleArgs,
+                 args: Optional[CertAuthBackendRoleArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a resource to create a role in an [Cert auth backend within Vault](https://www.vaultproject.io/docs/auth/cert.html).
@@ -1198,6 +1296,35 @@ class CertAuthBackendRole(pulumi.CustomResource):
             token_policies=["foo"])
         ```
 
+        ### With Write-Only Certificate
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        cert = vault.AuthBackend("cert",
+            path="cert",
+            type="cert")
+        cert_cert_auth_backend_role = vault.CertAuthBackendRole("cert",
+            name="foo",
+            certificate_wo=ca_certificate,
+            certificate_wo_version=1,
+            backend=cert.path,
+            allowed_names=[
+                "foo.example.org",
+                "baz.example.org",
+            ],
+            token_ttl=300,
+            token_max_ttl=600,
+            token_policies=["foo"])
+        ```
+
+        ## Ephemeral Attributes Reference
+
+        The following write-only attributes are supported:
+
+        * `certificate_wo` - (Optional string) Write-only CA certificate used to validate client certificates. Use `certificate_wo` to supply the certificate from an ephemeral resource. Exactly one of `certificate_wo` or  `certificate` must be specified. This attribute conflicts with `certificate`. **Note**: This property is write-only and will not be read from the API.
+
 
         :param str resource_name: The name of the resource.
         :param CertAuthBackendRoleArgs args: The arguments to use to populate this resource's properties.
@@ -1223,6 +1350,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
                  allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 certificate_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1260,9 +1389,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["allowed_organizational_units"] = allowed_organizational_units
             __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
             __props__.__dict__["backend"] = backend
-            if certificate is None and not opts.urn:
-                raise TypeError("Missing required property 'certificate'")
             __props__.__dict__["certificate"] = certificate
+            __props__.__dict__["certificate_wo"] = None if certificate_wo is None else pulumi.Output.secret(certificate_wo)
+            __props__.__dict__["certificate_wo_version"] = certificate_wo_version
             __props__.__dict__["display_name"] = display_name
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
@@ -1283,6 +1412,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
             __props__.__dict__["token_policies"] = token_policies
             __props__.__dict__["token_ttl"] = token_ttl
             __props__.__dict__["token_type"] = token_type
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["certificateWo"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(CertAuthBackendRole, __self__).__init__(
             'vault:index/certAuthBackendRole:CertAuthBackendRole',
             resource_name,
@@ -1302,6 +1433,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
             allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1338,7 +1471,9 @@ class CertAuthBackendRole(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_organizational_units: Allowed organization units for authenticated client certificates.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_uri_sans: Allowed URIs for authenticated client certificates
         :param pulumi.Input[_builtins.str] backend: Path to the mounted Cert auth backend
-        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates
+        :param pulumi.Input[_builtins.str] certificate: CA certificate used to validate client certificates. Exactly one of `certificate` or `certificate_wo` must be specified. Conflicts with `certificate_wo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificate_wo` is used, this field is populated from the vault API response after apply.
+        :param pulumi.Input[_builtins.str] certificate_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] certificate_wo_version: The version of `certificate_wo` to use during write operations. Required with `certificate_wo`. For more info see updating write-only attributes.
         :param pulumi.Input[_builtins.str] display_name: The name to display on tokens issued under this role.
         :param pulumi.Input[_builtins.str] name: Name of the role
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -1394,6 +1529,8 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["allowed_uri_sans"] = allowed_uri_sans
         __props__.__dict__["backend"] = backend
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["certificate_wo"] = certificate_wo
+        __props__.__dict__["certificate_wo_version"] = certificate_wo_version
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
@@ -1485,9 +1622,25 @@ class CertAuthBackendRole(pulumi.CustomResource):
     @pulumi.getter
     def certificate(self) -> pulumi.Output[_builtins.str]:
         """
-        CA certificate used to validate client certificates
+        CA certificate used to validate client certificates. Exactly one of `certificate` or `certificate_wo` must be specified. Conflicts with `certificate_wo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificate_wo` is used, this field is populated from the vault API response after apply.
         """
         return pulumi.get(self, "certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWo")
+    def certificate_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "certificate_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="certificateWoVersion")
+    def certificate_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of `certificate_wo` to use during write operations. Required with `certificate_wo`. For more info see updating write-only attributes.
+        """
+        return pulumi.get(self, "certificate_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="displayName")

@@ -103,6 +103,8 @@ type SecretBackendAcmeAccount struct {
 
 	// Version of the active account key, starts at zero.
 	ActiveKeyVersion pulumi.IntOutput `pulumi:"activeKeyVersion"`
+	// Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+	DefaultNameserver pulumi.StringPtrOutput `pulumi:"defaultNameserver"`
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl pulumi.StringOutput `pulumi:"directoryUrl"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -180,6 +182,8 @@ func GetSecretBackendAcmeAccount(ctx *pulumi.Context,
 type secretBackendAcmeAccountState struct {
 	// Version of the active account key, starts at zero.
 	ActiveKeyVersion *int `pulumi:"activeKeyVersion"`
+	// Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+	DefaultNameserver *string `pulumi:"defaultNameserver"`
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl *string `pulumi:"directoryUrl"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -208,6 +212,8 @@ type secretBackendAcmeAccountState struct {
 type SecretBackendAcmeAccountState struct {
 	// Version of the active account key, starts at zero.
 	ActiveKeyVersion pulumi.IntPtrInput
+	// Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+	DefaultNameserver pulumi.StringPtrInput
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -238,6 +244,8 @@ func (SecretBackendAcmeAccountState) ElementType() reflect.Type {
 }
 
 type secretBackendAcmeAccountArgs struct {
+	// Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+	DefaultNameserver *string `pulumi:"defaultNameserver"`
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl string `pulumi:"directoryUrl"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -265,6 +273,8 @@ type secretBackendAcmeAccountArgs struct {
 
 // The set of arguments for constructing a SecretBackendAcmeAccount resource.
 type SecretBackendAcmeAccountArgs struct {
+	// Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+	DefaultNameserver pulumi.StringPtrInput
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl pulumi.StringInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -380,6 +390,11 @@ func (o SecretBackendAcmeAccountOutput) ToSecretBackendAcmeAccountOutputWithCont
 // Version of the active account key, starts at zero.
 func (o SecretBackendAcmeAccountOutput) ActiveKeyVersion() pulumi.IntOutput {
 	return o.ApplyT(func(v *SecretBackendAcmeAccount) pulumi.IntOutput { return v.ActiveKeyVersion }).(pulumi.IntOutput)
+}
+
+// Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+func (o SecretBackendAcmeAccountOutput) DefaultNameserver() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretBackendAcmeAccount) pulumi.StringPtrOutput { return v.DefaultNameserver }).(pulumi.StringPtrOutput)
 }
 
 // ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).

@@ -12,50 +12,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// >  **Preview feature:** This feature is currently available as a preview and is possibly incomplete and subject to change. **We strongly discourage using preview or beta features with production workflows.**
-//
 // Manages OAuth Resource Server Configuration profiles in Vault Enterprise. These profiles define how Vault validates JWT tokens from OAuth 2.0 resource servers, enabling JWT-based authentication for API requests.
 //
-// > **Important** This resource is only available in Vault Enterprise and requires Vault 2.0.1 or later.
+// > **Important** This resource is available only in Vault Enterprise and requires Vault 2.1.0 or later.
 //
 // ## Example Usage
-//
-// ### Enable the Feature
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			oauth, err := vault.NewActivationFlags(ctx, "oauth", &vault.ActivationFlagsArgs{
-//				Feature: pulumi.String("oauth-resource-server"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = vault.NewOauthResourceServerConfigProfile(ctx, "example", &vault.OauthResourceServerConfigProfileArgs{
-//				ProfileName: pulumi.String("example-profile"),
-//				IssuerId:    pulumi.String("https://example.com"),
-//				UseJwks:     pulumi.Bool(true),
-//				JwksUri:     pulumi.String("https://example.com/.well-known/jwks.json"),
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				oauth,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 //
 // ### JWKS-Based Profile
 //
@@ -261,9 +222,9 @@ import (
 //
 // * **Clock Skew**: Use `clockSkewLeeway` to handle clock differences between systems. A value of 30-60 seconds is typically sufficient for most environments.
 //
-// * **Enterprise Feature**: OAuth Resource Server Configuration is only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
+// * **Enterprise Feature**: OAuth Resource Server Configuration is available only in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
 //
-// * **Version Requirement**: This resource requires Vault 2.0.1 or later.
+// * **Version Requirement**: This resource requires Vault 2.1.0 or later.
 //
 // ## Security Considerations
 //

@@ -73,6 +73,61 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### With Write-Only Certificate
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.AuthBackend;
+ * import com.pulumi.vault.AuthBackendArgs;
+ * import com.pulumi.vault.CertAuthBackendRole;
+ * import com.pulumi.vault.CertAuthBackendRoleArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var cert = new AuthBackend("cert", AuthBackendArgs.builder()
+ *             .path("cert")
+ *             .type("cert")
+ *             .build());
+ * 
+ *         var certCertAuthBackendRole = new CertAuthBackendRole("certCertAuthBackendRole", CertAuthBackendRoleArgs.builder()
+ *             .name("foo")
+ *             .certificateWo(caCertificate)
+ *             .certificateWoVersion(1)
+ *             .backend(cert.path())
+ *             .allowedNames(            
+ *                 "foo.example.org",
+ *                 "baz.example.org")
+ *             .tokenTtl(300)
+ *             .tokenMaxTtl(600)
+ *             .tokenPolicies("foo")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ## Ephemeral Attributes Reference
+ * 
+ * The following write-only attributes are supported:
+ * 
+ * * `certificateWo` - (Optional string) Write-only CA certificate used to validate client certificates. Use `certificateWo` to supply the certificate from an ephemeral resource. Exactly one of `certificateWo` or  `certificate` must be specified. This attribute conflicts with `certificate`. **Note**: This property is write-only and will not be read from the API.
+ * 
  */
 @ResourceType(type="vault:index/certAuthBackendRole:CertAuthBackendRole")
 public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
@@ -191,18 +246,46 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.backend);
     }
     /**
-     * CA certificate used to validate client certificates
+     * CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
      * 
      */
     @Export(name="certificate", refs={String.class}, tree="[0]")
     private Output<String> certificate;
 
     /**
-     * @return CA certificate used to validate client certificates
+     * @return CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
      * 
      */
     public Output<String> certificate() {
         return this.certificate;
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    @Export(name="certificateWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> certificateWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * 
+     */
+    public Output<Optional<String>> certificateWo() {
+        return Codegen.optional(this.certificateWo);
+    }
+    /**
+     * The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+     * 
+     */
+    @Export(name="certificateWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> certificateWoVersion;
+
+    /**
+     * @return The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+     * 
+     */
+    public Output<Optional<Integer>> certificateWoVersion() {
+        return Codegen.optional(this.certificateWoVersion);
     }
     /**
      * The name to display on tokens issued under this role.
@@ -539,7 +622,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public CertAuthBackendRole(java.lang.String name, CertAuthBackendRoleArgs args) {
+    public CertAuthBackendRole(java.lang.String name, @Nullable CertAuthBackendRoleArgs args) {
         this(name, args, null);
     }
     /**
@@ -548,7 +631,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public CertAuthBackendRole(java.lang.String name, CertAuthBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public CertAuthBackendRole(java.lang.String name, @Nullable CertAuthBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("vault:index/certAuthBackendRole:CertAuthBackendRole", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
@@ -556,7 +639,7 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
         super("vault:index/certAuthBackendRole:CertAuthBackendRole", name, state, makeResourceOptions(options, id), false);
     }
 
-    private static CertAuthBackendRoleArgs makeArgs(CertAuthBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    private static CertAuthBackendRoleArgs makeArgs(@Nullable CertAuthBackendRoleArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         if (options != null && options.getUrn().isPresent()) {
             return null;
         }
@@ -566,6 +649,9 @@ public class CertAuthBackendRole extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "certificateWo"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

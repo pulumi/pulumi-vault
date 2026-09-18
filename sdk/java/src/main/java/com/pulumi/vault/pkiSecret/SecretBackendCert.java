@@ -195,14 +195,14 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
         return this.expiration;
     }
     /**
-     * The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34;, &#34;der&#34;, &#34;pkcs12Bundle&#34; or &#34;jksBundle&#34;. Values &#34;pkcs12Bundle&#34; and &#34;jksBundle&#34; require Vault 2.0.5+.
+     * The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34;, &#34;der&#34;, &#34;pkcs12Bundle&#34; or &#34;jksBundle&#34;. Values &#34;pkcs12Bundle&#34; and &#34;jksBundle&#34; require Vault 2.1+.
      * 
      */
     @Export(name="format", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> format;
 
     /**
-     * @return The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34;, &#34;der&#34;, &#34;pkcs12Bundle&#34; or &#34;jksBundle&#34;. Values &#34;pkcs12Bundle&#34; and &#34;jksBundle&#34; require Vault 2.0.5+.
+     * @return The format of data. Valid values are &#34;pem&#34;, &#34;pemBundle&#34;, &#34;der&#34;, &#34;pkcs12Bundle&#34; or &#34;jksBundle&#34;. Values &#34;pkcs12Bundle&#34; and &#34;jksBundle&#34; require Vault 2.1+.
      * 
      */
     public Output<Optional<String>> format() {
@@ -251,28 +251,28 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
         return this.issuingCa;
     }
     /**
-     * Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     @Export(name="jksPassword", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> jksPassword;
 
     /**
-     * @return Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * @return Password for encrypting the Java keystore when format is set to &#34;jksBundle&#34;. If not provided, defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     public Output<Optional<String>> jksPassword() {
         return Codegen.optional(this.jksPassword);
     }
     /**
-     * The entry alias in the Java keystore (JKS) when format is set to &#34;jksBundle&#34; and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to &#34;1&#34;. This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at &#34;1&#34;. Requires Vault 2.0.5+.
+     * The entry alias in the Java keystore (JKS) when format is set to &#34;jksBundle&#34; and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to &#34;1&#34;. This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at &#34;1&#34;. Requires Vault 2.1+.
      * 
      */
     @Export(name="jksPrivateKeyAlias", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> jksPrivateKeyAlias;
 
     /**
-     * @return The entry alias in the Java keystore (JKS) when format is set to &#34;jksBundle&#34; and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to &#34;1&#34;. This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at &#34;1&#34;. Requires Vault 2.0.5+.
+     * @return The entry alias in the Java keystore (JKS) when format is set to &#34;jksBundle&#34; and bundle contains a single PrivateKeyEntry. This field is case-sensitive, but relying on case-only differences for unique aliases is not recommended. Defaults to &#34;1&#34;. This parameter is ignored by endpoints that return TrustedCertificateEntry values (JKS trust stores), and entry aliases are assigned incrementing numeric strings starting at &#34;1&#34;. Requires Vault 2.1+.
      * 
      */
     public Output<Optional<String>> jksPrivateKeyAlias() {
@@ -355,7 +355,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.otherSans);
     }
     /**
-     * Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     * Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
      * 
      * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
      * 
@@ -364,7 +364,7 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> pkcs12Encoder;
 
     /**
-     * @return Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+     * @return Encoder profile to use for PKCS#12 archives when format is set to &#34;pkcs12Bundle&#34;. Valid values are &#34;modern2026&#34; and &#34;modern2023&#34;. Defaults to &#34;modern2026&#34;, which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
      * 
      * **NOTE**: The `jksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `pkcs12Bundle`.
      * 
@@ -373,14 +373,14 @@ public class SecretBackendCert extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.pkcs12Encoder);
     }
     /**
-     * Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided,defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided,defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     @Export(name="pkcs12Password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pkcs12Password;
 
     /**
-     * @return Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided,defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+     * @return Password for encrypting the PKCS#12 archive when format is set to &#34;pkcs12Bundle&#34;. If not provided,defaults to &#34;changeit&#34;. It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
      * 
      */
     public Output<Optional<String>> pkcs12Password() {

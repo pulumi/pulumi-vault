@@ -91,6 +91,12 @@ namespace Pulumi.Vault.PkiExternalCa
         public Output<int> ActiveKeyVersion { get; private set; } = null!;
 
         /// <summary>
+        /// Address of a DNS nameserver (`Host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Output("defaultNameserver")]
+        public Output<string?> DefaultNameserver { get; private set; } = null!;
+
+        /// <summary>
         /// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         /// </summary>
         [Output("directoryUrl")]
@@ -201,6 +207,12 @@ namespace Pulumi.Vault.PkiExternalCa
     public sealed class SecretBackendAcmeAccountArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Address of a DNS nameserver (`Host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Input("defaultNameserver")]
+        public Input<string>? DefaultNameserver { get; set; }
+
+        /// <summary>
         /// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         /// </summary>
         [Input("directoryUrl", required: true)]
@@ -298,6 +310,12 @@ namespace Pulumi.Vault.PkiExternalCa
         /// </summary>
         [Input("activeKeyVersion")]
         public Input<int>? ActiveKeyVersion { get; set; }
+
+        /// <summary>
+        /// Address of a DNS nameserver (`Host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+        /// </summary>
+        [Input("defaultNameserver")]
+        public Input<string>? DefaultNameserver { get; set; }
 
         /// <summary>
         /// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).

@@ -151,7 +151,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> IssuingCa { get; private set; } = null!;
 
         /// <summary>
-        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         /// </summary>
         [Output("jksPassword")]
         public Output<string?> JksPassword { get; private set; } = null!;
@@ -240,7 +240,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> PermittedUriDomains { get; private set; } = null!;
 
         /// <summary>
-        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
         /// 
         /// **NOTE**: The `JksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `Pkcs12Bundle`.
         /// </summary>
@@ -248,7 +248,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Pkcs12Encoder { get; private set; } = null!;
 
         /// <summary>
-        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         /// </summary>
         [Output("pkcs12Password")]
         public Output<string?> Pkcs12Password { get; private set; } = null!;
@@ -483,7 +483,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? IssuerRef { get; set; }
 
         /// <summary>
-        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         /// </summary>
         [Input("jksPassword")]
         public Input<string>? JksPassword { get; set; }
@@ -608,7 +608,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
         /// 
         /// **NOTE**: The `JksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `Pkcs12Bundle`.
         /// </summary>
@@ -616,7 +616,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Pkcs12Encoder { get; set; }
 
         /// <summary>
-        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         /// </summary>
         [Input("pkcs12Password")]
         public Input<string>? Pkcs12Password { get; set; }
@@ -844,7 +844,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? IssuingCa { get; set; }
 
         /// <summary>
-        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// Password for encrypting the Java keystore when format is set to "JksBundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         /// </summary>
         [Input("jksPassword")]
         public Input<string>? JksPassword { get; set; }
@@ -969,7 +969,7 @@ namespace Pulumi.Vault.PkiSecret
         }
 
         /// <summary>
-        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.0.5+.
+        /// Encoder profile to use for PKCS#12 archives when format is set to "Pkcs12Bundle". Valid values are "modern2026" and "modern2023". Defaults to "modern2026", which uses the newer PKCS#12 integrity format (PBMAC1). Requires Vault 2.1+.
         /// 
         /// **NOTE**: The `JksBundle` format is provided only for compatibility with legacy systems and should be avoided for new usage. Prefer `Pkcs12Bundle`.
         /// </summary>
@@ -977,7 +977,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Pkcs12Encoder { get; set; }
 
         /// <summary>
-        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.0.5+.
+        /// Password for encrypting the PKCS#12 archive when format is set to "Pkcs12Bundle". If not provided, defaults to "changeit". It is recommended to use the default password and protect the file using other means or use a high-entropy password. Requires Vault 2.1+.
         /// </summary>
         [Input("pkcs12Password")]
         public Input<string>? Pkcs12Password { get; set; }

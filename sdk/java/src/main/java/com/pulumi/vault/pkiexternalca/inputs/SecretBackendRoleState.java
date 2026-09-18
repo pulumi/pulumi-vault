@@ -123,6 +123,36 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Import(name="dnsProviderName")
+    private @Nullable Output<String> dnsProviderName;
+
+    /**
+     * @return The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Optional<Output<String>> dnsProviderName() {
+        return Optional.ofNullable(this.dnsProviderName);
+    }
+
+    /**
+     * The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Import(name="dnsProviderType")
+    private @Nullable Output<String> dnsProviderType;
+
+    /**
+     * @return The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Optional<Output<String>> dnsProviderType() {
+        return Optional.ofNullable(this.dnsProviderType);
+    }
+
+    /**
      * Force deletion even when active orders exist. Defaults to `false`.
      * 
      */
@@ -141,15 +171,15 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      * The date and time the role was last updated in RFC3339 format.
      * 
      */
-    @Import(name="lastUpdateDate")
-    private @Nullable Output<String> lastUpdateDate;
+    @Import(name="lastUpdatedDate")
+    private @Nullable Output<String> lastUpdatedDate;
 
     /**
      * @return The date and time the role was last updated in RFC3339 format.
      * 
      */
-    public Optional<Output<String>> lastUpdateDate() {
-        return Optional.ofNullable(this.lastUpdateDate);
+    public Optional<Output<String>> lastUpdatedDate() {
+        return Optional.ofNullable(this.lastUpdatedDate);
     }
 
     /**
@@ -213,8 +243,10 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.creationDate = $.creationDate;
         this.csrGenerateKeyType = $.csrGenerateKeyType;
         this.csrIdentifierPopulation = $.csrIdentifierPopulation;
+        this.dnsProviderName = $.dnsProviderName;
+        this.dnsProviderType = $.dnsProviderType;
         this.force = $.force;
-        this.lastUpdateDate = $.lastUpdateDate;
+        this.lastUpdatedDate = $.lastUpdatedDate;
         this.mount = $.mount;
         this.name = $.name;
         this.namespace = $.namespace;
@@ -416,6 +448,48 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
+         * @param dnsProviderName The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderName(@Nullable Output<String> dnsProviderName) {
+            $.dnsProviderName = dnsProviderName;
+            return this;
+        }
+
+        /**
+         * @param dnsProviderName The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderName(String dnsProviderName) {
+            return dnsProviderName(Output.of(dnsProviderName));
+        }
+
+        /**
+         * @param dnsProviderType The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderType(@Nullable Output<String> dnsProviderType) {
+            $.dnsProviderType = dnsProviderType;
+            return this;
+        }
+
+        /**
+         * @param dnsProviderType The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsProviderType(String dnsProviderType) {
+            return dnsProviderType(Output.of(dnsProviderType));
+        }
+
+        /**
          * @param force Force deletion even when active orders exist. Defaults to `false`.
          * 
          * @return builder
@@ -437,24 +511,24 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param lastUpdateDate The date and time the role was last updated in RFC3339 format.
+         * @param lastUpdatedDate The date and time the role was last updated in RFC3339 format.
          * 
          * @return builder
          * 
          */
-        public Builder lastUpdateDate(@Nullable Output<String> lastUpdateDate) {
-            $.lastUpdateDate = lastUpdateDate;
+        public Builder lastUpdatedDate(@Nullable Output<String> lastUpdatedDate) {
+            $.lastUpdatedDate = lastUpdatedDate;
             return this;
         }
 
         /**
-         * @param lastUpdateDate The date and time the role was last updated in RFC3339 format.
+         * @param lastUpdatedDate The date and time the role was last updated in RFC3339 format.
          * 
          * @return builder
          * 
          */
-        public Builder lastUpdateDate(String lastUpdateDate) {
-            return lastUpdateDate(Output.of(lastUpdateDate));
+        public Builder lastUpdatedDate(String lastUpdatedDate) {
+            return lastUpdatedDate(Output.of(lastUpdatedDate));
         }
 
         /**

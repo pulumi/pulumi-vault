@@ -225,6 +225,34 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return this.csrIdentifierPopulation;
     }
     /**
+     * The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Export(name="dnsProviderName", refs={String.class}, tree="[0]")
+    private Output<String> dnsProviderName;
+
+    /**
+     * @return The name of the DNS provider configuration to use for DNS-01 challenges. Must match the `name` of a `vault_pki_external_ca_secret_backend_dns_provider_*` resource. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Output<String> dnsProviderName() {
+        return this.dnsProviderName;
+    }
+    /**
+     * The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     * 
+     */
+    @Export(name="dnsProviderType", refs={String.class}, tree="[0]")
+    private Output<String> dnsProviderType;
+
+    /**
+     * @return The type of the DNS provider. Required when `dnsProviderName` is set. Valid values are `aws-route53`, `rfc2136`, `google-cloud-dns`, `azure-dns`. Requires Vault 2.1.0 or later.
+     * 
+     */
+    public Output<String> dnsProviderType() {
+        return this.dnsProviderType;
+    }
+    /**
      * Force deletion even when active orders exist. Defaults to `false`.
      * 
      */
@@ -242,15 +270,15 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      * The date and time the role was last updated in RFC3339 format.
      * 
      */
-    @Export(name="lastUpdateDate", refs={String.class}, tree="[0]")
-    private Output<String> lastUpdateDate;
+    @Export(name="lastUpdatedDate", refs={String.class}, tree="[0]")
+    private Output<String> lastUpdatedDate;
 
     /**
      * @return The date and time the role was last updated in RFC3339 format.
      * 
      */
-    public Output<String> lastUpdateDate() {
-        return this.lastUpdateDate;
+    public Output<String> lastUpdatedDate() {
+        return this.lastUpdatedDate;
     }
     /**
      * The path where the PKI External CA secret backend is mounted.

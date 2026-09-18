@@ -33,6 +33,37 @@ import * as utilities from "./utilities";
  *     tokenPolicies: ["foo"],
  * });
  * ```
+ *
+ * ### With Write-Only Certificate
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const cert = new vault.AuthBackend("cert", {
+ *     path: "cert",
+ *     type: "cert",
+ * });
+ * const certCertAuthBackendRole = new vault.CertAuthBackendRole("cert", {
+ *     name: "foo",
+ *     certificateWo: caCertificate,
+ *     certificateWoVersion: 1,
+ *     backend: cert.path,
+ *     allowedNames: [
+ *         "foo.example.org",
+ *         "baz.example.org",
+ *     ],
+ *     tokenTtl: 300,
+ *     tokenMaxTtl: 600,
+ *     tokenPolicies: ["foo"],
+ * });
+ * ```
+ *
+ * ## Ephemeral Attributes Reference
+ *
+ * The following write-only attributes are supported:
+ *
+ * * `certificateWo` - (Optional string) Write-only CA certificate used to validate client certificates. Use `certificateWo` to supply the certificate from an ephemeral resource. Exactly one of `certificateWo` or  `certificate` must be specified. This attribute conflicts with `certificate`. **Note**: This property is write-only and will not be read from the API.
  */
 export class CertAuthBackendRole extends pulumi.CustomResource {
     /**
@@ -96,9 +127,17 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      */
     declare public readonly backend: pulumi.Output<string | undefined>;
     /**
-     * CA certificate used to validate client certificates
+     * CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
      */
     declare public readonly certificate: pulumi.Output<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly certificateWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+     */
+    declare public readonly certificateWoVersion: pulumi.Output<number | undefined>;
     /**
      * The name to display on tokens issued under this role.
      */
@@ -208,7 +247,7 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: CertAuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: CertAuthBackendRoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CertAuthBackendRoleArgs | CertAuthBackendRoleState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -223,6 +262,8 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedUriSans"] = state?.allowedUriSans;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["certificateWo"] = state?.certificateWo;
+            resourceInputs["certificateWoVersion"] = state?.certificateWoVersion;
             resourceInputs["displayName"] = state?.displayName;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
@@ -245,9 +286,6 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["tokenType"] = state?.tokenType;
         } else {
             const args = argsOrState as CertAuthBackendRoleArgs | undefined;
-            if (args?.certificate === undefined && !opts.urn) {
-                throw new Error("Missing required property 'certificate'");
-            }
             resourceInputs["aliasMetadata"] = args?.aliasMetadata;
             resourceInputs["allowedCommonNames"] = args?.allowedCommonNames;
             resourceInputs["allowedDnsSans"] = args?.allowedDnsSans;
@@ -257,6 +295,8 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["allowedUriSans"] = args?.allowedUriSans;
             resourceInputs["backend"] = args?.backend;
             resourceInputs["certificate"] = args?.certificate;
+            resourceInputs["certificateWo"] = args?.certificateWo ? pulumi.secret(args.certificateWo) : undefined;
+            resourceInputs["certificateWoVersion"] = args?.certificateWoVersion;
             resourceInputs["displayName"] = args?.displayName;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
@@ -279,6 +319,8 @@ export class CertAuthBackendRole extends pulumi.CustomResource {
             resourceInputs["tokenType"] = args?.tokenType;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["certificateWo"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(CertAuthBackendRole.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -321,9 +363,17 @@ export interface CertAuthBackendRoleState {
      */
     backend?: pulumi.Input<string | undefined>;
     /**
-     * CA certificate used to validate client certificates
+     * CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
      */
     certificate?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    certificateWo?: pulumi.Input<string | undefined>;
+    /**
+     * The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+     */
+    certificateWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The name to display on tokens issued under this role.
      */
@@ -465,9 +515,17 @@ export interface CertAuthBackendRoleArgs {
      */
     backend?: pulumi.Input<string | undefined>;
     /**
-     * CA certificate used to validate client certificates
+     * CA certificate used to validate client certificates. Exactly one of `certificate` or `certificateWo` must be specified. Conflicts with `certificateWo`. Changing this value updates the certificate in-place rather than recreating the resource. When `certificateWo` is used, this field is populated from the vault API response after apply.
      */
-    certificate: pulumi.Input<string>;
+    certificate?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    certificateWo?: pulumi.Input<string | undefined>;
+    /**
+     * The version of `certificateWo` to use during write operations. Required with `certificateWo`. For more info see updating write-only attributes.
+     */
+    certificateWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The name to display on tokens issued under this role.
      */

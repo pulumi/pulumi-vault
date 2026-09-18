@@ -22,6 +22,7 @@ class SecretBackendAcmeAccountArgs:
                  directory_url: pulumi.Input[_builtins.str],
                  email_contacts: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  mount: pulumi.Input[_builtins.str],
+                 default_nameserver: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_key: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_kid: pulumi.Input[Optional[_builtins.str]] = None,
                  key_type: pulumi.Input[Optional[_builtins.str]] = None,
@@ -34,6 +35,7 @@ class SecretBackendAcmeAccountArgs:
         :param pulumi.Input[_builtins.str] directory_url: ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] email_contacts: List of email addresses for the ACME account. These will be used for important notifications from the CA.
         :param pulumi.Input[_builtins.str] mount: The path where the PKI secret backend is mounted.
+        :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
         :param pulumi.Input[_builtins.str] eab_kid: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -49,6 +51,8 @@ class SecretBackendAcmeAccountArgs:
         pulumi.set(__self__, "directory_url", directory_url)
         pulumi.set(__self__, "email_contacts", email_contacts)
         pulumi.set(__self__, "mount", mount)
+        if default_nameserver is not None:
+            pulumi.set(__self__, "default_nameserver", default_nameserver)
         if eab_key is not None:
             pulumi.set(__self__, "eab_key", eab_key)
         if eab_kid is not None:
@@ -97,6 +101,18 @@ class SecretBackendAcmeAccountArgs:
     @mount.setter
     def mount(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "mount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultNameserver")
+    def default_nameserver(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "default_nameserver")
+
+    @default_nameserver.setter
+    def default_nameserver(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "default_nameserver", value)
 
     @_builtins.property
     @pulumi.getter(name="eabKey")
@@ -180,6 +196,7 @@ class SecretBackendAcmeAccountArgs:
 class _SecretBackendAcmeAccountState:
     def __init__(__self__, *,
                  active_key_version: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_nameserver: pulumi.Input[Optional[_builtins.str]] = None,
                  directory_url: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_key: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_kid: pulumi.Input[Optional[_builtins.str]] = None,
@@ -193,6 +210,7 @@ class _SecretBackendAcmeAccountState:
         Input properties used for looking up and filtering SecretBackendAcmeAccount resources.
 
         :param pulumi.Input[_builtins.int] active_key_version: Version of the active account key, starts at zero.
+        :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] directory_url: ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
@@ -210,6 +228,8 @@ class _SecretBackendAcmeAccountState:
         """
         if active_key_version is not None:
             pulumi.set(__self__, "active_key_version", active_key_version)
+        if default_nameserver is not None:
+            pulumi.set(__self__, "default_nameserver", default_nameserver)
         if directory_url is not None:
             pulumi.set(__self__, "directory_url", directory_url)
         if eab_key is not None:
@@ -240,6 +260,18 @@ class _SecretBackendAcmeAccountState:
     @active_key_version.setter
     def active_key_version(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "active_key_version", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultNameserver")
+    def default_nameserver(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "default_nameserver")
+
+    @default_nameserver.setter
+    def default_nameserver(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "default_nameserver", value)
 
     @_builtins.property
     @pulumi.getter(name="directoryUrl")
@@ -361,6 +393,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 default_nameserver: pulumi.Input[Optional[_builtins.str]] = None,
                  directory_url: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_key: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_kid: pulumi.Input[Optional[_builtins.str]] = None,
@@ -420,6 +453,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] directory_url: ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
@@ -503,6 +537,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 default_nameserver: pulumi.Input[Optional[_builtins.str]] = None,
                  directory_url: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_key: pulumi.Input[Optional[_builtins.str]] = None,
                  eab_kid: pulumi.Input[Optional[_builtins.str]] = None,
@@ -521,6 +556,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretBackendAcmeAccountArgs.__new__(SecretBackendAcmeAccountArgs)
 
+            __props__.__dict__["default_nameserver"] = default_nameserver
             if directory_url is None and not opts.urn:
                 raise TypeError("Missing required property 'directory_url'")
             __props__.__dict__["directory_url"] = directory_url
@@ -550,6 +586,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             active_key_version: pulumi.Input[Optional[_builtins.int]] = None,
+            default_nameserver: pulumi.Input[Optional[_builtins.str]] = None,
             directory_url: pulumi.Input[Optional[_builtins.str]] = None,
             eab_key: pulumi.Input[Optional[_builtins.str]] = None,
             eab_kid: pulumi.Input[Optional[_builtins.str]] = None,
@@ -567,6 +604,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] active_key_version: Version of the active account key, starts at zero.
+        :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] directory_url: ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
@@ -587,6 +625,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
         __props__ = _SecretBackendAcmeAccountState.__new__(_SecretBackendAcmeAccountState)
 
         __props__.__dict__["active_key_version"] = active_key_version
+        __props__.__dict__["default_nameserver"] = default_nameserver
         __props__.__dict__["directory_url"] = directory_url
         __props__.__dict__["eab_key"] = eab_key
         __props__.__dict__["eab_kid"] = eab_kid
@@ -605,6 +644,14 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
         Version of the active account key, starts at zero.
         """
         return pulumi.get(self, "active_key_version")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultNameserver")
+    def default_nameserver(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
+        """
+        return pulumi.get(self, "default_nameserver")
 
     @_builtins.property
     @pulumi.getter(name="directoryUrl")

@@ -112,6 +112,118 @@ namespace Pulumi.Vault.Azure
     /// });
     /// ```
     /// 
+    /// You can configure the Azure auth engine to use static credentials with `RootCreds`. Requires Vault 2.2.0+:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.AuthBackend("example", new()
+    ///     {
+    ///         Type = "azure",
+    ///     });
+    /// 
+    ///     var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("example", new()
+    ///     {
+    ///         Backend = example.Path,
+    ///         TenantId = "11111111-2222-3333-4444-555555555555",
+    ///         ClientId = "11111111-2222-3333-4444-555555555555",
+    ///         ClientSecret = "01234567890123456789",
+    ///         Resource = "https://vault.hashicorp.com",
+    ///         AuthType = "root_creds",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// You can configure the Azure auth engine to use Vault Plugin Workload Identity Federation with `PluginWif`. Requires Vault Enterprise 2.2.0+:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.AuthBackend("example", new()
+    ///     {
+    ///         Type = "azure",
+    ///         IdentityTokenKey = "example-key",
+    ///     });
+    /// 
+    ///     var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("example", new()
+    ///     {
+    ///         Backend = example.Path,
+    ///         TenantId = "11111111-2222-3333-4444-555555555555",
+    ///         ClientId = "11111111-2222-3333-4444-555555555555",
+    ///         Resource = "https://vault.hashicorp.com",
+    ///         AuthType = "plugin_wif",
+    ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
+    ///         IdentityTokenTtl = 3600,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// You can configure the Azure auth engine to use AKS Workload Identity Federation with `AksWif` for a secretless, cross-tenant setup. Requires Vault 2.2.0+:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.AuthBackend("example", new()
+    ///     {
+    ///         Type = "azure",
+    ///     });
+    /// 
+    ///     var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("example", new()
+    ///     {
+    ///         Backend = example.Path,
+    ///         TenantId = "11111111-2222-3333-4444-555555555555",
+    ///         ClientId = "11111111-2222-3333-4444-555555555555",
+    ///         Resource = "https://management.azure.com",
+    ///         AuthType = "aks_wif",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// You can configure the Azure auth engine to use Azure Managed Service Identity with `Msi` for a secretless setup. Requires Vault 2.2.0+:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Vault.AuthBackend("example", new()
+    ///     {
+    ///         Type = "azure",
+    ///     });
+    /// 
+    ///     var exampleAuthBackendConfig = new Vault.Azure.AuthBackendConfig("example", new()
+    ///     {
+    ///         Backend = example.Path,
+    ///         TenantId = "11111111-2222-3333-4444-555555555555",
+    ///         ClientId = "11111111-2222-3333-4444-555555555555",
+    ///         Resource = "https://management.azure.com",
+    ///         AuthType = "msi",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Ephemeral Attributes Reference
     /// 
     /// The following write-only attributes are supported:
@@ -132,6 +244,12 @@ namespace Pulumi.Vault.Azure
     [VaultResourceType("vault:azure/authBackendConfig:AuthBackendConfig")]
     public partial class AuthBackendConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The authentication method used by Vault to access Azure APIs. The following values are supported: `RootCreds`, `PluginWif`, `Msi`, `AksWif`. Requires Vault 2.2.0+.
+        /// </summary>
+        [Output("authType")]
+        public Output<string?> AuthType { get; private set; } = null!;
+
         /// <summary>
         /// The path the Azure auth backend being configured was
         /// mounted at.  Defaults to `Azure`.
@@ -322,6 +440,12 @@ namespace Pulumi.Vault.Azure
     public sealed class AuthBackendConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The authentication method used by Vault to access Azure APIs. The following values are supported: `RootCreds`, `PluginWif`, `Msi`, `AksWif`. Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("authType")]
+        public Input<string>? AuthType { get; set; }
+
+        /// <summary>
         /// The path the Azure auth backend being configured was
         /// mounted at.  Defaults to `Azure`.
         /// </summary>
@@ -505,6 +629,12 @@ namespace Pulumi.Vault.Azure
 
     public sealed class AuthBackendConfigState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The authentication method used by Vault to access Azure APIs. The following values are supported: `RootCreds`, `PluginWif`, `Msi`, `AksWif`. Requires Vault 2.2.0+.
+        /// </summary>
+        [Input("authType")]
+        public Input<string>? AuthType { get; set; }
+
         /// <summary>
         /// The path the Azure auth backend being configured was
         /// mounted at.  Defaults to `Azure`.

@@ -23,6 +23,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "vault:pkiexternalca/secretBackendAcmeAccount:SecretBackendAcmeAccount":
 		r = &SecretBackendAcmeAccount{}
+	case "vault:pkiexternalca/secretBackendDnsProviderAwsRoute53:SecretBackendDnsProviderAwsRoute53":
+		r = &SecretBackendDnsProviderAwsRoute53{}
+	case "vault:pkiexternalca/secretBackendDnsProviderAzure:SecretBackendDnsProviderAzure":
+		r = &SecretBackendDnsProviderAzure{}
+	case "vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp":
+		r = &SecretBackendDnsProviderGcp{}
+	case "vault:pkiexternalca/secretBackendDnsProviderRfc2136:SecretBackendDnsProviderRfc2136":
+		r = &SecretBackendDnsProviderRfc2136{}
 	case "vault:pkiexternalca/secretBackendOrder:SecretBackendOrder":
 		r = &SecretBackendOrder{}
 	case "vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate":
@@ -47,6 +55,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"pkiexternalca/secretBackendAcmeAccount",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"pkiexternalca/secretBackendDnsProviderAwsRoute53",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"pkiexternalca/secretBackendDnsProviderAzure",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"pkiexternalca/secretBackendDnsProviderGcp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"pkiexternalca/secretBackendDnsProviderRfc2136",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
