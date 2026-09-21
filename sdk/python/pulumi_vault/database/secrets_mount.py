@@ -1341,39 +1341,39 @@ class SecretsMount(pulumi.CustomResource):
                  allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cassandras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]]] = None,
-                 couchbases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]]] = None,
+                 cassandras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict', 'outputs.SecretsMountCassandra']]]]] = None,
+                 couchbases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict', 'outputs.SecretsMountCouchbase']]]]] = None,
                  default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]]] = None,
+                 elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict', 'outputs.SecretsMountElasticsearch']]]]] = None,
                  external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
-                 hanas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]]] = None,
+                 hanas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict', 'outputs.SecretsMountHana']]]]] = None,
                  identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
-                 influxdbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]]] = None,
+                 influxdbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict', 'outputs.SecretsMountInfluxdb']]]]] = None,
                  listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
                  local: pulumi.Input[Optional[_builtins.bool]] = None,
                  max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
-                 mongodbatlas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]]] = None,
-                 mongodbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]]] = None,
-                 mssqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]]] = None,
-                 mysql_auroras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]]] = None,
-                 mysql_legacies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]]] = None,
-                 mysql_rds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]]] = None,
-                 mysqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]]] = None,
+                 mongodbatlas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict', 'outputs.SecretsMountMongodbatla']]]]] = None,
+                 mongodbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict', 'outputs.SecretsMountMongodb']]]]] = None,
+                 mssqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict', 'outputs.SecretsMountMssql']]]]] = None,
+                 mysql_auroras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict', 'outputs.SecretsMountMysqlAurora']]]]] = None,
+                 mysql_legacies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict', 'outputs.SecretsMountMysqlLegacy']]]]] = None,
+                 mysql_rds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict', 'outputs.SecretsMountMysqlRd']]]]] = None,
+                 mysqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict', 'outputs.SecretsMountMysql']]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 oracles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]]] = None,
+                 oracles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict', 'outputs.SecretsMountOracle']]]]] = None,
                  passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
-                 postgresqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]]] = None,
-                 redis: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]]] = None,
-                 redis_elasticaches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict']]]]] = None,
-                 redshifts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]]] = None,
+                 postgresqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict', 'outputs.SecretsMountPostgresql']]]]] = None,
+                 redis: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict', 'outputs.SecretsMountRedi']]]]] = None,
+                 redis_elasticaches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict', 'outputs.SecretsMountRedisElasticache']]]]] = None,
+                 redshifts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict', 'outputs.SecretsMountRedshift']]]]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
-                 snowflakes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]]] = None,
+                 snowflakes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict', 'outputs.SecretsMountSnowflake']]]]] = None,
                  __props__=None):
         """
         Configure any number of database secrets engines under a single dedicated mount resource.
@@ -1468,56 +1468,56 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]] cassandras: A nested block containing configuration options for Cassandra connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict', 'outputs.SecretsMountCassandra']]]] cassandras: A nested block containing configuration options for Cassandra connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]] couchbases: A nested block containing configuration options for Couchbase connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict', 'outputs.SecretsMountCouchbase']]]] couchbases: A nested block containing configuration options for Couchbase connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict', 'outputs.SecretsMountElasticsearch']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict', 'outputs.SecretsMountHana']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict', 'outputs.SecretsMountInfluxdb']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict', 'outputs.SecretsMountMongodbatla']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]] mongodbs: A nested block containing configuration options for MongoDB connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict', 'outputs.SecretsMountMongodb']]]] mongodbs: A nested block containing configuration options for MongoDB connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]] mssqls: A nested block containing configuration options for MSSQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict', 'outputs.SecretsMountMssql']]]] mssqls: A nested block containing configuration options for MSSQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict', 'outputs.SecretsMountMysqlAurora']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict', 'outputs.SecretsMountMysqlLegacy']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict', 'outputs.SecretsMountMysqlRd']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict', 'outputs.SecretsMountMysql']]]] mysqls: A nested block containing configuration options for MySQL connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict', 'outputs.SecretsMountOracle']]]] oracles: A nested block containing configuration options for Oracle connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict', 'outputs.SecretsMountPostgresql']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict', 'outputs.SecretsMountRedi']]]] redis: A nested block containing configuration options for Redis connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict', 'outputs.SecretsMountRedisElasticache']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict', 'outputs.SecretsMountRedshift']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]] snowflakes: A nested block containing configuration options for Snowflake connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict', 'outputs.SecretsMountSnowflake']]]] snowflakes: A nested block containing configuration options for Snowflake connections.\\
                *See Configuration Options for more info*
         """
         ...
@@ -1630,39 +1630,39 @@ class SecretsMount(pulumi.CustomResource):
                  allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 cassandras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]]] = None,
-                 couchbases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]]] = None,
+                 cassandras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict', 'outputs.SecretsMountCassandra']]]]] = None,
+                 couchbases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict', 'outputs.SecretsMountCouchbase']]]]] = None,
                  default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
                  delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]]] = None,
+                 elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict', 'outputs.SecretsMountElasticsearch']]]]] = None,
                  external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
-                 hanas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]]] = None,
+                 hanas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict', 'outputs.SecretsMountHana']]]]] = None,
                  identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
-                 influxdbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]]] = None,
+                 influxdbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict', 'outputs.SecretsMountInfluxdb']]]]] = None,
                  listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
                  local: pulumi.Input[Optional[_builtins.bool]] = None,
                  max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
-                 mongodbatlas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]]] = None,
-                 mongodbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]]] = None,
-                 mssqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]]] = None,
-                 mysql_auroras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]]] = None,
-                 mysql_legacies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]]] = None,
-                 mysql_rds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]]] = None,
-                 mysqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]]] = None,
+                 mongodbatlas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict', 'outputs.SecretsMountMongodbatla']]]]] = None,
+                 mongodbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict', 'outputs.SecretsMountMongodb']]]]] = None,
+                 mssqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict', 'outputs.SecretsMountMssql']]]]] = None,
+                 mysql_auroras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict', 'outputs.SecretsMountMysqlAurora']]]]] = None,
+                 mysql_legacies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict', 'outputs.SecretsMountMysqlLegacy']]]]] = None,
+                 mysql_rds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict', 'outputs.SecretsMountMysqlRd']]]]] = None,
+                 mysqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict', 'outputs.SecretsMountMysql']]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 oracles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]]] = None,
+                 oracles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict', 'outputs.SecretsMountOracle']]]]] = None,
                  passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
-                 postgresqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]]] = None,
-                 redis: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]]] = None,
-                 redis_elasticaches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict']]]]] = None,
-                 redshifts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]]] = None,
+                 postgresqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict', 'outputs.SecretsMountPostgresql']]]]] = None,
+                 redis: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict', 'outputs.SecretsMountRedi']]]]] = None,
+                 redis_elasticaches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict', 'outputs.SecretsMountRedisElasticache']]]]] = None,
+                 redshifts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict', 'outputs.SecretsMountRedshift']]]]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
-                 snowflakes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]]] = None,
+                 snowflakes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict', 'outputs.SecretsMountSnowflake']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1728,40 +1728,40 @@ class SecretsMount(pulumi.CustomResource):
             allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            cassandras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]]] = None,
-            couchbases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]]] = None,
+            cassandras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict', 'outputs.SecretsMountCassandra']]]]] = None,
+            couchbases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict', 'outputs.SecretsMountCouchbase']]]]] = None,
             default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
             delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]]] = None,
+            elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict', 'outputs.SecretsMountElasticsearch']]]]] = None,
             engine_count: pulumi.Input[Optional[_builtins.int]] = None,
             external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
             force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
-            hanas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]]] = None,
+            hanas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict', 'outputs.SecretsMountHana']]]]] = None,
             identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
-            influxdbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]]] = None,
+            influxdbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict', 'outputs.SecretsMountInfluxdb']]]]] = None,
             listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
             local: pulumi.Input[Optional[_builtins.bool]] = None,
             max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
-            mongodbatlas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]]] = None,
-            mongodbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]]] = None,
-            mssqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]]] = None,
-            mysql_auroras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]]] = None,
-            mysql_legacies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]]] = None,
-            mysql_rds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]]] = None,
-            mysqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]]] = None,
+            mongodbatlas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict', 'outputs.SecretsMountMongodbatla']]]]] = None,
+            mongodbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict', 'outputs.SecretsMountMongodb']]]]] = None,
+            mssqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict', 'outputs.SecretsMountMssql']]]]] = None,
+            mysql_auroras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict', 'outputs.SecretsMountMysqlAurora']]]]] = None,
+            mysql_legacies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict', 'outputs.SecretsMountMysqlLegacy']]]]] = None,
+            mysql_rds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict', 'outputs.SecretsMountMysqlRd']]]]] = None,
+            mysqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict', 'outputs.SecretsMountMysql']]]]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            oracles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]]] = None,
+            oracles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict', 'outputs.SecretsMountOracle']]]]] = None,
             passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
             plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
-            postgresqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]]] = None,
-            redis: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]]] = None,
-            redis_elasticaches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict']]]]] = None,
-            redshifts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]]] = None,
+            postgresqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict', 'outputs.SecretsMountPostgresql']]]]] = None,
+            redis: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict', 'outputs.SecretsMountRedi']]]]] = None,
+            redis_elasticaches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict', 'outputs.SecretsMountRedisElasticache']]]]] = None,
+            redshifts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict', 'outputs.SecretsMountRedshift']]]]] = None,
             seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
-            snowflakes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]]] = None) -> 'SecretsMount':
+            snowflakes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict', 'outputs.SecretsMountSnowflake']]]]] = None) -> 'SecretsMount':
         """
         Get an existing SecretsMount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1776,57 +1776,57 @@ class SecretsMount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_response_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_request_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the request data object.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_non_hmac_response_keys: Specifies the list of keys that will not be HMAC'd by audit devices in the response data object.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict']]]] cassandras: A nested block containing configuration options for Cassandra connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict', 'outputs.SecretsMountCassandra']]]] cassandras: A nested block containing configuration options for Cassandra connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict']]]] couchbases: A nested block containing configuration options for Couchbase connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict', 'outputs.SecretsMountCouchbase']]]] couchbases: A nested block containing configuration options for Couchbase connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.int] default_lease_ttl_seconds: Default lease duration for tokens and secrets in seconds
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delegated_auth_accessors: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] description: Human-friendly description of the mount
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict', 'outputs.SecretsMountElasticsearch']]]] elasticsearches: A nested block containing configuration options for Elasticsearch connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.int] engine_count: The total number of database secrets engines configured.
         :param pulumi.Input[_builtins.bool] external_entropy_access: Boolean flag that can be explicitly set to true to enable the secrets engine to access Vault's external entropy source
         :param pulumi.Input[_builtins.bool] force_no_cache: If set to true, disables caching.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict', 'outputs.SecretsMountHana']]]] hanas: A nested block containing configuration options for SAP HanaDB connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] identity_token_key: The key to use for signing plugin workload identity tokens
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict', 'outputs.SecretsMountInfluxdb']]]] influxdbs: A nested block containing configuration options for InfluxDB connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] listing_visibility: Specifies whether to show this mount in the UI-specific listing endpoint
         :param pulumi.Input[_builtins.bool] local: Boolean flag that can be explicitly set to true to enforce local mount in HA environment
         :param pulumi.Input[_builtins.int] max_lease_ttl_seconds: Maximum possible lease duration for tokens and secrets in seconds
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict', 'outputs.SecretsMountMongodbatla']]]] mongodbatlas: A nested block containing configuration options for MongoDB Atlas connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict']]]] mongodbs: A nested block containing configuration options for MongoDB connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict', 'outputs.SecretsMountMongodb']]]] mongodbs: A nested block containing configuration options for MongoDB connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict']]]] mssqls: A nested block containing configuration options for MSSQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict', 'outputs.SecretsMountMssql']]]] mssqls: A nested block containing configuration options for MSSQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict', 'outputs.SecretsMountMysqlAurora']]]] mysql_auroras: A nested block containing configuration options for Aurora MySQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict', 'outputs.SecretsMountMysqlLegacy']]]] mysql_legacies: A nested block containing configuration options for legacy MySQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict', 'outputs.SecretsMountMysqlRd']]]] mysql_rds: A nested block containing configuration options for RDS MySQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict']]]] mysqls: A nested block containing configuration options for MySQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict', 'outputs.SecretsMountMysql']]]] mysqls: A nested block containing configuration options for MySQL connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: Specifies mount type specific options that are passed to the backend
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict']]]] oracles: A nested block containing configuration options for Oracle connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict', 'outputs.SecretsMountOracle']]]] oracles: A nested block containing configuration options for Oracle connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] passthrough_request_headers: List of headers to allow and pass from the request to the plugin
         :param pulumi.Input[_builtins.str] path: Where the secret backend will be mounted
         :param pulumi.Input[_builtins.str] plugin_version: Specifies the semantic version of the plugin to use for this connection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict', 'outputs.SecretsMountPostgresql']]]] postgresqls: A nested block containing configuration options for PostgreSQL connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict']]]] redis: A nested block containing configuration options for Redis connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict', 'outputs.SecretsMountRedi']]]] redis: A nested block containing configuration options for Redis connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict', 'outputs.SecretsMountRedisElasticache']]]] redis_elasticaches: A nested block containing configuration options for Redis ElastiCache connections.\\
                *See Configuration Options for more info*
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict', 'outputs.SecretsMountRedshift']]]] redshifts: A nested block containing configuration options for AWS Redshift connections.\\
                *See Configuration Options for more info*
         :param pulumi.Input[_builtins.bool] seal_wrap: Boolean flag that can be explicitly set to true to enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict']]]] snowflakes: A nested block containing configuration options for Snowflake connections.\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict', 'outputs.SecretsMountSnowflake']]]] snowflakes: A nested block containing configuration options for Snowflake connections.\\
                *See Configuration Options for more info*
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

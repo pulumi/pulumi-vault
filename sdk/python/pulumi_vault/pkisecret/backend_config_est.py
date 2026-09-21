@@ -370,7 +370,7 @@ class BackendConfigEst(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: pulumi.Input[Optional[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict']]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict', 'outputs.BackendConfigEstAuthenticators']]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  default_mount: pulumi.Input[Optional[_builtins.bool]] = None,
                  default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -466,7 +466,7 @@ class BackendConfigEst(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
                
                <a id="nestedatt--authenticators"></a>
-        :param pulumi.Input[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict']] authenticators: Lists the mount accessors EST should delegate authentication requests towards (see below for nested schema).
+        :param pulumi.Input[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict', 'outputs.BackendConfigEstAuthenticators']] authenticators: Lists the mount accessors EST should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the EST configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] default_mount: If set, this mount will register the default `.well-known/est` URL path. Only a single mount can enable this across a Vault cluster.
@@ -583,7 +583,7 @@ class BackendConfigEst(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: pulumi.Input[Optional[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict']]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict', 'outputs.BackendConfigEstAuthenticators']]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  default_mount: pulumi.Input[Optional[_builtins.bool]] = None,
                  default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -623,7 +623,7 @@ class BackendConfigEst(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            authenticators: pulumi.Input[Optional[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict']]] = None,
+            authenticators: pulumi.Input[Optional[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict', 'outputs.BackendConfigEstAuthenticators']]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             default_mount: pulumi.Input[Optional[_builtins.bool]] = None,
             default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
@@ -642,7 +642,7 @@ class BackendConfigEst(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
                
                <a id="nestedatt--authenticators"></a>
-        :param pulumi.Input[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict']] authenticators: Lists the mount accessors EST should delegate authentication requests towards (see below for nested schema).
+        :param pulumi.Input[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict', 'outputs.BackendConfigEstAuthenticators']] authenticators: Lists the mount accessors EST should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the EST configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.bool] default_mount: If set, this mount will register the default `.well-known/est` URL path. Only a single mount can enable this across a Vault cluster.

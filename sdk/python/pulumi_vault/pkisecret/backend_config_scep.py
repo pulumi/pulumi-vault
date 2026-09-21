@@ -403,11 +403,11 @@ class BackendConfigScep(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_digest_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_encryption_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: pulumi.Input[Optional[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict']]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict', 'outputs.BackendConfigScepAuthenticators']]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 external_validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]]] = None,
+                 external_validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict', 'outputs.BackendConfigScepExternalValidation']]]]] = None,
                  log_level: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  restrict_ca_chain_to_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -462,12 +462,12 @@ class BackendConfigScep(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_digest_algorithms: List of allowed digest algorithms for SCEP requests.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_encryption_algorithms: List of allowed encryption algorithms for SCEP requests.
-        :param pulumi.Input[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict']] authenticators: Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
+        :param pulumi.Input[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict', 'outputs.BackendConfigScepAuthenticators']] authenticators: Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the SCEP configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] default_path_policy: Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or "role:<role_name>" to specify a role to use as this policy.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether SCEP is enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict', 'outputs.BackendConfigScepExternalValidation']]]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
         :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
                
                <a id="nestedatt--authenticators"></a>
@@ -546,11 +546,11 @@ class BackendConfigScep(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allowed_digest_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  allowed_encryption_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: pulumi.Input[Optional[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict']]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict', 'outputs.BackendConfigScepAuthenticators']]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 external_validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]]] = None,
+                 external_validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict', 'outputs.BackendConfigScepExternalValidation']]]]] = None,
                  log_level: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  restrict_ca_chain_to_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -588,11 +588,11 @@ class BackendConfigScep(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allowed_digest_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             allowed_encryption_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            authenticators: pulumi.Input[Optional[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict']]] = None,
+            authenticators: pulumi.Input[Optional[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict', 'outputs.BackendConfigScepAuthenticators']]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            external_validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]]] = None,
+            external_validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict', 'outputs.BackendConfigScepExternalValidation']]]]] = None,
             last_updated: pulumi.Input[Optional[_builtins.str]] = None,
             log_level: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -606,12 +606,12 @@ class BackendConfigScep(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_digest_algorithms: List of allowed digest algorithms for SCEP requests.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] allowed_encryption_algorithms: List of allowed encryption algorithms for SCEP requests.
-        :param pulumi.Input[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict']] authenticators: Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
+        :param pulumi.Input[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict', 'outputs.BackendConfigScepAuthenticators']] authenticators: Lists the mount accessors SCEP should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the SCEP configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] default_path_policy: Specifies the policy to be used for non-role-qualified SCEP requests; valid values are 'sign-verbatim', or "role:<role_name>" to specify a role to use as this policy.
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether SCEP is enabled.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict']]]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict', 'outputs.BackendConfigScepExternalValidation']]]] external_validations: Lists the 3rd party validation of SCEP requests (see below for nested schema).
         :param pulumi.Input[_builtins.str] last_updated: A read-only timestamp representing the last time the configuration was updated.
         :param pulumi.Input[_builtins.str] log_level: The level of logging verbosity, affects only SCEP logs on this mount.
                

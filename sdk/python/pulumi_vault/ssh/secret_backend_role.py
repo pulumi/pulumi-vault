@@ -1059,7 +1059,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
                  allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
                  allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
-                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
+                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict', 'outputs.SecretBackendRoleAllowedUserKeyConfig']]]]] = None,
                  allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
                  allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1129,7 +1129,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
                identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[_builtins.str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]] allowed_user_key_configs: Set of configuration blocks to define allowed\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict', 'outputs.SecretBackendRoleAllowedUserKeyConfig']]]] allowed_user_key_configs: Set of configuration blocks to define allowed\\
                user key configuration, like key type and their lengths. Can be specified multiple times.
                *See Configuration-Options for more info*
         :param pulumi.Input[_builtins.str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.
@@ -1224,7 +1224,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
                  allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
                  allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
-                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
+                 allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict', 'outputs.SecretBackendRoleAllowedUserKeyConfig']]]]] = None,
                  allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
                  allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1307,7 +1307,7 @@ class SecretBackendRole(pulumi.CustomResource):
             allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
             allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
             allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
-            allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]]] = None,
+            allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict', 'outputs.SecretBackendRoleAllowedUserKeyConfig']]]]] = None,
             allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
             allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1347,7 +1347,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] allowed_domains_template: Specifies if `allowed_domains` can be declared using
                identity template policies. Non-templated domains are also permitted.
         :param pulumi.Input[_builtins.str] allowed_extensions: Specifies a comma-separated list of extensions that certificates can have when signed.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict']]]] allowed_user_key_configs: Set of configuration blocks to define allowed\\
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict', 'outputs.SecretBackendRoleAllowedUserKeyConfig']]]] allowed_user_key_configs: Set of configuration blocks to define allowed\\
                user key configuration, like key type and their lengths. Can be specified multiple times.
                *See Configuration-Options for more info*
         :param pulumi.Input[_builtins.str] allowed_users: Specifies a comma-separated list of usernames that are to be allowed, only if certain usernames are to be allowed.

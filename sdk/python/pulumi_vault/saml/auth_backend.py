@@ -558,7 +558,7 @@ class AuthBackend(pulumi.CustomResource):
                  idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
                  validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
                  verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -612,7 +612,7 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of
@@ -682,7 +682,7 @@ class AuthBackend(pulumi.CustomResource):
                  idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
                  validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
                  verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -733,7 +733,7 @@ class AuthBackend(pulumi.CustomResource):
             idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
-            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
             validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
             validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
             verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None) -> 'AuthBackend':
@@ -763,7 +763,7 @@ class AuthBackend(pulumi.CustomResource):
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: Path where the auth backend will be mounted. Defaults to `auth/saml`
                if not specified.
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.bool] validate_assertion_signature: If set to `true`, validates the signature of

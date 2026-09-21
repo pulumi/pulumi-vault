@@ -349,12 +349,12 @@ class SecretBackendRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 inline_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict']]]]] = None,
+                 inline_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict', 'outputs.SecretBackendRoleInlinePolicy']]]]] = None,
                  max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
-                 remote_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict']]]]] = None,
+                 remote_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict', 'outputs.SecretBackendRoleRemotePolicy']]]]] = None,
                  role_arn: pulumi.Input[Optional[_builtins.str]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -514,7 +514,7 @@ class SecretBackendRole(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict']]]] inline_policies: Set of inline policy documents to be applied to the generated credentials. Each block represents one policy with a JSON-encoded policy_document field.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict', 'outputs.SecretBackendRoleInlinePolicy']]]] inline_policies: Set of inline policy documents to be applied to the generated credentials. Each block represents one policy with a JSON-encoded policy_document field.
         :param pulumi.Input[_builtins.int] max_ttl: The maximum TTL for credentials issued by this role,
                in seconds. Defaults to 0, in which case the value will fall back to the
                system/mount defaults.
@@ -527,7 +527,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured
                [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict']]]] remote_policies: Set of remote policy specifications to attach to the generated credentials. Each block groups a policy name with its type (System or Custom).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict', 'outputs.SecretBackendRoleRemotePolicy']]]] remote_policies: Set of remote policy specifications to attach to the generated credentials. Each block groups a policy name with its type (System or Custom).
         :param pulumi.Input[_builtins.str] role_arn: The ARN of the RAM role to assume. When specified,
                Vault will generate temporary STS credentials by assuming this role. The
                role's trust policy must allow the access key configured in the backend to
@@ -711,12 +711,12 @@ class SecretBackendRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 inline_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict']]]]] = None,
+                 inline_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict', 'outputs.SecretBackendRoleInlinePolicy']]]]] = None,
                  max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  mount: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
-                 remote_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict']]]]] = None,
+                 remote_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict', 'outputs.SecretBackendRoleRemotePolicy']]]]] = None,
                  role_arn: pulumi.Input[Optional[_builtins.str]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -748,12 +748,12 @@ class SecretBackendRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            inline_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict']]]]] = None,
+            inline_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict', 'outputs.SecretBackendRoleInlinePolicy']]]]] = None,
             max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
             mount: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
-            remote_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict']]]]] = None,
+            remote_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict', 'outputs.SecretBackendRoleRemotePolicy']]]]] = None,
             role_arn: pulumi.Input[Optional[_builtins.str]] = None,
             ttl: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecretBackendRole':
         """
@@ -763,7 +763,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict']]]] inline_policies: Set of inline policy documents to be applied to the generated credentials. Each block represents one policy with a JSON-encoded policy_document field.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict', 'outputs.SecretBackendRoleInlinePolicy']]]] inline_policies: Set of inline policy documents to be applied to the generated credentials. Each block represents one policy with a JSON-encoded policy_document field.
         :param pulumi.Input[_builtins.int] max_ttl: The maximum TTL for credentials issued by this role,
                in seconds. Defaults to 0, in which case the value will fall back to the
                system/mount defaults.
@@ -776,7 +776,7 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured
                [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict']]]] remote_policies: Set of remote policy specifications to attach to the generated credentials. Each block groups a policy name with its type (System or Custom).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict', 'outputs.SecretBackendRoleRemotePolicy']]]] remote_policies: Set of remote policy specifications to attach to the generated credentials. Each block groups a policy name with its type (System or Custom).
         :param pulumi.Input[_builtins.str] role_arn: The ARN of the RAM role to assume. When specified,
                Vault will generate temporary STS credentials by assuming this role. The
                role's trust policy must allow the access key configured in the backend to

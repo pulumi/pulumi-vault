@@ -338,7 +338,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict', 'outputs.BackendConfigCmpv2Authenticators']]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -423,7 +423,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-        :param pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
+        :param pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict', 'outputs.BackendConfigCmpv2Authenticators']] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the CMPv2 configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] default_path_policy: Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.
@@ -533,7 +533,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
+                 authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict', 'outputs.BackendConfigCmpv2Authenticators']]] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
                  disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -571,7 +571,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']]] = None,
+            authenticators: pulumi.Input[Optional[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict', 'outputs.BackendConfigCmpv2Authenticators']]] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
             disabled_validations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -587,7 +587,7 @@ class BackendConfigCmpv2(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audit_fields: Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
-        :param pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict']] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
+        :param pulumi.Input[Union['BackendConfigCmpv2AuthenticatorsArgs', 'BackendConfigCmpv2AuthenticatorsArgsDict', 'outputs.BackendConfigCmpv2Authenticators']] authenticators: Lists the mount accessors CMPv2 should delegate authentication requests towards (see below for nested schema).
         :param pulumi.Input[_builtins.str] backend: The path to the PKI secret backend to
                read the CMPv2 configuration from, with no leading or trailing `/`s.
         :param pulumi.Input[_builtins.str] default_path_policy: Specifies the behavior for requests using the non-role-qualified CMPv2 requests. Can be sign-verbatim or a role given by role:<role_name>.

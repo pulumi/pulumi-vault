@@ -750,7 +750,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  token_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  __props__=None):
         """
         Manages a GitHub Auth mount in a Vault server. See the [Vault
@@ -817,7 +817,7 @@ class AuthBackend(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """
@@ -882,7 +882,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  token_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -941,7 +941,7 @@ class AuthBackend(pulumi.CustomResource):
             token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
             token_type: pulumi.Input[Optional[_builtins.str]] = None,
-            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None) -> 'AuthBackend':
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -990,7 +990,7 @@ class AuthBackend(pulumi.CustomResource):
                Its current value will be referenced at renewal time.
         :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """

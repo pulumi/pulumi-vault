@@ -1747,7 +1747,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  token_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  upndomain: pulumi.Input[Optional[_builtins.str]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None,
                  use_token_groups: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1854,7 +1854,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.
@@ -1970,7 +1970,7 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  token_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  upndomain: pulumi.Input[Optional[_builtins.str]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None,
                  use_token_groups: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -2095,7 +2095,7 @@ class AuthBackend(pulumi.CustomResource):
             token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
             token_type: pulumi.Input[Optional[_builtins.str]] = None,
-            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
             upndomain: pulumi.Input[Optional[_builtins.str]] = None,
             url: pulumi.Input[Optional[_builtins.str]] = None,
             use_token_groups: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -2165,7 +2165,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: Specifies the type of tokens that should be returned by
                the mount. Valid values are "default-service", "default-batch", "service", "batch".
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] upndomain: The `userPrincipalDomain` used to construct the UPN string for the authenticating user.

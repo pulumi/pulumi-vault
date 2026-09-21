@@ -516,7 +516,7 @@ class SecretV2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cas: pulumi.Input[Optional[_builtins.int]] = None,
-                 custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
+                 custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict', 'outputs.SecretV2CustomMetadata']]] = None,
                  data_json: pulumi.Input[Optional[_builtins.str]] = None,
                  data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -600,7 +600,7 @@ class SecretV2(pulumi.CustomResource):
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
-        :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']] custom_metadata: A nested block that allows configuring metadata for the
+        :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict', 'outputs.SecretV2CustomMetadata']] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
         :param pulumi.Input[_builtins.str] data_json: JSON-encoded string that will be
@@ -713,7 +713,7 @@ class SecretV2(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cas: pulumi.Input[Optional[_builtins.int]] = None,
-                 custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
+                 custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict', 'outputs.SecretV2CustomMetadata']]] = None,
                  data_json: pulumi.Input[Optional[_builtins.str]] = None,
                  data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -761,7 +761,7 @@ class SecretV2(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cas: pulumi.Input[Optional[_builtins.int]] = None,
-            custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']]] = None,
+            custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict', 'outputs.SecretV2CustomMetadata']]] = None,
             data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             data_json: pulumi.Input[Optional[_builtins.str]] = None,
             data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
@@ -785,7 +785,7 @@ class SecretV2(pulumi.CustomResource):
                on either the secret or the engine's config. In order for a
                write operation to be successful, cas must be set to the current version
                of the secret.
-        :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict']] custom_metadata: A nested block that allows configuring metadata for the
+        :param pulumi.Input[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict', 'outputs.SecretV2CustomMetadata']] custom_metadata: A nested block that allows configuring metadata for the
                KV secret. Refer to the
                Configuration Options for more info.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] data: **Deprecated. Please use new ephemeral resource `kv.SecretV2` to read back
