@@ -876,7 +876,7 @@ class AuthBackend(pulumi.CustomResource):
                  oidc_response_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -1193,7 +1193,7 @@ class AuthBackend(pulumi.CustomResource):
                  oidc_response_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1264,7 +1264,7 @@ class AuthBackend(pulumi.CustomResource):
             oidc_response_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
             provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra

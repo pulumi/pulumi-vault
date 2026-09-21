@@ -995,7 +995,7 @@ class AuthBackend(pulumi.CustomResource):
                  credentials: pulumi.Input[Optional[_builtins.str]] = None,
                  credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
+                 custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict', 'outputs.AuthBackendCustomEndpoint']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1015,7 +1015,7 @@ class AuthBackend(pulumi.CustomResource):
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  __props__=None):
         """
         Provides a resource to configure the [GCP auth backend within Vault](https://www.vaultproject.io/docs/auth/gcp.html).
@@ -1080,7 +1080,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] credentials_wo_version: A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
                For more information about write-only attributes, see
                [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
-        :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']] custom_endpoint: Specifies overrides to
+        :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict', 'outputs.AuthBackendCustomEndpoint']] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
@@ -1120,7 +1120,7 @@ class AuthBackend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """
@@ -1203,7 +1203,7 @@ class AuthBackend(pulumi.CustomResource):
                  credentials: pulumi.Input[Optional[_builtins.str]] = None,
                  credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-                 custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
+                 custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict', 'outputs.AuthBackendCustomEndpoint']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1223,7 +1223,7 @@ class AuthBackend(pulumi.CustomResource):
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1278,7 +1278,7 @@ class AuthBackend(pulumi.CustomResource):
             credentials: pulumi.Input[Optional[_builtins.str]] = None,
             credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
             credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
-            custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']]] = None,
+            custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict', 'outputs.AuthBackendCustomEndpoint']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1298,7 +1298,7 @@ class AuthBackend(pulumi.CustomResource):
             rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
             service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
-            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None) -> 'AuthBackend':
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1315,7 +1315,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] credentials_wo_version: A version counter for write-only credentials. Incrementing this value will cause the provider to send the credentials to Vault. Required with `credentials_wo`.
                For more information about write-only attributes, see
                [using write-only attributes](https://www.terraform.io/docs/providers/vault/guides/using_write_only_attributes).
-        :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict']] custom_endpoint: Specifies overrides to
+        :param pulumi.Input[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict', 'outputs.AuthBackendCustomEndpoint']] custom_endpoint: Specifies overrides to
                [service endpoints](https://cloud.google.com/apis/design/glossary#api_service_endpoint)
                used when making API requests. This allows specific requests made during authentication
                to target alternative service endpoints for use in [Private Google Access](https://cloud.google.com/vpc/docs/configure-private-google-access)
@@ -1355,7 +1355,7 @@ class AuthBackend(pulumi.CustomResource):
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         :param pulumi.Input[_builtins.str] service_account_email: Service Account to impersonate for plugin workload identity federation.
                Required with `identity_token_audience`. Requires Vault 1.17+. *Available only for Vault Enterprise*.
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """

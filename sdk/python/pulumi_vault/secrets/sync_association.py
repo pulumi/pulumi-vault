@@ -394,7 +394,7 @@ class SyncAssociation(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SyncAssociationMetadataArgs', 'SyncAssociationMetadataArgsDict']]]]] = None,
+            metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SyncAssociationMetadataArgs', 'SyncAssociationMetadataArgsDict', 'outputs.SyncAssociationMetadata']]]]] = None,
             mount: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -407,7 +407,7 @@ class SyncAssociation(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SyncAssociationMetadataArgs', 'SyncAssociationMetadataArgsDict']]]] metadatas: Metadata for each subkey of the associated secret.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SyncAssociationMetadataArgs', 'SyncAssociationMetadataArgsDict', 'outputs.SyncAssociationMetadata']]]] metadatas: Metadata for each subkey of the associated secret.
         :param pulumi.Input[_builtins.str] mount: Specifies the mount where the secret is located.
         :param pulumi.Input[_builtins.str] name: Specifies the name of the destination.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.

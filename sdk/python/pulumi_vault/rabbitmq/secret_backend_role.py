@@ -257,8 +257,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[_builtins.str]] = None,
-                 vhost_topics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]]] = None,
-                 vhosts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]]] = None,
+                 vhost_topics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict', 'outputs.SecretBackendRoleVhostTopic']]]]] = None,
+                 vhosts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict', 'outputs.SecretBackendRoleVhost']]]]] = None,
                  __props__=None):
         """
         Creates a role on an RabbitMQ Secret Backend for Vault. Roles are
@@ -321,8 +321,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] tags: Specifies a comma-separated RabbitMQ management tags.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]] vhosts: Specifies a map of virtual hosts to permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict', 'outputs.SecretBackendRoleVhostTopic']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict', 'outputs.SecretBackendRoleVhost']]]] vhosts: Specifies a map of virtual hosts to permissions.
         """
         ...
     @overload
@@ -399,8 +399,8 @@ class SecretBackendRole(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[_builtins.str]] = None,
-                 vhost_topics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]]] = None,
-                 vhosts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]]] = None,
+                 vhost_topics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict', 'outputs.SecretBackendRoleVhostTopic']]]]] = None,
+                 vhosts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict', 'outputs.SecretBackendRoleVhost']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -432,8 +432,8 @@ class SecretBackendRole(pulumi.CustomResource):
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[_builtins.str]] = None,
-            vhost_topics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]]] = None,
-            vhosts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]]] = None) -> 'SecretBackendRole':
+            vhost_topics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict', 'outputs.SecretBackendRoleVhostTopic']]]]] = None,
+            vhosts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict', 'outputs.SecretBackendRoleVhost']]]]] = None) -> 'SecretBackendRole':
         """
         Get an existing SecretBackendRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -450,8 +450,8 @@ class SecretBackendRole(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] tags: Specifies a comma-separated RabbitMQ management tags.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict']]]] vhosts: Specifies a map of virtual hosts to permissions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict', 'outputs.SecretBackendRoleVhostTopic']]]] vhost_topics: Specifies a map of virtual hosts and exchanges to topic permissions. This option requires RabbitMQ 3.7.0 or later.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict', 'outputs.SecretBackendRoleVhost']]]] vhosts: Specifies a map of virtual hosts to permissions.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

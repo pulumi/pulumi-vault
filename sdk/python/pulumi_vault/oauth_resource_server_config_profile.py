@@ -555,7 +555,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
                  no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
                  profile_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict']]]]] = None,
+                 public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]]] = None,
                  supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_claim: pulumi.Input[Optional[_builtins.str]] = None,
@@ -732,7 +732,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] no_default_policy: If true, JWT-authenticated tokens omit the default policy unless added elsewhere. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] optional_authorization_details: When `false`, RAR (Rich Authorization Requests) is mandatory and authorization_details must be present in the token. When set to `true`, authorization_details in the JWT token are optional. Defaults to `false`. Requires Vault 2.0.3 or later.
         :param pulumi.Input[_builtins.str] profile_name: The name of the OAuth Resource Server Configuration profile. Must be unique within the namespace. Changing this will force a new resource to be created.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict']]]] public_keys: List of static public keys with `key_id` and `pem` fields. Required when `use_jwks=false`. Each public key must have:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]] public_keys: List of static public keys with `key_id` and `pem` fields. Required when `use_jwks=false`. Each public key must have:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_algorithms: List of supported signing algorithms (e.g., RS256, ES256). Defaults to all supported algorithms: `["RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "PS256", "PS384", "PS512"]`. Valid values are:
                * `RS256`, `RS384`, `RS512` - RSA with SHA-256/384/512
                * `ES256`, `ES384`, `ES512` - ECDSA with SHA-256/384/512
@@ -928,7 +928,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
                  no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
                  profile_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict']]]]] = None,
+                 public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]]] = None,
                  supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_claim: pulumi.Input[Optional[_builtins.str]] = None,
@@ -981,7 +981,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
             no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
             optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
             profile_name: pulumi.Input[Optional[_builtins.str]] = None,
-            public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict']]]]] = None,
+            public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]]] = None,
             supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
             user_claim: pulumi.Input[Optional[_builtins.str]] = None) -> 'OauthResourceServerConfigProfile':
@@ -1006,7 +1006,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] no_default_policy: If true, JWT-authenticated tokens omit the default policy unless added elsewhere. Defaults to `false`.
         :param pulumi.Input[_builtins.bool] optional_authorization_details: When `false`, RAR (Rich Authorization Requests) is mandatory and authorization_details must be present in the token. When set to `true`, authorization_details in the JWT token are optional. Defaults to `false`. Requires Vault 2.0.3 or later.
         :param pulumi.Input[_builtins.str] profile_name: The name of the OAuth Resource Server Configuration profile. Must be unique within the namespace. Changing this will force a new resource to be created.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict']]]] public_keys: List of static public keys with `key_id` and `pem` fields. Required when `use_jwks=false`. Each public key must have:
+        :param pulumi.Input[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]] public_keys: List of static public keys with `key_id` and `pem` fields. Required when `use_jwks=false`. Each public key must have:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_algorithms: List of supported signing algorithms (e.g., RS256, ES256). Defaults to all supported algorithms: `["RS256", "RS384", "RS512", "ES256", "ES384", "ES512", "PS256", "PS384", "PS512"]`. Valid values are:
                * `RS256`, `RS384`, `RS512` - RSA with SHA-256/384/512
                * `ES256`, `ES384`, `ES512` - ECDSA with SHA-256/384/512

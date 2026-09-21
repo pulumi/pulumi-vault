@@ -934,7 +934,7 @@ class AuthBackend(pulumi.CustomResource):
                  bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
-                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict', 'outputs.AuthBackendGroup']]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  org_name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
@@ -949,8 +949,8 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  token_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-                 users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
+                 users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict', 'outputs.AuthBackendUser']]]]] = None,
                  __props__=None):
         """
         Provides a resource for managing an
@@ -1012,7 +1012,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]] groups: Associate Okta groups with policies within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict', 'outputs.AuthBackendGroup']]]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1035,7 +1035,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]] users: Associate Okta users with groups or policies within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict', 'outputs.AuthBackendUser']]]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
         ...
@@ -1111,7 +1111,7 @@ class AuthBackend(pulumi.CustomResource):
                  bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
-                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
+                 groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict', 'outputs.AuthBackendGroup']]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  org_name: pulumi.Input[Optional[_builtins.str]] = None,
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1126,8 +1126,8 @@ class AuthBackend(pulumi.CustomResource):
                  token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  token_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-                 users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
+                 users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict', 'outputs.AuthBackendUser']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1184,7 +1184,7 @@ class AuthBackend(pulumi.CustomResource):
             bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
-            groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]]] = None,
+            groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict', 'outputs.AuthBackendGroup']]]]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             org_name: pulumi.Input[Optional[_builtins.str]] = None,
             organization: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1199,8 +1199,8 @@ class AuthBackend(pulumi.CustomResource):
             token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
             token_type: pulumi.Input[Optional[_builtins.str]] = None,
-            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
-            users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]]] = None) -> 'AuthBackend':
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
+            users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict', 'outputs.AuthBackendUser']]]]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1223,7 +1223,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of the auth backend
         :param pulumi.Input[_builtins.bool] disable_remount: If set, opts out of mount migration on path updates.
                See here for more info on [Mount Migration](https://www.vaultproject.io/docs/concepts/mount-migration)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict']]]] groups: Associate Okta groups with policies within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict', 'outputs.AuthBackendGroup']]]] groups: Associate Okta groups with policies within Vault.
                See below for more details.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1246,7 +1246,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] token_policies: Generated Token's Policies
         :param pulumi.Input[_builtins.int] token_ttl: The initial ttl of the token to generate in seconds
         :param pulumi.Input[_builtins.str] token_type: The type of token to generate, service or batch
-        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict']]]] users: Associate Okta users with groups or policies within Vault.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict', 'outputs.AuthBackendUser']]]] users: Associate Okta users with groups or policies within Vault.
                See below for more details.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

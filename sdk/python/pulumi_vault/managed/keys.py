@@ -202,11 +202,11 @@ class Keys(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
-                 azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
-                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
+                 aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict', 'outputs.KeysAw']]]]] = None,
+                 azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict', 'outputs.KeysAzure']]]]] = None,
+                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict', 'outputs.KeysGcp']]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
-                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
+                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict', 'outputs.KeysPkc']]]]] = None,
                  __props__=None):
         """
         A resource that manages the lifecycle of all [Managed Keys](https://www.vaultproject.io/docs/enterprise/managed-keys) in Vault.
@@ -293,11 +293,11 @@ class Keys(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]] aws: Configuration block for AWS Managed Keys
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]] azures: Configuration block for Azure Managed Keys
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]] gcps: Configuration block for GCP Cloud KMS Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict', 'outputs.KeysAw']]]] aws: Configuration block for AWS Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict', 'outputs.KeysAzure']]]] azures: Configuration block for Azure Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict', 'outputs.KeysGcp']]]] gcps: Configuration block for GCP Cloud KMS Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]] pkcs: Configuration block for PKCS Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict', 'outputs.KeysPkc']]]] pkcs: Configuration block for PKCS Managed Keys
         """
         ...
     @overload
@@ -403,11 +403,11 @@ class Keys(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
-                 azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
-                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
+                 aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict', 'outputs.KeysAw']]]]] = None,
+                 azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict', 'outputs.KeysAzure']]]]] = None,
+                 gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict', 'outputs.KeysGcp']]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
-                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None,
+                 pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict', 'outputs.KeysPkc']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -432,11 +432,11 @@ class Keys(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]]] = None,
-            azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]]] = None,
-            gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]]] = None,
+            aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict', 'outputs.KeysAw']]]]] = None,
+            azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict', 'outputs.KeysAzure']]]]] = None,
+            gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict', 'outputs.KeysGcp']]]]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
-            pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]]] = None) -> 'Keys':
+            pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict', 'outputs.KeysPkc']]]]] = None) -> 'Keys':
         """
         Get an existing Keys resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -444,11 +444,11 @@ class Keys(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict']]]] aws: Configuration block for AWS Managed Keys
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict']]]] azures: Configuration block for Azure Managed Keys
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict']]]] gcps: Configuration block for GCP Cloud KMS Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict', 'outputs.KeysAw']]]] aws: Configuration block for AWS Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict', 'outputs.KeysAzure']]]] azures: Configuration block for Azure Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict', 'outputs.KeysGcp']]]] gcps: Configuration block for GCP Cloud KMS Managed Keys
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
-        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict']]]] pkcs: Configuration block for PKCS Managed Keys
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict', 'outputs.KeysPkc']]]] pkcs: Configuration block for PKCS Managed Keys
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

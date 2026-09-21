@@ -329,7 +329,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authenticated: pulumi.Input[Optional[_builtins.bool]] = None,
                  end_time: pulumi.Input[Optional[_builtins.str]] = None,
-                 link: pulumi.Input[Optional[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
+                 link: pulumi.Input[Optional[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict', 'outputs.UiCustomMessageLink']]] = None,
                  message_base64: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -344,7 +344,7 @@ class UiCustomMessage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] authenticated: A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
         :param pulumi.Input[_builtins.str] end_time: The ending time of the active period of the custom message. Can be omitted for non-expiring message
-        :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']] link: A block containing a hyperlink associated with the custom message
+        :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict', 'outputs.UiCustomMessageLink']] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[_builtins.str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: A map containing additional options for the custom message
@@ -378,7 +378,7 @@ class UiCustomMessage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  authenticated: pulumi.Input[Optional[_builtins.bool]] = None,
                  end_time: pulumi.Input[Optional[_builtins.str]] = None,
-                 link: pulumi.Input[Optional[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
+                 link: pulumi.Input[Optional[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict', 'outputs.UiCustomMessageLink']]] = None,
                  message_base64: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -421,7 +421,7 @@ class UiCustomMessage(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             authenticated: pulumi.Input[Optional[_builtins.bool]] = None,
             end_time: pulumi.Input[Optional[_builtins.str]] = None,
-            link: pulumi.Input[Optional[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']]] = None,
+            link: pulumi.Input[Optional[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict', 'outputs.UiCustomMessageLink']]] = None,
             message_base64: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
@@ -437,7 +437,7 @@ class UiCustomMessage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] authenticated: A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
         :param pulumi.Input[_builtins.str] end_time: The ending time of the active period of the custom message. Can be omitted for non-expiring message
-        :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict']] link: A block containing a hyperlink associated with the custom message
+        :param pulumi.Input[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict', 'outputs.UiCustomMessageLink']] link: A block containing a hyperlink associated with the custom message
         :param pulumi.Input[_builtins.str] message_base64: The base64-encoded content of the custom message
         :param pulumi.Input[_builtins.str] namespace: Target namespace. (requires Enterprise)
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] options: A map containing additional options for the custom message

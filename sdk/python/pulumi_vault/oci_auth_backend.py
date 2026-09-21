@@ -406,7 +406,7 @@ class OciAuthBackend(pulumi.CustomResource):
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
-                 tune: pulumi.Input[Optional[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict', 'outputs.OciAuthBackendTune']]] = None,
                  __props__=None):
         """
         Configures the OCI (Oracle Cloud Infrastructure) Auth Backend in Vault.
@@ -458,7 +458,7 @@ class OciAuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_period: The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
         :param pulumi.Input[_builtins.str] rotation_schedule: The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
-        :param pulumi.Input[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict', 'outputs.OciAuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """
@@ -528,7 +528,7 @@ class OciAuthBackend(pulumi.CustomResource):
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
-                 tune: pulumi.Input[Optional[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict', 'outputs.OciAuthBackendTune']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -573,7 +573,7 @@ class OciAuthBackend(pulumi.CustomResource):
             rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
-            tune: pulumi.Input[Optional[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict']]] = None) -> 'OciAuthBackend':
+            tune: pulumi.Input[Optional[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict', 'outputs.OciAuthBackendTune']]] = None) -> 'OciAuthBackend':
         """
         Get an existing OciAuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -594,7 +594,7 @@ class OciAuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_period: The period of time in seconds between each rotation of the root credential. Cannot be used with rotation_schedule.
         :param pulumi.Input[_builtins.str] rotation_schedule: The cron-style schedule for the root credential to be rotated on. Cannot be used with rotation_period.
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds Vault is allowed to complete a rotation once a scheduled rotation is triggered. Can only be used with rotation_schedule.
-        :param pulumi.Input[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict', 'outputs.OciAuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         """

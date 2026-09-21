@@ -343,7 +343,7 @@ class AuthBackend(pulumi.CustomResource):
                  local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -392,7 +392,7 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: The path to mount the auth method — this defaults to the name of the type.
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] type: The name of the auth method type.
@@ -458,7 +458,7 @@ class AuthBackend(pulumi.CustomResource):
                  local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
-                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+                 tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -497,7 +497,7 @@ class AuthBackend(pulumi.CustomResource):
             local: pulumi.Input[Optional[_builtins.bool]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
-            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
@@ -517,7 +517,7 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] path: The path to mount the auth method — this defaults to the name of the type.
-        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict']] tune: Extra configuration block. Structure is documented below.
+        :param pulumi.Input[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']] tune: Extra configuration block. Structure is documented below.
                
                The `tune` block is used to tune the auth backend:
         :param pulumi.Input[_builtins.str] type: The name of the auth method type.
