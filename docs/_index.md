@@ -709,7 +709,7 @@ public class App {
 {{% /choosable %}}
 {{% choosable language hcl %}}
 ```hcl
-pulumi {
+terraform {
   required_providers {
     vault = {
       source = "pulumi/vault"
@@ -718,6 +718,9 @@ pulumi {
 }
 
 resource "vault_generic_secret" "example" {
+  lifecycle {
+    create_before_destroy = true
+  }
   path = "secret/foo"
   data_json = jsonencode({
     "foo"   = "bar"
@@ -863,8 +866,8 @@ public class App {
 
     public static void stack(Context ctx) {
         final var config = ctx.config();
-        final var loginUsername = config.require("loginUsername");
-        final var loginPassword = config.require("loginPassword");
+        final var loginUsername = config.requireObject("loginUsername", com.pulumi.core.TypeShape.map(String.class, Object.class));
+        final var loginPassword = config.requireObject("loginPassword", com.pulumi.core.TypeShape.map(String.class, Object.class));
     }
 }
 ```
@@ -873,8 +876,10 @@ public class App {
 {{% choosable language hcl %}}
 ```hcl
 variable "loginUsername" {
+  type = any
 }
 variable "loginPassword" {
+  type = any
 }
 ```
 
@@ -1015,8 +1020,8 @@ public class App {
 
     public static void stack(Context ctx) {
         final var config = ctx.config();
-        final var loginApproleRoleId = config.require("loginApproleRoleId");
-        final var loginApproleSecretId = config.require("loginApproleSecretId");
+        final var loginApproleRoleId = config.requireObject("loginApproleRoleId", com.pulumi.core.TypeShape.map(String.class, Object.class));
+        final var loginApproleSecretId = config.requireObject("loginApproleSecretId", com.pulumi.core.TypeShape.map(String.class, Object.class));
     }
 }
 ```
@@ -1025,8 +1030,10 @@ public class App {
 {{% choosable language hcl %}}
 ```hcl
 variable "loginApproleRoleId" {
+  type = any
 }
 variable "loginApproleSecretId" {
+  type = any
 }
 ```
 

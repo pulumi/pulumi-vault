@@ -122,7 +122,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var exampleCertRequest = new CertRequest("exampleCertRequest", CertRequestArgs.builder()
- *             .privateKeyPem(example.privateKeyPem())
+ *             .privateKeyPem(example.get("privateKeyPem"))
  *             .subject(Arrays.asList(Map.of("commonName", "www.example.com")))
  *             .dnsNames(Arrays.asList(            
  *                 "www.example.com",
@@ -130,9 +130,9 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var withCsr = new SecretBackendOrder("withCsr", SecretBackendOrderArgs.builder()
- *             .mount(pki_external_ca.path())
- *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
- *             .csr(exampleCertRequest.certRequestPem())
+ *             .mount(pki_external_ca.get("path"))
+ *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+ *             .csr(exampleCertRequest.get("certRequestPem"))
  *             .build());
  * 
  *     }

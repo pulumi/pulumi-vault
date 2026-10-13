@@ -31,7 +31,7 @@ namespace Pulumi.Vault
     ///     {
     ///         Name = "global",
     ///         Path = "",
-    ///         Rate = 100,
+    ///         Rate = 100.0,
     ///     });
     /// 
     /// });

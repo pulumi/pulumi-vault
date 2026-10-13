@@ -53,8 +53,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new SecretBackendSign("test", SecretBackendSignArgs.builder()
- *             .backend(pki.path())
- *             .name(admin.name())
+ *             .backend(pki.get("path"))
+ *             .name(admin.get("name"))
  *             .csr("""
  * -----BEGIN CERTIFICATE REQUEST-----
  * MIIEqDCCApACAQAwYzELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx

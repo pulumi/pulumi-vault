@@ -94,7 +94,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
-     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .backend(testVaultPkiSecretBackendRootCert.get("backend"))
      *             .name("test")
      *             .allowedDomains("test.my.domain")
      *             .allowSubdomains(true)
@@ -116,7 +116,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
-     *             .path(test_root.path())
+     *             .path(test_root.get("path"))
      *             .serial(testSecretBackendCert.serialNumber())
      *             .build());
      * 
@@ -187,7 +187,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
-     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .backend(testVaultPkiSecretBackendRootCert.get("backend"))
      *             .name("test")
      *             .allowedDomains("test.my.domain")
      *             .allowSubdomains(true)
@@ -209,7 +209,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
-     *             .path(test_root.path())
+     *             .path(test_root.get("path"))
      *             .serial(testSecretBackendCert.serialNumber())
      *             .build());
      * 
@@ -280,7 +280,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
-     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .backend(testVaultPkiSecretBackendRootCert.get("backend"))
      *             .name("test")
      *             .allowedDomains("test.my.domain")
      *             .allowSubdomains(true)
@@ -302,7 +302,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
-     *             .path(test_root.path())
+     *             .path(test_root.get("path"))
      *             .serial(testSecretBackendCert.serialNumber())
      *             .build());
      * 
@@ -373,7 +373,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
-     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .backend(testVaultPkiSecretBackendRootCert.get("backend"))
      *             .name("test")
      *             .allowedDomains("test.my.domain")
      *             .allowSubdomains(true)
@@ -395,7 +395,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
-     *             .path(test_root.path())
+     *             .path(test_root.get("path"))
      *             .serial(testSecretBackendCert.serialNumber())
      *             .build());
      * 
@@ -466,7 +466,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         var testSecretBackendRole = new SecretBackendRole("testSecretBackendRole", SecretBackendRoleArgs.builder()
-     *             .backend(testVaultPkiSecretBackendRootCert.backend())
+     *             .backend(testVaultPkiSecretBackendRootCert.get("backend"))
      *             .name("test")
      *             .allowedDomains("test.my.domain")
      *             .allowSubdomains(true)
@@ -488,7 +488,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var test = PkiSecretFunctions.getBackendCertMetadata(GetBackendCertMetadataArgs.builder()
-     *             .path(test_root.path())
+     *             .path(test_root.get("path"))
      *             .serial(testSecretBackendCert.serialNumber())
      *             .build());
      * 
@@ -2060,7 +2060,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
-     *             .backend(keyVaultMount.path())
+     *             .backend(keyVaultMount.get("path"))
      *             .keyRef(key.keyId())
      *             .build());
      * 
@@ -2127,7 +2127,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
-     *             .backend(keyVaultMount.path())
+     *             .backend(keyVaultMount.get("path"))
      *             .keyRef(key.keyId())
      *             .build());
      * 
@@ -2194,7 +2194,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
-     *             .backend(keyVaultMount.path())
+     *             .backend(keyVaultMount.get("path"))
      *             .keyRef(key.keyId())
      *             .build());
      * 
@@ -2261,7 +2261,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
-     *             .backend(keyVaultMount.path())
+     *             .backend(keyVaultMount.get("path"))
      *             .keyRef(key.keyId())
      *             .build());
      * 
@@ -2328,7 +2328,7 @@ public final class PkiSecretFunctions {
      *             .build());
      * 
      *         final var example = PkiSecretFunctions.getBackendKey(GetBackendKeyArgs.builder()
-     *             .backend(keyVaultMount.path())
+     *             .backend(keyVaultMount.get("path"))
      *             .keyRef(key.keyId())
      *             .build());
      * 

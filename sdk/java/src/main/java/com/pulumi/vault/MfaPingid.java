@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) }{{@code
  *         final var config = ctx.config();
- *         final var settingsFile = config.require("settingsFile");
+ *         final var settingsFile = config.requireObject("settingsFile", com.pulumi.core.TypeShape.map(String.class, Object.class));
  *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
  *             .type("userpass")
  *             .path("userpass")

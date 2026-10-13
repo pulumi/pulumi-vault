@@ -63,7 +63,7 @@ namespace Pulumi.Vault
     ///         children.Add(new Vault.Namespace($"children-{range.Key}", new()
     ///         {
     ///             TargetNamespace = parent.Path,
-    ///             Path = range.Key,
+    ///             Path = range.Key.ToString(System.Globalization.CultureInfo.InvariantCulture),
     ///         }));
     ///     }
     ///     var childrenMount = new List&lt;Vault.Mount&gt;();

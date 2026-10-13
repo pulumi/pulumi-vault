@@ -47,7 +47,7 @@ namespace Pulumi.Vault.Azure
     ///         Backend = azure.Path,
     ///         Role = "static-role",
     ///         ApplicationObjectId = "11111111-2222-3333-4444-44444444444",
-    ///         Ttl = "8760h",
+    ///         Ttl = int.Parse("8760h", System.Globalization.CultureInfo.InvariantCulture),
     ///         Metadata = 
     ///         {
     ///             { "team", "test" },

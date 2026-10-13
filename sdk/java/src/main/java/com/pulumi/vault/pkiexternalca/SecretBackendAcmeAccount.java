@@ -95,7 +95,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) }{{@code
  *         var withEab = new SecretBackendAcmeAccount("withEab", SecretBackendAcmeAccountArgs.builder()
- *             .mount(pki_external_ca.path())
+ *             .mount(pki_external_ca.get("path"))
  *             .name("my-acme-account-eab")
  *             .directoryUrl("https://acme.example.com/directory")
  *             .emailContacts("admin}{@literal @}{@code example.com")

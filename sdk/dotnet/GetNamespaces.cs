@@ -70,13 +70,13 @@ namespace Pulumi.Vault
         /// 
         ///     var child = .ToDictionary(item =&gt; {
         ///         var __key = item.Key;
-        ///         return __key;
+        ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
         ///     }, item =&gt; {
         ///         var __key = item.Key;
         ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
-        ///             Path = __key,
+        ///             Path = __key.ToString(System.Globalization.CultureInfo.InvariantCulture),
         ///         });
         ///     });
         /// 
@@ -145,13 +145,13 @@ namespace Pulumi.Vault
         /// 
         ///     var child = .ToDictionary(item =&gt; {
         ///         var __key = item.Key;
-        ///         return __key;
+        ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
         ///     }, item =&gt; {
         ///         var __key = item.Key;
         ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
-        ///             Path = __key,
+        ///             Path = __key.ToString(System.Globalization.CultureInfo.InvariantCulture),
         ///         });
         ///     });
         /// 
@@ -220,13 +220,13 @@ namespace Pulumi.Vault
         /// 
         ///     var child = .ToDictionary(item =&gt; {
         ///         var __key = item.Key;
-        ///         return __key;
+        ///         return __key.ToString(System.Globalization.CultureInfo.InvariantCulture);
         ///     }, item =&gt; {
         ///         var __key = item.Key;
         ///         return Vault.GetNamespace.Invoke(new()
         ///         {
         ///             Namespace = _arg0_.Namespace,
-        ///             Path = __key,
+        ///             Path = __key.ToString(System.Globalization.CultureInfo.InvariantCulture),
         ///         });
         ///     });
         /// 

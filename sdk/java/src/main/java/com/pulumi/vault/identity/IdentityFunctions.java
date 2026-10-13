@@ -1116,7 +1116,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -1193,7 +1193,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -1270,7 +1270,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -1347,7 +1347,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -1424,7 +1424,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var config = IdentityFunctions.getOidcOpenidConfig(GetOidcOpenidConfigArgs.builder()
@@ -1501,7 +1501,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
@@ -1578,7 +1578,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
@@ -1655,7 +1655,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
@@ -1732,7 +1732,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()
@@ -1809,7 +1809,7 @@ public final class IdentityFunctions {
      * 
      *         var provider = new OidcProvider("provider", OidcProviderArgs.builder()
      *             .name("provider")
-     *             .allowedClientIds(test.clientId())
+     *             .allowedClientIds(test.get("clientId"))
      *             .build());
      * 
      *         final var publicKeys = IdentityFunctions.getOidcPublicKeys(GetOidcPublicKeysArgs.builder()

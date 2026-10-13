@@ -101,7 +101,7 @@ namespace Pulumi.Vault.Aws
     ///     var aws = new Vault.Aws.SecretBackend("aws", new()
     ///     {
     ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
-    ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
+    ///         IdentityTokenTtl = int.Parse("&lt;TOKEN_TTL&gt;", System.Globalization.CultureInfo.InvariantCulture),
     ///         RoleArn = "&lt;AWS_ROLE_ARN&gt;",
     ///         RotationSchedule = "0 * * * SAT",
     ///         RotationWindow = 3600,

@@ -53,8 +53,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var app = new SecretBackendCert("app", SecretBackendCertArgs.builder()
- *             .backend(intermediate.path())
- *             .name(test.name())
+ *             .backend(intermediate.get("path"))
+ *             .name(test.get("name"))
  *             .commonName("app.my.domain")
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(admin)

@@ -110,7 +110,7 @@ import javax.annotation.Nullable;
  *                 .dependsOn(u1Token)
  *                 .build());
  * 
- *         ctx.export("u1Id", u1Entity.writeData().applyValue(_writeData -> _writeData.id()));
+ *         ctx.export("u1Id", u1Entity.writeData().applyValue(_writeData -> _writeData.get("id")));
  *     }
  * }
  * }

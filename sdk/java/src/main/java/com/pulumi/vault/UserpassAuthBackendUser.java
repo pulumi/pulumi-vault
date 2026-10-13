@@ -100,7 +100,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var userWithHash = new UserpassAuthBackendUser("userWithHash", UserpassAuthBackendUserArgs.builder()
- *             .mount(userpass.path())
+ *             .mount(userpass.get("path"))
  *             .username("example-user-hash")
  *             .passwordHashWo("$2a$10$V1HAj0oLIhJtqkj3w0zGx.fjMxmVnY2m0sI4GTiD6W69eCi7epTzW")
  *             .passwordHashWoVersion(1)

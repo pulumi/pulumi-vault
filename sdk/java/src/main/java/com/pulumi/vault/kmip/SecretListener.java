@@ -69,7 +69,7 @@ import javax.annotation.Nullable;
  *         var exampleSecretListener = new SecretListener("exampleSecretListener", SecretListenerArgs.builder()
  *             .path(default_.path())
  *             .name("example-listener")
- *             .ca(example.name())
+ *             .ca(example.get("name"))
  *             .address("0.0.0.0:5696")
  *             .serverHostnames("kmip.example.com")
  *             .build());
@@ -129,9 +129,9 @@ import javax.annotation.Nullable;
  *         var advanced = new SecretListener("advanced", SecretListenerArgs.builder()
  *             .path(default_.path())
  *             .name("advanced-listener")
- *             .ca(primary.name())
+ *             .ca(primary.get("name"))
  *             .address("0.0.0.0:5696")
- *             .additionalClientCas(secondary.name())
+ *             .additionalClientCas(secondary.get("name"))
  *             .alsoUseLegacyCa(true)
  *             .serverIps(            
  *                 "192.168.1.100",

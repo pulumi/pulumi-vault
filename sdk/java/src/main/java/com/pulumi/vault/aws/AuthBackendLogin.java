@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  *                 .build());
  * 
  *         var exampleAuthBackendLogin = new AuthBackendLogin("exampleAuthBackendLogin", AuthBackendLoginArgs.builder()
- *             .backend(exampleVaultAuthBackend.path())
+ *             .backend(exampleVaultAuthBackend.get("path"))
  *             .role(exampleAuthBackendRole.role())
  *             .identity("BASE64ENCODEDIDENTITYDOCUMENT")
  *             .signature("BASE64ENCODEDSHA256IDENTITYDOCUMENTSIGNATURE")
