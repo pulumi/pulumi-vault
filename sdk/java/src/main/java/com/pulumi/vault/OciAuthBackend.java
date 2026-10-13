@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new OciAuthBackend("example", OciAuthBackendArgs.builder()
- *             .path(exampleVaultAuthBackend.path())
+ *             .path(exampleVaultAuthBackend.get("path"))
  *             .homeTenancyId("ocid1.tenancy.oc1..aaaaaaaah7zkvaffv26pzyauoe2zbnionqvhvsexamplee557wakiofi4ysgqq")
  *             .build());
  * 

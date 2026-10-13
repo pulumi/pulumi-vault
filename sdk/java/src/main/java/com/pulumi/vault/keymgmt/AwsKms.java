@@ -113,20 +113,20 @@ import javax.annotation.Nullable;
  *         // 3. IAM instance profile (when running on EC2)
  *         // 4. ECS task credentials (when running on ECS)
  *         var production = new AwsKms("production", AwsKmsArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("aws-production")
  *             .keyCollection("us-east-1")
  *             .build());
  * 
  *         // Distribute a key to AWS KMS
  *         var encryptionKey = new Key("encryptionKey", KeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("aws-encryption-key")
  *             .type("aes256-gcm96")
  *             .build());
  * 
  *         var awsDist = new DistributeKey("awsDist", DistributeKeyArgs.builder()
- *             .path(keymgmt.path())
+ *             .path(keymgmt.get("path"))
  *             .kmsName(production.name())
  *             .keyName(encryptionKey.name())
  *             .purposes(            

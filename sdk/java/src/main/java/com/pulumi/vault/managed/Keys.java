@@ -80,8 +80,8 @@ import javax.annotation.Nullable;
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(36000)
  *             .allowedManagedKeys(            
- *                 keys.aws().applyValue(_aws -> _aws[0].name()),
- *                 keys.aws().applyValue(_aws -> _aws[1].name()))
+ *                 keys.aws().applyValue(_aws -> _aws.get(0).name()),
+ *                 keys.aws().applyValue(_aws -> _aws.get(1).name()))
  *             .build());
  * 
  *     }
@@ -138,7 +138,7 @@ import javax.annotation.Nullable;
  *             .description("Example PKI mount using GCP Cloud KMS managed key")
  *             .defaultLeaseTtlSeconds(3600)
  *             .maxLeaseTtlSeconds(36000)
- *             .allowedManagedKeys(gcpKeys.gcps().applyValue(_gcps -> _gcps[0].name()))
+ *             .allowedManagedKeys(gcpKeys.gcps().applyValue(_gcps -> _gcps.get(0).name()))
  *             .build());
  * 
  *     }

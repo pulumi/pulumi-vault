@@ -65,7 +65,7 @@ import javax.annotation.Nullable;
  *         var impersonatedAccount = new SecretImpersonatedAccount("impersonatedAccount", SecretImpersonatedAccountArgs.builder()
  *             .backend(gcp.path())
  *             .impersonatedAccount("this")
- *             .serviceAccountEmail(this_.email())
+ *             .serviceAccountEmail(this_.get("email"))
  *             .tokenScopes("https://www.googleapis.com/auth/cloud-platform")
  *             .build());
  * 

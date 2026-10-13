@@ -49,7 +49,7 @@ namespace Pulumi.Vault.Azure
     ///         TenantId = "11111111-2222-3333-4444-555555555555",
     ///         ClientId = "11111111-2222-3333-4444-555555555555",
     ///         IdentityTokenAudience = "&lt;TOKEN_AUDIENCE&gt;",
-    ///         IdentityTokenTtl = "&lt;TOKEN_TTL&gt;",
+    ///         IdentityTokenTtl = int.Parse("&lt;TOKEN_TTL&gt;", System.Globalization.CultureInfo.InvariantCulture),
     ///         RotationSchedule = "0 * * * SAT",
     ///         RotationWindow = 3600,
     ///     });

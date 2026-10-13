@@ -27,7 +27,7 @@ import * as utilities from "../utilities";
  *
  * const github_apps = new vault.secrets.SyncGithubApps("github-apps", {
  *     name: "gh-apps",
- *     appId: Number(appId),
+ *     appId: appId,
  *     privateKey: std.file({
  *         input: privatekeyFile,
  *     }).then(invoke => invoke.result),

@@ -100,7 +100,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var defaultKey = new Key("defaultKey", KeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("my-key")
  *             .build());
  * 
@@ -134,7 +134,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var rsaKey = new Key("rsaKey", KeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("rsa-signing-key")
  *             .deletionAllowed(false)
  *             .build());
@@ -169,7 +169,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var versionedKey = new Key("versionedKey", KeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("versioned-key")
  *             .type("aes256-gcm96")
  *             .minEnabledVersion(2)
@@ -205,7 +205,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var replicatedKey = new Key("replicatedKey", KeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("multi-region-key")
  *             .type("aes256-gcm96")
  *             .replicaRegions(            

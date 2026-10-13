@@ -119,7 +119,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
- *             .mount(alicloud.path())
+ *             .mount(alicloud.get("path"))
  *             .name("oss-reader")
  *             .remotePolicies(            
  *                 SecretBackendRoleRemotePolicyArgs.builder()
@@ -169,7 +169,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
- *             .mount(alicloud.path())
+ *             .mount(alicloud.get("path"))
  *             .name("custom-permissions")
  *             .inlinePolicies(SecretBackendRoleInlinePolicyArgs.builder()
  *                 .policyDocument(serializeJson(
@@ -224,7 +224,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var role = new SecretBackendRole("role", SecretBackendRoleArgs.builder()
- *             .mount(alicloud.path())
+ *             .mount(alicloud.get("path"))
  *             .name("combined")
  *             .remotePolicies(SecretBackendRoleRemotePolicyArgs.builder()
  *                 .name("AliyunOSSReadOnlyAccess")

@@ -97,8 +97,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var azureAccountName = config.require("azureAccountName");
- *         final var azureAccountKey = config.require("azureAccountKey");
+ *         final var azureAccountName = config.requireObject("azureAccountName", com.pulumi.core.TypeShape.map(String.class, Object.class));
+ *         final var azureAccountKey = config.requireObject("azureAccountKey", com.pulumi.core.TypeShape.map(String.class, Object.class));
  *         var azureBackups = new RaftSnapshotAgentConfig("azureBackups", RaftSnapshotAgentConfigArgs.builder()
  *             .name("azure_backup")
  *             .intervalSeconds(86400)
@@ -142,8 +142,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var azureAccountName = config.require("azureAccountName");
- *         final var azureClientId = config.require("azureClientId");
+ *         final var azureAccountName = config.requireObject("azureAccountName", com.pulumi.core.TypeShape.map(String.class, Object.class));
+ *         final var azureClientId = config.requireObject("azureClientId", com.pulumi.core.TypeShape.map(String.class, Object.class));
  *         var azureManagedIdentity = new RaftSnapshotAgentConfig("azureManagedIdentity", RaftSnapshotAgentConfigArgs.builder()
  *             .name("azure_managed")
  *             .intervalSeconds(86400)

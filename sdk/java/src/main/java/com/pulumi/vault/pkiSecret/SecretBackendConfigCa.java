@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var intermediate = new SecretBackendConfigCa("intermediate", SecretBackendConfigCaArgs.builder()
- *             .backend(intermediateVaultMount.path())
+ *             .backend(intermediateVaultMount.get("path"))
  *             .pemBundle("""
  * -----BEGIN RSA PRIVATE KEY-----
  * MIIEowIBAAKCAQEAwvEHeJCXnFgi88rE1dTX6FHdBPK0wSjedh0ywVnCZxLWbBv/

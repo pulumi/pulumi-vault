@@ -135,16 +135,16 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve DNS-01 challenge details
      *         final var dns = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("dns-01")
      *             .identifier("www.example.com")
      *             .build());
      * 
      *         // Create DNS TXT record using AWS Route53
      *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
-     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .zoneId(exampleAwsRoute53Zone.get("zoneId"))
      *             .name("_acme-challenge.www.example.com")
      *             .type("TXT")
      *             .ttl(60)
@@ -184,9 +184,9 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve TLS-ALPN-01 challenge details
      *         final var tlsAlpn = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("tls-alpn-01")
      *             .identifier("www.example.com")
      *             .build());
@@ -349,16 +349,16 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve DNS-01 challenge details
      *         final var dns = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("dns-01")
      *             .identifier("www.example.com")
      *             .build());
      * 
      *         // Create DNS TXT record using AWS Route53
      *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
-     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .zoneId(exampleAwsRoute53Zone.get("zoneId"))
      *             .name("_acme-challenge.www.example.com")
      *             .type("TXT")
      *             .ttl(60)
@@ -398,9 +398,9 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve TLS-ALPN-01 challenge details
      *         final var tlsAlpn = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("tls-alpn-01")
      *             .identifier("www.example.com")
      *             .build());
@@ -563,16 +563,16 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve DNS-01 challenge details
      *         final var dns = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("dns-01")
      *             .identifier("www.example.com")
      *             .build());
      * 
      *         // Create DNS TXT record using AWS Route53
      *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
-     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .zoneId(exampleAwsRoute53Zone.get("zoneId"))
      *             .name("_acme-challenge.www.example.com")
      *             .type("TXT")
      *             .ttl(60)
@@ -612,9 +612,9 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve TLS-ALPN-01 challenge details
      *         final var tlsAlpn = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("tls-alpn-01")
      *             .identifier("www.example.com")
      *             .build());
@@ -777,16 +777,16 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve DNS-01 challenge details
      *         final var dns = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("dns-01")
      *             .identifier("www.example.com")
      *             .build());
      * 
      *         // Create DNS TXT record using AWS Route53
      *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
-     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .zoneId(exampleAwsRoute53Zone.get("zoneId"))
      *             .name("_acme-challenge.www.example.com")
      *             .type("TXT")
      *             .ttl(60)
@@ -826,9 +826,9 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve TLS-ALPN-01 challenge details
      *         final var tlsAlpn = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("tls-alpn-01")
      *             .identifier("www.example.com")
      *             .build());
@@ -991,16 +991,16 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve DNS-01 challenge details
      *         final var dns = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("dns-01")
      *             .identifier("www.example.com")
      *             .build());
      * 
      *         // Create DNS TXT record using AWS Route53
      *         var acmeChallenge = new Route53Record("acmeChallenge", Route53RecordArgs.builder()
-     *             .zoneId(exampleAwsRoute53Zone.zoneId())
+     *             .zoneId(exampleAwsRoute53Zone.get("zoneId"))
      *             .name("_acme-challenge.www.example.com")
      *             .type("TXT")
      *             .ttl(60)
@@ -1040,9 +1040,9 @@ public final class PkiexternalcaFunctions {
      *     public static void stack(Context ctx) {
      *         // Retrieve TLS-ALPN-01 challenge details
      *         final var tlsAlpn = PkiexternalcaFunctions.getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs.builder()
-     *             .mount(pki_external_ca.path())
-     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.name())
-     *             .orderId(example.orderId())
+     *             .mount(pki_external_ca.get("path"))
+     *             .roleName(exampleVaultPkiExternalCaSecretBackendRole.get("name"))
+     *             .orderId(example.get("orderId"))
      *             .challengeType("tls-alpn-01")
      *             .identifier("www.example.com")
      *             .build());

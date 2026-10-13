@@ -126,15 +126,15 @@ import javax.annotation.Nullable;
  *         // When AWS credentials are configured via environment variables or IAM roles
  *         // on the Vault server, you can omit access_key and secret_key
  *         var aws = new AwsKms("aws", AwsKmsArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("aws-kms")
  *             .keyCollection("us-west-2")
  *             .build());
  * 
  *         var awsDist = new DistributeKey("awsDist", DistributeKeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .kmsName(aws.name())
- *             .keyName(encryptionKey.name())
+ *             .keyName(encryptionKey.get("name"))
  *             .purposes(            
  *                 "encrypt",
  *                 "decrypt")
@@ -174,13 +174,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var signingKey = new Key("signingKey", KeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("azure-signing-key")
  *             .type("rsa-2048")
  *             .build());
  * 
  *         var azure = new AzureKms("azure", AzureKmsArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("azure-kv")
  *             .keyCollection("my-keyvault")
  *             .credentialsWo(Map.ofEntries(
@@ -192,7 +192,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var azureDist = new DistributeKey("azureDist", DistributeKeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .kmsName(azure.name())
  *             .keyName(signingKey.name())
  *             .purposes(            
@@ -236,13 +236,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var gcpKey = new Key("gcpKey", KeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("gcp-encryption-key")
  *             .type("aes256-gcm96")
  *             .build());
  * 
  *         var gcp = new GcpKms("gcp", GcpKmsArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .name("gcp-kms")
  *             .keyCollection("projects/my-project/locations/us-central1/keyRings/my-keyring")
  *             .credentialsWo(Map.ofEntries(
@@ -256,7 +256,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var gcpDist = new DistributeKey("gcpDist", DistributeKeyArgs.builder()
- *             .mount(keymgmt.path())
+ *             .mount(keymgmt.get("path"))
  *             .kmsName(gcp.name())
  *             .keyName(gcpKey.name())
  *             .purposes(            

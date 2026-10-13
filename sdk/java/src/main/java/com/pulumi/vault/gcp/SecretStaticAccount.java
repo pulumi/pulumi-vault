@@ -69,9 +69,9 @@ import javax.annotation.Nullable;
  *             .staticAccount("project_viewer")
  *             .secretType("access_token")
  *             .tokenScopes("https://www.googleapis.com/auth/cloud-platform")
- *             .serviceAccountEmail(this_.email())
+ *             .serviceAccountEmail(this_.get("email"))
  *             .bindings(SecretStaticAccountBindingArgs.builder()
- *                 .resource(String.format("//cloudresourcemanager.googleapis.com/projects/%s", this_.project()))
+ *                 .resource(String.format("//cloudresourcemanager.googleapis.com/projects/%s", this_.get("project")))
  *                 .roles("roles/viewer")
  *                 .build())
  *             .build());

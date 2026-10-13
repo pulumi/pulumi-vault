@@ -46,8 +46,8 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var root = new SecretBackendRootSignIntermediate("root", SecretBackendRootSignIntermediateArgs.builder()
- *             .backend(rootVaultMount.path())
- *             .csr(intermediate.csr())
+ *             .backend(rootVaultMount.get("path"))
+ *             .csr(intermediate.get("csr"))
  *             .commonName("Intermediate CA")
  *             .excludeCnFromSans(true)
  *             .ou("My OU")

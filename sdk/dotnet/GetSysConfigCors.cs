@@ -69,11 +69,11 @@ namespace Pulumi.Vault
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["corsConfiguration"] = 
+        ///         ["corsConfiguration"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "enabled", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.Enabled) },
-        ///             { "allowedOrigins", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedOrigins) },
-        ///             { "allowedHeaders", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedHeaders) },
+        ///             ["enabled"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.Enabled),
+        ///             ["allowedOrigins"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedOrigins),
+        ///             ["allowedHeaders"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedHeaders),
         ///         },
         ///     };
         /// });
@@ -144,11 +144,11 @@ namespace Pulumi.Vault
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["corsConfiguration"] = 
+        ///         ["corsConfiguration"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "enabled", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.Enabled) },
-        ///             { "allowedOrigins", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedOrigins) },
-        ///             { "allowedHeaders", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedHeaders) },
+        ///             ["enabled"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.Enabled),
+        ///             ["allowedOrigins"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedOrigins),
+        ///             ["allowedHeaders"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedHeaders),
         ///         },
         ///     };
         /// });
@@ -219,11 +219,11 @@ namespace Pulumi.Vault
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["corsConfiguration"] = 
+        ///         ["corsConfiguration"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "enabled", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.Enabled) },
-        ///             { "allowedOrigins", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedOrigins) },
-        ///             { "allowedHeaders", current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedHeaders) },
+        ///             ["enabled"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.Enabled),
+        ///             ["allowedOrigins"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedOrigins),
+        ///             ["allowedHeaders"] = current.Apply(getSysConfigCorsResult =&gt; getSysConfigCorsResult.AllowedHeaders),
         ///         },
         ///     };
         /// });

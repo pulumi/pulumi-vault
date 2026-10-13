@@ -105,9 +105,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var templated = new SecretBackendRole("templated", SecretBackendRoleArgs.builder()
- *             .mount(pki_external_ca.path())
+ *             .mount(pki_external_ca.get("path"))
  *             .name("user-role")
- *             .acmeAccountName(example.name())
+ *             .acmeAccountName(example.get("name"))
  *             .allowedDomains("{{identity.entity.aliases.auth_userpass_xxxxx.name}}.example.com")
  *             .allowedDomainOptions("bare_domains")
  *             .csrGenerateKeyType("rsa-2048")

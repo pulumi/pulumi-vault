@@ -73,7 +73,7 @@ import (
 //					"iam":     "iam.googleapis.com",
 //					"crm":     "cloudresourcemanager.googleapis.com",
 //					"compute": "compute.googleapis.com",
-//				}[0],
+//				}[0].(gcp.AuthBackendCustomEndpointArgs),
 //			})
 //			if err != nil {
 //				return err

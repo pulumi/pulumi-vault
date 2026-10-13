@@ -108,7 +108,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var signing = new KmsSecretBackendKey("signing", KmsSecretBackendKeyArgs.builder()
- *             .mount(gcpkms.path())
+ *             .mount(gcpkms.get("path"))
  *             .keyName("my-signing-key")
  *             .keyRing("projects/my-project/locations/us-central1/keyRings/my-keyring")
  *             .purpose("asymmetric_sign")
@@ -145,7 +145,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var decrypt = new KmsSecretBackendKey("decrypt", KmsSecretBackendKeyArgs.builder()
- *             .mount(gcpkms.path())
+ *             .mount(gcpkms.get("path"))
  *             .keyName("my-decrypt-key")
  *             .keyRing("projects/my-project/locations/us-central1/keyRings/my-keyring")
  *             .purpose("asymmetric_decrypt")
@@ -182,7 +182,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var hsm = new KmsSecretBackendKey("hsm", KmsSecretBackendKeyArgs.builder()
- *             .mount(gcpkms.path())
+ *             .mount(gcpkms.get("path"))
  *             .keyName("hsm-key")
  *             .keyRing("projects/my-project/locations/us-central1/keyRings/hsm-keyring")
  *             .purpose("encrypt_decrypt")
@@ -223,7 +223,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var custom = new KmsSecretBackendKey("custom", KmsSecretBackendKeyArgs.builder()
- *             .mount(gcpkms.path())
+ *             .mount(gcpkms.get("path"))
  *             .keyName("vault-key-name")
  *             .keyRing("projects/my-project/locations/us-central1/keyRings/my-keyring")
  *             .cryptoKey("different-gcp-key-name")
@@ -262,7 +262,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var updatable = new KmsSecretBackendKey("updatable", KmsSecretBackendKeyArgs.builder()
- *             .mount(gcpkms.path())
+ *             .mount(gcpkms.get("path"))
  *             .keyName("my-key")
  *             .keyRing("projects/my-project/locations/us-central1/keyRings/my-keyring")
  *             .rotationPeriod("72h")

@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new SecretBackendRootCert("test", SecretBackendRootCertArgs.builder()
- *             .backend(pki.path())
+ *             .backend(pki.get("path"))
  *             .type("internal")
  *             .commonName("Root CA")
  *             .ttl("315360000")

@@ -86,7 +86,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var config = ctx.config();
- *         final var childNamespaces = config.get("childNamespaces").orElse(Arrays.asList(        
+ *         final var childNamespaces = config.getObject("childNamespaces", com.pulumi.core.TypeShape.list(String.class)).orElse(Arrays.asList(        
  *             "child_0",
  *             "child_1",
  *             "child_2"));
