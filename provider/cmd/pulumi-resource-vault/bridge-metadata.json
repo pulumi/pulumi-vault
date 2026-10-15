@@ -1274,6 +1274,19 @@
                 "current": "vault:identity/oidcScope:OidcScope",
                 "majorVersion": 7
             },
+            "vault_identity_tpm": {
+                "current": "vault:identity/tpm:Tpm",
+                "majorVersion": 7
+            },
+            "vault_identity_tpm_group": {
+                "current": "vault:identity/tpmGroup:TpmGroup",
+                "majorVersion": 7,
+                "fields": {
+                    "member_tpm_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_jwt_auth_backend": {
                 "current": "vault:jwt/authBackend:AuthBackend",
                 "majorVersion": 7,
@@ -2128,6 +2141,10 @@
                 "current": "vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig",
                 "majorVersion": 7
             },
+            "vault_pki_secret_backend_export_key": {
+                "current": "vault:pkiSecret/backendExportKey:BackendExportKey",
+                "majorVersion": 7
+            },
             "vault_pki_secret_backend_intermediate_cert_request": {
                 "current": "vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest",
                 "majorVersion": 7,
@@ -2357,6 +2374,10 @@
                     }
                 }
             },
+            "vault_pki_secret_backend_wrapped_key_import": {
+                "current": "vault:pkiSecret/backendWrappedKeyImport:BackendWrappedKeyImport",
+                "majorVersion": 7
+            },
             "vault_plugin": {
                 "current": "vault:index/plugin:Plugin",
                 "majorVersion": 7,
@@ -2535,6 +2556,15 @@
                         "maxItemsOne": false
                     },
                     "token_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_scim_client": {
+                "current": "vault:index/scimClient:ScimClient",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_extra_alias_mount_accessors": {
                         "maxItemsOne": false
                     }
                 }
@@ -2768,6 +2798,28 @@
                         "maxItemsOne": false
                     },
                     "token_policies": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_tpm_auth_backend_config": {
+                "current": "vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig",
+                "majorVersion": 7
+            },
+            "vault_tpm_auth_backend_role": {
+                "current": "vault:index/tpmAuthBackendRole:TpmAuthBackendRole",
+                "majorVersion": 7,
+                "fields": {
+                    "token_bound_cidrs": {
+                        "maxItemsOne": false
+                    },
+                    "token_policies": {
+                        "maxItemsOne": false
+                    },
+                    "tpm_ids": {
+                        "maxItemsOne": false
+                    },
+                    "tpmgroup_ids": {
                         "maxItemsOne": false
                     }
                 }
@@ -3312,6 +3364,18 @@
                     }
                 }
             },
+            "vault_transform_rewrap": {
+                "current": "vault:transform/getRewrap:getRewrap",
+                "majorVersion": 7,
+                "fields": {
+                    "batch_input": {
+                        "maxItemsOne": false
+                    },
+                    "batch_results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_transit_cmac": {
                 "current": "vault:transit/getCmac:getCmac",
                 "majorVersion": 7,
@@ -3394,6 +3458,16 @@
             },
             "vault_gcpkms_secret_backend": {},
             "vault_gcpkms_secret_backend_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_identity_tpm": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_identity_tpm_group": {
                 "computeID": {
                     "kind": "missing"
                 }
@@ -3525,6 +3599,16 @@
                     "kind": "missing"
                 }
             },
+            "vault_pki_secret_backend_export_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_pki_secret_backend_wrapped_key_import": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "vault_plugin_runtime": {},
             "vault_quota_config": {
                 "computeID": {
@@ -3568,6 +3652,16 @@
                 }
             },
             "vault_sys_config_cors": {},
+            "vault_tpm_auth_backend_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_tpm_auth_backend_role": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "vault_userpass_auth_backend_user": {
                 "computeID": {
                     "kind": "missing"
@@ -3650,6 +3744,8 @@
             "vault:identity/oidcProvider:OidcProvider": 0,
             "vault:identity/oidcRole:OidcRole": 0,
             "vault:identity/oidcScope:OidcScope": 0,
+            "vault:identity/tpm:Tpm": 1,
+            "vault:identity/tpmGroup:TpmGroup": 1,
             "vault:index/activationFlags:ActivationFlags": 1,
             "vault:index/agentRegistration:AgentRegistration": 1,
             "vault:index/audit:Audit": 0,
@@ -3684,8 +3780,11 @@
             "vault:index/rgpPolicy:RgpPolicy": 0,
             "vault:index/rotationPolicy:RotationPolicy": 1,
             "vault:index/scepAuthBackendRole:ScepAuthBackendRole": 0,
+            "vault:index/scimClient:ScimClient": 0,
             "vault:index/sysConfigCors:SysConfigCors": 1,
             "vault:index/token:Token": 0,
+            "vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig": 1,
+            "vault:index/tpmAuthBackendRole:TpmAuthBackendRole": 1,
             "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser": 1,
             "vault:jwt/authBackend:AuthBackend": 0,
             "vault:jwt/authBackendRole:AuthBackendRole": 0,
@@ -3732,6 +3831,8 @@
             "vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2": 0,
             "vault:pkiSecret/backendConfigEst:BackendConfigEst": 0,
             "vault:pkiSecret/backendConfigScep:BackendConfigScep": 0,
+            "vault:pkiSecret/backendExportKey:BackendExportKey": 1,
+            "vault:pkiSecret/backendWrappedKeyImport:BackendWrappedKeyImport": 1,
             "vault:pkiSecret/secretBackendCert:SecretBackendCert": 0,
             "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa": 0,
             "vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers": 0,
@@ -3834,6 +3935,7 @@
             "vault:ssh/getSecretBackendSign:getSecretBackendSign": 0,
             "vault:transform/getDecode:getDecode": 0,
             "vault:transform/getEncode:getEncode": 0,
+            "vault:transform/getRewrap:getRewrap": 0,
             "vault:transit/getCmac:getCmac": 0,
             "vault:transit/getDecrypt:getDecrypt": 0,
             "vault:transit/getEncrypt:getEncrypt": 0,
