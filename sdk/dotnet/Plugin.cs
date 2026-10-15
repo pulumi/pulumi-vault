@@ -47,6 +47,35 @@ namespace Pulumi.Vault
     /// });
     /// ```
     /// 
+    /// ### Register an Official Enterprise plugin with automatic download
+    /// 
+    /// On Vault Enterprise 1.20 and later, setting `Download` to `True` makes Vault
+    /// download the plugin artifact from
+    /// [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
+    /// so the artifact does not need to be manually extracted into the server's
+    /// `PluginDirectory` beforehand. All Vault cluster nodes need outbound HTTPS
+    /// access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+    /// a beta feature in Vault.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Vault = Pulumi.Vault;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var os = new Vault.Plugin("os", new()
+    ///     {
+    ///         Type = "secret",
+    ///         Name = "vault-plugin-secrets-os",
+    ///         Version = "v0.1.0+ent",
+    ///         Download = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Register a CE plugin (version vX.Y.Z)
     /// 
     /// The `Sha256` and `Command` are required to register a CE plugin.
@@ -106,6 +135,16 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("command")]
         public Output<string?> Command { get; private set; } = null!;
+
+        /// <summary>
+        /// If `True`, Vault downloads the plugin artifact from
+        /// releases.hashicorp.com during registration instead of requiring it to be
+        /// pre-staged in the server's `PluginDirectory`. Only valid for official
+        /// enterprise plugins (`Version` ending in `+ent`). Requires Vault Enterprise
+        /// 1.20+ (beta feature). Defaults to `False`.
+        /// </summary>
+        [Output("download")]
+        public Output<bool?> Download { get; private set; } = null!;
 
         /// <summary>
         /// List of additional environment variables to run the plugin with in KEY=VALUE form.
@@ -219,6 +258,16 @@ namespace Pulumi.Vault
         [Input("command")]
         public Input<string>? Command { get; set; }
 
+        /// <summary>
+        /// If `True`, Vault downloads the plugin artifact from
+        /// releases.hashicorp.com during registration instead of requiring it to be
+        /// pre-staged in the server's `PluginDirectory`. Only valid for official
+        /// enterprise plugins (`Version` ending in `+ent`). Requires Vault Enterprise
+        /// 1.20+ (beta feature). Defaults to `False`.
+        /// </summary>
+        [Input("download")]
+        public Input<bool>? Download { get; set; }
+
         [Input("envs")]
         private InputList<string>? _envs;
 
@@ -298,6 +347,16 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("command")]
         public Input<string>? Command { get; set; }
+
+        /// <summary>
+        /// If `True`, Vault downloads the plugin artifact from
+        /// releases.hashicorp.com during registration instead of requiring it to be
+        /// pre-staged in the server's `PluginDirectory`. Only valid for official
+        /// enterprise plugins (`Version` ending in `+ent`). Requires Vault Enterprise
+        /// 1.20+ (beta feature). Defaults to `False`.
+        /// </summary>
+        [Input("download")]
+        public Input<bool>? Download { get; set; }
 
         [Input("envs")]
         private InputList<string>? _envs;

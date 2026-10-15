@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -99,6 +100,21 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
      */
     public Optional<Output<String>> maskingCharacter() {
         return Optional.ofNullable(this.maskingCharacter);
+    }
+
+    /**
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    @Import(name="maxTweakLen")
+    private @Nullable Output<Integer> maxTweakLen;
+
+    /**
+     * @return The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    public Optional<Output<Integer>> maxTweakLen() {
+        return Optional.ofNullable(this.maxTweakLen);
     }
 
     /**
@@ -239,6 +255,7 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
         this.deletionAllowed = $.deletionAllowed;
         this.mappingMode = $.mappingMode;
         this.maskingCharacter = $.maskingCharacter;
+        this.maxTweakLen = $.maxTweakLen;
         this.name = $.name;
         this.namespace = $.namespace;
         this.path = $.path;
@@ -388,6 +405,27 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
          */
         public Builder maskingCharacter(String maskingCharacter) {
             return maskingCharacter(Output.of(maskingCharacter));
+        }
+
+        /**
+         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTweakLen(@Nullable Output<Integer> maxTweakLen) {
+            $.maxTweakLen = maxTweakLen;
+            return this;
+        }
+
+        /**
+         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTweakLen(Integer maxTweakLen) {
+            return maxTweakLen(Output.of(maxTweakLen));
         }
 
         /**

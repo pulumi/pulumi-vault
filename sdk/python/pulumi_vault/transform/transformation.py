@@ -25,6 +25,7 @@ class TransformationArgs:
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
                  mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_tweak_len: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -45,6 +46,7 @@ class TransformationArgs:
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -69,6 +71,8 @@ class TransformationArgs:
             pulumi.set(__self__, "mapping_mode", mapping_mode)
         if masking_character is not None:
             pulumi.set(__self__, "masking_character", masking_character)
+        if max_tweak_len is not None:
+            pulumi.set(__self__, "max_tweak_len", max_tweak_len)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -159,6 +163,18 @@ class TransformationArgs:
     @masking_character.setter
     def masking_character(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "masking_character", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTweakLen")
+    def max_tweak_len(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "max_tweak_len")
+
+    @max_tweak_len.setter
+    def max_tweak_len(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_tweak_len", value)
 
     @_builtins.property
     @pulumi.getter
@@ -256,8 +272,10 @@ class _TransformationState:
                  allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  convergent: pulumi.Input[Optional[_builtins.bool]] = None,
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 fpe_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
                  mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_tweak_len: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
@@ -274,10 +292,12 @@ class _TransformationState:
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
+        :param pulumi.Input[_builtins.str] fpe_algorithm: The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
         :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -298,10 +318,14 @@ class _TransformationState:
             pulumi.set(__self__, "convergent", convergent)
         if deletion_allowed is not None:
             pulumi.set(__self__, "deletion_allowed", deletion_allowed)
+        if fpe_algorithm is not None:
+            pulumi.set(__self__, "fpe_algorithm", fpe_algorithm)
         if mapping_mode is not None:
             pulumi.set(__self__, "mapping_mode", mapping_mode)
         if masking_character is not None:
             pulumi.set(__self__, "masking_character", masking_character)
+        if max_tweak_len is not None:
+            pulumi.set(__self__, "max_tweak_len", max_tweak_len)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if namespace is not None:
@@ -358,6 +382,18 @@ class _TransformationState:
         pulumi.set(self, "deletion_allowed", value)
 
     @_builtins.property
+    @pulumi.getter(name="fpeAlgorithm")
+    def fpe_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+        """
+        return pulumi.get(self, "fpe_algorithm")
+
+    @fpe_algorithm.setter
+    def fpe_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "fpe_algorithm", value)
+
+    @_builtins.property
     @pulumi.getter(name="mappingMode")
     def mapping_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -382,6 +418,18 @@ class _TransformationState:
     @masking_character.setter
     def masking_character(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "masking_character", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTweakLen")
+    def max_tweak_len(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "max_tweak_len")
+
+    @max_tweak_len.setter
+    def max_tweak_len(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "max_tweak_len", value)
 
     @_builtins.property
     @pulumi.getter
@@ -496,6 +544,7 @@ class Transformation(pulumi.CustomResource):
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
                  mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_tweak_len: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
@@ -564,6 +613,7 @@ class Transformation(pulumi.CustomResource):
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -652,6 +702,7 @@ class Transformation(pulumi.CustomResource):
                  deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
                  mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+                 max_tweak_len: pulumi.Input[Optional[_builtins.int]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
@@ -674,6 +725,7 @@ class Transformation(pulumi.CustomResource):
             __props__.__dict__["deletion_allowed"] = deletion_allowed
             __props__.__dict__["mapping_mode"] = mapping_mode
             __props__.__dict__["masking_character"] = masking_character
+            __props__.__dict__["max_tweak_len"] = max_tweak_len
             __props__.__dict__["name"] = name
             __props__.__dict__["namespace"] = namespace
             if path is None and not opts.urn:
@@ -684,6 +736,7 @@ class Transformation(pulumi.CustomResource):
             __props__.__dict__["templates"] = templates
             __props__.__dict__["tweak_source"] = tweak_source
             __props__.__dict__["type"] = type
+            __props__.__dict__["fpe_algorithm"] = None
         super(Transformation, __self__).__init__(
             'vault:transform/transformation:Transformation',
             resource_name,
@@ -697,8 +750,10 @@ class Transformation(pulumi.CustomResource):
             allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             convergent: pulumi.Input[Optional[_builtins.bool]] = None,
             deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            fpe_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
             mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
             masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+            max_tweak_len: pulumi.Input[Optional[_builtins.int]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             path: pulumi.Input[Optional[_builtins.str]] = None,
@@ -719,10 +774,12 @@ class Transformation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
+        :param pulumi.Input[_builtins.str] fpe_algorithm: The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
         :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -744,8 +801,10 @@ class Transformation(pulumi.CustomResource):
         __props__.__dict__["allowed_roles"] = allowed_roles
         __props__.__dict__["convergent"] = convergent
         __props__.__dict__["deletion_allowed"] = deletion_allowed
+        __props__.__dict__["fpe_algorithm"] = fpe_algorithm
         __props__.__dict__["mapping_mode"] = mapping_mode
         __props__.__dict__["masking_character"] = masking_character
+        __props__.__dict__["max_tweak_len"] = max_tweak_len
         __props__.__dict__["name"] = name
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["path"] = path
@@ -783,6 +842,14 @@ class Transformation(pulumi.CustomResource):
         return pulumi.get(self, "deletion_allowed")
 
     @_builtins.property
+    @pulumi.getter(name="fpeAlgorithm")
+    def fpe_algorithm(self) -> pulumi.Output[_builtins.str]:
+        """
+        The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+        """
+        return pulumi.get(self, "fpe_algorithm")
+
+    @_builtins.property
     @pulumi.getter(name="mappingMode")
     def mapping_mode(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -799,6 +866,14 @@ class Transformation(pulumi.CustomResource):
         The character used to replace data when in masking mode
         """
         return pulumi.get(self, "masking_character")
+
+    @_builtins.property
+    @pulumi.getter(name="maxTweakLen")
+    def max_tweak_len(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        """
+        return pulumi.get(self, "max_tweak_len")
 
     @_builtins.property
     @pulumi.getter

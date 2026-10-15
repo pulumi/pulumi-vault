@@ -127,7 +127,7 @@ type SecretBackendRole struct {
 	IssuerRef pulumi.StringOutput `pulumi:"issuerRef"`
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrOutput `pulumi:"keyBits"`
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued
@@ -157,6 +157,8 @@ type SecretBackendRole struct {
 	OrganizationUnit pulumi.StringArrayOutput `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayOutput `pulumi:"organizations"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringOutput `pulumi:"parameterSet"`
 	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
 	PolicyIdentifier SecretBackendRolePolicyIdentifierArrayOutput `pulumi:"policyIdentifier"`
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
@@ -277,7 +279,7 @@ type secretBackendRoleState struct {
 	IssuerRef *string `pulumi:"issuerRef"`
 	// The number of bits of generated keys
 	KeyBits *int `pulumi:"keyBits"`
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
 	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued
@@ -307,6 +309,8 @@ type secretBackendRoleState struct {
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations []string `pulumi:"organizations"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
 	PolicyIdentifier []SecretBackendRolePolicyIdentifier `pulumi:"policyIdentifier"`
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
@@ -395,7 +399,7 @@ type SecretBackendRoleState struct {
 	IssuerRef pulumi.StringPtrInput
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrInput
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
 	// Specify the allowed key usage constraint on issued
@@ -425,6 +429,8 @@ type SecretBackendRoleState struct {
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
 	PolicyIdentifier SecretBackendRolePolicyIdentifierArrayInput
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
@@ -517,7 +523,7 @@ type secretBackendRoleArgs struct {
 	IssuerRef *string `pulumi:"issuerRef"`
 	// The number of bits of generated keys
 	KeyBits *int `pulumi:"keyBits"`
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
 	// Defaults to `rsa`
 	KeyType *string `pulumi:"keyType"`
 	// Specify the allowed key usage constraint on issued
@@ -547,6 +553,8 @@ type secretBackendRoleArgs struct {
 	OrganizationUnit []string `pulumi:"organizationUnit"`
 	// The organization of generated certificates
 	Organizations []string `pulumi:"organizations"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
 	PolicyIdentifier []SecretBackendRolePolicyIdentifier `pulumi:"policyIdentifier"`
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
@@ -636,7 +644,7 @@ type SecretBackendRoleArgs struct {
 	IssuerRef pulumi.StringPtrInput
 	// The number of bits of generated keys
 	KeyBits pulumi.IntPtrInput
-	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+	// The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
 	// Defaults to `rsa`
 	KeyType pulumi.StringPtrInput
 	// Specify the allowed key usage constraint on issued
@@ -666,6 +674,8 @@ type SecretBackendRoleArgs struct {
 	OrganizationUnit pulumi.StringArrayInput
 	// The organization of generated certificates
 	Organizations pulumi.StringArrayInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
 	PolicyIdentifier SecretBackendRolePolicyIdentifierArrayInput
 	// Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policyIdentifier` blocks instead
@@ -921,7 +931,7 @@ func (o SecretBackendRoleOutput) KeyBits() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.IntPtrOutput { return v.KeyBits }).(pulumi.IntPtrOutput)
 }
 
-// The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+// The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
 // Defaults to `rsa`
 func (o SecretBackendRoleOutput) KeyType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringPtrOutput { return v.KeyType }).(pulumi.StringPtrOutput)
@@ -985,6 +995,11 @@ func (o SecretBackendRoleOutput) OrganizationUnit() pulumi.StringArrayOutput {
 // The organization of generated certificates
 func (o SecretBackendRoleOutput) Organizations() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringArrayOutput { return v.Organizations }).(pulumi.StringArrayOutput)
+}
+
+// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+func (o SecretBackendRoleOutput) ParameterSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRole) pulumi.StringOutput { return v.ParameterSet }).(pulumi.StringOutput)
 }
 
 // (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:

@@ -63,6 +63,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OidcRole{}
 	case "vault:identity/oidcScope:OidcScope":
 		r = &OidcScope{}
+	case "vault:identity/tpm:Tpm":
+		r = &Tpm{}
+	case "vault:identity/tpmGroup:TpmGroup":
+		r = &TpmGroup{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -179,6 +183,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"vault",
 		"identity/oidcScope",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/tpm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"identity/tpmGroup",
 		&module{version},
 	)
 }

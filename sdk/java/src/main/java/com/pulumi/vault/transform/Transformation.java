@@ -11,6 +11,7 @@ import com.pulumi.vault.Utilities;
 import com.pulumi.vault.transform.TransformationArgs;
 import com.pulumi.vault.transform.inputs.TransformationState;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -167,6 +168,20 @@ public class Transformation extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.deletionAllowed);
     }
     /**
+     * The FPE algorithm used by this transformation. Either `&#34;ff1&#34;` (default for new FPE transformations) or `&#34;ff3-1&#34;` (legacy). Only populated when `type` is &#34;fpe&#34;.
+     * 
+     */
+    @Export(name="fpeAlgorithm", refs={String.class}, tree="[0]")
+    private Output<String> fpeAlgorithm;
+
+    /**
+     * @return The FPE algorithm used by this transformation. Either `&#34;ff1&#34;` (default for new FPE transformations) or `&#34;ff3-1&#34;` (legacy). Only populated when `type` is &#34;fpe&#34;.
+     * 
+     */
+    public Output<String> fpeAlgorithm() {
+        return this.fpeAlgorithm;
+    }
+    /**
      * Specifies the mapping mode for stored values.
      * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
      * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
@@ -197,6 +212,20 @@ public class Transformation extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> maskingCharacter() {
         return Codegen.optional(this.maskingCharacter);
+    }
+    /**
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    @Export(name="maxTweakLen", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> maxTweakLen;
+
+    /**
+     * @return The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    public Output<Optional<Integer>> maxTweakLen() {
+        return Codegen.optional(this.maxTweakLen);
     }
     /**
      * The name of the transformation.

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Vault.Azure
 {
     /// <summary>
-    /// Manages a static role in the Azure Secrets Engine.\
+    /// Manages a static role in the Azure Secrets Engine.
     /// Static roles in Vault are linked to existing Azure AD applications, and manage long-lived credentials for those
     /// applications.
     /// 
@@ -90,7 +90,7 @@ namespace Pulumi.Vault.Azure
         public Output<bool?> DeferInitialCreds { get; private set; } = null!;
 
         /// <summary>
-        /// **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported. 
+        /// **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported.
         /// Vault reads expiration from Azure.
         /// </summary>
         [Output("expiration")]
@@ -120,6 +120,24 @@ namespace Pulumi.Vault.Azure
         public Output<string> Role { get; private set; } = null!;
 
         /// <summary>
+        /// Duration which defines the amount of time the current and next credential are both active when `SeamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Output("rotationGracePeriod")]
+        public Output<int?> RotationGracePeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// an alias for `Ttl` when `SeamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Output("rotationPeriod")]
+        public Output<int?> RotationPeriod { get; private set; } = null!;
+
+        /// <summary>
+        /// Enables automated seamless rotation for the static role when `True`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Output("seamlessRotation")]
+        public Output<bool?> SeamlessRotation { get; private set; } = null!;
+
+        /// <summary>
         /// When importing an existing credential, specifies the Azure secret’s key ID.
         /// </summary>
         [Output("secretId")]
@@ -133,8 +151,7 @@ namespace Pulumi.Vault.Azure
         public Output<bool?> SkipImportRotation { get; private set; } = null!;
 
         /// <summary>
-        /// Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-        /// at least 1 month.
+        /// Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
         /// Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         /// </summary>
         [Output("ttl")]
@@ -229,7 +246,7 @@ namespace Pulumi.Vault.Azure
         public Input<bool>? DeferInitialCreds { get; set; }
 
         /// <summary>
-        /// **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported. 
+        /// **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported.
         /// Vault reads expiration from Azure.
         /// </summary>
         [Input("expiration")]
@@ -265,6 +282,24 @@ namespace Pulumi.Vault.Azure
         public Input<string> Role { get; set; } = null!;
 
         /// <summary>
+        /// Duration which defines the amount of time the current and next credential are both active when `SeamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("rotationGracePeriod")]
+        public Input<int>? RotationGracePeriod { get; set; }
+
+        /// <summary>
+        /// an alias for `Ttl` when `SeamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// Enables automated seamless rotation for the static role when `True`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("seamlessRotation")]
+        public Input<bool>? SeamlessRotation { get; set; }
+
+        /// <summary>
         /// When importing an existing credential, specifies the Azure secret’s key ID.
         /// </summary>
         [Input("secretId")]
@@ -278,8 +313,7 @@ namespace Pulumi.Vault.Azure
         public Input<bool>? SkipImportRotation { get; set; }
 
         /// <summary>
-        /// Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-        /// at least 1 month.
+        /// Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
         /// Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         /// </summary>
         [Input("ttl")]
@@ -332,7 +366,7 @@ namespace Pulumi.Vault.Azure
         public Input<bool>? DeferInitialCreds { get; set; }
 
         /// <summary>
-        /// **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported. 
+        /// **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported.
         /// Vault reads expiration from Azure.
         /// </summary>
         [Input("expiration")]
@@ -368,6 +402,24 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Role { get; set; }
 
         /// <summary>
+        /// Duration which defines the amount of time the current and next credential are both active when `SeamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("rotationGracePeriod")]
+        public Input<int>? RotationGracePeriod { get; set; }
+
+        /// <summary>
+        /// an alias for `Ttl` when `SeamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("rotationPeriod")]
+        public Input<int>? RotationPeriod { get; set; }
+
+        /// <summary>
+        /// Enables automated seamless rotation for the static role when `True`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("seamlessRotation")]
+        public Input<bool>? SeamlessRotation { get; set; }
+
+        /// <summary>
         /// When importing an existing credential, specifies the Azure secret’s key ID.
         /// </summary>
         [Input("secretId")]
@@ -381,8 +433,7 @@ namespace Pulumi.Vault.Azure
         public Input<bool>? SkipImportRotation { get; set; }
 
         /// <summary>
-        /// Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-        /// at least 1 month.
+        /// Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
         /// Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         /// </summary>
         [Input("ttl")]

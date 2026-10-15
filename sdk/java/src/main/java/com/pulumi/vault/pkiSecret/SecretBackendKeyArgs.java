@@ -71,14 +71,14 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+     * Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
      * 
      */
     @Import(name="keyType")
     private @Nullable Output<String> keyType;
 
     /**
-     * @return Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+     * @return Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
      * 
      */
     public Optional<Output<String>> keyType() {
@@ -137,6 +137,21 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    @Import(name="parameterSet")
+    private @Nullable Output<String> parameterSet;
+
+    /**
+     * @return For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    public Optional<Output<String>> parameterSet() {
+        return Optional.ofNullable(this.parameterSet);
+    }
+
+    /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      * 
      */
@@ -161,6 +176,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         this.managedKeyId = $.managedKeyId;
         this.managedKeyName = $.managedKeyName;
         this.namespace = $.namespace;
+        this.parameterSet = $.parameterSet;
         this.type = $.type;
     }
 
@@ -254,7 +270,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keyType Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+         * @param keyType Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
          * 
          * @return builder
          * 
@@ -265,7 +281,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keyType Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+         * @param keyType Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
          * 
          * @return builder
          * 
@@ -341,6 +357,27 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
          */
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        /**
+         * @param parameterSet For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(@Nullable Output<String> parameterSet) {
+            $.parameterSet = parameterSet;
+            return this;
+        }
+
+        /**
+         * @param parameterSet For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(String parameterSet) {
+            return parameterSet(Output.of(parameterSet));
         }
 
         /**

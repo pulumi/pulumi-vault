@@ -85,7 +85,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     declare public readonly keyName: pulumi.Output<string | undefined>;
     /**
-     * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+     * Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
      */
     declare public readonly keyType: pulumi.Output<string>;
     /**
@@ -103,6 +103,10 @@ export class SecretBackendKey extends pulumi.CustomResource {
      * *Available only for Vault Enterprise*.
      */
     declare public readonly namespace: pulumi.Output<string | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    declare public readonly parameterSet: pulumi.Output<string>;
     /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      */
@@ -129,6 +133,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["managedKeyId"] = state?.managedKeyId;
             resourceInputs["managedKeyName"] = state?.managedKeyName;
             resourceInputs["namespace"] = state?.namespace;
+            resourceInputs["parameterSet"] = state?.parameterSet;
             resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as SecretBackendKeyArgs | undefined;
@@ -145,6 +150,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
             resourceInputs["managedKeyId"] = args?.managedKeyId;
             resourceInputs["managedKeyName"] = args?.managedKeyName;
             resourceInputs["namespace"] = args?.namespace;
+            resourceInputs["parameterSet"] = args?.parameterSet;
             resourceInputs["type"] = args?.type;
             resourceInputs["keyId"] = undefined /*out*/;
         }
@@ -178,7 +184,7 @@ export interface SecretBackendKeyState {
      */
     keyName?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+     * Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
      */
     keyType?: pulumi.Input<string | undefined>;
     /**
@@ -196,6 +202,10 @@ export interface SecretBackendKeyState {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      */
@@ -223,7 +233,7 @@ export interface SecretBackendKeyArgs {
      */
     keyName?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+     * Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
      */
     keyType?: pulumi.Input<string | undefined>;
     /**
@@ -241,6 +251,10 @@ export interface SecretBackendKeyArgs {
      * *Available only for Vault Enterprise*.
      */
     namespace?: pulumi.Input<string | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
      */

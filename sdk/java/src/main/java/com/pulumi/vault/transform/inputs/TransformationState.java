@@ -6,6 +6,7 @@ package com.pulumi.vault.transform.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -67,6 +68,21 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * The FPE algorithm used by this transformation. Either `&#34;ff1&#34;` (default for new FPE transformations) or `&#34;ff3-1&#34;` (legacy). Only populated when `type` is &#34;fpe&#34;.
+     * 
+     */
+    @Import(name="fpeAlgorithm")
+    private @Nullable Output<String> fpeAlgorithm;
+
+    /**
+     * @return The FPE algorithm used by this transformation. Either `&#34;ff1&#34;` (default for new FPE transformations) or `&#34;ff3-1&#34;` (legacy). Only populated when `type` is &#34;fpe&#34;.
+     * 
+     */
+    public Optional<Output<String>> fpeAlgorithm() {
+        return Optional.ofNullable(this.fpeAlgorithm);
+    }
+
+    /**
      * Specifies the mapping mode for stored values.
      * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
      * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
@@ -98,6 +114,21 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
      */
     public Optional<Output<String>> maskingCharacter() {
         return Optional.ofNullable(this.maskingCharacter);
+    }
+
+    /**
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    @Import(name="maxTweakLen")
+    private @Nullable Output<Integer> maxTweakLen;
+
+    /**
+     * @return The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * 
+     */
+    public Optional<Output<Integer>> maxTweakLen() {
+        return Optional.ofNullable(this.maxTweakLen);
     }
 
     /**
@@ -236,8 +267,10 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
         this.allowedRoles = $.allowedRoles;
         this.convergent = $.convergent;
         this.deletionAllowed = $.deletionAllowed;
+        this.fpeAlgorithm = $.fpeAlgorithm;
         this.mappingMode = $.mappingMode;
         this.maskingCharacter = $.maskingCharacter;
+        this.maxTweakLen = $.maxTweakLen;
         this.name = $.name;
         this.namespace = $.namespace;
         this.path = $.path;
@@ -344,6 +377,27 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param fpeAlgorithm The FPE algorithm used by this transformation. Either `&#34;ff1&#34;` (default for new FPE transformations) or `&#34;ff3-1&#34;` (legacy). Only populated when `type` is &#34;fpe&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fpeAlgorithm(@Nullable Output<String> fpeAlgorithm) {
+            $.fpeAlgorithm = fpeAlgorithm;
+            return this;
+        }
+
+        /**
+         * @param fpeAlgorithm The FPE algorithm used by this transformation. Either `&#34;ff1&#34;` (default for new FPE transformations) or `&#34;ff3-1&#34;` (legacy). Only populated when `type` is &#34;fpe&#34;.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder fpeAlgorithm(String fpeAlgorithm) {
+            return fpeAlgorithm(Output.of(fpeAlgorithm));
+        }
+
+        /**
          * @param mappingMode Specifies the mapping mode for stored values.
          * Can be &#34;default&#34; or &#34;exportable&#34;. Only used when `type` is &#34;tokenization&#34;.
          * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
@@ -387,6 +441,27 @@ public final class TransformationState extends com.pulumi.resources.ResourceArgs
          */
         public Builder maskingCharacter(String maskingCharacter) {
             return maskingCharacter(Output.of(maskingCharacter));
+        }
+
+        /**
+         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTweakLen(@Nullable Output<Integer> maxTweakLen) {
+            $.maxTweakLen = maxTweakLen;
+            return this;
+        }
+
+        /**
+         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder maxTweakLen(Integer maxTweakLen) {
+            return maxTweakLen(Output.of(maxTweakLen));
         }
 
         /**

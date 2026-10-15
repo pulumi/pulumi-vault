@@ -98,7 +98,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
      * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
      * When unset, the role inherits the mount-level setting. Active Directory schema only.
-     * Requires Vault 2.2.0+.
+     * Requires Vault Enterprise 2.2.0+.
      * 
      */
     @Export(name="autoUnlock", refs={Boolean.class}, tree="[0]")
@@ -109,7 +109,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
      * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
      * When unset, the role inherits the mount-level setting. Active Directory schema only.
-     * Requires Vault 2.2.0+.
+     * Requires Vault Enterprise 2.2.0+.
      * 
      */
     public Output<Boolean> autoUnlock() {

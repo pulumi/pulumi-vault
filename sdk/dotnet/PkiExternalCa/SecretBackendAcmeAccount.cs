@@ -104,14 +104,14 @@ namespace Pulumi.Vault.PkiExternalCa
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        /// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `EabKid` is also required. This is a write-only field.
         /// </summary>
         [Output("eabKey")]
         public Output<string?> EabKey { get; private set; } = null!;
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        /// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `EabKey` is also required. This is a write-only field.
         /// </summary>
         [Output("eabKid")]
         public Output<string?> EabKid { get; private set; } = null!;
@@ -223,7 +223,7 @@ namespace Pulumi.Vault.PkiExternalCa
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        /// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `EabKid` is also required. This is a write-only field.
         /// </summary>
         public Input<string>? EabKey
         {
@@ -240,7 +240,7 @@ namespace Pulumi.Vault.PkiExternalCa
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        /// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `EabKey` is also required. This is a write-only field.
         /// </summary>
         public Input<string>? EabKid
         {
@@ -328,7 +328,7 @@ namespace Pulumi.Vault.PkiExternalCa
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        /// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `EabKid` is also required. This is a write-only field.
         /// </summary>
         public Input<string>? EabKey
         {
@@ -345,7 +345,7 @@ namespace Pulumi.Vault.PkiExternalCa
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        /// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `EabKey` is also required. This is a write-only field.
         /// </summary>
         public Input<string>? EabKid
         {

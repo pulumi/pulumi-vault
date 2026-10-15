@@ -167,6 +167,51 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     }
 
     /**
+     * Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Import(name="rotationGracePeriod")
+    private @Nullable Output<Integer> rotationGracePeriod;
+
+    /**
+     * @return Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Optional<Output<Integer>> rotationGracePeriod() {
+        return Optional.ofNullable(this.rotationGracePeriod);
+    }
+
+    /**
+     * an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Import(name="rotationPeriod")
+    private @Nullable Output<Integer> rotationPeriod;
+
+    /**
+     * @return an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Optional<Output<Integer>> rotationPeriod() {
+        return Optional.ofNullable(this.rotationPeriod);
+    }
+
+    /**
+     * Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Import(name="seamlessRotation")
+    private @Nullable Output<Boolean> seamlessRotation;
+
+    /**
+     * @return Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Optional<Output<Boolean>> seamlessRotation() {
+        return Optional.ofNullable(this.seamlessRotation);
+    }
+
+    /**
      * When importing an existing credential, specifies the Azure secret’s key ID.
      * 
      */
@@ -199,8 +244,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     }
 
     /**
-     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-     * at least 1 month.
+     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
      * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
      * 
      */
@@ -208,8 +252,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
     private @Nullable Output<Integer> ttl;
 
     /**
-     * @return Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-     * at least 1 month.
+     * @return Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
      * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
      * 
      */
@@ -228,6 +271,9 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         this.metadata = $.metadata;
         this.namespace = $.namespace;
         this.role = $.role;
+        this.rotationGracePeriod = $.rotationGracePeriod;
+        this.rotationPeriod = $.rotationPeriod;
+        this.seamlessRotation = $.seamlessRotation;
         this.secretId = $.secretId;
         this.skipImportRotation = $.skipImportRotation;
         this.ttl = $.ttl;
@@ -448,6 +494,69 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         }
 
         /**
+         * @param rotationGracePeriod Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationGracePeriod(@Nullable Output<Integer> rotationGracePeriod) {
+            $.rotationGracePeriod = rotationGracePeriod;
+            return this;
+        }
+
+        /**
+         * @param rotationGracePeriod Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationGracePeriod(Integer rotationGracePeriod) {
+            return rotationGracePeriod(Output.of(rotationGracePeriod));
+        }
+
+        /**
+         * @param rotationPeriod an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(@Nullable Output<Integer> rotationPeriod) {
+            $.rotationPeriod = rotationPeriod;
+            return this;
+        }
+
+        /**
+         * @param rotationPeriod an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rotationPeriod(Integer rotationPeriod) {
+            return rotationPeriod(Output.of(rotationPeriod));
+        }
+
+        /**
+         * @param seamlessRotation Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder seamlessRotation(@Nullable Output<Boolean> seamlessRotation) {
+            $.seamlessRotation = seamlessRotation;
+            return this;
+        }
+
+        /**
+         * @param seamlessRotation Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder seamlessRotation(Boolean seamlessRotation) {
+            return seamlessRotation(Output.of(seamlessRotation));
+        }
+
+        /**
          * @param secretId When importing an existing credential, specifies the Azure secret’s key ID.
          * 
          * @return builder
@@ -492,8 +601,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param ttl Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-         * at least 1 month.
+         * @param ttl Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
          * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
          * 
          * @return builder
@@ -505,8 +613,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
         }
 
         /**
-         * @param ttl Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-         * at least 1 month.
+         * @param ttl Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
          * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
          * 
          * @return builder

@@ -76,7 +76,7 @@ type SecretBackendKey struct {
 	// When a new key is created with this request, optionally specifies the name for this.
 	// The global ref `default` may not be used as a name.
 	KeyName pulumi.StringPtrOutput `pulumi:"keyName"`
-	// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType pulumi.StringOutput `pulumi:"keyType"`
 	// The managed key's UUID.
 	ManagedKeyId pulumi.StringPtrOutput `pulumi:"managedKeyId"`
@@ -87,6 +87,8 @@ type SecretBackendKey struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringOutput `pulumi:"parameterSet"`
 	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
@@ -139,7 +141,7 @@ type secretBackendKeyState struct {
 	// When a new key is created with this request, optionally specifies the name for this.
 	// The global ref `default` may not be used as a name.
 	KeyName *string `pulumi:"keyName"`
-	// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType *string `pulumi:"keyType"`
 	// The managed key's UUID.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
@@ -150,6 +152,8 @@ type secretBackendKeyState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
 	Type *string `pulumi:"type"`
 }
@@ -167,7 +171,7 @@ type SecretBackendKeyState struct {
 	// When a new key is created with this request, optionally specifies the name for this.
 	// The global ref `default` may not be used as a name.
 	KeyName pulumi.StringPtrInput
-	// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType pulumi.StringPtrInput
 	// The managed key's UUID.
 	ManagedKeyId pulumi.StringPtrInput
@@ -178,6 +182,8 @@ type SecretBackendKeyState struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
 	Type pulumi.StringPtrInput
 }
@@ -197,7 +203,7 @@ type secretBackendKeyArgs struct {
 	// When a new key is created with this request, optionally specifies the name for this.
 	// The global ref `default` may not be used as a name.
 	KeyName *string `pulumi:"keyName"`
-	// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType *string `pulumi:"keyType"`
 	// The managed key's UUID.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
@@ -208,6 +214,8 @@ type secretBackendKeyArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
 	Type string `pulumi:"type"`
 }
@@ -224,7 +232,7 @@ type SecretBackendKeyArgs struct {
 	// When a new key is created with this request, optionally specifies the name for this.
 	// The global ref `default` may not be used as a name.
 	KeyName pulumi.StringPtrInput
-	// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType pulumi.StringPtrInput
 	// The managed key's UUID.
 	ManagedKeyId pulumi.StringPtrInput
@@ -235,6 +243,8 @@ type SecretBackendKeyArgs struct {
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
 	Type pulumi.StringInput
 }
@@ -350,7 +360,7 @@ func (o SecretBackendKeyOutput) KeyName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.KeyName }).(pulumi.StringPtrOutput)
 }
 
-// Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 func (o SecretBackendKeyOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
 }
@@ -371,6 +381,11 @@ func (o SecretBackendKeyOutput) ManagedKeyName() pulumi.StringPtrOutput {
 // *Available only for Vault Enterprise*.
 func (o SecretBackendKeyOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+func (o SecretBackendKeyOutput) ParameterSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringOutput { return v.ParameterSet }).(pulumi.StringOutput)
 }
 
 // Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.

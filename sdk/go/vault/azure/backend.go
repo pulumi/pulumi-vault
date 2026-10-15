@@ -218,6 +218,8 @@ type Backend struct {
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolOutput `pulumi:"sealWrap"`
+	// Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+	SeamlessRotation pulumi.BoolOutput `pulumi:"seamlessRotation"`
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringOutput `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
@@ -364,6 +366,8 @@ type backendState struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
+	// Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+	SeamlessRotation *bool `pulumi:"seamlessRotation"`
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId *string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
@@ -452,6 +456,8 @@ type BackendState struct {
 	RotationWindow pulumi.IntPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
+	// Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+	SeamlessRotation pulumi.BoolPtrInput
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringPtrInput
 	// The tenant id for the Azure Active Directory.
@@ -542,6 +548,8 @@ type backendArgs struct {
 	RotationWindow *int `pulumi:"rotationWindow"`
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap *bool `pulumi:"sealWrap"`
+	// Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+	SeamlessRotation *bool `pulumi:"seamlessRotation"`
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId string `pulumi:"subscriptionId"`
 	// The tenant id for the Azure Active Directory.
@@ -629,6 +637,8 @@ type BackendArgs struct {
 	RotationWindow pulumi.IntPtrInput
 	// Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 	SealWrap pulumi.BoolPtrInput
+	// Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+	SeamlessRotation pulumi.BoolPtrInput
 	// The subscription id for the Azure Active Directory.
 	SubscriptionId pulumi.StringInput
 	// The tenant id for the Azure Active Directory.
@@ -900,6 +910,11 @@ func (o BackendOutput) RotationWindow() pulumi.IntPtrOutput {
 // Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
 func (o BackendOutput) SealWrap() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.SealWrap }).(pulumi.BoolOutput)
+}
+
+// Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+func (o BackendOutput) SeamlessRotation() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Backend) pulumi.BoolOutput { return v.SeamlessRotation }).(pulumi.BoolOutput)
 }
 
 // The subscription id for the Azure Active Directory.

@@ -13,8 +13,11 @@ import com.pulumi.vault.transform.inputs.GetDecodeArgs;
 import com.pulumi.vault.transform.inputs.GetDecodePlainArgs;
 import com.pulumi.vault.transform.inputs.GetEncodeArgs;
 import com.pulumi.vault.transform.inputs.GetEncodePlainArgs;
+import com.pulumi.vault.transform.inputs.GetRewrapArgs;
+import com.pulumi.vault.transform.inputs.GetRewrapPlainArgs;
 import com.pulumi.vault.transform.outputs.GetDecodeResult;
 import com.pulumi.vault.transform.outputs.GetEncodeResult;
+import com.pulumi.vault.transform.outputs.GetRewrapResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class TransformFunctions {
@@ -717,5 +720,470 @@ public final class TransformFunctions {
      */
     public static CompletableFuture<GetEncodeResult> getEncodePlain(GetEncodePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:transform/getEncode:getEncode", TypeShape.of(GetEncodeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source supports the &#34;/transform/rewrap/{role_name}&#34; Vault endpoint.
+     * 
+     * It rewraps a value that was encoded with one FPE transformation by decoding it
+     * with the source transformation and re-encoding it with a destination transformation.
+     * Both transformations must be FPE transformations.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import com.pulumi.vault.transform.inputs.GetRewrapArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         var ccn_fpe_src = new Transformation("ccn-fpe-src", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-src")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var ccn_fpe_dst = new Transformation("ccn-fpe-dst", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-dst")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var payments = new Role("payments", RoleArgs.builder()
+     *             .path(ccn_fpe_src.path())
+     *             .name("payments")
+     *             .transformations(            
+     *                 "ccn-fpe-src",
+     *                 "ccn-fpe-dst")
+     *             .build());
+     * 
+     *         final var encoded = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_src.name())
+     *             .value("1111-2222-3333-4444")
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getRewrap(GetRewrapArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_dst.name())
+     *             .decodeTransformation(ccn_fpe_src.name())
+     *             .value(encoded.applyValue(_encoded -> _encoded.encodedValue()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetRewrapResult> getRewrap(GetRewrapArgs args) {
+        return getRewrap(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source supports the &#34;/transform/rewrap/{role_name}&#34; Vault endpoint.
+     * 
+     * It rewraps a value that was encoded with one FPE transformation by decoding it
+     * with the source transformation and re-encoding it with a destination transformation.
+     * Both transformations must be FPE transformations.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import com.pulumi.vault.transform.inputs.GetRewrapArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         var ccn_fpe_src = new Transformation("ccn-fpe-src", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-src")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var ccn_fpe_dst = new Transformation("ccn-fpe-dst", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-dst")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var payments = new Role("payments", RoleArgs.builder()
+     *             .path(ccn_fpe_src.path())
+     *             .name("payments")
+     *             .transformations(            
+     *                 "ccn-fpe-src",
+     *                 "ccn-fpe-dst")
+     *             .build());
+     * 
+     *         final var encoded = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_src.name())
+     *             .value("1111-2222-3333-4444")
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getRewrap(GetRewrapArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_dst.name())
+     *             .decodeTransformation(ccn_fpe_src.name())
+     *             .value(encoded.applyValue(_encoded -> _encoded.encodedValue()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetRewrapResult> getRewrapPlain(GetRewrapPlainArgs args) {
+        return getRewrapPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * This data source supports the &#34;/transform/rewrap/{role_name}&#34; Vault endpoint.
+     * 
+     * It rewraps a value that was encoded with one FPE transformation by decoding it
+     * with the source transformation and re-encoding it with a destination transformation.
+     * Both transformations must be FPE transformations.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import com.pulumi.vault.transform.inputs.GetRewrapArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         var ccn_fpe_src = new Transformation("ccn-fpe-src", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-src")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var ccn_fpe_dst = new Transformation("ccn-fpe-dst", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-dst")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var payments = new Role("payments", RoleArgs.builder()
+     *             .path(ccn_fpe_src.path())
+     *             .name("payments")
+     *             .transformations(            
+     *                 "ccn-fpe-src",
+     *                 "ccn-fpe-dst")
+     *             .build());
+     * 
+     *         final var encoded = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_src.name())
+     *             .value("1111-2222-3333-4444")
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getRewrap(GetRewrapArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_dst.name())
+     *             .decodeTransformation(ccn_fpe_src.name())
+     *             .value(encoded.applyValue(_encoded -> _encoded.encodedValue()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetRewrapResult> getRewrap(GetRewrapArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:transform/getRewrap:getRewrap", TypeShape.of(GetRewrapResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source supports the &#34;/transform/rewrap/{role_name}&#34; Vault endpoint.
+     * 
+     * It rewraps a value that was encoded with one FPE transformation by decoding it
+     * with the source transformation and re-encoding it with a destination transformation.
+     * Both transformations must be FPE transformations.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import com.pulumi.vault.transform.inputs.GetRewrapArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         var ccn_fpe_src = new Transformation("ccn-fpe-src", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-src")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var ccn_fpe_dst = new Transformation("ccn-fpe-dst", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-dst")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var payments = new Role("payments", RoleArgs.builder()
+     *             .path(ccn_fpe_src.path())
+     *             .name("payments")
+     *             .transformations(            
+     *                 "ccn-fpe-src",
+     *                 "ccn-fpe-dst")
+     *             .build());
+     * 
+     *         final var encoded = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_src.name())
+     *             .value("1111-2222-3333-4444")
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getRewrap(GetRewrapArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_dst.name())
+     *             .decodeTransformation(ccn_fpe_src.name())
+     *             .value(encoded.applyValue(_encoded -> _encoded.encodedValue()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetRewrapResult> getRewrap(GetRewrapArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:transform/getRewrap:getRewrap", TypeShape.of(GetRewrapResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * This data source supports the &#34;/transform/rewrap/{role_name}&#34; Vault endpoint.
+     * 
+     * It rewraps a value that was encoded with one FPE transformation by decoding it
+     * with the source transformation and re-encoding it with a destination transformation.
+     * Both transformations must be FPE transformations.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.Transformation;
+     * import com.pulumi.vault.transform.TransformationArgs;
+     * import com.pulumi.vault.transform.Role;
+     * import com.pulumi.vault.transform.RoleArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetEncodeArgs;
+     * import com.pulumi.vault.transform.inputs.GetRewrapArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         var ccn_fpe_src = new Transformation("ccn-fpe-src", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-src")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var ccn_fpe_dst = new Transformation("ccn-fpe-dst", TransformationArgs.builder()
+     *             .path(transform.path())
+     *             .name("ccn-fpe-dst")
+     *             .type("fpe")
+     *             .template("builtin/creditcardnumber")
+     *             .tweakSource("internal")
+     *             .allowedRoles("payments")
+     *             .build());
+     * 
+     *         var payments = new Role("payments", RoleArgs.builder()
+     *             .path(ccn_fpe_src.path())
+     *             .name("payments")
+     *             .transformations(            
+     *                 "ccn-fpe-src",
+     *                 "ccn-fpe-dst")
+     *             .build());
+     * 
+     *         final var encoded = TransformFunctions.getEncode(GetEncodeArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_src.name())
+     *             .value("1111-2222-3333-4444")
+     *             .build());
+     * 
+     *         final var test = TransformFunctions.getRewrap(GetRewrapArgs.builder()
+     *             .path(payments.path())
+     *             .roleName("payments")
+     *             .transformation(ccn_fpe_dst.name())
+     *             .decodeTransformation(ccn_fpe_src.name())
+     *             .value(encoded.applyValue(_encoded -> _encoded.encodedValue()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetRewrapResult> getRewrapPlain(GetRewrapPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:transform/getRewrap:getRewrap", TypeShape.of(GetRewrapResult.class), args, Utilities.withVersion(options));
     }
 }

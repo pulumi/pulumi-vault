@@ -52,7 +52,8 @@ class BackendArgs:
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
-                 seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None):
+                 seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Backend resource.
 
@@ -105,6 +106,7 @@ class BackendArgs:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         """
         pulumi.set(__self__, "subscription_id", subscription_id)
         pulumi.set(__self__, "tenant_id", tenant_id)
@@ -172,6 +174,8 @@ class BackendArgs:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
+        if seamless_rotation is not None:
+            pulumi.set(__self__, "seamless_rotation", seamless_rotation)
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")
@@ -596,6 +600,18 @@ class BackendArgs:
     def seal_wrap(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "seal_wrap", value)
 
+    @_builtins.property
+    @pulumi.getter(name="seamlessRotation")
+    def seamless_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "seamless_rotation")
+
+    @seamless_rotation.setter
+    def seamless_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "seamless_rotation", value)
+
 
 @pulumi.input_type
 class _BackendState:
@@ -633,6 +649,7 @@ class _BackendState:
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -686,6 +703,7 @@ class _BackendState:
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
         """
@@ -755,6 +773,8 @@ class _BackendState:
             pulumi.set(__self__, "rotation_window", rotation_window)
         if seal_wrap is not None:
             pulumi.set(__self__, "seal_wrap", seal_wrap)
+        if seamless_rotation is not None:
+            pulumi.set(__self__, "seamless_rotation", seamless_rotation)
         if subscription_id is not None:
             pulumi.set(__self__, "subscription_id", subscription_id)
         if tenant_id is not None:
@@ -1172,6 +1192,18 @@ class _BackendState:
         pulumi.set(self, "seal_wrap", value)
 
     @_builtins.property
+    @pulumi.getter(name="seamlessRotation")
+    def seamless_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "seamless_rotation")
+
+    @seamless_rotation.setter
+    def seamless_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "seamless_rotation", value)
+
+    @_builtins.property
     @pulumi.getter(name="subscriptionId")
     def subscription_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1234,6 +1266,7 @@ class Backend(pulumi.CustomResource):
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -1363,6 +1396,7 @@ class Backend(pulumi.CustomResource):
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
         """
@@ -1496,6 +1530,7 @@ class Backend(pulumi.CustomResource):
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
                  seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
                  tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -1539,6 +1574,7 @@ class Backend(pulumi.CustomResource):
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
             __props__.__dict__["seal_wrap"] = seal_wrap
+            __props__.__dict__["seamless_rotation"] = seamless_rotation
             if subscription_id is None and not opts.urn:
                 raise TypeError("Missing required property 'subscription_id'")
             __props__.__dict__["subscription_id"] = None if subscription_id is None else pulumi.Output.secret(subscription_id)
@@ -1591,6 +1627,7 @@ class Backend(pulumi.CustomResource):
             rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
             seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+            seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
             subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
             tenant_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Backend':
         """
@@ -1648,6 +1685,7 @@ class Backend(pulumi.CustomResource):
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+. *Available only for Vault Enterprise*
         :param pulumi.Input[_builtins.bool] seal_wrap: Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         :param pulumi.Input[_builtins.str] subscription_id: The subscription id for the Azure Active Directory.
         :param pulumi.Input[_builtins.str] tenant_id: The tenant id for the Azure Active Directory.
         """
@@ -1688,6 +1726,7 @@ class Backend(pulumi.CustomResource):
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
         __props__.__dict__["seal_wrap"] = seal_wrap
+        __props__.__dict__["seamless_rotation"] = seamless_rotation
         __props__.__dict__["subscription_id"] = subscription_id
         __props__.__dict__["tenant_id"] = tenant_id
         return Backend(resource_name, opts=opts, __props__=__props__)
@@ -1970,6 +2009,14 @@ class Backend(pulumi.CustomResource):
         Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
         """
         return pulumi.get(self, "seal_wrap")
+
+    @_builtins.property
+    @pulumi.getter(name="seamlessRotation")
+    def seamless_rotation(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "seamless_rotation")
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")

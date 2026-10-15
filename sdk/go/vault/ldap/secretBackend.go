@@ -85,7 +85,7 @@ type SecretBackend struct {
 	// If true, Vault automatically attempts to unlock the admin managed LDAP account
 	// after every successful static-role password rotation. Applies to all static roles on this mount
 	// unless overridden at the role level. Defaults to false. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock pulumi.BoolOutput `pulumi:"autoUnlock"`
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn pulumi.StringOutput `pulumi:"binddn"`
@@ -261,7 +261,7 @@ type secretBackendState struct {
 	// If true, Vault automatically attempts to unlock the admin managed LDAP account
 	// after every successful static-role password rotation. Applies to all static roles on this mount
 	// unless overridden at the role level. Defaults to false. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock *bool `pulumi:"autoUnlock"`
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn *string `pulumi:"binddn"`
@@ -386,7 +386,7 @@ type SecretBackendState struct {
 	// If true, Vault automatically attempts to unlock the admin managed LDAP account
 	// after every successful static-role password rotation. Applies to all static roles on this mount
 	// unless overridden at the role level. Defaults to false. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock pulumi.BoolPtrInput
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn pulumi.StringPtrInput
@@ -513,7 +513,7 @@ type secretBackendArgs struct {
 	// If true, Vault automatically attempts to unlock the admin managed LDAP account
 	// after every successful static-role password rotation. Applies to all static roles on this mount
 	// unless overridden at the role level. Defaults to false. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock *bool `pulumi:"autoUnlock"`
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn string `pulumi:"binddn"`
@@ -637,7 +637,7 @@ type SecretBackendArgs struct {
 	// If true, Vault automatically attempts to unlock the admin managed LDAP account
 	// after every successful static-role password rotation. Applies to all static roles on this mount
 	// unless overridden at the role level. Defaults to false. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock pulumi.BoolPtrInput
 	// Distinguished name of object to bind when performing user and group search.
 	Binddn pulumi.StringInput
@@ -863,7 +863,7 @@ func (o SecretBackendOutput) AuditNonHmacResponseKeys() pulumi.StringArrayOutput
 // If true, Vault automatically attempts to unlock the admin managed LDAP account
 // after every successful static-role password rotation. Applies to all static roles on this mount
 // unless overridden at the role level. Defaults to false. Active Directory schema only.
-// Requires Vault 2.2.0+.
+// Requires Vault Enterprise 2.2.0+.
 func (o SecretBackendOutput) AutoUnlock() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackend) pulumi.BoolOutput { return v.AutoUnlock }).(pulumi.BoolOutput)
 }

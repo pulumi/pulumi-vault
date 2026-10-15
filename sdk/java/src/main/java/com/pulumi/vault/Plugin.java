@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.PluginArgs;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.inputs.PluginState;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -61,6 +62,50 @@ import javax.annotation.Nullable;
  *             .type("database")
  *             .name("vault-plugin-database-oracle")
  *             .version("v0.13.0+ent")
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### Register an Official Enterprise plugin with automatic download
+ * 
+ * On Vault Enterprise 1.20 and later, setting `download` to `true` makes Vault
+ * download the plugin artifact from
+ * [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
+ * so the artifact does not need to be manually extracted into the server&#39;s
+ * `pluginDirectory` beforehand. All Vault cluster nodes need outbound HTTPS
+ * access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+ * a beta feature in Vault.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.vault.Plugin;
+ * import com.pulumi.vault.PluginArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var os = new Plugin("os", PluginArgs.builder()
+ *             .type("secret")
+ *             .name("vault-plugin-secrets-os")
+ *             .version("v0.1.0+ent")
+ *             .download(true)
  *             .build());
  * 
  *     }
@@ -156,6 +201,28 @@ public class Plugin extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> command() {
         return Codegen.optional(this.command);
+    }
+    /**
+     * If `true`, Vault downloads the plugin artifact from
+     * releases.hashicorp.com during registration instead of requiring it to be
+     * pre-staged in the server&#39;s `pluginDirectory`. Only valid for official
+     * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+     * 1.20+ (beta feature). Defaults to `false`.
+     * 
+     */
+    @Export(name="download", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> download;
+
+    /**
+     * @return If `true`, Vault downloads the plugin artifact from
+     * releases.hashicorp.com during registration instead of requiring it to be
+     * pre-staged in the server&#39;s `pluginDirectory`. Only valid for official
+     * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+     * 1.20+ (beta feature). Defaults to `false`.
+     * 
+     */
+    public Output<Optional<Boolean>> download() {
+        return Codegen.optional(this.download);
     }
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.

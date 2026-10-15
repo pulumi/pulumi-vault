@@ -110,6 +110,8 @@ type SecretBackendIntermediateCertRequest struct {
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
 	// The organization unit
 	Ou pulumi.StringPtrOutput `pulumi:"ou"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringOutput `pulumi:"parameterSet"`
 	// The postal code
 	PostalCode pulumi.StringPtrOutput `pulumi:"postalCode"`
 	// The private key
@@ -229,6 +231,8 @@ type secretBackendIntermediateCertRequestState struct {
 	OtherSans []string `pulumi:"otherSans"`
 	// The organization unit
 	Ou *string `pulumi:"ou"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The private key
@@ -306,6 +310,8 @@ type SecretBackendIntermediateCertRequestState struct {
 	OtherSans pulumi.StringArrayInput
 	// The organization unit
 	Ou pulumi.StringPtrInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The private key
@@ -383,6 +389,8 @@ type secretBackendIntermediateCertRequestArgs struct {
 	OtherSans []string `pulumi:"otherSans"`
 	// The organization unit
 	Ou *string `pulumi:"ou"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// The postal code
 	PostalCode *string `pulumi:"postalCode"`
 	// The private key format
@@ -453,6 +461,8 @@ type SecretBackendIntermediateCertRequestArgs struct {
 	OtherSans pulumi.StringArrayInput
 	// The organization unit
 	Ou pulumi.StringPtrInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// The postal code
 	PostalCode pulumi.StringPtrInput
 	// The private key format
@@ -676,6 +686,11 @@ func (o SecretBackendIntermediateCertRequestOutput) OtherSans() pulumi.StringArr
 // The organization unit
 func (o SecretBackendIntermediateCertRequestOutput) Ou() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringPtrOutput { return v.Ou }).(pulumi.StringPtrOutput)
+}
+
+// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+func (o SecretBackendIntermediateCertRequestOutput) ParameterSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendIntermediateCertRequest) pulumi.StringOutput { return v.ParameterSet }).(pulumi.StringOutput)
 }
 
 // The postal code

@@ -24,9 +24,13 @@ namespace Pulumi.Vault
     /// 
     /// * **Entity Requirement**: The identity entity specified in `EntityId` must exist before you create the Agent Registry record. The entity defines the base identity for the agent.
     /// 
+    /// * **Entity Uniqueness**: The identity entity specified in `EntityId` must be unique within the locality (globally replicated or local to the cluster).
+    /// 
     /// * **Display Name Uniqueness**: The `DisplayName` must be unique within the namespace. Attempting to create multiple Agent Registry records with the same display name will result in an error.
     /// 
     /// * **Immutable Display Name**: Changing the `DisplayName` requires destroying and recreating the Agent Registry record, as it serves as the unique identifier.
+    /// 
+    /// * **Immutable Locality**: Changing the `Local` flag of a registration requires destroying and recreating the Agent Registry record.
     /// 
     /// * **Enterprise Feature**: Agent Registry records are only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
     /// 
@@ -84,7 +88,7 @@ namespace Pulumi.Vault
         public Output<string> DisplayName { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        /// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         /// </summary>
         [Output("entityId")]
         public Output<string> EntityId { get; private set; } = null!;
@@ -94,6 +98,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Output("lastUpdatedTime")]
         public Output<string> LastUpdatedTime { get; private set; } = null!;
+
+        /// <summary>
+        /// When `False`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `True`, the registration remains local to the current cluster and is not replicated. The `Local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+        /// </summary>
+        [Output("local")]
+        public Output<bool> Local { get; private set; } = null!;
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -192,10 +202,16 @@ namespace Pulumi.Vault
         public Input<string> DisplayName { get; set; } = null!;
 
         /// <summary>
-        /// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        /// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         /// </summary>
         [Input("entityId", required: true)]
         public Input<string> EntityId { get; set; } = null!;
+
+        /// <summary>
+        /// When `False`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `True`, the registration remains local to the current cluster and is not replicated. The `Local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.
@@ -262,7 +278,7 @@ namespace Pulumi.Vault
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        /// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         /// </summary>
         [Input("entityId")]
         public Input<string>? EntityId { get; set; }
@@ -272,6 +288,12 @@ namespace Pulumi.Vault
         /// </summary>
         [Input("lastUpdatedTime")]
         public Input<string>? LastUpdatedTime { get; set; }
+
+        /// <summary>
+        /// When `False`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `True`, the registration remains local to the current cluster and is not replicated. The `Local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+        /// </summary>
+        [Input("local")]
+        public Input<bool>? Local { get; set; }
 
         /// <summary>
         /// The namespace to provision the resource in.

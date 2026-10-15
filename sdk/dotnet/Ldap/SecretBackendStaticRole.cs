@@ -74,7 +74,7 @@ namespace Pulumi.Vault.Ldap
         /// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
         /// When false, disables automatic unlock for this role even if the mount has `AutoUnlock = true`.
         /// When unset, the role inherits the mount-level setting. Active Directory schema only.
-        /// Requires Vault 2.2.0+.
+        /// Requires Vault Enterprise 2.2.0+.
         /// </summary>
         [Output("autoUnlock")]
         public Output<bool> AutoUnlock { get; private set; } = null!;
@@ -251,7 +251,7 @@ namespace Pulumi.Vault.Ldap
         /// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
         /// When false, disables automatic unlock for this role even if the mount has `AutoUnlock = true`.
         /// When unset, the role inherits the mount-level setting. Active Directory schema only.
-        /// Requires Vault 2.2.0+.
+        /// Requires Vault Enterprise 2.2.0+.
         /// </summary>
         [Input("autoUnlock")]
         public Input<bool>? AutoUnlock { get; set; }
@@ -396,7 +396,7 @@ namespace Pulumi.Vault.Ldap
         /// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
         /// When false, disables automatic unlock for this role even if the mount has `AutoUnlock = true`.
         /// When unset, the role inherits the mount-level setting. Active Directory schema only.
-        /// Requires Vault 2.2.0+.
+        /// Requires Vault Enterprise 2.2.0+.
         /// </summary>
         [Input("autoUnlock")]
         public Input<bool>? AutoUnlock { get; set; }

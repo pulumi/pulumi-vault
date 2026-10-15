@@ -32,4 +32,6 @@ from .oidc_key_allowed_client_id import *
 from .oidc_provider import *
 from .oidc_role import *
 from .oidc_scope import *
+from .tpm import *
+from .tpm_group import *
 from . import outputs

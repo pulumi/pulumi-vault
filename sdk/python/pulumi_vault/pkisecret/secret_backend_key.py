@@ -26,7 +26,8 @@ class SecretBackendKeyArgs:
                  key_type: pulumi.Input[Optional[_builtins.str]] = None,
                  managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretBackendKey resource.
 
@@ -38,13 +39,14 @@ class SecretBackendKeyArgs:
                384, or 521; ignored with `key_type=ed25519`.
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
-        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
         :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         """
         pulumi.set(__self__, "backend", backend)
         pulumi.set(__self__, "type", type)
@@ -60,6 +62,8 @@ class SecretBackendKeyArgs:
             pulumi.set(__self__, "managed_key_name", managed_key_name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
 
     @_builtins.property
     @pulumi.getter
@@ -117,7 +121,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
         """
         return pulumi.get(self, "key_type")
 
@@ -164,6 +168,18 @@ class SecretBackendKeyArgs:
     def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
+    @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
+
 
 @pulumi.input_type
 class _SecretBackendKeyState:
@@ -176,6 +192,7 @@ class _SecretBackendKeyState:
                  managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering SecretBackendKey resources.
@@ -188,13 +205,14 @@ class _SecretBackendKeyState:
         :param pulumi.Input[_builtins.str] key_id: ID of the generated key.
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
-        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
         :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
         """
         if backend is not None:
@@ -213,6 +231,8 @@ class _SecretBackendKeyState:
             pulumi.set(__self__, "managed_key_name", managed_key_name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if type is not None:
             pulumi.set(__self__, "type", type)
 
@@ -272,7 +292,7 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
         """
         return pulumi.get(self, "key_type")
 
@@ -320,6 +340,18 @@ class _SecretBackendKeyState:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
+
+    @_builtins.property
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -345,6 +377,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -387,13 +420,14 @@ class SecretBackendKey(pulumi.CustomResource):
                384, or 521; ignored with `key_type=ed25519`.
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
-        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
         :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
         """
         ...
@@ -455,6 +489,7 @@ class SecretBackendKey(pulumi.CustomResource):
                  managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -474,6 +509,7 @@ class SecretBackendKey(pulumi.CustomResource):
             __props__.__dict__["managed_key_id"] = managed_key_id
             __props__.__dict__["managed_key_name"] = managed_key_name
             __props__.__dict__["namespace"] = namespace
+            __props__.__dict__["parameter_set"] = parameter_set
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -496,6 +532,7 @@ class SecretBackendKey(pulumi.CustomResource):
             managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendKey':
         """
         Get an existing SecretBackendKey resource's state with the given name, id, and optional extra
@@ -512,13 +549,14 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_id: ID of the generated key.
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
-        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
         :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
         :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -533,6 +571,7 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["managed_key_id"] = managed_key_id
         __props__.__dict__["managed_key_name"] = managed_key_name
         __props__.__dict__["namespace"] = namespace
+        __props__.__dict__["parameter_set"] = parameter_set
         __props__.__dict__["type"] = type
         return SecretBackendKey(resource_name, opts=opts, __props__=__props__)
 
@@ -576,7 +615,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+        Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
         """
         return pulumi.get(self, "key_type")
 
@@ -606,6 +645,14 @@ class SecretBackendKey(pulumi.CustomResource):
         *Available only for Vault Enterprise*.
         """
         return pulumi.get(self, "namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Output[_builtins.str]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
 
     @_builtins.property
     @pulumi.getter

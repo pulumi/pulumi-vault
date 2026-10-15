@@ -326,6 +326,12 @@ namespace Pulumi.Vault.Azure
         public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
+        /// Enables automated seamless rotation by default for newly created static roles when `True`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Output("seamlessRotation")]
+        public Output<bool> SeamlessRotation { get; private set; } = null!;
+
+        /// <summary>
         /// The subscription id for the Azure Active Directory.
         /// </summary>
         [Output("subscriptionId")]
@@ -670,6 +676,12 @@ namespace Pulumi.Vault.Azure
         [Input("sealWrap")]
         public Input<bool>? SealWrap { get; set; }
 
+        /// <summary>
+        /// Enables automated seamless rotation by default for newly created static roles when `True`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("seamlessRotation")]
+        public Input<bool>? SeamlessRotation { get; set; }
+
         [Input("subscriptionId", required: true)]
         private Input<string>? _subscriptionId;
 
@@ -994,6 +1006,12 @@ namespace Pulumi.Vault.Azure
         /// </summary>
         [Input("sealWrap")]
         public Input<bool>? SealWrap { get; set; }
+
+        /// <summary>
+        /// Enables automated seamless rotation by default for newly created static roles when `True`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        /// </summary>
+        [Input("seamlessRotation")]
+        public Input<bool>? SeamlessRotation { get; set; }
 
         [Input("subscriptionId")]
         private Input<string>? _subscriptionId;

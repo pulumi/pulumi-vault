@@ -37,9 +37,9 @@ class SecretBackendAcmeAccountArgs:
         :param pulumi.Input[_builtins.str] mount: The path where the PKI secret backend is mounted.
         :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eab_kid` is also required. This is a write-only field.
         :param pulumi.Input[_builtins.str] eab_kid: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eab_key` is also required. This is a write-only field.
         :param pulumi.Input[_builtins.str] key_type: Key type to generate for the account key. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`, `rsa-8192`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] name: Name of the ACME account. Must be unique within the backend.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -119,7 +119,7 @@ class SecretBackendAcmeAccountArgs:
     def eab_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eab_kid` is also required. This is a write-only field.
         """
         return pulumi.get(self, "eab_key")
 
@@ -132,7 +132,7 @@ class SecretBackendAcmeAccountArgs:
     def eab_kid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eab_key` is also required. This is a write-only field.
         """
         return pulumi.get(self, "eab_kid")
 
@@ -213,9 +213,9 @@ class _SecretBackendAcmeAccountState:
         :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] directory_url: ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eab_kid` is also required. This is a write-only field.
         :param pulumi.Input[_builtins.str] eab_kid: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eab_key` is also required. This is a write-only field.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] email_contacts: List of email addresses for the ACME account. These will be used for important notifications from the CA.
         :param pulumi.Input[_builtins.str] key_type: Key type to generate for the account key. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`, `rsa-8192`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] mount: The path where the PKI secret backend is mounted.
@@ -290,7 +290,7 @@ class _SecretBackendAcmeAccountState:
     def eab_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eab_kid` is also required. This is a write-only field.
         """
         return pulumi.get(self, "eab_key")
 
@@ -303,7 +303,7 @@ class _SecretBackendAcmeAccountState:
     def eab_kid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eab_key` is also required. This is a write-only field.
         """
         return pulumi.get(self, "eab_kid")
 
@@ -456,9 +456,9 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] directory_url: ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eab_kid` is also required. This is a write-only field.
         :param pulumi.Input[_builtins.str] eab_kid: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eab_key` is also required. This is a write-only field.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] email_contacts: List of email addresses for the ACME account. These will be used for important notifications from the CA.
         :param pulumi.Input[_builtins.str] key_type: Key type to generate for the account key. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`, `rsa-8192`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] mount: The path where the PKI secret backend is mounted.
@@ -607,9 +607,9 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] default_nameserver: Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
         :param pulumi.Input[_builtins.str] directory_url: ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
         :param pulumi.Input[_builtins.str] eab_key: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eab_kid` is also required. This is a write-only field.
         :param pulumi.Input[_builtins.str] eab_kid: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-               The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+               The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eab_key` is also required. This is a write-only field.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] email_contacts: List of email addresses for the ACME account. These will be used for important notifications from the CA.
         :param pulumi.Input[_builtins.str] key_type: Key type to generate for the account key. Valid values are `ec-256`, `ec-384`, `ec-521`, `rsa-2048`, `rsa-4096`, `rsa-8192`. Defaults to `ec-256`.
         :param pulumi.Input[_builtins.str] mount: The path where the PKI secret backend is mounted.
@@ -666,7 +666,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
     def eab_key(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eab_kid` is also required. This is a write-only field.
         """
         return pulumi.get(self, "eab_key")
 
@@ -675,7 +675,7 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
     def eab_kid(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+        The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eab_key` is also required. This is a write-only field.
         """
         return pulumi.get(self, "eab_kid")
 

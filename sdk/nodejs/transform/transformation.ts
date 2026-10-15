@@ -98,6 +98,10 @@ export class Transformation extends pulumi.CustomResource {
      */
     declare public readonly deletionAllowed: pulumi.Output<boolean | undefined>;
     /**
+     * The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+     */
+    declare public /*out*/ readonly fpeAlgorithm: pulumi.Output<string>;
+    /**
      * Specifies the mapping mode for stored values.
      * Can be "default" or "exportable". Only used when `type` is "tokenization".
      * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
@@ -107,6 +111,10 @@ export class Transformation extends pulumi.CustomResource {
      * The character used to replace data when in masking mode
      */
     declare public readonly maskingCharacter: pulumi.Output<string | undefined>;
+    /**
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    declare public readonly maxTweakLen: pulumi.Output<number | undefined>;
     /**
      * The name of the transformation.
      */
@@ -161,8 +169,10 @@ export class Transformation extends pulumi.CustomResource {
             resourceInputs["allowedRoles"] = state?.allowedRoles;
             resourceInputs["convergent"] = state?.convergent;
             resourceInputs["deletionAllowed"] = state?.deletionAllowed;
+            resourceInputs["fpeAlgorithm"] = state?.fpeAlgorithm;
             resourceInputs["mappingMode"] = state?.mappingMode;
             resourceInputs["maskingCharacter"] = state?.maskingCharacter;
+            resourceInputs["maxTweakLen"] = state?.maxTweakLen;
             resourceInputs["name"] = state?.name;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["path"] = state?.path;
@@ -181,6 +191,7 @@ export class Transformation extends pulumi.CustomResource {
             resourceInputs["deletionAllowed"] = args?.deletionAllowed;
             resourceInputs["mappingMode"] = args?.mappingMode;
             resourceInputs["maskingCharacter"] = args?.maskingCharacter;
+            resourceInputs["maxTweakLen"] = args?.maxTweakLen;
             resourceInputs["name"] = args?.name;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["path"] = args?.path;
@@ -189,6 +200,7 @@ export class Transformation extends pulumi.CustomResource {
             resourceInputs["templates"] = args?.templates;
             resourceInputs["tweakSource"] = args?.tweakSource;
             resourceInputs["type"] = args?.type;
+            resourceInputs["fpeAlgorithm"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Transformation.__pulumiType, name, resourceInputs, opts);
@@ -214,6 +226,10 @@ export interface TransformationState {
      */
     deletionAllowed?: pulumi.Input<boolean | undefined>;
     /**
+     * The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+     */
+    fpeAlgorithm?: pulumi.Input<string | undefined>;
+    /**
      * Specifies the mapping mode for stored values.
      * Can be "default" or "exportable". Only used when `type` is "tokenization".
      * **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
@@ -223,6 +239,10 @@ export interface TransformationState {
      * The character used to replace data when in masking mode
      */
     maskingCharacter?: pulumi.Input<string | undefined>;
+    /**
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    maxTweakLen?: pulumi.Input<number | undefined>;
     /**
      * The name of the transformation.
      */
@@ -290,6 +310,10 @@ export interface TransformationArgs {
      * The character used to replace data when in masking mode
      */
     maskingCharacter?: pulumi.Input<string | undefined>;
+    /**
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     */
+    maxTweakLen?: pulumi.Input<number | undefined>;
     /**
      * The name of the transformation.
      */

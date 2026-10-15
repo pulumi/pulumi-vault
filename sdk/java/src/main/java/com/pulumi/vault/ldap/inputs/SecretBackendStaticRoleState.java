@@ -22,7 +22,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
      * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
      * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
      * When unset, the role inherits the mount-level setting. Active Directory schema only.
-     * Requires Vault 2.2.0+.
+     * Requires Vault Enterprise 2.2.0+.
      * 
      */
     @Import(name="autoUnlock")
@@ -33,7 +33,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
      * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
      * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
      * When unset, the role inherits the mount-level setting. Active Directory schema only.
-     * Requires Vault 2.2.0+.
+     * Requires Vault Enterprise 2.2.0+.
      * 
      */
     public Optional<Output<Boolean>> autoUnlock() {
@@ -367,7 +367,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
          * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
          * When unset, the role inherits the mount-level setting. Active Directory schema only.
-         * Requires Vault 2.2.0+.
+         * Requires Vault Enterprise 2.2.0+.
          * 
          * @return builder
          * 
@@ -382,7 +382,7 @@ public final class SecretBackendStaticRoleState extends com.pulumi.resources.Res
          * When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
          * When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
          * When unset, the role inherits the mount-level setting. Active Directory schema only.
-         * Requires Vault 2.2.0+.
+         * Requires Vault Enterprise 2.2.0+.
          * 
          * @return builder
          * 

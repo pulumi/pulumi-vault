@@ -468,7 +468,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keyBits);
     }
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
      * Defaults to `rsa`
      * 
      */
@@ -476,7 +476,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> keyType;
 
     /**
-     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
      * Defaults to `rsa`
      * 
      */
@@ -646,6 +646,20 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> organizations() {
         return Codegen.optional(this.organizations);
+    }
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    @Export(name="parameterSet", refs={String.class}, tree="[0]")
+    private Output<String> parameterSet;
+
+    /**
+     * @return For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    public Output<String> parameterSet() {
+        return this.parameterSet;
     }
     /**
      * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:

@@ -20,6 +20,21 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
     public static final OauthResourceServerConfigProfileState Empty = new OauthResourceServerConfigProfileState();
 
     /**
+     * The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Import(name="actorClaim")
+    private @Nullable Output<String> actorClaim;
+
+    /**
+     * @return The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Optional<Output<String>> actorClaim() {
+        return Optional.ofNullable(this.actorClaim);
+    }
+
+    /**
      * List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
      * 
      */
@@ -32,6 +47,21 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
      */
     public Optional<Output<List<String>>> audiences() {
         return Optional.ofNullable(this.audiences);
+    }
+
+    /**
+     * The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+     * 
+     */
+    @Import(name="authorizationDetailsClaim")
+    private @Nullable Output<String> authorizationDetailsClaim;
+
+    /**
+     * @return The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+     * 
+     */
+    public Optional<Output<String>> authorizationDetailsClaim() {
+        return Optional.ofNullable(this.authorizationDetailsClaim);
     }
 
     /**
@@ -122,6 +152,21 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
      */
     public Optional<Output<String>> jwtType() {
         return Optional.ofNullable(this.jwtType);
+    }
+
+    /**
+     * When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Import(name="local")
+    private @Nullable Output<Boolean> local;
+
+    /**
+     * @return When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Optional<Output<Boolean>> local() {
+        return Optional.ofNullable(this.local);
     }
 
     /**
@@ -227,6 +272,21 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
     }
 
     /**
+     * The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Import(name="uniqueIdClaim")
+    private @Nullable Output<String> uniqueIdClaim;
+
+    /**
+     * @return The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Optional<Output<String>> uniqueIdClaim() {
+        return Optional.ofNullable(this.uniqueIdClaim);
+    }
+
+    /**
      * If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwksUri` is required. When set to false, `publicKeys` is required.
      * 
      */
@@ -259,19 +319,23 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
     private OauthResourceServerConfigProfileState() {}
 
     private OauthResourceServerConfigProfileState(OauthResourceServerConfigProfileState $) {
+        this.actorClaim = $.actorClaim;
         this.audiences = $.audiences;
+        this.authorizationDetailsClaim = $.authorizationDetailsClaim;
         this.clockSkewLeeway = $.clockSkewLeeway;
         this.enabled = $.enabled;
         this.issuerId = $.issuerId;
         this.jwksCaPem = $.jwksCaPem;
         this.jwksUri = $.jwksUri;
         this.jwtType = $.jwtType;
+        this.local = $.local;
         this.namespace = $.namespace;
         this.noDefaultPolicy = $.noDefaultPolicy;
         this.optionalAuthorizationDetails = $.optionalAuthorizationDetails;
         this.profileName = $.profileName;
         this.publicKeys = $.publicKeys;
         this.supportedAlgorithms = $.supportedAlgorithms;
+        this.uniqueIdClaim = $.uniqueIdClaim;
         this.useJwks = $.useJwks;
         this.userClaim = $.userClaim;
     }
@@ -292,6 +356,27 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
 
         public Builder(OauthResourceServerConfigProfileState defaults) {
             $ = new OauthResourceServerConfigProfileState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param actorClaim The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder actorClaim(@Nullable Output<String> actorClaim) {
+            $.actorClaim = actorClaim;
+            return this;
+        }
+
+        /**
+         * @param actorClaim The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder actorClaim(String actorClaim) {
+            return actorClaim(Output.of(actorClaim));
         }
 
         /**
@@ -323,6 +408,27 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
          */
         public Builder audiences(String... audiences) {
             return audiences(List.of(audiences));
+        }
+
+        /**
+         * @param authorizationDetailsClaim The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizationDetailsClaim(@Nullable Output<String> authorizationDetailsClaim) {
+            $.authorizationDetailsClaim = authorizationDetailsClaim;
+            return this;
+        }
+
+        /**
+         * @param authorizationDetailsClaim The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authorizationDetailsClaim(String authorizationDetailsClaim) {
+            return authorizationDetailsClaim(Output.of(authorizationDetailsClaim));
         }
 
         /**
@@ -449,6 +555,27 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
          */
         public Builder jwtType(String jwtType) {
             return jwtType(Output.of(jwtType));
+        }
+
+        /**
+         * @param local When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder local(@Nullable Output<Boolean> local) {
+            $.local = local;
+            return this;
+        }
+
+        /**
+         * @param local When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder local(Boolean local) {
+            return local(Output.of(local));
         }
 
         /**
@@ -610,6 +737,27 @@ public final class OauthResourceServerConfigProfileState extends com.pulumi.reso
          */
         public Builder supportedAlgorithms(String... supportedAlgorithms) {
             return supportedAlgorithms(List.of(supportedAlgorithms));
+        }
+
+        /**
+         * @param uniqueIdClaim The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder uniqueIdClaim(@Nullable Output<String> uniqueIdClaim) {
+            $.uniqueIdClaim = uniqueIdClaim;
+            return this;
+        }
+
+        /**
+         * @param uniqueIdClaim The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder uniqueIdClaim(String uniqueIdClaim) {
+            return uniqueIdClaim(Output.of(uniqueIdClaim));
         }
 
         /**

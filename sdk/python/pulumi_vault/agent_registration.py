@@ -23,6 +23,7 @@ class AgentRegistrationArgs:
                  entity_id: pulumi.Input[_builtins.str],
                  ceiling_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_ceiling_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -31,9 +32,10 @@ class AgentRegistrationArgs:
         The set of arguments for constructing a AgentRegistration resource.
 
         :param pulumi.Input[_builtins.str] display_name: The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
-        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ceiling_policies: A list of policy names that define the maximum permissions this agent can obtain. These policies act as a ceiling - the agent cannot obtain permissions beyond what these policies allow, even if the entity or token policies would grant more permissions. By default, Vault applies a default ceiling policy unless `no_default_ceiling_policy` is set to `true`.
         :param pulumi.Input[_builtins.str] description: A human-readable description of the Agent Registry record. This field is for documentation purposes and does not affect the agent's behavior.
+        :param pulumi.Input[_builtins.bool] local: When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -47,6 +49,8 @@ class AgentRegistrationArgs:
             pulumi.set(__self__, "ceiling_policies", ceiling_policies)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if no_default_ceiling_policy is not None:
@@ -72,7 +76,7 @@ class AgentRegistrationArgs:
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Input[_builtins.str]:
         """
-        The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         """
         return pulumi.get(self, "entity_id")
 
@@ -103,6 +107,18 @@ class AgentRegistrationArgs:
     @description.setter
     def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter
@@ -164,6 +180,7 @@ class _AgentRegistrationState:
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  entity_id: pulumi.Input[Optional[_builtins.str]] = None,
                  last_updated_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_ceiling_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -175,8 +192,9 @@ class _AgentRegistrationState:
         :param pulumi.Input[_builtins.str] creation_time: The timestamp when the Agent Registry record was created, in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: A human-readable description of the Agent Registry record. This field is for documentation purposes and does not affect the agent's behavior.
         :param pulumi.Input[_builtins.str] display_name: The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
-        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         :param pulumi.Input[_builtins.str] last_updated_time: The timestamp when the Agent Registry record was last updated, in RFC3339 format.
+        :param pulumi.Input[_builtins.bool] local: When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -196,6 +214,8 @@ class _AgentRegistrationState:
             pulumi.set(__self__, "entity_id", entity_id)
         if last_updated_time is not None:
             pulumi.set(__self__, "last_updated_time", last_updated_time)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if no_default_ceiling_policy is not None:
@@ -257,7 +277,7 @@ class _AgentRegistrationState:
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         """
         return pulumi.get(self, "entity_id")
 
@@ -276,6 +296,18 @@ class _AgentRegistrationState:
     @last_updated_time.setter
     def last_updated_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_updated_time", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter
@@ -338,6 +370,7 @@ class AgentRegistration(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_ceiling_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -358,9 +391,13 @@ class AgentRegistration(pulumi.CustomResource):
 
         * **Entity Requirement**: The identity entity specified in `entity_id` must exist before you create the Agent Registry record. The entity defines the base identity for the agent.
 
+        * **Entity Uniqueness**: The identity entity specified in `entity_id` must be unique within the locality (globally replicated or local to the cluster).
+
         * **Display Name Uniqueness**: The `display_name` must be unique within the namespace. Attempting to create multiple Agent Registry records with the same display name will result in an error.
 
         * **Immutable Display Name**: Changing the `display_name` requires destroying and recreating the Agent Registry record, as it serves as the unique identifier.
+
+        * **Immutable Locality**: Changing the `local` flag of a registration requires destroying and recreating the Agent Registry record.
 
         * **Enterprise Feature**: Agent Registry records are only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
 
@@ -396,7 +433,8 @@ class AgentRegistration(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ceiling_policies: A list of policy names that define the maximum permissions this agent can obtain. These policies act as a ceiling - the agent cannot obtain permissions beyond what these policies allow, even if the entity or token policies would grant more permissions. By default, Vault applies a default ceiling policy unless `no_default_ceiling_policy` is set to `true`.
         :param pulumi.Input[_builtins.str] description: A human-readable description of the Agent Registry record. This field is for documentation purposes and does not affect the agent's behavior.
         :param pulumi.Input[_builtins.str] display_name: The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
-        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
+        :param pulumi.Input[_builtins.bool] local: When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -425,9 +463,13 @@ class AgentRegistration(pulumi.CustomResource):
 
         * **Entity Requirement**: The identity entity specified in `entity_id` must exist before you create the Agent Registry record. The entity defines the base identity for the agent.
 
+        * **Entity Uniqueness**: The identity entity specified in `entity_id` must be unique within the locality (globally replicated or local to the cluster).
+
         * **Display Name Uniqueness**: The `display_name` must be unique within the namespace. Attempting to create multiple Agent Registry records with the same display name will result in an error.
 
         * **Immutable Display Name**: Changing the `display_name` requires destroying and recreating the Agent Registry record, as it serves as the unique identifier.
+
+        * **Immutable Locality**: Changing the `local` flag of a registration requires destroying and recreating the Agent Registry record.
 
         * **Enterprise Feature**: Agent Registry records are only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
 
@@ -477,6 +519,7 @@ class AgentRegistration(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  display_name: pulumi.Input[Optional[_builtins.str]] = None,
                  entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_ceiling_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -498,6 +541,7 @@ class AgentRegistration(pulumi.CustomResource):
             if entity_id is None and not opts.urn:
                 raise TypeError("Missing required property 'entity_id'")
             __props__.__dict__["entity_id"] = entity_id
+            __props__.__dict__["local"] = local
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["no_default_ceiling_policy"] = no_default_ceiling_policy
             __props__.__dict__["optional_authorization_details"] = optional_authorization_details
@@ -520,6 +564,7 @@ class AgentRegistration(pulumi.CustomResource):
             display_name: pulumi.Input[Optional[_builtins.str]] = None,
             entity_id: pulumi.Input[Optional[_builtins.str]] = None,
             last_updated_time: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             no_default_ceiling_policy: pulumi.Input[Optional[_builtins.bool]] = None,
             optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -535,8 +580,9 @@ class AgentRegistration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] creation_time: The timestamp when the Agent Registry record was created, in RFC3339 format.
         :param pulumi.Input[_builtins.str] description: A human-readable description of the Agent Registry record. This field is for documentation purposes and does not affect the agent's behavior.
         :param pulumi.Input[_builtins.str] display_name: The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
-        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        :param pulumi.Input[_builtins.str] entity_id: The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         :param pulumi.Input[_builtins.str] last_updated_time: The timestamp when the Agent Registry record was last updated, in RFC3339 format.
+        :param pulumi.Input[_builtins.bool] local: When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -554,6 +600,7 @@ class AgentRegistration(pulumi.CustomResource):
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["entity_id"] = entity_id
         __props__.__dict__["last_updated_time"] = last_updated_time
+        __props__.__dict__["local"] = local
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["no_default_ceiling_policy"] = no_default_ceiling_policy
         __props__.__dict__["optional_authorization_details"] = optional_authorization_details
@@ -596,7 +643,7 @@ class AgentRegistration(pulumi.CustomResource):
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Output[_builtins.str]:
         """
-        The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+        The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
         """
         return pulumi.get(self, "entity_id")
 
@@ -607,6 +654,14 @@ class AgentRegistration(pulumi.CustomResource):
         The timestamp when the Agent Registry record was last updated, in RFC3339 format.
         """
         return pulumi.get(self, "last_updated_time")
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[_builtins.bool]:
+        """
+        When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "local")
 
     @_builtins.property
     @pulumi.getter

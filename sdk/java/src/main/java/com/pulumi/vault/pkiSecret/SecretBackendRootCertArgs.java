@@ -471,6 +471,21 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
     }
 
     /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    @Import(name="parameterSet")
+    private @Nullable Output<String> parameterSet;
+
+    /**
+     * @return For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    public Optional<Output<String>> parameterSet() {
+        return Optional.ofNullable(this.parameterSet);
+    }
+
+    /**
      * List of domains for which certificates are allowed to be issued
      * 
      */
@@ -733,6 +748,7 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
         this.organization = $.organization;
         this.otherSans = $.otherSans;
         this.ou = $.ou;
+        this.parameterSet = $.parameterSet;
         this.permittedDnsDomains = $.permittedDnsDomains;
         this.permittedEmailAddresses = $.permittedEmailAddresses;
         this.permittedIpRanges = $.permittedIpRanges;
@@ -1471,6 +1487,27 @@ public final class SecretBackendRootCertArgs extends com.pulumi.resources.Resour
          */
         public Builder ou(String ou) {
             return ou(Output.of(ou));
+        }
+
+        /**
+         * @param parameterSet For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(@Nullable Output<String> parameterSet) {
+            $.parameterSet = parameterSet;
+            return this;
+        }
+
+        /**
+         * @param parameterSet For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(String parameterSet) {
+            return parameterSet(Output.of(parameterSet));
         }
 
         /**

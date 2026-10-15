@@ -96,12 +96,12 @@ export class SecretBackendAcmeAccount extends pulumi.CustomResource {
     declare public readonly directoryUrl: pulumi.Output<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
      */
     declare public readonly eabKey: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
      */
     declare public readonly eabKid: pulumi.Output<string | undefined>;
     /**
@@ -204,12 +204,12 @@ export interface SecretBackendAcmeAccountState {
     directoryUrl?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
      */
     eabKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
      */
     eabKid?: pulumi.Input<string | undefined>;
     /**
@@ -255,12 +255,12 @@ export interface SecretBackendAcmeAccountArgs {
     directoryUrl: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
      */
     eabKey?: pulumi.Input<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
      */
     eabKid?: pulumi.Input<string | undefined>;
     /**

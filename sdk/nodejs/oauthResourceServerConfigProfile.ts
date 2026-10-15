@@ -83,6 +83,13 @@ import * as utilities from "./utilities";
  *     jwksUri: "https://auth.example.com/.well-known/jwks.json",
  *     optionalAuthorizationDetails: false,
  * });
+ * const rarCustomClaim = new vault.OauthResourceServerConfigProfile("rar_custom_claim", {
+ *     profileName: "rar-custom-claim-profile",
+ *     issuerId: "https://auth.example.com",
+ *     useJwks: true,
+ *     jwksUri: "https://auth.example.com/.well-known/jwks.json",
+ *     authorizationDetailsClaim: "rar_details",
+ * });
  * ```
  *
  * ### Profile in a Namespace
@@ -122,9 +129,9 @@ import * as utilities from "./utilities";
  *   * When `use_jwks=true`: You must provide `jwksUri` and cannot provide `publicKeys`
  *   * When `use_jwks=false`: You must provide `publicKeys` and cannot provide `jwksUri`
  *
- * * **Issuer Uniqueness**: Each issuer ID must be unique within a namespace. You cannot have multiple profiles with the same issuer ID in the same namespace.
+ * * **Issuer Uniqueness**: Each issuer ID must be unique within a locality (globally replicated or local to the cluster) and a namespace. You cannot have multiple profiles with the same issuer ID and locality in the same namespace.
  *
- * * **Profile Name Immutability**: The `profileName` and `issuerId` cannot be changed after creation. Changing these fields will force a new resource to be created.
+ * * **Field Immutability**: The `profileName`, `issuerId`, `uniqueIdClaim`, and `local` cannot be changed after creation. Changing these fields will force a new resource to be created.
  *
  * * **Key ID Uniqueness**: Within a profile, all key IDs must be unique. This applies to both JWKS keys and static PEM keys.
  *
@@ -196,9 +203,17 @@ export class OauthResourceServerConfigProfile extends pulumi.CustomResource {
     }
 
     /**
+     * The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+     */
+    declare public readonly actorClaim: pulumi.Output<string>;
+    /**
      * List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
      */
     declare public readonly audiences: pulumi.Output<string[] | undefined>;
+    /**
+     * The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+     */
+    declare public readonly authorizationDetailsClaim: pulumi.Output<string>;
     /**
      * Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
      */
@@ -223,6 +238,10 @@ export class OauthResourceServerConfigProfile extends pulumi.CustomResource {
      * The JWT type: `accessToken` or `transactionToken`. Defaults to `accessToken`.
      */
     declare public readonly jwtType: pulumi.Output<string>;
+    /**
+     * When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+     */
+    declare public readonly local: pulumi.Output<boolean>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -254,6 +273,10 @@ export class OauthResourceServerConfigProfile extends pulumi.CustomResource {
      */
     declare public readonly supportedAlgorithms: pulumi.Output<string[]>;
     /**
+     * The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+     */
+    declare public readonly uniqueIdClaim: pulumi.Output<string>;
+    /**
      * If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwksUri` is required. When set to false, `publicKeys` is required.
      */
     declare public readonly useJwks: pulumi.Output<boolean>;
@@ -275,19 +298,23 @@ export class OauthResourceServerConfigProfile extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as OauthResourceServerConfigProfileState | undefined;
+            resourceInputs["actorClaim"] = state?.actorClaim;
             resourceInputs["audiences"] = state?.audiences;
+            resourceInputs["authorizationDetailsClaim"] = state?.authorizationDetailsClaim;
             resourceInputs["clockSkewLeeway"] = state?.clockSkewLeeway;
             resourceInputs["enabled"] = state?.enabled;
             resourceInputs["issuerId"] = state?.issuerId;
             resourceInputs["jwksCaPem"] = state?.jwksCaPem;
             resourceInputs["jwksUri"] = state?.jwksUri;
             resourceInputs["jwtType"] = state?.jwtType;
+            resourceInputs["local"] = state?.local;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["noDefaultPolicy"] = state?.noDefaultPolicy;
             resourceInputs["optionalAuthorizationDetails"] = state?.optionalAuthorizationDetails;
             resourceInputs["profileName"] = state?.profileName;
             resourceInputs["publicKeys"] = state?.publicKeys;
             resourceInputs["supportedAlgorithms"] = state?.supportedAlgorithms;
+            resourceInputs["uniqueIdClaim"] = state?.uniqueIdClaim;
             resourceInputs["useJwks"] = state?.useJwks;
             resourceInputs["userClaim"] = state?.userClaim;
         } else {
@@ -298,19 +325,23 @@ export class OauthResourceServerConfigProfile extends pulumi.CustomResource {
             if (args?.profileName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'profileName'");
             }
+            resourceInputs["actorClaim"] = args?.actorClaim;
             resourceInputs["audiences"] = args?.audiences;
+            resourceInputs["authorizationDetailsClaim"] = args?.authorizationDetailsClaim;
             resourceInputs["clockSkewLeeway"] = args?.clockSkewLeeway;
             resourceInputs["enabled"] = args?.enabled;
             resourceInputs["issuerId"] = args?.issuerId;
             resourceInputs["jwksCaPem"] = args?.jwksCaPem;
             resourceInputs["jwksUri"] = args?.jwksUri;
             resourceInputs["jwtType"] = args?.jwtType;
+            resourceInputs["local"] = args?.local;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["noDefaultPolicy"] = args?.noDefaultPolicy;
             resourceInputs["optionalAuthorizationDetails"] = args?.optionalAuthorizationDetails;
             resourceInputs["profileName"] = args?.profileName;
             resourceInputs["publicKeys"] = args?.publicKeys;
             resourceInputs["supportedAlgorithms"] = args?.supportedAlgorithms;
+            resourceInputs["uniqueIdClaim"] = args?.uniqueIdClaim;
             resourceInputs["useJwks"] = args?.useJwks;
             resourceInputs["userClaim"] = args?.userClaim;
         }
@@ -324,9 +355,17 @@ export class OauthResourceServerConfigProfile extends pulumi.CustomResource {
  */
 export interface OauthResourceServerConfigProfileState {
     /**
+     * The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+     */
+    actorClaim?: pulumi.Input<string | undefined>;
+    /**
      * List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
      */
     audiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+     */
+    authorizationDetailsClaim?: pulumi.Input<string | undefined>;
     /**
      * Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
      */
@@ -351,6 +390,10 @@ export interface OauthResourceServerConfigProfileState {
      * The JWT type: `accessToken` or `transactionToken`. Defaults to `accessToken`.
      */
     jwtType?: pulumi.Input<string | undefined>;
+    /**
+     * When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+     */
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -382,6 +425,10 @@ export interface OauthResourceServerConfigProfileState {
      */
     supportedAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+     */
+    uniqueIdClaim?: pulumi.Input<string | undefined>;
+    /**
      * If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwksUri` is required. When set to false, `publicKeys` is required.
      */
     useJwks?: pulumi.Input<boolean | undefined>;
@@ -396,9 +443,17 @@ export interface OauthResourceServerConfigProfileState {
  */
 export interface OauthResourceServerConfigProfileArgs {
     /**
+     * The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+     */
+    actorClaim?: pulumi.Input<string | undefined>;
+    /**
      * List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
      */
     audiences?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+     */
+    authorizationDetailsClaim?: pulumi.Input<string | undefined>;
     /**
      * Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
      */
@@ -423,6 +478,10 @@ export interface OauthResourceServerConfigProfileArgs {
      * The JWT type: `accessToken` or `transactionToken`. Defaults to `accessToken`.
      */
     jwtType?: pulumi.Input<string | undefined>;
+    /**
+     * When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+     */
+    local?: pulumi.Input<boolean | undefined>;
     /**
      * The namespace to provision the resource in.
      * The value should not contain leading or trailing forward slashes.
@@ -453,6 +512,10 @@ export interface OauthResourceServerConfigProfileArgs {
      * * `PS256`, `PS384`, `PS512` - RSA-PSS with SHA-256/384/512
      */
     supportedAlgorithms?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+     */
+    uniqueIdClaim?: pulumi.Input<string | undefined>;
     /**
      * If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwksUri` is required. When set to false, `publicKeys` is required.
      */

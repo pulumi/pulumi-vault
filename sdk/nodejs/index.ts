@@ -228,6 +228,11 @@ export type ScepAuthBackendRole = import("./scepAuthBackendRole").ScepAuthBacken
 export const ScepAuthBackendRole: typeof import("./scepAuthBackendRole").ScepAuthBackendRole = null as any;
 utilities.lazyLoad(exports, ["ScepAuthBackendRole"], () => require("./scepAuthBackendRole"));
 
+export { ScimClientArgs, ScimClientState } from "./scimClient";
+export type ScimClient = import("./scimClient").ScimClient;
+export const ScimClient: typeof import("./scimClient").ScimClient = null as any;
+utilities.lazyLoad(exports, ["ScimClient"], () => require("./scimClient"));
+
 export { SysConfigCorsArgs, SysConfigCorsState } from "./sysConfigCors";
 export type SysConfigCors = import("./sysConfigCors").SysConfigCors;
 export const SysConfigCors: typeof import("./sysConfigCors").SysConfigCors = null as any;
@@ -237,6 +242,16 @@ export { TokenArgs, TokenState } from "./token";
 export type Token = import("./token").Token;
 export const Token: typeof import("./token").Token = null as any;
 utilities.lazyLoad(exports, ["Token"], () => require("./token"));
+
+export { TpmAuthBackendConfigArgs, TpmAuthBackendConfigState } from "./tpmAuthBackendConfig";
+export type TpmAuthBackendConfig = import("./tpmAuthBackendConfig").TpmAuthBackendConfig;
+export const TpmAuthBackendConfig: typeof import("./tpmAuthBackendConfig").TpmAuthBackendConfig = null as any;
+utilities.lazyLoad(exports, ["TpmAuthBackendConfig"], () => require("./tpmAuthBackendConfig"));
+
+export { TpmAuthBackendRoleArgs, TpmAuthBackendRoleState } from "./tpmAuthBackendRole";
+export type TpmAuthBackendRole = import("./tpmAuthBackendRole").TpmAuthBackendRole;
+export const TpmAuthBackendRole: typeof import("./tpmAuthBackendRole").TpmAuthBackendRole = null as any;
+utilities.lazyLoad(exports, ["TpmAuthBackendRole"], () => require("./tpmAuthBackendRole"));
 
 export { UserpassAuthBackendUserArgs, UserpassAuthBackendUserState } from "./userpassAuthBackendUser";
 export type UserpassAuthBackendUser = import("./userpassAuthBackendUser").UserpassAuthBackendUser;
@@ -393,10 +408,16 @@ const _module = {
                 return new RotationPolicy(name, <any>undefined, { urn })
             case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
                 return new ScepAuthBackendRole(name, <any>undefined, { urn })
+            case "vault:index/scimClient:ScimClient":
+                return new ScimClient(name, <any>undefined, { urn })
             case "vault:index/sysConfigCors:SysConfigCors":
                 return new SysConfigCors(name, <any>undefined, { urn })
             case "vault:index/token:Token":
                 return new Token(name, <any>undefined, { urn })
+            case "vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig":
+                return new TpmAuthBackendConfig(name, <any>undefined, { urn })
+            case "vault:index/tpmAuthBackendRole:TpmAuthBackendRole":
+                return new TpmAuthBackendRole(name, <any>undefined, { urn })
             case "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser":
                 return new UserpassAuthBackendUser(name, <any>undefined, { urn })
             default:
@@ -438,8 +459,11 @@ pulumi.runtime.registerResourceModule("vault", "index/raftSnapshotAgentConfig", 
 pulumi.runtime.registerResourceModule("vault", "index/rgpPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/rotationPolicy", _module)
 pulumi.runtime.registerResourceModule("vault", "index/scepAuthBackendRole", _module)
+pulumi.runtime.registerResourceModule("vault", "index/scimClient", _module)
 pulumi.runtime.registerResourceModule("vault", "index/sysConfigCors", _module)
 pulumi.runtime.registerResourceModule("vault", "index/token", _module)
+pulumi.runtime.registerResourceModule("vault", "index/tpmAuthBackendConfig", _module)
+pulumi.runtime.registerResourceModule("vault", "index/tpmAuthBackendRole", _module)
 pulumi.runtime.registerResourceModule("vault", "index/userpassAuthBackendUser", _module)
 pulumi.runtime.registerResourcePackage("vault", {
     version: utilities.getVersion(),

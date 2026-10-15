@@ -431,7 +431,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
      * Defaults to `rsa`
      * 
      */
@@ -439,7 +439,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
     private @Nullable Output<String> keyType;
 
     /**
-     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+     * @return The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
      * Defaults to `rsa`
      * 
      */
@@ -620,6 +620,21 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
      */
     public Optional<Output<List<String>>> organizations() {
         return Optional.ofNullable(this.organizations);
+    }
+
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    @Import(name="parameterSet")
+    private @Nullable Output<String> parameterSet;
+
+    /**
+     * @return For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    public Optional<Output<String>> parameterSet() {
+        return Optional.ofNullable(this.parameterSet);
     }
 
     /**
@@ -863,6 +878,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         this.notBeforeDuration = $.notBeforeDuration;
         this.organizationUnit = $.organizationUnit;
         this.organizations = $.organizations;
+        this.parameterSet = $.parameterSet;
         this.policyIdentifier = $.policyIdentifier;
         this.policyIdentifiers = $.policyIdentifiers;
         this.postalCodes = $.postalCodes;
@@ -1560,7 +1576,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
          * Defaults to `rsa`
          * 
          * @return builder
@@ -1572,7 +1588,7 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+         * @param keyType The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
          * Defaults to `rsa`
          * 
          * @return builder
@@ -1863,6 +1879,27 @@ public final class SecretBackendRoleState extends com.pulumi.resources.ResourceA
          */
         public Builder organizations(String... organizations) {
             return organizations(List.of(organizations));
+        }
+
+        /**
+         * @param parameterSet For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(@Nullable Output<String> parameterSet) {
+            $.parameterSet = parameterSet;
+            return this;
+        }
+
+        /**
+         * @param parameterSet For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder parameterSet(String parameterSet) {
+            return parameterSet(Output.of(parameterSet));
         }
 
         /**

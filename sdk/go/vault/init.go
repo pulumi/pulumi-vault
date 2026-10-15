@@ -89,10 +89,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RotationPolicy{}
 	case "vault:index/scepAuthBackendRole:ScepAuthBackendRole":
 		r = &ScepAuthBackendRole{}
+	case "vault:index/scimClient:ScimClient":
+		r = &ScimClient{}
 	case "vault:index/sysConfigCors:SysConfigCors":
 		r = &SysConfigCors{}
 	case "vault:index/token:Token":
 		r = &Token{}
+	case "vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig":
+		r = &TpmAuthBackendConfig{}
+	case "vault:index/tpmAuthBackendRole:TpmAuthBackendRole":
+		r = &TpmAuthBackendRole{}
 	case "vault:index/userpassAuthBackendUser:UserpassAuthBackendUser":
 		r = &UserpassAuthBackendUser{}
 	default:
@@ -298,12 +304,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"index/scimClient",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"index/sysConfigCors",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
 		"index/token",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/tpmAuthBackendConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"index/tpmAuthBackendRole",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

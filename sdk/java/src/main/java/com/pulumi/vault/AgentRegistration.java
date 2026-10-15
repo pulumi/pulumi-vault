@@ -31,9 +31,13 @@ import javax.annotation.Nullable;
  * 
  * * **Entity Requirement**: The identity entity specified in `entityId` must exist before you create the Agent Registry record. The entity defines the base identity for the agent.
  * 
+ * * **Entity Uniqueness**: The identity entity specified in `entityId` must be unique within the locality (globally replicated or local to the cluster).
+ * 
  * * **Display Name Uniqueness**: The `displayName` must be unique within the namespace. Attempting to create multiple Agent Registry records with the same display name will result in an error.
  * 
  * * **Immutable Display Name**: Changing the `displayName` requires destroying and recreating the Agent Registry record, as it serves as the unique identifier.
+ * 
+ * * **Immutable Locality**: Changing the `local` flag of a registration requires destroying and recreating the Agent Registry record.
  * 
  * * **Enterprise Feature**: Agent Registry records are only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
  * 
@@ -123,14 +127,14 @@ public class AgentRegistration extends com.pulumi.resources.CustomResource {
         return this.displayName;
     }
     /**
-     * The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+     * The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
      * 
      */
     @Export(name="entityId", refs={String.class}, tree="[0]")
     private Output<String> entityId;
 
     /**
-     * @return The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+     * @return The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
      * 
      */
     public Output<String> entityId() {
@@ -149,6 +153,20 @@ public class AgentRegistration extends com.pulumi.resources.CustomResource {
      */
     public Output<String> lastUpdatedTime() {
         return this.lastUpdatedTime;
+    }
+    /**
+     * When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> local;
+
+    /**
+     * @return When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Output<Boolean> local() {
+        return this.local;
     }
     /**
      * The namespace to provision the resource in.

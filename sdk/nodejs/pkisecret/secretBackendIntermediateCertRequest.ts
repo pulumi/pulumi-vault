@@ -159,6 +159,10 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
      */
     declare public readonly ou: pulumi.Output<string | undefined>;
     /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    declare public readonly parameterSet: pulumi.Output<string>;
+    /**
      * The postal code
      */
     declare public readonly postalCode: pulumi.Output<string | undefined>;
@@ -235,6 +239,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["organization"] = state?.organization;
             resourceInputs["otherSans"] = state?.otherSans;
             resourceInputs["ou"] = state?.ou;
+            resourceInputs["parameterSet"] = state?.parameterSet;
             resourceInputs["postalCode"] = state?.postalCode;
             resourceInputs["privateKey"] = state?.privateKey;
             resourceInputs["privateKeyFormat"] = state?.privateKeyFormat;
@@ -276,6 +281,7 @@ export class SecretBackendIntermediateCertRequest extends pulumi.CustomResource 
             resourceInputs["organization"] = args?.organization;
             resourceInputs["otherSans"] = args?.otherSans;
             resourceInputs["ou"] = args?.ou;
+            resourceInputs["parameterSet"] = args?.parameterSet;
             resourceInputs["postalCode"] = args?.postalCode;
             resourceInputs["privateKeyFormat"] = args?.privateKeyFormat;
             resourceInputs["province"] = args?.province;
@@ -397,6 +403,10 @@ export interface SecretBackendIntermediateCertRequestState {
      * The organization unit
      */
     ou?: pulumi.Input<string | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * The postal code
      */
@@ -533,6 +543,10 @@ export interface SecretBackendIntermediateCertRequestArgs {
      * The organization unit
      */
     ou?: pulumi.Input<string | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * The postal code
      */

@@ -659,6 +659,20 @@ public class Backend extends com.pulumi.resources.CustomResource {
         return this.sealWrap;
     }
     /**
+     * Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Export(name="seamlessRotation", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> seamlessRotation;
+
+    /**
+     * @return Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Output<Boolean> seamlessRotation() {
+        return this.seamlessRotation;
+    }
+    /**
      * The subscription id for the Azure Active Directory.
      * 
      */

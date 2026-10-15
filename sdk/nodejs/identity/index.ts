@@ -135,6 +135,16 @@ export type OidcScope = import("./oidcScope").OidcScope;
 export const OidcScope: typeof import("./oidcScope").OidcScope = null as any;
 utilities.lazyLoad(exports, ["OidcScope"], () => require("./oidcScope"));
 
+export { TpmArgs, TpmState } from "./tpm";
+export type Tpm = import("./tpm").Tpm;
+export const Tpm: typeof import("./tpm").Tpm = null as any;
+utilities.lazyLoad(exports, ["Tpm"], () => require("./tpm"));
+
+export { TpmGroupArgs, TpmGroupState } from "./tpmGroup";
+export type TpmGroup = import("./tpmGroup").TpmGroup;
+export const TpmGroup: typeof import("./tpmGroup").TpmGroup = null as any;
+utilities.lazyLoad(exports, ["TpmGroup"], () => require("./tpmGroup"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -182,6 +192,10 @@ const _module = {
                 return new OidcRole(name, <any>undefined, { urn })
             case "vault:identity/oidcScope:OidcScope":
                 return new OidcScope(name, <any>undefined, { urn })
+            case "vault:identity/tpm:Tpm":
+                return new Tpm(name, <any>undefined, { urn })
+            case "vault:identity/tpmGroup:TpmGroup":
+                return new TpmGroup(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -208,3 +222,5 @@ pulumi.runtime.registerResourceModule("vault", "identity/oidcKeyAllowedClientID"
 pulumi.runtime.registerResourceModule("vault", "identity/oidcProvider", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcRole", _module)
 pulumi.runtime.registerResourceModule("vault", "identity/oidcScope", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/tpm", _module)
+pulumi.runtime.registerResourceModule("vault", "identity/tpmGroup", _module)
