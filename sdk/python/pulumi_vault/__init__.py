@@ -51,8 +51,11 @@ from .raft_snapshot_agent_config import *
 from .rgp_policy import *
 from .rotation_policy import *
 from .scep_auth_backend_role import *
+from .scim_client import *
 from .sys_config_cors import *
 from .token import *
+from .tpm_auth_backend_config import *
+from .tpm_auth_backend_role import *
 from .userpass_auth_backend_user import *
 from ._inputs import *
 from . import outputs
@@ -755,6 +758,22 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "identity/tpm",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/tpm:Tpm": "Tpm"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "identity/tpmGroup",
+  "fqn": "pulumi_vault.identity",
+  "classes": {
+   "vault:identity/tpmGroup:TpmGroup": "TpmGroup"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/activationFlags",
   "fqn": "pulumi_vault",
   "classes": {
@@ -1027,6 +1046,14 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "index/scimClient",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/scimClient:ScimClient": "ScimClient"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "index/sysConfigCors",
   "fqn": "pulumi_vault",
   "classes": {
@@ -1039,6 +1066,22 @@ _utilities.register(
   "fqn": "pulumi_vault",
   "classes": {
    "vault:index/token:Token": "Token"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/tpmAuthBackendConfig",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig": "TpmAuthBackendConfig"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "index/tpmAuthBackendRole",
+  "fqn": "pulumi_vault",
+  "classes": {
+   "vault:index/tpmAuthBackendRole:TpmAuthBackendRole": "TpmAuthBackendRole"
   }
  },
  {
@@ -1407,6 +1450,22 @@ _utilities.register(
   "fqn": "pulumi_vault.pkisecret",
   "classes": {
    "vault:pkiSecret/backendConfigScep:BackendConfigScep": "BackendConfigScep"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/backendExportKey",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendExportKey:BackendExportKey": "BackendExportKey"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "pkiSecret/backendWrappedKeyImport",
+  "fqn": "pulumi_vault.pkisecret",
+  "classes": {
+   "vault:pkiSecret/backendWrappedKeyImport:BackendWrappedKeyImport": "BackendWrappedKeyImport"
   }
  },
  {

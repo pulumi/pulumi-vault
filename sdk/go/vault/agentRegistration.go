@@ -26,9 +26,13 @@ import (
 //
 // * **Entity Requirement**: The identity entity specified in `entityId` must exist before you create the Agent Registry record. The entity defines the base identity for the agent.
 //
+// * **Entity Uniqueness**: The identity entity specified in `entityId` must be unique within the locality (globally replicated or local to the cluster).
+//
 // * **Display Name Uniqueness**: The `displayName` must be unique within the namespace. Attempting to create multiple Agent Registry records with the same display name will result in an error.
 //
 // * **Immutable Display Name**: Changing the `displayName` requires destroying and recreating the Agent Registry record, as it serves as the unique identifier.
+//
+// * **Immutable Locality**: Changing the `local` flag of a registration requires destroying and recreating the Agent Registry record.
 //
 // * **Enterprise Feature**: Agent Registry records are only available in Vault Enterprise. Attempting to use this resource with Vault Community Edition will result in an error.
 //
@@ -68,10 +72,12 @@ type AgentRegistration struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
 	DisplayName pulumi.StringOutput `pulumi:"displayName"`
-	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
 	EntityId pulumi.StringOutput `pulumi:"entityId"`
 	// The timestamp when the Agent Registry record was last updated, in RFC3339 format.
 	LastUpdatedTime pulumi.StringOutput `pulumi:"lastUpdatedTime"`
+	// When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+	Local pulumi.BoolOutput `pulumi:"local"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -128,10 +134,12 @@ type agentRegistrationState struct {
 	Description *string `pulumi:"description"`
 	// The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
 	DisplayName *string `pulumi:"displayName"`
-	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
 	EntityId *string `pulumi:"entityId"`
 	// The timestamp when the Agent Registry record was last updated, in RFC3339 format.
 	LastUpdatedTime *string `pulumi:"lastUpdatedTime"`
+	// When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+	Local *bool `pulumi:"local"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -153,10 +161,12 @@ type AgentRegistrationState struct {
 	Description pulumi.StringPtrInput
 	// The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
 	DisplayName pulumi.StringPtrInput
-	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
 	EntityId pulumi.StringPtrInput
 	// The timestamp when the Agent Registry record was last updated, in RFC3339 format.
 	LastUpdatedTime pulumi.StringPtrInput
+	// When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+	Local pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -180,8 +190,10 @@ type agentRegistrationArgs struct {
 	Description *string `pulumi:"description"`
 	// The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
 	DisplayName string `pulumi:"displayName"`
-	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
 	EntityId string `pulumi:"entityId"`
+	// When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+	Local *bool `pulumi:"local"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -202,8 +214,10 @@ type AgentRegistrationArgs struct {
 	Description pulumi.StringPtrInput
 	// The display name for the Agent Registry record. This field must be unique per Vault namespace. Within Terraform, this is used as the unique identifier for the agent. Changing this on an existing resource will force the resource to be deleted from Vault and a new resource to be created in Vault.
 	DisplayName pulumi.StringInput
-	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+	// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
 	EntityId pulumi.StringInput
+	// When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+	Local pulumi.BoolPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
 	// The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -323,7 +337,7 @@ func (o AgentRegistrationOutput) DisplayName() pulumi.StringOutput {
 	return o.ApplyT(func(v *AgentRegistration) pulumi.StringOutput { return v.DisplayName }).(pulumi.StringOutput)
 }
 
-// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+// The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
 func (o AgentRegistrationOutput) EntityId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AgentRegistration) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
 }
@@ -331,6 +345,11 @@ func (o AgentRegistrationOutput) EntityId() pulumi.StringOutput {
 // The timestamp when the Agent Registry record was last updated, in RFC3339 format.
 func (o AgentRegistrationOutput) LastUpdatedTime() pulumi.StringOutput {
 	return o.ApplyT(func(v *AgentRegistration) pulumi.StringOutput { return v.LastUpdatedTime }).(pulumi.StringOutput)
+}
+
+// When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+func (o AgentRegistrationOutput) Local() pulumi.BoolOutput {
+	return o.ApplyT(func(v *AgentRegistration) pulumi.BoolOutput { return v.Local }).(pulumi.BoolOutput)
 }
 
 // The namespace to provision the resource in.

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Manages a static role in the Azure Secrets Engine.\
+ * Manages a static role in the Azure Secrets Engine.
  * Static roles in Vault are linked to existing Azure AD applications, and manage long-lived credentials for those
  * applications.
  *
@@ -116,6 +116,18 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     declare public readonly role: pulumi.Output<string>;
     /**
+     * Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    declare public readonly rotationGracePeriod: pulumi.Output<number | undefined>;
+    /**
+     * an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    declare public readonly rotationPeriod: pulumi.Output<number | undefined>;
+    /**
+     * Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    declare public readonly seamlessRotation: pulumi.Output<boolean | undefined>;
+    /**
      * When importing an existing credential, specifies the Azure secret’s key ID.
      */
     declare public readonly secretId: pulumi.Output<string | undefined>;
@@ -125,8 +137,7 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
      */
     declare public readonly skipImportRotation: pulumi.Output<boolean | undefined>;
     /**
-     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-     * at least 1 month.
+     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
      * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
      */
     declare public readonly ttl: pulumi.Output<number>;
@@ -152,6 +163,9 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["metadata"] = state?.metadata;
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["role"] = state?.role;
+            resourceInputs["rotationGracePeriod"] = state?.rotationGracePeriod;
+            resourceInputs["rotationPeriod"] = state?.rotationPeriod;
+            resourceInputs["seamlessRotation"] = state?.seamlessRotation;
             resourceInputs["secretId"] = state?.secretId;
             resourceInputs["skipImportRotation"] = state?.skipImportRotation;
             resourceInputs["ttl"] = state?.ttl;
@@ -174,6 +188,9 @@ export class SecretBackendStaticRole extends pulumi.CustomResource {
             resourceInputs["metadata"] = args?.metadata;
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["role"] = args?.role;
+            resourceInputs["rotationGracePeriod"] = args?.rotationGracePeriod;
+            resourceInputs["rotationPeriod"] = args?.rotationPeriod;
+            resourceInputs["seamlessRotation"] = args?.seamlessRotation;
             resourceInputs["secretId"] = args?.secretId;
             resourceInputs["skipImportRotation"] = args?.skipImportRotation;
             resourceInputs["ttl"] = args?.ttl;
@@ -234,6 +251,18 @@ export interface SecretBackendStaticRoleState {
      */
     role?: pulumi.Input<string | undefined>;
     /**
+     * Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    rotationGracePeriod?: pulumi.Input<number | undefined>;
+    /**
+     * an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    rotationPeriod?: pulumi.Input<number | undefined>;
+    /**
+     * Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    seamlessRotation?: pulumi.Input<boolean | undefined>;
+    /**
      * When importing an existing credential, specifies the Azure secret’s key ID.
      */
     secretId?: pulumi.Input<string | undefined>;
@@ -243,8 +272,7 @@ export interface SecretBackendStaticRoleState {
      */
     skipImportRotation?: pulumi.Input<boolean | undefined>;
     /**
-     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-     * at least 1 month.
+     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
      * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
      */
     ttl?: pulumi.Input<number | undefined>;
@@ -299,6 +327,18 @@ export interface SecretBackendStaticRoleArgs {
      */
     role: pulumi.Input<string>;
     /**
+     * Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    rotationGracePeriod?: pulumi.Input<number | undefined>;
+    /**
+     * an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    rotationPeriod?: pulumi.Input<number | undefined>;
+    /**
+     * Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    seamlessRotation?: pulumi.Input<boolean | undefined>;
+    /**
      * When importing an existing credential, specifies the Azure secret’s key ID.
      */
     secretId?: pulumi.Input<string | undefined>;
@@ -308,8 +348,7 @@ export interface SecretBackendStaticRoleArgs {
      */
     skipImportRotation?: pulumi.Input<boolean | undefined>;
     /**
-     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-     * at least 1 month.
+     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
      * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
      */
     ttl?: pulumi.Input<number | undefined>;

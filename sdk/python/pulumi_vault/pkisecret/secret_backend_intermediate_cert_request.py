@@ -40,6 +40,7 @@ class SecretBackendIntermediateCertRequestArgs:
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
                  province: pulumi.Input[Optional[_builtins.str]] = None,
@@ -81,6 +82,7 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] province: The province
@@ -128,6 +130,8 @@ class SecretBackendIntermediateCertRequestArgs:
             pulumi.set(__self__, "other_sans", other_sans)
         if ou is not None:
             pulumi.set(__self__, "ou", ou)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if postal_code is not None:
             pulumi.set(__self__, "postal_code", postal_code)
         if private_key_format is not None:
@@ -406,6 +410,18 @@ class SecretBackendIntermediateCertRequestArgs:
         pulumi.set(self, "ou", value)
 
     @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
+
+    @_builtins.property
     @pulumi.getter(name="postalCode")
     def postal_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -515,6 +531,7 @@ class _SecretBackendIntermediateCertRequestState:
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
@@ -559,6 +576,7 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key: The private key
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
@@ -615,6 +633,8 @@ class _SecretBackendIntermediateCertRequestState:
             pulumi.set(__self__, "other_sans", other_sans)
         if ou is not None:
             pulumi.set(__self__, "ou", ou)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if postal_code is not None:
             pulumi.set(__self__, "postal_code", postal_code)
         if private_key is not None:
@@ -910,6 +930,18 @@ class _SecretBackendIntermediateCertRequestState:
         pulumi.set(self, "ou", value)
 
     @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
+
+    @_builtins.property
     @pulumi.getter(name="postalCode")
     def postal_code(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -1057,6 +1089,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
                  province: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1125,6 +1158,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
         :param pulumi.Input[_builtins.str] province: The province
@@ -1204,6 +1238,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  postal_code: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
                  province: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1245,6 +1280,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             __props__.__dict__["organization"] = organization
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ou"] = ou
+            __props__.__dict__["parameter_set"] = parameter_set
             __props__.__dict__["postal_code"] = postal_code
             __props__.__dict__["private_key_format"] = private_key_format
             __props__.__dict__["province"] = province
@@ -1293,6 +1329,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
             organization: pulumi.Input[Optional[_builtins.str]] = None,
             other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             ou: pulumi.Input[Optional[_builtins.str]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
             postal_code: pulumi.Input[Optional[_builtins.str]] = None,
             private_key: pulumi.Input[Optional[_builtins.str]] = None,
             private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1341,6 +1378,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[_builtins.str] postal_code: The postal code
         :param pulumi.Input[_builtins.str] private_key: The private key
         :param pulumi.Input[_builtins.str] private_key_format: The private key format
@@ -1379,6 +1417,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         __props__.__dict__["organization"] = organization
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["ou"] = ou
+        __props__.__dict__["parameter_set"] = parameter_set
         __props__.__dict__["postal_code"] = postal_code
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["private_key_format"] = private_key_format
@@ -1575,6 +1614,14 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         The organization unit
         """
         return pulumi.get(self, "ou")
+
+    @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Output[_builtins.str]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
 
     @_builtins.property
     @pulumi.getter(name="postalCode")

@@ -194,6 +194,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Ou { get; private set; } = null!;
 
         /// <summary>
+        /// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        /// </summary>
+        [Output("parameterSet")]
+        public Output<string> ParameterSet { get; private set; } = null!;
+
+        /// <summary>
         /// The postal code
         /// </summary>
         [Output("postalCode")]
@@ -458,6 +464,12 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Ou { get; set; }
 
         /// <summary>
+        /// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        /// </summary>
+        [Input("parameterSet")]
+        public Input<string>? ParameterSet { get; set; }
+
+        /// <summary>
         /// The postal code
         /// </summary>
         [Input("postalCode")]
@@ -684,6 +696,12 @@ namespace Pulumi.Vault.PkiSecret
         /// </summary>
         [Input("ou")]
         public Input<string>? Ou { get; set; }
+
+        /// <summary>
+        /// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        /// </summary>
+        [Input("parameterSet")]
+        public Input<string>? ParameterSet { get; set; }
 
         /// <summary>
         /// The postal code

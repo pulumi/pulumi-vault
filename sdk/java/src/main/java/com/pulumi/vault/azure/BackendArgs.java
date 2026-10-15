@@ -531,6 +531,21 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Import(name="seamlessRotation")
+    private @Nullable Output<Boolean> seamlessRotation;
+
+    /**
+     * @return Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Optional<Output<Boolean>> seamlessRotation() {
+        return Optional.ofNullable(this.seamlessRotation);
+    }
+
+    /**
      * The subscription id for the Azure Active Directory.
      * 
      */
@@ -595,6 +610,7 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
         this.sealWrap = $.sealWrap;
+        this.seamlessRotation = $.seamlessRotation;
         this.subscriptionId = $.subscriptionId;
         this.tenantId = $.tenantId;
     }
@@ -1377,6 +1393,27 @@ public final class BackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder sealWrap(Boolean sealWrap) {
             return sealWrap(Output.of(sealWrap));
+        }
+
+        /**
+         * @param seamlessRotation Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder seamlessRotation(@Nullable Output<Boolean> seamlessRotation) {
+            $.seamlessRotation = seamlessRotation;
+            return this;
+        }
+
+        /**
+         * @param seamlessRotation Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+         * 
+         * @return builder
+         * 
+         */
+        public Builder seamlessRotation(Boolean seamlessRotation) {
+            return seamlessRotation(Output.of(seamlessRotation));
         }
 
         /**

@@ -45,7 +45,7 @@ class SecretBackendStaticRoleArgs:
                When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
                When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
                When unset, the role inherits the mount-level setting. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -147,7 +147,7 @@ class SecretBackendStaticRoleArgs:
         When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
         When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
         When unset, the role inherits the mount-level setting. Active Directory schema only.
-        Requires Vault 2.2.0+.
+        Requires Vault Enterprise 2.2.0+.
         """
         return pulumi.get(self, "auto_unlock")
 
@@ -372,7 +372,7 @@ class _SecretBackendStaticRoleState:
                When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
                When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
                When unset, the role inherits the mount-level setting. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -454,7 +454,7 @@ class _SecretBackendStaticRoleState:
         When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
         When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
         When unset, the role inherits the mount-level setting. Active Directory schema only.
-        Requires Vault 2.2.0+.
+        Requires Vault Enterprise 2.2.0+.
         """
         return pulumi.get(self, "auto_unlock")
 
@@ -753,7 +753,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
                When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
                When unset, the role inherits the mount-level setting. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -947,7 +947,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
                When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
                When unset, the role inherits the mount-level setting. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.bool] disable_automated_rotation: Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
         :param pulumi.Input[_builtins.str] dn: Distinguished name (DN) of the existing LDAP entry to manage
                password rotation for. If given, it will take precedence over `username` for the LDAP
@@ -1017,7 +1017,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
         When false, disables automatic unlock for this role even if the mount has `auto_unlock = true`.
         When unset, the role inherits the mount-level setting. Active Directory schema only.
-        Requires Vault 2.2.0+.
+        Requires Vault Enterprise 2.2.0+.
         """
         return pulumi.get(self, "auto_unlock")
 

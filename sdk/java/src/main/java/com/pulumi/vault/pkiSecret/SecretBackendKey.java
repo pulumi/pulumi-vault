@@ -140,14 +140,14 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keyName);
     }
     /**
-     * Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+     * Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
      * 
      */
     @Export(name="keyType", refs={String.class}, tree="[0]")
     private Output<String> keyType;
 
     /**
-     * @return Specifies the desired key type; must be `rsa`, `ed25519` or `ec`.
+     * @return Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
      * 
      */
     public Output<String> keyType() {
@@ -200,6 +200,20 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> namespace() {
         return Codegen.optional(this.namespace);
+    }
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    @Export(name="parameterSet", refs={String.class}, tree="[0]")
+    private Output<String> parameterSet;
+
+    /**
+     * @return For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    public Output<String> parameterSet() {
+        return this.parameterSet;
     }
     /**
      * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.

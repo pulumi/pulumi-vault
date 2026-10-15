@@ -6,6 +6,7 @@ package com.pulumi.vault;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -45,6 +46,29 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> command() {
         return Optional.ofNullable(this.command);
+    }
+
+    /**
+     * If `true`, Vault downloads the plugin artifact from
+     * releases.hashicorp.com during registration instead of requiring it to be
+     * pre-staged in the server&#39;s `pluginDirectory`. Only valid for official
+     * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+     * 1.20+ (beta feature). Defaults to `false`.
+     * 
+     */
+    @Import(name="download")
+    private @Nullable Output<Boolean> download;
+
+    /**
+     * @return If `true`, Vault downloads the plugin artifact from
+     * releases.hashicorp.com during registration instead of requiring it to be
+     * pre-staged in the server&#39;s `pluginDirectory`. Only valid for official
+     * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+     * 1.20+ (beta feature). Defaults to `false`.
+     * 
+     */
+    public Optional<Output<Boolean>> download() {
+        return Optional.ofNullable(this.download);
     }
 
     /**
@@ -161,6 +185,7 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
     private PluginArgs(PluginArgs $) {
         this.args = $.args;
         this.command = $.command;
+        this.download = $.download;
         this.envs = $.envs;
         this.name = $.name;
         this.ociImage = $.ociImage;
@@ -238,6 +263,35 @@ public final class PluginArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder command(String command) {
             return command(Output.of(command));
+        }
+
+        /**
+         * @param download If `true`, Vault downloads the plugin artifact from
+         * releases.hashicorp.com during registration instead of requiring it to be
+         * pre-staged in the server&#39;s `pluginDirectory`. Only valid for official
+         * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+         * 1.20+ (beta feature). Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder download(@Nullable Output<Boolean> download) {
+            $.download = download;
+            return this;
+        }
+
+        /**
+         * @param download If `true`, Vault downloads the plugin artifact from
+         * releases.hashicorp.com during registration instead of requiring it to be
+         * pre-staged in the server&#39;s `pluginDirectory`. Only valid for official
+         * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+         * 1.20+ (beta feature). Defaults to `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder download(Boolean download) {
+            return download(Output.of(download));
         }
 
         /**

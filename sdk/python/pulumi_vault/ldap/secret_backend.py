@@ -77,7 +77,7 @@ class SecretBackendArgs:
         :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
                after every successful static-role password rotation. Applies to all static roles on this mount
                unless overridden at the role level. Defaults to false. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
         :param pulumi.Input[_builtins.str] bindpass_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -304,7 +304,7 @@ class SecretBackendArgs:
         If true, Vault automatically attempts to unlock the admin managed LDAP account
         after every successful static-role password rotation. Applies to all static roles on this mount
         unless overridden at the role level. Defaults to false. Active Directory schema only.
-        Requires Vault 2.2.0+.
+        Requires Vault Enterprise 2.2.0+.
         """
         return pulumi.get(self, "auto_unlock")
 
@@ -890,7 +890,7 @@ class _SecretBackendState:
         :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
                after every successful static-role password rotation. Applies to all static roles on this mount
                unless overridden at the role level. Defaults to false. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
@@ -1121,7 +1121,7 @@ class _SecretBackendState:
         If true, Vault automatically attempts to unlock the admin managed LDAP account
         after every successful static-role password rotation. Applies to all static roles on this mount
         unless overridden at the role level. Defaults to false. Active Directory schema only.
-        Requires Vault 2.2.0+.
+        Requires Vault Enterprise 2.2.0+.
         """
         return pulumi.get(self, "auto_unlock")
 
@@ -1764,7 +1764,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
                after every successful static-role password rotation. Applies to all static roles on this mount
                unless overridden at the role level. Defaults to false. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
@@ -2077,7 +2077,7 @@ class SecretBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] auto_unlock: If true, Vault automatically attempts to unlock the admin managed LDAP account
                after every successful static-role password rotation. Applies to all static roles on this mount
                unless overridden at the role level. Defaults to false. Active Directory schema only.
-               Requires Vault 2.2.0+.
+               Requires Vault Enterprise 2.2.0+.
         :param pulumi.Input[_builtins.str] binddn: Distinguished name of object to bind when performing user and group search.
         :param pulumi.Input[_builtins.str] bindpass: Password to use along with binddn when performing user search. Conflicts with `bindpass_wo`.
                Exactly one of `bindpass` or `bindpass_wo` must be provided.
@@ -2245,7 +2245,7 @@ class SecretBackend(pulumi.CustomResource):
         If true, Vault automatically attempts to unlock the admin managed LDAP account
         after every successful static-role password rotation. Applies to all static roles on this mount
         unless overridden at the role level. Defaults to false. Active Directory schema only.
-        Requires Vault 2.2.0+.
+        Requires Vault Enterprise 2.2.0+.
         """
         return pulumi.get(self, "auto_unlock")
 

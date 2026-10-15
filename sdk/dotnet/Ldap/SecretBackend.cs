@@ -97,7 +97,7 @@ namespace Pulumi.Vault.Ldap
         /// If true, Vault automatically attempts to unlock the admin managed LDAP account
         /// after every successful static-role password rotation. Applies to all static roles on this mount
         /// unless overridden at the role level. Defaults to false. Active Directory schema only.
-        /// Requires Vault 2.2.0+.
+        /// Requires Vault Enterprise 2.2.0+.
         /// </summary>
         [Output("autoUnlock")]
         public Output<bool> AutoUnlock { get; private set; } = null!;
@@ -482,7 +482,7 @@ namespace Pulumi.Vault.Ldap
         /// If true, Vault automatically attempts to unlock the admin managed LDAP account
         /// after every successful static-role password rotation. Applies to all static roles on this mount
         /// unless overridden at the role level. Defaults to false. Active Directory schema only.
-        /// Requires Vault 2.2.0+.
+        /// Requires Vault Enterprise 2.2.0+.
         /// </summary>
         [Input("autoUnlock")]
         public Input<bool>? AutoUnlock { get; set; }
@@ -886,7 +886,7 @@ namespace Pulumi.Vault.Ldap
         /// If true, Vault automatically attempts to unlock the admin managed LDAP account
         /// after every successful static-role password rotation. Applies to all static roles on this mount
         /// unless overridden at the role level. Defaults to false. Active Directory schema only.
-        /// Requires Vault 2.2.0+.
+        /// Requires Vault Enterprise 2.2.0+.
         /// </summary>
         [Input("autoUnlock")]
         public Input<bool>? AutoUnlock { get; set; }

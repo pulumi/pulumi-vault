@@ -20,6 +20,11 @@ export const getEncode: typeof import("./getEncode").getEncode = null as any;
 export const getEncodeOutput: typeof import("./getEncode").getEncodeOutput = null as any;
 utilities.lazyLoad(exports, ["getEncode","getEncodeOutput"], () => require("./getEncode"));
 
+export { GetRewrapArgs, GetRewrapResult, GetRewrapOutputArgs } from "./getRewrap";
+export const getRewrap: typeof import("./getRewrap").getRewrap = null as any;
+export const getRewrapOutput: typeof import("./getRewrap").getRewrapOutput = null as any;
+utilities.lazyLoad(exports, ["getRewrap","getRewrapOutput"], () => require("./getRewrap"));
+
 export { KeyConfigurationArgs, KeyConfigurationState } from "./keyConfiguration";
 export type KeyConfiguration = import("./keyConfiguration").KeyConfiguration;
 export const KeyConfiguration: typeof import("./keyConfiguration").KeyConfiguration = null as any;

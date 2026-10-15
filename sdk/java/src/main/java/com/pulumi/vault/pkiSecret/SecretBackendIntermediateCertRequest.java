@@ -399,6 +399,20 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
         return Codegen.optional(this.ou);
     }
     /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    @Export(name="parameterSet", refs={String.class}, tree="[0]")
+    private Output<String> parameterSet;
+
+    /**
+     * @return For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     * 
+     */
+    public Output<String> parameterSet() {
+        return this.parameterSet;
+    }
+    /**
      * The postal code
      * 
      */

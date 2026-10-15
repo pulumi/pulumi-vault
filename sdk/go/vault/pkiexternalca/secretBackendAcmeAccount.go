@@ -108,10 +108,10 @@ type SecretBackendAcmeAccount struct {
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl pulumi.StringOutput `pulumi:"directoryUrl"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
 	EabKey pulumi.StringPtrOutput `pulumi:"eabKey"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
 	EabKid pulumi.StringPtrOutput `pulumi:"eabKid"`
 	// List of email addresses for the ACME account. These will be used for important notifications from the CA.
 	EmailContacts pulumi.StringArrayOutput `pulumi:"emailContacts"`
@@ -187,10 +187,10 @@ type secretBackendAcmeAccountState struct {
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl *string `pulumi:"directoryUrl"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
 	EabKey *string `pulumi:"eabKey"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
 	EabKid *string `pulumi:"eabKid"`
 	// List of email addresses for the ACME account. These will be used for important notifications from the CA.
 	EmailContacts []string `pulumi:"emailContacts"`
@@ -217,10 +217,10 @@ type SecretBackendAcmeAccountState struct {
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
 	EabKey pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
 	EabKid pulumi.StringPtrInput
 	// List of email addresses for the ACME account. These will be used for important notifications from the CA.
 	EmailContacts pulumi.StringArrayInput
@@ -249,10 +249,10 @@ type secretBackendAcmeAccountArgs struct {
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl string `pulumi:"directoryUrl"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
 	EabKey *string `pulumi:"eabKey"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
 	EabKid *string `pulumi:"eabKid"`
 	// List of email addresses for the ACME account. These will be used for important notifications from the CA.
 	EmailContacts []string `pulumi:"emailContacts"`
@@ -278,10 +278,10 @@ type SecretBackendAcmeAccountArgs struct {
 	// ACME Directory URL for the Certificate Authority (e.g., `https://acme-v02.api.letsencrypt.org/directory` for Let's Encrypt production).
 	DirectoryUrl pulumi.StringInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
 	EabKey pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+	// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
 	EabKid pulumi.StringPtrInput
 	// List of email addresses for the ACME account. These will be used for important notifications from the CA.
 	EmailContacts pulumi.StringArrayInput
@@ -403,13 +403,13 @@ func (o SecretBackendAcmeAccountOutput) DirectoryUrl() pulumi.StringOutput {
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+// The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
 func (o SecretBackendAcmeAccountOutput) EabKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendAcmeAccount) pulumi.StringPtrOutput { return v.EabKey }).(pulumi.StringPtrOutput)
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+// The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
 func (o SecretBackendAcmeAccountOutput) EabKid() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendAcmeAccount) pulumi.StringPtrOutput { return v.EabKid }).(pulumi.StringPtrOutput)
 }

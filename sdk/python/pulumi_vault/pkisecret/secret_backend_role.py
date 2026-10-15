@@ -60,6 +60,7 @@ class SecretBackendRoleArgs:
                  not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_unit: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  organizations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  policy_identifier: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRolePolicyIdentifierArgs']]]] = None,
                  policy_identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  postal_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -106,7 +107,7 @@ class SecretBackendRoleArgs:
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the allowed key usage constraint on issued
                certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
@@ -124,6 +125,7 @@ class SecretBackendRoleArgs:
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRolePolicyIdentifierArgs']]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] postal_codes: The postal code of generated certificates
@@ -217,6 +219,8 @@ class SecretBackendRoleArgs:
             pulumi.set(__self__, "organization_unit", organization_unit)
         if organizations is not None:
             pulumi.set(__self__, "organizations", organizations)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if policy_identifier is not None:
             pulumi.set(__self__, "policy_identifier", policy_identifier)
         if policy_identifiers is not None:
@@ -575,7 +579,7 @@ class SecretBackendRoleArgs:
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
         Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
@@ -720,6 +724,18 @@ class SecretBackendRoleArgs:
     @organizations.setter
     def organizations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "organizations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
 
     @_builtins.property
     @pulumi.getter(name="policyIdentifier")
@@ -922,6 +938,7 @@ class _SecretBackendRoleState:
                  not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_unit: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  organizations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  policy_identifier: pulumi.Input[Optional[Sequence[pulumi.Input['SecretBackendRolePolicyIdentifierArgs']]]] = None,
                  policy_identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  postal_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -968,7 +985,7 @@ class _SecretBackendRoleState:
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the allowed key usage constraint on issued
                certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
@@ -986,6 +1003,7 @@ class _SecretBackendRoleState:
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input['SecretBackendRolePolicyIdentifierArgs']]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] postal_codes: The postal code of generated certificates
@@ -1080,6 +1098,8 @@ class _SecretBackendRoleState:
             pulumi.set(__self__, "organization_unit", organization_unit)
         if organizations is not None:
             pulumi.set(__self__, "organizations", organizations)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if policy_identifier is not None:
             pulumi.set(__self__, "policy_identifier", policy_identifier)
         if policy_identifiers is not None:
@@ -1438,7 +1458,7 @@ class _SecretBackendRoleState:
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
         Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
@@ -1583,6 +1603,18 @@ class _SecretBackendRoleState:
     @organizations.setter
     def organizations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "organizations", value)
+
+    @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
 
     @_builtins.property
     @pulumi.getter(name="policyIdentifier")
@@ -1788,6 +1820,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_unit: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  organizations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  policy_identifier: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict', 'outputs.SecretBackendRolePolicyIdentifier']]]]] = None,
                  policy_identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  postal_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1871,7 +1904,7 @@ class SecretBackendRole(pulumi.CustomResource):
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the allowed key usage constraint on issued
                certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
@@ -1889,6 +1922,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict', 'outputs.SecretBackendRolePolicyIdentifier']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] postal_codes: The postal code of generated certificates
@@ -2002,6 +2036,7 @@ class SecretBackendRole(pulumi.CustomResource):
                  not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
                  organization_unit: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  organizations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  policy_identifier: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict', 'outputs.SecretBackendRolePolicyIdentifier']]]]] = None,
                  policy_identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  postal_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2065,6 +2100,7 @@ class SecretBackendRole(pulumi.CustomResource):
             __props__.__dict__["not_before_duration"] = not_before_duration
             __props__.__dict__["organization_unit"] = organization_unit
             __props__.__dict__["organizations"] = organizations
+            __props__.__dict__["parameter_set"] = parameter_set
             __props__.__dict__["policy_identifier"] = policy_identifier
             __props__.__dict__["policy_identifiers"] = policy_identifiers
             __props__.__dict__["postal_codes"] = postal_codes
@@ -2127,6 +2163,7 @@ class SecretBackendRole(pulumi.CustomResource):
             not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
             organization_unit: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             organizations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
             policy_identifier: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict', 'outputs.SecretBackendRolePolicyIdentifier']]]]] = None,
             policy_identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             postal_codes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -2177,7 +2214,7 @@ class SecretBackendRole(pulumi.CustomResource):
                the `/pki/issuer/:issuer_ref/{issue,sign}/:name` paths to prevent users
                overriding the role's `issuer_ref` value.
         :param pulumi.Input[_builtins.int] key_bits: The number of bits of generated keys
-        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+        :param pulumi.Input[_builtins.str] key_type: The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
                Defaults to `rsa`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specify the allowed key usage constraint on issued
                certificates. Defaults to `["DigitalSignature", "KeyAgreement", "KeyEncipherment"])`.
@@ -2195,6 +2232,7 @@ class SecretBackendRole(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] not_before_duration: Specifies the [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) by which to backdate the NotBefore property.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organization_unit: The organization unit of generated certificates
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] organizations: The organization of generated certificates
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input[Union['SecretBackendRolePolicyIdentifierArgs', 'SecretBackendRolePolicyIdentifierArgsDict', 'outputs.SecretBackendRolePolicyIdentifier']]]] policy_identifier: (Vault 1.11+ only) A block for specifying policy identifers. The `policy_identifier` block can be repeated, and supports the following arguments:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] policy_identifiers: Specify the list of allowed policies OIDs. Use with Vault 1.10 or before. For Vault 1.11+, use `policy_identifier` blocks instead
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] postal_codes: The postal code of generated certificates
@@ -2254,6 +2292,7 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["not_before_duration"] = not_before_duration
         __props__.__dict__["organization_unit"] = organization_unit
         __props__.__dict__["organizations"] = organizations
+        __props__.__dict__["parameter_set"] = parameter_set
         __props__.__dict__["policy_identifier"] = policy_identifier
         __props__.__dict__["policy_identifiers"] = policy_identifiers
         __props__.__dict__["postal_codes"] = postal_codes
@@ -2492,7 +2531,7 @@ class SecretBackendRole(pulumi.CustomResource):
     @pulumi.getter(name="keyType")
     def key_type(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+        The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
         Defaults to `rsa`
         """
         return pulumi.get(self, "key_type")
@@ -2589,6 +2628,14 @@ class SecretBackendRole(pulumi.CustomResource):
         The organization of generated certificates
         """
         return pulumi.get(self, "organizations")
+
+    @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Output[_builtins.str]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
 
     @_builtins.property
     @pulumi.getter(name="policyIdentifier")

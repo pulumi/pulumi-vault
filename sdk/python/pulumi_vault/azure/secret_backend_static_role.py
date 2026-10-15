@@ -27,6 +27,9 @@ class SecretBackendStaticRoleArgs:
                  expiration: pulumi.Input[Optional[_builtins.str]] = None,
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_grace_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None):
@@ -51,11 +54,13 @@ class SecretBackendStaticRoleArgs:
                The `namespace` is always relative to the provider's
                configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
+        :param pulumi.Input[_builtins.int] rotation_grace_period: Duration which defines the amount of time the current and next credential are both active when `seamless_rotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.int] rotation_period: an alias for `ttl` when `seamless_rotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         :param pulumi.Input[_builtins.str] secret_id: When importing an existing credential, specifies the Azure secret’s key ID.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If true, Vault will import the provided credential without performing
                rotation. Valid only during creation. Defaults to `false`.
-        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-               at least 1 month.
+        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
                Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         """
         pulumi.set(__self__, "application_object_id", application_object_id)
@@ -74,6 +79,12 @@ class SecretBackendStaticRoleArgs:
             pulumi.set(__self__, "metadata", metadata)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if rotation_grace_period is not None:
+            pulumi.set(__self__, "rotation_grace_period", rotation_grace_period)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if seamless_rotation is not None:
+            pulumi.set(__self__, "seamless_rotation", seamless_rotation)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
         if skip_import_rotation is not None:
@@ -189,6 +200,42 @@ class SecretBackendStaticRoleArgs:
         pulumi.set(self, "namespace", value)
 
     @_builtins.property
+    @pulumi.getter(name="rotationGracePeriod")
+    def rotation_grace_period(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Duration which defines the amount of time the current and next credential are both active when `seamless_rotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "rotation_grace_period")
+
+    @rotation_grace_period.setter
+    def rotation_grace_period(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_grace_period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        an alias for `ttl` when `seamless_rotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="seamlessRotation")
+    def seamless_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "seamless_rotation")
+
+    @seamless_rotation.setter
+    def seamless_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "seamless_rotation", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -217,8 +264,7 @@ class SecretBackendStaticRoleArgs:
     @pulumi.getter
     def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-        at least 1 month.
+        Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
         Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         """
         return pulumi.get(self, "ttl")
@@ -239,6 +285,9 @@ class _SecretBackendStaticRoleState:
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_grace_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None):
@@ -263,11 +312,13 @@ class _SecretBackendStaticRoleState:
                configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] role: Name of the static role to create or manage.
+        :param pulumi.Input[_builtins.int] rotation_grace_period: Duration which defines the amount of time the current and next credential are both active when `seamless_rotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.int] rotation_period: an alias for `ttl` when `seamless_rotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         :param pulumi.Input[_builtins.str] secret_id: When importing an existing credential, specifies the Azure secret’s key ID.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If true, Vault will import the provided credential without performing
                rotation. Valid only during creation. Defaults to `false`.
-        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-               at least 1 month.
+        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
                Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         """
         if application_object_id is not None:
@@ -289,6 +340,12 @@ class _SecretBackendStaticRoleState:
             pulumi.set(__self__, "namespace", namespace)
         if role is not None:
             pulumi.set(__self__, "role", role)
+        if rotation_grace_period is not None:
+            pulumi.set(__self__, "rotation_grace_period", rotation_grace_period)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+        if seamless_rotation is not None:
+            pulumi.set(__self__, "seamless_rotation", seamless_rotation)
         if secret_id is not None:
             pulumi.set(__self__, "secret_id", secret_id)
         if skip_import_rotation is not None:
@@ -404,6 +461,42 @@ class _SecretBackendStaticRoleState:
         pulumi.set(self, "role", value)
 
     @_builtins.property
+    @pulumi.getter(name="rotationGracePeriod")
+    def rotation_grace_period(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Duration which defines the amount of time the current and next credential are both active when `seamless_rotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "rotation_grace_period")
+
+    @rotation_grace_period.setter
+    def rotation_grace_period(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_grace_period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        an alias for `ttl` when `seamless_rotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "rotation_period", value)
+
+    @_builtins.property
+    @pulumi.getter(name="seamlessRotation")
+    def seamless_rotation(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "seamless_rotation")
+
+    @seamless_rotation.setter
+    def seamless_rotation(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "seamless_rotation", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -432,8 +525,7 @@ class _SecretBackendStaticRoleState:
     @pulumi.getter
     def ttl(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-        at least 1 month.
+        Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
         Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         """
         return pulumi.get(self, "ttl")
@@ -457,12 +549,15 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_grace_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        Manages a static role in the Azure Secrets Engine.\\
+        Manages a static role in the Azure Secrets Engine.
         Static roles in Vault are linked to existing Azure AD applications, and manage long-lived credentials for those
         applications.
 
@@ -519,11 +614,13 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] role: Name of the static role to create or manage.
+        :param pulumi.Input[_builtins.int] rotation_grace_period: Duration which defines the amount of time the current and next credential are both active when `seamless_rotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.int] rotation_period: an alias for `ttl` when `seamless_rotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         :param pulumi.Input[_builtins.str] secret_id: When importing an existing credential, specifies the Azure secret’s key ID.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If true, Vault will import the provided credential without performing
                rotation. Valid only during creation. Defaults to `false`.
-        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-               at least 1 month.
+        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
                Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         """
         ...
@@ -533,7 +630,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  args: SecretBackendStaticRoleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a static role in the Azure Secrets Engine.\\
+        Manages a static role in the Azure Secrets Engine.
         Static roles in Vault are linked to existing Azure AD applications, and manage long-lived credentials for those
         applications.
 
@@ -593,6 +690,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                  metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  role: pulumi.Input[Optional[_builtins.str]] = None,
+                 rotation_grace_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+                 seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  secret_id: pulumi.Input[Optional[_builtins.str]] = None,
                  skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
                  ttl: pulumi.Input[Optional[_builtins.int]] = None,
@@ -619,6 +719,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             if role is None and not opts.urn:
                 raise TypeError("Missing required property 'role'")
             __props__.__dict__["role"] = role
+            __props__.__dict__["rotation_grace_period"] = rotation_grace_period
+            __props__.__dict__["rotation_period"] = rotation_period
+            __props__.__dict__["seamless_rotation"] = seamless_rotation
             __props__.__dict__["secret_id"] = secret_id
             __props__.__dict__["skip_import_rotation"] = skip_import_rotation
             __props__.__dict__["ttl"] = ttl
@@ -642,6 +745,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
             metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             role: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_grace_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
             secret_id: pulumi.Input[Optional[_builtins.str]] = None,
             skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
             ttl: pulumi.Input[Optional[_builtins.int]] = None) -> 'SecretBackendStaticRole':
@@ -670,11 +776,13 @@ class SecretBackendStaticRole(pulumi.CustomResource):
                configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] role: Name of the static role to create or manage.
+        :param pulumi.Input[_builtins.int] rotation_grace_period: Duration which defines the amount of time the current and next credential are both active when `seamless_rotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.int] rotation_period: an alias for `ttl` when `seamless_rotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        :param pulumi.Input[_builtins.bool] seamless_rotation: Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
         :param pulumi.Input[_builtins.str] secret_id: When importing an existing credential, specifies the Azure secret’s key ID.
         :param pulumi.Input[_builtins.bool] skip_import_rotation: If true, Vault will import the provided credential without performing
                rotation. Valid only during creation. Defaults to `false`.
-        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-               at least 1 month.
+        :param pulumi.Input[_builtins.int] ttl: Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
                Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -689,6 +797,9 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["metadata"] = metadata
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["role"] = role
+        __props__.__dict__["rotation_grace_period"] = rotation_grace_period
+        __props__.__dict__["rotation_period"] = rotation_period
+        __props__.__dict__["seamless_rotation"] = seamless_rotation
         __props__.__dict__["secret_id"] = secret_id
         __props__.__dict__["skip_import_rotation"] = skip_import_rotation
         __props__.__dict__["ttl"] = ttl
@@ -770,6 +881,30 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         return pulumi.get(self, "role")
 
     @_builtins.property
+    @pulumi.getter(name="rotationGracePeriod")
+    def rotation_grace_period(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Duration which defines the amount of time the current and next credential are both active when `seamless_rotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "rotation_grace_period")
+
+    @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        an alias for `ttl` when `seamless_rotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @_builtins.property
+    @pulumi.getter(name="seamlessRotation")
+    def seamless_rotation(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+        """
+        return pulumi.get(self, "seamless_rotation")
+
+    @_builtins.property
     @pulumi.getter(name="secretId")
     def secret_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -790,8 +925,7 @@ class SecretBackendStaticRole(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[_builtins.int]:
         """
-        Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-        at least 1 month.
+        Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
         Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
         """
         return pulumi.get(self, "ttl")

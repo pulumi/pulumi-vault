@@ -100,7 +100,7 @@ export class SecretBackend extends pulumi.CustomResource {
      * If true, Vault automatically attempts to unlock the admin managed LDAP account
      * after every successful static-role password rotation. Applies to all static roles on this mount
      * unless overridden at the role level. Defaults to false. Active Directory schema only.
-     * Requires Vault 2.2.0+.
+     * Requires Vault Enterprise 2.2.0+.
      */
     declare public readonly autoUnlock: pulumi.Output<boolean>;
     /**
@@ -445,7 +445,7 @@ export interface SecretBackendState {
      * If true, Vault automatically attempts to unlock the admin managed LDAP account
      * after every successful static-role password rotation. Applies to all static roles on this mount
      * unless overridden at the role level. Defaults to false. Active Directory schema only.
-     * Requires Vault 2.2.0+.
+     * Requires Vault Enterprise 2.2.0+.
      */
     autoUnlock?: pulumi.Input<boolean | undefined>;
     /**
@@ -665,7 +665,7 @@ export interface SecretBackendArgs {
      * If true, Vault automatically attempts to unlock the admin managed LDAP account
      * after every successful static-role password rotation. Applies to all static roles on this mount
      * unless overridden at the role level. Defaults to false. Active Directory schema only.
-     * Requires Vault 2.2.0+.
+     * Requires Vault Enterprise 2.2.0+.
      */
     autoUnlock?: pulumi.Input<boolean | undefined>;
     /**

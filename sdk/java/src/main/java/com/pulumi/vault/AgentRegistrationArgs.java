@@ -64,18 +64,33 @@ public final class AgentRegistrationArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+     * The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
      * 
      */
     @Import(name="entityId", required=true)
     private Output<String> entityId;
 
     /**
-     * @return The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+     * @return The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
      * 
      */
     public Output<String> entityId() {
         return this.entityId;
+    }
+
+    /**
+     * When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Import(name="local")
+    private @Nullable Output<Boolean> local;
+
+    /**
+     * @return When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Optional<Output<Boolean>> local() {
+        return Optional.ofNullable(this.local);
     }
 
     /**
@@ -149,6 +164,7 @@ public final class AgentRegistrationArgs extends com.pulumi.resources.ResourceAr
         this.description = $.description;
         this.displayName = $.displayName;
         this.entityId = $.entityId;
+        this.local = $.local;
         this.namespace = $.namespace;
         this.noDefaultCeilingPolicy = $.noDefaultCeilingPolicy;
         this.optionalAuthorizationDetails = $.optionalAuthorizationDetails;
@@ -247,7 +263,7 @@ public final class AgentRegistrationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param entityId The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+         * @param entityId The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
          * 
          * @return builder
          * 
@@ -258,13 +274,34 @@ public final class AgentRegistrationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param entityId The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record.
+         * @param entityId The ID of the identity entity to associate with this Agent Registry record. The entity must exist before you create the Agent Registry record. The entity ID for a registration must be unique within the locality (globally replicated or local to the cluster).
          * 
          * @return builder
          * 
          */
         public Builder entityId(String entityId) {
             return entityId(Output.of(entityId));
+        }
+
+        /**
+         * @param local When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder local(@Nullable Output<Boolean> local) {
+            $.local = local;
+            return this;
+        }
+
+        /**
+         * @param local When `false`, the registration is written to replicated storage and propagated to all performance secondaries. When set to `true`, the registration remains local to the current cluster and is not replicated. The `local` field cannot be updated on a registration. Requires Vault 2.2.0 or later.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder local(Boolean local) {
+            return local(Output.of(local));
         }
 
         /**

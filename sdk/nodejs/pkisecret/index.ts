@@ -40,6 +40,16 @@ export type BackendConfigScep = import("./backendConfigScep").BackendConfigScep;
 export const BackendConfigScep: typeof import("./backendConfigScep").BackendConfigScep = null as any;
 utilities.lazyLoad(exports, ["BackendConfigScep"], () => require("./backendConfigScep"));
 
+export { BackendExportKeyArgs, BackendExportKeyState } from "./backendExportKey";
+export type BackendExportKey = import("./backendExportKey").BackendExportKey;
+export const BackendExportKey: typeof import("./backendExportKey").BackendExportKey = null as any;
+utilities.lazyLoad(exports, ["BackendExportKey"], () => require("./backendExportKey"));
+
+export { BackendWrappedKeyImportArgs, BackendWrappedKeyImportState } from "./backendWrappedKeyImport";
+export type BackendWrappedKeyImport = import("./backendWrappedKeyImport").BackendWrappedKeyImport;
+export const BackendWrappedKeyImport: typeof import("./backendWrappedKeyImport").BackendWrappedKeyImport = null as any;
+utilities.lazyLoad(exports, ["BackendWrappedKeyImport"], () => require("./backendWrappedKeyImport"));
+
 export { GetBackendCertMetadataArgs, GetBackendCertMetadataResult, GetBackendCertMetadataOutputArgs } from "./getBackendCertMetadata";
 export const getBackendCertMetadata: typeof import("./getBackendCertMetadata").getBackendCertMetadata = null as any;
 export const getBackendCertMetadataOutput: typeof import("./getBackendCertMetadata").getBackendCertMetadataOutput = null as any;
@@ -164,6 +174,10 @@ const _module = {
                 return new BackendConfigEst(name, <any>undefined, { urn })
             case "vault:pkiSecret/backendConfigScep:BackendConfigScep":
                 return new BackendConfigScep(name, <any>undefined, { urn })
+            case "vault:pkiSecret/backendExportKey:BackendExportKey":
+                return new BackendExportKey(name, <any>undefined, { urn })
+            case "vault:pkiSecret/backendWrappedKeyImport:BackendWrappedKeyImport":
+                return new BackendWrappedKeyImport(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendCert:SecretBackendCert":
                 return new SecretBackendCert(name, <any>undefined, { urn })
             case "vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa":
@@ -202,6 +216,8 @@ pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCluster",
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigCmpv2", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigEst", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendConfigScep", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendExportKey", _module)
+pulumi.runtime.registerResourceModule("vault", "pkiSecret/backendWrappedKeyImport", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendCert", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigCa", _module)
 pulumi.runtime.registerResourceModule("vault", "pkiSecret/secretBackendConfigIssuers", _module)

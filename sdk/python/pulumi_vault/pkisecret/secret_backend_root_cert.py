@@ -49,6 +49,7 @@ class SecretBackendRootCertArgs:
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -105,6 +106,7 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -179,6 +181,8 @@ class SecretBackendRootCertArgs:
             pulumi.set(__self__, "other_sans", other_sans)
         if ou is not None:
             pulumi.set(__self__, "ou", ou)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if permitted_dns_domains is not None:
             pulumi.set(__self__, "permitted_dns_domains", permitted_dns_domains)
         if permitted_email_addresses is not None:
@@ -578,6 +582,18 @@ class SecretBackendRootCertArgs:
         pulumi.set(self, "ou", value)
 
     @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
+
+    @_builtins.property
     @pulumi.getter(name="permittedDnsDomains")
     def permitted_dns_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -784,6 +800,7 @@ class _SecretBackendRootCertState:
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -844,6 +861,7 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -930,6 +948,8 @@ class _SecretBackendRootCertState:
             pulumi.set(__self__, "other_sans", other_sans)
         if ou is not None:
             pulumi.set(__self__, "ou", ou)
+        if parameter_set is not None:
+            pulumi.set(__self__, "parameter_set", parameter_set)
         if permitted_dns_domains is not None:
             pulumi.set(__self__, "permitted_dns_domains", permitted_dns_domains)
         if permitted_email_addresses is not None:
@@ -1368,6 +1388,18 @@ class _SecretBackendRootCertState:
         pulumi.set(self, "ou", value)
 
     @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
+
+    @parameter_set.setter
+    def parameter_set(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "parameter_set", value)
+
+    @_builtins.property
     @pulumi.getter(name="permittedDnsDomains")
     def permitted_dns_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -1598,6 +1630,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1689,6 +1722,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -1794,6 +1828,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
                  organization: pulumi.Input[Optional[_builtins.str]] = None,
                  other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  ou: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
                  permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1851,6 +1886,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             __props__.__dict__["organization"] = organization
             __props__.__dict__["other_sans"] = other_sans
             __props__.__dict__["ou"] = ou
+            __props__.__dict__["parameter_set"] = parameter_set
             __props__.__dict__["permitted_dns_domains"] = permitted_dns_domains
             __props__.__dict__["permitted_email_addresses"] = permitted_email_addresses
             __props__.__dict__["permitted_ip_ranges"] = permitted_ip_ranges
@@ -1916,6 +1952,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
             organization: pulumi.Input[Optional[_builtins.str]] = None,
             other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             ou: pulumi.Input[Optional[_builtins.str]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
             permitted_dns_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             permitted_email_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1980,6 +2017,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] organization: The organization
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] other_sans: List of other SANs
         :param pulumi.Input[_builtins.str] ou: The organization unit
+        :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_dns_domains: List of domains for which certificates are allowed to be issued
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_email_addresses: List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] permitted_ip_ranges: List of IP ranges for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -2037,6 +2075,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         __props__.__dict__["organization"] = organization
         __props__.__dict__["other_sans"] = other_sans
         __props__.__dict__["ou"] = ou
+        __props__.__dict__["parameter_set"] = parameter_set
         __props__.__dict__["permitted_dns_domains"] = permitted_dns_domains
         __props__.__dict__["permitted_email_addresses"] = permitted_email_addresses
         __props__.__dict__["permitted_ip_ranges"] = permitted_ip_ranges
@@ -2326,6 +2365,14 @@ class SecretBackendRootCert(pulumi.CustomResource):
         The organization unit
         """
         return pulumi.get(self, "ou")
+
+    @_builtins.property
+    @pulumi.getter(name="parameterSet")
+    def parameter_set(self) -> pulumi.Output[_builtins.str]:
+        """
+        For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+        """
+        return pulumi.get(self, "parameter_set")
 
     @_builtins.property
     @pulumi.getter(name="permittedDnsDomains")

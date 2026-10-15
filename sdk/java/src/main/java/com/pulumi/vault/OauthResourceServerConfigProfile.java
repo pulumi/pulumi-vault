@@ -160,6 +160,14 @@ import javax.annotation.Nullable;
  *             .optionalAuthorizationDetails(false)
  *             .build());
  * 
+ *         var rarCustomClaim = new OauthResourceServerConfigProfile("rarCustomClaim", OauthResourceServerConfigProfileArgs.builder()
+ *             .profileName("rar-custom-claim-profile")
+ *             .issuerId("https://auth.example.com")
+ *             .useJwks(true)
+ *             .jwksUri("https://auth.example.com/.well-known/jwks.json")
+ *             .authorizationDetailsClaim("rar_details")
+ *             .build());
+ * 
  *     }
  * }
  * }
@@ -251,9 +259,9 @@ import javax.annotation.Nullable;
  *   * When `use_jwks=true`: You must provide `jwksUri` and cannot provide `publicKeys`
  *   * When `use_jwks=false`: You must provide `publicKeys` and cannot provide `jwksUri`
  * 
- * * **Issuer Uniqueness**: Each issuer ID must be unique within a namespace. You cannot have multiple profiles with the same issuer ID in the same namespace.
+ * * **Issuer Uniqueness**: Each issuer ID must be unique within a locality (globally replicated or local to the cluster) and a namespace. You cannot have multiple profiles with the same issuer ID and locality in the same namespace.
  * 
- * * **Profile Name Immutability**: The `profileName` and `issuerId` cannot be changed after creation. Changing these fields will force a new resource to be created.
+ * * **Field Immutability**: The `profileName`, `issuerId`, `uniqueIdClaim`, and `local` cannot be changed after creation. Changing these fields will force a new resource to be created.
  * 
  * * **Key ID Uniqueness**: Within a profile, all key IDs must be unique. This applies to both JWKS keys and static PEM keys.
  * 
@@ -300,6 +308,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile")
 public class OauthResourceServerConfigProfile extends com.pulumi.resources.CustomResource {
     /**
+     * The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Export(name="actorClaim", refs={String.class}, tree="[0]")
+    private Output<String> actorClaim;
+
+    /**
+     * @return The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Output<String> actorClaim() {
+        return this.actorClaim;
+    }
+    /**
      * List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
      * 
      */
@@ -312,6 +334,20 @@ public class OauthResourceServerConfigProfile extends com.pulumi.resources.Custo
      */
     public Output<Optional<List<String>>> audiences() {
         return Codegen.optional(this.audiences);
+    }
+    /**
+     * The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+     * 
+     */
+    @Export(name="authorizationDetailsClaim", refs={String.class}, tree="[0]")
+    private Output<String> authorizationDetailsClaim;
+
+    /**
+     * @return The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorizationDetails`.
+     * 
+     */
+    public Output<String> authorizationDetailsClaim() {
+        return this.authorizationDetailsClaim;
     }
     /**
      * Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
@@ -396,6 +432,20 @@ public class OauthResourceServerConfigProfile extends com.pulumi.resources.Custo
      */
     public Output<String> jwtType() {
         return this.jwtType;
+    }
+    /**
+     * When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Export(name="local", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> local;
+
+    /**
+     * @return When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Output<Boolean> local() {
+        return this.local;
     }
     /**
      * The namespace to provision the resource in.
@@ -492,6 +542,20 @@ public class OauthResourceServerConfigProfile extends com.pulumi.resources.Custo
      */
     public Output<List<String>> supportedAlgorithms() {
         return this.supportedAlgorithms;
+    }
+    /**
+     * The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+     * 
+     */
+    @Export(name="uniqueIdClaim", refs={String.class}, tree="[0]")
+    private Output<String> uniqueIdClaim;
+
+    /**
+     * @return The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `uniqueIdClaim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+     * 
+     */
+    public Output<String> uniqueIdClaim() {
+        return this.uniqueIdClaim;
     }
     /**
      * If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwksUri` is required. When set to false, `publicKeys` is required.

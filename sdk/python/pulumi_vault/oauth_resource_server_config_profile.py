@@ -23,17 +23,21 @@ class OauthResourceServerConfigProfileArgs:
     def __init__(__self__, *,
                  issuer_id: pulumi.Input[_builtins.str],
                  profile_name: pulumi.Input[_builtins.str],
+                 actor_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authorization_details_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  jwks_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
                  jwks_uri: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
                  public_keys: pulumi.Input[Optional[Sequence[pulumi.Input['OauthResourceServerConfigProfilePublicKeyArgs']]]] = None,
                  supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 unique_id_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_claim: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -41,12 +45,15 @@ class OauthResourceServerConfigProfileArgs:
 
         :param pulumi.Input[_builtins.str] issuer_id: The issuer ID (iss claim) to validate against in incoming JWTs. This should match the issuer claim in the JWT tokens. Changing this will force a new resource to be created.
         :param pulumi.Input[_builtins.str] profile_name: The name of the OAuth Resource Server Configuration profile. Must be unique within the namespace. Changing this will force a new resource to be created.
+        :param pulumi.Input[_builtins.str] actor_claim: The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audiences: List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
+        :param pulumi.Input[_builtins.str] authorization_details_claim: The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorization_details`.
         :param pulumi.Input[_builtins.int] clock_skew_leeway: Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
         :param pulumi.Input[_builtins.bool] enabled: Whether this profile is enabled for JWT validation. Disabled profiles are ignored during JWT authentication. Defaults to `true`.
         :param pulumi.Input[_builtins.str] jwks_ca_pem: CA certificate (PEM format) for JWKS URI TLS validation. Use this when the JWKS URI uses a custom CA certificate.
         :param pulumi.Input[_builtins.str] jwks_uri: The JWKS URI to fetch public keys from. Required when `use_jwks=true`. This should be the URL where the authorization server publishes its public keys in JWKS format.
         :param pulumi.Input[_builtins.str] jwt_type: The JWT type: `access_token` or `transaction_token`. Defaults to `access_token`.
+        :param pulumi.Input[_builtins.bool] local: When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -58,13 +65,18 @@ class OauthResourceServerConfigProfileArgs:
                * `RS256`, `RS384`, `RS512` - RSA with SHA-256/384/512
                * `ES256`, `ES384`, `ES512` - ECDSA with SHA-256/384/512
                * `PS256`, `PS384`, `PS512` - RSA-PSS with SHA-256/384/512
+        :param pulumi.Input[_builtins.str] unique_id_claim: The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `unique_id_claim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.bool] use_jwks: If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwks_uri` is required. When set to false, `public_keys` is required.
         :param pulumi.Input[_builtins.str] user_claim: The claim to use as the user identifier. Defaults to `sub`. This determines which JWT claim is used to identify the user.
         """
         pulumi.set(__self__, "issuer_id", issuer_id)
         pulumi.set(__self__, "profile_name", profile_name)
+        if actor_claim is not None:
+            pulumi.set(__self__, "actor_claim", actor_claim)
         if audiences is not None:
             pulumi.set(__self__, "audiences", audiences)
+        if authorization_details_claim is not None:
+            pulumi.set(__self__, "authorization_details_claim", authorization_details_claim)
         if clock_skew_leeway is not None:
             pulumi.set(__self__, "clock_skew_leeway", clock_skew_leeway)
         if enabled is not None:
@@ -75,6 +87,8 @@ class OauthResourceServerConfigProfileArgs:
             pulumi.set(__self__, "jwks_uri", jwks_uri)
         if jwt_type is not None:
             pulumi.set(__self__, "jwt_type", jwt_type)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if no_default_policy is not None:
@@ -85,6 +99,8 @@ class OauthResourceServerConfigProfileArgs:
             pulumi.set(__self__, "public_keys", public_keys)
         if supported_algorithms is not None:
             pulumi.set(__self__, "supported_algorithms", supported_algorithms)
+        if unique_id_claim is not None:
+            pulumi.set(__self__, "unique_id_claim", unique_id_claim)
         if use_jwks is not None:
             pulumi.set(__self__, "use_jwks", use_jwks)
         if user_claim is not None:
@@ -115,6 +131,18 @@ class OauthResourceServerConfigProfileArgs:
         pulumi.set(self, "profile_name", value)
 
     @_builtins.property
+    @pulumi.getter(name="actorClaim")
+    def actor_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "actor_claim")
+
+    @actor_claim.setter
+    def actor_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "actor_claim", value)
+
+    @_builtins.property
     @pulumi.getter
     def audiences(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
@@ -125,6 +153,18 @@ class OauthResourceServerConfigProfileArgs:
     @audiences.setter
     def audiences(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audiences", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authorizationDetailsClaim")
+    def authorization_details_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorization_details`.
+        """
+        return pulumi.get(self, "authorization_details_claim")
+
+    @authorization_details_claim.setter
+    def authorization_details_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "authorization_details_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="clockSkewLeeway")
@@ -185,6 +225,18 @@ class OauthResourceServerConfigProfileArgs:
     @jwt_type.setter
     def jwt_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter
@@ -253,6 +305,18 @@ class OauthResourceServerConfigProfileArgs:
         pulumi.set(self, "supported_algorithms", value)
 
     @_builtins.property
+    @pulumi.getter(name="uniqueIdClaim")
+    def unique_id_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `unique_id_claim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "unique_id_claim")
+
+    @unique_id_claim.setter
+    def unique_id_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "unique_id_claim", value)
+
+    @_builtins.property
     @pulumi.getter(name="useJwks")
     def use_jwks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -280,31 +344,38 @@ class OauthResourceServerConfigProfileArgs:
 @pulumi.input_type
 class _OauthResourceServerConfigProfileState:
     def __init__(__self__, *,
+                 actor_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authorization_details_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
                  jwks_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
                  jwks_uri: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
                  profile_name: pulumi.Input[Optional[_builtins.str]] = None,
                  public_keys: pulumi.Input[Optional[Sequence[pulumi.Input['OauthResourceServerConfigProfilePublicKeyArgs']]]] = None,
                  supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 unique_id_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_claim: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering OauthResourceServerConfigProfile resources.
 
+        :param pulumi.Input[_builtins.str] actor_claim: The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audiences: List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
+        :param pulumi.Input[_builtins.str] authorization_details_claim: The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorization_details`.
         :param pulumi.Input[_builtins.int] clock_skew_leeway: Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
         :param pulumi.Input[_builtins.bool] enabled: Whether this profile is enabled for JWT validation. Disabled profiles are ignored during JWT authentication. Defaults to `true`.
         :param pulumi.Input[_builtins.str] issuer_id: The issuer ID (iss claim) to validate against in incoming JWTs. This should match the issuer claim in the JWT tokens. Changing this will force a new resource to be created.
         :param pulumi.Input[_builtins.str] jwks_ca_pem: CA certificate (PEM format) for JWKS URI TLS validation. Use this when the JWKS URI uses a custom CA certificate.
         :param pulumi.Input[_builtins.str] jwks_uri: The JWKS URI to fetch public keys from. Required when `use_jwks=true`. This should be the URL where the authorization server publishes its public keys in JWKS format.
         :param pulumi.Input[_builtins.str] jwt_type: The JWT type: `access_token` or `transaction_token`. Defaults to `access_token`.
+        :param pulumi.Input[_builtins.bool] local: When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -317,11 +388,16 @@ class _OauthResourceServerConfigProfileState:
                * `RS256`, `RS384`, `RS512` - RSA with SHA-256/384/512
                * `ES256`, `ES384`, `ES512` - ECDSA with SHA-256/384/512
                * `PS256`, `PS384`, `PS512` - RSA-PSS with SHA-256/384/512
+        :param pulumi.Input[_builtins.str] unique_id_claim: The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `unique_id_claim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.bool] use_jwks: If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwks_uri` is required. When set to false, `public_keys` is required.
         :param pulumi.Input[_builtins.str] user_claim: The claim to use as the user identifier. Defaults to `sub`. This determines which JWT claim is used to identify the user.
         """
+        if actor_claim is not None:
+            pulumi.set(__self__, "actor_claim", actor_claim)
         if audiences is not None:
             pulumi.set(__self__, "audiences", audiences)
+        if authorization_details_claim is not None:
+            pulumi.set(__self__, "authorization_details_claim", authorization_details_claim)
         if clock_skew_leeway is not None:
             pulumi.set(__self__, "clock_skew_leeway", clock_skew_leeway)
         if enabled is not None:
@@ -334,6 +410,8 @@ class _OauthResourceServerConfigProfileState:
             pulumi.set(__self__, "jwks_uri", jwks_uri)
         if jwt_type is not None:
             pulumi.set(__self__, "jwt_type", jwt_type)
+        if local is not None:
+            pulumi.set(__self__, "local", local)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
         if no_default_policy is not None:
@@ -346,10 +424,24 @@ class _OauthResourceServerConfigProfileState:
             pulumi.set(__self__, "public_keys", public_keys)
         if supported_algorithms is not None:
             pulumi.set(__self__, "supported_algorithms", supported_algorithms)
+        if unique_id_claim is not None:
+            pulumi.set(__self__, "unique_id_claim", unique_id_claim)
         if use_jwks is not None:
             pulumi.set(__self__, "use_jwks", use_jwks)
         if user_claim is not None:
             pulumi.set(__self__, "user_claim", user_claim)
+
+    @_builtins.property
+    @pulumi.getter(name="actorClaim")
+    def actor_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "actor_claim")
+
+    @actor_claim.setter
+    def actor_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "actor_claim", value)
 
     @_builtins.property
     @pulumi.getter
@@ -362,6 +454,18 @@ class _OauthResourceServerConfigProfileState:
     @audiences.setter
     def audiences(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "audiences", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authorizationDetailsClaim")
+    def authorization_details_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorization_details`.
+        """
+        return pulumi.get(self, "authorization_details_claim")
+
+    @authorization_details_claim.setter
+    def authorization_details_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "authorization_details_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="clockSkewLeeway")
@@ -434,6 +538,18 @@ class _OauthResourceServerConfigProfileState:
     @jwt_type.setter
     def jwt_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "jwt_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "local")
+
+    @local.setter
+    def local(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "local", value)
 
     @_builtins.property
     @pulumi.getter
@@ -514,6 +630,18 @@ class _OauthResourceServerConfigProfileState:
         pulumi.set(self, "supported_algorithms", value)
 
     @_builtins.property
+    @pulumi.getter(name="uniqueIdClaim")
+    def unique_id_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `unique_id_claim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "unique_id_claim")
+
+    @unique_id_claim.setter
+    def unique_id_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "unique_id_claim", value)
+
+    @_builtins.property
     @pulumi.getter(name="useJwks")
     def use_jwks(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -544,19 +672,23 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 actor_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authorization_details_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
                  jwks_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
                  jwks_uri: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
                  profile_name: pulumi.Input[Optional[_builtins.str]] = None,
                  public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]]] = None,
                  supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 unique_id_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -633,6 +765,12 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
             use_jwks=True,
             jwks_uri="https://auth.example.com/.well-known/jwks.json",
             optional_authorization_details=False)
+        rar_custom_claim = vault.OauthResourceServerConfigProfile("rar_custom_claim",
+            profile_name="rar-custom-claim-profile",
+            issuer_id="https://auth.example.com",
+            use_jwks=True,
+            jwks_uri="https://auth.example.com/.well-known/jwks.json",
+            authorization_details_claim="rar_details")
         ```
 
         ### Profile in a Namespace
@@ -670,9 +808,9 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
           * When `use_jwks=true`: You must provide `jwks_uri` and cannot provide `public_keys`
           * When `use_jwks=false`: You must provide `public_keys` and cannot provide `jwks_uri`
 
-        * **Issuer Uniqueness**: Each issuer ID must be unique within a namespace. You cannot have multiple profiles with the same issuer ID in the same namespace.
+        * **Issuer Uniqueness**: Each issuer ID must be unique within a locality (globally replicated or local to the cluster) and a namespace. You cannot have multiple profiles with the same issuer ID and locality in the same namespace.
 
-        * **Profile Name Immutability**: The `profile_name` and `issuer_id` cannot be changed after creation. Changing these fields will force a new resource to be created.
+        * **Field Immutability**: The `profile_name`, `issuer_id`, `unique_id_claim`, and `local` cannot be changed after creation. Changing these fields will force a new resource to be created.
 
         * **Key ID Uniqueness**: Within a profile, all key IDs must be unique. This applies to both JWKS keys and static PEM keys.
 
@@ -718,13 +856,16 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] actor_claim: The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audiences: List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
+        :param pulumi.Input[_builtins.str] authorization_details_claim: The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorization_details`.
         :param pulumi.Input[_builtins.int] clock_skew_leeway: Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
         :param pulumi.Input[_builtins.bool] enabled: Whether this profile is enabled for JWT validation. Disabled profiles are ignored during JWT authentication. Defaults to `true`.
         :param pulumi.Input[_builtins.str] issuer_id: The issuer ID (iss claim) to validate against in incoming JWTs. This should match the issuer claim in the JWT tokens. Changing this will force a new resource to be created.
         :param pulumi.Input[_builtins.str] jwks_ca_pem: CA certificate (PEM format) for JWKS URI TLS validation. Use this when the JWKS URI uses a custom CA certificate.
         :param pulumi.Input[_builtins.str] jwks_uri: The JWKS URI to fetch public keys from. Required when `use_jwks=true`. This should be the URL where the authorization server publishes its public keys in JWKS format.
         :param pulumi.Input[_builtins.str] jwt_type: The JWT type: `access_token` or `transaction_token`. Defaults to `access_token`.
+        :param pulumi.Input[_builtins.bool] local: When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -737,6 +878,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
                * `RS256`, `RS384`, `RS512` - RSA with SHA-256/384/512
                * `ES256`, `ES384`, `ES512` - ECDSA with SHA-256/384/512
                * `PS256`, `PS384`, `PS512` - RSA-PSS with SHA-256/384/512
+        :param pulumi.Input[_builtins.str] unique_id_claim: The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `unique_id_claim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.bool] use_jwks: If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwks_uri` is required. When set to false, `public_keys` is required.
         :param pulumi.Input[_builtins.str] user_claim: The claim to use as the user identifier. Defaults to `sub`. This determines which JWT claim is used to identify the user.
         """
@@ -819,6 +961,12 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
             use_jwks=True,
             jwks_uri="https://auth.example.com/.well-known/jwks.json",
             optional_authorization_details=False)
+        rar_custom_claim = vault.OauthResourceServerConfigProfile("rar_custom_claim",
+            profile_name="rar-custom-claim-profile",
+            issuer_id="https://auth.example.com",
+            use_jwks=True,
+            jwks_uri="https://auth.example.com/.well-known/jwks.json",
+            authorization_details_claim="rar_details")
         ```
 
         ### Profile in a Namespace
@@ -856,9 +1004,9 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
           * When `use_jwks=true`: You must provide `jwks_uri` and cannot provide `public_keys`
           * When `use_jwks=false`: You must provide `public_keys` and cannot provide `jwks_uri`
 
-        * **Issuer Uniqueness**: Each issuer ID must be unique within a namespace. You cannot have multiple profiles with the same issuer ID in the same namespace.
+        * **Issuer Uniqueness**: Each issuer ID must be unique within a locality (globally replicated or local to the cluster) and a namespace. You cannot have multiple profiles with the same issuer ID and locality in the same namespace.
 
-        * **Profile Name Immutability**: The `profile_name` and `issuer_id` cannot be changed after creation. Changing these fields will force a new resource to be created.
+        * **Field Immutability**: The `profile_name`, `issuer_id`, `unique_id_claim`, and `local` cannot be changed after creation. Changing these fields will force a new resource to be created.
 
         * **Key ID Uniqueness**: Within a profile, all key IDs must be unique. This applies to both JWKS keys and static PEM keys.
 
@@ -917,19 +1065,23 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 actor_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 authorization_details_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
                  jwks_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
                  jwks_uri: pulumi.Input[Optional[_builtins.str]] = None,
                  jwt_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 local: pulumi.Input[Optional[_builtins.bool]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
                  optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
                  profile_name: pulumi.Input[Optional[_builtins.str]] = None,
                  public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]]] = None,
                  supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 unique_id_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
                  user_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -941,7 +1093,9 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = OauthResourceServerConfigProfileArgs.__new__(OauthResourceServerConfigProfileArgs)
 
+            __props__.__dict__["actor_claim"] = actor_claim
             __props__.__dict__["audiences"] = audiences
+            __props__.__dict__["authorization_details_claim"] = authorization_details_claim
             __props__.__dict__["clock_skew_leeway"] = clock_skew_leeway
             __props__.__dict__["enabled"] = enabled
             if issuer_id is None and not opts.urn:
@@ -950,6 +1104,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
             __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
             __props__.__dict__["jwks_uri"] = jwks_uri
             __props__.__dict__["jwt_type"] = jwt_type
+            __props__.__dict__["local"] = local
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["no_default_policy"] = no_default_policy
             __props__.__dict__["optional_authorization_details"] = optional_authorization_details
@@ -958,6 +1113,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
             __props__.__dict__["profile_name"] = profile_name
             __props__.__dict__["public_keys"] = public_keys
             __props__.__dict__["supported_algorithms"] = supported_algorithms
+            __props__.__dict__["unique_id_claim"] = unique_id_claim
             __props__.__dict__["use_jwks"] = use_jwks
             __props__.__dict__["user_claim"] = user_claim
         super(OauthResourceServerConfigProfile, __self__).__init__(
@@ -970,19 +1126,23 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            actor_claim: pulumi.Input[Optional[_builtins.str]] = None,
             audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            authorization_details_claim: pulumi.Input[Optional[_builtins.str]] = None,
             clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
             jwks_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
             jwks_uri: pulumi.Input[Optional[_builtins.str]] = None,
             jwt_type: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
             optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
             profile_name: pulumi.Input[Optional[_builtins.str]] = None,
             public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]]] = None,
             supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            unique_id_claim: pulumi.Input[Optional[_builtins.str]] = None,
             use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
             user_claim: pulumi.Input[Optional[_builtins.str]] = None) -> 'OauthResourceServerConfigProfile':
         """
@@ -992,13 +1152,16 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] actor_claim: The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] audiences: List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
+        :param pulumi.Input[_builtins.str] authorization_details_claim: The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorization_details`.
         :param pulumi.Input[_builtins.int] clock_skew_leeway: Leeway for clock skew in seconds when validating time-based claims (exp, iat, nbf). Defaults to `0`. Use this to account for clock differences between systems.
         :param pulumi.Input[_builtins.bool] enabled: Whether this profile is enabled for JWT validation. Disabled profiles are ignored during JWT authentication. Defaults to `true`.
         :param pulumi.Input[_builtins.str] issuer_id: The issuer ID (iss claim) to validate against in incoming JWTs. This should match the issuer claim in the JWT tokens. Changing this will force a new resource to be created.
         :param pulumi.Input[_builtins.str] jwks_ca_pem: CA certificate (PEM format) for JWKS URI TLS validation. Use this when the JWKS URI uses a custom CA certificate.
         :param pulumi.Input[_builtins.str] jwks_uri: The JWKS URI to fetch public keys from. Required when `use_jwks=true`. This should be the URL where the authorization server publishes its public keys in JWKS format.
         :param pulumi.Input[_builtins.str] jwt_type: The JWT type: `access_token` or `transaction_token`. Defaults to `access_token`.
+        :param pulumi.Input[_builtins.bool] local: When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1011,6 +1174,7 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
                * `RS256`, `RS384`, `RS512` - RSA with SHA-256/384/512
                * `ES256`, `ES384`, `ES512` - ECDSA with SHA-256/384/512
                * `PS256`, `PS384`, `PS512` - RSA-PSS with SHA-256/384/512
+        :param pulumi.Input[_builtins.str] unique_id_claim: The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `unique_id_claim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
         :param pulumi.Input[_builtins.bool] use_jwks: If true, use JWKS URI for key validation; if false, use static public keys. Defaults to `true`. When set to true, `jwks_uri` is required. When set to false, `public_keys` is required.
         :param pulumi.Input[_builtins.str] user_claim: The claim to use as the user identifier. Defaults to `sub`. This determines which JWT claim is used to identify the user.
         """
@@ -1018,22 +1182,34 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
 
         __props__ = _OauthResourceServerConfigProfileState.__new__(_OauthResourceServerConfigProfileState)
 
+        __props__.__dict__["actor_claim"] = actor_claim
         __props__.__dict__["audiences"] = audiences
+        __props__.__dict__["authorization_details_claim"] = authorization_details_claim
         __props__.__dict__["clock_skew_leeway"] = clock_skew_leeway
         __props__.__dict__["enabled"] = enabled
         __props__.__dict__["issuer_id"] = issuer_id
         __props__.__dict__["jwks_ca_pem"] = jwks_ca_pem
         __props__.__dict__["jwks_uri"] = jwks_uri
         __props__.__dict__["jwt_type"] = jwt_type
+        __props__.__dict__["local"] = local
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["no_default_policy"] = no_default_policy
         __props__.__dict__["optional_authorization_details"] = optional_authorization_details
         __props__.__dict__["profile_name"] = profile_name
         __props__.__dict__["public_keys"] = public_keys
         __props__.__dict__["supported_algorithms"] = supported_algorithms
+        __props__.__dict__["unique_id_claim"] = unique_id_claim
         __props__.__dict__["use_jwks"] = use_jwks
         __props__.__dict__["user_claim"] = user_claim
         return OauthResourceServerConfigProfile(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="actorClaim")
+    def actor_claim(self) -> pulumi.Output[_builtins.str]:
+        """
+        The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "actor_claim")
 
     @_builtins.property
     @pulumi.getter
@@ -1042,6 +1218,14 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
         List of allowed audiences (aud claim) to validate in JWTs. If specified, the JWT must contain at least one of these audiences in its aud claim.
         """
         return pulumi.get(self, "audiences")
+
+    @_builtins.property
+    @pulumi.getter(name="authorizationDetailsClaim")
+    def authorization_details_claim(self) -> pulumi.Output[_builtins.str]:
+        """
+        The string name of the JWT claim that contains RAR (Rich Authorization Requests) authorization details. Requires Vault 2.2.0 or later when set. If omitted, Vault 2.2.0 and later use `authorization_details`.
+        """
+        return pulumi.get(self, "authorization_details_claim")
 
     @_builtins.property
     @pulumi.getter(name="clockSkewLeeway")
@@ -1090,6 +1274,14 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
         The JWT type: `access_token` or `transaction_token`. Defaults to `access_token`.
         """
         return pulumi.get(self, "jwt_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def local(self) -> pulumi.Output[_builtins.bool]:
+        """
+        When `false`, the profile is written to replicated storage and propagated to all performance secondaries. When set to `true`, the profile remains local to the current cluster and is not replicated. The `local` field cannot be updated on a profile. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "local")
 
     @_builtins.property
     @pulumi.getter
@@ -1144,6 +1336,14 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
         * `PS256`, `PS384`, `PS512` - RSA-PSS with SHA-256/384/512
         """
         return pulumi.get(self, "supported_algorithms")
+
+    @_builtins.property
+    @pulumi.getter(name="uniqueIdClaim")
+    def unique_id_claim(self) -> pulumi.Output[_builtins.str]:
+        """
+        The JWT claim to use as the unique identifier for the token. If unset, Vault uses the `jti` claim. The `unique_id_claim` field cannot be updated on a profile; changing it forces a new resource. Requires Vault 2.2.0 or later.
+        """
+        return pulumi.get(self, "unique_id_claim")
 
     @_builtins.property
     @pulumi.getter(name="useJwks")

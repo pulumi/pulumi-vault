@@ -184,7 +184,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
      */
     declare public readonly keyBits: pulumi.Output<number | undefined>;
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
      * Defaults to `rsa`
      */
     declare public readonly keyType: pulumi.Output<string | undefined>;
@@ -237,6 +237,10 @@ export class SecretBackendRole extends pulumi.CustomResource {
      * The organization of generated certificates
      */
     declare public readonly organizations: pulumi.Output<string[] | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    declare public readonly parameterSet: pulumi.Output<string>;
     /**
      * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      */
@@ -344,6 +348,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["notBeforeDuration"] = state?.notBeforeDuration;
             resourceInputs["organizationUnit"] = state?.organizationUnit;
             resourceInputs["organizations"] = state?.organizations;
+            resourceInputs["parameterSet"] = state?.parameterSet;
             resourceInputs["policyIdentifier"] = state?.policyIdentifier;
             resourceInputs["policyIdentifiers"] = state?.policyIdentifiers;
             resourceInputs["postalCodes"] = state?.postalCodes;
@@ -401,6 +406,7 @@ export class SecretBackendRole extends pulumi.CustomResource {
             resourceInputs["notBeforeDuration"] = args?.notBeforeDuration;
             resourceInputs["organizationUnit"] = args?.organizationUnit;
             resourceInputs["organizations"] = args?.organizations;
+            resourceInputs["parameterSet"] = args?.parameterSet;
             resourceInputs["policyIdentifier"] = args?.policyIdentifier;
             resourceInputs["policyIdentifiers"] = args?.policyIdentifiers;
             resourceInputs["postalCodes"] = args?.postalCodes;
@@ -536,7 +542,7 @@ export interface SecretBackendRoleState {
      */
     keyBits?: pulumi.Input<number | undefined>;
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
      * Defaults to `rsa`
      */
     keyType?: pulumi.Input<string | undefined>;
@@ -589,6 +595,10 @@ export interface SecretBackendRoleState {
      * The organization of generated certificates
      */
     organizations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      */
@@ -761,7 +771,7 @@ export interface SecretBackendRoleArgs {
      */
     keyBits?: pulumi.Input<number | undefined>;
     /**
-     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `any`
+     * The generated key type, choices: `rsa`, `ec`, `ed25519`, `ml-dsa`, `any`
      * Defaults to `rsa`
      */
     keyType?: pulumi.Input<string | undefined>;
@@ -814,6 +824,10 @@ export interface SecretBackendRoleArgs {
      * The organization of generated certificates
      */
     organizations?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * (Vault 1.11+ only) A block for specifying policy identifers. The `policyIdentifier` block can be repeated, and supports the following arguments:
      */

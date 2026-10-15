@@ -83,7 +83,7 @@ type SecretBackendStaticRole struct {
 	// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
 	// When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
 	// When unset, the role inherits the mount-level setting. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock pulumi.BoolOutput `pulumi:"autoUnlock"`
 	// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
 	DisableAutomatedRotation pulumi.BoolPtrOutput `pulumi:"disableAutomatedRotation"`
@@ -187,7 +187,7 @@ type secretBackendStaticRoleState struct {
 	// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
 	// When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
 	// When unset, the role inherits the mount-level setting. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock *bool `pulumi:"autoUnlock"`
 	// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
@@ -249,7 +249,7 @@ type SecretBackendStaticRoleState struct {
 	// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
 	// When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
 	// When unset, the role inherits the mount-level setting. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock pulumi.BoolPtrInput
 	// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
 	DisableAutomatedRotation pulumi.BoolPtrInput
@@ -315,7 +315,7 @@ type secretBackendStaticRoleArgs struct {
 	// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
 	// When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
 	// When unset, the role inherits the mount-level setting. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock *bool `pulumi:"autoUnlock"`
 	// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
 	DisableAutomatedRotation *bool `pulumi:"disableAutomatedRotation"`
@@ -378,7 +378,7 @@ type SecretBackendStaticRoleArgs struct {
 	// When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
 	// When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
 	// When unset, the role inherits the mount-level setting. Active Directory schema only.
-	// Requires Vault 2.2.0+.
+	// Requires Vault Enterprise 2.2.0+.
 	AutoUnlock pulumi.BoolPtrInput
 	// Cancels all upcoming rotations of the static credential until unset. Requires Vault Enterprise 2.0+.
 	DisableAutomatedRotation pulumi.BoolPtrInput
@@ -526,7 +526,7 @@ func (o SecretBackendStaticRoleOutput) ToSecretBackendStaticRoleOutputWithContex
 // When true, Vault unlocks the admin managed LDAP account automatically after a successful rotation.
 // When false, disables automatic unlock for this role even if the mount has `autoUnlock = true`.
 // When unset, the role inherits the mount-level setting. Active Directory schema only.
-// Requires Vault 2.2.0+.
+// Requires Vault Enterprise 2.2.0+.
 func (o SecretBackendStaticRoleOutput) AutoUnlock() pulumi.BoolOutput {
 	return o.ApplyT(func(v *SecretBackendStaticRole) pulumi.BoolOutput { return v.AutoUnlock }).(pulumi.BoolOutput)
 }

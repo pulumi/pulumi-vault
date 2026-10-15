@@ -160,7 +160,7 @@ public class SecretBackendAcmeAccount extends com.pulumi.resources.CustomResourc
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
      * 
      */
     @Export(name="eabKey", refs={String.class}, tree="[0]")
@@ -168,7 +168,7 @@ public class SecretBackendAcmeAccount extends com.pulumi.resources.CustomResourc
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
      * 
      */
     public Output<Optional<String>> eabKey() {
@@ -176,7 +176,7 @@ public class SecretBackendAcmeAccount extends com.pulumi.resources.CustomResourc
     }
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
      * 
      */
     @Export(name="eabKid", refs={String.class}, tree="[0]")
@@ -184,7 +184,7 @@ public class SecretBackendAcmeAccount extends com.pulumi.resources.CustomResourc
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
      * 
      */
     public Output<Optional<String>> eabKid() {

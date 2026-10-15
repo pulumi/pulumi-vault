@@ -57,6 +57,43 @@ import (
 //
 // ```
 //
+// ### Register an Official Enterprise plugin with automatic download
+//
+// On Vault Enterprise 1.20 and later, setting `download` to `true` makes Vault
+// download the plugin artifact from
+// [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
+// so the artifact does not need to be manually extracted into the server's
+// `pluginDirectory` beforehand. All Vault cluster nodes need outbound HTTPS
+// access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+// a beta feature in Vault.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := vault.NewPlugin(ctx, "os", &vault.PluginArgs{
+//				Type:     pulumi.String("secret"),
+//				Name:     pulumi.String("vault-plugin-secrets-os"),
+//				Version:  pulumi.String("v0.1.0+ent"),
+//				Download: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Register a CE plugin (version vX.Y.Z)
 //
 // The `sha256` and `command` are required to register a CE plugin.
@@ -116,6 +153,12 @@ type Plugin struct {
 	Args pulumi.StringArrayOutput `pulumi:"args"`
 	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 	Command pulumi.StringPtrOutput `pulumi:"command"`
+	// If `true`, Vault downloads the plugin artifact from
+	// releases.hashicorp.com during registration instead of requiring it to be
+	// pre-staged in the server's `pluginDirectory`. Only valid for official
+	// enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+	// 1.20+ (beta feature). Defaults to `false`.
+	Download pulumi.BoolPtrOutput `pulumi:"download"`
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs pulumi.StringArrayOutput `pulumi:"envs"`
 	// Name of the plugin.
@@ -178,6 +221,12 @@ type pluginState struct {
 	Args []string `pulumi:"args"`
 	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 	Command *string `pulumi:"command"`
+	// If `true`, Vault downloads the plugin artifact from
+	// releases.hashicorp.com during registration instead of requiring it to be
+	// pre-staged in the server's `pluginDirectory`. Only valid for official
+	// enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+	// 1.20+ (beta feature). Defaults to `false`.
+	Download *bool `pulumi:"download"`
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs []string `pulumi:"envs"`
 	// Name of the plugin.
@@ -201,6 +250,12 @@ type PluginState struct {
 	Args pulumi.StringArrayInput
 	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 	Command pulumi.StringPtrInput
+	// If `true`, Vault downloads the plugin artifact from
+	// releases.hashicorp.com during registration instead of requiring it to be
+	// pre-staged in the server's `pluginDirectory`. Only valid for official
+	// enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+	// 1.20+ (beta feature). Defaults to `false`.
+	Download pulumi.BoolPtrInput
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs pulumi.StringArrayInput
 	// Name of the plugin.
@@ -228,6 +283,12 @@ type pluginArgs struct {
 	Args []string `pulumi:"args"`
 	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 	Command *string `pulumi:"command"`
+	// If `true`, Vault downloads the plugin artifact from
+	// releases.hashicorp.com during registration instead of requiring it to be
+	// pre-staged in the server's `pluginDirectory`. Only valid for official
+	// enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+	// 1.20+ (beta feature). Defaults to `false`.
+	Download *bool `pulumi:"download"`
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs []string `pulumi:"envs"`
 	// Name of the plugin.
@@ -252,6 +313,12 @@ type PluginArgs struct {
 	Args pulumi.StringArrayInput
 	// Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 	Command pulumi.StringPtrInput
+	// If `true`, Vault downloads the plugin artifact from
+	// releases.hashicorp.com during registration instead of requiring it to be
+	// pre-staged in the server's `pluginDirectory`. Only valid for official
+	// enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+	// 1.20+ (beta feature). Defaults to `false`.
+	Download pulumi.BoolPtrInput
 	// List of additional environment variables to run the plugin with in KEY=VALUE form.
 	Envs pulumi.StringArrayInput
 	// Name of the plugin.
@@ -365,6 +432,15 @@ func (o PluginOutput) Args() pulumi.StringArrayOutput {
 // Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
 func (o PluginOutput) Command() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Plugin) pulumi.StringPtrOutput { return v.Command }).(pulumi.StringPtrOutput)
+}
+
+// If `true`, Vault downloads the plugin artifact from
+// releases.hashicorp.com during registration instead of requiring it to be
+// pre-staged in the server's `pluginDirectory`. Only valid for official
+// enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+// 1.20+ (beta feature). Defaults to `false`.
+func (o PluginOutput) Download() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Plugin) pulumi.BoolPtrOutput { return v.Download }).(pulumi.BoolPtrOutput)
 }
 
 // List of additional environment variables to run the plugin with in KEY=VALUE form.

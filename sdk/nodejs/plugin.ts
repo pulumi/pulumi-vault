@@ -35,6 +35,28 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Register an Official Enterprise plugin with automatic download
+ *
+ * On Vault Enterprise 1.20 and later, setting `download` to `true` makes Vault
+ * download the plugin artifact from
+ * [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
+ * so the artifact does not need to be manually extracted into the server's
+ * `pluginDirectory` beforehand. All Vault cluster nodes need outbound HTTPS
+ * access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+ * a beta feature in Vault.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const os = new vault.Plugin("os", {
+ *     type: "secret",
+ *     name: "vault-plugin-secrets-os",
+ *     version: "v0.1.0+ent",
+ *     download: true,
+ * });
+ * ```
+ *
  * ### Register a CE plugin (version vX.Y.Z)
  *
  * The `sha256` and `command` are required to register a CE plugin.
@@ -103,6 +125,14 @@ export class Plugin extends pulumi.CustomResource {
      */
     declare public readonly command: pulumi.Output<string | undefined>;
     /**
+     * If `true`, Vault downloads the plugin artifact from
+     * releases.hashicorp.com during registration instead of requiring it to be
+     * pre-staged in the server's `pluginDirectory`. Only valid for official
+     * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+     * 1.20+ (beta feature). Defaults to `false`.
+     */
+    declare public readonly download: pulumi.Output<boolean | undefined>;
+    /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */
     declare public readonly envs: pulumi.Output<string[] | undefined>;
@@ -148,6 +178,7 @@ export class Plugin extends pulumi.CustomResource {
             const state = argsOrState as PluginState | undefined;
             resourceInputs["args"] = state?.args;
             resourceInputs["command"] = state?.command;
+            resourceInputs["download"] = state?.download;
             resourceInputs["envs"] = state?.envs;
             resourceInputs["name"] = state?.name;
             resourceInputs["ociImage"] = state?.ociImage;
@@ -162,6 +193,7 @@ export class Plugin extends pulumi.CustomResource {
             }
             resourceInputs["args"] = args?.args;
             resourceInputs["command"] = args?.command;
+            resourceInputs["download"] = args?.download;
             resourceInputs["envs"] = args?.envs ? pulumi.secret(args.envs) : undefined;
             resourceInputs["name"] = args?.name;
             resourceInputs["ociImage"] = args?.ociImage;
@@ -189,6 +221,14 @@ export interface PluginState {
      * Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      */
     command?: pulumi.Input<string | undefined>;
+    /**
+     * If `true`, Vault downloads the plugin artifact from
+     * releases.hashicorp.com during registration instead of requiring it to be
+     * pre-staged in the server's `pluginDirectory`. Only valid for official
+     * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+     * 1.20+ (beta feature). Defaults to `false`.
+     */
+    download?: pulumi.Input<boolean | undefined>;
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */
@@ -233,6 +273,14 @@ export interface PluginArgs {
      * Command to execute the plugin, relative to the server's configured `pluginDirectory`. Need to be set for non-enterprise plugin.
      */
     command?: pulumi.Input<string | undefined>;
+    /**
+     * If `true`, Vault downloads the plugin artifact from
+     * releases.hashicorp.com during registration instead of requiring it to be
+     * pre-staged in the server's `pluginDirectory`. Only valid for official
+     * enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+     * 1.20+ (beta feature). Defaults to `false`.
+     */
+    download?: pulumi.Input<boolean | undefined>;
     /**
      * List of additional environment variables to run the plugin with in KEY=VALUE form.
      */

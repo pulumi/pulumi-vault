@@ -139,6 +139,8 @@ type SecretBackendRootCert struct {
 	OtherSans pulumi.StringArrayOutput `pulumi:"otherSans"`
 	// The organization unit
 	Ou pulumi.StringPtrOutput `pulumi:"ou"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringOutput `pulumi:"parameterSet"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayOutput `pulumi:"permittedDnsDomains"`
 	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -289,6 +291,8 @@ type secretBackendRootCertState struct {
 	OtherSans []string `pulumi:"otherSans"`
 	// The organization unit
 	Ou *string `pulumi:"ou"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains []string `pulumi:"permittedDnsDomains"`
 	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -401,6 +405,8 @@ type SecretBackendRootCertState struct {
 	OtherSans pulumi.StringArrayInput
 	// The organization unit
 	Ou pulumi.StringPtrInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayInput
 	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -509,6 +515,8 @@ type secretBackendRootCertArgs struct {
 	OtherSans []string `pulumi:"otherSans"`
 	// The organization unit
 	Ou *string `pulumi:"ou"`
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet *string `pulumi:"parameterSet"`
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains []string `pulumi:"permittedDnsDomains"`
 	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -612,6 +620,8 @@ type SecretBackendRootCertArgs struct {
 	OtherSans pulumi.StringArrayInput
 	// The organization unit
 	Ou pulumi.StringPtrInput
+	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+	ParameterSet pulumi.StringPtrInput
 	// List of domains for which certificates are allowed to be issued
 	PermittedDnsDomains pulumi.StringArrayInput
 	// List of email addresses for which certificates are allowed to be issued. Requires Vault version 1.19+.
@@ -905,6 +915,11 @@ func (o SecretBackendRootCertOutput) OtherSans() pulumi.StringArrayOutput {
 // The organization unit
 func (o SecretBackendRootCertOutput) Ou() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringPtrOutput { return v.Ou }).(pulumi.StringPtrOutput)
+}
+
+// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+func (o SecretBackendRootCertOutput) ParameterSet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.ParameterSet }).(pulumi.StringOutput)
 }
 
 // List of domains for which certificates are allowed to be issued

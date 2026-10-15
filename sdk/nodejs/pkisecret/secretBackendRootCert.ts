@@ -210,6 +210,10 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
      */
     declare public readonly ou: pulumi.Output<string | undefined>;
     /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    declare public readonly parameterSet: pulumi.Output<string>;
+    /**
      * List of domains for which certificates are allowed to be issued
      */
     declare public readonly permittedDnsDomains: pulumi.Output<string[] | undefined>;
@@ -323,6 +327,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["organization"] = state?.organization;
             resourceInputs["otherSans"] = state?.otherSans;
             resourceInputs["ou"] = state?.ou;
+            resourceInputs["parameterSet"] = state?.parameterSet;
             resourceInputs["permittedDnsDomains"] = state?.permittedDnsDomains;
             resourceInputs["permittedEmailAddresses"] = state?.permittedEmailAddresses;
             resourceInputs["permittedIpRanges"] = state?.permittedIpRanges;
@@ -379,6 +384,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
             resourceInputs["organization"] = args?.organization;
             resourceInputs["otherSans"] = args?.otherSans;
             resourceInputs["ou"] = args?.ou;
+            resourceInputs["parameterSet"] = args?.parameterSet;
             resourceInputs["permittedDnsDomains"] = args?.permittedDnsDomains;
             resourceInputs["permittedEmailAddresses"] = args?.permittedEmailAddresses;
             resourceInputs["permittedIpRanges"] = args?.permittedIpRanges;
@@ -549,6 +555,10 @@ export interface SecretBackendRootCertState {
      * The organization unit
      */
     ou?: pulumi.Input<string | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * List of domains for which certificates are allowed to be issued
      */
@@ -746,6 +756,10 @@ export interface SecretBackendRootCertArgs {
      * The organization unit
      */
     ou?: pulumi.Input<string | undefined>;
+    /**
+     * For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
+     */
+    parameterSet?: pulumi.Input<string | undefined>;
     /**
      * List of domains for which certificates are allowed to be issued
      */

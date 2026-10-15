@@ -259,6 +259,10 @@ export class Backend extends pulumi.CustomResource {
      */
     declare public readonly sealWrap: pulumi.Output<boolean>;
     /**
+     * Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    declare public readonly seamlessRotation: pulumi.Output<boolean>;
+    /**
      * The subscription id for the Azure Active Directory.
      */
     declare public readonly subscriptionId: pulumi.Output<string>;
@@ -313,6 +317,7 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["rotationSchedule"] = state?.rotationSchedule;
             resourceInputs["rotationWindow"] = state?.rotationWindow;
             resourceInputs["sealWrap"] = state?.sealWrap;
+            resourceInputs["seamlessRotation"] = state?.seamlessRotation;
             resourceInputs["subscriptionId"] = state?.subscriptionId;
             resourceInputs["tenantId"] = state?.tenantId;
         } else {
@@ -355,6 +360,7 @@ export class Backend extends pulumi.CustomResource {
             resourceInputs["rotationSchedule"] = args?.rotationSchedule;
             resourceInputs["rotationWindow"] = args?.rotationWindow;
             resourceInputs["sealWrap"] = args?.sealWrap;
+            resourceInputs["seamlessRotation"] = args?.seamlessRotation;
             resourceInputs["subscriptionId"] = args?.subscriptionId ? pulumi.secret(args.subscriptionId) : undefined;
             resourceInputs["tenantId"] = args?.tenantId ? pulumi.secret(args.tenantId) : undefined;
             resourceInputs["accessor"] = undefined /*out*/;
@@ -518,6 +524,10 @@ export interface BackendState {
      */
     sealWrap?: pulumi.Input<boolean | undefined>;
     /**
+     * Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    seamlessRotation?: pulumi.Input<boolean | undefined>;
+    /**
      * The subscription id for the Azure Active Directory.
      */
     subscriptionId?: pulumi.Input<string | undefined>;
@@ -674,6 +684,10 @@ export interface BackendArgs {
      * Enable seal wrapping for the mount, causing values stored by the mount to be wrapped by the seal's encryption capability
      */
     sealWrap?: pulumi.Input<boolean | undefined>;
+    /**
+     * Enables automated seamless rotation by default for newly created static roles when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     */
+    seamlessRotation?: pulumi.Input<boolean | undefined>;
     /**
      * The subscription id for the Azure Active Directory.
      */

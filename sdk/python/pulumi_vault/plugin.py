@@ -22,6 +22,7 @@ class PluginArgs:
                  type: pulumi.Input[_builtins.str],
                  args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: pulumi.Input[Optional[_builtins.str]] = None,
+                 download: pulumi.Input[Optional[_builtins.bool]] = None,
                  envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  oci_image: pulumi.Input[Optional[_builtins.str]] = None,
@@ -34,6 +35,11 @@ class PluginArgs:
         :param pulumi.Input[_builtins.str] type: Type of plugin; one of "auth", "secret", or "database".
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
         :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
+        :param pulumi.Input[_builtins.bool] download: If `true`, Vault downloads the plugin artifact from
+               releases.hashicorp.com during registration instead of requiring it to be
+               pre-staged in the server's `plugin_directory`. Only valid for official
+               enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+               1.20+ (beta feature). Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
@@ -48,6 +54,8 @@ class PluginArgs:
             pulumi.set(__self__, "args", args)
         if command is not None:
             pulumi.set(__self__, "command", command)
+        if download is not None:
+            pulumi.set(__self__, "download", download)
         if envs is not None:
             pulumi.set(__self__, "envs", envs)
         if name is not None:
@@ -96,6 +104,22 @@ class PluginArgs:
     @command.setter
     def command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "command", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def download(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If `true`, Vault downloads the plugin artifact from
+        releases.hashicorp.com during registration instead of requiring it to be
+        pre-staged in the server's `plugin_directory`. Only valid for official
+        enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+        1.20+ (beta feature). Defaults to `false`.
+        """
+        return pulumi.get(self, "download")
+
+    @download.setter
+    def download(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "download", value)
 
     @_builtins.property
     @pulumi.getter
@@ -177,6 +201,7 @@ class _PluginState:
     def __init__(__self__, *,
                  args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: pulumi.Input[Optional[_builtins.str]] = None,
+                 download: pulumi.Input[Optional[_builtins.bool]] = None,
                  envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  oci_image: pulumi.Input[Optional[_builtins.str]] = None,
@@ -189,6 +214,11 @@ class _PluginState:
 
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
         :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
+        :param pulumi.Input[_builtins.bool] download: If `true`, Vault downloads the plugin artifact from
+               releases.hashicorp.com during registration instead of requiring it to be
+               pre-staged in the server's `plugin_directory`. Only valid for official
+               enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+               1.20+ (beta feature). Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
@@ -203,6 +233,8 @@ class _PluginState:
             pulumi.set(__self__, "args", args)
         if command is not None:
             pulumi.set(__self__, "command", command)
+        if download is not None:
+            pulumi.set(__self__, "download", download)
         if envs is not None:
             pulumi.set(__self__, "envs", envs)
         if name is not None:
@@ -241,6 +273,22 @@ class _PluginState:
     @command.setter
     def command(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "command", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def download(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        If `true`, Vault downloads the plugin artifact from
+        releases.hashicorp.com during registration instead of requiring it to be
+        pre-staged in the server's `plugin_directory`. Only valid for official
+        enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+        1.20+ (beta feature). Defaults to `false`.
+        """
+        return pulumi.get(self, "download")
+
+    @download.setter
+    def download(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "download", value)
 
     @_builtins.property
     @pulumi.getter
@@ -337,6 +385,7 @@ class Plugin(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: pulumi.Input[Optional[_builtins.str]] = None,
+                 download: pulumi.Input[Optional[_builtins.bool]] = None,
                  envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  oci_image: pulumi.Input[Optional[_builtins.str]] = None,
@@ -375,6 +424,27 @@ class Plugin(pulumi.CustomResource):
             version="v0.13.0+ent")
         ```
 
+        ### Register an Official Enterprise plugin with automatic download
+
+        On Vault Enterprise 1.20 and later, setting `download` to `true` makes Vault
+        download the plugin artifact from
+        [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
+        so the artifact does not need to be manually extracted into the server's
+        `plugin_directory` beforehand. All Vault cluster nodes need outbound HTTPS
+        access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+        a beta feature in Vault.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        os = vault.Plugin("os",
+            type="secret",
+            name="vault-plugin-secrets-os",
+            version="v0.1.0+ent",
+            download=True)
+        ```
+
         ### Register a CE plugin (version vX.Y.Z)
 
         The `sha256` and `command` are required to register a CE plugin.
@@ -410,6 +480,11 @@ class Plugin(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
         :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
+        :param pulumi.Input[_builtins.bool] download: If `true`, Vault downloads the plugin artifact from
+               releases.hashicorp.com during registration instead of requiring it to be
+               pre-staged in the server's `plugin_directory`. Only valid for official
+               enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+               1.20+ (beta feature). Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
@@ -454,6 +529,27 @@ class Plugin(pulumi.CustomResource):
             type="database",
             name="vault-plugin-database-oracle",
             version="v0.13.0+ent")
+        ```
+
+        ### Register an Official Enterprise plugin with automatic download
+
+        On Vault Enterprise 1.20 and later, setting `download` to `true` makes Vault
+        download the plugin artifact from
+        [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
+        so the artifact does not need to be manually extracted into the server's
+        `plugin_directory` beforehand. All Vault cluster nodes need outbound HTTPS
+        access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+        a beta feature in Vault.
+
+        ```python
+        import pulumi
+        import pulumi_vault as vault
+
+        os = vault.Plugin("os",
+            type="secret",
+            name="vault-plugin-secrets-os",
+            version="v0.1.0+ent",
+            download=True)
         ```
 
         ### Register a CE plugin (version vX.Y.Z)
@@ -504,6 +600,7 @@ class Plugin(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: pulumi.Input[Optional[_builtins.str]] = None,
+                 download: pulumi.Input[Optional[_builtins.bool]] = None,
                  envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  oci_image: pulumi.Input[Optional[_builtins.str]] = None,
@@ -522,6 +619,7 @@ class Plugin(pulumi.CustomResource):
 
             __props__.__dict__["args"] = args
             __props__.__dict__["command"] = command
+            __props__.__dict__["download"] = download
             __props__.__dict__["envs"] = None if envs is None else pulumi.Output.secret(envs)
             __props__.__dict__["name"] = name
             __props__.__dict__["oci_image"] = oci_image
@@ -545,6 +643,7 @@ class Plugin(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             command: pulumi.Input[Optional[_builtins.str]] = None,
+            download: pulumi.Input[Optional[_builtins.bool]] = None,
             envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             oci_image: pulumi.Input[Optional[_builtins.str]] = None,
@@ -561,6 +660,11 @@ class Plugin(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: List of additional args to pass to the plugin.
         :param pulumi.Input[_builtins.str] command: Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
+        :param pulumi.Input[_builtins.bool] download: If `true`, Vault downloads the plugin artifact from
+               releases.hashicorp.com during registration instead of requiring it to be
+               pre-staged in the server's `plugin_directory`. Only valid for official
+               enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+               1.20+ (beta feature). Defaults to `false`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] envs: List of additional environment variables to run the plugin with in KEY=VALUE form.
         :param pulumi.Input[_builtins.str] name: Name of the plugin.
         :param pulumi.Input[_builtins.str] oci_image: Specifies OCI image to run. If specified, setting
@@ -577,6 +681,7 @@ class Plugin(pulumi.CustomResource):
 
         __props__.__dict__["args"] = args
         __props__.__dict__["command"] = command
+        __props__.__dict__["download"] = download
         __props__.__dict__["envs"] = envs
         __props__.__dict__["name"] = name
         __props__.__dict__["oci_image"] = oci_image
@@ -601,6 +706,18 @@ class Plugin(pulumi.CustomResource):
         Command to execute the plugin, relative to the server's configured `plugin_directory`. Need to be set for non-enterprise plugin.
         """
         return pulumi.get(self, "command")
+
+    @_builtins.property
+    @pulumi.getter
+    def download(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        If `true`, Vault downloads the plugin artifact from
+        releases.hashicorp.com during registration instead of requiring it to be
+        pre-staged in the server's `plugin_directory`. Only valid for official
+        enterprise plugins (`version` ending in `+ent`). Requires Vault Enterprise
+        1.20+ (beta feature). Defaults to `false`.
+        """
+        return pulumi.get(self, "download")
 
     @_builtins.property
     @pulumi.getter

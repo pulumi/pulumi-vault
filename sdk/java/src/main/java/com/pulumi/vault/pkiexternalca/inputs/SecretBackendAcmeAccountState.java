@@ -64,7 +64,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
      * 
      */
     @Import(name="eabKey")
@@ -72,7 +72,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
      * 
      */
     public Optional<Output<String>> eabKey() {
@@ -81,7 +81,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
      * 
      */
     @Import(name="eabKid")
@@ -89,7 +89,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-     * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+     * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
      * 
      */
     public Optional<Output<String>> eabKid() {
@@ -291,7 +291,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
         /**
          * @param eabKey **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+         * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
          * 
          * @return builder
          * 
@@ -303,7 +303,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
         /**
          * @param eabKey **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * The external account binding HMAC key to create the initial account. Required by some CAs for account registration. This is a write-only field.
+         * The external account binding HMAC key (URL base64-encoded) to create the initial account. Required by some CAs for account registration. If specified, `eabKid` is also required. This is a write-only field.
          * 
          * @return builder
          * 
@@ -314,7 +314,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
         /**
          * @param eabKid **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+         * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
          * 
          * @return builder
          * 
@@ -326,7 +326,7 @@ public final class SecretBackendAcmeAccountState extends com.pulumi.resources.Re
 
         /**
          * @param eabKid **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-         * The external account binding key ID to create the initial account. Required by some CAs for account registration. This is a write-only field.
+         * The external account binding key ID to create the initial account. Required by some CAs for account registration. If specified, `eabKey` is also required. This is a write-only field.
          * 
          * @return builder
          * 

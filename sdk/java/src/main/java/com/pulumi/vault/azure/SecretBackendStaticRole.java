@@ -19,7 +19,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Manages a static role in the Azure Secrets Engine.\
+ * Manages a static role in the Azure Secrets Engine.
  * Static roles in Vault are linked to existing Azure AD applications, and manage long-lived credentials for those
  * applications.
  * 
@@ -222,6 +222,48 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         return this.role;
     }
     /**
+     * Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Export(name="rotationGracePeriod", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> rotationGracePeriod;
+
+    /**
+     * @return Duration which defines the amount of time the current and next credential are both active when `seamlessRotation` is enabled for the static role. Must not exceed `(rotation_period - 3600) / 2`. Set to `-1` to disable lifetime overlap between credentials. Accepts an integer number of seconds. Defaults to five minutes (`300` seconds). *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Output<Optional<Integer>> rotationGracePeriod() {
+        return Codegen.optional(this.rotationGracePeriod);
+    }
+    /**
+     * an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Export(name="rotationPeriod", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> rotationPeriod;
+
+    /**
+     * @return an alias for `ttl` when `seamlessRotation` is enabled. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Output<Optional<Integer>> rotationPeriod() {
+        return Codegen.optional(this.rotationPeriod);
+    }
+    /**
+     * Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    @Export(name="seamlessRotation", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> seamlessRotation;
+
+    /**
+     * @return Enables automated seamless rotation for the static role when `true`. For more information about seamless rotation, refer to the [Static Roles section](https://developer.hashicorp.com/vault/docs/secrets/azure#static-roles) for the Azure Secrets Engine. *Available only for Vault Enterprise 2.2.0 and later.*
+     * 
+     */
+    public Output<Optional<Boolean>> seamlessRotation() {
+        return Codegen.optional(this.seamlessRotation);
+    }
+    /**
      * When importing an existing credential, specifies the Azure secret’s key ID.
      * 
      */
@@ -252,8 +294,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.skipImportRotation);
     }
     /**
-     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-     * at least 1 month.
+     * Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
      * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
      * 
      */
@@ -261,8 +302,7 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
     private Output<Integer> ttl;
 
     /**
-     * @return Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be
-     * at least 1 month.
+     * @return Duration that defines the validity period of the managed credential. Defaults to 2 years. Must be at least 2 hours.
      * Accepts an integer number of seconds (31536000). Defaults to the system/engine default TTL time.
      * 
      */

@@ -116,12 +116,16 @@ type Transformation struct {
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed pulumi.BoolPtrOutput `pulumi:"deletionAllowed"`
+	// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+	FpeAlgorithm pulumi.StringOutput `pulumi:"fpeAlgorithm"`
 	// Specifies the mapping mode for stored values.
 	// Can be "default" or "exportable". Only used when `type` is "tokenization".
 	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
 	MappingMode pulumi.StringPtrOutput `pulumi:"mappingMode"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrOutput `pulumi:"maskingCharacter"`
+	// The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MaxTweakLen pulumi.IntPtrOutput `pulumi:"maxTweakLen"`
 	// The name of the transformation.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -186,12 +190,16 @@ type transformationState struct {
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed *bool `pulumi:"deletionAllowed"`
+	// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+	FpeAlgorithm *string `pulumi:"fpeAlgorithm"`
 	// Specifies the mapping mode for stored values.
 	// Can be "default" or "exportable". Only used when `type` is "tokenization".
 	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
 	MappingMode *string `pulumi:"mappingMode"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
+	// The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MaxTweakLen *int `pulumi:"maxTweakLen"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -224,12 +232,16 @@ type TransformationState struct {
 	// Otherwise, deletion is blocked while this value remains false. Default: `false`
 	// *Only supported on vault-1.12+*
 	DeletionAllowed pulumi.BoolPtrInput
+	// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+	FpeAlgorithm pulumi.StringPtrInput
 	// Specifies the mapping mode for stored values.
 	// Can be "default" or "exportable". Only used when `type` is "tokenization".
 	// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
 	MappingMode pulumi.StringPtrInput
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrInput
+	// The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MaxTweakLen pulumi.IntPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -272,6 +284,8 @@ type transformationArgs struct {
 	MappingMode *string `pulumi:"mappingMode"`
 	// The character used to replace data when in masking mode
 	MaskingCharacter *string `pulumi:"maskingCharacter"`
+	// The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MaxTweakLen *int `pulumi:"maxTweakLen"`
 	// The name of the transformation.
 	Name *string `pulumi:"name"`
 	// The namespace to provision the resource in.
@@ -311,6 +325,8 @@ type TransformationArgs struct {
 	MappingMode pulumi.StringPtrInput
 	// The character used to replace data when in masking mode
 	MaskingCharacter pulumi.StringPtrInput
+	// The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+	MaxTweakLen pulumi.IntPtrInput
 	// The name of the transformation.
 	Name pulumi.StringPtrInput
 	// The namespace to provision the resource in.
@@ -438,6 +454,11 @@ func (o TransformationOutput) DeletionAllowed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.BoolPtrOutput { return v.DeletionAllowed }).(pulumi.BoolPtrOutput)
 }
 
+// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+func (o TransformationOutput) FpeAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.StringOutput { return v.FpeAlgorithm }).(pulumi.StringOutput)
+}
+
 // Specifies the mapping mode for stored values.
 // Can be "default" or "exportable". Only used when `type` is "tokenization".
 // **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
@@ -448,6 +469,11 @@ func (o TransformationOutput) MappingMode() pulumi.StringPtrOutput {
 // The character used to replace data when in masking mode
 func (o TransformationOutput) MaskingCharacter() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Transformation) pulumi.StringPtrOutput { return v.MaskingCharacter }).(pulumi.StringPtrOutput)
+}
+
+// The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+func (o TransformationOutput) MaxTweakLen() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Transformation) pulumi.IntPtrOutput { return v.MaxTweakLen }).(pulumi.IntPtrOutput)
 }
 
 // The name of the transformation.

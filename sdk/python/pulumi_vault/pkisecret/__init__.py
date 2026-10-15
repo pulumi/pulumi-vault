@@ -13,6 +13,8 @@ from .backend_config_cluster import *
 from .backend_config_cmpv2 import *
 from .backend_config_est import *
 from .backend_config_scep import *
+from .backend_export_key import *
+from .backend_wrapped_key_import import *
 from .get_backend_cert_metadata import *
 from .get_backend_config_cmpv2 import *
 from .get_backend_config_est import *
