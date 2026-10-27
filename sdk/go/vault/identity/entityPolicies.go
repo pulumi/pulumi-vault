@@ -43,7 +43,7 @@ import (
 //					pulumi.String("test"),
 //				},
 //				Exclusive: pulumi.Bool(true),
-//				EntityId:  entity.ID().ToIDOutput().ToStringOutput(),
+//				EntityId:  entity.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -81,7 +81,7 @@ import (
 //					pulumi.String("test"),
 //				},
 //				Exclusive: pulumi.Bool(false),
-//				EntityId:  entity.ID().ToIDOutput().ToStringOutput(),
+//				EntityId:  entity.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -91,7 +91,7 @@ import (
 //					pulumi.String("others"),
 //				},
 //				Exclusive: pulumi.Bool(false),
-//				EntityId:  entity.ID().ToIDOutput().ToStringOutput(),
+//				EntityId:  entity.ID(),
 //			})
 //			if err != nil {
 //				return err

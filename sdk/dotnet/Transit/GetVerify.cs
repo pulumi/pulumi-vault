@@ -15,6 +15,25 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to verify a signature using a Vault Transit key.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Vault.Transit.GetVerify.Invoke(new()
+        ///     {
+        ///         Path = "transit",
+        ///         Key = "test",
+        ///         Signature = "vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==",
+        ///         Input = "aGVsbG8gd29ybGQ=",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetVerifyResult> InvokeAsync(GetVerifyArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVerifyResult>("vault:transit/getVerify:getVerify", args ?? new GetVerifyArgs(), options.WithDefaults());
@@ -23,6 +42,25 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to verify a signature using a Vault Transit key.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Vault.Transit.GetVerify.Invoke(new()
+        ///     {
+        ///         Path = "transit",
+        ///         Key = "test",
+        ///         Signature = "vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==",
+        ///         Input = "aGVsbG8gd29ybGQ=",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetVerifyResult> Invoke(GetVerifyInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVerifyResult>("vault:transit/getVerify:getVerify", args ?? new GetVerifyInvokeArgs(), options.WithDefaults());
@@ -31,6 +69,25 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to verify a signature using a Vault Transit key.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Vault.Transit.GetVerify.Invoke(new()
+        ///     {
+        ///         Path = "transit",
+        ///         Key = "test",
+        ///         Signature = "vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==",
+        ///         Input = "aGVsbG8gd29ybGQ=",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetVerifyResult> Invoke(GetVerifyInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetVerifyResult>("vault:transit/getVerify:getVerify", args ?? new GetVerifyInvokeArgs(), options.WithDefaults());

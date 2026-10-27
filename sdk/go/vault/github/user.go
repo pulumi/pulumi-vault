@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_, err = github.NewUser(ctx, "tf_user", &github.UserArgs{
-//				Backend: example.ID().ToIDOutput().ToStringOutput(),
+//				Backend: example.ID(),
 //				User:    pulumi.String("john.doe"),
 //				Policies: pulumi.StringArray{
 //					pulumi.String("developer"),

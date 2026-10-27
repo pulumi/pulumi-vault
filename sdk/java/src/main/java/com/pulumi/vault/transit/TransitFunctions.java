@@ -487,6 +487,39 @@ public final class TransitFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetSignArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetSignResult> getSign(GetSignArgs args) {
         return getSign(args, InvokeOptions.Empty);
@@ -495,6 +528,39 @@ public final class TransitFunctions {
      * This is a data source which can be used to generate a signature using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetSignArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetSignResult> getSignPlain(GetSignPlainArgs args) {
@@ -505,6 +571,39 @@ public final class TransitFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetSignArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetSignResult> getSign(GetSignArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("vault:transit/getSign:getSign", TypeShape.of(GetSignResult.class), args, Utilities.withVersion(options));
@@ -513,6 +612,39 @@ public final class TransitFunctions {
      * This is a data source which can be used to generate a signature using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetSignArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetSignResult> getSign(GetSignArgs args, InvokeOutputOptions options) {
@@ -523,6 +655,39 @@ public final class TransitFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetSignArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getSign(GetSignArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetSignResult> getSignPlain(GetSignPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:transit/getSign:getSign", TypeShape.of(GetSignResult.class), args, Utilities.withVersion(options));
@@ -531,6 +696,40 @@ public final class TransitFunctions {
      * This is a data source which can be used to verify a signature using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetVerifyResult> getVerify(GetVerifyArgs args) {
@@ -541,6 +740,40 @@ public final class TransitFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetVerifyResult> getVerifyPlain(GetVerifyPlainArgs args) {
         return getVerifyPlain(args, InvokeOptions.Empty);
@@ -549,6 +782,40 @@ public final class TransitFunctions {
      * This is a data source which can be used to verify a signature using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetVerifyResult> getVerify(GetVerifyArgs args, InvokeOptions options) {
@@ -559,6 +826,40 @@ public final class TransitFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetVerifyResult> getVerify(GetVerifyArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("vault:transit/getVerify:getVerify", TypeShape.of(GetVerifyResult.class), args, Utilities.withVersion(options));
@@ -567,6 +868,40 @@ public final class TransitFunctions {
      * This is a data source which can be used to verify a signature using a Vault Transit key.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetVerifyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = TransitFunctions.getVerify(GetVerifyArgs.builder()
+     *             .path("transit")
+     *             .key("test")
+     *             .signature("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==")
+     *             .input("aGVsbG8gd29ybGQ=")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetVerifyResult> getVerifyPlain(GetVerifyPlainArgs args, InvokeOptions options) {

@@ -14,6 +14,33 @@ import (
 // This is a data source which can be used to verify a signature using a Vault Transit key.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transit"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := transit.GetVerify(ctx, &transit.GetVerifyArgs{
+//				Path:      "transit",
+//				Key:       "test",
+//				Signature: pulumi.StringRef("vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ=="),
+//				Input:     pulumi.StringRef("aGVsbG8gd29ybGQ="),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetVerify(ctx *pulumi.Context, args *GetVerifyArgs, opts ...pulumi.InvokeOption) (*GetVerifyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVerifyResult

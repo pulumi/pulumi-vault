@@ -8,6 +8,18 @@ import * as utilities from "../utilities";
  * This is a data source which can be used to verify a signature using a Vault Transit key.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = vault.transit.getVerify({
+ *     path: "transit",
+ *     key: "test",
+ *     signature: "vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==",
+ *     input: "aGVsbG8gd29ybGQ=",
+ * });
+ * ```
  */
 export function getVerify(args: GetVerifyArgs, opts?: pulumi.InvokeOptions): Promise<GetVerifyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -103,6 +115,18 @@ export interface GetVerifyResult {
  * This is a data source which can be used to verify a signature using a Vault Transit key.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = vault.transit.getVerify({
+ *     path: "transit",
+ *     key: "test",
+ *     signature: "vault:v1:4kYRAVY/Q/6jjA3CT7HPhxKO+ru/4PhyGKBLRpn9DSeT99McPXEk302NXtzCzsvbSOZPif7f32tlr58iYoxjCQ==",
+ *     input: "aGVsbG8gd29ybGQ=",
+ * });
+ * ```
  */
 export function getVerifyOutput(args: GetVerifyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVerifyResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
