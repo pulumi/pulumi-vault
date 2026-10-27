@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-vault/provider/v7
 
-go 1.27.2
+go 1.27.3
 
 require (
 	github.com/hashicorp/terraform-provider-vault v0.0.0
