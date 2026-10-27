@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			scepChallenge, err := vault.NewScepAuthBackendRole(ctx, "scep_challenge", &vault.ScepAuthBackendRoleArgs{
-//				Backend:     scep.ID().ToIDOutput().ToStringOutput(),
+//				Backend:     scep.ID(),
 //				Name:        pulumi.String("scep-auth"),
 //				DisplayName: pulumi.String("Static challenge for SCEP clients"),
 //				AuthType:    pulumi.String("static-challenge"),

@@ -53,7 +53,7 @@ import (
 //			}
 //			_, err = vault.NewScimClient(ctx, "okta", &vault.ScimClientArgs{
 //				ClientName:           pulumi.String("okta-prod"),
-//				AccessGrantPrincipal: scimOperator.ID().ToIDOutput().ToStringOutput(),
+//				AccessGrantPrincipal: scimOperator.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -101,7 +101,7 @@ import (
 //			}
 //			_, err = vault.NewScimClient(ctx, "okta", &vault.ScimClientArgs{
 //				ClientName:           pulumi.String("okta-prod"),
-//				AccessGrantPrincipal: scimOperator.ID().ToIDOutput().ToStringOutput(),
+//				AccessGrantPrincipal: scimOperator.ID(),
 //				AliasMountAccessor:   userpass.Accessor,
 //				AllowedExtraAliasMountAccessors: pulumi.StringArray{
 //					extra.Accessor,

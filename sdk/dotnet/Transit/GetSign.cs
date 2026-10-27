@@ -15,6 +15,24 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to generate a signature using a Vault Transit key.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Vault.Transit.GetSign.Invoke(new()
+        ///     {
+        ///         Path = "transit",
+        ///         Key = "test",
+        ///         Input = "aGVsbG8gd29ybGQ=",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetSignResult> InvokeAsync(GetSignArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSignResult>("vault:transit/getSign:getSign", args ?? new GetSignArgs(), options.WithDefaults());
@@ -23,6 +41,24 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to generate a signature using a Vault Transit key.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Vault.Transit.GetSign.Invoke(new()
+        ///     {
+        ///         Path = "transit",
+        ///         Key = "test",
+        ///         Input = "aGVsbG8gd29ybGQ=",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetSignResult> Invoke(GetSignInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSignResult>("vault:transit/getSign:getSign", args ?? new GetSignInvokeArgs(), options.WithDefaults());
@@ -31,6 +67,24 @@ namespace Pulumi.Vault.Transit
         /// This is a data source which can be used to generate a signature using a Vault Transit key.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Vault = Pulumi.Vault;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Vault.Transit.GetSign.Invoke(new()
+        ///     {
+        ///         Path = "transit",
+        ///         Key = "test",
+        ///         Input = "aGVsbG8gd29ybGQ=",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetSignResult> Invoke(GetSignInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSignResult>("vault:transit/getSign:getSign", args ?? new GetSignInvokeArgs(), options.WithDefaults());

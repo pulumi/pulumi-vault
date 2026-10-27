@@ -14,6 +14,32 @@ import (
 // This is a data source which can be used to generate a signature using a Vault Transit key.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/transit"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := transit.GetSign(ctx, &transit.GetSignArgs{
+//				Path:  "transit",
+//				Key:   "test",
+//				Input: pulumi.StringRef("aGVsbG8gd29ybGQ="),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetSign(ctx *pulumi.Context, args *GetSignArgs, opts ...pulumi.InvokeOption) (*GetSignResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSignResult

@@ -8,6 +8,17 @@ import * as utilities from "../utilities";
  * This is a data source which can be used to generate a signature using a Vault Transit key.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = vault.transit.getSign({
+ *     path: "transit",
+ *     key: "test",
+ *     input: "aGVsbG8gd29ybGQ=",
+ * });
+ * ```
  */
 export function getSign(args: GetSignArgs, opts?: pulumi.InvokeOptions): Promise<GetSignResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -94,6 +105,17 @@ export interface GetSignResult {
  * This is a data source which can be used to generate a signature using a Vault Transit key.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as vault from "@pulumi/vault";
+ *
+ * const test = vault.transit.getSign({
+ *     path: "transit",
+ *     key: "test",
+ *     input: "aGVsbG8gd29ybGQ=",
+ * });
+ * ```
  */
 export function getSignOutput(args: GetSignOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSignResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

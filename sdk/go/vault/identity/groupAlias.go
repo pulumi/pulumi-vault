@@ -51,7 +51,7 @@ import (
 //			_, err = identity.NewGroupAlias(ctx, "group-alias", &identity.GroupAliasArgs{
 //				Name:          pulumi.String("Github_Team_Slug"),
 //				MountAccessor: github.Accessor,
-//				CanonicalId:   group.ID().ToIDOutput().ToStringOutput(),
+//				CanonicalId:   group.ID(),
 //			})
 //			if err != nil {
 //				return err
