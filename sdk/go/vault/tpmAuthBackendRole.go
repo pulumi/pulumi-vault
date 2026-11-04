@@ -243,6 +243,12 @@ func (TpmAuthBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tpmAuthBackendRoleState)(nil)).Elem()
 }
 
+// TpmAuthBackendRoleExists checks whether an existing TpmAuthBackendRole resource with the given ID exists.
+func TpmAuthBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TpmAuthBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/tpmAuthBackendRole:TpmAuthBackendRole", id, state, "", opts...)
+}
+
 type tpmAuthBackendRoleArgs struct {
 	// A map of string to string that will be set as metadata on the identity alias
 	AliasMetadata map[string]string `pulumi:"aliasMetadata"`

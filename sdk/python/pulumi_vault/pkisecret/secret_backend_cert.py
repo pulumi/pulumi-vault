@@ -1315,6 +1315,78 @@ class SecretBackendCert(pulumi.CustomResource):
         __props__.__dict__["user_ids"] = user_ids
         return SecretBackendCert(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alt_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            auto_renew: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            ca_chain: pulumi.Input[Optional[_builtins.str]] = None,
+            cert_metadata: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            common_name: pulumi.Input[Optional[_builtins.str]] = None,
+            exclude_cn_from_sans: pulumi.Input[Optional[_builtins.bool]] = None,
+            expiration: pulumi.Input[Optional[_builtins.int]] = None,
+            format: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+            issuing_ca: pulumi.Input[Optional[_builtins.str]] = None,
+            jks_password: pulumi.Input[Optional[_builtins.str]] = None,
+            jks_private_key_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            min_seconds_remaining: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            not_after: pulumi.Input[Optional[_builtins.str]] = None,
+            other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            pkcs12_encoder: pulumi.Input[Optional[_builtins.str]] = None,
+            pkcs12_password: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            remove_roots_from_chain: pulumi.Input[Optional[_builtins.bool]] = None,
+            renew_pending: pulumi.Input[Optional[_builtins.bool]] = None,
+            revoke: pulumi.Input[Optional[_builtins.bool]] = None,
+            revoke_with_key: pulumi.Input[Optional[_builtins.bool]] = None,
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["altNames"] = alt_names
+        __props__["autoRenew"] = auto_renew
+        __props__["backend"] = backend
+        __props__["caChain"] = ca_chain
+        __props__["certMetadata"] = cert_metadata
+        __props__["certificate"] = certificate
+        __props__["commonName"] = common_name
+        __props__["excludeCnFromSans"] = exclude_cn_from_sans
+        __props__["expiration"] = expiration
+        __props__["format"] = format
+        __props__["ipSans"] = ip_sans
+        __props__["issuerRef"] = issuer_ref
+        __props__["issuingCa"] = issuing_ca
+        __props__["jksPassword"] = jks_password
+        __props__["jksPrivateKeyAlias"] = jks_private_key_alias
+        __props__["minSecondsRemaining"] = min_seconds_remaining
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["notAfter"] = not_after
+        __props__["otherSans"] = other_sans
+        __props__["pkcs12Encoder"] = pkcs12_encoder
+        __props__["pkcs12Password"] = pkcs12_password
+        __props__["privateKey"] = private_key
+        __props__["privateKeyFormat"] = private_key_format
+        __props__["privateKeyType"] = private_key_type
+        __props__["removeRootsFromChain"] = remove_roots_from_chain
+        __props__["renewPending"] = renew_pending
+        __props__["revoke"] = revoke
+        __props__["revokeWithKey"] = revoke_with_key
+        __props__["serialNumber"] = serial_number
+        __props__["ttl"] = ttl
+        __props__["uriSans"] = uri_sans
+        __props__["userIds"] = user_ids
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/secretBackendCert:SecretBackendCert', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="altNames")
     def alt_names(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

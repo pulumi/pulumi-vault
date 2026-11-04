@@ -144,6 +144,12 @@ func (SecretScopeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretScopeState)(nil)).Elem()
 }
 
+// SecretScopeExists checks whether an existing SecretScope resource with the given ID exists.
+func SecretScopeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretScopeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kmip/secretScope:SecretScope", id, state, "", opts...)
+}
+
 type secretScopeArgs struct {
 	// Boolean field to force deletion even if there are managed objects in the scope.
 	Force *bool `pulumi:"force"`

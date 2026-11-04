@@ -168,6 +168,12 @@ func (KeyRotateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyRotateState)(nil)).Elem()
 }
 
+// KeyRotateExists checks whether an existing KeyRotate resource with the given ID exists.
+func KeyRotateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyRotateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:keymgmt/keyRotate:KeyRotate", id, state, "", opts...)
+}
+
 type keyRotateArgs struct {
 	// Path of the Key Management secrets engine mount. Must match the
 	// `path` of a `Mount` resource with `type = "keymgmt"`. Use

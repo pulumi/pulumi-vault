@@ -179,6 +179,12 @@ func (RaftAutopilotState) ElementType() reflect.Type {
 	return reflect.TypeOf((*raftAutopilotState)(nil)).Elem()
 }
 
+// RaftAutopilotExists checks whether an existing RaftAutopilot resource with the given ID exists.
+func RaftAutopilotExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RaftAutopilotState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/raftAutopilot:RaftAutopilot", id, state, "", opts...)
+}
+
 type raftAutopilotArgs struct {
 	// Specifies whether to remove dead server nodes
 	// periodically or when a new server joins. This requires that `min-quorum` is also set.

@@ -461,6 +461,22 @@ class Keys(pulumi.CustomResource):
         __props__.__dict__["pkcs"] = pkcs
         return Keys(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aws: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAwArgs', 'KeysAwArgsDict', 'outputs.KeysAw']]]]] = None,
+            azures: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysAzureArgs', 'KeysAzureArgsDict', 'outputs.KeysAzure']]]]] = None,
+            gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysGcpArgs', 'KeysGcpArgsDict', 'outputs.KeysGcp']]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            pkcs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['KeysPkcArgs', 'KeysPkcArgsDict', 'outputs.KeysPkc']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aws"] = aws
+        __props__["azures"] = azures
+        __props__["gcps"] = gcps
+        __props__["namespace"] = namespace
+        __props__["pkcs"] = pkcs
+        return pulumi.runtime.exists_resource(None, 'vault:managed/keys:Keys', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def aws(self) -> pulumi.Output[Optional[Sequence['outputs.KeysAw']]]:

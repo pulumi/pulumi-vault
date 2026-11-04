@@ -584,6 +584,28 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            assume_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            assume_role_session_name: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["assumeRoleArn"] = assume_role_arn
+        __props__["assumeRoleSessionName"] = assume_role_session_name
+        __props__["backend"] = backend
+        __props__["externalId"] = external_id
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["rotationPeriod"] = rotation_period
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'vault:aws/secretBackendStaticRole:SecretBackendStaticRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="assumeRoleArn")
     def assume_role_arn(self) -> pulumi.Output[Optional[_builtins.str]]:

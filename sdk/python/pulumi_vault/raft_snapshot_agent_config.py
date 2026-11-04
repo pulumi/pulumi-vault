@@ -1664,6 +1664,78 @@ class RaftSnapshotAgentConfig(pulumi.CustomResource):
         __props__.__dict__["storage_type"] = storage_type
         return RaftSnapshotAgentConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            autoload_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_s3_enable_kms: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_s3_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_force_path_style: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_s3_kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_region: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_s3_server_side_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            aws_secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_session_token: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_auth_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_blob_environment: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            file_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            google_disable_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+            google_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            google_gcs_bucket: pulumi.Input[Optional[_builtins.str]] = None,
+            google_service_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+            interval_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            local_max_space: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            retain: pulumi.Input[Optional[_builtins.int]] = None,
+            secrets_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            storage_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoloadEnabled"] = autoload_enabled
+        __props__["awsAccessKeyId"] = aws_access_key_id
+        __props__["awsS3Bucket"] = aws_s3_bucket
+        __props__["awsS3DisableTls"] = aws_s3_disable_tls
+        __props__["awsS3EnableKms"] = aws_s3_enable_kms
+        __props__["awsS3Endpoint"] = aws_s3_endpoint
+        __props__["awsS3ForcePathStyle"] = aws_s3_force_path_style
+        __props__["awsS3KmsKey"] = aws_s3_kms_key
+        __props__["awsS3Region"] = aws_s3_region
+        __props__["awsS3ServerSideEncryption"] = aws_s3_server_side_encryption
+        __props__["awsSecretAccessKey"] = aws_secret_access_key
+        __props__["awsSecretAccessKeyWo"] = aws_secret_access_key_wo
+        __props__["awsSessionToken"] = aws_session_token
+        __props__["azureAccountKey"] = azure_account_key
+        __props__["azureAccountName"] = azure_account_name
+        __props__["azureAuthMode"] = azure_auth_mode
+        __props__["azureBlobEnvironment"] = azure_blob_environment
+        __props__["azureClientId"] = azure_client_id
+        __props__["azureContainerName"] = azure_container_name
+        __props__["azureEndpoint"] = azure_endpoint
+        __props__["filePrefix"] = file_prefix
+        __props__["googleDisableTls"] = google_disable_tls
+        __props__["googleEndpoint"] = google_endpoint
+        __props__["googleGcsBucket"] = google_gcs_bucket
+        __props__["googleServiceAccountKey"] = google_service_account_key
+        __props__["intervalSeconds"] = interval_seconds
+        __props__["localMaxSpace"] = local_max_space
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["pathPrefix"] = path_prefix
+        __props__["retain"] = retain
+        __props__["secretsWoVersion"] = secrets_wo_version
+        __props__["storageType"] = storage_type
+        return pulumi.runtime.exists_resource(None, 'vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoloadEnabled")
     def autoload_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:

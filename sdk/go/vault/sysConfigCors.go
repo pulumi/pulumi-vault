@@ -231,6 +231,12 @@ func (SysConfigCorsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*sysConfigCorsState)(nil)).Elem()
 }
 
+// SysConfigCorsExists checks whether an existing SysConfigCors resource with the given ID exists.
+func SysConfigCorsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SysConfigCorsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/sysConfigCors:SysConfigCors", id, state, "", opts...)
+}
+
 type sysConfigCorsArgs struct {
 	// Set of additional custom headers allowed on cross-origin requests. Vault automatically includes standard headers, so only specify custom headers here. The standard headers that are always included are:
 	// - `Content-Type`

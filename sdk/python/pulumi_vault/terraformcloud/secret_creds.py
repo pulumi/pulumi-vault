@@ -422,6 +422,28 @@ class SecretCreds(pulumi.CustomResource):
         __props__.__dict__["token_id"] = token_id
         return SecretCreds(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            lease_id: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            organization: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            token_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["leaseId"] = lease_id
+        __props__["namespace"] = namespace
+        __props__["organization"] = organization
+        __props__["role"] = role
+        __props__["teamId"] = team_id
+        __props__["token"] = token
+        __props__["tokenId"] = token_id
+        return pulumi.runtime.exists_resource(None, 'vault:terraformcloud/secretCreds:SecretCreds', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

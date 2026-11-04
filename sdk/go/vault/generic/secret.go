@@ -221,6 +221,12 @@ func (SecretState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretState)(nil)).Elem()
 }
 
+// SecretExists checks whether an existing Secret resource with the given ID exists.
+func SecretExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:generic/secret:Secret", id, state, "", opts...)
+}
+
 type secretArgs struct {
 	// String containing a JSON-encoded object that will be
 	// written as the secret data at the given path.

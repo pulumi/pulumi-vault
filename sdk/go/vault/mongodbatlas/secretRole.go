@@ -216,6 +216,12 @@ func (SecretRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretRoleState)(nil)).Elem()
 }
 
+// SecretRoleExists checks whether an existing SecretRole resource with the given ID exists.
+func SecretRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:mongodbatlas/secretRole:SecretRole", id, state, "", opts...)
+}
+
 type secretRoleArgs struct {
 	// Whitelist entry in CIDR notation to be added for the API key.
 	CidrBlocks []string `pulumi:"cidrBlocks"`

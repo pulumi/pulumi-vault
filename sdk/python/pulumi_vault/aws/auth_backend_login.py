@@ -888,6 +888,50 @@ class AuthBackendLogin(pulumi.CustomResource):
         __props__.__dict__["signature"] = signature
         return AuthBackendLogin(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            client_token: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_http_request_method: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_request_body: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_request_headers: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_request_url: pulumi.Input[Optional[_builtins.str]] = None,
+            identity: pulumi.Input[Optional[_builtins.str]] = None,
+            lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+            lease_start_time: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            nonce: pulumi.Input[Optional[_builtins.str]] = None,
+            pkcs7: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            signature: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["authType"] = auth_type
+        __props__["backend"] = backend
+        __props__["clientToken"] = client_token
+        __props__["iamHttpRequestMethod"] = iam_http_request_method
+        __props__["iamRequestBody"] = iam_request_body
+        __props__["iamRequestHeaders"] = iam_request_headers
+        __props__["iamRequestUrl"] = iam_request_url
+        __props__["identity"] = identity
+        __props__["leaseDuration"] = lease_duration
+        __props__["leaseStartTime"] = lease_start_time
+        __props__["metadata"] = metadata
+        __props__["namespace"] = namespace
+        __props__["nonce"] = nonce
+        __props__["pkcs7"] = pkcs7
+        __props__["policies"] = policies
+        __props__["renewable"] = renewable
+        __props__["role"] = role
+        __props__["signature"] = signature
+        return pulumi.runtime.exists_resource(None, 'vault:aws/authBackendLogin:AuthBackendLogin', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

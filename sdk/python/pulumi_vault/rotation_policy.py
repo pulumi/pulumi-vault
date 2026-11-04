@@ -326,6 +326,20 @@ class RotationPolicy(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return RotationPolicy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            max_retries_per_cycle: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retry_cycles: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["maxRetriesPerCycle"] = max_retries_per_cycle
+        __props__["maxRetryCycles"] = max_retry_cycles
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:index/rotationPolicy:RotationPolicy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="maxRetriesPerCycle")
     def max_retries_per_cycle(self) -> pulumi.Output[_builtins.int]:

@@ -319,6 +319,12 @@ func (SecretBackendSignState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendSignState)(nil)).Elem()
 }
 
+// SecretBackendSignExists checks whether an existing SecretBackendSign resource with the given ID exists.
+func SecretBackendSignExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendSignState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendSign:SecretBackendSign", id, state, "", opts...)
+}
+
 type secretBackendSignArgs struct {
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`

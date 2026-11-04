@@ -188,6 +188,12 @@ func (SecretBackendLibrarySetState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendLibrarySetState)(nil)).Elem()
 }
 
+// SecretBackendLibrarySetExists checks whether an existing SecretBackendLibrarySet resource with the given ID exists.
+func SecretBackendLibrarySetExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendLibrarySetState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ldap/secretBackendLibrarySet:SecretBackendLibrarySet", id, state, "", opts...)
+}
+
 type secretBackendLibrarySetArgs struct {
 	// Disable enforcing that service
 	// accounts must be checked in by the entity or client token that checked them

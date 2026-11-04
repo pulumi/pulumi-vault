@@ -207,6 +207,12 @@ func (ScepAuthBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scepAuthBackendRoleState)(nil)).Elem()
 }
 
+// ScepAuthBackendRoleExists checks whether an existing ScepAuthBackendRole resource with the given ID exists.
+func ScepAuthBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScepAuthBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/scepAuthBackendRole:ScepAuthBackendRole", id, state, "", opts...)
+}
+
 type scepAuthBackendRoleArgs struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.

@@ -490,6 +490,26 @@ class OidcProvider(pulumi.CustomResource):
         __props__.__dict__["scopes_supporteds"] = scopes_supporteds
         return OidcProvider(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_client_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            https_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_host: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            scopes_supporteds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedClientIds"] = allowed_client_ids
+        __props__["httpsEnabled"] = https_enabled
+        __props__["issuer"] = issuer
+        __props__["issuerHost"] = issuer_host
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["scopesSupporteds"] = scopes_supporteds
+        return pulumi.runtime.exists_resource(None, 'vault:identity/oidcProvider:OidcProvider', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedClientIds")
     def allowed_client_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

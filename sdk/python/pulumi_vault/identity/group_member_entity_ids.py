@@ -407,6 +407,20 @@ class GroupMemberEntityIds(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return GroupMemberEntityIds(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+            group_id: pulumi.Input[Optional[_builtins.str]] = None,
+            member_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["exclusive"] = exclusive
+        __props__["groupId"] = group_id
+        __props__["memberEntityIds"] = member_entity_ids
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:identity/groupMemberEntityIds:GroupMemberEntityIds', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def exclusive(self) -> pulumi.Output[Optional[_builtins.bool]]:

@@ -196,6 +196,12 @@ func (OciAuthBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ociAuthBackendState)(nil)).Elem()
 }
 
+// OciAuthBackendExists checks whether an existing OciAuthBackend resource with the given ID exists.
+func OciAuthBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OciAuthBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/ociAuthBackend:OciAuthBackend", id, state, "", opts...)
+}
+
 type ociAuthBackendArgs struct {
 	// A description of the auth backend.
 	Description *string `pulumi:"description"`

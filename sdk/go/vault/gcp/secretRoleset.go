@@ -191,6 +191,12 @@ func (SecretRolesetState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretRolesetState)(nil)).Elem()
 }
 
+// SecretRolesetExists checks whether an existing SecretRoleset resource with the given ID exists.
+func SecretRolesetExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretRolesetState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:gcp/secretRoleset:SecretRoleset", id, state, "", opts...)
+}
+
 type secretRolesetArgs struct {
 	// Path where the GCP Secrets Engine is mounted
 	Backend string `pulumi:"backend"`

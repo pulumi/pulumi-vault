@@ -60,6 +60,17 @@ export class SecretBackendDnsProviderGcp extends pulumi.CustomResource {
         return new SecretBackendDnsProviderGcp(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing SecretBackendDnsProviderGcp resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: SecretBackendDnsProviderGcpState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp';
 

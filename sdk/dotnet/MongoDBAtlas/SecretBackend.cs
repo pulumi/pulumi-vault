@@ -133,7 +133,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         public Output<string?> PrivateKeyWo { get; private set; } = null!;
 
         /// <summary>
-        /// An incrementing version counter. Increment this value to force an update 
+        /// An incrementing version counter. Increment this value to force an update
         /// to the private key. Required when using `PrivateKeyWo`.
         /// </summary>
         [Output("privateKeyWoVersion")]
@@ -246,7 +246,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         }
 
         /// <summary>
-        /// An incrementing version counter. Increment this value to force an update 
+        /// An incrementing version counter. Increment this value to force an update
         /// to the private key. Required when using `PrivateKeyWo`.
         /// </summary>
         [Input("privateKeyWoVersion")]
@@ -322,7 +322,7 @@ namespace Pulumi.Vault.MongoDBAtlas
         }
 
         /// <summary>
-        /// An incrementing version counter. Increment this value to force an update 
+        /// An incrementing version counter. Increment this value to force an update
         /// to the private key. Required when using `PrivateKeyWo`.
         /// </summary>
         [Input("privateKeyWoVersion")]

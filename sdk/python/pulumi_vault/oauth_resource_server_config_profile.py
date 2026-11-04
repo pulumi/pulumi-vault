@@ -1203,6 +1203,50 @@ class OauthResourceServerConfigProfile(pulumi.CustomResource):
         __props__.__dict__["user_claim"] = user_claim
         return OauthResourceServerConfigProfile(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            actor_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            authorization_details_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            jwks_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            jwks_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            jwt_type: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
+            profile_name: pulumi.Input[Optional[_builtins.str]] = None,
+            public_keys: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OauthResourceServerConfigProfilePublicKeyArgs', 'OauthResourceServerConfigProfilePublicKeyArgsDict', 'outputs.OauthResourceServerConfigProfilePublicKey']]]]] = None,
+            supported_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            unique_id_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            use_jwks: pulumi.Input[Optional[_builtins.bool]] = None,
+            user_claim: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["actorClaim"] = actor_claim
+        __props__["audiences"] = audiences
+        __props__["authorizationDetailsClaim"] = authorization_details_claim
+        __props__["clockSkewLeeway"] = clock_skew_leeway
+        __props__["enabled"] = enabled
+        __props__["issuerId"] = issuer_id
+        __props__["jwksCaPem"] = jwks_ca_pem
+        __props__["jwksUri"] = jwks_uri
+        __props__["jwtType"] = jwt_type
+        __props__["local"] = local
+        __props__["namespace"] = namespace
+        __props__["noDefaultPolicy"] = no_default_policy
+        __props__["optionalAuthorizationDetails"] = optional_authorization_details
+        __props__["profileName"] = profile_name
+        __props__["publicKeys"] = public_keys
+        __props__["supportedAlgorithms"] = supported_algorithms
+        __props__["uniqueIdClaim"] = unique_id_claim
+        __props__["useJwks"] = use_jwks
+        __props__["userClaim"] = user_claim
+        return pulumi.runtime.exists_resource(None, 'vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="actorClaim")
     def actor_claim(self) -> pulumi.Output[_builtins.str]:

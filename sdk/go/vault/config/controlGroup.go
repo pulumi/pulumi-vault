@@ -117,6 +117,12 @@ func (ControlGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*controlGroupState)(nil)).Elem()
 }
 
+// ControlGroupExists checks whether an existing ControlGroup resource with the given ID exists.
+func ControlGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ControlGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:config/controlGroup:ControlGroup", id, state, "", opts...)
+}
+
 type controlGroupArgs struct {
 	// The maximum TTL for a control group wrapping token. This value can be specified as a duration string (e.g., "24h", "1h30m") or as an integer number of seconds (e.g., "86400").
 	MaxTtl string `pulumi:"maxTtl"`

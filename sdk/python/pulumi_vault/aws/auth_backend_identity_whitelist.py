@@ -344,6 +344,20 @@ class AuthBackendIdentityWhitelist(pulumi.CustomResource):
         __props__.__dict__["safety_buffer"] = safety_buffer
         return AuthBackendIdentityWhitelist(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_periodic_tidy: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            safety_buffer: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["disablePeriodicTidy"] = disable_periodic_tidy
+        __props__["namespace"] = namespace
+        __props__["safetyBuffer"] = safety_buffer
+        return pulumi.runtime.exists_resource(None, 'vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:

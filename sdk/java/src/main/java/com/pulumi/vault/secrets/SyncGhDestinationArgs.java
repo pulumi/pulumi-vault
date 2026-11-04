@@ -93,7 +93,7 @@ public final class SyncGhDestinationArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The user-defined name of the GitHub App configuration. This is a reference to the name used\
+     * The user-defined name of the GitHub App configuration. This is a reference to the name used&#92;
      * on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
      * Takes precedence over the `accessToken` field.
      * 
@@ -102,7 +102,7 @@ public final class SyncGhDestinationArgs extends com.pulumi.resources.ResourceAr
     private @Nullable Output<String> appName;
 
     /**
-     * @return The user-defined name of the GitHub App configuration. This is a reference to the name used\
+     * @return The user-defined name of the GitHub App configuration. This is a reference to the name used&#92;
      * on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
      * Takes precedence over the `accessToken` field.
      * 
@@ -455,7 +455,7 @@ public final class SyncGhDestinationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param appName The user-defined name of the GitHub App configuration. This is a reference to the name used\
+         * @param appName The user-defined name of the GitHub App configuration. This is a reference to the name used&#92;
          * on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
          * Takes precedence over the `accessToken` field.
          * 
@@ -468,7 +468,7 @@ public final class SyncGhDestinationArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param appName The user-defined name of the GitHub App configuration. This is a reference to the name used\
+         * @param appName The user-defined name of the GitHub App configuration. This is a reference to the name used&#92;
          * on the new endpoint when configuring the GitHub app on the Vault Server. Can be modified.
          * Takes precedence over the `accessToken` field.
          * 

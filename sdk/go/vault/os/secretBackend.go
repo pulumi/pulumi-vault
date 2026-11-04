@@ -234,6 +234,12 @@ func (SecretBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendState)(nil)).Elem()
 }
 
+// SecretBackendExists checks whether an existing SecretBackend resource with the given ID exists.
+func SecretBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:os/secretBackend:SecretBackend", id, state, "", opts...)
+}
+
 type secretBackendArgs struct {
 	// The maximum number of versions to keep. When omitted, Vault applies its server-side default of `10`. If you later remove the field from configuration, Vault retains the current value. Set to `0` to explicitly store zero in Vault.
 	MaxVersions *int `pulumi:"maxVersions"`

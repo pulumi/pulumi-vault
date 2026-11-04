@@ -524,6 +524,38 @@ class MfaOkta(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         return MfaOkta(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_token: pulumi.Input[Optional[_builtins.str]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            method_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_path: pulumi.Input[Optional[_builtins.str]] = None,
+            org_name: pulumi.Input[Optional[_builtins.str]] = None,
+            primary_email: pulumi.Input[Optional[_builtins.bool]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            username_format: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiToken"] = api_token
+        __props__["baseUrl"] = base_url
+        __props__["methodId"] = method_id
+        __props__["mountAccessor"] = mount_accessor
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["namespaceId"] = namespace_id
+        __props__["namespacePath"] = namespace_path
+        __props__["orgName"] = org_name
+        __props__["primaryEmail"] = primary_email
+        __props__["type"] = type
+        __props__["usernameFormat"] = username_format
+        __props__["uuid"] = uuid
+        return pulumi.runtime.exists_resource(None, 'vault:identity/mfaOkta:MfaOkta', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiToken")
     def api_token(self) -> pulumi.Output[_builtins.str]:

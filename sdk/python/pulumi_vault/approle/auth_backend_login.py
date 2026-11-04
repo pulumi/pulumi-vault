@@ -619,6 +619,38 @@ class AuthBackendLogin(pulumi.CustomResource):
         __props__.__dict__["secret_id_wo_version"] = secret_id_wo_version
         return AuthBackendLogin(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            client_token: pulumi.Input[Optional[_builtins.str]] = None,
+            lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+            lease_started: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["backend"] = backend
+        __props__["clientToken"] = client_token
+        __props__["leaseDuration"] = lease_duration
+        __props__["leaseStarted"] = lease_started
+        __props__["metadata"] = metadata
+        __props__["namespace"] = namespace
+        __props__["policies"] = policies
+        __props__["renewable"] = renewable
+        __props__["roleId"] = role_id
+        __props__["secretId"] = secret_id
+        __props__["secretIdWo"] = secret_id_wo
+        __props__["secretIdWoVersion"] = secret_id_wo_version
+        return pulumi.runtime.exists_resource(None, 'vault:appRole/authBackendLogin:AuthBackendLogin', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

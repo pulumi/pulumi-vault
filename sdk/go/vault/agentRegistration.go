@@ -183,6 +183,12 @@ func (AgentRegistrationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*agentRegistrationState)(nil)).Elem()
 }
 
+// AgentRegistrationExists checks whether an existing AgentRegistration resource with the given ID exists.
+func AgentRegistrationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AgentRegistrationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/agentRegistration:AgentRegistration", id, state, "", opts...)
+}
+
 type agentRegistrationArgs struct {
 	// A list of policy names that define the maximum permissions this agent can obtain. These policies act as a ceiling - the agent cannot obtain permissions beyond what these policies allow, even if the entity or token policies would grant more permissions. By default, Vault applies a default ceiling policy unless `noDefaultCeilingPolicy` is set to `true`.
 	CeilingPolicies []string `pulumi:"ceilingPolicies"`

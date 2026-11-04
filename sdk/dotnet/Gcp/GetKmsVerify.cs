@@ -12,7 +12,7 @@ namespace Pulumi.Vault.Gcp
     public static class GetKmsVerify
     {
         /// <summary>
-        /// Verifies a digital signature against a digest using a GCP KMS signing key through Vault. This data source 
+        /// Verifies a digital signature against a digest using a GCP KMS signing key through Vault. This data source
         /// performs read-only signature verification operations.
         /// 
         /// ## Example Usage
@@ -70,7 +70,7 @@ namespace Pulumi.Vault.Gcp
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetKmsVerifyResult>("vault:gcp/getKmsVerify:getKmsVerify", args ?? new GetKmsVerifyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Verifies a digital signature against a digest using a GCP KMS signing key through Vault. This data source 
+        /// Verifies a digital signature against a digest using a GCP KMS signing key through Vault. This data source
         /// performs read-only signature verification operations.
         /// 
         /// ## Example Usage
@@ -128,7 +128,7 @@ namespace Pulumi.Vault.Gcp
             => global::Pulumi.Deployment.Instance.Invoke<GetKmsVerifyResult>("vault:gcp/getKmsVerify:getKmsVerify", args ?? new GetKmsVerifyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Verifies a digital signature against a digest using a GCP KMS signing key through Vault. This data source 
+        /// Verifies a digital signature against a digest using a GCP KMS signing key through Vault. This data source
         /// performs read-only signature verification operations.
         /// 
         /// ## Example Usage

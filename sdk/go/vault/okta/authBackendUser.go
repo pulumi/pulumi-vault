@@ -148,6 +148,12 @@ func (AuthBackendUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendUserState)(nil)).Elem()
 }
 
+// AuthBackendUserExists checks whether an existing AuthBackendUser resource with the given ID exists.
+func AuthBackendUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:okta/authBackendUser:AuthBackendUser", id, state, "", opts...)
+}
+
 type authBackendUserArgs struct {
 	// List of Okta groups to associate with this user
 	Groups []string `pulumi:"groups"`

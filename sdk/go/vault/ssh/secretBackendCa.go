@@ -177,6 +177,12 @@ func (SecretBackendCaState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendCaState)(nil)).Elem()
 }
 
+// SecretBackendCaExists checks whether an existing SecretBackendCa resource with the given ID exists.
+func SecretBackendCaExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendCaState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ssh/secretBackendCa:SecretBackendCa", id, state, "", opts...)
+}
+
 type secretBackendCaArgs struct {
 	// The path where the SSH secret backend is mounted. Defaults to 'ssh'
 	Backend *string `pulumi:"backend"`

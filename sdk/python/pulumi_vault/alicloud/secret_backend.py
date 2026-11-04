@@ -441,6 +441,22 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["secret_key_wo_version"] = secret_key_wo_version
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKey"] = access_key
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["secretKeyWo"] = secret_key_wo
+        __props__["secretKeyWoVersion"] = secret_key_wo_version
+        return pulumi.runtime.exists_resource(None, 'vault:alicloud/secretBackend:SecretBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Output[_builtins.str]:

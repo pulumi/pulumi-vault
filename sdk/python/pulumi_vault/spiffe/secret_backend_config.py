@@ -522,6 +522,28 @@ class SecretBackendConfig(pulumi.CustomResource):
         __props__.__dict__["trust_domain"] = trust_domain
         return SecretBackendConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bundle_refresh_hint: pulumi.Input[Optional[_builtins.str]] = None,
+            jwt_issuer_url: pulumi.Input[Optional[_builtins.str]] = None,
+            jwt_oidc_compatibility_mode: pulumi.Input[Optional[_builtins.bool]] = None,
+            jwt_signing_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            key_lifetime: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            trust_domain: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["bundleRefreshHint"] = bundle_refresh_hint
+        __props__["jwtIssuerUrl"] = jwt_issuer_url
+        __props__["jwtOidcCompatibilityMode"] = jwt_oidc_compatibility_mode
+        __props__["jwtSigningAlgorithm"] = jwt_signing_algorithm
+        __props__["keyLifetime"] = key_lifetime
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["trustDomain"] = trust_domain
+        return pulumi.runtime.exists_resource(None, 'vault:spiffe/secretBackendConfig:SecretBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="bundleRefreshHint")
     def bundle_refresh_hint(self) -> pulumi.Output[_builtins.str]:

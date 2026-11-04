@@ -407,6 +407,22 @@ class QuotaConfig(pulumi.CustomResource):
         __props__.__dict__["rate_limit_exempt_paths"] = rate_limit_exempt_paths
         return QuotaConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            absolute_rate_limit_exempt_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            enable_rate_limit_audit_logging: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_rate_limit_response_headers: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            rate_limit_exempt_paths: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["absoluteRateLimitExemptPaths"] = absolute_rate_limit_exempt_paths
+        __props__["enableRateLimitAuditLogging"] = enable_rate_limit_audit_logging
+        __props__["enableRateLimitResponseHeaders"] = enable_rate_limit_response_headers
+        __props__["namespace"] = namespace
+        __props__["rateLimitExemptPaths"] = rate_limit_exempt_paths
+        return pulumi.runtime.exists_resource(None, 'vault:index/quotaConfig:QuotaConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="absoluteRateLimitExemptPaths")
     def absolute_rate_limit_exempt_paths(self) -> pulumi.Output[Sequence[_builtins.str]]:

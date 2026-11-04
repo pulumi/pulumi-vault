@@ -206,7 +206,7 @@ namespace Pulumi.Vault.Kubernetes
     public partial class SecretBackendRole : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// A label selector for Kubernetes namespaces 
+        /// A label selector for Kubernetes namespaces
         /// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
         /// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
         /// If set with `AllowedKubernetesNamespace`, the conditions are `OR`ed.
@@ -215,7 +215,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> AllowedKubernetesNamespaceSelector { get; private set; } = null!;
 
         /// <summary>
-        /// The list of Kubernetes namespaces this role 
+        /// The list of Kubernetes namespaces this role
         /// can generate credentials for. If set to `*` all namespaces are allowed. If set with
         /// `AllowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
         /// </summary>
@@ -230,14 +230,14 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Additional annotations to apply to all generated 
+        /// Additional annotations to apply to all generated
         /// Kubernetes objects.
         /// </summary>
         [Output("extraAnnotations")]
         public Output<ImmutableDictionary<string, string>?> ExtraAnnotations { get; private set; } = null!;
 
         /// <summary>
-        /// Additional labels to apply to all generated Kubernetes 
+        /// Additional labels to apply to all generated Kubernetes
         /// objects.
         /// 
         /// This resource also directly accepts all vault.Mount fields.
@@ -246,7 +246,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<ImmutableDictionary<string, string>?> ExtraLabels { get; private set; } = null!;
 
         /// <summary>
-        /// The Role or ClusterRole rules to use when generating 
+        /// The Role or ClusterRole rules to use when generating
         /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `ServiceAccountName`
         /// and `KubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
         /// when credentials are requested.
@@ -255,7 +255,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> GeneratedRoleRules { get; private set; } = null!;
 
         /// <summary>
-        /// The pre-existing Role or ClusterRole to bind a 
+        /// The pre-existing Role or ClusterRole to bind a
         /// generated service account to. Mutually exclusive with `ServiceAccountName` and
         /// `GeneratedRoleRules`. If set, Kubernetes token, service account, and role
         /// binding objects will be created when credentials are requested.
@@ -264,7 +264,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> KubernetesRoleName { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether the Kubernetes role is a Role or 
+        /// Specifies whether the Kubernetes role is a Role or
         /// ClusterRole.
         /// </summary>
         [Output("kubernetesRoleType")]
@@ -277,7 +277,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The name template to use when generating service accounts, 
+        /// The name template to use when generating service accounts,
         /// roles and role bindings. If unset, a default template is used.
         /// </summary>
         [Output("nameTemplate")]
@@ -367,7 +367,7 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class SecretBackendRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A label selector for Kubernetes namespaces 
+        /// A label selector for Kubernetes namespaces
         /// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
         /// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
         /// If set with `AllowedKubernetesNamespace`, the conditions are `OR`ed.
@@ -379,7 +379,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _allowedKubernetesNamespaces;
 
         /// <summary>
-        /// The list of Kubernetes namespaces this role 
+        /// The list of Kubernetes namespaces this role
         /// can generate credentials for. If set to `*` all namespaces are allowed. If set with
         /// `AllowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
         /// </summary>
@@ -400,7 +400,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputMap<string>? _extraAnnotations;
 
         /// <summary>
-        /// Additional annotations to apply to all generated 
+        /// Additional annotations to apply to all generated
         /// Kubernetes objects.
         /// </summary>
         public InputMap<string> ExtraAnnotations
@@ -413,7 +413,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputMap<string>? _extraLabels;
 
         /// <summary>
-        /// Additional labels to apply to all generated Kubernetes 
+        /// Additional labels to apply to all generated Kubernetes
         /// objects.
         /// 
         /// This resource also directly accepts all vault.Mount fields.
@@ -425,7 +425,7 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The Role or ClusterRole rules to use when generating 
+        /// The Role or ClusterRole rules to use when generating
         /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `ServiceAccountName`
         /// and `KubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
         /// when credentials are requested.
@@ -434,7 +434,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? GeneratedRoleRules { get; set; }
 
         /// <summary>
-        /// The pre-existing Role or ClusterRole to bind a 
+        /// The pre-existing Role or ClusterRole to bind a
         /// generated service account to. Mutually exclusive with `ServiceAccountName` and
         /// `GeneratedRoleRules`. If set, Kubernetes token, service account, and role
         /// binding objects will be created when credentials are requested.
@@ -443,7 +443,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? KubernetesRoleName { get; set; }
 
         /// <summary>
-        /// Specifies whether the Kubernetes role is a Role or 
+        /// Specifies whether the Kubernetes role is a Role or
         /// ClusterRole.
         /// </summary>
         [Input("kubernetesRoleType")]
@@ -456,7 +456,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The name template to use when generating service accounts, 
+        /// The name template to use when generating service accounts,
         /// roles and role bindings. If unset, a default template is used.
         /// </summary>
         [Input("nameTemplate")]
@@ -514,7 +514,7 @@ namespace Pulumi.Vault.Kubernetes
     public sealed class SecretBackendRoleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A label selector for Kubernetes namespaces 
+        /// A label selector for Kubernetes namespaces
         /// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be
         /// of type [LabelSelector](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#labelselector-v1-meta).
         /// If set with `AllowedKubernetesNamespace`, the conditions are `OR`ed.
@@ -526,7 +526,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputList<string>? _allowedKubernetesNamespaces;
 
         /// <summary>
-        /// The list of Kubernetes namespaces this role 
+        /// The list of Kubernetes namespaces this role
         /// can generate credentials for. If set to `*` all namespaces are allowed. If set with
         /// `AllowedKubernetesNamespaceSelector`, the conditions are `OR`ed.
         /// </summary>
@@ -547,7 +547,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputMap<string>? _extraAnnotations;
 
         /// <summary>
-        /// Additional annotations to apply to all generated 
+        /// Additional annotations to apply to all generated
         /// Kubernetes objects.
         /// </summary>
         public InputMap<string> ExtraAnnotations
@@ -560,7 +560,7 @@ namespace Pulumi.Vault.Kubernetes
         private InputMap<string>? _extraLabels;
 
         /// <summary>
-        /// Additional labels to apply to all generated Kubernetes 
+        /// Additional labels to apply to all generated Kubernetes
         /// objects.
         /// 
         /// This resource also directly accepts all vault.Mount fields.
@@ -572,7 +572,7 @@ namespace Pulumi.Vault.Kubernetes
         }
 
         /// <summary>
-        /// The Role or ClusterRole rules to use when generating 
+        /// The Role or ClusterRole rules to use when generating
         /// a role. Accepts either JSON or YAML formatted rules. Mutually exclusive with `ServiceAccountName`
         /// and `KubernetesRoleName`. If set, the entire chain of Kubernetes objects will be generated
         /// when credentials are requested.
@@ -581,7 +581,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? GeneratedRoleRules { get; set; }
 
         /// <summary>
-        /// The pre-existing Role or ClusterRole to bind a 
+        /// The pre-existing Role or ClusterRole to bind a
         /// generated service account to. Mutually exclusive with `ServiceAccountName` and
         /// `GeneratedRoleRules`. If set, Kubernetes token, service account, and role
         /// binding objects will be created when credentials are requested.
@@ -590,7 +590,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? KubernetesRoleName { get; set; }
 
         /// <summary>
-        /// Specifies whether the Kubernetes role is a Role or 
+        /// Specifies whether the Kubernetes role is a Role or
         /// ClusterRole.
         /// </summary>
         [Input("kubernetesRoleType")]
@@ -603,7 +603,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The name template to use when generating service accounts, 
+        /// The name template to use when generating service accounts,
         /// roles and role bindings. If unset, a default template is used.
         /// </summary>
         [Input("nameTemplate")]

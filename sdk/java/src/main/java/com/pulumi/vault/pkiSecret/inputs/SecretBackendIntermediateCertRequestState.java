@@ -502,16 +502,16 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
     }
 
     /**
-     * Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
-     * or \&#34;kms\&#34;
+     * Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34; or &#92;&#34;internal&#92;&#34;
+     * or &#92;&#34;kms&#92;&#34;
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
-     * or \&#34;kms\&#34;
+     * @return Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34; or &#92;&#34;internal&#92;&#34;
+     * or &#92;&#34;kms&#92;&#34;
      * 
      */
     public Optional<Output<String>> type() {
@@ -1299,8 +1299,8 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
         }
 
         /**
-         * @param type Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
-         * or \&#34;kms\&#34;
+         * @param type Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34; or &#92;&#34;internal&#92;&#34;
+         * or &#92;&#34;kms&#92;&#34;
          * 
          * @return builder
          * 
@@ -1311,8 +1311,8 @@ public final class SecretBackendIntermediateCertRequestState extends com.pulumi.
         }
 
         /**
-         * @param type Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
-         * or \&#34;kms\&#34;
+         * @param type Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34; or &#92;&#34;internal&#92;&#34;
+         * or &#92;&#34;kms&#92;&#34;
          * 
          * @return builder
          * 

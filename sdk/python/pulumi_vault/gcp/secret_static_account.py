@@ -492,6 +492,28 @@ class SecretStaticAccount(pulumi.CustomResource):
         __props__.__dict__["token_scopes"] = token_scopes
         return SecretStaticAccount(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bindings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretStaticAccountBindingArgs', 'SecretStaticAccountBindingArgsDict', 'outputs.SecretStaticAccountBinding']]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_type: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_project: pulumi.Input[Optional[_builtins.str]] = None,
+            static_account: pulumi.Input[Optional[_builtins.str]] = None,
+            token_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["bindings"] = bindings
+        __props__["namespace"] = namespace
+        __props__["secretType"] = secret_type
+        __props__["serviceAccountEmail"] = service_account_email
+        __props__["serviceAccountProject"] = service_account_project
+        __props__["staticAccount"] = static_account
+        __props__["tokenScopes"] = token_scopes
+        return pulumi.runtime.exists_resource(None, 'vault:gcp/secretStaticAccount:SecretStaticAccount', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

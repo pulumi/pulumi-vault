@@ -533,6 +533,30 @@ class SecretBackendCa(pulumi.CustomResource):
         __props__.__dict__["public_key"] = public_key
         return SecretBackendCa(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            generate_signing_key: pulumi.Input[Optional[_builtins.bool]] = None,
+            key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["generateSigningKey"] = generate_signing_key
+        __props__["keyBits"] = key_bits
+        __props__["keyType"] = key_type
+        __props__["managedKeyId"] = managed_key_id
+        __props__["managedKeyName"] = managed_key_name
+        __props__["namespace"] = namespace
+        __props__["privateKey"] = private_key
+        __props__["publicKey"] = public_key
+        return pulumi.runtime.exists_resource(None, 'vault:ssh/secretBackendCa:SecretBackendCa', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:

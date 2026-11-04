@@ -429,6 +429,26 @@ class SecretImpersonatedAccount(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretImpersonatedAccount(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            impersonated_account: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_project: pulumi.Input[Optional[_builtins.str]] = None,
+            token_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["impersonatedAccount"] = impersonated_account
+        __props__["namespace"] = namespace
+        __props__["serviceAccountEmail"] = service_account_email
+        __props__["serviceAccountProject"] = service_account_project
+        __props__["tokenScopes"] = token_scopes
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

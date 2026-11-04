@@ -1062,6 +1062,38 @@ class KmsSecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["rotation_schedule_seconds"] = rotation_schedule_seconds
         return KmsSecretBackendKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            crypto_key: pulumi.Input[Optional[_builtins.str]] = None,
+            key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            key_ring: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            next_rotation_time_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            primary_version: pulumi.Input[Optional[_builtins.int]] = None,
+            protection_level: pulumi.Input[Optional[_builtins.str]] = None,
+            purpose: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_schedule_seconds: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["algorithm"] = algorithm
+        __props__["cryptoKey"] = crypto_key
+        __props__["keyName"] = key_name
+        __props__["keyRing"] = key_ring
+        __props__["labels"] = labels
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["nextRotationTimeSeconds"] = next_rotation_time_seconds
+        __props__["primaryVersion"] = primary_version
+        __props__["protectionLevel"] = protection_level
+        __props__["purpose"] = purpose
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationScheduleSeconds"] = rotation_schedule_seconds
+        return pulumi.runtime.exists_resource(None, 'vault:gcp/kmsSecretBackendKey:KmsSecretBackendKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def algorithm(self) -> pulumi.Output[_builtins.str]:

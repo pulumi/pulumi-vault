@@ -820,6 +820,36 @@ class SecretBackendHost(pulumi.CustomResource):
         __props__.__dict__["ssh_host_key"] = ssh_host_key
         return SecretBackendHost(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            address: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            ssh_host_key: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["address"] = address
+        __props__["customMetadata"] = custom_metadata
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["passwordPolicy"] = password_policy
+        __props__["port"] = port
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["sshHostKey"] = ssh_host_key
+        return pulumi.runtime.exists_resource(None, 'vault:os/secretBackendHost:SecretBackendHost', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def address(self) -> pulumi.Output[_builtins.str]:

@@ -218,6 +218,14 @@ class ActivationFlags(pulumi.CustomResource):
         __props__.__dict__["feature"] = feature
         return ActivationFlags(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            feature: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["feature"] = feature
+        return pulumi.runtime.exists_resource(None, 'vault:index/activationFlags:ActivationFlags', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def feature(self) -> pulumi.Output[_builtins.str]:

@@ -1062,6 +1062,60 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_group_aliases: pulumi.Input[Optional[_builtins.bool]] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allow_gce_inference: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_instance_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_projects: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_service_accounts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_zones: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            max_jwt_exp: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["addGroupAliases"] = add_group_aliases
+        __props__["aliasMetadata"] = alias_metadata
+        __props__["allowGceInference"] = allow_gce_inference
+        __props__["backend"] = backend
+        __props__["boundInstanceGroups"] = bound_instance_groups
+        __props__["boundLabels"] = bound_labels
+        __props__["boundProjects"] = bound_projects
+        __props__["boundRegions"] = bound_regions
+        __props__["boundServiceAccounts"] = bound_service_accounts
+        __props__["boundZones"] = bound_zones
+        __props__["maxJwtExp"] = max_jwt_exp
+        __props__["namespace"] = namespace
+        __props__["role"] = role
+        __props__["roleId"] = role_id
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["tokenExplicitMaxTtl"] = token_explicit_max_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        __props__["tokenNoDefaultPolicy"] = token_no_default_policy
+        __props__["tokenNumUses"] = token_num_uses
+        __props__["tokenPeriod"] = token_period
+        __props__["tokenPolicies"] = token_policies
+        __props__["tokenTtl"] = token_ttl
+        __props__["tokenType"] = token_type
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:gcp/authBackendRole:AuthBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="addGroupAliases")
     def add_group_aliases(self) -> pulumi.Output[_builtins.bool]:

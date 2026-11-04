@@ -229,7 +229,7 @@ namespace Pulumi.Vault.Secrets
         public Output<string?> ExternalId { get; private set; } = null!;
 
         /// <summary>
-        /// Determines what level of information is synced as a distinct resource 
+        /// Determines what level of information is synced as a distinct resource
         /// at the destination. Supports `secret-path` and `secret-key`.
         /// </summary>
         [Output("granularity")]
@@ -302,7 +302,7 @@ namespace Pulumi.Vault.Secrets
         public Output<ImmutableDictionary<string, string>?> ReplicaRegions { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies a role to assume when connecting to AWS. When assuming a role, 
+        /// Specifies a role to assume when connecting to AWS. When assuming a role,
         /// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
         /// exist for Vault to be able to assume this role. The role can be in a different account.
         /// The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -465,7 +465,7 @@ namespace Pulumi.Vault.Secrets
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
-        /// Determines what level of information is synced as a distinct resource 
+        /// Determines what level of information is synced as a distinct resource
         /// at the destination. Supports `secret-path` and `secret-key`.
         /// </summary>
         [Input("granularity")]
@@ -564,7 +564,7 @@ namespace Pulumi.Vault.Secrets
         }
 
         /// <summary>
-        /// Specifies a role to assume when connecting to AWS. When assuming a role, 
+        /// Specifies a role to assume when connecting to AWS. When assuming a role,
         /// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
         /// exist for Vault to be able to assume this role. The role can be in a different account.
         /// The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.
@@ -687,7 +687,7 @@ namespace Pulumi.Vault.Secrets
         public Input<string>? ExternalId { get; set; }
 
         /// <summary>
-        /// Determines what level of information is synced as a distinct resource 
+        /// Determines what level of information is synced as a distinct resource
         /// at the destination. Supports `secret-path` and `secret-key`.
         /// </summary>
         [Input("granularity")]
@@ -786,7 +786,7 @@ namespace Pulumi.Vault.Secrets
         }
 
         /// <summary>
-        /// Specifies a role to assume when connecting to AWS. When assuming a role, 
+        /// Specifies a role to assume when connecting to AWS. When assuming a role,
         /// Vault uses temporary STS credentials to authenticate. An initial session with the proper trust relationship must
         /// exist for Vault to be able to assume this role. The role can be in a different account.
         /// The value is mutable as long as the new role targets the same AWS account ID. If not, the BE will return an error.

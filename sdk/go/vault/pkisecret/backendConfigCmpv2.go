@@ -241,6 +241,12 @@ func (BackendConfigCmpv2State) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendConfigCmpv2State)(nil)).Elem()
 }
 
+// BackendConfigCmpv2Exists checks whether an existing BackendConfigCmpv2 resource with the given ID exists.
+func BackendConfigCmpv2Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendConfigCmpv2State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendConfigCmpv2:BackendConfigCmpv2", id, state, "", opts...)
+}
+
 type backendConfigCmpv2Args struct {
 	// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
 	AuditFields []string `pulumi:"auditFields"`

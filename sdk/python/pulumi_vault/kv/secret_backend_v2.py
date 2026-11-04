@@ -412,6 +412,22 @@ class SecretBackendV2(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return SecretBackendV2(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cas_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            delete_version_after: pulumi.Input[Optional[_builtins.int]] = None,
+            max_versions: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["casRequired"] = cas_required
+        __props__["deleteVersionAfter"] = delete_version_after
+        __props__["maxVersions"] = max_versions
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:kv/secretBackendV2:SecretBackendV2', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="casRequired")
     def cas_required(self) -> pulumi.Output[_builtins.bool]:

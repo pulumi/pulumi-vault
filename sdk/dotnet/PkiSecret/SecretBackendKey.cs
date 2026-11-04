@@ -60,7 +60,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the number of bits to use for the generated keys. 
+        /// Specifies the number of bits to use for the generated keys.
         /// Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
         /// 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
         /// 384, or 521; ignored with `key_type=ed25519`.
@@ -75,7 +75,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> KeyId { get; private set; } = null!;
 
         /// <summary>
-        /// When a new key is created with this request, optionally specifies the name for this. 
+        /// When a new key is created with this request, optionally specifies the name for this.
         /// The global ref `Default` may not be used as a name.
         /// </summary>
         [Output("keyName")]
@@ -173,7 +173,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the number of bits to use for the generated keys. 
+        /// Specifies the number of bits to use for the generated keys.
         /// Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
         /// 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
         /// 384, or 521; ignored with `key_type=ed25519`.
@@ -182,7 +182,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<int>? KeyBits { get; set; }
 
         /// <summary>
-        /// When a new key is created with this request, optionally specifies the name for this. 
+        /// When a new key is created with this request, optionally specifies the name for this.
         /// The global ref `Default` may not be used as a name.
         /// </summary>
         [Input("keyName")]
@@ -242,7 +242,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Specifies the number of bits to use for the generated keys. 
+        /// Specifies the number of bits to use for the generated keys.
         /// Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
         /// 2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
         /// 384, or 521; ignored with `key_type=ed25519`.
@@ -257,7 +257,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? KeyId { get; set; }
 
         /// <summary>
-        /// When a new key is created with this request, optionally specifies the name for this. 
+        /// When a new key is created with this request, optionally specifies the name for this.
         /// The global ref `Default` may not be used as a name.
         /// </summary>
         [Input("keyName")]

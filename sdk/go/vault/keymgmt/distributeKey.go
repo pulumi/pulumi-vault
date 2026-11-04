@@ -370,6 +370,12 @@ func (DistributeKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*distributeKeyState)(nil)).Elem()
 }
 
+// DistributeKeyExists checks whether an existing DistributeKey resource with the given ID exists.
+func DistributeKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DistributeKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:keymgmt/distributeKey:DistributeKey", id, state, "", opts...)
+}
+
 type distributeKeyArgs struct {
 	// Specifies the name of the key to distribute to the given KMS provider.
 	KeyName string `pulumi:"keyName"`

@@ -184,6 +184,12 @@ func (MfaOktaState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mfaOktaState)(nil)).Elem()
 }
 
+// MfaOktaExists checks whether an existing MfaOkta resource with the given ID exists.
+func MfaOktaExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MfaOktaState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/mfaOkta:MfaOkta", id, state, "", opts...)
+}
+
 type mfaOktaArgs struct {
 	// Okta API token.
 	ApiToken string `pulumi:"apiToken"`

@@ -968,6 +968,50 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_type"] = token_type
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_secret_id: pulumi.Input[Optional[_builtins.bool]] = None,
+            local_secret_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            secret_id_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            secret_id_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aliasMetadata"] = alias_metadata
+        __props__["backend"] = backend
+        __props__["bindSecretId"] = bind_secret_id
+        __props__["localSecretIds"] = local_secret_ids
+        __props__["namespace"] = namespace
+        __props__["roleId"] = role_id
+        __props__["roleName"] = role_name
+        __props__["secretIdBoundCidrs"] = secret_id_bound_cidrs
+        __props__["secretIdNumUses"] = secret_id_num_uses
+        __props__["secretIdTtl"] = secret_id_ttl
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["tokenExplicitMaxTtl"] = token_explicit_max_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        __props__["tokenNoDefaultPolicy"] = token_no_default_policy
+        __props__["tokenNumUses"] = token_num_uses
+        __props__["tokenPeriod"] = token_period
+        __props__["tokenPolicies"] = token_policies
+        __props__["tokenTtl"] = token_ttl
+        __props__["tokenType"] = token_type
+        return pulumi.runtime.exists_resource(None, 'vault:appRole/authBackendRole:AuthBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
     def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

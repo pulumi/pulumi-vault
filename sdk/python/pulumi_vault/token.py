@@ -879,6 +879,52 @@ class Token(pulumi.CustomResource):
         __props__.__dict__["wrapping_ttl"] = wrapping_ttl
         return Token(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            client_token: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            lease_duration: pulumi.Input[Optional[_builtins.int]] = None,
+            lease_started: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            no_parent: pulumi.Input[Optional[_builtins.bool]] = None,
+            num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            period: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            renew_increment: pulumi.Input[Optional[_builtins.int]] = None,
+            renew_min_lease: pulumi.Input[Optional[_builtins.int]] = None,
+            renewable: pulumi.Input[Optional[_builtins.bool]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapped_token: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["clientToken"] = client_token
+        __props__["displayName"] = display_name
+        __props__["explicitMaxTtl"] = explicit_max_ttl
+        __props__["leaseDuration"] = lease_duration
+        __props__["leaseStarted"] = lease_started
+        __props__["metadata"] = metadata
+        __props__["namespace"] = namespace
+        __props__["noDefaultPolicy"] = no_default_policy
+        __props__["noParent"] = no_parent
+        __props__["numUses"] = num_uses
+        __props__["period"] = period
+        __props__["policies"] = policies
+        __props__["renewIncrement"] = renew_increment
+        __props__["renewMinLease"] = renew_min_lease
+        __props__["renewable"] = renewable
+        __props__["roleName"] = role_name
+        __props__["ttl"] = ttl
+        __props__["wrappedToken"] = wrapped_token
+        __props__["wrappingAccessor"] = wrapping_accessor
+        __props__["wrappingTtl"] = wrapping_ttl
+        return pulumi.runtime.exists_resource(None, 'vault:index/token:Token', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="clientToken")
     def client_token(self) -> pulumi.Output[_builtins.str]:

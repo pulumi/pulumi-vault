@@ -575,6 +575,32 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return SecretBackendKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["keyBits"] = key_bits
+        __props__["keyId"] = key_id
+        __props__["keyName"] = key_name
+        __props__["keyType"] = key_type
+        __props__["managedKeyId"] = managed_key_id
+        __props__["managedKeyName"] = managed_key_name
+        __props__["namespace"] = namespace
+        __props__["parameterSet"] = parameter_set
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/secretBackendKey:SecretBackendKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

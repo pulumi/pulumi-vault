@@ -1874,6 +1874,90 @@ class SecretsMount(pulumi.CustomResource):
         __props__.__dict__["snowflakes"] = snowflakes
         return SecretsMount(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_managed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            cassandras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCassandraArgs', 'SecretsMountCassandraArgsDict', 'outputs.SecretsMountCassandra']]]]] = None,
+            couchbases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountCouchbaseArgs', 'SecretsMountCouchbaseArgsDict', 'outputs.SecretsMountCouchbase']]]]] = None,
+            default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            elasticsearches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountElasticsearchArgs', 'SecretsMountElasticsearchArgsDict', 'outputs.SecretsMountElasticsearch']]]]] = None,
+            engine_count: pulumi.Input[Optional[_builtins.int]] = None,
+            external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
+            hanas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountHanaArgs', 'SecretsMountHanaArgsDict', 'outputs.SecretsMountHana']]]]] = None,
+            identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+            influxdbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountInfluxdbArgs', 'SecretsMountInfluxdbArgsDict', 'outputs.SecretsMountInfluxdb']]]]] = None,
+            listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            mongodbatlas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbatlaArgs', 'SecretsMountMongodbatlaArgsDict', 'outputs.SecretsMountMongodbatla']]]]] = None,
+            mongodbs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMongodbArgs', 'SecretsMountMongodbArgsDict', 'outputs.SecretsMountMongodb']]]]] = None,
+            mssqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMssqlArgs', 'SecretsMountMssqlArgsDict', 'outputs.SecretsMountMssql']]]]] = None,
+            mysql_auroras: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlAuroraArgs', 'SecretsMountMysqlAuroraArgsDict', 'outputs.SecretsMountMysqlAurora']]]]] = None,
+            mysql_legacies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlLegacyArgs', 'SecretsMountMysqlLegacyArgsDict', 'outputs.SecretsMountMysqlLegacy']]]]] = None,
+            mysql_rds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlRdArgs', 'SecretsMountMysqlRdArgsDict', 'outputs.SecretsMountMysqlRd']]]]] = None,
+            mysqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountMysqlArgs', 'SecretsMountMysqlArgsDict', 'outputs.SecretsMountMysql']]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            oracles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountOracleArgs', 'SecretsMountOracleArgsDict', 'outputs.SecretsMountOracle']]]]] = None,
+            passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+            postgresqls: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountPostgresqlArgs', 'SecretsMountPostgresqlArgsDict', 'outputs.SecretsMountPostgresql']]]]] = None,
+            redis: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRediArgs', 'SecretsMountRediArgsDict', 'outputs.SecretsMountRedi']]]]] = None,
+            redis_elasticaches: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedisElasticacheArgs', 'SecretsMountRedisElasticacheArgsDict', 'outputs.SecretsMountRedisElasticache']]]]] = None,
+            redshifts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountRedshiftArgs', 'SecretsMountRedshiftArgsDict', 'outputs.SecretsMountRedshift']]]]] = None,
+            seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+            snowflakes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretsMountSnowflakeArgs', 'SecretsMountSnowflakeArgsDict', 'outputs.SecretsMountSnowflake']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["allowedManagedKeys"] = allowed_managed_keys
+        __props__["allowedResponseHeaders"] = allowed_response_headers
+        __props__["auditNonHmacRequestKeys"] = audit_non_hmac_request_keys
+        __props__["auditNonHmacResponseKeys"] = audit_non_hmac_response_keys
+        __props__["cassandras"] = cassandras
+        __props__["couchbases"] = couchbases
+        __props__["defaultLeaseTtlSeconds"] = default_lease_ttl_seconds
+        __props__["delegatedAuthAccessors"] = delegated_auth_accessors
+        __props__["description"] = description
+        __props__["elasticsearches"] = elasticsearches
+        __props__["engineCount"] = engine_count
+        __props__["externalEntropyAccess"] = external_entropy_access
+        __props__["forceNoCache"] = force_no_cache
+        __props__["hanas"] = hanas
+        __props__["identityTokenKey"] = identity_token_key
+        __props__["influxdbs"] = influxdbs
+        __props__["listingVisibility"] = listing_visibility
+        __props__["local"] = local
+        __props__["maxLeaseTtlSeconds"] = max_lease_ttl_seconds
+        __props__["mongodbatlas"] = mongodbatlas
+        __props__["mongodbs"] = mongodbs
+        __props__["mssqls"] = mssqls
+        __props__["mysqlAuroras"] = mysql_auroras
+        __props__["mysqlLegacies"] = mysql_legacies
+        __props__["mysqlRds"] = mysql_rds
+        __props__["mysqls"] = mysqls
+        __props__["namespace"] = namespace
+        __props__["options"] = options
+        __props__["oracles"] = oracles
+        __props__["passthroughRequestHeaders"] = passthrough_request_headers
+        __props__["path"] = path
+        __props__["pluginVersion"] = plugin_version
+        __props__["postgresqls"] = postgresqls
+        __props__["redis"] = redis
+        __props__["redisElasticaches"] = redis_elasticaches
+        __props__["redshifts"] = redshifts
+        __props__["sealWrap"] = seal_wrap
+        __props__["snowflakes"] = snowflakes
+        return pulumi.runtime.exists_resource(None, 'vault:database/secretsMount:SecretsMount', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

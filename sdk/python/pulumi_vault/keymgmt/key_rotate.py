@@ -362,6 +362,20 @@ class KeyRotate(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return KeyRotate(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            latest_version: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["latestVersion"] = latest_version
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:keymgmt/keyRotate:KeyRotate', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="latestVersion")
     def latest_version(self) -> pulumi.Output[_builtins.int]:

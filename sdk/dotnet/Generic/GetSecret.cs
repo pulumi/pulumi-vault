@@ -47,7 +47,7 @@ namespace Pulumi.Vault.Generic
         /// });
         /// ```
         /// 
-        /// ### KV 
+        /// ### KV
         /// 
         /// For this example, consider `Example` as a path for a KV engine.
         /// 
@@ -118,7 +118,7 @@ namespace Pulumi.Vault.Generic
         /// });
         /// ```
         /// 
-        /// ### KV 
+        /// ### KV
         /// 
         /// For this example, consider `Example` as a path for a KV engine.
         /// 
@@ -189,7 +189,7 @@ namespace Pulumi.Vault.Generic
         /// });
         /// ```
         /// 
-        /// ### KV 
+        /// ### KV
         /// 
         /// For this example, consider `Example` as a path for a KV engine.
         /// 

@@ -347,6 +347,20 @@ class Policy(pulumi.CustomResource):
         __props__.__dict__["policy"] = policy
         return Policy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_overwrite: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policy: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowOverwrite"] = allow_overwrite
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["policy"] = policy
+        return pulumi.runtime.exists_resource(None, 'vault:index/policy:Policy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowOverwrite")
     @_utilities.deprecated("""Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies.""")

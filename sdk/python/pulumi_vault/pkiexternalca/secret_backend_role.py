@@ -738,6 +738,40 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acme_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_challenge_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_domain_options: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            creation_date: pulumi.Input[Optional[_builtins.str]] = None,
+            csr_generate_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            csr_identifier_population: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_provider_type: pulumi.Input[Optional[_builtins.str]] = None,
+            force: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acmeAccountName"] = acme_account_name
+        __props__["allowedChallengeTypes"] = allowed_challenge_types
+        __props__["allowedDomainOptions"] = allowed_domain_options
+        __props__["allowedDomains"] = allowed_domains
+        __props__["creationDate"] = creation_date
+        __props__["csrGenerateKeyType"] = csr_generate_key_type
+        __props__["csrIdentifierPopulation"] = csr_identifier_population
+        __props__["dnsProviderName"] = dns_provider_name
+        __props__["dnsProviderType"] = dns_provider_type
+        __props__["force"] = force
+        __props__["lastUpdatedDate"] = last_updated_date
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendRole:SecretBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="acmeAccountName")
     def acme_account_name(self) -> pulumi.Output[_builtins.str]:

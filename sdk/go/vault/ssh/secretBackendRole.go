@@ -335,6 +335,12 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRoleState)(nil)).Elem()
 }
 
+// SecretBackendRoleExists checks whether an existing SecretBackendRole resource with the given ID exists.
+func SecretBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ssh/secretBackendRole:SecretBackendRole", id, state, "", opts...)
+}
+
 type secretBackendRoleArgs struct {
 	// When supplied, this value specifies a signing algorithm for the key. Possible values: ssh-rsa, rsa-sha2-256, rsa-sha2-512.
 	AlgorithmSigner *string `pulumi:"algorithmSigner"`

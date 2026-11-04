@@ -1609,6 +1609,84 @@ class SecretRole(pulumi.CustomResource):
         __props__.__dict__["tls_client_ttl"] = tls_client_ttl
         return SecretRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ca: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            operation_activate: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_add_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_all: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_create: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_create_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_decrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_delete_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_destroy: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_discover_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_encrypt: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_get: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_get_attribute_list: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_get_attributes: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_import: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_locate: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_mac: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_mac_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_modify_attribute: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_none: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_query: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_register: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rekey: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rekey_key_pair: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_revoke: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rng_retrieve: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_rng_seed: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_sign: pulumi.Input[Optional[_builtins.bool]] = None,
+            operation_signature_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            scope: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_client_key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            tls_client_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_client_ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["ca"] = ca
+        __props__["namespace"] = namespace
+        __props__["operationActivate"] = operation_activate
+        __props__["operationAddAttribute"] = operation_add_attribute
+        __props__["operationAll"] = operation_all
+        __props__["operationCreate"] = operation_create
+        __props__["operationCreateKeyPair"] = operation_create_key_pair
+        __props__["operationDecrypt"] = operation_decrypt
+        __props__["operationDeleteAttribute"] = operation_delete_attribute
+        __props__["operationDestroy"] = operation_destroy
+        __props__["operationDiscoverVersions"] = operation_discover_versions
+        __props__["operationEncrypt"] = operation_encrypt
+        __props__["operationGet"] = operation_get
+        __props__["operationGetAttributeList"] = operation_get_attribute_list
+        __props__["operationGetAttributes"] = operation_get_attributes
+        __props__["operationImport"] = operation_import
+        __props__["operationLocate"] = operation_locate
+        __props__["operationMac"] = operation_mac
+        __props__["operationMacVerify"] = operation_mac_verify
+        __props__["operationModifyAttribute"] = operation_modify_attribute
+        __props__["operationNone"] = operation_none
+        __props__["operationQuery"] = operation_query
+        __props__["operationRegister"] = operation_register
+        __props__["operationRekey"] = operation_rekey
+        __props__["operationRekeyKeyPair"] = operation_rekey_key_pair
+        __props__["operationRevoke"] = operation_revoke
+        __props__["operationRngRetrieve"] = operation_rng_retrieve
+        __props__["operationRngSeed"] = operation_rng_seed
+        __props__["operationSign"] = operation_sign
+        __props__["operationSignatureVerify"] = operation_signature_verify
+        __props__["path"] = path
+        __props__["role"] = role
+        __props__["scope"] = scope
+        __props__["tlsClientKeyBits"] = tls_client_key_bits
+        __props__["tlsClientKeyType"] = tls_client_key_type
+        __props__["tlsClientTtl"] = tls_client_ttl
+        return pulumi.runtime.exists_resource(None, 'vault:kmip/secretRole:SecretRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def ca(self) -> pulumi.Output[Optional[_builtins.str]]:

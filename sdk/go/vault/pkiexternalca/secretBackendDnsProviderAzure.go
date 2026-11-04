@@ -241,6 +241,12 @@ func (SecretBackendDnsProviderAzureState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendDnsProviderAzureState)(nil)).Elem()
 }
 
+// SecretBackendDnsProviderAzureExists checks whether an existing SecretBackendDnsProviderAzure resource with the given ID exists.
+func SecretBackendDnsProviderAzureExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendDnsProviderAzureState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendDnsProviderAzure:SecretBackendDnsProviderAzure", id, state, "", opts...)
+}
+
 type secretBackendDnsProviderAzureArgs struct {
 	// Azure service principal client ID. Optional when using managed identities.
 	ClientId *string `pulumi:"clientId"`

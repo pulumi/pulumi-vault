@@ -479,6 +479,12 @@ func (SyncAwsDestinationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncAwsDestinationState)(nil)).Elem()
 }
 
+// SyncAwsDestinationExists checks whether an existing SyncAwsDestination resource with the given ID exists.
+func SyncAwsDestinationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncAwsDestinationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncAwsDestination:SyncAwsDestination", id, state, "", opts...)
+}
+
 type syncAwsDestinationArgs struct {
 	// Access key id to authenticate against the AWS secrets manager.
 	// Can be omitted and directly provided to Vault using the `AWS_ACCESS_KEY_ID` environment

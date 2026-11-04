@@ -258,6 +258,12 @@ func (AuthBackendRoleSecretIdState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleSecretIdState)(nil)).Elem()
 }
 
+// AuthBackendRoleSecretIdExists checks whether an existing AuthBackendRoleSecretId resource with the given ID exists.
+func AuthBackendRoleSecretIdExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendRoleSecretIdState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId", id, state, "", opts...)
+}
+
 type authBackendRoleSecretIdArgs struct {
 	// Unique name of the auth backend to configure.
 	Backend *string `pulumi:"backend"`

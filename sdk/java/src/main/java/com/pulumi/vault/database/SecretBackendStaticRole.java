@@ -73,7 +73,7 @@ import javax.annotation.Nullable;
  *             .dbName(postgres.name())
  *             .username("example")
  *             .rotationPeriod(3600)
- *             .rotationStatements("ALTER USER \"}{{{@code name}}}{@code \" WITH PASSWORD '}{{{@code password}}}{@code ';")
+ *             .rotationStatements("ALTER USER }&#92;{@code "}{{{@code name}}}&#92;{@code " WITH PASSWORD '}{{{@code password}}}{@code ';")
  *             .build());
  * 
  *         // configure a static role with schedule-based rotations
@@ -84,7 +84,7 @@ import javax.annotation.Nullable;
  *             .username("example")
  *             .rotationSchedule("0 0 * * SAT")
  *             .rotationWindow(172800)
- *             .rotationStatements("ALTER USER \"}{{{@code name}}}{@code \" WITH PASSWORD '}{{{@code password}}}{@code ';")
+ *             .rotationStatements("ALTER USER }&#92;{@code "}{{{@code name}}}&#92;{@code " WITH PASSWORD '}{{{@code password}}}{@code ';")
  *             .build());
  * 
  *         // configure a static role with a password (Vault 1.19+)
@@ -96,7 +96,7 @@ import javax.annotation.Nullable;
  *             .passwordWo("my-password")
  *             .passwordWoVersion(1)
  *             .rotationPeriod(3600)
- *             .rotationStatements("ALTER USER \"}{{{@code name}}}{@code \" WITH PASSWORD '}{{{@code password}}}{@code ';")
+ *             .rotationStatements("ALTER USER }&#92;{@code "}{{{@code name}}}&#92;{@code " WITH PASSWORD '}{{{@code password}}}{@code ';")
  *             .build());
  * 
  *     }}{@code

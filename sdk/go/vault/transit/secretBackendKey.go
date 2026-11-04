@@ -396,6 +396,12 @@ func (SecretBackendKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendKeyState)(nil)).Elem()
 }
 
+// SecretBackendKeyExists checks whether an existing SecretBackendKey resource with the given ID exists.
+func SecretBackendKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:transit/secretBackendKey:SecretBackendKey", id, state, "", opts...)
+}
+
 type secretBackendKeyArgs struct {
 	// Enables taking backup of entire keyring in the plaintext format. Once set, this cannot be disabled.
 	// * Refer to Vault API documentation on key backups for more information: [Backup Key](https://www.vaultproject.io/api-docs/secret/transit#backup-key)

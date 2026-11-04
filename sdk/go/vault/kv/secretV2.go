@@ -309,6 +309,12 @@ func (SecretV2State) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretV2State)(nil)).Elem()
 }
 
+// SecretV2Exists checks whether an existing SecretV2 resource with the given ID exists.
+func SecretV2Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretV2State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kv/secretV2:SecretV2", id, state, "", opts...)
+}
+
 type secretV2Args struct {
 	// This flag is required if `casRequired` is set to true
 	// on either the secret or the engine's config. In order for a

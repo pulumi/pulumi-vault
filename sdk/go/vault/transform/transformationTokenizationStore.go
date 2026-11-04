@@ -242,6 +242,12 @@ func (TransformationTokenizationStoreState) ElementType() reflect.Type {
 	return reflect.TypeOf((*transformationTokenizationStoreState)(nil)).Elem()
 }
 
+// TransformationTokenizationStoreExists checks whether an existing TransformationTokenizationStore resource with the given ID exists.
+func TransformationTokenizationStoreExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TransformationTokenizationStoreState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:transform/transformationTokenizationStore:TransformationTokenizationStore", id, state, "", opts...)
+}
+
 type transformationTokenizationStoreArgs struct {
 	// A database connection string with template slots for username and password that Vault will use for locating and connecting to a database. Each database driver type has a different syntax for its connection strings.
 	// **Note:** When using MySQL, make sure to append ?parseTime=true to enable timestamp parsing.

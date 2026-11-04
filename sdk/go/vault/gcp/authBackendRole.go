@@ -255,6 +255,12 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleState)(nil)).Elem()
 }
 
+// AuthBackendRoleExists checks whether an existing AuthBackendRole resource with the given ID exists.
+func AuthBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:gcp/authBackendRole:AuthBackendRole", id, state, "", opts...)
+}
+
 type authBackendRoleArgs struct {
 	AddGroupAliases *bool `pulumi:"addGroupAliases"`
 	// The metadata to be tied to generated entity alias.

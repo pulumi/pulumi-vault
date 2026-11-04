@@ -141,6 +141,12 @@ func (AuthBackendCertState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendCertState)(nil)).Elem()
 }
 
+// AuthBackendCertExists checks whether an existing AuthBackendCert resource with the given ID exists.
+func AuthBackendCertExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendCertState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendCert:AuthBackendCert", id, state, "", opts...)
+}
+
 type authBackendCertArgs struct {
 	// The  Base64 encoded AWS Public key required to
 	// verify PKCS7 signature of the EC2 instance metadata. You can find this key in

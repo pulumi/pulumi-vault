@@ -365,6 +365,12 @@ func (SecretBackendHostState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendHostState)(nil)).Elem()
 }
 
+// SecretBackendHostExists checks whether an existing SecretBackendHost resource with the given ID exists.
+func SecretBackendHostExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendHostState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:os/secretBackendHost:SecretBackendHost", id, state, "", opts...)
+}
+
 type secretBackendHostArgs struct {
 	// The address of the host (IP address or hostname).
 	Address string `pulumi:"address"`

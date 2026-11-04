@@ -124,7 +124,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Disable defaulting to the local CA certificate and 
+        /// Disable defaulting to the local CA certificate and
         /// service account JWT when Vault is running in a Kubernetes pod.
         /// </summary>
         [Output("disableLocalCaJwt")]
@@ -149,7 +149,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> IdentityTokenKey { get; private set; } = null!;
 
         /// <summary>
-        /// A PEM-encoded CA certificate used by the 
+        /// A PEM-encoded CA certificate used by the
         /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
         /// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         /// Vault is running.
@@ -158,7 +158,7 @@ namespace Pulumi.Vault.Kubernetes
         public Output<string?> KubernetesCaCert { get; private set; } = null!;
 
         /// <summary>
-        /// The Kubernetes API URL to connect to. Required if the 
+        /// The Kubernetes API URL to connect to. Required if the
         /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
         /// are not set on the host that Vault is running on.
         /// </summary>
@@ -369,7 +369,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Disable defaulting to the local CA certificate and 
+        /// Disable defaulting to the local CA certificate and
         /// service account JWT when Vault is running in a Kubernetes pod.
         /// </summary>
         [Input("disableLocalCaJwt")]
@@ -394,7 +394,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? IdentityTokenKey { get; set; }
 
         /// <summary>
-        /// A PEM-encoded CA certificate used by the 
+        /// A PEM-encoded CA certificate used by the
         /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
         /// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         /// Vault is running.
@@ -403,7 +403,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? KubernetesCaCert { get; set; }
 
         /// <summary>
-        /// The Kubernetes API URL to connect to. Required if the 
+        /// The Kubernetes API URL to connect to. Required if the
         /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
         /// are not set on the host that Vault is running on.
         /// </summary>
@@ -609,7 +609,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Disable defaulting to the local CA certificate and 
+        /// Disable defaulting to the local CA certificate and
         /// service account JWT when Vault is running in a Kubernetes pod.
         /// </summary>
         [Input("disableLocalCaJwt")]
@@ -634,7 +634,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? IdentityTokenKey { get; set; }
 
         /// <summary>
-        /// A PEM-encoded CA certificate used by the 
+        /// A PEM-encoded CA certificate used by the
         /// secrets engine to verify the Kubernetes API server certificate. Defaults to the local
         /// pod’s CA if Vault is running in Kubernetes. Otherwise, defaults to the root CA set where
         /// Vault is running.
@@ -643,7 +643,7 @@ namespace Pulumi.Vault.Kubernetes
         public Input<string>? KubernetesCaCert { get; set; }
 
         /// <summary>
-        /// The Kubernetes API URL to connect to. Required if the 
+        /// The Kubernetes API URL to connect to. Required if the
         /// standard pod environment variables `KUBERNETES_SERVICE_HOST` or `KUBERNETES_SERVICE_PORT`
         /// are not set on the host that Vault is running on.
         /// </summary>

@@ -126,6 +126,12 @@ func (OidcScopeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcScopeState)(nil)).Elem()
 }
 
+// OidcScopeExists checks whether an existing OidcScope resource with the given ID exists.
+func OidcScopeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcScopeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidcScope:OidcScope", id, state, "", opts...)
+}
+
 type oidcScopeArgs struct {
 	// A description of the scope.
 	Description *string `pulumi:"description"`

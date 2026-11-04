@@ -346,6 +346,12 @@ func (ScimClientState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scimClientState)(nil)).Elem()
 }
 
+// ScimClientExists checks whether an existing ScimClient resource with the given ID exists.
+func ScimClientExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScimClientState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/scimClient:ScimClient", id, state, "", opts...)
+}
+
 type scimClientArgs struct {
 	// The ID of the Vault entity authorized to
 	// call the SCIM protocol endpoints for this client. Each entity can be the

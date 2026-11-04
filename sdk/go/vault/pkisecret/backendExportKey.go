@@ -168,6 +168,12 @@ func (BackendExportKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendExportKeyState)(nil)).Elem()
 }
 
+// BackendExportKeyExists checks whether an existing BackendExportKey resource with the given ID exists.
+func BackendExportKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendExportKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendExportKey:BackendExportKey", id, state, "", opts...)
+}
+
 type backendExportKeyArgs struct {
 	// Algorithm for the wrapping keypair. Supported values: `rsa-2048`, `rsa-3072`, `rsa-4096`, `rsa-8192`, `ec-p256`, `ec-p384`, `ec-p521`, `ml-kem-768`, `ml-kem-1024`. Changing this field forces a new resource.
 	KeyType string `pulumi:"keyType"`

@@ -155,6 +155,12 @@ func (QuotaConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*quotaConfigState)(nil)).Elem()
 }
 
+// QuotaConfigExists checks whether an existing QuotaConfig resource with the given ID exists.
+func QuotaConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *QuotaConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/quotaConfig:QuotaConfig", id, state, "", opts...)
+}
+
 type quotaConfigArgs struct {
 	// Set of absolute paths exempt from all rate limit quotas, qualified from the root of the namespace hierarchy. Ordering is ignored. Terraform only sends this field when it is explicitly configured. In practice, this field is effectively root-managed; administrative namespaces can read returned values but cannot reliably manage them.
 	AbsoluteRateLimitExemptPaths []string `pulumi:"absoluteRateLimitExemptPaths"`

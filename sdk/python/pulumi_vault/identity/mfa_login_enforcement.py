@@ -488,6 +488,32 @@ class MfaLoginEnforcement(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         return MfaLoginEnforcement(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auth_method_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            auth_method_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            identity_entity_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            identity_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            mfa_method_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_path: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authMethodAccessors"] = auth_method_accessors
+        __props__["authMethodTypes"] = auth_method_types
+        __props__["identityEntityIds"] = identity_entity_ids
+        __props__["identityGroupIds"] = identity_group_ids
+        __props__["mfaMethodIds"] = mfa_method_ids
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["namespaceId"] = namespace_id
+        __props__["namespacePath"] = namespace_path
+        __props__["uuid"] = uuid
+        return pulumi.runtime.exists_resource(None, 'vault:identity/mfaLoginEnforcement:MfaLoginEnforcement', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authMethodAccessors")
     def auth_method_accessors(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

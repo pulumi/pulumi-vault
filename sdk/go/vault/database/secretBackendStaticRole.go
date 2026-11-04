@@ -317,6 +317,12 @@ func (SecretBackendStaticRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendStaticRoleState)(nil)).Elem()
 }
 
+// SecretBackendStaticRoleExists checks whether an existing SecretBackendStaticRole resource with the given ID exists.
+func SecretBackendStaticRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendStaticRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:database/secretBackendStaticRole:SecretBackendStaticRole", id, state, "", opts...)
+}
+
 type secretBackendStaticRoleArgs struct {
 	// The unique name of the Vault mount to configure.
 	Backend string `pulumi:"backend"`

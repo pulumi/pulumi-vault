@@ -410,6 +410,22 @@ class EntityPolicies(pulumi.CustomResource):
         __props__.__dict__["policies"] = policies
         return EntityPolicies(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_name: pulumi.Input[Optional[_builtins.str]] = None,
+            exclusive: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["entityId"] = entity_id
+        __props__["entityName"] = entity_name
+        __props__["exclusive"] = exclusive
+        __props__["namespace"] = namespace
+        __props__["policies"] = policies
+        return pulumi.runtime.exists_resource(None, 'vault:identity/entityPolicies:EntityPolicies', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Output[_builtins.str]:

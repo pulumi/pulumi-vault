@@ -164,6 +164,12 @@ func (AuthBackendConfigIdentityState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendConfigIdentityState)(nil)).Elem()
 }
 
+// AuthBackendConfigIdentityExists checks whether an existing AuthBackendConfigIdentity resource with the given ID exists.
+func AuthBackendConfigIdentityExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendConfigIdentityState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendConfigIdentity:AuthBackendConfigIdentity", id, state, "", opts...)
+}
+
 type authBackendConfigIdentityArgs struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.  Defaults to `aws`.

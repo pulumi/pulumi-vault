@@ -464,6 +464,12 @@ func (RaftSnapshotAgentConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*raftSnapshotAgentConfigState)(nil)).Elem()
 }
 
+// RaftSnapshotAgentConfigExists checks whether an existing RaftSnapshotAgentConfig resource with the given ID exists.
+func RaftSnapshotAgentConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RaftSnapshotAgentConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/raftSnapshotAgentConfig:RaftSnapshotAgentConfig", id, state, "", opts...)
+}
+
 type raftSnapshotAgentConfigArgs struct {
 	// Have Vault automatically load the latest snapshot after it is written. This will replace the previously loaded snapshot. Note that this does not mean the snapshot is automatically applied to the cluster, it is just loaded and available for recovery operations.
 	// **Note:** Not supported with `storageType = "local"`.

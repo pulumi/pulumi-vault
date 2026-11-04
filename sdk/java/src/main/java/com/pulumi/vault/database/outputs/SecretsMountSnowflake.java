@@ -62,11 +62,10 @@ public final class SecretsMountSnowflake {
     /**
      * @return The root credential password used in the connection URL
      * 
-     * @deprecated
-     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
      * 
      */
-    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
+    @Deprecated
     private @Nullable String password;
     /**
      * @return The name of the password policy to use when generating passwords for this database. If not specified, this will use a default policy defined as: 20 characters with at least 1 uppercase, 1 lowercase, 1 number, and 1 dash character.
@@ -214,11 +213,10 @@ public final class SecretsMountSnowflake {
     /**
      * @return The root credential password used in the connection URL
      * 
-     * @deprecated
-     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
      * 
      */
-    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
+    @Deprecated
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }

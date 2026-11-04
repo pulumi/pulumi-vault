@@ -590,6 +590,28 @@ class SecretCaImported(pulumi.CustomResource):
         __props__.__dict__["scope_name"] = scope_name
         return SecretCaImported(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            role_field: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            scope_field: pulumi.Input[Optional[_builtins.str]] = None,
+            scope_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["caPem"] = ca_pem
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["roleField"] = role_field
+        __props__["roleName"] = role_name
+        __props__["scopeField"] = scope_field
+        __props__["scopeName"] = scope_name
+        return pulumi.runtime.exists_resource(None, 'vault:kmip/secretCaImported:SecretCaImported', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="caPem")
     def ca_pem(self) -> pulumi.Output[_builtins.str]:

@@ -351,6 +351,20 @@ class AuthBackendGroup(pulumi.CustomResource):
         __props__.__dict__["policies"] = policies
         return AuthBackendGroup(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            groupname: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["groupname"] = groupname
+        __props__["namespace"] = namespace
+        __props__["policies"] = policies
+        return pulumi.runtime.exists_resource(None, 'vault:ldap/authBackendGroup:AuthBackendGroup', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:

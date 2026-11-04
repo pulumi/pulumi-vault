@@ -558,6 +558,12 @@ func (SyncGcpDestinationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncGcpDestinationState)(nil)).Elem()
 }
 
+// SyncGcpDestinationExists checks whether an existing SyncGcpDestination resource with the given ID exists.
+func SyncGcpDestinationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncGcpDestinationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncGcpDestination:SyncGcpDestination", id, state, "", opts...)
+}
+
 type syncGcpDestinationArgs struct {
 	// Allowed IPv4 addresses for outbound network connectivity in CIDR notation. If not set, all IPv4 addresses are allowed.
 	AllowedIpv4Addresses []string `pulumi:"allowedIpv4Addresses"`

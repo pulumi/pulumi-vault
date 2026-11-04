@@ -757,6 +757,42 @@ class SecretBackendDnsProviderAwsRoute53(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretBackendDnsProviderAwsRoute53(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            assume_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            creation_date: pulumi.Input[Optional[_builtins.str]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            hosted_zone_id: pulumi.Input[Optional[_builtins.str]] = None,
+            identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nameserver: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_access_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_access_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKeyId"] = access_key_id
+        __props__["assumeRoleArn"] = assume_role_arn
+        __props__["creationDate"] = creation_date
+        __props__["externalId"] = external_id
+        __props__["hostedZoneId"] = hosted_zone_id
+        __props__["identifiers"] = identifiers
+        __props__["lastUpdatedDate"] = last_updated_date
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["nameserver"] = nameserver
+        __props__["namespace"] = namespace
+        __props__["region"] = region
+        __props__["secretAccessKeyWo"] = secret_access_key_wo
+        __props__["secretAccessKeyWoVersion"] = secret_access_key_wo_version
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendDnsProviderAwsRoute53:SecretBackendDnsProviderAwsRoute53', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:

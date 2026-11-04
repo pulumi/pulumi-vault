@@ -131,6 +131,12 @@ func (AlphabetState) ElementType() reflect.Type {
 	return reflect.TypeOf((*alphabetState)(nil)).Elem()
 }
 
+// AlphabetExists checks whether an existing Alphabet resource with the given ID exists.
+func AlphabetExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AlphabetState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:transform/alphabet:Alphabet", id, state, "", opts...)
+}
+
 type alphabetArgs struct {
 	// A string of characters that contains the alphabet set.
 	Alphabet *string `pulumi:"alphabet"`

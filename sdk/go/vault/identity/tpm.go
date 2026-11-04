@@ -152,6 +152,12 @@ func (TpmState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tpmState)(nil)).Elem()
 }
 
+// TpmExists checks whether an existing Tpm resource with the given ID exists.
+func TpmExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TpmState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/tpm:Tpm", id, state, "", opts...)
+}
+
 type tpmArgs struct {
 	// Whether the TPM is disabled. Defaults to `false`.
 	Disabled *bool `pulumi:"disabled"`

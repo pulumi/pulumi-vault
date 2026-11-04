@@ -150,6 +150,12 @@ func (AuthBackendGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendGroupState)(nil)).Elem()
 }
 
+// AuthBackendGroupExists checks whether an existing AuthBackendGroup resource with the given ID exists.
+func AuthBackendGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ldap/authBackendGroup:AuthBackendGroup", id, state, "", opts...)
+}
+
 type authBackendGroupArgs struct {
 	// Path to the authentication backend
 	//

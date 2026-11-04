@@ -117,6 +117,12 @@ func (OidcState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcState)(nil)).Elem()
 }
 
+// OidcExists checks whether an existing Oidc resource with the given ID exists.
+func OidcExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidc:Oidc", id, state, "", opts...)
+}
+
 type oidcArgs struct {
 	// Issuer URL to be used in the iss claim of the token. If not set, Vault's
 	// `apiAddr` will be used. The issuer is a case sensitive URL using the https scheme that contains

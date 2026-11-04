@@ -14,7 +14,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Reads a KV-V1 secret from a given path in Vault.
         /// 
-        /// For more information on Vault's KV-V1 secret backend 
+        /// For more information on Vault's KV-V1 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v1).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -75,7 +75,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Reads a KV-V1 secret from a given path in Vault.
         /// 
-        /// For more information on Vault's KV-V1 secret backend 
+        /// For more information on Vault's KV-V1 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v1).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -136,7 +136,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Reads a KV-V1 secret from a given path in Vault.
         /// 
-        /// For more information on Vault's KV-V1 secret backend 
+        /// For more information on Vault's KV-V1 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v1).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -263,7 +263,7 @@ namespace Pulumi.Vault.kv
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The duration of the secret lease, in seconds. Once 
+        /// The duration of the secret lease, in seconds. Once
         /// this time has passed any plan generated with this data may fail to apply.
         /// </summary>
         public readonly int LeaseDuration;
@@ -272,7 +272,7 @@ namespace Pulumi.Vault.kv
         /// </summary>
         public readonly string LeaseId;
         /// <summary>
-        /// True if the duration of this lease can be extended 
+        /// True if the duration of this lease can be extended
         /// through renewal.
         /// </summary>
         public readonly bool LeaseRenewable;

@@ -218,6 +218,12 @@ func (BackendConfigAcmeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendConfigAcmeState)(nil)).Elem()
 }
 
+// BackendConfigAcmeExists checks whether an existing BackendConfigAcme resource with the given ID exists.
+func BackendConfigAcmeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendConfigAcmeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendConfigAcme:BackendConfigAcme", id, state, "", opts...)
+}
+
 type backendConfigAcmeArgs struct {
 	// Specifies whether the ExtKeyUsage field from a role is used. **Vault 1.14.1+**
 	AllowRoleExtKeyUsage *bool `pulumi:"allowRoleExtKeyUsage"`

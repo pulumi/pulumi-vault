@@ -183,6 +183,12 @@ func (SecretBackendConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConfigState)(nil)).Elem()
 }
 
+// SecretBackendConfigExists checks whether an existing SecretBackendConfig resource with the given ID exists.
+func SecretBackendConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:spiffe/secretBackendConfig:SecretBackendConfig", id, state, "", opts...)
+}
+
 type secretBackendConfigArgs struct {
 	// The value to put as the refresh hint in trust bundles we publish.
 	// May not exceed key_lifetime/10. Uses

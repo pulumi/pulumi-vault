@@ -197,6 +197,12 @@ func (TransformationTokenizationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*transformationTokenizationState)(nil)).Elem()
 }
 
+// TransformationTokenizationExists checks whether an existing TransformationTokenization resource with the given ID exists.
+func TransformationTokenizationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TransformationTokenizationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:transform/transformationTokenization:TransformationTokenization", id, state, "", opts...)
+}
+
 type transformationTokenizationArgs struct {
 	// Specifies a list of allowed roles that this transformation can be assigned to.
 	// A role using this transformation must exist in this list in order for encode and decode operations to properly function. Default is `[]`.

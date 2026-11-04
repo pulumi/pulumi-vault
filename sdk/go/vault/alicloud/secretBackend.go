@@ -199,6 +199,12 @@ func (SecretBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendState)(nil)).Elem()
 }
 
+// SecretBackendExists checks whether an existing SecretBackend resource with the given ID exists.
+func SecretBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:alicloud/secretBackend:SecretBackend", id, state, "", opts...)
+}
+
 type secretBackendArgs struct {
 	// The AliCloud Access Key ID with permissions to manage RAM users and policies.
 	// This credential is used by Vault to create and manage dynamic AliCloud credentials.

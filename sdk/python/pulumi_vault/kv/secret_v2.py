@@ -835,6 +835,40 @@ class SecretV2(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         return SecretV2(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cas: pulumi.Input[Optional[_builtins.int]] = None,
+            custom_metadata: pulumi.Input[Optional[Union['SecretV2CustomMetadataArgs', 'SecretV2CustomMetadataArgsDict', 'outputs.SecretV2CustomMetadata']]] = None,
+            data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            data_json: pulumi.Input[Optional[_builtins.str]] = None,
+            data_json_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            data_json_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            delete_all_versions: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cas"] = cas
+        __props__["customMetadata"] = custom_metadata
+        __props__["data"] = data
+        __props__["dataJson"] = data_json
+        __props__["dataJsonWo"] = data_json_wo
+        __props__["dataJsonWoVersion"] = data_json_wo_version
+        __props__["deleteAllVersions"] = delete_all_versions
+        __props__["disableRead"] = disable_read
+        __props__["metadata"] = metadata
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["options"] = options
+        __props__["path"] = path
+        return pulumi.runtime.exists_resource(None, 'vault:kv/secretV2:SecretV2', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def cas(self) -> pulumi.Output[Optional[_builtins.int]]:

@@ -435,6 +435,12 @@ func (AuthBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendState)(nil)).Elem()
 }
 
+// AuthBackendExists checks whether an existing AuthBackend resource with the given ID exists.
+func AuthBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:jwt/authBackend:AuthBackend", id, state, "", opts...)
+}
+
 type authBackendArgs struct {
 	// The value against which to match the iss claim in a JWT
 	BoundIssuer *string `pulumi:"boundIssuer"`

@@ -77,7 +77,7 @@ import javax.annotation.Nullable;
  *             .backend(db.path())
  *             .name("dev")
  *             .dbName(postgres.name())
- *             .creationStatements("CREATE ROLE \"}{{{@code name}}}{@code \" WITH LOGIN PASSWORD '}{{{@code password}}}{@code ' VALID UNTIL '}{{{@code expiration}}}{@code ';")
+ *             .creationStatements("CREATE ROLE }&#92;{@code "}{{{@code name}}}&#92;{@code " WITH LOGIN PASSWORD '}{{{@code password}}}{@code ' VALID UNTIL '}{{{@code expiration}}}{@code ';")
  *             .build());
  * 
  *     }}{@code

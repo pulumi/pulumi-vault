@@ -247,6 +247,12 @@ func (AwsKmsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*awsKmsState)(nil)).Elem()
 }
 
+// AwsKmsExists checks whether an existing AwsKms resource with the given ID exists.
+func AwsKmsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AwsKmsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:keymgmt/awsKms:AwsKms", id, state, "", opts...)
+}
+
 type awsKmsArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The credentials to use for authentication with AWS KMS. Supplying values for this parameter is optional, as credentials may also be specified as environment variables. Credentials provided to this parameter will take precedence over credentials provided via environment variables. This value is write-only and will not be stored in Terraform state.

@@ -444,6 +444,12 @@ func (OauthResourceServerConfigProfileState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oauthResourceServerConfigProfileState)(nil)).Elem()
 }
 
+// OauthResourceServerConfigProfileExists checks whether an existing OauthResourceServerConfigProfile resource with the given ID exists.
+func OauthResourceServerConfigProfileExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OauthResourceServerConfigProfileState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/oauthResourceServerConfigProfile:OauthResourceServerConfigProfile", id, state, "", opts...)
+}
+
 type oauthResourceServerConfigProfileArgs struct {
 	// The JWT claim to use as the actor identifier for delegation and chained-token scenarios (RFC 8693 `act` claim). Requires Vault 2.2.0 or later.
 	ActorClaim *string `pulumi:"actorClaim"`

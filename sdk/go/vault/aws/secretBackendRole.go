@@ -337,6 +337,12 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRoleState)(nil)).Elem()
 }
 
+// SecretBackendRoleExists checks whether an existing SecretBackendRole resource with the given ID exists.
+func SecretBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/secretBackendRole:SecretBackendRole", id, state, "", opts...)
+}
+
 type secretBackendRoleArgs struct {
 	// The path the AWS secret backend is mounted at,
 	// with no leading or trailing `/`s.

@@ -106,6 +106,12 @@ func (AuditRequestHeaderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditRequestHeaderState)(nil)).Elem()
 }
 
+// AuditRequestHeaderExists checks whether an existing AuditRequestHeader resource with the given ID exists.
+func AuditRequestHeaderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuditRequestHeaderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/auditRequestHeader:AuditRequestHeader", id, state, "", opts...)
+}
+
 type auditRequestHeaderArgs struct {
 	// Whether this header's value should be HMAC'd in the audit logs.
 	Hmac *bool `pulumi:"hmac"`

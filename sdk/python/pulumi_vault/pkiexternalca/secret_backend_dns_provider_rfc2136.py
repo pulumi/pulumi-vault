@@ -652,6 +652,36 @@ class SecretBackendDnsProviderRfc2136(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretBackendDnsProviderRfc2136(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_date: pulumi.Input[Optional[_builtins.str]] = None,
+            identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nameserver: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            tsig_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            tsig_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tsig_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            tsig_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["creationDate"] = creation_date
+        __props__["identifiers"] = identifiers
+        __props__["lastUpdatedDate"] = last_updated_date
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["nameserver"] = nameserver
+        __props__["namespace"] = namespace
+        __props__["tsigAlgorithm"] = tsig_algorithm
+        __props__["tsigKeyName"] = tsig_key_name
+        __props__["tsigSecretWo"] = tsig_secret_wo
+        __props__["tsigSecretWoVersion"] = tsig_secret_wo_version
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendDnsProviderRfc2136:SecretBackendDnsProviderRfc2136', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="creationDate")
     def creation_date(self) -> pulumi.Output[_builtins.str]:

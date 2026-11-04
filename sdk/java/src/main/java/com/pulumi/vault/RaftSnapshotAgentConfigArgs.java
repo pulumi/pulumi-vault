@@ -177,22 +177,20 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
     /**
      * AWS secret access key.
      * 
-     * @deprecated
-     * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+     * @deprecated Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
      * 
      */
-    @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
+    @Deprecated
     @Import(name="awsSecretAccessKey")
     private @Nullable Output<String> awsSecretAccessKey;
 
     /**
      * @return AWS secret access key.
      * 
-     * @deprecated
-     * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+     * @deprecated Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
      * 
      */
-    @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
+    @Deprecated
     public Optional<Output<String>> awsSecretAccessKey() {
         return Optional.ofNullable(this.awsSecretAccessKey);
     }
@@ -830,11 +828,10 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+         * @deprecated Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
          * 
          */
-        @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
+        @Deprecated
         public Builder awsSecretAccessKey(@Nullable Output<String> awsSecretAccessKey) {
             $.awsSecretAccessKey = awsSecretAccessKey;
             return this;
@@ -845,11 +842,10 @@ public final class RaftSnapshotAgentConfigArgs extends com.pulumi.resources.Reso
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+         * @deprecated Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
          * 
          */
-        @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
+        @Deprecated
         public Builder awsSecretAccessKey(String awsSecretAccessKey) {
             return awsSecretAccessKey(Output.of(awsSecretAccessKey));
         }

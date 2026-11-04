@@ -761,6 +761,36 @@ class SecretListener(pulumi.CustomResource):
         __props__.__dict__["tls_min_version"] = tls_min_version
         return SecretListener(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            additional_client_cas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            address: pulumi.Input[Optional[_builtins.str]] = None,
+            also_use_legacy_ca: pulumi.Input[Optional[_builtins.bool]] = None,
+            ca: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            server_hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            server_ips: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tls_cipher_suites: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_min_version: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["additionalClientCas"] = additional_client_cas
+        __props__["address"] = address
+        __props__["alsoUseLegacyCa"] = also_use_legacy_ca
+        __props__["ca"] = ca
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["serverHostnames"] = server_hostnames
+        __props__["serverIps"] = server_ips
+        __props__["tlsCipherSuites"] = tls_cipher_suites
+        __props__["tlsMaxVersion"] = tls_max_version
+        __props__["tlsMinVersion"] = tls_min_version
+        return pulumi.runtime.exists_resource(None, 'vault:kmip/secretListener:SecretListener', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="additionalClientCas")
     def additional_client_cas(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

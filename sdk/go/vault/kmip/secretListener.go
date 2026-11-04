@@ -288,6 +288,12 @@ func (SecretListenerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretListenerState)(nil)).Elem()
 }
 
+// SecretListenerExists checks whether an existing SecretListener resource with the given ID exists.
+func SecretListenerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretListenerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kmip/secretListener:SecretListener", id, state, "", opts...)
+}
+
 type secretListenerArgs struct {
 	// Names of additional TLS CAs to use to verify client certificates. This allows accepting client certificates from multiple CAs.
 	AdditionalClientCas []string `pulumi:"additionalClientCas"`

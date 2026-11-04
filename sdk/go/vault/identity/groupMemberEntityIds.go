@@ -224,6 +224,12 @@ func (GroupMemberEntityIdsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupMemberEntityIdsState)(nil)).Elem()
 }
 
+// GroupMemberEntityIdsExists checks whether an existing GroupMemberEntityIds resource with the given ID exists.
+func GroupMemberEntityIdsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupMemberEntityIdsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/groupMemberEntityIds:GroupMemberEntityIds", id, state, "", opts...)
+}
+
 type groupMemberEntityIdsArgs struct {
 	// Defaults to `true`.
 	//

@@ -283,6 +283,12 @@ func (SyncGhDestinationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncGhDestinationState)(nil)).Elem()
 }
 
+// SyncGhDestinationExists checks whether an existing SyncGhDestination resource with the given ID exists.
+func SyncGhDestinationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncGhDestinationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncGhDestination:SyncGhDestination", id, state, "", opts...)
+}
+
 type syncGhDestinationArgs struct {
 	// Fine-grained or personal access token.
 	// Can be omitted and directly provided to Vault using the `GITHUB_ACCESS_TOKEN` environment

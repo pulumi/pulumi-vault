@@ -413,6 +413,24 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         __props__.__dict__["ocsp_servers"] = ocsp_servers
         return SecretBackendConfigUrls(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["crlDistributionPoints"] = crl_distribution_points
+        __props__["enableTemplating"] = enable_templating
+        __props__["issuingCertificates"] = issuing_certificates
+        __props__["namespace"] = namespace
+        __props__["ocspServers"] = ocsp_servers
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/secretBackendConfigUrls:SecretBackendConfigUrls', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

@@ -65,11 +65,10 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
      * Vault and whose values are the corresponding values. This map can only represent string data,
      * so any non-string values returned from Vault are serialized as JSON.
      * 
-     * @deprecated
-     * Deprecated. Will no longer be set on a read.
+     * @deprecated Deprecated. Will no longer be set on a read.
      * 
      */
-    @Deprecated /* Deprecated. Will no longer be set on a read. */
+    @Deprecated
     @Import(name="data")
     private @Nullable Output<Map<String,String>> data;
 
@@ -79,11 +78,10 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
      * Vault and whose values are the corresponding values. This map can only represent string data,
      * so any non-string values returned from Vault are serialized as JSON.
      * 
-     * @deprecated
-     * Deprecated. Will no longer be set on a read.
+     * @deprecated Deprecated. Will no longer be set on a read.
      * 
      */
-    @Deprecated /* Deprecated. Will no longer be set on a read. */
+    @Deprecated
     public Optional<Output<Map<String,String>>> data() {
         return Optional.ofNullable(this.data);
     }
@@ -372,11 +370,10 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated. Will no longer be set on a read.
+         * @deprecated Deprecated. Will no longer be set on a read.
          * 
          */
-        @Deprecated /* Deprecated. Will no longer be set on a read. */
+        @Deprecated
         public Builder data(@Nullable Output<Map<String,String>> data) {
             $.data = data;
             return this;
@@ -390,11 +387,10 @@ public final class SecretV2State extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated. Will no longer be set on a read.
+         * @deprecated Deprecated. Will no longer be set on a read.
          * 
          */
-        @Deprecated /* Deprecated. Will no longer be set on a read. */
+        @Deprecated
         public Builder data(Map<String,String> data) {
             return data(Output.of(data));
         }

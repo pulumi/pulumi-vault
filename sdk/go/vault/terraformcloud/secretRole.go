@@ -171,6 +171,12 @@ func (SecretRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretRoleState)(nil)).Elem()
 }
 
+// SecretRoleExists checks whether an existing SecretRole resource with the given ID exists.
+func SecretRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:terraformcloud/secretRole:SecretRole", id, state, "", opts...)
+}
+
 type secretRoleArgs struct {
 	// The unique name of an existing Terraform Cloud secrets backend mount. Must not begin or end with a `/`.
 	Backend *string `pulumi:"backend"`

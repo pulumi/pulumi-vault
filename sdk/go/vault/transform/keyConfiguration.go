@@ -150,6 +150,12 @@ func (KeyConfigurationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyConfigurationState)(nil)).Elem()
 }
 
+// KeyConfigurationExists checks whether an existing KeyConfiguration resource with the given ID exists.
+func KeyConfigurationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyConfigurationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:transform/keyConfiguration:KeyConfiguration", id, state, "", opts...)
+}
+
 type keyConfigurationArgs struct {
 	// The amount of time in seconds the key should live before being automatically rotated. Setting this to `0` disables automatic rotation.
 	AutoRotatePeriod *int `pulumi:"autoRotatePeriod"`

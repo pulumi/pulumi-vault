@@ -49,12 +49,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var cf = new AuthBackend("cf", AuthBackendArgs.builder()
  *             .type("cf")
  *             .path("cf")
@@ -63,9 +63,9 @@ import javax.annotation.Nullable;
  *         var cfPolicy = new Policy("cfPolicy", PolicyArgs.builder()
  *             .name("cf-policy")
  *             .policy("""
- * path \"secret/*\" {
- *   capabilities = [\"read\"]
- * }
+ * path }&#92;{@code "secret/*}&#92;{@code " }{{@code
+ *   capabilities = [}&#92;{@code "read}&#92;{@code "]
+ * }}{@code
  *             """)
  *             .build());
  * 
@@ -79,8 +79,8 @@ import javax.annotation.Nullable;
  *             .tokenPolicies(cfPolicy.name())
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

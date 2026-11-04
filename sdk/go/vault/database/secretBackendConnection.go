@@ -353,6 +353,12 @@ func (SecretBackendConnectionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConnectionState)(nil)).Elem()
 }
 
+// SecretBackendConnectionExists checks whether an existing SecretBackendConnection resource with the given ID exists.
+func SecretBackendConnectionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendConnectionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:database/secretBackendConnection:SecretBackendConnection", id, state, "", opts...)
+}
+
 type secretBackendConnectionArgs struct {
 	// A list of roles that are allowed to use this
 	// connection.

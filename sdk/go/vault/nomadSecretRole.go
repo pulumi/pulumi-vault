@@ -178,6 +178,12 @@ func (NomadSecretRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*nomadSecretRoleState)(nil)).Elem()
 }
 
+// NomadSecretRoleExists checks whether an existing NomadSecretRole resource with the given ID exists.
+func NomadSecretRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NomadSecretRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/nomadSecretRole:NomadSecretRole", id, state, "", opts...)
+}
+
 type nomadSecretRoleArgs struct {
 	// The unique path this backend should be mounted at.
 	Backend string `pulumi:"backend"`

@@ -192,6 +192,12 @@ func (SecretBackendKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendKeyState)(nil)).Elem()
 }
 
+// SecretBackendKeyExists checks whether an existing SecretBackendKey resource with the given ID exists.
+func SecretBackendKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendKey:SecretBackendKey", id, state, "", opts...)
+}
+
 type secretBackendKeyArgs struct {
 	// The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`

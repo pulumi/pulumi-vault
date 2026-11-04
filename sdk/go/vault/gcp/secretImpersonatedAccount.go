@@ -174,6 +174,12 @@ func (SecretImpersonatedAccountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretImpersonatedAccountState)(nil)).Elem()
 }
 
+// SecretImpersonatedAccountExists checks whether an existing SecretImpersonatedAccount resource with the given ID exists.
+func SecretImpersonatedAccountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretImpersonatedAccountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:gcp/secretImpersonatedAccount:SecretImpersonatedAccount", id, state, "", opts...)
+}
+
 type secretImpersonatedAccountArgs struct {
 	// Path where the GCP Secrets Engine is mounted
 	Backend string `pulumi:"backend"`

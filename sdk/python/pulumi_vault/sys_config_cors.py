@@ -409,6 +409,18 @@ class SysConfigCors(pulumi.CustomResource):
         __props__.__dict__["enabled"] = enabled
         return SysConfigCors(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_origins: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedHeaders"] = allowed_headers
+        __props__["allowedOrigins"] = allowed_origins
+        __props__["enabled"] = enabled
+        return pulumi.runtime.exists_resource(None, 'vault:index/sysConfigCors:SysConfigCors', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedHeaders")
     def allowed_headers(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

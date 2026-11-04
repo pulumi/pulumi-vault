@@ -235,6 +235,12 @@ func (OidcRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcRoleState)(nil)).Elem()
 }
 
+// OidcRoleExists checks whether an existing OidcRole resource with the given ID exists.
+func OidcRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidcRole:OidcRole", id, state, "", opts...)
+}
+
 type oidcRoleArgs struct {
 	// The value that will be included in the `aud` field of all the OIDC identity
 	// tokens issued by this role

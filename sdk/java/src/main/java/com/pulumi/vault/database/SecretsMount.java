@@ -125,8 +125,8 @@ import javax.annotation.Nullable;
  *             .backend(db.path())
  *             .dbName(db.postgresqls().applyValue(_postgresqls -> _postgresqls.get(0).name()))
  *             .creationStatements(            
- *                 "CREATE ROLE \"}{{{@code name}}}{@code \" WITH LOGIN PASSWORD '}{{{@code password}}}{@code ' VALID UNTIL '}{{{@code expiration}}}{@code ';",
- *                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO \"}{{{@code name}}}{@code \";")
+ *                 "CREATE ROLE }&#92;{@code "}{{{@code name}}}&#92;{@code " WITH LOGIN PASSWORD '}{{{@code password}}}{@code ' VALID UNTIL '}{{{@code expiration}}}{@code ';",
+ *                 "GRANT SELECT ON ALL TABLES IN SCHEMA public TO }&#92;{@code "}{{{@code name}}}&#92;{@code ";")
  *             .build());
  * 
  *     }}{@code
@@ -227,7 +227,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.auditNonHmacResponseKeys;
     }
     /**
-     * A nested block containing configuration options for Cassandra connections.\
+     * A nested block containing configuration options for Cassandra connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -235,7 +235,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountCassandra>> cassandras;
 
     /**
-     * @return A nested block containing configuration options for Cassandra connections.\
+     * @return A nested block containing configuration options for Cassandra connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -243,7 +243,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.cassandras);
     }
     /**
-     * A nested block containing configuration options for Couchbase connections.\
+     * A nested block containing configuration options for Couchbase connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -251,7 +251,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountCouchbase>> couchbases;
 
     /**
-     * @return A nested block containing configuration options for Couchbase connections.\
+     * @return A nested block containing configuration options for Couchbase connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -301,7 +301,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.description);
     }
     /**
-     * A nested block containing configuration options for Elasticsearch connections.\
+     * A nested block containing configuration options for Elasticsearch connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -309,7 +309,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountElasticsearch>> elasticsearches;
 
     /**
-     * @return A nested block containing configuration options for Elasticsearch connections.\
+     * @return A nested block containing configuration options for Elasticsearch connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -359,7 +359,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.forceNoCache;
     }
     /**
-     * A nested block containing configuration options for SAP HanaDB connections.\
+     * A nested block containing configuration options for SAP HanaDB connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -367,7 +367,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountHana>> hanas;
 
     /**
-     * @return A nested block containing configuration options for SAP HanaDB connections.\
+     * @return A nested block containing configuration options for SAP HanaDB connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -389,7 +389,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.identityTokenKey);
     }
     /**
-     * A nested block containing configuration options for InfluxDB connections.\
+     * A nested block containing configuration options for InfluxDB connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -397,7 +397,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountInfluxdb>> influxdbs;
 
     /**
-     * @return A nested block containing configuration options for InfluxDB connections.\
+     * @return A nested block containing configuration options for InfluxDB connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -447,7 +447,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.maxLeaseTtlSeconds;
     }
     /**
-     * A nested block containing configuration options for MongoDB Atlas connections.\
+     * A nested block containing configuration options for MongoDB Atlas connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -455,7 +455,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountMongodbatla>> mongodbatlas;
 
     /**
-     * @return A nested block containing configuration options for MongoDB Atlas connections.\
+     * @return A nested block containing configuration options for MongoDB Atlas connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -463,7 +463,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mongodbatlas);
     }
     /**
-     * A nested block containing configuration options for MongoDB connections.\
+     * A nested block containing configuration options for MongoDB connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -471,7 +471,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountMongodb>> mongodbs;
 
     /**
-     * @return A nested block containing configuration options for MongoDB connections.\
+     * @return A nested block containing configuration options for MongoDB connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -479,7 +479,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mongodbs);
     }
     /**
-     * A nested block containing configuration options for MSSQL connections.\
+     * A nested block containing configuration options for MSSQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -487,7 +487,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountMssql>> mssqls;
 
     /**
-     * @return A nested block containing configuration options for MSSQL connections.\
+     * @return A nested block containing configuration options for MSSQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -495,7 +495,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mssqls);
     }
     /**
-     * A nested block containing configuration options for Aurora MySQL connections.\
+     * A nested block containing configuration options for Aurora MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -503,7 +503,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountMysqlAurora>> mysqlAuroras;
 
     /**
-     * @return A nested block containing configuration options for Aurora MySQL connections.\
+     * @return A nested block containing configuration options for Aurora MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -511,7 +511,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mysqlAuroras);
     }
     /**
-     * A nested block containing configuration options for legacy MySQL connections.\
+     * A nested block containing configuration options for legacy MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -519,7 +519,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountMysqlLegacy>> mysqlLegacies;
 
     /**
-     * @return A nested block containing configuration options for legacy MySQL connections.\
+     * @return A nested block containing configuration options for legacy MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -527,7 +527,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mysqlLegacies);
     }
     /**
-     * A nested block containing configuration options for RDS MySQL connections.\
+     * A nested block containing configuration options for RDS MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -535,7 +535,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountMysqlRd>> mysqlRds;
 
     /**
-     * @return A nested block containing configuration options for RDS MySQL connections.\
+     * @return A nested block containing configuration options for RDS MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -543,7 +543,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.mysqlRds);
     }
     /**
-     * A nested block containing configuration options for MySQL connections.\
+     * A nested block containing configuration options for MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -551,7 +551,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountMysql>> mysqls;
 
     /**
-     * @return A nested block containing configuration options for MySQL connections.\
+     * @return A nested block containing configuration options for MySQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -587,7 +587,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.options);
     }
     /**
-     * A nested block containing configuration options for Oracle connections.\
+     * A nested block containing configuration options for Oracle connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -595,7 +595,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountOracle>> oracles;
 
     /**
-     * @return A nested block containing configuration options for Oracle connections.\
+     * @return A nested block containing configuration options for Oracle connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -645,7 +645,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.pluginVersion);
     }
     /**
-     * A nested block containing configuration options for PostgreSQL connections.\
+     * A nested block containing configuration options for PostgreSQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -653,7 +653,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountPostgresql>> postgresqls;
 
     /**
-     * @return A nested block containing configuration options for PostgreSQL connections.\
+     * @return A nested block containing configuration options for PostgreSQL connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -661,7 +661,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.postgresqls);
     }
     /**
-     * A nested block containing configuration options for Redis connections.\
+     * A nested block containing configuration options for Redis connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -669,7 +669,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountRedi>> redis;
 
     /**
-     * @return A nested block containing configuration options for Redis connections.\
+     * @return A nested block containing configuration options for Redis connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -677,7 +677,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.redis);
     }
     /**
-     * A nested block containing configuration options for Redis ElastiCache connections.\
+     * A nested block containing configuration options for Redis ElastiCache connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -685,7 +685,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountRedisElasticache>> redisElasticaches;
 
     /**
-     * @return A nested block containing configuration options for Redis ElastiCache connections.\
+     * @return A nested block containing configuration options for Redis ElastiCache connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -693,7 +693,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.redisElasticaches);
     }
     /**
-     * A nested block containing configuration options for AWS Redshift connections.\
+     * A nested block containing configuration options for AWS Redshift connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -701,7 +701,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountRedshift>> redshifts;
 
     /**
-     * @return A nested block containing configuration options for AWS Redshift connections.\
+     * @return A nested block containing configuration options for AWS Redshift connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -723,7 +723,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
         return this.sealWrap;
     }
     /**
-     * A nested block containing configuration options for Snowflake connections.\
+     * A nested block containing configuration options for Snowflake connections.&#92;
      * *See Configuration Options for more info*
      * 
      */
@@ -731,7 +731,7 @@ public class SecretsMount extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretsMountSnowflake>> snowflakes;
 
     /**
-     * @return A nested block containing configuration options for Snowflake connections.\
+     * @return A nested block containing configuration options for Snowflake connections.&#92;
      * *See Configuration Options for more info*
      * 
      */

@@ -255,6 +255,12 @@ func (SyncVercelDestinationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncVercelDestinationState)(nil)).Elem()
 }
 
+// SyncVercelDestinationExists checks whether an existing SyncVercelDestination resource with the given ID exists.
+func SyncVercelDestinationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncVercelDestinationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncVercelDestination:SyncVercelDestination", id, state, "", opts...)
+}
+
 type syncVercelDestinationArgs struct {
 	// Vercel API access token with the permissions to manage environment
 	// variables.

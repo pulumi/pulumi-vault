@@ -563,6 +563,28 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         __props__.__dict__["serial_number"] = serial_number
         return SecretBackendOrderCertificate(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ca_chains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            order_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["caChains"] = ca_chains
+        __props__["certificate"] = certificate
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["orderId"] = order_id
+        __props__["privateKey"] = private_key
+        __props__["roleName"] = role_name
+        __props__["serialNumber"] = serial_number
+        return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="caChains")
     def ca_chains(self) -> pulumi.Output[Sequence[_builtins.str]]:

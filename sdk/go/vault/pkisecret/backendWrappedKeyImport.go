@@ -175,6 +175,12 @@ func (BackendWrappedKeyImportState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendWrappedKeyImportState)(nil)).Elem()
 }
 
+// BackendWrappedKeyImportExists checks whether an existing BackendWrappedKeyImport resource with the given ID exists.
+func BackendWrappedKeyImportExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendWrappedKeyImportState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendWrappedKeyImport:BackendWrappedKeyImport", id, state, "", opts...)
+}
+
 type backendWrappedKeyImportArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// Deterministic HMAC fingerprint of the wrapping key used to encrypt the blob. Write-only — not stored in state after create. Accepts ephemeral values.

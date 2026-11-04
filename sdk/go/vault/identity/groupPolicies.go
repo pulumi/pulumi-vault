@@ -210,6 +210,12 @@ func (GroupPoliciesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupPoliciesState)(nil)).Elem()
 }
 
+// GroupPoliciesExists checks whether an existing GroupPolicies resource with the given ID exists.
+func GroupPoliciesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupPoliciesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/groupPolicies:GroupPolicies", id, state, "", opts...)
+}
+
 type groupPoliciesArgs struct {
 	// Defaults to `true`.
 	//

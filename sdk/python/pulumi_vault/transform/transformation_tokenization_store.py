@@ -723,6 +723,38 @@ class TransformationTokenizationStore(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return TransformationTokenizationStore(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+            driver: pulumi.Input[Optional[_builtins.str]] = None,
+            max_connection_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+            max_idle_connections: pulumi.Input[Optional[_builtins.int]] = None,
+            max_open_connections: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            schema: pulumi.Input[Optional[_builtins.str]] = None,
+            supported_transformations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["connectionString"] = connection_string
+        __props__["driver"] = driver
+        __props__["maxConnectionLifetime"] = max_connection_lifetime
+        __props__["maxIdleConnections"] = max_idle_connections
+        __props__["maxOpenConnections"] = max_open_connections
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["password"] = password
+        __props__["path"] = path
+        __props__["schema"] = schema
+        __props__["supportedTransformations"] = supported_transformations
+        __props__["type"] = type
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'vault:transform/transformationTokenizationStore:TransformationTokenizationStore', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="connectionString")
     def connection_string(self) -> pulumi.Output[_builtins.str]:

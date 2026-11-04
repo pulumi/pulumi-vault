@@ -60,6 +60,17 @@ export class SecretBackendConfigIssuers extends pulumi.CustomResource {
         return new SecretBackendConfigIssuers(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing SecretBackendConfigIssuers resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: SecretBackendConfigIssuersState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers';
 

@@ -35,11 +35,10 @@ public final class SecretBackendConnectionSnowflake {
     /**
      * @return The root credential password used in the connection URL
      * 
-     * @deprecated
-     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
      * 
      */
-    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
+    @Deprecated
     private @Nullable String password;
     /**
      * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -106,11 +105,10 @@ public final class SecretBackendConnectionSnowflake {
     /**
      * @return The root credential password used in the connection URL
      * 
-     * @deprecated
-     * Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
+     * @deprecated Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication.
      * 
      */
-    @Deprecated /* Snowflake is ending support for single-factor password authentication by November 2025. Refer to the documentation for more information on migrating to key-pair authentication. */
+    @Deprecated
     public Optional<String> password() {
         return Optional.ofNullable(this.password);
     }

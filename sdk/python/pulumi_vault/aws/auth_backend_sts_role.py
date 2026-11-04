@@ -395,6 +395,22 @@ class AuthBackendStsRole(pulumi.CustomResource):
         __props__.__dict__["sts_role"] = sts_role
         return AuthBackendStsRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            account_id: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            sts_role: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accountId"] = account_id
+        __props__["backend"] = backend
+        __props__["externalId"] = external_id
+        __props__["namespace"] = namespace
+        __props__["stsRole"] = sts_role
+        return pulumi.runtime.exists_resource(None, 'vault:aws/authBackendStsRole:AuthBackendStsRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[_builtins.str]:

@@ -607,6 +607,34 @@ class AgentRegistration(pulumi.CustomResource):
         __props__.__dict__["owner"] = owner
         return AgentRegistration(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ceiling_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            creation_time: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            last_updated_time: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            no_default_ceiling_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            optional_authorization_details: pulumi.Input[Optional[_builtins.bool]] = None,
+            owner: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["ceilingPolicies"] = ceiling_policies
+        __props__["creationTime"] = creation_time
+        __props__["description"] = description
+        __props__["displayName"] = display_name
+        __props__["entityId"] = entity_id
+        __props__["lastUpdatedTime"] = last_updated_time
+        __props__["local"] = local
+        __props__["namespace"] = namespace
+        __props__["noDefaultCeilingPolicy"] = no_default_ceiling_policy
+        __props__["optionalAuthorizationDetails"] = optional_authorization_details
+        __props__["owner"] = owner
+        return pulumi.runtime.exists_resource(None, 'vault:index/agentRegistration:AgentRegistration', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="ceilingPolicies")
     def ceiling_policies(self) -> pulumi.Output[Sequence[_builtins.str]]:

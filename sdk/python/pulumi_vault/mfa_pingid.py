@@ -604,6 +604,38 @@ class MfaPingid(pulumi.CustomResource):
         __props__.__dict__["username_format"] = username_format
         return MfaPingid(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            admin_url: pulumi.Input[Optional[_builtins.str]] = None,
+            authenticator_url: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_url: pulumi.Input[Optional[_builtins.str]] = None,
+            mfa_pingid_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            settings_file_base64: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            use_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+            username_format: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["adminUrl"] = admin_url
+        __props__["authenticatorUrl"] = authenticator_url
+        __props__["idpUrl"] = idp_url
+        __props__["mfaPingidId"] = mfa_pingid_id
+        __props__["mountAccessor"] = mount_accessor
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["namespaceId"] = namespace_id
+        __props__["orgAlias"] = org_alias
+        __props__["settingsFileBase64"] = settings_file_base64
+        __props__["type"] = type
+        __props__["useSignature"] = use_signature
+        __props__["usernameFormat"] = username_format
+        return pulumi.runtime.exists_resource(None, 'vault:index/mfaPingid:MfaPingid', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="adminUrl")
     def admin_url(self) -> pulumi.Output[_builtins.str]:

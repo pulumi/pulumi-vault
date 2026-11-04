@@ -119,6 +119,12 @@ func (UiCustomMessageState) ElementType() reflect.Type {
 	return reflect.TypeOf((*uiCustomMessageState)(nil)).Elem()
 }
 
+// UiCustomMessageExists checks whether an existing UiCustomMessage resource with the given ID exists.
+func UiCustomMessageExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UiCustomMessageState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:config/uiCustomMessage:UiCustomMessage", id, state, "", opts...)
+}
+
 type uiCustomMessageArgs struct {
 	// A flag indicating whether the custom message is displayed pre-login (false) or post-login (true)
 	Authenticated *bool `pulumi:"authenticated"`

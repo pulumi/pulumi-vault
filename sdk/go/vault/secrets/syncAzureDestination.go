@@ -361,6 +361,12 @@ func (SyncAzureDestinationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncAzureDestinationState)(nil)).Elem()
 }
 
+// SyncAzureDestinationExists checks whether an existing SyncAzureDestination resource with the given ID exists.
+func SyncAzureDestinationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncAzureDestinationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncAzureDestination:SyncAzureDestination", id, state, "", opts...)
+}
+
 type syncAzureDestinationArgs struct {
 	// Set of allowed IPv4 addresses in CIDR notation (e.g., 192.168.1.1/32) for outbound connections from Vault to the destination. If not set, all IPv4 addresses are allowed. Requires Vault 1.19+.
 	AllowedIpv4Addresses []string `pulumi:"allowedIpv4Addresses"`

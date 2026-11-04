@@ -794,6 +794,40 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["verbose_logging"] = verbose_logging
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acs_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_role: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_cert: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_entity_id: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_metadata_url: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
+            validate_assertion_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+            validate_response_signature: pulumi.Input[Optional[_builtins.bool]] = None,
+            verbose_logging: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acsUrls"] = acs_urls
+        __props__["defaultRole"] = default_role
+        __props__["disableRemount"] = disable_remount
+        __props__["entityId"] = entity_id
+        __props__["idpCert"] = idp_cert
+        __props__["idpEntityId"] = idp_entity_id
+        __props__["idpMetadataUrl"] = idp_metadata_url
+        __props__["idpSsoUrl"] = idp_sso_url
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["tune"] = tune
+        __props__["validateAssertionSignature"] = validate_assertion_signature
+        __props__["validateResponseSignature"] = validate_response_signature
+        __props__["verboseLogging"] = verbose_logging
+        return pulumi.runtime.exists_resource(None, 'vault:saml/authBackend:AuthBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="acsUrls")
     def acs_urls(self) -> pulumi.Output[Sequence[_builtins.str]]:

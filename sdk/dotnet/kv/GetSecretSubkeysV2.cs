@@ -14,7 +14,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Reads the subkeys for a KV-V2 secret written to Vault.
         /// 
-        /// For more information on Vault's KV-V2 secret backend 
+        /// For more information on Vault's KV-V2 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -77,7 +77,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Reads the subkeys for a KV-V2 secret written to Vault.
         /// 
-        /// For more information on Vault's KV-V2 secret backend 
+        /// For more information on Vault's KV-V2 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -140,7 +140,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Reads the subkeys for a KV-V2 secret written to Vault.
         /// 
-        /// For more information on Vault's KV-V2 secret backend 
+        /// For more information on Vault's KV-V2 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -238,7 +238,7 @@ namespace Pulumi.Vault.kv
         public string? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the version to return. If not 
+        /// Specifies the version to return. If not
         /// set the latest version is returned.
         /// </summary>
         [Input("version")]
@@ -286,7 +286,7 @@ namespace Pulumi.Vault.kv
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Specifies the version to return. If not 
+        /// Specifies the version to return. If not
         /// set the latest version is returned.
         /// </summary>
         [Input("version")]

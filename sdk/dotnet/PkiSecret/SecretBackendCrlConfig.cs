@@ -80,7 +80,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> Disable { get; private set; } = null!;
 
         /// <summary>
-        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// Enables building of delta CRLs with up-to-date revocation information,
         /// augmenting the last complete CRL.  **Vault 1.12+**
         /// </summary>
         [Output("enableDelta")]
@@ -93,7 +93,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Expiry { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum number of entries a CRL can contain. This option exists to prevent 
+        /// The maximum number of entries a CRL can contain. This option exists to prevent
         /// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         /// </summary>
         [Output("maxCrlEntries")]
@@ -115,7 +115,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<bool?> OcspDisable { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling
         /// refresh durations. **Vault 1.12+**
         /// </summary>
         [Output("ocspExpiry")]
@@ -217,7 +217,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? Disable { get; set; }
 
         /// <summary>
-        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// Enables building of delta CRLs with up-to-date revocation information,
         /// augmenting the last complete CRL.  **Vault 1.12+**
         /// </summary>
         [Input("enableDelta")]
@@ -230,7 +230,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Expiry { get; set; }
 
         /// <summary>
-        /// The maximum number of entries a CRL can contain. This option exists to prevent 
+        /// The maximum number of entries a CRL can contain. This option exists to prevent
         /// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         /// </summary>
         [Input("maxCrlEntries")]
@@ -252,7 +252,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? OcspDisable { get; set; }
 
         /// <summary>
-        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling
         /// refresh durations. **Vault 1.12+**
         /// </summary>
         [Input("ocspExpiry")]
@@ -316,7 +316,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? Disable { get; set; }
 
         /// <summary>
-        /// Enables building of delta CRLs with up-to-date revocation information, 
+        /// Enables building of delta CRLs with up-to-date revocation information,
         /// augmenting the last complete CRL.  **Vault 1.12+**
         /// </summary>
         [Input("enableDelta")]
@@ -329,7 +329,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Expiry { get; set; }
 
         /// <summary>
-        /// The maximum number of entries a CRL can contain. This option exists to prevent 
+        /// The maximum number of entries a CRL can contain. This option exists to prevent
         /// accidental runaway issuance/revocation from overloading Vault. If set to -1, the limit is disabled. **Vault 1.19**
         /// </summary>
         [Input("maxCrlEntries")]
@@ -351,7 +351,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<bool>? OcspDisable { get; set; }
 
         /// <summary>
-        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling 
+        /// The amount of time an OCSP response can be cached for, useful for OCSP stapling
         /// refresh durations. **Vault 1.12+**
         /// </summary>
         [Input("ocspExpiry")]

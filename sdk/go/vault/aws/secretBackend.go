@@ -542,6 +542,12 @@ func (SecretBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendState)(nil)).Elem()
 }
 
+// SecretBackendExists checks whether an existing SecretBackend resource with the given ID exists.
+func SecretBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/secretBackend:SecretBackend", id, state, "", opts...)
+}
+
 type secretBackendArgs struct {
 	// The AWS Access Key ID this backend should use to
 	// issue new credentials. Vault uses the official AWS SDK to authenticate, and thus can also use standard AWS environment credentials, shared file credentials or IAM role/ECS task credentials.

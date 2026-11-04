@@ -337,6 +337,20 @@ class BackendConfigCluster(pulumi.CustomResource):
         __props__.__dict__["path"] = path
         return BackendConfigCluster(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            aia_path: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aiaPath"] = aia_path
+        __props__["backend"] = backend
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/backendConfigCluster:BackendConfigCluster', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="aiaPath")
     def aia_path(self) -> pulumi.Output[Optional[_builtins.str]]:

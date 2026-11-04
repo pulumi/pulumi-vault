@@ -873,6 +873,38 @@ class ScimClient(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return ScimClient(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_grant_principal: pulumi.Input[Optional[_builtins.str]] = None,
+            alias_mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_group_adoption: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_user_adoption: pulumi.Input[Optional[_builtins.bool]] = None,
+            allowed_extra_alias_mount_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_name: pulumi.Input[Optional[_builtins.str]] = None,
+            default_schema_version: pulumi.Input[Optional[_builtins.str]] = None,
+            deleting: pulumi.Input[Optional[_builtins.bool]] = None,
+            deletion_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            max_active_tokens: pulumi.Input[Optional[_builtins.int]] = None,
+            max_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessGrantPrincipal"] = access_grant_principal
+        __props__["aliasMountAccessor"] = alias_mount_accessor
+        __props__["allowGroupAdoption"] = allow_group_adoption
+        __props__["allowUserAdoption"] = allow_user_adoption
+        __props__["allowedExtraAliasMountAccessors"] = allowed_extra_alias_mount_accessors
+        __props__["clientId"] = client_id
+        __props__["clientName"] = client_name
+        __props__["defaultSchemaVersion"] = default_schema_version
+        __props__["deleting"] = deleting
+        __props__["deletionPolicy"] = deletion_policy
+        __props__["maxActiveTokens"] = max_active_tokens
+        __props__["maxTokenTtl"] = max_token_ttl
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:index/scimClient:ScimClient', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessGrantPrincipal")
     def access_grant_principal(self) -> pulumi.Output[_builtins.str]:

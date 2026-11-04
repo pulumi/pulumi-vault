@@ -69,7 +69,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> Certificate { get; private set; } = null!;
 
         /// <summary>
-        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
         /// Requires the `Format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         /// </summary>
         [Output("certificateBundle")]
@@ -184,7 +184,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Set the Not After field of the certificate with specified date value. 
+        /// Set the Not After field of the certificate with specified date value.
         /// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
         /// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         /// </summary>
@@ -522,7 +522,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Set the Not After field of the certificate with specified date value. 
+        /// Set the Not After field of the certificate with specified date value.
         /// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
         /// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         /// </summary>
@@ -732,7 +732,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Certificate { get; set; }
 
         /// <summary>
-        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded). 
+        /// The concatenation of the intermediate CA and the issuing CA certificates (PEM encoded).
         /// Requires the `Format` to be set to any of: pem, pem_bundle. The value will be empty for all other formats.
         /// </summary>
         [Input("certificateBundle")]
@@ -883,7 +883,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Set the Not After field of the certificate with specified date value. 
+        /// Set the Not After field of the certificate with specified date value.
         /// The value format should be given in UTC format YYYY-MM-ddTHH:MM:SSZ. Supports the Y10K end date
         /// for IEEE 802.1AR-2018 standard devices, 9999-12-31T23:59:59Z.
         /// </summary>

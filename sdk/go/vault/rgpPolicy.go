@@ -126,6 +126,12 @@ func (RgpPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*rgpPolicyState)(nil)).Elem()
 }
 
+// RgpPolicyExists checks whether an existing RgpPolicy resource with the given ID exists.
+func RgpPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RgpPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/rgpPolicy:RgpPolicy", id, state, "", opts...)
+}
+
 type rgpPolicyArgs struct {
 	// Enforcement level of Sentinel policy. Can be either `advisory` or `soft-mandatory` or `hard-mandatory`
 	EnforcementLevel string `pulumi:"enforcementLevel"`

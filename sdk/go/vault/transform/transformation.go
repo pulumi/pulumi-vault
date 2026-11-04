@@ -269,6 +269,12 @@ func (TransformationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*transformationState)(nil)).Elem()
 }
 
+// TransformationExists checks whether an existing Transformation resource with the given ID exists.
+func TransformationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TransformationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:transform/transformation:Transformation", id, state, "", opts...)
+}
+
 type transformationArgs struct {
 	// The set of roles allowed to perform this transformation.
 	AllowedRoles []string `pulumi:"allowedRoles"`

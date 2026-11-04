@@ -914,6 +914,42 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            credential_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+            db_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            self_managed_password: pulumi.Input[Optional[_builtins.str]] = None,
+            skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["credentialConfig"] = credential_config
+        __props__["credentialType"] = credential_type
+        __props__["dbName"] = db_name
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationStatements"] = rotation_statements
+        __props__["rotationWindow"] = rotation_window
+        __props__["selfManagedPassword"] = self_managed_password
+        __props__["skipImportRotation"] = skip_import_rotation
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'vault:database/secretBackendStaticRole:SecretBackendStaticRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

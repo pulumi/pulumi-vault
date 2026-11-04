@@ -555,6 +555,32 @@ class AuthBackendRoleTag(pulumi.CustomResource):
         __props__.__dict__["tag_value"] = tag_value
         return AuthBackendRoleTag(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            tag_key: pulumi.Input[Optional[_builtins.str]] = None,
+            tag_value: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowInstanceMigration"] = allow_instance_migration
+        __props__["backend"] = backend
+        __props__["disallowReauthentication"] = disallow_reauthentication
+        __props__["instanceId"] = instance_id
+        __props__["maxTtl"] = max_ttl
+        __props__["namespace"] = namespace
+        __props__["policies"] = policies
+        __props__["role"] = role
+        __props__["tagKey"] = tag_key
+        __props__["tagValue"] = tag_value
+        return pulumi.runtime.exists_resource(None, 'vault:aws/authBackendRoleTag:AuthBackendRoleTag', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowInstanceMigration")
     def allow_instance_migration(self) -> pulumi.Output[Optional[_builtins.bool]]:

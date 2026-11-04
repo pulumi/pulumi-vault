@@ -19,22 +19,20 @@ public final class PolicyState extends com.pulumi.resources.ResourceArgs {
     /**
      * Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
      * 
-     * @deprecated
-     * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+     * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
      * 
      */
-    @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+    @Deprecated
     @Import(name="allowOverwrite")
     private @Nullable Output<Boolean> allowOverwrite;
 
     /**
      * @return Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
      * 
-     * @deprecated
-     * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+     * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
      * 
      */
-    @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+    @Deprecated
     public Optional<Output<Boolean>> allowOverwrite() {
         return Optional.ofNullable(this.allowOverwrite);
     }
@@ -122,11 +120,10 @@ public final class PolicyState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+         * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
          * 
          */
-        @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+        @Deprecated
         public Builder allowOverwrite(@Nullable Output<Boolean> allowOverwrite) {
             $.allowOverwrite = allowOverwrite;
             return this;
@@ -137,11 +134,10 @@ public final class PolicyState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+         * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
          * 
          */
-        @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+        @Deprecated
         public Builder allowOverwrite(Boolean allowOverwrite) {
             return allowOverwrite(Output.of(allowOverwrite));
         }

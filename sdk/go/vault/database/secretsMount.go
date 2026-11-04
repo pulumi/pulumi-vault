@@ -471,6 +471,12 @@ func (SecretsMountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretsMountState)(nil)).Elem()
 }
 
+// SecretsMountExists checks whether an existing SecretsMount resource with the given ID exists.
+func SecretsMountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretsMountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:database/secretsMount:SecretsMount", id, state, "", opts...)
+}
+
 type secretsMountArgs struct {
 	// Set of managed key registry entry names that the mount in question is allowed to access
 	//

@@ -643,6 +643,40 @@ class SecretBackendOrder(pulumi.CustomResource):
         __props__.__dict__["serial_number"] = serial_number
         return SecretBackendOrder(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            challenges: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            creation_date: pulumi.Input[Optional[_builtins.str]] = None,
+            csr: pulumi.Input[Optional[_builtins.str]] = None,
+            expires: pulumi.Input[Optional[_builtins.str]] = None,
+            identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            last_error: pulumi.Input[Optional[_builtins.str]] = None,
+            last_update: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            next_work_date: pulumi.Input[Optional[_builtins.str]] = None,
+            order_id: pulumi.Input[Optional[_builtins.str]] = None,
+            order_status: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["challenges"] = challenges
+        __props__["creationDate"] = creation_date
+        __props__["csr"] = csr
+        __props__["expires"] = expires
+        __props__["identifiers"] = identifiers
+        __props__["lastError"] = last_error
+        __props__["lastUpdate"] = last_update
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["nextWorkDate"] = next_work_date
+        __props__["orderId"] = order_id
+        __props__["orderStatus"] = order_status
+        __props__["roleName"] = role_name
+        __props__["serialNumber"] = serial_number
+        return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendOrder:SecretBackendOrder', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def challenges(self) -> pulumi.Output[Mapping[str, _builtins.str]]:

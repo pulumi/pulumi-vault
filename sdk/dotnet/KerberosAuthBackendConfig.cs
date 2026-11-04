@@ -151,7 +151,7 @@ namespace Pulumi.Vault
     public partial class KerberosAuthBackendConfig : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Adds group aliases during authentication. When 
+        /// Adds group aliases during authentication. When
         /// enabled, Vault will create entity aliases for each group the user belongs to.
         /// Defaults to `False`.
         /// </summary>
@@ -192,7 +192,7 @@ namespace Pulumi.Vault
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Removes instance names from Kerberos service 
+        /// Removes instance names from Kerberos service
         /// principal names during authentication. This can be useful when the instance name
         /// is not relevant for authentication. Defaults to `False`.
         /// </summary>
@@ -200,7 +200,7 @@ namespace Pulumi.Vault
         public Output<bool?> RemoveInstanceName { get; private set; } = null!;
 
         /// <summary>
-        /// The Kerberos service account associated with the 
+        /// The Kerberos service account associated with the
         /// keytab entry (e.g., `vault/localhost@EXAMPLE.COM` or `VaultSvc`).
         /// </summary>
         [Output("serviceAccount")]
@@ -257,7 +257,7 @@ namespace Pulumi.Vault
     public sealed class KerberosAuthBackendConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Adds group aliases during authentication. When 
+        /// Adds group aliases during authentication. When
         /// enabled, Vault will create entity aliases for each group the user belongs to.
         /// Defaults to `False`.
         /// </summary>
@@ -308,7 +308,7 @@ namespace Pulumi.Vault
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Removes instance names from Kerberos service 
+        /// Removes instance names from Kerberos service
         /// principal names during authentication. This can be useful when the instance name
         /// is not relevant for authentication. Defaults to `False`.
         /// </summary>
@@ -316,7 +316,7 @@ namespace Pulumi.Vault
         public Input<bool>? RemoveInstanceName { get; set; }
 
         /// <summary>
-        /// The Kerberos service account associated with the 
+        /// The Kerberos service account associated with the
         /// keytab entry (e.g., `vault/localhost@EXAMPLE.COM` or `VaultSvc`).
         /// </summary>
         [Input("serviceAccount", required: true)]
@@ -331,7 +331,7 @@ namespace Pulumi.Vault
     public sealed class KerberosAuthBackendConfigState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Adds group aliases during authentication. When 
+        /// Adds group aliases during authentication. When
         /// enabled, Vault will create entity aliases for each group the user belongs to.
         /// Defaults to `False`.
         /// </summary>
@@ -382,7 +382,7 @@ namespace Pulumi.Vault
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// Removes instance names from Kerberos service 
+        /// Removes instance names from Kerberos service
         /// principal names during authentication. This can be useful when the instance name
         /// is not relevant for authentication. Defaults to `False`.
         /// </summary>
@@ -390,7 +390,7 @@ namespace Pulumi.Vault
         public Input<bool>? RemoveInstanceName { get; set; }
 
         /// <summary>
-        /// The Kerberos service account associated with the 
+        /// The Kerberos service account associated with the
         /// keytab entry (e.g., `vault/localhost@EXAMPLE.COM` or `VaultSvc`).
         /// </summary>
         [Input("serviceAccount")]

@@ -1648,6 +1648,80 @@ class SecretBackend(pulumi.CustomResource):
         __props__.__dict__["userdn"] = userdn
         return SecretBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            anonymous_group_search: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            binddn: pulumi.Input[Optional[_builtins.str]] = None,
+            bindpass: pulumi.Input[Optional[_builtins.str]] = None,
+            case_sensitive_names: pulumi.Input[Optional[_builtins.bool]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            client_tls_cert: pulumi.Input[Optional[_builtins.str]] = None,
+            client_tls_key: pulumi.Input[Optional[_builtins.str]] = None,
+            default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            deny_null_bind: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            discoverdn: pulumi.Input[Optional[_builtins.bool]] = None,
+            groupattr: pulumi.Input[Optional[_builtins.str]] = None,
+            groupdn: pulumi.Input[Optional[_builtins.str]] = None,
+            groupfilter: pulumi.Input[Optional[_builtins.str]] = None,
+            insecure_tls: pulumi.Input[Optional[_builtins.bool]] = None,
+            last_rotation_tolerance: pulumi.Input[Optional[_builtins.int]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            request_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            starttls: pulumi.Input[Optional[_builtins.bool]] = None,
+            tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
+            tls_min_version: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            upndomain: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            use_pre111_group_cn_behavior: pulumi.Input[Optional[_builtins.bool]] = None,
+            use_token_groups: pulumi.Input[Optional[_builtins.bool]] = None,
+            userattr: pulumi.Input[Optional[_builtins.str]] = None,
+            userdn: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["anonymousGroupSearch"] = anonymous_group_search
+        __props__["backend"] = backend
+        __props__["binddn"] = binddn
+        __props__["bindpass"] = bindpass
+        __props__["caseSensitiveNames"] = case_sensitive_names
+        __props__["certificate"] = certificate
+        __props__["clientTlsCert"] = client_tls_cert
+        __props__["clientTlsKey"] = client_tls_key
+        __props__["defaultLeaseTtlSeconds"] = default_lease_ttl_seconds
+        __props__["denyNullBind"] = deny_null_bind
+        __props__["description"] = description
+        __props__["disableRemount"] = disable_remount
+        __props__["discoverdn"] = discoverdn
+        __props__["groupattr"] = groupattr
+        __props__["groupdn"] = groupdn
+        __props__["groupfilter"] = groupfilter
+        __props__["insecureTls"] = insecure_tls
+        __props__["lastRotationTolerance"] = last_rotation_tolerance
+        __props__["local"] = local
+        __props__["maxLeaseTtlSeconds"] = max_lease_ttl_seconds
+        __props__["maxTtl"] = max_ttl
+        __props__["namespace"] = namespace
+        __props__["passwordPolicy"] = password_policy
+        __props__["requestTimeout"] = request_timeout
+        __props__["starttls"] = starttls
+        __props__["tlsMaxVersion"] = tls_max_version
+        __props__["tlsMinVersion"] = tls_min_version
+        __props__["ttl"] = ttl
+        __props__["upndomain"] = upndomain
+        __props__["url"] = url
+        __props__["usePre111GroupCnBehavior"] = use_pre111_group_cn_behavior
+        __props__["useTokenGroups"] = use_token_groups
+        __props__["userattr"] = userattr
+        __props__["userdn"] = userdn
+        return pulumi.runtime.exists_resource(None, 'vault:ad/secretBackend:SecretBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="anonymousGroupSearch")
     def anonymous_group_search(self) -> pulumi.Output[Optional[_builtins.bool]]:

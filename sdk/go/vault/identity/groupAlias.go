@@ -161,6 +161,12 @@ func (GroupAliasState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupAliasState)(nil)).Elem()
 }
 
+// GroupAliasExists checks whether an existing GroupAlias resource with the given ID exists.
+func GroupAliasExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupAliasState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/groupAlias:GroupAlias", id, state, "", opts...)
+}
+
 type groupAliasArgs struct {
 	// ID of the group to which this is an alias.
 	CanonicalId string `pulumi:"canonicalId"`

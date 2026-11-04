@@ -1167,6 +1167,58 @@ class BackendConfigAutoTidy(pulumi.CustomResource):
         __props__.__dict__["tidy_revoked_certs"] = tidy_revoked_certs
         return BackendConfigAutoTidy(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acme_account_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            interval_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            maintain_stored_certificate_counts: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            min_startup_backoff_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            pause_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            publish_stored_certificate_count_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            revocation_queue_safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            safety_buffer: pulumi.Input[Optional[_builtins.str]] = None,
+            tidy_acme: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cert_metadata: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cert_store: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cmpv2_nonce_store: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_cross_cluster_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_expired_issuers: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_move_legacy_ca_bundle: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_revocation_queue: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_revoked_cert_issuer_associations: pulumi.Input[Optional[_builtins.bool]] = None,
+            tidy_revoked_certs: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acmeAccountSafetyBuffer"] = acme_account_safety_buffer
+        __props__["backend"] = backend
+        __props__["enabled"] = enabled
+        __props__["intervalDuration"] = interval_duration
+        __props__["issuerSafetyBuffer"] = issuer_safety_buffer
+        __props__["maintainStoredCertificateCounts"] = maintain_stored_certificate_counts
+        __props__["maxStartupBackoffDuration"] = max_startup_backoff_duration
+        __props__["minStartupBackoffDuration"] = min_startup_backoff_duration
+        __props__["namespace"] = namespace
+        __props__["pauseDuration"] = pause_duration
+        __props__["publishStoredCertificateCountMetrics"] = publish_stored_certificate_count_metrics
+        __props__["revocationQueueSafetyBuffer"] = revocation_queue_safety_buffer
+        __props__["safetyBuffer"] = safety_buffer
+        __props__["tidyAcme"] = tidy_acme
+        __props__["tidyCertMetadata"] = tidy_cert_metadata
+        __props__["tidyCertStore"] = tidy_cert_store
+        __props__["tidyCmpv2NonceStore"] = tidy_cmpv2_nonce_store
+        __props__["tidyCrossClusterRevokedCerts"] = tidy_cross_cluster_revoked_certs
+        __props__["tidyExpiredIssuers"] = tidy_expired_issuers
+        __props__["tidyMoveLegacyCaBundle"] = tidy_move_legacy_ca_bundle
+        __props__["tidyRevocationQueue"] = tidy_revocation_queue
+        __props__["tidyRevokedCertIssuerAssociations"] = tidy_revoked_cert_issuer_associations
+        __props__["tidyRevokedCerts"] = tidy_revoked_certs
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="acmeAccountSafetyBuffer")
     def acme_account_safety_buffer(self) -> pulumi.Output[_builtins.str]:

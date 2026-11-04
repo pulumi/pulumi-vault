@@ -509,6 +509,12 @@ func (KmsSecretBackendKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kmsSecretBackendKeyState)(nil)).Elem()
 }
 
+// KmsSecretBackendKeyExists checks whether an existing KmsSecretBackendKey resource with the given ID exists.
+func KmsSecretBackendKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KmsSecretBackendKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:gcp/kmsSecretBackendKey:KmsSecretBackendKey", id, state, "", opts...)
+}
+
 type kmsSecretBackendKeyArgs struct {
 	// Algorithm for the key. Vault stores and
 	// returns this value in lowercase. Defaults to `symmetricEncryption` for `encryptDecrypt` keys.

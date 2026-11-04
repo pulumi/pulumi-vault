@@ -653,6 +653,34 @@ class SecretRole(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cidr_blocks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ip_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cidrBlocks"] = cidr_blocks
+        __props__["ipAddresses"] = ip_addresses
+        __props__["maxTtl"] = max_ttl
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["organizationId"] = organization_id
+        __props__["projectId"] = project_id
+        __props__["projectRoles"] = project_roles
+        __props__["roles"] = roles
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:mongodbatlas/secretRole:SecretRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cidrBlocks")
     def cidr_blocks(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

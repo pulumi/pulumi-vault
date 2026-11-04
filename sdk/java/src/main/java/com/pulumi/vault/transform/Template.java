@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
  * 
  * Please note that the `pattern` below holds a regex. The regex shown
  * is identical to the one in our [Setup](https://www.vaultproject.io/docs/secrets/transform#setup)
- * docs, `(\d{4})-(\d{4})-(\d{4})-(\d{4})`. However, due to HCL, the
+ * docs, `(&#92;d{4})-(&#92;d{4})-(&#92;d{4})-(&#92;d{4})`. However, due to HCL, the
  * backslashes must be escaped to appear correctly in Vault. For further
  * assistance escaping your own custom regex, see String Literals.
  * 
@@ -53,12 +53,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var transform = new Mount("transform", MountArgs.builder()
  *             .path("transform")
  *             .type("transform")
@@ -74,14 +74,14 @@ import javax.annotation.Nullable;
  *             .path(numerics.path())
  *             .name("ccn")
  *             .type("regex")
- *             .pattern("(\\d{4})[- ](\\d{4})[- ](\\d{4})[- ](\\d{4})")
+ *             .pattern("(}&#92;&#92;{@code d}{{@code 4}}{@code )[- ](}&#92;&#92;{@code d}{{@code 4}}{@code )[- ](}&#92;&#92;{@code d}{{@code 4}}{@code )[- ](}&#92;&#92;{@code d}{{@code 4}}{@code )")
  *             .alphabet("numerics")
  *             .encodeFormat("$1-$2-$3-$4")
  *             .decodeFormats(Map.of("last-four-digits", "$4"))
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

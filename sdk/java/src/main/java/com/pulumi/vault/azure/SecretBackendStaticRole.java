@@ -153,11 +153,10 @@ public class SecretBackendStaticRole extends com.pulumi.resources.CustomResource
      * **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported.
      * Vault reads expiration from Azure.
      * 
-     * @deprecated
-     * This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
+     * @deprecated This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure. */
+    @Deprecated
     @Export(name="expiration", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> expiration;
 

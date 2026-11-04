@@ -240,6 +240,12 @@ func (AuthBackendConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendConfigState)(nil)).Elem()
 }
 
+// AuthBackendConfigExists checks whether an existing AuthBackendConfig resource with the given ID exists.
+func AuthBackendConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:spiffe/authBackendConfig:AuthBackendConfig", id, state, "", opts...)
+}
+
 type authBackendConfigArgs struct {
 	// A list of allowed audience values for JWT based SVIDs.
 	Audiences []string `pulumi:"audiences"`

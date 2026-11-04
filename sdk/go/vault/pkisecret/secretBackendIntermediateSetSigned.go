@@ -212,6 +212,12 @@ func (SecretBackendIntermediateSetSignedState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendIntermediateSetSignedState)(nil)).Elem()
 }
 
+// SecretBackendIntermediateSetSignedExists checks whether an existing SecretBackendIntermediateSetSigned resource with the given ID exists.
+func SecretBackendIntermediateSetSignedExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendIntermediateSetSignedState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendIntermediateSetSigned:SecretBackendIntermediateSetSigned", id, state, "", opts...)
+}
+
 type secretBackendIntermediateSetSignedArgs struct {
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`

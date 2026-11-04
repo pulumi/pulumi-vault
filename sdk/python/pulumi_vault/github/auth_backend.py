@@ -1019,6 +1019,50 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["tune"] = tune
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            organization: pulumi.Input[Optional[_builtins.str]] = None,
+            organization_id: pulumi.Input[Optional[_builtins.int]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["aliasMetadata"] = alias_metadata
+        __props__["baseUrl"] = base_url
+        __props__["description"] = description
+        __props__["disableRemount"] = disable_remount
+        __props__["namespace"] = namespace
+        __props__["organization"] = organization
+        __props__["organizationId"] = organization_id
+        __props__["path"] = path
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["tokenExplicitMaxTtl"] = token_explicit_max_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        __props__["tokenNoDefaultPolicy"] = token_no_default_policy
+        __props__["tokenNumUses"] = token_num_uses
+        __props__["tokenPeriod"] = token_period
+        __props__["tokenPolicies"] = token_policies
+        __props__["tokenTtl"] = token_ttl
+        __props__["tokenType"] = token_type
+        __props__["tune"] = tune
+        return pulumi.runtime.exists_resource(None, 'vault:github/authBackend:AuthBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

@@ -256,6 +256,12 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRoleState)(nil)).Elem()
 }
 
+// SecretBackendRoleExists checks whether an existing SecretBackendRole resource with the given ID exists.
+func SecretBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendRole:SecretBackendRole", id, state, "", opts...)
+}
+
 type secretBackendRoleArgs struct {
 	// The ACME account to use when validating certificates.
 	AcmeAccountName string `pulumi:"acmeAccountName"`

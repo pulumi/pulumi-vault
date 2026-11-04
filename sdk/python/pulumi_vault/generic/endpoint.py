@@ -724,6 +724,30 @@ class Endpoint(pulumi.CustomResource):
         __props__.__dict__["write_fields"] = write_fields
         return Endpoint(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            data_json: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_read: pulumi.Input[Optional[_builtins.bool]] = None,
+            ignore_absent_fields: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            write_data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            write_data_json: pulumi.Input[Optional[_builtins.str]] = None,
+            write_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["dataJson"] = data_json
+        __props__["disableDelete"] = disable_delete
+        __props__["disableRead"] = disable_read
+        __props__["ignoreAbsentFields"] = ignore_absent_fields
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["writeData"] = write_data
+        __props__["writeDataJson"] = write_data_json
+        __props__["writeFields"] = write_fields
+        return pulumi.runtime.exists_resource(None, 'vault:generic/endpoint:Endpoint', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="dataJson")
     def data_json(self) -> pulumi.Output[_builtins.str]:

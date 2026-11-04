@@ -342,6 +342,12 @@ func (MountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mountState)(nil)).Elem()
 }
 
+// MountExists checks whether an existing Mount resource with the given ID exists.
+func MountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/mount:Mount", id, state, "", opts...)
+}
+
 type mountArgs struct {
 	// Set of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`

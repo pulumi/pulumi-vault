@@ -1281,6 +1281,64 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["users"] = users
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            api_token: pulumi.Input[Optional[_builtins.str]] = None,
+            api_token_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            api_token_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            base_url: pulumi.Input[Optional[_builtins.str]] = None,
+            bypass_okta_mfa: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendGroupArgs', 'AuthBackendGroupArgsDict', 'outputs.AuthBackendGroup']]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            org_name: pulumi.Input[Optional[_builtins.str]] = None,
+            organization: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            token: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
+            users: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AuthBackendUserArgs', 'AuthBackendUserArgsDict', 'outputs.AuthBackendUser']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["aliasMetadata"] = alias_metadata
+        __props__["apiToken"] = api_token
+        __props__["apiTokenWo"] = api_token_wo
+        __props__["apiTokenWoVersion"] = api_token_wo_version
+        __props__["baseUrl"] = base_url
+        __props__["bypassOktaMfa"] = bypass_okta_mfa
+        __props__["description"] = description
+        __props__["disableRemount"] = disable_remount
+        __props__["groups"] = groups
+        __props__["namespace"] = namespace
+        __props__["orgName"] = org_name
+        __props__["organization"] = organization
+        __props__["path"] = path
+        __props__["token"] = token
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["tokenExplicitMaxTtl"] = token_explicit_max_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        __props__["tokenNoDefaultPolicy"] = token_no_default_policy
+        __props__["tokenNumUses"] = token_num_uses
+        __props__["tokenPeriod"] = token_period
+        __props__["tokenPolicies"] = token_policies
+        __props__["tokenTtl"] = token_ttl
+        __props__["tokenType"] = token_type
+        __props__["tune"] = tune
+        __props__["users"] = users
+        return pulumi.runtime.exists_resource(None, 'vault:okta/authBackend:AuthBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

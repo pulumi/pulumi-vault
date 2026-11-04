@@ -206,6 +206,12 @@ func (ReplicateKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*replicateKeyState)(nil)).Elem()
 }
 
+// ReplicateKeyExists checks whether an existing ReplicateKey resource with the given ID exists.
+func ReplicateKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ReplicateKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:keymgmt/replicateKey:ReplicateKey", id, state, "", opts...)
+}
+
 type replicateKeyArgs struct {
 	// Specifies the name of the key to replicate. The key must have `replicaRegions` configured and must already be distributed to the AWS KMS provider.
 	KeyName string `pulumi:"keyName"`

@@ -537,6 +537,30 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["description"] = description
+        __props__["disableRemount"] = disable_remount
+        __props__["identityTokenKey"] = identity_token_key
+        __props__["local"] = local
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["tune"] = tune
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:index/authBackend:AuthBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

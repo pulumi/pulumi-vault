@@ -1578,6 +1578,72 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["verbose_oidc_logging"] = verbose_oidc_logging
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allowed_redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_claims: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            bound_claims_type: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_subject: pulumi.Input[Optional[_builtins.str]] = None,
+            claim_mappings: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            clock_skew_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+            disable_bound_claims_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+            expiration_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+            groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            max_age: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before_leeway: pulumi.Input[Optional[_builtins.int]] = None,
+            oidc_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            role_type: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None,
+            user_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            user_claim_json_pointer: pulumi.Input[Optional[_builtins.bool]] = None,
+            verbose_oidc_logging: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aliasMetadata"] = alias_metadata
+        __props__["allowedRedirectUris"] = allowed_redirect_uris
+        __props__["backend"] = backend
+        __props__["boundAudiences"] = bound_audiences
+        __props__["boundClaims"] = bound_claims
+        __props__["boundClaimsType"] = bound_claims_type
+        __props__["boundSubject"] = bound_subject
+        __props__["claimMappings"] = claim_mappings
+        __props__["clockSkewLeeway"] = clock_skew_leeway
+        __props__["disableBoundClaimsParsing"] = disable_bound_claims_parsing
+        __props__["expirationLeeway"] = expiration_leeway
+        __props__["groupsClaim"] = groups_claim
+        __props__["maxAge"] = max_age
+        __props__["namespace"] = namespace
+        __props__["notBeforeLeeway"] = not_before_leeway
+        __props__["oidcScopes"] = oidc_scopes
+        __props__["roleName"] = role_name
+        __props__["roleType"] = role_type
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["tokenExplicitMaxTtl"] = token_explicit_max_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        __props__["tokenNoDefaultPolicy"] = token_no_default_policy
+        __props__["tokenNumUses"] = token_num_uses
+        __props__["tokenPeriod"] = token_period
+        __props__["tokenPolicies"] = token_policies
+        __props__["tokenTtl"] = token_ttl
+        __props__["tokenType"] = token_type
+        __props__["userClaim"] = user_claim
+        __props__["userClaimJsonPointer"] = user_claim_json_pointer
+        __props__["verboseOidcLogging"] = verbose_oidc_logging
+        return pulumi.runtime.exists_resource(None, 'vault:jwt/authBackendRole:AuthBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
     def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

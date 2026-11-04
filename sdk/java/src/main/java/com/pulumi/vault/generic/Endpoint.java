@@ -58,12 +58,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var userpass = new AuthBackend("userpass", AuthBackendArgs.builder()
  *             .type("userpass")
  *             .build());
@@ -72,10 +72,10 @@ import javax.annotation.Nullable;
  *             .path("auth/userpass/users/u1")
  *             .ignoreAbsentFields(true)
  *             .dataJson("""
- * {
- *   \"policies\": [\"p1\"],
- *   \"password\": \"changeme\"
- * }
+ * }{{@code
+ *   }&#92;{@code "policies}&#92;{@code ": [}&#92;{@code "p1}&#92;{@code "],
+ *   }&#92;{@code "password}&#92;{@code ": }&#92;{@code "changeme}&#92;{@code "
+ * }}{@code
  *             """)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(userpass)
@@ -86,9 +86,9 @@ import javax.annotation.Nullable;
  *             .disableRead(true)
  *             .disableDelete(true)
  *             .dataJson("""
- * {
- *   \"password\": \"changeme\"
- * }
+ * }{{@code
+ *   }&#92;{@code "password}&#92;{@code ": }&#92;{@code "changeme}&#92;{@code "
+ * }}{@code
  *             """)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(u1)
@@ -101,18 +101,18 @@ import javax.annotation.Nullable;
  *             .ignoreAbsentFields(true)
  *             .writeFields("id")
  *             .dataJson("""
- * {
- *   \"alias_name\": \"u1\",
- *   \"alias_mount_accessor\": vault_auth_backend.userpass.accessor
- * }
+ * }{{@code
+ *   }&#92;{@code "alias_name}&#92;{@code ": }&#92;{@code "u1}&#92;{@code ",
+ *   }&#92;{@code "alias_mount_accessor}&#92;{@code ": vault_auth_backend.userpass.accessor
+ * }}{@code
  *             """)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(u1Token)
  *                 .build());
  * 
  *         ctx.export("u1Id", u1Entity.writeData().applyValue(_writeData -> _writeData.get("id")));
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

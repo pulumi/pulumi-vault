@@ -249,6 +249,12 @@ func (AuthBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleState)(nil)).Elem()
 }
 
+// AuthBackendRoleExists checks whether an existing AuthBackendRole resource with the given ID exists.
+func AuthBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:tokenauth/authBackendRole:AuthBackendRole", id, state, "", opts...)
+}
+
 type authBackendRoleArgs struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.

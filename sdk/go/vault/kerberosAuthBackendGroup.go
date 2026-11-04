@@ -339,6 +339,12 @@ func (KerberosAuthBackendGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kerberosAuthBackendGroupState)(nil)).Elem()
 }
 
+// KerberosAuthBackendGroupExists checks whether an existing KerberosAuthBackendGroup resource with the given ID exists.
+func KerberosAuthBackendGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KerberosAuthBackendGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/kerberosAuthBackendGroup:KerberosAuthBackendGroup", id, state, "", opts...)
+}
+
 type kerberosAuthBackendGroupArgs struct {
 	// Path where the Kerberos auth method is mounted.
 	// Changing this will force a new resource to be created.

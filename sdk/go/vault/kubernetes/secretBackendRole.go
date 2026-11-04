@@ -446,6 +446,12 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRoleState)(nil)).Elem()
 }
 
+// SecretBackendRoleExists checks whether an existing SecretBackendRole resource with the given ID exists.
+func SecretBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kubernetes/secretBackendRole:SecretBackendRole", id, state, "", opts...)
+}
+
 type secretBackendRoleArgs struct {
 	// A label selector for Kubernetes namespaces
 	// in which credentials can be generated. Accepts either a JSON or YAML object. The value should be

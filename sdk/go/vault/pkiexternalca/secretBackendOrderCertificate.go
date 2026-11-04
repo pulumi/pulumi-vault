@@ -293,6 +293,12 @@ func (SecretBackendOrderCertificateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendOrderCertificateState)(nil)).Elem()
 }
 
+// SecretBackendOrderCertificateExists checks whether an existing SecretBackendOrderCertificate resource with the given ID exists.
+func SecretBackendOrderCertificateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendOrderCertificateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate", id, state, "", opts...)
+}
+
 type secretBackendOrderCertificateArgs struct {
 	// The path where the PKI External CA secret backend is mounted.
 	Mount string `pulumi:"mount"`

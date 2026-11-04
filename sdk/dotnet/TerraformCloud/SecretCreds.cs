@@ -65,7 +65,7 @@ namespace Pulumi.Vault.TerraformCloud
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// The lease associated with the token. Only user tokens will have a 
+        /// The lease associated with the token. Only user tokens will have a
         /// Vault lease associated with them.
         /// </summary>
         [Output("leaseId")]
@@ -107,7 +107,7 @@ namespace Pulumi.Vault.TerraformCloud
         public Output<string> Token { get; private set; } = null!;
 
         /// <summary>
-        /// The public identifier for a specific token. It can be used 
+        /// The public identifier for a specific token. It can be used
         /// to look up information about a token or to revoke a token.
         /// </summary>
         [Output("tokenId")]
@@ -206,7 +206,7 @@ namespace Pulumi.Vault.TerraformCloud
         private Input<string>? _leaseId;
 
         /// <summary>
-        /// The lease associated with the token. Only user tokens will have a 
+        /// The lease associated with the token. Only user tokens will have a
         /// Vault lease associated with them.
         /// </summary>
         public Input<string>? LeaseId
@@ -265,7 +265,7 @@ namespace Pulumi.Vault.TerraformCloud
         }
 
         /// <summary>
-        /// The public identifier for a specific token. It can be used 
+        /// The public identifier for a specific token. It can be used
         /// to look up information about a token or to revoke a token.
         /// </summary>
         [Input("tokenId")]

@@ -359,6 +359,12 @@ func (UiHeaderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*uiHeaderState)(nil)).Elem()
 }
 
+// UiHeaderExists checks whether an existing UiHeader resource with the given ID exists.
+func UiHeaderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UiHeaderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:config/uiHeader:UiHeader", id, state, "", opts...)
+}
+
 type uiHeaderArgs struct {
 	// The name of the custom header (e.g., "Content-Security-Policy", "X-Frame-Options").
 	// Changing this will recreate the resource.

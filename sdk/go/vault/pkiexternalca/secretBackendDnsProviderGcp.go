@@ -218,6 +218,12 @@ func (SecretBackendDnsProviderGcpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendDnsProviderGcpState)(nil)).Elem()
 }
 
+// SecretBackendDnsProviderGcpExists checks whether an existing SecretBackendDnsProviderGcp resource with the given ID exists.
+func SecretBackendDnsProviderGcpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendDnsProviderGcpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp", id, state, "", opts...)
+}
+
 type secretBackendDnsProviderGcpArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// GCP service account credentials as JSON content. Write-only — never stored in Terraform state. If omitted, Vault uses Application Default Credentials at challenge time.

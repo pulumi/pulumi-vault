@@ -1084,6 +1084,42 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_max_ttl"] = token_max_ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_kubernetes_namespace_selector: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_kubernetes_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            extra_annotations: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            extra_labels: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            generated_role_rules: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_role_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            name_template: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            token_default_audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedKubernetesNamespaceSelector"] = allowed_kubernetes_namespace_selector
+        __props__["allowedKubernetesNamespaces"] = allowed_kubernetes_namespaces
+        __props__["backend"] = backend
+        __props__["extraAnnotations"] = extra_annotations
+        __props__["extraLabels"] = extra_labels
+        __props__["generatedRoleRules"] = generated_role_rules
+        __props__["kubernetesRoleName"] = kubernetes_role_name
+        __props__["kubernetesRoleType"] = kubernetes_role_type
+        __props__["name"] = name
+        __props__["nameTemplate"] = name_template
+        __props__["namespace"] = namespace
+        __props__["serviceAccountName"] = service_account_name
+        __props__["tokenDefaultAudiences"] = token_default_audiences
+        __props__["tokenDefaultTtl"] = token_default_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        return pulumi.runtime.exists_resource(None, 'vault:kubernetes/secretBackendRole:SecretBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedKubernetesNamespaceSelector")
     def allowed_kubernetes_namespace_selector(self) -> pulumi.Output[Optional[_builtins.str]]:

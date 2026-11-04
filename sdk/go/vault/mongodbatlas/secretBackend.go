@@ -236,6 +236,12 @@ func (SecretBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendState)(nil)).Elem()
 }
 
+// SecretBackendExists checks whether an existing SecretBackend resource with the given ID exists.
+func SecretBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:mongodbatlas/secretBackend:SecretBackend", id, state, "", opts...)
+}
+
 type secretBackendArgs struct {
 	// Path where the MongoDB Atlas Secrets Engine is mounted.
 	Mount string `pulumi:"mount"`

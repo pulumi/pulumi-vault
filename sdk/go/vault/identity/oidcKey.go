@@ -175,6 +175,12 @@ func (OidcKeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcKeyState)(nil)).Elem()
 }
 
+// OidcKeyExists checks whether an existing OidcKey resource with the given ID exists.
+func OidcKeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcKeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidcKey:OidcKey", id, state, "", opts...)
+}
+
 type oidcKeyArgs struct {
 	// Signing algorithm to use. Signing algorithm to use.
 	// Allowed values are: RS256 (default), RS384, RS512, ES256, ES384, ES512, EdDSA.

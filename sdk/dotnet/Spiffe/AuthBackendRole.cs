@@ -179,7 +179,7 @@ namespace Pulumi.Vault.Spiffe
         public Output<string> TokenType { get; private set; } = null!;
 
         /// <summary>
-        /// A comma separated list of patterns that match an 
+        /// A comma separated list of patterns that match an
         /// incoming workload ID within the SVID document presented by the client.
         /// </summary>
         [Output("workloadIdPatterns")]
@@ -341,7 +341,7 @@ namespace Pulumi.Vault.Spiffe
         private InputList<string>? _workloadIdPatterns;
 
         /// <summary>
-        /// A comma separated list of patterns that match an 
+        /// A comma separated list of patterns that match an
         /// incoming workload ID within the SVID document presented by the client.
         /// </summary>
         public InputList<string> WorkloadIdPatterns
@@ -468,7 +468,7 @@ namespace Pulumi.Vault.Spiffe
         private InputList<string>? _workloadIdPatterns;
 
         /// <summary>
-        /// A comma separated list of patterns that match an 
+        /// A comma separated list of patterns that match an
         /// incoming workload ID within the SVID document presented by the client.
         /// </summary>
         public InputList<string> WorkloadIdPatterns

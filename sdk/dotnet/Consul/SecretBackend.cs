@@ -193,7 +193,7 @@ namespace Pulumi.Vault.Consul
         public Output<string?> ClientKeyWo { get; private set; } = null!;
 
         /// <summary>
-        /// Version counter for the write-only client key. Increment this value to trigger 
+        /// Version counter for the write-only client key. Increment this value to trigger
         /// an update of the client key in Vault. Required when using `ClientKeyWo`.
         /// </summary>
         [Output("clientKeyWoVersion")]
@@ -325,7 +325,7 @@ namespace Pulumi.Vault.Consul
         public Output<string?> TokenWo { get; private set; } = null!;
 
         /// <summary>
-        /// Version counter for the write-only token. Increment this value to trigger an update 
+        /// Version counter for the write-only token. Increment this value to trigger an update
         /// of the token in Vault. Required when using `TokenWo`.
         /// </summary>
         [Output("tokenWoVersion")]
@@ -508,7 +508,7 @@ namespace Pulumi.Vault.Consul
         }
 
         /// <summary>
-        /// Version counter for the write-only client key. Increment this value to trigger 
+        /// Version counter for the write-only client key. Increment this value to trigger
         /// an update of the client key in Vault. Required when using `ClientKeyWo`.
         /// </summary>
         [Input("clientKeyWoVersion")]
@@ -678,7 +678,7 @@ namespace Pulumi.Vault.Consul
         }
 
         /// <summary>
-        /// Version counter for the write-only token. Increment this value to trigger an update 
+        /// Version counter for the write-only token. Increment this value to trigger an update
         /// of the token in Vault. Required when using `TokenWo`.
         /// </summary>
         [Input("tokenWoVersion")]
@@ -821,7 +821,7 @@ namespace Pulumi.Vault.Consul
         }
 
         /// <summary>
-        /// Version counter for the write-only client key. Increment this value to trigger 
+        /// Version counter for the write-only client key. Increment this value to trigger
         /// an update of the client key in Vault. Required when using `ClientKeyWo`.
         /// </summary>
         [Input("clientKeyWoVersion")]
@@ -991,7 +991,7 @@ namespace Pulumi.Vault.Consul
         }
 
         /// <summary>
-        /// Version counter for the write-only token. Increment this value to trigger an update 
+        /// Version counter for the write-only token. Increment this value to trigger an update
         /// of the token in Vault. Required when using `TokenWo`.
         /// </summary>
         [Input("tokenWoVersion")]

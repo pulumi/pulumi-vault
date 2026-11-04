@@ -471,6 +471,12 @@ func (SecretBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendState)(nil)).Elem()
 }
 
+// SecretBackendExists checks whether an existing SecretBackend resource with the given ID exists.
+func SecretBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:consul/secretBackend:SecretBackend", id, state, "", opts...)
+}
+
 type secretBackendArgs struct {
 	// Specifies the address of the Consul instance, provided as "host:port" like "127.0.0.1:8500".
 	Address string `pulumi:"address"`

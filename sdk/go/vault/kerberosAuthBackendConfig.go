@@ -332,6 +332,12 @@ func (KerberosAuthBackendConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kerberosAuthBackendConfigState)(nil)).Elem()
 }
 
+// KerberosAuthBackendConfigExists checks whether an existing KerberosAuthBackendConfig resource with the given ID exists.
+func KerberosAuthBackendConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KerberosAuthBackendConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/kerberosAuthBackendConfig:KerberosAuthBackendConfig", id, state, "", opts...)
+}
+
 type kerberosAuthBackendConfigArgs struct {
 	// Adds group aliases during authentication. When
 	// enabled, Vault will create entity aliases for each group the user belongs to.

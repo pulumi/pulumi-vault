@@ -162,6 +162,12 @@ func (AuthBackendStsRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendStsRoleState)(nil)).Elem()
 }
 
+// AuthBackendStsRoleExists checks whether an existing AuthBackendStsRole resource with the given ID exists.
+func AuthBackendStsRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendStsRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendStsRole:AuthBackendStsRole", id, state, "", opts...)
+}
+
 type authBackendStsRoleArgs struct {
 	// The AWS account ID to configure the STS role for.
 	AccountId string `pulumi:"accountId"`

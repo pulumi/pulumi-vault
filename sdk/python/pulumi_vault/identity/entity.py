@@ -416,6 +416,24 @@ class Entity(pulumi.CustomResource):
         __props__.__dict__["policies"] = policies
         return Entity(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_policies: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["disabled"] = disabled
+        __props__["externalPolicies"] = external_policies
+        __props__["metadata"] = metadata
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["policies"] = policies
+        return pulumi.runtime.exists_resource(None, 'vault:identity/entity:Entity', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def disabled(self) -> pulumi.Output[Optional[_builtins.bool]]:

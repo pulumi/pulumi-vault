@@ -684,6 +684,36 @@ class BackendConfigAcme(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return BackendConfigAcme(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_role_ext_key_usage: pulumi.Input[Optional[_builtins.bool]] = None,
+            allowed_issuers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            challenge_excluded_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            challenge_permitted_ip_ranges: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_directory_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            dns_resolver: pulumi.Input[Optional[_builtins.str]] = None,
+            eab_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowRoleExtKeyUsage"] = allow_role_ext_key_usage
+        __props__["allowedIssuers"] = allowed_issuers
+        __props__["allowedRoles"] = allowed_roles
+        __props__["backend"] = backend
+        __props__["challengeExcludedIpRanges"] = challenge_excluded_ip_ranges
+        __props__["challengePermittedIpRanges"] = challenge_permitted_ip_ranges
+        __props__["defaultDirectoryPolicy"] = default_directory_policy
+        __props__["dnsResolver"] = dns_resolver
+        __props__["eabPolicy"] = eab_policy
+        __props__["enabled"] = enabled
+        __props__["maxTtl"] = max_ttl
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/backendConfigAcme:BackendConfigAcme', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowRoleExtKeyUsage")
     def allow_role_ext_key_usage(self) -> pulumi.Output[Optional[_builtins.bool]]:

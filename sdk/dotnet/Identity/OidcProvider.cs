@@ -106,7 +106,7 @@ namespace Pulumi.Vault.Identity
     public partial class OidcProvider : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The client IDs that are permitted to use the provider. 
+        /// The client IDs that are permitted to use the provider.
         /// If empty, no clients are allowed. If `*`, all clients are allowed.
         /// </summary>
         [Output("allowedClientIds")]
@@ -203,7 +203,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _allowedClientIds;
 
         /// <summary>
-        /// The client IDs that are permitted to use the provider. 
+        /// The client IDs that are permitted to use the provider.
         /// If empty, no clients are allowed. If `*`, all clients are allowed.
         /// </summary>
         public InputList<string> AllowedClientIds
@@ -263,7 +263,7 @@ namespace Pulumi.Vault.Identity
         private InputList<string>? _allowedClientIds;
 
         /// <summary>
-        /// The client IDs that are permitted to use the provider. 
+        /// The client IDs that are permitted to use the provider.
         /// If empty, no clients are allowed. If `*`, all clients are allowed.
         /// </summary>
         public InputList<string> AllowedClientIds

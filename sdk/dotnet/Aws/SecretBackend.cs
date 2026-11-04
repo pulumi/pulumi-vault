@@ -319,7 +319,7 @@ namespace Pulumi.Vault.Aws
         public Output<string?> RoleArn { get; private set; } = null!;
 
         /// <summary>
-        /// The amount of time in seconds Vault should wait before rotating the root credential. 
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
         /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         /// </summary>
         [Output("rotationPeriod")]
@@ -691,7 +691,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? RoleArn { get; set; }
 
         /// <summary>
-        /// The amount of time in seconds Vault should wait before rotating the root credential. 
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
         /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         /// </summary>
         [Input("rotationPeriod")]
@@ -1057,7 +1057,7 @@ namespace Pulumi.Vault.Aws
         public Input<string>? RoleArn { get; set; }
 
         /// <summary>
-        /// The amount of time in seconds Vault should wait before rotating the root credential. 
+        /// The amount of time in seconds Vault should wait before rotating the root credential.
         /// A zero value tells Vault not to rotate the root credential. The minimum rotation period is 10 seconds. Requires Vault Enterprise 1.19+.
         /// </summary>
         [Input("rotationPeriod")]
