@@ -451,6 +451,12 @@ func (KmsSecretBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kmsSecretBackendState)(nil)).Elem()
 }
 
+// KmsSecretBackendExists checks whether an existing KmsSecretBackend resource with the given ID exists.
+func KmsSecretBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KmsSecretBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:gcp/kmsSecretBackend:KmsSecretBackend", id, state, "", opts...)
+}
+
 type kmsSecretBackendArgs struct {
 	// List of managed key registry entry names that the mount in question is allowed to access
 	AllowedManagedKeys []string `pulumi:"allowedManagedKeys"`

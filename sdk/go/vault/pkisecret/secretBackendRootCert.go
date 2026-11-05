@@ -448,6 +448,12 @@ func (SecretBackendRootCertState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRootCertState)(nil)).Elem()
 }
 
+// SecretBackendRootCertExists checks whether an existing SecretBackendRootCert resource with the given ID exists.
+func SecretBackendRootCertExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendRootCertState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendRootCert:SecretBackendRootCert", id, state, "", opts...)
+}
+
 type secretBackendRootCertArgs struct {
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`

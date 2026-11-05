@@ -1044,6 +1044,44 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["user_path"] = user_path
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            credential_type: pulumi.Input[Optional[_builtins.str]] = None,
+            default_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            iam_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            max_sts_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mfa_serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            permissions_boundary_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            policy_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            policy_document: pulumi.Input[Optional[_builtins.str]] = None,
+            role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            session_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            user_path: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["credentialType"] = credential_type
+        __props__["defaultStsTtl"] = default_sts_ttl
+        __props__["externalId"] = external_id
+        __props__["iamGroups"] = iam_groups
+        __props__["iamTags"] = iam_tags
+        __props__["maxStsTtl"] = max_sts_ttl
+        __props__["mfaSerialNumber"] = mfa_serial_number
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["permissionsBoundaryArn"] = permissions_boundary_arn
+        __props__["policyArns"] = policy_arns
+        __props__["policyDocument"] = policy_document
+        __props__["roleArns"] = role_arns
+        __props__["sessionTags"] = session_tags
+        __props__["userPath"] = user_path
+        return pulumi.runtime.exists_resource(None, 'vault:aws/secretBackendRole:SecretBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

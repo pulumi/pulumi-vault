@@ -815,6 +815,42 @@ class Transformation(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return Transformation(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            convergent: pulumi.Input[Optional[_builtins.bool]] = None,
+            deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            fpe_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            masking_character: pulumi.Input[Optional[_builtins.str]] = None,
+            max_tweak_len: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            template: pulumi.Input[Optional[_builtins.str]] = None,
+            templates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            tweak_source: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedRoles"] = allowed_roles
+        __props__["convergent"] = convergent
+        __props__["deletionAllowed"] = deletion_allowed
+        __props__["fpeAlgorithm"] = fpe_algorithm
+        __props__["mappingMode"] = mapping_mode
+        __props__["maskingCharacter"] = masking_character
+        __props__["maxTweakLen"] = max_tweak_len
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["stores"] = stores
+        __props__["template"] = template
+        __props__["templates"] = templates
+        __props__["tweakSource"] = tweak_source
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:transform/transformation:Transformation', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
     def allowed_roles(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

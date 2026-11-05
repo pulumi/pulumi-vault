@@ -285,11 +285,10 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
      * Exactly one of `orgName` or `organization` must be specified.
      * 
-     * @deprecated
-     * Use orgName instead
+     * @deprecated Use orgName instead
      * 
      */
-    @Deprecated /* Use orgName instead */
+    @Deprecated
     @Export(name="organization", refs={String.class}, tree="[0]")
     private Output<String> organization;
 
@@ -320,11 +319,10 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      * If this is not supplied only locally configured groups will be enabled.
      * Conflicts with `apiToken` and `apiTokenWo`.
      * 
-     * @deprecated
-     * Use apiToken instead
+     * @deprecated Use apiToken instead
      * 
      */
-    @Deprecated /* Use apiToken instead */
+    @Deprecated
     @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 

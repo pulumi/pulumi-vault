@@ -579,6 +579,12 @@ func (AuthBackendConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendConfigState)(nil)).Elem()
 }
 
+// AuthBackendConfigExists checks whether an existing AuthBackendConfig resource with the given ID exists.
+func AuthBackendConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:azure/authBackendConfig:AuthBackendConfig", id, state, "", opts...)
+}
+
 type authBackendConfigArgs struct {
 	// The authentication method used by Vault to access Azure APIs. The following values are supported: `rootCreds`, `pluginWif`, `msi`, `aksWif`. Requires Vault 2.2.0+.
 	AuthType *string `pulumi:"authType"`

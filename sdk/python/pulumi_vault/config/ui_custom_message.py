@@ -460,6 +460,30 @@ class UiCustomMessage(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return UiCustomMessage(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            authenticated: pulumi.Input[Optional[_builtins.bool]] = None,
+            end_time: pulumi.Input[Optional[_builtins.str]] = None,
+            link: pulumi.Input[Optional[Union['UiCustomMessageLinkArgs', 'UiCustomMessageLinkArgsDict', 'outputs.UiCustomMessageLink']]] = None,
+            message_base64: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            start_time: pulumi.Input[Optional[_builtins.str]] = None,
+            title: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authenticated"] = authenticated
+        __props__["endTime"] = end_time
+        __props__["link"] = link
+        __props__["messageBase64"] = message_base64
+        __props__["namespace"] = namespace
+        __props__["options"] = options
+        __props__["startTime"] = start_time
+        __props__["title"] = title
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:config/uiCustomMessage:UiCustomMessage', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def authenticated(self) -> pulumi.Output[Optional[_builtins.bool]]:

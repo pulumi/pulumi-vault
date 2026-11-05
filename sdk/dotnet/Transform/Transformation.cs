@@ -117,7 +117,7 @@ namespace Pulumi.Vault.Transform
         public Output<string> FpeAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the mapping mode for stored values. 
+        /// Specifies the mapping mode for stored values.
         /// Can be "default" or "exportable". Only used when `Type` is "tokenization".
         /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         /// </summary>
@@ -158,7 +158,7 @@ namespace Pulumi.Vault.Transform
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
-        /// List of stores to use for tokenization state. 
+        /// List of stores to use for tokenization state.
         /// Only used when `Type` is "tokenization".
         /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         /// </summary>
@@ -262,7 +262,7 @@ namespace Pulumi.Vault.Transform
         public Input<bool>? DeletionAllowed { get; set; }
 
         /// <summary>
-        /// Specifies the mapping mode for stored values. 
+        /// Specifies the mapping mode for stored values.
         /// Can be "default" or "exportable". Only used when `Type` is "tokenization".
         /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         /// </summary>
@@ -306,7 +306,7 @@ namespace Pulumi.Vault.Transform
         private InputList<string>? _stores;
 
         /// <summary>
-        /// List of stores to use for tokenization state. 
+        /// List of stores to use for tokenization state.
         /// Only used when `Type` is "tokenization".
         /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         /// </summary>
@@ -387,7 +387,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? FpeAlgorithm { get; set; }
 
         /// <summary>
-        /// Specifies the mapping mode for stored values. 
+        /// Specifies the mapping mode for stored values.
         /// Can be "default" or "exportable". Only used when `Type` is "tokenization".
         /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         /// </summary>
@@ -431,7 +431,7 @@ namespace Pulumi.Vault.Transform
         private InputList<string>? _stores;
 
         /// <summary>
-        /// List of stores to use for tokenization state. 
+        /// List of stores to use for tokenization state.
         /// Only used when `Type` is "tokenization".
         /// **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         /// </summary>

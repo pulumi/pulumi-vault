@@ -639,6 +639,34 @@ class BackendConfigScep(pulumi.CustomResource):
         __props__.__dict__["restrict_ca_chain_to_issuer"] = restrict_ca_chain_to_issuer
         return BackendConfigScep(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_digest_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_encryption_algorithms: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            authenticators: pulumi.Input[Optional[Union['BackendConfigScepAuthenticatorsArgs', 'BackendConfigScepAuthenticatorsArgsDict', 'outputs.BackendConfigScepAuthenticators']]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            external_validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendConfigScepExternalValidationArgs', 'BackendConfigScepExternalValidationArgsDict', 'outputs.BackendConfigScepExternalValidation']]]]] = None,
+            last_updated: pulumi.Input[Optional[_builtins.str]] = None,
+            log_level: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            restrict_ca_chain_to_issuer: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedDigestAlgorithms"] = allowed_digest_algorithms
+        __props__["allowedEncryptionAlgorithms"] = allowed_encryption_algorithms
+        __props__["authenticators"] = authenticators
+        __props__["backend"] = backend
+        __props__["defaultPathPolicy"] = default_path_policy
+        __props__["enabled"] = enabled
+        __props__["externalValidations"] = external_validations
+        __props__["lastUpdated"] = last_updated
+        __props__["logLevel"] = log_level
+        __props__["namespace"] = namespace
+        __props__["restrictCaChainToIssuer"] = restrict_ca_chain_to_issuer
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/backendConfigScep:BackendConfigScep', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedDigestAlgorithms")
     def allowed_digest_algorithms(self) -> pulumi.Output[Sequence[_builtins.str]]:

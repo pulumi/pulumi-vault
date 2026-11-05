@@ -215,6 +215,12 @@ func (QuotaRateLimitState) ElementType() reflect.Type {
 	return reflect.TypeOf((*quotaRateLimitState)(nil)).Elem()
 }
 
+// QuotaRateLimitExists checks whether an existing QuotaRateLimit resource with the given ID exists.
+func QuotaRateLimitExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *QuotaRateLimitState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/quotaRateLimit:QuotaRateLimit", id, state, "", opts...)
+}
+
 type quotaRateLimitArgs struct {
 	// If set, when a client reaches a rate limit threshold, the client will
 	// be prohibited from any further requests until after the 'block_interval' in seconds has elapsed.

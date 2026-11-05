@@ -354,6 +354,12 @@ func (SecretRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretRoleState)(nil)).Elem()
 }
 
+// SecretRoleExists checks whether an existing SecretRole resource with the given ID exists.
+func SecretRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kmip/secretRole:SecretRole", id, state, "", opts...)
+}
+
 type secretRoleArgs struct {
 	// Name of the ca to use, if absent use legacy ca
 	Ca *string `pulumi:"ca"`

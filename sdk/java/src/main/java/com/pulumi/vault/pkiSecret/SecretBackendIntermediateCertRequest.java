@@ -525,16 +525,16 @@ public class SecretBackendIntermediateCertRequest extends com.pulumi.resources.C
         return Codegen.optional(this.streetAddress);
     }
     /**
-     * Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
-     * or \&#34;kms\&#34;
+     * Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34; or &#92;&#34;internal&#92;&#34;
+     * or &#92;&#34;kms&#92;&#34;
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of intermediate to create. Must be either \&#34;exported\&#34; or \&#34;internal\&#34;
-     * or \&#34;kms\&#34;
+     * @return Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34; or &#92;&#34;internal&#92;&#34;
+     * or &#92;&#34;kms&#92;&#34;
      * 
      */
     public Output<String> type() {

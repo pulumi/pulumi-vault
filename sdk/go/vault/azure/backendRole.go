@@ -249,6 +249,12 @@ func (BackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendRoleState)(nil)).Elem()
 }
 
+// BackendRoleExists checks whether an existing BackendRole resource with the given ID exists.
+func BackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:azure/backendRole:BackendRole", id, state, "", opts...)
+}
+
 type backendRoleArgs struct {
 	// Application Object ID for an existing service principal that will
 	// be used instead of creating dynamic service principals. If present, `azureRoles` and `permanentlyDelete` will be ignored.

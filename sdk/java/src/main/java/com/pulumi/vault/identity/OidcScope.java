@@ -36,20 +36,20 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var groups = new OidcScope("groups", OidcScopeArgs.builder()
  *             .name("groups")
- *             .template("{\"groups\":{{identity.entity.groups.names}}}")
+ *             .template("}{&#92;{@code "groups}&#92;{@code ":}{{{@code identity.entity.groups.names}}}}{@code ")
  *             .description("Vault OIDC Groups Scope")
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

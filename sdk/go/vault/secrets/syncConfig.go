@@ -118,6 +118,12 @@ func (SyncConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncConfigState)(nil)).Elem()
 }
 
+// SyncConfigExists checks whether an existing SyncConfig resource with the given ID exists.
+func SyncConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncConfig:SyncConfig", id, state, "", opts...)
+}
+
 type syncConfigArgs struct {
 	// Disables the syncing process between Vault and external destinations. Defaults to `false`.
 	Disabled *bool `pulumi:"disabled"`

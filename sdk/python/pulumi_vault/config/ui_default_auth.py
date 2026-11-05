@@ -569,6 +569,24 @@ class UiDefaultAuth(pulumi.CustomResource):
         __props__.__dict__["namespace_path"] = namespace_path
         return UiDefaultAuth(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backup_auth_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            default_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_inheritance: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_path: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backupAuthTypes"] = backup_auth_types
+        __props__["defaultAuthType"] = default_auth_type
+        __props__["disableInheritance"] = disable_inheritance
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["namespacePath"] = namespace_path
+        return pulumi.runtime.exists_resource(None, 'vault:config/uiDefaultAuth:UiDefaultAuth', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="backupAuthTypes")
     def backup_auth_types(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

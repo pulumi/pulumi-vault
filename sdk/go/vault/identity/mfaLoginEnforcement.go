@@ -166,6 +166,12 @@ func (MfaLoginEnforcementState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mfaLoginEnforcementState)(nil)).Elem()
 }
 
+// MfaLoginEnforcementExists checks whether an existing MfaLoginEnforcement resource with the given ID exists.
+func MfaLoginEnforcementExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MfaLoginEnforcementState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/mfaLoginEnforcement:MfaLoginEnforcement", id, state, "", opts...)
+}
+
 type mfaLoginEnforcementArgs struct {
 	// Set of auth method accessor IDs.
 	AuthMethodAccessors []string `pulumi:"authMethodAccessors"`

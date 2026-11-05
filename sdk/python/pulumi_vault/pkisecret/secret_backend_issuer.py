@@ -944,6 +944,46 @@ class SecretBackendIssuer(pulumi.CustomResource):
         __props__.__dict__["usage"] = usage
         return SecretBackendIssuer(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_path_length_checks: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_aia_url_templating: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_name: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_ref: pulumi.Input[Optional[_builtins.str]] = None,
+            issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            leaf_not_after_behavior: pulumi.Input[Optional[_builtins.str]] = None,
+            manual_chains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_servers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            revocation_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            usage: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["crlDistributionPoints"] = crl_distribution_points
+        __props__["disableCriticalExtensionChecks"] = disable_critical_extension_checks
+        __props__["disableNameChecks"] = disable_name_checks
+        __props__["disableNameConstraintChecks"] = disable_name_constraint_checks
+        __props__["disablePathLengthChecks"] = disable_path_length_checks
+        __props__["enableAiaUrlTemplating"] = enable_aia_url_templating
+        __props__["issuerId"] = issuer_id
+        __props__["issuerName"] = issuer_name
+        __props__["issuerRef"] = issuer_ref
+        __props__["issuingCertificates"] = issuing_certificates
+        __props__["leafNotAfterBehavior"] = leaf_not_after_behavior
+        __props__["manualChains"] = manual_chains
+        __props__["namespace"] = namespace
+        __props__["ocspServers"] = ocsp_servers
+        __props__["revocationSignatureAlgorithm"] = revocation_signature_algorithm
+        __props__["usage"] = usage
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/secretBackendIssuer:SecretBackendIssuer', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

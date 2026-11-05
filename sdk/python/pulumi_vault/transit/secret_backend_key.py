@@ -1208,6 +1208,64 @@ class SecretBackendKey(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return SecretBackendKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allow_plaintext_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_rotate_period: pulumi.Input[Optional[_builtins.int]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            context: pulumi.Input[Optional[_builtins.str]] = None,
+            convergent_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            derived: pulumi.Input[Optional[_builtins.bool]] = None,
+            exportable: pulumi.Input[Optional[_builtins.bool]] = None,
+            hybrid_key_type_ec: pulumi.Input[Optional[_builtins.str]] = None,
+            hybrid_key_type_pqc: pulumi.Input[Optional[_builtins.str]] = None,
+            key_size: pulumi.Input[Optional[_builtins.int]] = None,
+            keys: pulumi.Input[Optional[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
+            latest_version: pulumi.Input[Optional[_builtins.int]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            min_available_version: pulumi.Input[Optional[_builtins.int]] = None,
+            min_decryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+            min_encryption_version: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+            supports_decryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            supports_derivation: pulumi.Input[Optional[_builtins.bool]] = None,
+            supports_encryption: pulumi.Input[Optional[_builtins.bool]] = None,
+            supports_signing: pulumi.Input[Optional[_builtins.bool]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowPlaintextBackup"] = allow_plaintext_backup
+        __props__["autoRotatePeriod"] = auto_rotate_period
+        __props__["backend"] = backend
+        __props__["context"] = context
+        __props__["convergentEncryption"] = convergent_encryption
+        __props__["deletionAllowed"] = deletion_allowed
+        __props__["derived"] = derived
+        __props__["exportable"] = exportable
+        __props__["hybridKeyTypeEc"] = hybrid_key_type_ec
+        __props__["hybridKeyTypePqc"] = hybrid_key_type_pqc
+        __props__["keySize"] = key_size
+        __props__["keys"] = keys
+        __props__["latestVersion"] = latest_version
+        __props__["managedKeyId"] = managed_key_id
+        __props__["managedKeyName"] = managed_key_name
+        __props__["minAvailableVersion"] = min_available_version
+        __props__["minDecryptionVersion"] = min_decryption_version
+        __props__["minEncryptionVersion"] = min_encryption_version
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["parameterSet"] = parameter_set
+        __props__["supportsDecryption"] = supports_decryption
+        __props__["supportsDerivation"] = supports_derivation
+        __props__["supportsEncryption"] = supports_encryption
+        __props__["supportsSigning"] = supports_signing
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:transit/secretBackendKey:SecretBackendKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowPlaintextBackup")
     def allow_plaintext_backup(self) -> pulumi.Output[Optional[_builtins.bool]]:

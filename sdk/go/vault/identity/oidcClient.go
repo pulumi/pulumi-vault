@@ -207,6 +207,12 @@ func (OidcClientState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcClientState)(nil)).Elem()
 }
 
+// OidcClientExists checks whether an existing OidcClient resource with the given ID exists.
+func OidcClientExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcClientState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidcClient:OidcClient", id, state, "", opts...)
+}
+
 type oidcClientArgs struct {
 	// The time-to-live for access tokens obtained by the client.
 	AccessTokenTtl *int `pulumi:"accessTokenTtl"`

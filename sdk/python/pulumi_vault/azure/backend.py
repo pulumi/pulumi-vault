@@ -1731,6 +1731,84 @@ class Backend(pulumi.CustomResource):
         __props__.__dict__["tenant_id"] = tenant_id
         return Backend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_managed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_response_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_request_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audit_non_hmac_response_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            default_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            delegated_auth_accessors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment: pulumi.Input[Optional[_builtins.str]] = None,
+            external_entropy_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            force_no_cache: pulumi.Input[Optional[_builtins.bool]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            listing_visibility: pulumi.Input[Optional[_builtins.str]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            max_lease_ttl_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            passthrough_request_headers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+            root_password_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            seal_wrap: pulumi.Input[Optional[_builtins.bool]] = None,
+            seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["allowedManagedKeys"] = allowed_managed_keys
+        __props__["allowedResponseHeaders"] = allowed_response_headers
+        __props__["auditNonHmacRequestKeys"] = audit_non_hmac_request_keys
+        __props__["auditNonHmacResponseKeys"] = audit_non_hmac_response_keys
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["clientSecretWo"] = client_secret_wo
+        __props__["clientSecretWoVersion"] = client_secret_wo_version
+        __props__["defaultLeaseTtlSeconds"] = default_lease_ttl_seconds
+        __props__["delegatedAuthAccessors"] = delegated_auth_accessors
+        __props__["description"] = description
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["disableRemount"] = disable_remount
+        __props__["environment"] = environment
+        __props__["externalEntropyAccess"] = external_entropy_access
+        __props__["forceNoCache"] = force_no_cache
+        __props__["identityTokenAudience"] = identity_token_audience
+        __props__["identityTokenKey"] = identity_token_key
+        __props__["identityTokenTtl"] = identity_token_ttl
+        __props__["listingVisibility"] = listing_visibility
+        __props__["local"] = local
+        __props__["maxLeaseTtlSeconds"] = max_lease_ttl_seconds
+        __props__["namespace"] = namespace
+        __props__["options"] = options
+        __props__["passthroughRequestHeaders"] = passthrough_request_headers
+        __props__["path"] = path
+        __props__["pluginVersion"] = plugin_version
+        __props__["rootPasswordTtl"] = root_password_ttl
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["sealWrap"] = seal_wrap
+        __props__["seamlessRotation"] = seamless_rotation
+        __props__["subscriptionId"] = subscription_id
+        __props__["tenantId"] = tenant_id
+        return pulumi.runtime.exists_resource(None, 'vault:azure/backend:Backend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

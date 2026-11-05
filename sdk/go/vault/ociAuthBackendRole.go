@@ -209,6 +209,12 @@ func (OciAuthBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*ociAuthBackendRoleState)(nil)).Elem()
 }
 
+// OciAuthBackendRoleExists checks whether an existing OciAuthBackendRole resource with the given ID exists.
+func OciAuthBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OciAuthBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/ociAuthBackendRole:OciAuthBackendRole", id, state, "", opts...)
+}
+
 type ociAuthBackendRoleArgs struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.

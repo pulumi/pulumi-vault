@@ -246,7 +246,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.allowedExtensions);
     }
     /**
-     * Set of configuration blocks to define allowed\
+     * Set of configuration blocks to define allowed&#92;
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      * 
@@ -255,7 +255,7 @@ public class SecretBackendRole extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ List<SecretBackendRoleAllowedUserKeyConfig>> allowedUserKeyConfigs;
 
     /**
-     * @return Set of configuration blocks to define allowed\
+     * @return Set of configuration blocks to define allowed&#92;
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      * 

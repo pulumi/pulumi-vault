@@ -253,6 +253,12 @@ func (PluginRuntimeState) ElementType() reflect.Type {
 	return reflect.TypeOf((*pluginRuntimeState)(nil)).Elem()
 }
 
+// PluginRuntimeExists checks whether an existing PluginRuntime resource with the given ID exists.
+func PluginRuntimeExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PluginRuntimeState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/pluginRuntime:PluginRuntime", id, state, "", opts...)
+}
+
 type pluginRuntimeArgs struct {
 	// The parent cgroup to set for each container.
 	// If not specified, defaults to the cgroup of the Vault process.

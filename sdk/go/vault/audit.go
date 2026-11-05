@@ -184,6 +184,12 @@ func (AuditState) ElementType() reflect.Type {
 	return reflect.TypeOf((*auditState)(nil)).Elem()
 }
 
+// AuditExists checks whether an existing Audit resource with the given ID exists.
+func AuditExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuditState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/audit:Audit", id, state, "", opts...)
+}
+
 type auditArgs struct {
 	// Human-friendly description of the audit device.
 	Description *string `pulumi:"description"`

@@ -578,6 +578,30 @@ class TransformationTokenization(pulumi.CustomResource):
         __props__.__dict__["stores"] = stores
         return TransformationTokenization(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            convergent: pulumi.Input[Optional[_builtins.bool]] = None,
+            deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            mapping_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            stores: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedRoles"] = allowed_roles
+        __props__["convergent"] = convergent
+        __props__["deletionAllowed"] = deletion_allowed
+        __props__["mappingMode"] = mapping_mode
+        __props__["maxTtl"] = max_ttl
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["stores"] = stores
+        return pulumi.runtime.exists_resource(None, 'vault:transform/transformationTokenization:TransformationTokenization', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
     def allowed_roles(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

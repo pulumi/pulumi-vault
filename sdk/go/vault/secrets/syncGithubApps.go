@@ -160,6 +160,12 @@ func (SyncGithubAppsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncGithubAppsState)(nil)).Elem()
 }
 
+// SyncGithubAppsExists checks whether an existing SyncGithubApps resource with the given ID exists.
+func SyncGithubAppsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncGithubAppsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncGithubApps:SyncGithubApps", id, state, "", opts...)
+}
+
 type syncGithubAppsArgs struct {
 	// The GitHub application ID.
 	AppId int `pulumi:"appId"`

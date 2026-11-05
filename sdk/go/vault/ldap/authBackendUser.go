@@ -157,6 +157,12 @@ func (AuthBackendUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendUserState)(nil)).Elem()
 }
 
+// AuthBackendUserExists checks whether an existing AuthBackendUser resource with the given ID exists.
+func AuthBackendUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ldap/authBackendUser:AuthBackendUser", id, state, "", opts...)
+}
+
 type authBackendUserArgs struct {
 	// Path to the authentication backend
 	//

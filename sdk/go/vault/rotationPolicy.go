@@ -134,6 +134,12 @@ func (RotationPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*rotationPolicyState)(nil)).Elem()
 }
 
+// RotationPolicyExists checks whether an existing RotationPolicy resource with the given ID exists.
+func RotationPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RotationPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/rotationPolicy:RotationPolicy", id, state, "", opts...)
+}
+
 type rotationPolicyArgs struct {
 	// Maximum retries per cycle for this rotation policy.
 	MaxRetriesPerCycle int `pulumi:"maxRetriesPerCycle"`

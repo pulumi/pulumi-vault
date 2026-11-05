@@ -759,6 +759,34 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cf_api_addr: pulumi.Input[Optional[_builtins.str]] = None,
+            cf_api_trusted_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            cf_password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            cf_password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            cf_timeout: pulumi.Input[Optional[_builtins.int]] = None,
+            cf_username: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_ca_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            login_max_seconds_not_after: pulumi.Input[Optional[_builtins.int]] = None,
+            login_max_seconds_not_before: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["cfApiAddr"] = cf_api_addr
+        __props__["cfApiTrustedCertificates"] = cf_api_trusted_certificates
+        __props__["cfPasswordWo"] = cf_password_wo
+        __props__["cfPasswordWoVersion"] = cf_password_wo_version
+        __props__["cfTimeout"] = cf_timeout
+        __props__["cfUsername"] = cf_username
+        __props__["identityCaCertificates"] = identity_ca_certificates
+        __props__["loginMaxSecondsNotAfter"] = login_max_seconds_not_after
+        __props__["loginMaxSecondsNotBefore"] = login_max_seconds_not_before
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:cf/authBackendConfig:AuthBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="cfApiAddr")
     def cf_api_addr(self) -> pulumi.Output[_builtins.str]:

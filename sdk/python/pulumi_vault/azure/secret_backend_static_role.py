@@ -805,6 +805,40 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            application_object_id: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            defer_initial_creds: pulumi.Input[Optional[_builtins.bool]] = None,
+            expiration: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_grace_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            seamless_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["applicationObjectId"] = application_object_id
+        __props__["backend"] = backend
+        __props__["clientSecret"] = client_secret
+        __props__["deferInitialCreds"] = defer_initial_creds
+        __props__["expiration"] = expiration
+        __props__["metadata"] = metadata
+        __props__["namespace"] = namespace
+        __props__["role"] = role
+        __props__["rotationGracePeriod"] = rotation_grace_period
+        __props__["rotationPeriod"] = rotation_period
+        __props__["seamlessRotation"] = seamless_rotation
+        __props__["secretId"] = secret_id
+        __props__["skipImportRotation"] = skip_import_rotation
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:azure/secretBackendStaticRole:SecretBackendStaticRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="applicationObjectId")
     def application_object_id(self) -> pulumi.Output[_builtins.str]:

@@ -192,6 +192,12 @@ func (SecretCredsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCredsState)(nil)).Elem()
 }
 
+// SecretCredsExists checks whether an existing SecretCreds resource with the given ID exists.
+func SecretCredsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretCredsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:terraformcloud/secretCreds:SecretCreds", id, state, "", opts...)
+}
+
 type secretCredsArgs struct {
 	// The path to the Terraform Cloud secret backend to
 	// read credentials from, with no leading or trailing `/`s.

@@ -231,6 +231,12 @@ func (GroupPolicyApplicationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*groupPolicyApplicationState)(nil)).Elem()
 }
 
+// GroupPolicyApplicationExists checks whether an existing GroupPolicyApplication resource with the given ID exists.
+func GroupPolicyApplicationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GroupPolicyApplicationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:config/groupPolicyApplication:GroupPolicyApplication", id, state, "", opts...)
+}
+
 type groupPolicyApplicationArgs struct {
 	// Mode for group policy application. Must be either `withinNamespaceHierarchy` or `any`. Defaults to `withinNamespaceHierarchy`.
 	GroupPolicyApplicationMode string `pulumi:"groupPolicyApplicationMode"`

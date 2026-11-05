@@ -286,6 +286,12 @@ func (SecretBackendOrderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendOrderState)(nil)).Elem()
 }
 
+// SecretBackendOrderExists checks whether an existing SecretBackendOrder resource with the given ID exists.
+func SecretBackendOrderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendOrderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendOrder:SecretBackendOrder", id, state, "", opts...)
+}
+
 type secretBackendOrderArgs struct {
 	// PEM-encoded Certificate Signing Request containing identifiers. Required if `identifiers` is not provided. Mutually exclusive with `identifiers`.
 	Csr *string `pulumi:"csr"`

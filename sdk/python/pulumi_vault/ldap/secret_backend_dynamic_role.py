@@ -737,6 +737,32 @@ class SecretBackendDynamicRole(pulumi.CustomResource):
         __props__.__dict__["username_template"] = username_template
         return SecretBackendDynamicRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+            default_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            deletion_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            rollback_ldif: pulumi.Input[Optional[_builtins.str]] = None,
+            username_template: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["creationLdif"] = creation_ldif
+        __props__["defaultTtl"] = default_ttl
+        __props__["deletionLdif"] = deletion_ldif
+        __props__["maxTtl"] = max_ttl
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["passwordPolicy"] = password_policy
+        __props__["roleName"] = role_name
+        __props__["rollbackLdif"] = rollback_ldif
+        __props__["usernameTemplate"] = username_template
+        return pulumi.runtime.exists_resource(None, 'vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="creationLdif")
     def creation_ldif(self) -> pulumi.Output[_builtins.str]:

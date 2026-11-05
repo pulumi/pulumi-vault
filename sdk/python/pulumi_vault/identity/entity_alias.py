@@ -465,6 +465,26 @@ class EntityAlias(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return EntityAlias(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            canonical_id: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            external_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["canonicalId"] = canonical_id
+        __props__["customMetadata"] = custom_metadata
+        __props__["externalId"] = external_id
+        __props__["issuer"] = issuer
+        __props__["mountAccessor"] = mount_accessor
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:identity/entityAlias:EntityAlias', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="canonicalId")
     def canonical_id(self) -> pulumi.Output[_builtins.str]:

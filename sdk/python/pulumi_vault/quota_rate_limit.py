@@ -655,6 +655,32 @@ class QuotaRateLimit(pulumi.CustomResource):
         __props__.__dict__["secondary_rate"] = secondary_rate
         return QuotaRateLimit(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            block_interval: pulumi.Input[Optional[_builtins.int]] = None,
+            group_by: pulumi.Input[Optional[_builtins.str]] = None,
+            inheritable: pulumi.Input[Optional[_builtins.bool]] = None,
+            interval: pulumi.Input[Optional[_builtins.int]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            rate: pulumi.Input[Optional[_builtins.float]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            secondary_rate: pulumi.Input[Optional[_builtins.float]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["blockInterval"] = block_interval
+        __props__["groupBy"] = group_by
+        __props__["inheritable"] = inheritable
+        __props__["interval"] = interval
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["rate"] = rate
+        __props__["role"] = role
+        __props__["secondaryRate"] = secondary_rate
+        return pulumi.runtime.exists_resource(None, 'vault:index/quotaRateLimit:QuotaRateLimit', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="blockInterval")
     def block_interval(self) -> pulumi.Output[Optional[_builtins.int]]:

@@ -215,6 +215,12 @@ func (BackendConfigScepState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendConfigScepState)(nil)).Elem()
 }
 
+// BackendConfigScepExists checks whether an existing BackendConfigScep resource with the given ID exists.
+func BackendConfigScepExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendConfigScepState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendConfigScep:BackendConfigScep", id, state, "", opts...)
+}
+
 type backendConfigScepArgs struct {
 	// List of allowed digest algorithms for SCEP requests.
 	AllowedDigestAlgorithms []string `pulumi:"allowedDigestAlgorithms"`

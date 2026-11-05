@@ -215,7 +215,7 @@ namespace Pulumi.Vault
         public Output<string> Mount { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the LDAP group to map to Vault policies. 
+        /// The name of the LDAP group to map to Vault policies.
         /// This should match the group name as it appears in your LDAP directory.
         /// Changing this will force a new resource to be created.
         /// </summary>
@@ -232,7 +232,7 @@ namespace Pulumi.Vault
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// Set of Vault policy names to associate with this group. 
+        /// Set of Vault policy names to associate with this group.
         /// Users who are members of this LDAP group will receive these policies when they
         /// authenticate via Kerberos.
         /// </summary>
@@ -293,7 +293,7 @@ namespace Pulumi.Vault
         public Input<string> Mount { get; set; } = null!;
 
         /// <summary>
-        /// The name of the LDAP group to map to Vault policies. 
+        /// The name of the LDAP group to map to Vault policies.
         /// This should match the group name as it appears in your LDAP directory.
         /// Changing this will force a new resource to be created.
         /// </summary>
@@ -313,7 +313,7 @@ namespace Pulumi.Vault
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Set of Vault policy names to associate with this group. 
+        /// Set of Vault policy names to associate with this group.
         /// Users who are members of this LDAP group will receive these policies when they
         /// authenticate via Kerberos.
         /// </summary>
@@ -339,7 +339,7 @@ namespace Pulumi.Vault
         public Input<string>? Mount { get; set; }
 
         /// <summary>
-        /// The name of the LDAP group to map to Vault policies. 
+        /// The name of the LDAP group to map to Vault policies.
         /// This should match the group name as it appears in your LDAP directory.
         /// Changing this will force a new resource to be created.
         /// </summary>
@@ -359,7 +359,7 @@ namespace Pulumi.Vault
         private InputList<string>? _policies;
 
         /// <summary>
-        /// Set of Vault policy names to associate with this group. 
+        /// Set of Vault policy names to associate with this group.
         /// Users who are members of this LDAP group will receive these policies when they
         /// authenticate via Kerberos.
         /// </summary>

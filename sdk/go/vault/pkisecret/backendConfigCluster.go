@@ -142,6 +142,12 @@ func (BackendConfigClusterState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendConfigClusterState)(nil)).Elem()
 }
 
+// BackendConfigClusterExists checks whether an existing BackendConfigCluster resource with the given ID exists.
+func BackendConfigClusterExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendConfigClusterState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendConfigCluster:BackendConfigCluster", id, state, "", opts...)
+}
+
 type backendConfigClusterArgs struct {
 	// Specifies the path to this performance replication cluster's AIA distribution point.
 	AiaPath *string `pulumi:"aiaPath"`

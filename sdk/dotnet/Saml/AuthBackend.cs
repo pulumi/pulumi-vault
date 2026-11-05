@@ -97,7 +97,7 @@ namespace Pulumi.Vault.Saml
         public Output<string?> IdpMetadataUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The SSO URL of the identity provider. Mutually exclusive with 
+        /// The SSO URL of the identity provider. Mutually exclusive with
         /// `IdpMetadataUrl`.
         /// </summary>
         [Output("idpSsoUrl")]
@@ -128,14 +128,14 @@ namespace Pulumi.Vault.Saml
         public Output<Outputs.AuthBackendTune> Tune { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `True`, validates the signature of 
+        /// If set to `True`, validates the signature of
         /// the SAML assertion. Defaults to `False`. Requires Vault 1.19+.
         /// </summary>
         [Output("validateAssertionSignature")]
         public Output<bool> ValidateAssertionSignature { get; private set; } = null!;
 
         /// <summary>
-        /// If set to `True`, validates the signature of 
+        /// If set to `True`, validates the signature of
         /// the SAML response. Defaults to `False`. Requires Vault 1.19+.
         /// </summary>
         [Output("validateResponseSignature")]
@@ -248,7 +248,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? IdpMetadataUrl { get; set; }
 
         /// <summary>
-        /// The SSO URL of the identity provider. Mutually exclusive with 
+        /// The SSO URL of the identity provider. Mutually exclusive with
         /// `IdpMetadataUrl`.
         /// </summary>
         [Input("idpSsoUrl")]
@@ -279,14 +279,14 @@ namespace Pulumi.Vault.Saml
         public Input<Inputs.AuthBackendTuneArgs>? Tune { get; set; }
 
         /// <summary>
-        /// If set to `True`, validates the signature of 
+        /// If set to `True`, validates the signature of
         /// the SAML assertion. Defaults to `False`. Requires Vault 1.19+.
         /// </summary>
         [Input("validateAssertionSignature")]
         public Input<bool>? ValidateAssertionSignature { get; set; }
 
         /// <summary>
-        /// If set to `True`, validates the signature of 
+        /// If set to `True`, validates the signature of
         /// the SAML response. Defaults to `False`. Requires Vault 1.19+.
         /// </summary>
         [Input("validateResponseSignature")]
@@ -361,7 +361,7 @@ namespace Pulumi.Vault.Saml
         public Input<string>? IdpMetadataUrl { get; set; }
 
         /// <summary>
-        /// The SSO URL of the identity provider. Mutually exclusive with 
+        /// The SSO URL of the identity provider. Mutually exclusive with
         /// `IdpMetadataUrl`.
         /// </summary>
         [Input("idpSsoUrl")]
@@ -392,14 +392,14 @@ namespace Pulumi.Vault.Saml
         public Input<Inputs.AuthBackendTuneGetArgs>? Tune { get; set; }
 
         /// <summary>
-        /// If set to `True`, validates the signature of 
+        /// If set to `True`, validates the signature of
         /// the SAML assertion. Defaults to `False`. Requires Vault 1.19+.
         /// </summary>
         [Input("validateAssertionSignature")]
         public Input<bool>? ValidateAssertionSignature { get; set; }
 
         /// <summary>
-        /// If set to `True`, validates the signature of 
+        /// If set to `True`, validates the signature of
         /// the SAML response. Defaults to `False`. Requires Vault 1.19+.
         /// </summary>
         [Input("validateResponseSignature")]

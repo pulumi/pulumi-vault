@@ -37,24 +37,24 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var alphanumeric = new PasswordPolicy("alphanumeric", PasswordPolicyArgs.builder()
  *             .name("alphanumeric")
  *             .policy("""
  *     length = 20
- *     rule \"charset\" {
- *       charset = \"abcdefghijklmnopqrstuvwxyz0123456789\"
- *     }
+ *     rule }&#92;{@code "charset}&#92;{@code " }{{@code
+ *       charset = }&#92;{@code "abcdefghijklmnopqrstuvwxyz0123456789}&#92;{@code "
+ *     }}{@code
  *             """)
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

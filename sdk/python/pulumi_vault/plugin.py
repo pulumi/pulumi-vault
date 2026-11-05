@@ -691,6 +691,32 @@ class Plugin(pulumi.CustomResource):
         __props__.__dict__["version"] = version
         return Plugin(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            args: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            command: pulumi.Input[Optional[_builtins.str]] = None,
+            download: pulumi.Input[Optional[_builtins.bool]] = None,
+            envs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            oci_image: pulumi.Input[Optional[_builtins.str]] = None,
+            runtime: pulumi.Input[Optional[_builtins.str]] = None,
+            sha256: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            version: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["args"] = args
+        __props__["command"] = command
+        __props__["download"] = download
+        __props__["envs"] = envs
+        __props__["name"] = name
+        __props__["ociImage"] = oci_image
+        __props__["runtime"] = runtime
+        __props__["sha256"] = sha256
+        __props__["type"] = type
+        __props__["version"] = version
+        return pulumi.runtime.exists_resource(None, 'vault:index/plugin:Plugin', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def args(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

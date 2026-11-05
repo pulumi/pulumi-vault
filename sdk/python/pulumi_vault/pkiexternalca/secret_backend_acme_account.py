@@ -637,6 +637,34 @@ class SecretBackendAcmeAccount(pulumi.CustomResource):
         __props__.__dict__["trusted_ca"] = trusted_ca
         return SecretBackendAcmeAccount(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            active_key_version: pulumi.Input[Optional[_builtins.int]] = None,
+            default_nameserver: pulumi.Input[Optional[_builtins.str]] = None,
+            directory_url: pulumi.Input[Optional[_builtins.str]] = None,
+            eab_key: pulumi.Input[Optional[_builtins.str]] = None,
+            eab_kid: pulumi.Input[Optional[_builtins.str]] = None,
+            email_contacts: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            trusted_ca: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["activeKeyVersion"] = active_key_version
+        __props__["defaultNameserver"] = default_nameserver
+        __props__["directoryUrl"] = directory_url
+        __props__["eabKey"] = eab_key
+        __props__["eabKid"] = eab_kid
+        __props__["emailContacts"] = email_contacts
+        __props__["keyType"] = key_type
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["trustedCa"] = trusted_ca
+        return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendAcmeAccount:SecretBackendAcmeAccount', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="activeKeyVersion")
     def active_key_version(self) -> pulumi.Output[_builtins.int]:

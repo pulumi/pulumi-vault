@@ -152,7 +152,7 @@ namespace Pulumi.Vault.Database
         public Output<string?> PasswordWo { get; private set; } = null!;
 
         /// <summary>
-        /// The version of the `PasswordWo` field. 
+        /// The version of the `PasswordWo` field.
         /// Used for tracking changes to the write-only password field. For more info see
         /// updating write-only attributes.
         /// </summary>
@@ -327,7 +327,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The version of the `PasswordWo` field. 
+        /// The version of the `PasswordWo` field.
         /// Used for tracking changes to the write-only password field. For more info see
         /// updating write-only attributes.
         /// </summary>
@@ -475,7 +475,7 @@ namespace Pulumi.Vault.Database
         }
 
         /// <summary>
-        /// The version of the `PasswordWo` field. 
+        /// The version of the `PasswordWo` field.
         /// Used for tracking changes to the write-only password field. For more info see
         /// updating write-only attributes.
         /// </summary>

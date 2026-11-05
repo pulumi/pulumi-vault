@@ -91,11 +91,10 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
      * **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported.
      * Vault reads expiration from Azure.
      * 
-     * @deprecated
-     * This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
+     * @deprecated This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure. */
+    @Deprecated
     @Import(name="expiration")
     private @Nullable Output<String> expiration;
 
@@ -103,11 +102,10 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
      * @return **Deprecated** - Expiration timestamp (UTC, RFC3339 format) of the existing credential being imported.
      * Vault reads expiration from Azure.
      * 
-     * @deprecated
-     * This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
+     * @deprecated This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
      * 
      */
-    @Deprecated /* This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure. */
+    @Deprecated
     public Optional<Output<String>> expiration() {
         return Optional.ofNullable(this.expiration);
     }
@@ -396,11 +394,10 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
+         * @deprecated This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
          * 
          */
-        @Deprecated /* This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure. */
+        @Deprecated
         public Builder expiration(@Nullable Output<String> expiration) {
             $.expiration = expiration;
             return this;
@@ -412,11 +409,10 @@ public final class SecretBackendStaticRoleArgs extends com.pulumi.resources.Reso
          * 
          * @return builder
          * 
-         * @deprecated
-         * This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
+         * @deprecated This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure.
          * 
          */
-        @Deprecated /* This field is deprecated and will be removed in a future release. Vault will always read the expiration from Azure. */
+        @Deprecated
         public Builder expiration(String expiration) {
             return expiration(Output.of(expiration));
         }

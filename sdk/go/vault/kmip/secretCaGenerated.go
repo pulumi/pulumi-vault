@@ -242,6 +242,12 @@ func (SecretCaGeneratedState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCaGeneratedState)(nil)).Elem()
 }
 
+// SecretCaGeneratedExists checks whether an existing SecretCaGenerated resource with the given ID exists.
+func SecretCaGeneratedExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretCaGeneratedState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kmip/secretCaGenerated:SecretCaGenerated", id, state, "", opts...)
+}
+
 type secretCaGeneratedArgs struct {
 	// CA key bits. Valid values depend on `keyType`:
 	// - For `rsa`: 2048, 3072, 4096

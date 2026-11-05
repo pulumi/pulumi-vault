@@ -649,6 +649,12 @@ func (KerberosAuthBackendLdapConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*kerberosAuthBackendLdapConfigState)(nil)).Elem()
 }
 
+// KerberosAuthBackendLdapConfigExists checks whether an existing KerberosAuthBackendLdapConfig resource with the given ID exists.
+func KerberosAuthBackendLdapConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KerberosAuthBackendLdapConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/kerberosAuthBackendLdapConfig:KerberosAuthBackendLdapConfig", id, state, "", opts...)
+}
+
 type kerberosAuthBackendLdapConfigArgs struct {
 	// A map of string to string that will be set as metadata on the identity alias
 	AliasMetadata map[string]string `pulumi:"aliasMetadata"`

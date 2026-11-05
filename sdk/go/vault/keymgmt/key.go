@@ -330,6 +330,12 @@ func (KeyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyState)(nil)).Elem()
 }
 
+// KeyExists checks whether an existing Key resource with the given ID exists.
+func KeyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:keymgmt/key:Key", id, state, "", opts...)
+}
+
 type keyArgs struct {
 	// Specifies if the key is allowed to be deleted.
 	DeletionAllowed *bool `pulumi:"deletionAllowed"`

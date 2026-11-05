@@ -579,6 +579,32 @@ class OidcClient(pulumi.CustomResource):
         __props__.__dict__["redirect_uris"] = redirect_uris
         return OidcClient(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            assignments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_type: pulumi.Input[Optional[_builtins.str]] = None,
+            id_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            redirect_uris: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessTokenTtl"] = access_token_ttl
+        __props__["assignments"] = assignments
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["clientType"] = client_type
+        __props__["idTokenTtl"] = id_token_ttl
+        __props__["key"] = key
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["redirectUris"] = redirect_uris
+        return pulumi.runtime.exists_resource(None, 'vault:identity/oidcClient:OidcClient', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessTokenTtl")
     def access_token_ttl(self) -> pulumi.Output[_builtins.int]:

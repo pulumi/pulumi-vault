@@ -202,6 +202,12 @@ func (EntityPoliciesState) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityPoliciesState)(nil)).Elem()
 }
 
+// EntityPoliciesExists checks whether an existing EntityPolicies resource with the given ID exists.
+func EntityPoliciesExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EntityPoliciesState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/entityPolicies:EntityPolicies", id, state, "", opts...)
+}
+
 type entityPoliciesArgs struct {
 	// Entity ID to assign policies to.
 	EntityId string `pulumi:"entityId"`

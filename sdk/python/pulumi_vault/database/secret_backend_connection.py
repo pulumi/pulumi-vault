@@ -1544,6 +1544,78 @@ class SecretBackendConnection(pulumi.CustomResource):
         __props__.__dict__["verify_connection"] = verify_connection
         return SecretBackendConnection(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cassandra: pulumi.Input[Optional[Union['SecretBackendConnectionCassandraArgs', 'SecretBackendConnectionCassandraArgsDict', 'outputs.SecretBackendConnectionCassandra']]] = None,
+            couchbase: pulumi.Input[Optional[Union['SecretBackendConnectionCouchbaseArgs', 'SecretBackendConnectionCouchbaseArgsDict', 'outputs.SecretBackendConnectionCouchbase']]] = None,
+            data: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            elasticsearch: pulumi.Input[Optional[Union['SecretBackendConnectionElasticsearchArgs', 'SecretBackendConnectionElasticsearchArgsDict', 'outputs.SecretBackendConnectionElasticsearch']]] = None,
+            hana: pulumi.Input[Optional[Union['SecretBackendConnectionHanaArgs', 'SecretBackendConnectionHanaArgsDict', 'outputs.SecretBackendConnectionHana']]] = None,
+            influxdb: pulumi.Input[Optional[Union['SecretBackendConnectionInfluxdbArgs', 'SecretBackendConnectionInfluxdbArgsDict', 'outputs.SecretBackendConnectionInfluxdb']]] = None,
+            mongodb: pulumi.Input[Optional[Union['SecretBackendConnectionMongodbArgs', 'SecretBackendConnectionMongodbArgsDict', 'outputs.SecretBackendConnectionMongodb']]] = None,
+            mongodbatlas: pulumi.Input[Optional[Union['SecretBackendConnectionMongodbatlasArgs', 'SecretBackendConnectionMongodbatlasArgsDict', 'outputs.SecretBackendConnectionMongodbatlas']]] = None,
+            mssql: pulumi.Input[Optional[Union['SecretBackendConnectionMssqlArgs', 'SecretBackendConnectionMssqlArgsDict', 'outputs.SecretBackendConnectionMssql']]] = None,
+            mysql: pulumi.Input[Optional[Union['SecretBackendConnectionMysqlArgs', 'SecretBackendConnectionMysqlArgsDict', 'outputs.SecretBackendConnectionMysql']]] = None,
+            mysql_aurora: pulumi.Input[Optional[Union['SecretBackendConnectionMysqlAuroraArgs', 'SecretBackendConnectionMysqlAuroraArgsDict', 'outputs.SecretBackendConnectionMysqlAurora']]] = None,
+            mysql_legacy: pulumi.Input[Optional[Union['SecretBackendConnectionMysqlLegacyArgs', 'SecretBackendConnectionMysqlLegacyArgsDict', 'outputs.SecretBackendConnectionMysqlLegacy']]] = None,
+            mysql_rds: pulumi.Input[Optional[Union['SecretBackendConnectionMysqlRdsArgs', 'SecretBackendConnectionMysqlRdsArgsDict', 'outputs.SecretBackendConnectionMysqlRds']]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            oracle: pulumi.Input[Optional[Union['SecretBackendConnectionOracleArgs', 'SecretBackendConnectionOracleArgsDict', 'outputs.SecretBackendConnectionOracle']]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_name: pulumi.Input[Optional[_builtins.str]] = None,
+            plugin_version: pulumi.Input[Optional[_builtins.str]] = None,
+            postgresql: pulumi.Input[Optional[Union['SecretBackendConnectionPostgresqlArgs', 'SecretBackendConnectionPostgresqlArgsDict', 'outputs.SecretBackendConnectionPostgresql']]] = None,
+            redis: pulumi.Input[Optional[Union['SecretBackendConnectionRedisArgs', 'SecretBackendConnectionRedisArgsDict', 'outputs.SecretBackendConnectionRedis']]] = None,
+            redis_elasticache: pulumi.Input[Optional[Union['SecretBackendConnectionRedisElasticacheArgs', 'SecretBackendConnectionRedisElasticacheArgsDict', 'outputs.SecretBackendConnectionRedisElasticache']]] = None,
+            redshift: pulumi.Input[Optional[Union['SecretBackendConnectionRedshiftArgs', 'SecretBackendConnectionRedshiftArgsDict', 'outputs.SecretBackendConnectionRedshift']]] = None,
+            root_rotation_statements: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            skip_static_role_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            snowflake: pulumi.Input[Optional[Union['SecretBackendConnectionSnowflakeArgs', 'SecretBackendConnectionSnowflakeArgsDict', 'outputs.SecretBackendConnectionSnowflake']]] = None,
+            verify_connection: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedRoles"] = allowed_roles
+        __props__["backend"] = backend
+        __props__["cassandra"] = cassandra
+        __props__["couchbase"] = couchbase
+        __props__["data"] = data
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["elasticsearch"] = elasticsearch
+        __props__["hana"] = hana
+        __props__["influxdb"] = influxdb
+        __props__["mongodb"] = mongodb
+        __props__["mongodbatlas"] = mongodbatlas
+        __props__["mssql"] = mssql
+        __props__["mysql"] = mysql
+        __props__["mysqlAurora"] = mysql_aurora
+        __props__["mysqlLegacy"] = mysql_legacy
+        __props__["mysqlRds"] = mysql_rds
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["oracle"] = oracle
+        __props__["passwordPolicy"] = password_policy
+        __props__["pluginName"] = plugin_name
+        __props__["pluginVersion"] = plugin_version
+        __props__["postgresql"] = postgresql
+        __props__["redis"] = redis
+        __props__["redisElasticache"] = redis_elasticache
+        __props__["redshift"] = redshift
+        __props__["rootRotationStatements"] = root_rotation_statements
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["skipStaticRoleImportRotation"] = skip_static_role_import_rotation
+        __props__["snowflake"] = snowflake
+        __props__["verifyConnection"] = verify_connection
+        return pulumi.runtime.exists_resource(None, 'vault:database/secretBackendConnection:SecretBackendConnection', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedRoles")
     def allowed_roles(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

@@ -465,6 +465,24 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["vhosts"] = vhosts
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[_builtins.str]] = None,
+            vhost_topics: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostTopicArgs', 'SecretBackendRoleVhostTopicArgsDict', 'outputs.SecretBackendRoleVhostTopic']]]]] = None,
+            vhosts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleVhostArgs', 'SecretBackendRoleVhostArgsDict', 'outputs.SecretBackendRoleVhost']]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["tags"] = tags
+        __props__["vhostTopics"] = vhost_topics
+        __props__["vhosts"] = vhosts
+        return pulumi.runtime.exists_resource(None, 'vault:rabbitMq/secretBackendRole:SecretBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

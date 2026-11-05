@@ -182,12 +182,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var config = new SecretBackend("config", SecretBackendArgs.builder()
  *             .path("kubernetes")
  *             .description("kubernetes secrets engine description")
@@ -210,9 +210,9 @@ import javax.annotation.Nullable;
  *             .kubernetesRoleType("Role")
  *             .generatedRoleRules("""
  * rules:
- * - apiGroups: [\"\"]
- *   resources: [\"pods\"]
- *   verbs: [\"list\"]
+ * - apiGroups: [}&#92;{@code "}&#92;{@code "]
+ *   resources: [}&#92;{@code "pods}&#92;{@code "]
+ *   verbs: [}&#92;{@code "list}&#92;{@code "]
  *             """)
  *             .extraLabels(Map.ofEntries(
  *                 Map.entry("id", "abc123"),
@@ -224,8 +224,8 @@ import javax.annotation.Nullable;
  *             ))
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 

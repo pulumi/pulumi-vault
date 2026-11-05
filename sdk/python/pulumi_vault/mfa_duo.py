@@ -520,6 +520,28 @@ class MfaDuo(pulumi.CustomResource):
         __props__.__dict__["username_format"] = username_format
         return MfaDuo(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            integration_key: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            push_info: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            username_format: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["apiHostname"] = api_hostname
+        __props__["integrationKey"] = integration_key
+        __props__["mountAccessor"] = mount_accessor
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["pushInfo"] = push_info
+        __props__["secretKey"] = secret_key
+        __props__["usernameFormat"] = username_format
+        return pulumi.runtime.exists_resource(None, 'vault:index/mfaDuo:MfaDuo', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="apiHostname")
     def api_hostname(self) -> pulumi.Output[_builtins.str]:

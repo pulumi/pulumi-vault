@@ -131,8 +131,8 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional) True/false. Set this to true if your
-        /// vault authentication is not able to delete the data or if the endpoint
-        /// does not support the `DELETE` method. Defaults to false.
+        ///   vault authentication is not able to delete the data or if the endpoint
+        ///   does not support the `DELETE` method. Defaults to false.
         /// </summary>
         [Output("disableDelete")]
         public Output<bool?> DisableDelete { get; private set; } = null!;
@@ -149,12 +149,12 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional) True/false. If set to true,
-        /// ignore any fields present when the endpoint is read but that were not
-        /// in `DataJson`. Also, if a field that was written is not returned when
-        /// the endpoint is read, treat that field as being up to date. You should
-        /// set this to `True` when writing to endpoint that, when read, returns a
-        /// different set of fields from the ones you wrote, as is common with
-        /// many configuration endpoints. Defaults to false.
+        ///   ignore any fields present when the endpoint is read but that were not
+        ///   in `DataJson`. Also, if a field that was written is not returned when
+        ///   the endpoint is read, treat that field as being up to date. You should
+        ///   set this to `True` when writing to endpoint that, when read, returns a
+        ///   different set of fields from the ones you wrote, as is common with
+        ///   many configuration endpoints. Defaults to false.
         /// </summary>
         [Output("ignoreAbsentFields")]
         public Output<bool?> IgnoreAbsentFields { get; private set; } = null!;
@@ -179,29 +179,29 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - A map whose keys are the top-level data keys
-        /// returned from Vault by the write operation and whose values are the
-        /// corresponding values. This map can only represent string data, so
-        /// any non-string values returned from Vault are serialized as JSON.
-        /// Only fields set in `WriteFields` are present in the JSON data.
+        ///   returned from Vault by the write operation and whose values are the
+        ///   corresponding values. This map can only represent string data, so
+        ///   any non-string values returned from Vault are serialized as JSON.
+        ///   Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         [Output("writeData")]
         public Output<ImmutableDictionary<string, string>> WriteData { get; private set; } = null!;
 
         /// <summary>
         /// - The JSON data returned by the write operation.
-        /// Only fields set in `WriteFields` are present in the JSON data.
+        ///   Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         [Output("writeDataJson")]
         public Output<string> WriteDataJson { get; private set; } = null!;
 
         /// <summary>
         /// - (Optional). A list of fields that should be returned
-        /// in `WriteDataJson` and `WriteData`. If omitted, data returned by
-        /// the write operation is not available to the resource or included in
-        /// state. This helps to avoid accidental storage of sensitive values in
-        /// state. Some endpoints, such as many dynamic secrets endpoints, return
-        /// data from writing to an endpoint rather than reading it. You should
-        /// use `WriteFields` if you need information returned in this way.
+        ///   in `WriteDataJson` and `WriteData`. If omitted, data returned by
+        ///   the write operation is not available to the resource or included in
+        ///   state. This helps to avoid accidental storage of sensitive values in
+        ///   state. Some endpoints, such as many dynamic secrets endpoints, return
+        ///   data from writing to an endpoint rather than reading it. You should
+        ///   use `WriteFields` if you need information returned in this way.
         /// </summary>
         [Output("writeFields")]
         public Output<ImmutableArray<string>> WriteFields { get; private set; } = null!;
@@ -275,8 +275,8 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional) True/false. Set this to true if your
-        /// vault authentication is not able to delete the data or if the endpoint
-        /// does not support the `DELETE` method. Defaults to false.
+        ///   vault authentication is not able to delete the data or if the endpoint
+        ///   does not support the `DELETE` method. Defaults to false.
         /// </summary>
         [Input("disableDelete")]
         public Input<bool>? DisableDelete { get; set; }
@@ -293,12 +293,12 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional) True/false. If set to true,
-        /// ignore any fields present when the endpoint is read but that were not
-        /// in `DataJson`. Also, if a field that was written is not returned when
-        /// the endpoint is read, treat that field as being up to date. You should
-        /// set this to `True` when writing to endpoint that, when read, returns a
-        /// different set of fields from the ones you wrote, as is common with
-        /// many configuration endpoints. Defaults to false.
+        ///   ignore any fields present when the endpoint is read but that were not
+        ///   in `DataJson`. Also, if a field that was written is not returned when
+        ///   the endpoint is read, treat that field as being up to date. You should
+        ///   set this to `True` when writing to endpoint that, when read, returns a
+        ///   different set of fields from the ones you wrote, as is common with
+        ///   many configuration endpoints. Defaults to false.
         /// </summary>
         [Input("ignoreAbsentFields")]
         public Input<bool>? IgnoreAbsentFields { get; set; }
@@ -326,12 +326,12 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional). A list of fields that should be returned
-        /// in `WriteDataJson` and `WriteData`. If omitted, data returned by
-        /// the write operation is not available to the resource or included in
-        /// state. This helps to avoid accidental storage of sensitive values in
-        /// state. Some endpoints, such as many dynamic secrets endpoints, return
-        /// data from writing to an endpoint rather than reading it. You should
-        /// use `WriteFields` if you need information returned in this way.
+        ///   in `WriteDataJson` and `WriteData`. If omitted, data returned by
+        ///   the write operation is not available to the resource or included in
+        ///   state. This helps to avoid accidental storage of sensitive values in
+        ///   state. Some endpoints, such as many dynamic secrets endpoints, return
+        ///   data from writing to an endpoint rather than reading it. You should
+        ///   use `WriteFields` if you need information returned in this way.
         /// </summary>
         public InputList<string> WriteFields
         {
@@ -366,8 +366,8 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional) True/false. Set this to true if your
-        /// vault authentication is not able to delete the data or if the endpoint
-        /// does not support the `DELETE` method. Defaults to false.
+        ///   vault authentication is not able to delete the data or if the endpoint
+        ///   does not support the `DELETE` method. Defaults to false.
         /// </summary>
         [Input("disableDelete")]
         public Input<bool>? DisableDelete { get; set; }
@@ -384,12 +384,12 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional) True/false. If set to true,
-        /// ignore any fields present when the endpoint is read but that were not
-        /// in `DataJson`. Also, if a field that was written is not returned when
-        /// the endpoint is read, treat that field as being up to date. You should
-        /// set this to `True` when writing to endpoint that, when read, returns a
-        /// different set of fields from the ones you wrote, as is common with
-        /// many configuration endpoints. Defaults to false.
+        ///   ignore any fields present when the endpoint is read but that were not
+        ///   in `DataJson`. Also, if a field that was written is not returned when
+        ///   the endpoint is read, treat that field as being up to date. You should
+        ///   set this to `True` when writing to endpoint that, when read, returns a
+        ///   different set of fields from the ones you wrote, as is common with
+        ///   many configuration endpoints. Defaults to false.
         /// </summary>
         [Input("ignoreAbsentFields")]
         public Input<bool>? IgnoreAbsentFields { get; set; }
@@ -417,10 +417,10 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - A map whose keys are the top-level data keys
-        /// returned from Vault by the write operation and whose values are the
-        /// corresponding values. This map can only represent string data, so
-        /// any non-string values returned from Vault are serialized as JSON.
-        /// Only fields set in `WriteFields` are present in the JSON data.
+        ///   returned from Vault by the write operation and whose values are the
+        ///   corresponding values. This map can only represent string data, so
+        ///   any non-string values returned from Vault are serialized as JSON.
+        ///   Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         public InputMap<string> WriteData
         {
@@ -430,7 +430,7 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - The JSON data returned by the write operation.
-        /// Only fields set in `WriteFields` are present in the JSON data.
+        ///   Only fields set in `WriteFields` are present in the JSON data.
         /// </summary>
         [Input("writeDataJson")]
         public Input<string>? WriteDataJson { get; set; }
@@ -440,12 +440,12 @@ namespace Pulumi.Vault.Generic
 
         /// <summary>
         /// - (Optional). A list of fields that should be returned
-        /// in `WriteDataJson` and `WriteData`. If omitted, data returned by
-        /// the write operation is not available to the resource or included in
-        /// state. This helps to avoid accidental storage of sensitive values in
-        /// state. Some endpoints, such as many dynamic secrets endpoints, return
-        /// data from writing to an endpoint rather than reading it. You should
-        /// use `WriteFields` if you need information returned in this way.
+        ///   in `WriteDataJson` and `WriteData`. If omitted, data returned by
+        ///   the write operation is not available to the resource or included in
+        ///   state. This helps to avoid accidental storage of sensitive values in
+        ///   state. Some endpoints, such as many dynamic secrets endpoints, return
+        ///   data from writing to an endpoint rather than reading it. You should
+        ///   use `WriteFields` if you need information returned in this way.
         /// </summary>
         public InputList<string> WriteFields
         {

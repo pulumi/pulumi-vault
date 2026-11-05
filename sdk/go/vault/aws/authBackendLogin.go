@@ -306,6 +306,12 @@ func (AuthBackendLoginState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendLoginState)(nil)).Elem()
 }
 
+// AuthBackendLoginExists checks whether an existing AuthBackendLogin resource with the given ID exists.
+func AuthBackendLoginExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendLoginState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendLogin:AuthBackendLogin", id, state, "", opts...)
+}
+
 type authBackendLoginArgs struct {
 	// The unique name of the AWS auth backend. Defaults to
 	// 'aws'.

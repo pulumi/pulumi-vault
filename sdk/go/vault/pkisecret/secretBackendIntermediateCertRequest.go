@@ -339,6 +339,12 @@ func (SecretBackendIntermediateCertRequestState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendIntermediateCertRequestState)(nil)).Elem()
 }
 
+// SecretBackendIntermediateCertRequestExists checks whether an existing SecretBackendIntermediateCertRequest resource with the given ID exists.
+func SecretBackendIntermediateCertRequestExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendIntermediateCertRequestState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest", id, state, "", opts...)
+}
+
 type secretBackendIntermediateCertRequestArgs struct {
 	// Adds a Basic Constraints extension with 'CA: true'.
 	// Only needed as a workaround in some compatibility scenarios with Active Directory

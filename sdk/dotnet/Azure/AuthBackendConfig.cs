@@ -318,7 +318,7 @@ namespace Pulumi.Vault.Azure
         public Output<int> IdentityTokenTtl { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum number of retries for Azure API requests. 
+        /// Maximum number of retries for Azure API requests.
         /// Defaults to `3`.
         /// </summary>
         [Output("maxRetries")]
@@ -543,7 +543,7 @@ namespace Pulumi.Vault.Azure
         public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
-        /// Maximum number of retries for Azure API requests. 
+        /// Maximum number of retries for Azure API requests.
         /// Defaults to `3`.
         /// </summary>
         [Input("maxRetries")]
@@ -733,7 +733,7 @@ namespace Pulumi.Vault.Azure
         public Input<int>? IdentityTokenTtl { get; set; }
 
         /// <summary>
-        /// Maximum number of retries for Azure API requests. 
+        /// Maximum number of retries for Azure API requests.
         /// Defaults to `3`.
         /// </summary>
         [Input("maxRetries")]

@@ -257,6 +257,12 @@ func (GcpKmsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*gcpKmsState)(nil)).Elem()
 }
 
+// GcpKmsExists checks whether an existing GcpKms resource with the given ID exists.
+func GcpKmsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *GcpKmsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:keymgmt/gcpKms:GcpKms", id, state, "", opts...)
+}
+
 type gcpKmsArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The credentials to use for authentication with Google Cloud KMS. Supplying values for this parameter is optional, as credentials may also be specified through environment variables or Application Default Credentials. The order of precedence is environment variables, then the credentials provided to this parameter and Application Default Credentials. This value is write-only and will not be stored in Terraform state.

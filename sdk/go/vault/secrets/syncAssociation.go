@@ -189,6 +189,12 @@ func (SyncAssociationState) ElementType() reflect.Type {
 	return reflect.TypeOf((*syncAssociationState)(nil)).Elem()
 }
 
+// SyncAssociationExists checks whether an existing SyncAssociation resource with the given ID exists.
+func SyncAssociationExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SyncAssociationState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:secrets/syncAssociation:SyncAssociation", id, state, "", opts...)
+}
+
 type syncAssociationArgs struct {
 	// Specifies the mount where the secret is located.
 	Mount string `pulumi:"mount"`

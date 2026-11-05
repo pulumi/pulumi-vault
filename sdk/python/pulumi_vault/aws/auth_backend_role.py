@@ -1668,6 +1668,72 @@ class AuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_type"] = token_type
         return AuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allow_instance_migration: pulumi.Input[Optional[_builtins.bool]] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_account_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_ami_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_ec2_instance_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_iam_instance_profile_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_iam_principal_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_iam_role_arns: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bound_vpc_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            disallow_reauthentication: pulumi.Input[Optional[_builtins.bool]] = None,
+            inferred_aws_region: pulumi.Input[Optional[_builtins.str]] = None,
+            inferred_entity_type: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            resolve_aws_unique_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_tag: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aliasMetadata"] = alias_metadata
+        __props__["allowInstanceMigration"] = allow_instance_migration
+        __props__["authType"] = auth_type
+        __props__["backend"] = backend
+        __props__["boundAccountIds"] = bound_account_ids
+        __props__["boundAmiIds"] = bound_ami_ids
+        __props__["boundEc2InstanceIds"] = bound_ec2_instance_ids
+        __props__["boundIamInstanceProfileArns"] = bound_iam_instance_profile_arns
+        __props__["boundIamPrincipalArns"] = bound_iam_principal_arns
+        __props__["boundIamRoleArns"] = bound_iam_role_arns
+        __props__["boundRegions"] = bound_regions
+        __props__["boundSubnetIds"] = bound_subnet_ids
+        __props__["boundVpcIds"] = bound_vpc_ids
+        __props__["disallowReauthentication"] = disallow_reauthentication
+        __props__["inferredAwsRegion"] = inferred_aws_region
+        __props__["inferredEntityType"] = inferred_entity_type
+        __props__["namespace"] = namespace
+        __props__["resolveAwsUniqueIds"] = resolve_aws_unique_ids
+        __props__["role"] = role
+        __props__["roleId"] = role_id
+        __props__["roleTag"] = role_tag
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["tokenExplicitMaxTtl"] = token_explicit_max_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        __props__["tokenNoDefaultPolicy"] = token_no_default_policy
+        __props__["tokenNumUses"] = token_num_uses
+        __props__["tokenPeriod"] = token_period
+        __props__["tokenPolicies"] = token_policies
+        __props__["tokenTtl"] = token_ttl
+        __props__["tokenType"] = token_type
+        return pulumi.runtime.exists_resource(None, 'vault:aws/authBackendRole:AuthBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
     def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

@@ -840,6 +840,42 @@ class BackendRole(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return BackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            application_object_id: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_groups: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureGroupArgs', 'BackendRoleAzureGroupArgsDict', 'outputs.BackendRoleAzureGroup']]]]] = None,
+            azure_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackendRoleAzureRoleArgs', 'BackendRoleAzureRoleArgsDict', 'outputs.BackendRoleAzureRole']]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            explicit_max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            permanently_delete: pulumi.Input[Optional[_builtins.bool]] = None,
+            persist_app: pulumi.Input[Optional[_builtins.bool]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            sign_in_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["applicationObjectId"] = application_object_id
+        __props__["azureGroups"] = azure_groups
+        __props__["azureRoles"] = azure_roles
+        __props__["backend"] = backend
+        __props__["description"] = description
+        __props__["explicitMaxTtl"] = explicit_max_ttl
+        __props__["maxTtl"] = max_ttl
+        __props__["metadata"] = metadata
+        __props__["namespace"] = namespace
+        __props__["permanentlyDelete"] = permanently_delete
+        __props__["persistApp"] = persist_app
+        __props__["role"] = role
+        __props__["signInAudience"] = sign_in_audience
+        __props__["tags"] = tags
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:azure/backendRole:BackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="applicationObjectId")
     def application_object_id(self) -> pulumi.Output[Optional[_builtins.str]]:

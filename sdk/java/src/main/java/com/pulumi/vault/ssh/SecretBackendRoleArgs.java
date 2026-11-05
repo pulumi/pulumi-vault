@@ -193,7 +193,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Set of configuration blocks to define allowed\
+     * Set of configuration blocks to define allowed&#92;
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      * 
@@ -202,7 +202,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
     private @Nullable Output<List<SecretBackendRoleAllowedUserKeyConfigArgs>> allowedUserKeyConfigs;
 
     /**
-     * @return Set of configuration blocks to define allowed\
+     * @return Set of configuration blocks to define allowed&#92;
      * user key configuration, like key type and their lengths. Can be specified multiple times.
      * *See Configuration-Options for more info*
      * 
@@ -786,7 +786,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed\
+         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed&#92;
          * user key configuration, like key type and their lengths. Can be specified multiple times.
          * *See Configuration-Options for more info*
          * 
@@ -799,7 +799,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed\
+         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed&#92;
          * user key configuration, like key type and their lengths. Can be specified multiple times.
          * *See Configuration-Options for more info*
          * 
@@ -811,7 +811,7 @@ public final class SecretBackendRoleArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed\
+         * @param allowedUserKeyConfigs Set of configuration blocks to define allowed&#92;
          * user key configuration, like key type and their lengths. Can be specified multiple times.
          * *See Configuration-Options for more info*
          * 

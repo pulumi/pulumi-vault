@@ -188,6 +188,12 @@ func (SecretRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretRoleState)(nil)).Elem()
 }
 
+// SecretRoleExists checks whether an existing SecretRole resource with the given ID exists.
+func SecretRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ad/secretRole:SecretRole", id, state, "", opts...)
+}
+
 type secretRoleArgs struct {
 	// The path the AD secret backend is mounted at,
 	// with no leading or trailing `/`s.

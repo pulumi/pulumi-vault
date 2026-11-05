@@ -184,6 +184,12 @@ func (MfaPingidState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mfaPingidState)(nil)).Elem()
 }
 
+// MfaPingidExists checks whether an existing MfaPingid resource with the given ID exists.
+func MfaPingidExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MfaPingidState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/mfaPingid:MfaPingid", id, state, "", opts...)
+}
+
 type mfaPingidArgs struct {
 	// Target namespace. (requires Enterprise)
 	Namespace *string `pulumi:"namespace"`

@@ -166,6 +166,12 @@ func (QuotaLeaseCountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*quotaLeaseCountState)(nil)).Elem()
 }
 
+// QuotaLeaseCountExists checks whether an existing QuotaLeaseCount resource with the given ID exists.
+func QuotaLeaseCountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *QuotaLeaseCountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/quotaLeaseCount:QuotaLeaseCount", id, state, "", opts...)
+}
+
 type quotaLeaseCountArgs struct {
 	// If set to `true` on a quota where path is set to a namespace, the same quota will be cumulatively applied to all child namespace. The inheritable parameter cannot be set to `true` if the path does not specify a namespace. Only the quotas associated with the root namespace are inheritable by default. Requires Vault 1.15+.
 	Inheritable *bool `pulumi:"inheritable"`

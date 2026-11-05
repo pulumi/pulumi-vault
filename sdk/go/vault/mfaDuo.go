@@ -196,6 +196,12 @@ func (MfaDuoState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mfaDuoState)(nil)).Elem()
 }
 
+// MfaDuoExists checks whether an existing MfaDuo resource with the given ID exists.
+func MfaDuoExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MfaDuoState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/mfaDuo:MfaDuo", id, state, "", opts...)
+}
+
 type mfaDuoArgs struct {
 	// `(string: <required>)` - API hostname for Duo.
 	ApiHostname string `pulumi:"apiHostname"`

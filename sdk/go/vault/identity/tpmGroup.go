@@ -167,6 +167,12 @@ func (TpmGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tpmGroupState)(nil)).Elem()
 }
 
+// TpmGroupExists checks whether an existing TpmGroup resource with the given ID exists.
+func TpmGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TpmGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/tpmGroup:TpmGroup", id, state, "", opts...)
+}
+
 type tpmGroupArgs struct {
 	// Set of TPM IDs that are members of this TPM group.
 	// These are the unique IDs assigned by Vault to TPM records (SHA256 of the EK public key).

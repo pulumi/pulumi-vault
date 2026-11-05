@@ -676,6 +676,26 @@ class DistributeKey(pulumi.CustomResource):
         __props__.__dict__["versions"] = versions
         return DistributeKey(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            kms_name: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            protection: pulumi.Input[Optional[_builtins.str]] = None,
+            purposes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            versions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["keyName"] = key_name
+        __props__["kmsName"] = kms_name
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["protection"] = protection
+        __props__["purposes"] = purposes
+        __props__["versions"] = versions
+        return pulumi.runtime.exists_resource(None, 'vault:keymgmt/distributeKey:DistributeKey', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="keyName")
     def key_name(self) -> pulumi.Output[_builtins.str]:

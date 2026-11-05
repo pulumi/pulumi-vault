@@ -263,6 +263,12 @@ func (SecretBackendDynamicRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendDynamicRoleState)(nil)).Elem()
 }
 
+// SecretBackendDynamicRoleExists checks whether an existing SecretBackendDynamicRole resource with the given ID exists.
+func SecretBackendDynamicRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendDynamicRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole", id, state, "", opts...)
+}
+
 type secretBackendDynamicRoleArgs struct {
 	// A templatized LDIF string used to create a user
 	// account. This may contain multiple LDIF entries. The `creationLdif` can also

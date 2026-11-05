@@ -130,7 +130,7 @@ namespace Pulumi.Vault.Ssh
         public Output<string?> AllowedExtensions { get; private set; } = null!;
 
         /// <summary>
-        /// Set of configuration blocks to define allowed  
+        /// Set of configuration blocks to define allowed\
         /// user key configuration, like key type and their lengths. Can be specified multiple times.
         /// *See Configuration-Options for more info*
         /// </summary>
@@ -371,7 +371,7 @@ namespace Pulumi.Vault.Ssh
         private InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigArgs>? _allowedUserKeyConfigs;
 
         /// <summary>
-        /// Set of configuration blocks to define allowed  
+        /// Set of configuration blocks to define allowed\
         /// user key configuration, like key type and their lengths. Can be specified multiple times.
         /// *See Configuration-Options for more info*
         /// </summary>
@@ -595,7 +595,7 @@ namespace Pulumi.Vault.Ssh
         private InputList<Inputs.SecretBackendRoleAllowedUserKeyConfigGetArgs>? _allowedUserKeyConfigs;
 
         /// <summary>
-        /// Set of configuration blocks to define allowed  
+        /// Set of configuration blocks to define allowed\
         /// user key configuration, like key type and their lengths. Can be specified multiple times.
         /// *See Configuration-Options for more info*
         /// </summary>

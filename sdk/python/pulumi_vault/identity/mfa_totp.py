@@ -632,6 +632,44 @@ class MfaTotp(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         return MfaTotp(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            digits: pulumi.Input[Optional[_builtins.int]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            key_size: pulumi.Input[Optional[_builtins.int]] = None,
+            max_validation_attempts: pulumi.Input[Optional[_builtins.int]] = None,
+            method_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mount_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_path: pulumi.Input[Optional[_builtins.str]] = None,
+            period: pulumi.Input[Optional[_builtins.int]] = None,
+            qr_size: pulumi.Input[Optional[_builtins.int]] = None,
+            skew: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            uuid: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["algorithm"] = algorithm
+        __props__["digits"] = digits
+        __props__["issuer"] = issuer
+        __props__["keySize"] = key_size
+        __props__["maxValidationAttempts"] = max_validation_attempts
+        __props__["methodId"] = method_id
+        __props__["mountAccessor"] = mount_accessor
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["namespaceId"] = namespace_id
+        __props__["namespacePath"] = namespace_path
+        __props__["period"] = period
+        __props__["qrSize"] = qr_size
+        __props__["skew"] = skew
+        __props__["type"] = type
+        __props__["uuid"] = uuid
+        return pulumi.runtime.exists_resource(None, 'vault:identity/mfaTotp:MfaTotp', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def algorithm(self) -> pulumi.Output[Optional[_builtins.str]]:

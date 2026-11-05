@@ -729,6 +729,40 @@ class SecretBackendCrlConfig(pulumi.CustomResource):
         __props__.__dict__["unified_crl_on_existing_paths"] = unified_crl_on_existing_paths
         return SecretBackendCrlConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_rebuild: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_rebuild_grace_period: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cross_cluster_revocation: pulumi.Input[Optional[_builtins.bool]] = None,
+            delta_rebuild_interval: pulumi.Input[Optional[_builtins.str]] = None,
+            disable: pulumi.Input[Optional[_builtins.bool]] = None,
+            enable_delta: pulumi.Input[Optional[_builtins.bool]] = None,
+            expiry: pulumi.Input[Optional[_builtins.str]] = None,
+            max_crl_entries: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_disable: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_expiry: pulumi.Input[Optional[_builtins.str]] = None,
+            unified_crl: pulumi.Input[Optional[_builtins.bool]] = None,
+            unified_crl_on_existing_paths: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoRebuild"] = auto_rebuild
+        __props__["autoRebuildGracePeriod"] = auto_rebuild_grace_period
+        __props__["backend"] = backend
+        __props__["crossClusterRevocation"] = cross_cluster_revocation
+        __props__["deltaRebuildInterval"] = delta_rebuild_interval
+        __props__["disable"] = disable
+        __props__["enableDelta"] = enable_delta
+        __props__["expiry"] = expiry
+        __props__["maxCrlEntries"] = max_crl_entries
+        __props__["namespace"] = namespace
+        __props__["ocspDisable"] = ocsp_disable
+        __props__["ocspExpiry"] = ocsp_expiry
+        __props__["unifiedCrl"] = unified_crl
+        __props__["unifiedCrlOnExistingPaths"] = unified_crl_on_existing_paths
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoRebuild")
     def auto_rebuild(self) -> pulumi.Output[Optional[_builtins.bool]]:

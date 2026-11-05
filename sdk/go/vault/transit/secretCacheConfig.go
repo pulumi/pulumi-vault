@@ -128,6 +128,12 @@ func (SecretCacheConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCacheConfigState)(nil)).Elem()
 }
 
+// SecretCacheConfigExists checks whether an existing SecretCacheConfig resource with the given ID exists.
+func SecretCacheConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretCacheConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:transit/secretCacheConfig:SecretCacheConfig", id, state, "", opts...)
+}
+
 type secretCacheConfigArgs struct {
 	// The path the transit secret backend is mounted at, with no leading or trailing `/`s.
 	Backend string `pulumi:"backend"`

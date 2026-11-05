@@ -525,6 +525,28 @@ class Template(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return Template(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alphabet: pulumi.Input[Optional[_builtins.str]] = None,
+            decode_formats: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            encode_format: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            pattern: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["alphabet"] = alphabet
+        __props__["decodeFormats"] = decode_formats
+        __props__["encodeFormat"] = encode_format
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["pattern"] = pattern
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:transform/template:Template', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def alphabet(self) -> pulumi.Output[Optional[_builtins.str]]:

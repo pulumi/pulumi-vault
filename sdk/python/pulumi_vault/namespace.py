@@ -503,6 +503,22 @@ class Namespace(pulumi.CustomResource):
         __props__.__dict__["path_fq"] = path_fq
         return Namespace(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_id: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            path_fq: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["customMetadata"] = custom_metadata
+        __props__["namespace"] = namespace
+        __props__["namespaceId"] = namespace_id
+        __props__["path"] = path
+        __props__["pathFq"] = path_fq
+        return pulumi.runtime.exists_resource(None, 'vault:index/namespace:Namespace', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="customMetadata")
     def custom_metadata(self) -> pulumi.Output[Mapping[str, _builtins.str]]:

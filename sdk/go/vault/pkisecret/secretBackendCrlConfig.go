@@ -203,6 +203,12 @@ func (SecretBackendCrlConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendCrlConfigState)(nil)).Elem()
 }
 
+// SecretBackendCrlConfigExists checks whether an existing SecretBackendCrlConfig resource with the given ID exists.
+func SecretBackendCrlConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendCrlConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendCrlConfig:SecretBackendCrlConfig", id, state, "", opts...)
+}
+
 type secretBackendCrlConfigArgs struct {
 	// Enables periodic rebuilding of the CRL upon expiry. **Vault 1.12+**
 	AutoRebuild *bool `pulumi:"autoRebuild"`

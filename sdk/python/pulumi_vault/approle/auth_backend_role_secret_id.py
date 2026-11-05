@@ -733,6 +733,40 @@ class AuthBackendRoleSecretId(pulumi.CustomResource):
         __props__.__dict__["wrapping_ttl"] = wrapping_ttl
         return AuthBackendRoleSecretId(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            metadata: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            with_wrapped_accessor: pulumi.Input[Optional[_builtins.bool]] = None,
+            wrapping_accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_token: pulumi.Input[Optional[_builtins.str]] = None,
+            wrapping_ttl: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["backend"] = backend
+        __props__["cidrLists"] = cidr_lists
+        __props__["metadata"] = metadata
+        __props__["namespace"] = namespace
+        __props__["numUses"] = num_uses
+        __props__["roleName"] = role_name
+        __props__["secretId"] = secret_id
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["ttl"] = ttl
+        __props__["withWrappedAccessor"] = with_wrapped_accessor
+        __props__["wrappingAccessor"] = wrapping_accessor
+        __props__["wrappingToken"] = wrapping_token
+        __props__["wrappingTtl"] = wrapping_ttl
+        return pulumi.runtime.exists_resource(None, 'vault:appRole/authBackendRoleSecretId:AuthBackendRoleSecretId', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

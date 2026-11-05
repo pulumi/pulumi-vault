@@ -1338,6 +1338,62 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            bound_issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            default_role: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            jwks_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            jwks_pairs: pulumi.Input[Optional[Sequence[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]]] = None,
+            jwks_url: pulumi.Input[Optional[_builtins.str]] = None,
+            jwt_supported_algs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            jwt_validation_pubkeys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace_in_state: pulumi.Input[Optional[_builtins.bool]] = None,
+            oidc_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            oidc_discovery_ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_discovery_url: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_response_mode: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_response_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["boundIssuer"] = bound_issuer
+        __props__["defaultRole"] = default_role
+        __props__["description"] = description
+        __props__["disableRemount"] = disable_remount
+        __props__["jwksCaPem"] = jwks_ca_pem
+        __props__["jwksPairs"] = jwks_pairs
+        __props__["jwksUrl"] = jwks_url
+        __props__["jwtSupportedAlgs"] = jwt_supported_algs
+        __props__["jwtValidationPubkeys"] = jwt_validation_pubkeys
+        __props__["local"] = local
+        __props__["namespace"] = namespace
+        __props__["namespaceInState"] = namespace_in_state
+        __props__["oidcClientId"] = oidc_client_id
+        __props__["oidcClientSecret"] = oidc_client_secret
+        __props__["oidcClientSecretWo"] = oidc_client_secret_wo
+        __props__["oidcClientSecretWoVersion"] = oidc_client_secret_wo_version
+        __props__["oidcDiscoveryCaPem"] = oidc_discovery_ca_pem
+        __props__["oidcDiscoveryUrl"] = oidc_discovery_url
+        __props__["oidcResponseMode"] = oidc_response_mode
+        __props__["oidcResponseTypes"] = oidc_response_types
+        __props__["path"] = path
+        __props__["providerConfig"] = provider_config
+        __props__["tune"] = tune
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:jwt/authBackend:AuthBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

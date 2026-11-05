@@ -1392,6 +1392,66 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["tune"] = tune
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            client_email: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            custom_endpoint: pulumi.Input[Optional[Union['AuthBackendCustomEndpointArgs', 'AuthBackendCustomEndpointArgsDict', 'outputs.AuthBackendCustomEndpoint']]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            gce_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            gce_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            iam_alias: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_metadatas: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_key: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            local: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+            tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["clientEmail"] = client_email
+        __props__["clientId"] = client_id
+        __props__["credentials"] = credentials
+        __props__["credentialsWo"] = credentials_wo
+        __props__["credentialsWoVersion"] = credentials_wo_version
+        __props__["customEndpoint"] = custom_endpoint
+        __props__["description"] = description
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["disableRemount"] = disable_remount
+        __props__["gceAlias"] = gce_alias
+        __props__["gceMetadatas"] = gce_metadatas
+        __props__["iamAlias"] = iam_alias
+        __props__["iamMetadatas"] = iam_metadatas
+        __props__["identityTokenAudience"] = identity_token_audience
+        __props__["identityTokenKey"] = identity_token_key
+        __props__["identityTokenTtl"] = identity_token_ttl
+        __props__["local"] = local
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["privateKeyId"] = private_key_id
+        __props__["projectId"] = project_id
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["serviceAccountEmail"] = service_account_email
+        __props__["tune"] = tune
+        return pulumi.runtime.exists_resource(None, 'vault:gcp/authBackend:AuthBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

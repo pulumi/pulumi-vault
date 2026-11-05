@@ -396,6 +396,12 @@ func (SecretBackendRootSignIntermediateState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRootSignIntermediateState)(nil)).Elem()
 }
 
+// SecretBackendRootSignIntermediateExists checks whether an existing SecretBackendRootSignIntermediate resource with the given ID exists.
+func SecretBackendRootSignIntermediateExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendRootSignIntermediateState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendRootSignIntermediate:SecretBackendRootSignIntermediate", id, state, "", opts...)
+}
+
 type secretBackendRootSignIntermediateArgs struct {
 	// List of alternative names
 	AltNames []string `pulumi:"altNames"`

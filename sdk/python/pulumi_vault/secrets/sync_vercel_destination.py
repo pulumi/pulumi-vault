@@ -771,6 +771,38 @@ class SyncVercelDestination(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return SyncVercelDestination(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_token: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            deployment_environments: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+            granularity: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessToken"] = access_token
+        __props__["allowedIpv4Addresses"] = allowed_ipv4_addresses
+        __props__["allowedIpv6Addresses"] = allowed_ipv6_addresses
+        __props__["allowedPorts"] = allowed_ports
+        __props__["deploymentEnvironments"] = deployment_environments
+        __props__["disableStrictNetworking"] = disable_strict_networking
+        __props__["granularity"] = granularity
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["projectId"] = project_id
+        __props__["secretNameTemplate"] = secret_name_template
+        __props__["teamId"] = team_id
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:secrets/syncVercelDestination:SyncVercelDestination', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessToken")
     def access_token(self) -> pulumi.Output[_builtins.str]:

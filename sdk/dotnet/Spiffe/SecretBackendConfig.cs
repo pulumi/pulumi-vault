@@ -80,7 +80,7 @@ namespace Pulumi.Vault.Spiffe
         public Output<string> JwtSigningAlgorithm { get; private set; } = null!;
 
         /// <summary>
-        /// How often to generate a new signing key. Uses 
+        /// How often to generate a new signing key. Uses
         /// [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) format strings.
         /// </summary>
         [Output("keyLifetime")]
@@ -183,7 +183,7 @@ namespace Pulumi.Vault.Spiffe
         public Input<string>? JwtSigningAlgorithm { get; set; }
 
         /// <summary>
-        /// How often to generate a new signing key. Uses 
+        /// How often to generate a new signing key. Uses
         /// [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) format strings.
         /// </summary>
         [Input("keyLifetime")]
@@ -248,7 +248,7 @@ namespace Pulumi.Vault.Spiffe
         public Input<string>? JwtSigningAlgorithm { get; set; }
 
         /// <summary>
-        /// How often to generate a new signing key. Uses 
+        /// How often to generate a new signing key. Uses
         /// [duration](https://developer.hashicorp.com/vault/docs/concepts/duration-format) format strings.
         /// </summary>
         [Input("keyLifetime")]

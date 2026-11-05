@@ -185,6 +185,12 @@ func (MfaTotpState) ElementType() reflect.Type {
 	return reflect.TypeOf((*mfaTotpState)(nil)).Elem()
 }
 
+// MfaTotpExists checks whether an existing MfaTotp resource with the given ID exists.
+func MfaTotpExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *MfaTotpState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/mfaTotp:MfaTotp", id, state, "", opts...)
+}
+
 type mfaTotpArgs struct {
 	// `(string)` - Specifies the hashing algorithm used to generate the TOTP code.
 	// Options include `SHA1`, `SHA256` and `SHA512`

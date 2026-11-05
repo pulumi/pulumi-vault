@@ -228,11 +228,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
      * **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
      * Exactly one of `orgName` or `organization` must be specified.
      * 
-     * @deprecated
-     * Use orgName instead
+     * @deprecated Use orgName instead
      * 
      */
-    @Deprecated /* Use orgName instead */
+    @Deprecated
     @Import(name="organization")
     private @Nullable Output<String> organization;
 
@@ -240,11 +239,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
      * @return **Deprecated: Use `orgName` instead.** The Okta organization. This will be the first part of the url `https://XXX.okta.com`.
      * Exactly one of `orgName` or `organization` must be specified.
      * 
-     * @deprecated
-     * Use orgName instead
+     * @deprecated Use orgName instead
      * 
      */
-    @Deprecated /* Use orgName instead */
+    @Deprecated
     public Optional<Output<String>> organization() {
         return Optional.ofNullable(this.organization);
     }
@@ -269,11 +267,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
      * If this is not supplied only locally configured groups will be enabled.
      * Conflicts with `apiToken` and `apiTokenWo`.
      * 
-     * @deprecated
-     * Use apiToken instead
+     * @deprecated Use apiToken instead
      * 
      */
-    @Deprecated /* Use apiToken instead */
+    @Deprecated
     @Import(name="token")
     private @Nullable Output<String> token;
 
@@ -282,11 +279,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
      * If this is not supplied only locally configured groups will be enabled.
      * Conflicts with `apiToken` and `apiTokenWo`.
      * 
-     * @deprecated
-     * Use apiToken instead
+     * @deprecated Use apiToken instead
      * 
      */
-    @Deprecated /* Use apiToken instead */
+    @Deprecated
     public Optional<Output<String>> token() {
         return Optional.ofNullable(this.token);
     }
@@ -790,11 +786,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use orgName instead
+         * @deprecated Use orgName instead
          * 
          */
-        @Deprecated /* Use orgName instead */
+        @Deprecated
         public Builder organization(@Nullable Output<String> organization) {
             $.organization = organization;
             return this;
@@ -806,11 +801,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use orgName instead
+         * @deprecated Use orgName instead
          * 
          */
-        @Deprecated /* Use orgName instead */
+        @Deprecated
         public Builder organization(String organization) {
             return organization(Output.of(organization));
         }
@@ -843,11 +837,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use apiToken instead
+         * @deprecated Use apiToken instead
          * 
          */
-        @Deprecated /* Use apiToken instead */
+        @Deprecated
         public Builder token(@Nullable Output<String> token) {
             $.token = token;
             return this;
@@ -860,11 +853,10 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          * 
          * @return builder
          * 
-         * @deprecated
-         * Use apiToken instead
+         * @deprecated Use apiToken instead
          * 
          */
-        @Deprecated /* Use apiToken instead */
+        @Deprecated
         public Builder token(String token) {
             return token(Output.of(token));
         }

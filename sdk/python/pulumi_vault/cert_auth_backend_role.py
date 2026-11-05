@@ -1553,6 +1553,74 @@ class CertAuthBackendRole(pulumi.CustomResource):
         __props__.__dict__["token_type"] = token_type
         return CertAuthBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            alias_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            allowed_common_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_dns_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_email_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_organizational_units: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            certificate_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            display_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_ca_certificates: pulumi.Input[Optional[_builtins.str]] = None,
+            ocsp_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_fail_open: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            ocsp_query_all_servers: pulumi.Input[Optional[_builtins.bool]] = None,
+            ocsp_servers_overrides: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ocsp_this_update_max_age: pulumi.Input[Optional[_builtins.int]] = None,
+            required_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_bound_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_explicit_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_no_default_policy: pulumi.Input[Optional[_builtins.bool]] = None,
+            token_num_uses: pulumi.Input[Optional[_builtins.int]] = None,
+            token_period: pulumi.Input[Optional[_builtins.int]] = None,
+            token_policies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            token_type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["aliasMetadata"] = alias_metadata
+        __props__["allowedCommonNames"] = allowed_common_names
+        __props__["allowedDnsSans"] = allowed_dns_sans
+        __props__["allowedEmailSans"] = allowed_email_sans
+        __props__["allowedNames"] = allowed_names
+        __props__["allowedOrganizationalUnits"] = allowed_organizational_units
+        __props__["allowedUriSans"] = allowed_uri_sans
+        __props__["backend"] = backend
+        __props__["certificate"] = certificate
+        __props__["certificateWo"] = certificate_wo
+        __props__["certificateWoVersion"] = certificate_wo_version
+        __props__["displayName"] = display_name
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["ocspCaCertificates"] = ocsp_ca_certificates
+        __props__["ocspEnabled"] = ocsp_enabled
+        __props__["ocspFailOpen"] = ocsp_fail_open
+        __props__["ocspMaxRetries"] = ocsp_max_retries
+        __props__["ocspQueryAllServers"] = ocsp_query_all_servers
+        __props__["ocspServersOverrides"] = ocsp_servers_overrides
+        __props__["ocspThisUpdateMaxAge"] = ocsp_this_update_max_age
+        __props__["requiredExtensions"] = required_extensions
+        __props__["tokenBoundCidrs"] = token_bound_cidrs
+        __props__["tokenExplicitMaxTtl"] = token_explicit_max_ttl
+        __props__["tokenMaxTtl"] = token_max_ttl
+        __props__["tokenNoDefaultPolicy"] = token_no_default_policy
+        __props__["tokenNumUses"] = token_num_uses
+        __props__["tokenPeriod"] = token_period
+        __props__["tokenPolicies"] = token_policies
+        __props__["tokenTtl"] = token_ttl
+        __props__["tokenType"] = token_type
+        return pulumi.runtime.exists_resource(None, 'vault:index/certAuthBackendRole:CertAuthBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="aliasMetadata")
     def alias_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

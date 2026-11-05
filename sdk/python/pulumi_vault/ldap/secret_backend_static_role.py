@@ -1009,6 +1009,46 @@ class SecretBackendStaticRole(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         return SecretBackendStaticRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auto_unlock: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            dn: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None,
+            rotate_on_read: pulumi.Input[Optional[_builtins.bool]] = None,
+            rotate_on_read_cooldown: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            skip_import_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["autoUnlock"] = auto_unlock
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["dn"] = dn
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["passwordPolicy"] = password_policy
+        __props__["passwordWo"] = password_wo
+        __props__["passwordWoVersion"] = password_wo_version
+        __props__["roleName"] = role_name
+        __props__["rotateOnRead"] = rotate_on_read
+        __props__["rotateOnReadCooldown"] = rotate_on_read_cooldown
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationPolicy"] = rotation_policy
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["skipImportRotation"] = skip_import_rotation
+        __props__["username"] = username
+        return pulumi.runtime.exists_resource(None, 'vault:ldap/secretBackendStaticRole:SecretBackendStaticRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="autoUnlock")
     def auto_unlock(self) -> pulumi.Output[_builtins.bool]:

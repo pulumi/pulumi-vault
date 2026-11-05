@@ -243,6 +243,12 @@ func (SecretBackendAcmeAccountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendAcmeAccountState)(nil)).Elem()
 }
 
+// SecretBackendAcmeAccountExists checks whether an existing SecretBackendAcmeAccount resource with the given ID exists.
+func SecretBackendAcmeAccountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendAcmeAccountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendAcmeAccount:SecretBackendAcmeAccount", id, state, "", opts...)
+}
+
 type secretBackendAcmeAccountArgs struct {
 	// Address of a DNS nameserver (`host` or `host:port`) to use when verifying DNS-01 challenge propagation for DNS providers that do not specify their own nameserver. Requires Vault 2.1.0 or later.
 	DefaultNameserver *string `pulumi:"defaultNameserver"`

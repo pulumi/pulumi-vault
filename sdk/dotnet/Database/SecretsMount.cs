@@ -159,14 +159,14 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableArray<string>> AuditNonHmacResponseKeys { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Cassandra connections.  
+        /// A nested block containing configuration options for Cassandra connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("cassandras")]
         public Output<ImmutableArray<Outputs.SecretsMountCassandra>> Cassandras { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Couchbase connections.  
+        /// A nested block containing configuration options for Couchbase connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("couchbases")]
@@ -191,7 +191,7 @@ namespace Pulumi.Vault.Database
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Elasticsearch connections.  
+        /// A nested block containing configuration options for Elasticsearch connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("elasticsearches")]
@@ -216,7 +216,7 @@ namespace Pulumi.Vault.Database
         public Output<bool> ForceNoCache { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for SAP HanaDB connections.  
+        /// A nested block containing configuration options for SAP HanaDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("hanas")]
@@ -229,7 +229,7 @@ namespace Pulumi.Vault.Database
         public Output<string?> IdentityTokenKey { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for InfluxDB connections.  
+        /// A nested block containing configuration options for InfluxDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("influxdbs")]
@@ -254,49 +254,49 @@ namespace Pulumi.Vault.Database
         public Output<int> MaxLeaseTtlSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for MongoDB Atlas connections.  
+        /// A nested block containing configuration options for MongoDB Atlas connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("mongodbatlas")]
         public Output<ImmutableArray<Outputs.SecretsMountMongodbatla>> Mongodbatlas { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for MongoDB connections.  
+        /// A nested block containing configuration options for MongoDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("mongodbs")]
         public Output<ImmutableArray<Outputs.SecretsMountMongodb>> Mongodbs { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for MSSQL connections.  
+        /// A nested block containing configuration options for MSSQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("mssqls")]
         public Output<ImmutableArray<Outputs.SecretsMountMssql>> Mssqls { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Aurora MySQL connections.  
+        /// A nested block containing configuration options for Aurora MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("mysqlAuroras")]
         public Output<ImmutableArray<Outputs.SecretsMountMysqlAurora>> MysqlAuroras { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for legacy MySQL connections.  
+        /// A nested block containing configuration options for legacy MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("mysqlLegacies")]
         public Output<ImmutableArray<Outputs.SecretsMountMysqlLegacy>> MysqlLegacies { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for RDS MySQL connections.  
+        /// A nested block containing configuration options for RDS MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("mysqlRds")]
         public Output<ImmutableArray<Outputs.SecretsMountMysqlRd>> MysqlRds { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for MySQL connections.  
+        /// A nested block containing configuration options for MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("mysqls")]
@@ -315,7 +315,7 @@ namespace Pulumi.Vault.Database
         public Output<ImmutableDictionary<string, string>?> Options { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Oracle connections.  
+        /// A nested block containing configuration options for Oracle connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("oracles")]
@@ -340,28 +340,28 @@ namespace Pulumi.Vault.Database
         public Output<string?> PluginVersion { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for PostgreSQL connections.  
+        /// A nested block containing configuration options for PostgreSQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("postgresqls")]
         public Output<ImmutableArray<Outputs.SecretsMountPostgresql>> Postgresqls { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Redis connections.  
+        /// A nested block containing configuration options for Redis connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("redis")]
         public Output<ImmutableArray<Outputs.SecretsMountRedi>> Redis { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Redis ElastiCache connections.  
+        /// A nested block containing configuration options for Redis ElastiCache connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("redisElasticaches")]
         public Output<ImmutableArray<Outputs.SecretsMountRedisElasticache>> RedisElasticaches { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for AWS Redshift connections.  
+        /// A nested block containing configuration options for AWS Redshift connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("redshifts")]
@@ -374,7 +374,7 @@ namespace Pulumi.Vault.Database
         public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
-        /// A nested block containing configuration options for Snowflake connections.  
+        /// A nested block containing configuration options for Snowflake connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         [Output("snowflakes")]
@@ -480,7 +480,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountCassandraArgs>? _cassandras;
 
         /// <summary>
-        /// A nested block containing configuration options for Cassandra connections.  
+        /// A nested block containing configuration options for Cassandra connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountCassandraArgs> Cassandras
@@ -493,7 +493,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountCouchbaseArgs>? _couchbases;
 
         /// <summary>
-        /// A nested block containing configuration options for Couchbase connections.  
+        /// A nested block containing configuration options for Couchbase connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountCouchbaseArgs> Couchbases
@@ -530,7 +530,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountElasticsearchArgs>? _elasticsearches;
 
         /// <summary>
-        /// A nested block containing configuration options for Elasticsearch connections.  
+        /// A nested block containing configuration options for Elasticsearch connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountElasticsearchArgs> Elasticsearches
@@ -555,7 +555,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountHanaArgs>? _hanas;
 
         /// <summary>
-        /// A nested block containing configuration options for SAP HanaDB connections.  
+        /// A nested block containing configuration options for SAP HanaDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountHanaArgs> Hanas
@@ -574,7 +574,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountInfluxdbArgs>? _influxdbs;
 
         /// <summary>
-        /// A nested block containing configuration options for InfluxDB connections.  
+        /// A nested block containing configuration options for InfluxDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountInfluxdbArgs> Influxdbs
@@ -605,7 +605,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMongodbatlaArgs>? _mongodbatlas;
 
         /// <summary>
-        /// A nested block containing configuration options for MongoDB Atlas connections.  
+        /// A nested block containing configuration options for MongoDB Atlas connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMongodbatlaArgs> Mongodbatlas
@@ -618,7 +618,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMongodbArgs>? _mongodbs;
 
         /// <summary>
-        /// A nested block containing configuration options for MongoDB connections.  
+        /// A nested block containing configuration options for MongoDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMongodbArgs> Mongodbs
@@ -631,7 +631,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMssqlArgs>? _mssqls;
 
         /// <summary>
-        /// A nested block containing configuration options for MSSQL connections.  
+        /// A nested block containing configuration options for MSSQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMssqlArgs> Mssqls
@@ -644,7 +644,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlAuroraArgs>? _mysqlAuroras;
 
         /// <summary>
-        /// A nested block containing configuration options for Aurora MySQL connections.  
+        /// A nested block containing configuration options for Aurora MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlAuroraArgs> MysqlAuroras
@@ -657,7 +657,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlLegacyArgs>? _mysqlLegacies;
 
         /// <summary>
-        /// A nested block containing configuration options for legacy MySQL connections.  
+        /// A nested block containing configuration options for legacy MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlLegacyArgs> MysqlLegacies
@@ -670,7 +670,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlRdArgs>? _mysqlRds;
 
         /// <summary>
-        /// A nested block containing configuration options for RDS MySQL connections.  
+        /// A nested block containing configuration options for RDS MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlRdArgs> MysqlRds
@@ -683,7 +683,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlArgs>? _mysqls;
 
         /// <summary>
-        /// A nested block containing configuration options for MySQL connections.  
+        /// A nested block containing configuration options for MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlArgs> Mysqls
@@ -714,7 +714,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountOracleArgs>? _oracles;
 
         /// <summary>
-        /// A nested block containing configuration options for Oracle connections.  
+        /// A nested block containing configuration options for Oracle connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountOracleArgs> Oracles
@@ -751,7 +751,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountPostgresqlArgs>? _postgresqls;
 
         /// <summary>
-        /// A nested block containing configuration options for PostgreSQL connections.  
+        /// A nested block containing configuration options for PostgreSQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountPostgresqlArgs> Postgresqls
@@ -764,7 +764,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountRediArgs>? _redis;
 
         /// <summary>
-        /// A nested block containing configuration options for Redis connections.  
+        /// A nested block containing configuration options for Redis connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRediArgs> Redis
@@ -777,7 +777,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountRedisElasticacheArgs>? _redisElasticaches;
 
         /// <summary>
-        /// A nested block containing configuration options for Redis ElastiCache connections.  
+        /// A nested block containing configuration options for Redis ElastiCache connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRedisElasticacheArgs> RedisElasticaches
@@ -790,7 +790,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountRedshiftArgs>? _redshifts;
 
         /// <summary>
-        /// A nested block containing configuration options for AWS Redshift connections.  
+        /// A nested block containing configuration options for AWS Redshift connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRedshiftArgs> Redshifts
@@ -809,7 +809,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountSnowflakeArgs>? _snowflakes;
 
         /// <summary>
-        /// A nested block containing configuration options for Snowflake connections.  
+        /// A nested block containing configuration options for Snowflake connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountSnowflakeArgs> Snowflakes
@@ -886,7 +886,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountCassandraGetArgs>? _cassandras;
 
         /// <summary>
-        /// A nested block containing configuration options for Cassandra connections.  
+        /// A nested block containing configuration options for Cassandra connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountCassandraGetArgs> Cassandras
@@ -899,7 +899,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountCouchbaseGetArgs>? _couchbases;
 
         /// <summary>
-        /// A nested block containing configuration options for Couchbase connections.  
+        /// A nested block containing configuration options for Couchbase connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountCouchbaseGetArgs> Couchbases
@@ -936,7 +936,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountElasticsearchGetArgs>? _elasticsearches;
 
         /// <summary>
-        /// A nested block containing configuration options for Elasticsearch connections.  
+        /// A nested block containing configuration options for Elasticsearch connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountElasticsearchGetArgs> Elasticsearches
@@ -967,7 +967,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountHanaGetArgs>? _hanas;
 
         /// <summary>
-        /// A nested block containing configuration options for SAP HanaDB connections.  
+        /// A nested block containing configuration options for SAP HanaDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountHanaGetArgs> Hanas
@@ -986,7 +986,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountInfluxdbGetArgs>? _influxdbs;
 
         /// <summary>
-        /// A nested block containing configuration options for InfluxDB connections.  
+        /// A nested block containing configuration options for InfluxDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountInfluxdbGetArgs> Influxdbs
@@ -1017,7 +1017,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMongodbatlaGetArgs>? _mongodbatlas;
 
         /// <summary>
-        /// A nested block containing configuration options for MongoDB Atlas connections.  
+        /// A nested block containing configuration options for MongoDB Atlas connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMongodbatlaGetArgs> Mongodbatlas
@@ -1030,7 +1030,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMongodbGetArgs>? _mongodbs;
 
         /// <summary>
-        /// A nested block containing configuration options for MongoDB connections.  
+        /// A nested block containing configuration options for MongoDB connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMongodbGetArgs> Mongodbs
@@ -1043,7 +1043,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMssqlGetArgs>? _mssqls;
 
         /// <summary>
-        /// A nested block containing configuration options for MSSQL connections.  
+        /// A nested block containing configuration options for MSSQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMssqlGetArgs> Mssqls
@@ -1056,7 +1056,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlAuroraGetArgs>? _mysqlAuroras;
 
         /// <summary>
-        /// A nested block containing configuration options for Aurora MySQL connections.  
+        /// A nested block containing configuration options for Aurora MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlAuroraGetArgs> MysqlAuroras
@@ -1069,7 +1069,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlLegacyGetArgs>? _mysqlLegacies;
 
         /// <summary>
-        /// A nested block containing configuration options for legacy MySQL connections.  
+        /// A nested block containing configuration options for legacy MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlLegacyGetArgs> MysqlLegacies
@@ -1082,7 +1082,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlRdGetArgs>? _mysqlRds;
 
         /// <summary>
-        /// A nested block containing configuration options for RDS MySQL connections.  
+        /// A nested block containing configuration options for RDS MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlRdGetArgs> MysqlRds
@@ -1095,7 +1095,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountMysqlGetArgs>? _mysqls;
 
         /// <summary>
-        /// A nested block containing configuration options for MySQL connections.  
+        /// A nested block containing configuration options for MySQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountMysqlGetArgs> Mysqls
@@ -1126,7 +1126,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountOracleGetArgs>? _oracles;
 
         /// <summary>
-        /// A nested block containing configuration options for Oracle connections.  
+        /// A nested block containing configuration options for Oracle connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountOracleGetArgs> Oracles
@@ -1163,7 +1163,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountPostgresqlGetArgs>? _postgresqls;
 
         /// <summary>
-        /// A nested block containing configuration options for PostgreSQL connections.  
+        /// A nested block containing configuration options for PostgreSQL connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountPostgresqlGetArgs> Postgresqls
@@ -1176,7 +1176,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountRediGetArgs>? _redis;
 
         /// <summary>
-        /// A nested block containing configuration options for Redis connections.  
+        /// A nested block containing configuration options for Redis connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRediGetArgs> Redis
@@ -1189,7 +1189,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountRedisElasticacheGetArgs>? _redisElasticaches;
 
         /// <summary>
-        /// A nested block containing configuration options for Redis ElastiCache connections.  
+        /// A nested block containing configuration options for Redis ElastiCache connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRedisElasticacheGetArgs> RedisElasticaches
@@ -1202,7 +1202,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountRedshiftGetArgs>? _redshifts;
 
         /// <summary>
-        /// A nested block containing configuration options for AWS Redshift connections.  
+        /// A nested block containing configuration options for AWS Redshift connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountRedshiftGetArgs> Redshifts
@@ -1221,7 +1221,7 @@ namespace Pulumi.Vault.Database
         private InputList<Inputs.SecretsMountSnowflakeGetArgs>? _snowflakes;
 
         /// <summary>
-        /// A nested block containing configuration options for Snowflake connections.  
+        /// A nested block containing configuration options for Snowflake connections.\
         /// *See Configuration Options for more info*
         /// </summary>
         public InputList<Inputs.SecretsMountSnowflakeGetArgs> Snowflakes

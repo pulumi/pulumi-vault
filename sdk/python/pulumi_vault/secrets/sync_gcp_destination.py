@@ -1372,6 +1372,58 @@ class SyncGcpDestination(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return SyncGcpDestination(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            allowed_ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            allowed_ports: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.int]]]] = None,
+            credentials: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            disable_strict_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+            global_kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+            granularity: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_audience_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_audience_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            identity_token_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            locational_kms_keys: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_regions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            replication_locations: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            secret_name_template: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_email: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["allowedIpv4Addresses"] = allowed_ipv4_addresses
+        __props__["allowedIpv6Addresses"] = allowed_ipv6_addresses
+        __props__["allowedPorts"] = allowed_ports
+        __props__["credentials"] = credentials
+        __props__["customTags"] = custom_tags
+        __props__["disableStrictNetworking"] = disable_strict_networking
+        __props__["globalKmsKey"] = global_kms_key
+        __props__["granularity"] = granularity
+        __props__["identityTokenAudienceWo"] = identity_token_audience_wo
+        __props__["identityTokenAudienceWoVersion"] = identity_token_audience_wo_version
+        __props__["identityTokenKeyWo"] = identity_token_key_wo
+        __props__["identityTokenKeyWoVersion"] = identity_token_key_wo_version
+        __props__["identityTokenTtl"] = identity_token_ttl
+        __props__["kmsKeyId"] = kms_key_id
+        __props__["locationalKmsKeys"] = locational_kms_keys
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["projectId"] = project_id
+        __props__["replicaRegions"] = replica_regions
+        __props__["replicationLocations"] = replication_locations
+        __props__["secretNameTemplate"] = secret_name_template
+        __props__["serviceAccountEmail"] = service_account_email
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:secrets/syncGcpDestination:SyncGcpDestination', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="allowedIpv4Addresses")
     def allowed_ipv4_addresses(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

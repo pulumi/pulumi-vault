@@ -128,7 +128,6 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The level of logging verbosity, affects only SCEP logs on this mount.
         /// 
-        /// 
         /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         [Output("logLevel")]
@@ -259,7 +258,6 @@ namespace Pulumi.Vault.PkiSecret
         /// <summary>
         /// The level of logging verbosity, affects only SCEP logs on this mount.
         /// 
-        /// 
         /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>
         [Input("logLevel")]
@@ -357,7 +355,6 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// The level of logging verbosity, affects only SCEP logs on this mount.
-        /// 
         /// 
         /// &lt;a id="nestedatt--authenticators"&gt;&lt;/a&gt;
         /// </summary>

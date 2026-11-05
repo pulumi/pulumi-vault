@@ -248,6 +248,16 @@ class Oidc(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return Oidc(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["issuer"] = issuer
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:identity/oidc:Oidc', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def issuer(self) -> pulumi.Output[_builtins.str]:

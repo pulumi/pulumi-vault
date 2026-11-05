@@ -101,7 +101,6 @@ namespace Pulumi.Vault.PkiExternalCa
         /// });
         /// ```
         /// 
-        /// 
         /// ### With DNS-01 Challenge
         /// 
         /// ```csharp
@@ -143,7 +142,6 @@ namespace Pulumi.Vault.PkiExternalCa
         ///     };
         /// });
         /// ```
-        /// 
         /// 
         /// ### With TLS-ALPN-01 Challenge
         /// 
@@ -299,7 +297,6 @@ namespace Pulumi.Vault.PkiExternalCa
         /// });
         /// ```
         /// 
-        /// 
         /// ### With DNS-01 Challenge
         /// 
         /// ```csharp
@@ -341,7 +338,6 @@ namespace Pulumi.Vault.PkiExternalCa
         ///     };
         /// });
         /// ```
-        /// 
         /// 
         /// ### With TLS-ALPN-01 Challenge
         /// 
@@ -497,7 +493,6 @@ namespace Pulumi.Vault.PkiExternalCa
         /// });
         /// ```
         /// 
-        /// 
         /// ### With DNS-01 Challenge
         /// 
         /// ```csharp
@@ -539,7 +534,6 @@ namespace Pulumi.Vault.PkiExternalCa
         ///     };
         /// });
         /// ```
-        /// 
         /// 
         /// ### With TLS-ALPN-01 Challenge
         /// 

@@ -437,11 +437,10 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
     /**
      * Global KMS key for encryption.
      * 
-     * @deprecated
-     * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
+    @Deprecated
     @Export(name="globalKmsKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> globalKmsKey;
 
@@ -559,11 +558,10 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
     /**
      * Locational KMS keys for encryption.
      * 
-     * @deprecated
-     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+    @Deprecated
     @Export(name="locationalKmsKeys", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> locationalKmsKeys;
 
@@ -643,11 +641,10 @@ public class SyncGcpDestination extends com.pulumi.resources.CustomResource {
     /**
      * Replication locations for secrets.
      * 
-     * @deprecated
-     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+    @Deprecated
     @Export(name="replicationLocations", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> replicationLocations;
 

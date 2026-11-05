@@ -253,6 +253,12 @@ func (SecretBackendStaticRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendStaticRoleState)(nil)).Elem()
 }
 
+// SecretBackendStaticRoleExists checks whether an existing SecretBackendStaticRole resource with the given ID exists.
+func SecretBackendStaticRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendStaticRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:azure/secretBackendStaticRole:SecretBackendStaticRole", id, state, "", opts...)
+}
+
 type secretBackendStaticRoleArgs struct {
 	// The Azure AD Application Object ID associated with the existing application whose
 	// credentials Vault will manage.

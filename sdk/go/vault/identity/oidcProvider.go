@@ -216,6 +216,12 @@ func (OidcProviderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcProviderState)(nil)).Elem()
 }
 
+// OidcProviderExists checks whether an existing OidcProvider resource with the given ID exists.
+func OidcProviderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcProviderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidcProvider:OidcProvider", id, state, "", opts...)
+}
+
 type oidcProviderArgs struct {
 	// The client IDs that are permitted to use the provider.
 	// If empty, no clients are allowed. If `*`, all clients are allowed.

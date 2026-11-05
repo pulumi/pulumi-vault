@@ -464,6 +464,26 @@ class SecretRole(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            last_vault_rotation: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            password_last_set: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["lastVaultRotation"] = last_vault_rotation
+        __props__["namespace"] = namespace
+        __props__["passwordLastSet"] = password_last_set
+        __props__["role"] = role
+        __props__["serviceAccountName"] = service_account_name
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:ad/secretRole:SecretRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

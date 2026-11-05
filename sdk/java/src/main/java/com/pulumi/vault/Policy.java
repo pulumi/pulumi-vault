@@ -34,24 +34,24 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var example = new Policy("example", PolicyArgs.builder()
  *             .name("dev-team")
  *             .allowOverwrite(false)
  *             .policy("""
- * path \"secret/my_app\" {
- *   capabilities = [\"update\"]
- * }
+ * path }&#92;{@code "secret/my_app}&#92;{@code " }{{@code
+ *   capabilities = [}&#92;{@code "update}&#92;{@code "]
+ * }}{@code
  *             """)
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * 
@@ -77,11 +77,10 @@ public class Policy extends com.pulumi.resources.CustomResource {
     /**
      * Allow overwriting policies with the same name. Defaults to `true`. This will be removed in the next major release and the default behavior will be not overwrite policies.
      * 
-     * @deprecated
-     * Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
+     * @deprecated Deprecated. Overwriting pre-existing policies will soon be removed. Use &#39;terraform import&#39; to manage existing policies.
      * 
      */
-    @Deprecated /* Deprecated. Overwriting pre-existing policies will soon be removed. Use 'terraform import' to manage existing policies. */
+    @Deprecated
     @Export(name="allowOverwrite", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> allowOverwrite;
 

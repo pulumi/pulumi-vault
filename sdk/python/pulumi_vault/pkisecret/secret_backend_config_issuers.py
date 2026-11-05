@@ -375,6 +375,20 @@ class SecretBackendConfigIssuers(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return SecretBackendConfigIssuers(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            default: pulumi.Input[Optional[_builtins.str]] = None,
+            default_follows_latest_issuer: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["default"] = default
+        __props__["defaultFollowsLatestIssuer"] = default_follows_latest_issuer
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/secretBackendConfigIssuers:SecretBackendConfigIssuers', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[_builtins.str]:

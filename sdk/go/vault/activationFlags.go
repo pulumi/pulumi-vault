@@ -119,6 +119,12 @@ func (ActivationFlagsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*activationFlagsState)(nil)).Elem()
 }
 
+// ActivationFlagsExists checks whether an existing ActivationFlags resource with the given ID exists.
+func ActivationFlagsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ActivationFlagsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/activationFlags:ActivationFlags", id, state, "", opts...)
+}
+
 type activationFlagsArgs struct {
 	// Exact activation flag key to activate.
 	// The value must match a feature name returned by `GET /sys/activation-flags`.

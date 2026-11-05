@@ -338,6 +338,20 @@ class SecretScope(pulumi.CustomResource):
         __props__.__dict__["scope"] = scope
         return SecretScope(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            force: pulumi.Input[Optional[_builtins.bool]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            scope: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["force"] = force
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["scope"] = scope
+        return pulumi.runtime.exists_resource(None, 'vault:kmip/secretScope:SecretScope', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def force(self) -> pulumi.Output[Optional[_builtins.bool]]:

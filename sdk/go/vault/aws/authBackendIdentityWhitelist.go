@@ -143,6 +143,12 @@ func (AuthBackendIdentityWhitelistState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendIdentityWhitelistState)(nil)).Elem()
 }
 
+// AuthBackendIdentityWhitelistExists checks whether an existing AuthBackendIdentityWhitelist resource with the given ID exists.
+func AuthBackendIdentityWhitelistExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendIdentityWhitelistState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendIdentityWhitelist:AuthBackendIdentityWhitelist", id, state, "", opts...)
+}
+
 type authBackendIdentityWhitelistArgs struct {
 	// The path of the AWS backend being configured.
 	Backend *string `pulumi:"backend"`

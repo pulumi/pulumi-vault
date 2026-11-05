@@ -166,6 +166,12 @@ func (SecretBackendV2State) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendV2State)(nil)).Elem()
 }
 
+// SecretBackendV2Exists checks whether an existing SecretBackendV2 resource with the given ID exists.
+func SecretBackendV2Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendV2State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kv/secretBackendV2:SecretBackendV2", id, state, "", opts...)
+}
+
 type secretBackendV2Args struct {
 	// If true, all keys will require the cas
 	// parameter to be set on all write requests.

@@ -292,6 +292,12 @@ func (UiDefaultAuthState) ElementType() reflect.Type {
 	return reflect.TypeOf((*uiDefaultAuthState)(nil)).Elem()
 }
 
+// UiDefaultAuthExists checks whether an existing UiDefaultAuth resource with the given ID exists.
+func UiDefaultAuthExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UiDefaultAuthState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:config/uiDefaultAuth:UiDefaultAuth", id, state, "", opts...)
+}
+
 type uiDefaultAuthArgs struct {
 	// List of backup authentication methods displayed in the "Sign in with other methods" tab in the Vault UI. Each value must be a valid authentication type from the same list as `defaultAuthType`. The order of methods is preserved as specified.
 	BackupAuthTypes []string `pulumi:"backupAuthTypes"`

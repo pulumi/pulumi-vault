@@ -274,6 +274,12 @@ func (SecretCaImportedState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretCaImportedState)(nil)).Elem()
 }
 
+// SecretCaImportedExists checks whether an existing SecretCaImported resource with the given ID exists.
+func SecretCaImportedExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretCaImportedState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:kmip/secretCaImported:SecretCaImported", id, state, "", opts...)
+}
+
 type secretCaImportedArgs struct {
 	// CA certificate in PEM format.
 	CaPem string `pulumi:"caPem"`

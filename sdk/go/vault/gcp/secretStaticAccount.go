@@ -195,6 +195,12 @@ func (SecretStaticAccountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretStaticAccountState)(nil)).Elem()
 }
 
+// SecretStaticAccountExists checks whether an existing SecretStaticAccount resource with the given ID exists.
+func SecretStaticAccountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretStaticAccountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:gcp/secretStaticAccount:SecretStaticAccount", id, state, "", opts...)
+}
+
 type secretStaticAccountArgs struct {
 	// Path where the GCP Secrets Engine is mounted
 	Backend string `pulumi:"backend"`

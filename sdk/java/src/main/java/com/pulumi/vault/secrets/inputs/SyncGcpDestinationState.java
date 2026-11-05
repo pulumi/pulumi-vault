@@ -116,22 +116,20 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
     /**
      * Global KMS key for encryption.
      * 
-     * @deprecated
-     * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
+    @Deprecated
     @Import(name="globalKmsKey")
     private @Nullable Output<String> globalKmsKey;
 
     /**
      * @return Global KMS key for encryption.
      * 
-     * @deprecated
-     * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
+    @Deprecated
     public Optional<Output<String>> globalKmsKey() {
         return Optional.ofNullable(this.globalKmsKey);
     }
@@ -250,22 +248,20 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
     /**
      * Locational KMS keys for encryption.
      * 
-     * @deprecated
-     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+    @Deprecated
     @Import(name="locationalKmsKeys")
     private @Nullable Output<Map<String,String>> locationalKmsKeys;
 
     /**
      * @return Locational KMS keys for encryption.
      * 
-     * @deprecated
-     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+    @Deprecated
     public Optional<Output<Map<String,String>>> locationalKmsKeys() {
         return Optional.ofNullable(this.locationalKmsKeys);
     }
@@ -343,22 +339,20 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
     /**
      * Replication locations for secrets.
      * 
-     * @deprecated
-     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+    @Deprecated
     @Import(name="replicationLocations")
     private @Nullable Output<List<String>> replicationLocations;
 
     /**
      * @return Replication locations for secrets.
      * 
-     * @deprecated
-     * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+     * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
      * 
      */
-    @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+    @Deprecated
     public Optional<Output<List<String>>> replicationLocations() {
         return Optional.ofNullable(this.replicationLocations);
     }
@@ -621,11 +615,10 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+         * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
          * 
          */
-        @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
+        @Deprecated
         public Builder globalKmsKey(@Nullable Output<String> globalKmsKey) {
             $.globalKmsKey = globalKmsKey;
             return this;
@@ -636,11 +629,10 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
+         * @deprecated Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+.
          * 
          */
-        @Deprecated /* Deprecated in favor of kmsKeyId for Vault Enterprise 2.2.0+. */
+        @Deprecated
         public Builder globalKmsKey(String globalKmsKey) {
             return globalKmsKey(Output.of(globalKmsKey));
         }
@@ -803,11 +795,10 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
          * 
          */
-        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+        @Deprecated
         public Builder locationalKmsKeys(@Nullable Output<Map<String,String>> locationalKmsKeys) {
             $.locationalKmsKeys = locationalKmsKeys;
             return this;
@@ -818,11 +809,10 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
          * 
          */
-        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+        @Deprecated
         public Builder locationalKmsKeys(Map<String,String> locationalKmsKeys) {
             return locationalKmsKeys(Output.of(locationalKmsKeys));
         }
@@ -926,11 +916,10 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
          * 
          */
-        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+        @Deprecated
         public Builder replicationLocations(@Nullable Output<List<String>> replicationLocations) {
             $.replicationLocations = replicationLocations;
             return this;
@@ -941,11 +930,10 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
          * 
          */
-        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+        @Deprecated
         public Builder replicationLocations(List<String> replicationLocations) {
             return replicationLocations(Output.of(replicationLocations));
         }
@@ -955,11 +943,10 @@ public final class SyncGcpDestinationState extends com.pulumi.resources.Resource
          * 
          * @return builder
          * 
-         * @deprecated
-         * Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
+         * @deprecated Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+.
          * 
          */
-        @Deprecated /* Deprecated in favor of replicaRegions for Vault Enterprise 2.2.0+. */
+        @Deprecated
         public Builder replicationLocations(String... replicationLocations) {
             return replicationLocations(List.of(replicationLocations));
         }

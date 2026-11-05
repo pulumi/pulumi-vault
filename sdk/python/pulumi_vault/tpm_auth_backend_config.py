@@ -374,6 +374,22 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return TpmAuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ca_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
+            ca_soft_expiry: pulumi.Input[Optional[_builtins.int]] = None,
+            default_cert_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["caLifetime"] = ca_lifetime
+        __props__["caSoftExpiry"] = ca_soft_expiry
+        __props__["defaultCertTtl"] = default_cert_ttl
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="caLifetime")
     def ca_lifetime(self) -> pulumi.Output[_builtins.int]:

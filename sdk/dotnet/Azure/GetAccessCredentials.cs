@@ -25,17 +25,17 @@ namespace Pulumi.Vault.Azure
         /// ## Description
         /// 
         /// The Azure Active Directory data source exists to easily pull short-lived
-        /// credentials from Vault for use in Terraform. By default, it returns a 
-        /// dynamically generated `ClientId` and `ClientSecret` without testing 
+        /// credentials from Vault for use in Terraform. By default, it returns a
+        /// dynamically generated `ClientId` and `ClientSecret` without testing
         /// whether they've fully propagated for use in Azure Active Directory. However,
-        /// by activating `ValidateCreds`, credentials will be tested before being 
+        /// by activating `ValidateCreds`, credentials will be tested before being
         /// returned. This will, however, increase the time it takes for the credentials
         /// to be returned, blocking Terraform's execution until they are ready.
         /// 
-        /// If `ValidateCreds` is used, by default, credentials will be validated by 
-        /// making a test call to Azure every 1 seconds. When we have received 8 
-        /// successes in a row, the credentials will be returned. We have seen propagation 
-        /// times take up to 15 minutes, so the maximum length of time for the check defaults 
+        /// If `ValidateCreds` is used, by default, credentials will be validated by
+        /// making a test call to Azure every 1 seconds. When we have received 8
+        /// successes in a row, the credentials will be returned. We have seen propagation
+        /// times take up to 15 minutes, so the maximum length of time for the check defaults
         /// to 20 minutes. However, propagation times will vary widely based on each company's Azure
         /// usage, so all these settings are configurable.
         /// 
@@ -66,7 +66,7 @@ namespace Pulumi.Vault.Azure
         /// ## Caveats
         /// 
         /// The `ValidateCreds` option requires read-access to the `Backend` config endpoint.
-        /// If the effective Vault role does not have the required permissions then valid values 
+        /// If the effective Vault role does not have the required permissions then valid values
         /// are required to be set for: `SubscriptionId`, `TenantId`, `Environment`.
         /// </summary>
         public static Task<GetAccessCredentialsResult> InvokeAsync(GetAccessCredentialsArgs args, InvokeOptions? options = null)
@@ -86,17 +86,17 @@ namespace Pulumi.Vault.Azure
         /// ## Description
         /// 
         /// The Azure Active Directory data source exists to easily pull short-lived
-        /// credentials from Vault for use in Terraform. By default, it returns a 
-        /// dynamically generated `ClientId` and `ClientSecret` without testing 
+        /// credentials from Vault for use in Terraform. By default, it returns a
+        /// dynamically generated `ClientId` and `ClientSecret` without testing
         /// whether they've fully propagated for use in Azure Active Directory. However,
-        /// by activating `ValidateCreds`, credentials will be tested before being 
+        /// by activating `ValidateCreds`, credentials will be tested before being
         /// returned. This will, however, increase the time it takes for the credentials
         /// to be returned, blocking Terraform's execution until they are ready.
         /// 
-        /// If `ValidateCreds` is used, by default, credentials will be validated by 
-        /// making a test call to Azure every 1 seconds. When we have received 8 
-        /// successes in a row, the credentials will be returned. We have seen propagation 
-        /// times take up to 15 minutes, so the maximum length of time for the check defaults 
+        /// If `ValidateCreds` is used, by default, credentials will be validated by
+        /// making a test call to Azure every 1 seconds. When we have received 8
+        /// successes in a row, the credentials will be returned. We have seen propagation
+        /// times take up to 15 minutes, so the maximum length of time for the check defaults
         /// to 20 minutes. However, propagation times will vary widely based on each company's Azure
         /// usage, so all these settings are configurable.
         /// 
@@ -127,7 +127,7 @@ namespace Pulumi.Vault.Azure
         /// ## Caveats
         /// 
         /// The `ValidateCreds` option requires read-access to the `Backend` config endpoint.
-        /// If the effective Vault role does not have the required permissions then valid values 
+        /// If the effective Vault role does not have the required permissions then valid values
         /// are required to be set for: `SubscriptionId`, `TenantId`, `Environment`.
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOptions? options = null)
@@ -147,17 +147,17 @@ namespace Pulumi.Vault.Azure
         /// ## Description
         /// 
         /// The Azure Active Directory data source exists to easily pull short-lived
-        /// credentials from Vault for use in Terraform. By default, it returns a 
-        /// dynamically generated `ClientId` and `ClientSecret` without testing 
+        /// credentials from Vault for use in Terraform. By default, it returns a
+        /// dynamically generated `ClientId` and `ClientSecret` without testing
         /// whether they've fully propagated for use in Azure Active Directory. However,
-        /// by activating `ValidateCreds`, credentials will be tested before being 
+        /// by activating `ValidateCreds`, credentials will be tested before being
         /// returned. This will, however, increase the time it takes for the credentials
         /// to be returned, blocking Terraform's execution until they are ready.
         /// 
-        /// If `ValidateCreds` is used, by default, credentials will be validated by 
-        /// making a test call to Azure every 1 seconds. When we have received 8 
-        /// successes in a row, the credentials will be returned. We have seen propagation 
-        /// times take up to 15 minutes, so the maximum length of time for the check defaults 
+        /// If `ValidateCreds` is used, by default, credentials will be validated by
+        /// making a test call to Azure every 1 seconds. When we have received 8
+        /// successes in a row, the credentials will be returned. We have seen propagation
+        /// times take up to 15 minutes, so the maximum length of time for the check defaults
         /// to 20 minutes. However, propagation times will vary widely based on each company's Azure
         /// usage, so all these settings are configurable.
         /// 
@@ -188,7 +188,7 @@ namespace Pulumi.Vault.Azure
         /// ## Caveats
         /// 
         /// The `ValidateCreds` option requires read-access to the `Backend` config endpoint.
-        /// If the effective Vault role does not have the required permissions then valid values 
+        /// If the effective Vault role does not have the required permissions then valid values
         /// are required to be set for: `SubscriptionId`, `TenantId`, `Environment`.
         /// </summary>
         public static Output<GetAccessCredentialsResult> Invoke(GetAccessCredentialsInvokeArgs args, InvokeOutputOptions options)
@@ -215,7 +215,7 @@ namespace Pulumi.Vault.Azure
         public string? Environment { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds after which to give up validating credentials. Defaults
         /// to 300.
         /// </summary>
@@ -232,7 +232,7 @@ namespace Pulumi.Vault.Azure
         public string? Namespace { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds to wait between each test of generated credentials.
         /// Defaults to 1.
         /// </summary>
@@ -240,7 +240,7 @@ namespace Pulumi.Vault.Azure
         public int? NumSecondsBetweenTests { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of sequential successes required to validate generated
         /// credentials. Defaults to 8.
         /// </summary>
@@ -271,7 +271,7 @@ namespace Pulumi.Vault.Azure
         public string? TenantId { get; set; }
 
         /// <summary>
-        /// Whether generated credentials should be 
+        /// Whether generated credentials should be
         /// validated before being returned. Defaults to `False`, which returns
         /// credentials without checking whether they have fully propagated throughout
         /// Azure Active Directory. Designating `True` activates testing.
@@ -304,7 +304,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Environment { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds after which to give up validating credentials. Defaults
         /// to 300.
         /// </summary>
@@ -321,7 +321,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? Namespace { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of seconds to wait between each test of generated credentials.
         /// Defaults to 1.
         /// </summary>
@@ -329,7 +329,7 @@ namespace Pulumi.Vault.Azure
         public Input<int>? NumSecondsBetweenTests { get; set; }
 
         /// <summary>
-        /// If 'validate_creds' is true, 
+        /// If 'validate_creds' is true,
         /// the number of sequential successes required to validate generated
         /// credentials. Defaults to 8.
         /// </summary>
@@ -360,7 +360,7 @@ namespace Pulumi.Vault.Azure
         public Input<string>? TenantId { get; set; }
 
         /// <summary>
-        /// Whether generated credentials should be 
+        /// Whether generated credentials should be
         /// validated before being returned. Defaults to `False`, which returns
         /// credentials without checking whether they have fully propagated throughout
         /// Azure Active Directory. Designating `True` activates testing.

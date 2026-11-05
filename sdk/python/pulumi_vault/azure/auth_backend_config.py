@@ -1313,6 +1313,50 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["tenant_id"] = tenant_id
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            environment: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            resource: pulumi.Input[Optional[_builtins.str]] = None,
+            retry_delay: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            tenant_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["authType"] = auth_type
+        __props__["backend"] = backend
+        __props__["clientId"] = client_id
+        __props__["clientSecret"] = client_secret
+        __props__["clientSecretWo"] = client_secret_wo
+        __props__["clientSecretWoVersion"] = client_secret_wo_version
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["environment"] = environment
+        __props__["identityTokenAudience"] = identity_token_audience
+        __props__["identityTokenTtl"] = identity_token_ttl
+        __props__["maxRetries"] = max_retries
+        __props__["maxRetryDelay"] = max_retry_delay
+        __props__["namespace"] = namespace
+        __props__["resource"] = resource
+        __props__["retryDelay"] = retry_delay
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["tenantId"] = tenant_id
+        return pulumi.runtime.exists_resource(None, 'vault:azure/authBackendConfig:AuthBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Output[Optional[_builtins.str]]:

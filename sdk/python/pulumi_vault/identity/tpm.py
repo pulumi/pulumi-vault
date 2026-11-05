@@ -408,6 +408,24 @@ class Tpm(pulumi.CustomResource):
         __props__.__dict__["tpm_id"] = tpm_id
         return Tpm(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            tpm_ek_public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            tpm_id: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["disabled"] = disabled
+        __props__["metadata"] = metadata
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["tpmEkPublicKey"] = tpm_ek_public_key
+        __props__["tpmId"] = tpm_id
+        return pulumi.runtime.exists_resource(None, 'vault:identity/tpm:Tpm', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def disabled(self) -> pulumi.Output[_builtins.bool]:

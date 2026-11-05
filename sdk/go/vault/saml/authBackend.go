@@ -234,6 +234,12 @@ func (AuthBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendState)(nil)).Elem()
 }
 
+// AuthBackendExists checks whether an existing AuthBackend resource with the given ID exists.
+func AuthBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:saml/authBackend:AuthBackend", id, state, "", opts...)
+}
+
 type authBackendArgs struct {
 	// The well-formatted URLs of your Assertion Consumer Service (ACS)
 	// that should receive a response from the identity provider.

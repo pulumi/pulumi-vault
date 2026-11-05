@@ -672,6 +672,32 @@ class BackendConfigEst(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return BackendConfigEst(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            audit_fields: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            authenticators: pulumi.Input[Optional[Union['BackendConfigEstAuthenticatorsArgs', 'BackendConfigEstAuthenticatorsArgsDict', 'outputs.BackendConfigEstAuthenticators']]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            default_mount: pulumi.Input[Optional[_builtins.bool]] = None,
+            default_path_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            enable_sentinel_parsing: pulumi.Input[Optional[_builtins.bool]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            label_to_path_policy: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            last_updated: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["auditFields"] = audit_fields
+        __props__["authenticators"] = authenticators
+        __props__["backend"] = backend
+        __props__["defaultMount"] = default_mount
+        __props__["defaultPathPolicy"] = default_path_policy
+        __props__["enableSentinelParsing"] = enable_sentinel_parsing
+        __props__["enabled"] = enabled
+        __props__["labelToPathPolicy"] = label_to_path_policy
+        __props__["lastUpdated"] = last_updated
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/backendConfigEst:BackendConfigEst', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="auditFields")
     def audit_fields(self) -> pulumi.Output[Sequence[_builtins.str]]:

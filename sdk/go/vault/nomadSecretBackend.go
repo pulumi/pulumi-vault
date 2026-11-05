@@ -380,6 +380,12 @@ func (NomadSecretBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*nomadSecretBackendState)(nil)).Elem()
 }
 
+// NomadSecretBackendExists checks whether an existing NomadSecretBackend resource with the given ID exists.
+func NomadSecretBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *NomadSecretBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/nomadSecretBackend:NomadSecretBackend", id, state, "", opts...)
+}
+
 type nomadSecretBackendArgs struct {
 	// Specifies the address of the Nomad instance, provided
 	// as "protocol://host:port" like "http://127.0.0.1:4646".

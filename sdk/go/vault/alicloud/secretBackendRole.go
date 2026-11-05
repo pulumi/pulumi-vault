@@ -398,6 +398,12 @@ func (SecretBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendRoleState)(nil)).Elem()
 }
 
+// SecretBackendRoleExists checks whether an existing SecretBackendRole resource with the given ID exists.
+func SecretBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:alicloud/secretBackendRole:SecretBackendRole", id, state, "", opts...)
+}
+
 type secretBackendRoleArgs struct {
 	// Set of inline policy documents to be applied to the generated credentials. Each block represents one policy with a JSON-encoded policyDocument field.
 	InlinePolicies []SecretBackendRoleInlinePolicy `pulumi:"inlinePolicies"`

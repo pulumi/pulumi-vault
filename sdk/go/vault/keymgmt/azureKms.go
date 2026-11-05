@@ -237,6 +237,12 @@ func (AzureKmsState) ElementType() reflect.Type {
 	return reflect.TypeOf((*azureKmsState)(nil)).Elem()
 }
 
+// AzureKmsExists checks whether an existing AzureKms resource with the given ID exists.
+func AzureKmsExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AzureKmsState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:keymgmt/azureKms:AzureKms", id, state, "", opts...)
+}
+
 type azureKmsArgs struct {
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
 	// The credentials to use for authentication with Azure Key Vault. Supplying values for this parameter is optional, as credentials may also be specified as environment variables. Environment variables will take precedence over credentials provided via this parameter. This value is write-only and will not be stored in Terraform state.

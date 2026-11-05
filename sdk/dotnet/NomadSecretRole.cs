@@ -72,7 +72,7 @@ namespace Pulumi.Vault
         public Output<string> Backend { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies if the generated token should be global. Defaults to 
+        /// Specifies if the generated token should be global. Defaults to
         /// false.
         /// </summary>
         [Output("global")]
@@ -88,7 +88,7 @@ namespace Pulumi.Vault
         public Output<string?> Namespace { get; private set; } = null!;
 
         /// <summary>
-        /// List of policies attached to the generated token. This setting is only used 
+        /// List of policies attached to the generated token. This setting is only used
         /// when `Type` is 'client'.
         /// </summary>
         [Output("policies")]
@@ -102,7 +102,7 @@ namespace Pulumi.Vault
         public Output<string> Role { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of token to create when using this role. Valid 
+        /// Specifies the type of token to create when using this role. Valid
         /// settings are 'client' and 'management'. Defaults to 'client'.
         /// </summary>
         [Output("type")]
@@ -161,7 +161,7 @@ namespace Pulumi.Vault
         public Input<string> Backend { get; set; } = null!;
 
         /// <summary>
-        /// Specifies if the generated token should be global. Defaults to 
+        /// Specifies if the generated token should be global. Defaults to
         /// false.
         /// </summary>
         [Input("global")]
@@ -180,7 +180,7 @@ namespace Pulumi.Vault
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies attached to the generated token. This setting is only used 
+        /// List of policies attached to the generated token. This setting is only used
         /// when `Type` is 'client'.
         /// </summary>
         public InputList<string> Policies
@@ -197,7 +197,7 @@ namespace Pulumi.Vault
         public Input<string> Role { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the type of token to create when using this role. Valid 
+        /// Specifies the type of token to create when using this role. Valid
         /// settings are 'client' and 'management'. Defaults to 'client'.
         /// </summary>
         [Input("type")]
@@ -218,7 +218,7 @@ namespace Pulumi.Vault
         public Input<string>? Backend { get; set; }
 
         /// <summary>
-        /// Specifies if the generated token should be global. Defaults to 
+        /// Specifies if the generated token should be global. Defaults to
         /// false.
         /// </summary>
         [Input("global")]
@@ -237,7 +237,7 @@ namespace Pulumi.Vault
         private InputList<string>? _policies;
 
         /// <summary>
-        /// List of policies attached to the generated token. This setting is only used 
+        /// List of policies attached to the generated token. This setting is only used
         /// when `Type` is 'client'.
         /// </summary>
         public InputList<string> Policies
@@ -254,7 +254,7 @@ namespace Pulumi.Vault
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// Specifies the type of token to create when using this role. Valid 
+        /// Specifies the type of token to create when using this role. Valid
         /// settings are 'client' and 'management'. Defaults to 'client'.
         /// </summary>
         [Input("type")]

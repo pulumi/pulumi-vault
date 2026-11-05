@@ -365,6 +365,12 @@ func (UserpassAuthBackendUserState) ElementType() reflect.Type {
 	return reflect.TypeOf((*userpassAuthBackendUserState)(nil)).Elem()
 }
 
+// UserpassAuthBackendUserExists checks whether an existing UserpassAuthBackendUser resource with the given ID exists.
+func UserpassAuthBackendUserExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *UserpassAuthBackendUserState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/userpassAuthBackendUser:UserpassAuthBackendUser", id, state, "", opts...)
+}
+
 type userpassAuthBackendUserArgs struct {
 	// A map of string to string that will be set as metadata on the identity alias
 	AliasMetadata map[string]string `pulumi:"aliasMetadata"`

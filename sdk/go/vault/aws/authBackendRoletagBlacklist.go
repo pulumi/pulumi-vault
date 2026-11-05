@@ -139,6 +139,12 @@ func (AuthBackendRoletagBlacklistState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoletagBlacklistState)(nil)).Elem()
 }
 
+// AuthBackendRoletagBlacklistExists checks whether an existing AuthBackendRoletagBlacklist resource with the given ID exists.
+func AuthBackendRoletagBlacklistExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendRoletagBlacklistState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendRoletagBlacklist:AuthBackendRoletagBlacklist", id, state, "", opts...)
+}
+
 type authBackendRoletagBlacklistArgs struct {
 	// The path the AWS auth backend being configured was
 	// mounted at.

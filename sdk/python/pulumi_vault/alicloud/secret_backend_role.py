@@ -799,6 +799,28 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            inline_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleInlinePolicyArgs', 'SecretBackendRoleInlinePolicyArgsDict', 'outputs.SecretBackendRoleInlinePolicy']]]]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            remote_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleRemotePolicyArgs', 'SecretBackendRoleRemotePolicyArgsDict', 'outputs.SecretBackendRoleRemotePolicy']]]]] = None,
+            role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["inlinePolicies"] = inline_policies
+        __props__["maxTtl"] = max_ttl
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["remotePolicies"] = remote_policies
+        __props__["roleArn"] = role_arn
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:alicloud/secretBackendRole:SecretBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="inlinePolicies")
     def inline_policies(self) -> pulumi.Output[Optional[Sequence['outputs.SecretBackendRoleInlinePolicy']]]:

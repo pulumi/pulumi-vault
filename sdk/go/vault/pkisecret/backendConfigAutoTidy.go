@@ -303,6 +303,12 @@ func (BackendConfigAutoTidyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendConfigAutoTidyState)(nil)).Elem()
 }
 
+// BackendConfigAutoTidyExists checks whether an existing BackendConfigAutoTidy resource with the given ID exists.
+func BackendConfigAutoTidyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendConfigAutoTidyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendConfigAutoTidy:BackendConfigAutoTidy", id, state, "", opts...)
+}
+
 type backendConfigAutoTidyArgs struct {
 	// The amount of time that must pass after creation that an account with no orders is marked revoked, and the amount of time after being marked revoked or deactivated.
 	AcmeAccountSafetyBuffer *string `pulumi:"acmeAccountSafetyBuffer"`

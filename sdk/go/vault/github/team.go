@@ -149,6 +149,12 @@ func (TeamState) ElementType() reflect.Type {
 	return reflect.TypeOf((*teamState)(nil)).Elem()
 }
 
+// TeamExists checks whether an existing Team resource with the given ID exists.
+func TeamExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TeamState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:github/team:Team", id, state, "", opts...)
+}
+
 type teamArgs struct {
 	// Path where the github auth backend is mounted. Defaults to `github`
 	// if not specified.

@@ -677,6 +677,38 @@ class SecretBackendDnsProviderGcp(pulumi.CustomResource):
         __props__.__dict__["zone_name"] = zone_name
         return SecretBackendDnsProviderGcp(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            creation_date: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            impersonate_service_account: pulumi.Input[Optional[_builtins.str]] = None,
+            last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            nameserver: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            project: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            zone_name: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["creationDate"] = creation_date
+        __props__["credentialsWo"] = credentials_wo
+        __props__["credentialsWoVersion"] = credentials_wo_version
+        __props__["identifiers"] = identifiers
+        __props__["impersonateServiceAccount"] = impersonate_service_account
+        __props__["lastUpdatedDate"] = last_updated_date
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["nameserver"] = nameserver
+        __props__["namespace"] = namespace
+        __props__["project"] = project
+        __props__["ttl"] = ttl
+        __props__["zoneName"] = zone_name
+        return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendDnsProviderGcp:SecretBackendDnsProviderGcp', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="creationDate")
     def creation_date(self) -> pulumi.Output[_builtins.str]:

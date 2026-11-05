@@ -674,6 +674,28 @@ class Key(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         return Key(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            deletion_allowed: pulumi.Input[Optional[_builtins.bool]] = None,
+            latest_version: pulumi.Input[Optional[_builtins.int]] = None,
+            min_enabled_version: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_regions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["deletionAllowed"] = deletion_allowed
+        __props__["latestVersion"] = latest_version
+        __props__["minEnabledVersion"] = min_enabled_version
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["replicaRegions"] = replica_regions
+        __props__["type"] = type
+        return pulumi.runtime.exists_resource(None, 'vault:keymgmt/key:Key', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="deletionAllowed")
     def deletion_allowed(self) -> pulumi.Output[Optional[_builtins.bool]]:

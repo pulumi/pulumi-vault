@@ -484,6 +484,12 @@ func (SecretBackendAccountState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendAccountState)(nil)).Elem()
 }
 
+// SecretBackendAccountExists checks whether an existing SecretBackendAccount resource with the given ID exists.
+func SecretBackendAccountExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendAccountState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:os/secretBackendAccount:SecretBackendAccount", id, state, "", opts...)
+}
+
 type secretBackendAccountArgs struct {
 	// Custom metadata associated with the account.
 	CustomMetadata map[string]string `pulumi:"customMetadata"`

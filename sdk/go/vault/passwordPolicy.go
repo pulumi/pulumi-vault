@@ -130,6 +130,12 @@ func (PasswordPolicyState) ElementType() reflect.Type {
 	return reflect.TypeOf((*passwordPolicyState)(nil)).Elem()
 }
 
+// PasswordPolicyExists checks whether an existing PasswordPolicy resource with the given ID exists.
+func PasswordPolicyExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PasswordPolicyState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/passwordPolicy:PasswordPolicy", id, state, "", opts...)
+}
+
 type passwordPolicyArgs struct {
 	// Specifies an override to the default source of entropy (randomness) used to generate the passwords. Must be one of: `""`, `"platform"`, or `"seal"` (Vault Enterprise only). Requires Vault 1.21+.
 	EntropySource *string `pulumi:"entropySource"`

@@ -193,6 +193,12 @@ func (AuthBackendRoleTagState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendRoleTagState)(nil)).Elem()
 }
 
+// AuthBackendRoleTagExists checks whether an existing AuthBackendRoleTag resource with the given ID exists.
+func AuthBackendRoleTagExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendRoleTagState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendRoleTag:AuthBackendRoleTag", id, state, "", opts...)
+}
+
 type authBackendRoleTagArgs struct {
 	// If set, allows migration of the underlying instances where the client resides. Use with caution.
 	AllowInstanceMigration *bool `pulumi:"allowInstanceMigration"`

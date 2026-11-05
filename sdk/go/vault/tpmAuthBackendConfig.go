@@ -146,6 +146,12 @@ func (TpmAuthBackendConfigState) ElementType() reflect.Type {
 	return reflect.TypeOf((*tpmAuthBackendConfigState)(nil)).Elem()
 }
 
+// TpmAuthBackendConfigExists checks whether an existing TpmAuthBackendConfig resource with the given ID exists.
+func TpmAuthBackendConfigExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *TpmAuthBackendConfigState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig", id, state, "", opts...)
+}
+
 type tpmAuthBackendConfigArgs struct {
 	// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
 	CaLifetime *int `pulumi:"caLifetime"`

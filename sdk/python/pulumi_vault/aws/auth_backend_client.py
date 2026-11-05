@@ -1277,6 +1277,54 @@ class AuthBackendClient(pulumi.CustomResource):
         __props__.__dict__["use_sts_region_from_client"] = use_sts_region_from_client
         return AuthBackendClient(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            access_key: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_sts_header_values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            ec2_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_server_id_header_value: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_audience: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_token_ttl: pulumi.Input[Optional[_builtins.int]] = None,
+            max_retries: pulumi.Input[Optional[_builtins.int]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            secret_key: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_key_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            sts_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            sts_region: pulumi.Input[Optional[_builtins.str]] = None,
+            use_sts_region_from_client: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessKey"] = access_key
+        __props__["allowedStsHeaderValues"] = allowed_sts_header_values
+        __props__["backend"] = backend
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["ec2Endpoint"] = ec2_endpoint
+        __props__["iamEndpoint"] = iam_endpoint
+        __props__["iamServerIdHeaderValue"] = iam_server_id_header_value
+        __props__["identityTokenAudience"] = identity_token_audience
+        __props__["identityTokenTtl"] = identity_token_ttl
+        __props__["maxRetries"] = max_retries
+        __props__["namespace"] = namespace
+        __props__["roleArn"] = role_arn
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["secretKey"] = secret_key
+        __props__["secretKeyWo"] = secret_key_wo
+        __props__["secretKeyWoVersion"] = secret_key_wo_version
+        __props__["stsEndpoint"] = sts_endpoint
+        __props__["stsRegion"] = sts_region
+        __props__["useStsRegionFromClient"] = use_sts_region_from_client
+        return pulumi.runtime.exists_resource(None, 'vault:aws/authBackendClient:AuthBackendClient', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Output[Optional[_builtins.str]]:

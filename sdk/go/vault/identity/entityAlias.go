@@ -163,6 +163,12 @@ func (EntityAliasState) ElementType() reflect.Type {
 	return reflect.TypeOf((*entityAliasState)(nil)).Elem()
 }
 
+// EntityAliasExists checks whether an existing EntityAlias resource with the given ID exists.
+func EntityAliasExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EntityAliasState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/entityAlias:EntityAlias", id, state, "", opts...)
+}
+
 type entityAliasArgs struct {
 	// Entity ID to which this alias belongs to.
 	CanonicalId string `pulumi:"canonicalId"`

@@ -229,6 +229,12 @@ func (SecretBackendDnsProviderRfc2136State) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendDnsProviderRfc2136State)(nil)).Elem()
 }
 
+// SecretBackendDnsProviderRfc2136Exists checks whether an existing SecretBackendDnsProviderRfc2136 resource with the given ID exists.
+func SecretBackendDnsProviderRfc2136Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendDnsProviderRfc2136State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendDnsProviderRfc2136:SecretBackendDnsProviderRfc2136", id, state, "", opts...)
+}
+
 type secretBackendDnsProviderRfc2136Args struct {
 	// List of domain identifiers this provider handles. Supports wildcard patterns with a leftmost `*` (e.g. `*.example.com`).
 	Identifiers []string `pulumi:"identifiers"`

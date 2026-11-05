@@ -183,6 +183,12 @@ func (SecretBackendConfigCaState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendConfigCaState)(nil)).Elem()
 }
 
+// SecretBackendConfigCaExists checks whether an existing SecretBackendConfigCa resource with the given ID exists.
+func SecretBackendConfigCaExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendConfigCaState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/secretBackendConfigCa:SecretBackendConfigCa", id, state, "", opts...)
+}
+
 type secretBackendConfigCaArgs struct {
 	// The PKI secret backend the resource belongs to.
 	Backend string `pulumi:"backend"`

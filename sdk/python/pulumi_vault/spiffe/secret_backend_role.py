@@ -468,6 +468,24 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["use_jti_claim"] = use_jti_claim
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            template: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            use_jti_claim: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["template"] = template
+        __props__["ttl"] = ttl
+        __props__["useJtiClaim"] = use_jti_claim
+        return pulumi.runtime.exists_resource(None, 'vault:spiffe/secretBackendRole:SecretBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def mount(self) -> pulumi.Output[_builtins.str]:

@@ -285,6 +285,12 @@ func (AuthBackendState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendState)(nil)).Elem()
 }
 
+// AuthBackendExists checks whether an existing AuthBackend resource with the given ID exists.
+func AuthBackendExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:github/authBackend:AuthBackend", id, state, "", opts...)
+}
+
 type authBackendArgs struct {
 	// (Optional) The metadata to be tied to generated entity alias.
 	// This should be a list or map containing the metadata in key value pairs.

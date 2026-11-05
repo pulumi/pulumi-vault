@@ -1430,6 +1430,78 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         __props__.__dict__["uri_sans"] = uri_sans
         return SecretBackendIntermediateCertRequest(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_basic_constraints: pulumi.Input[Optional[_builtins.bool]] = None,
+            alt_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            common_name: pulumi.Input[Optional[_builtins.str]] = None,
+            country: pulumi.Input[Optional[_builtins.str]] = None,
+            csr: pulumi.Input[Optional[_builtins.str]] = None,
+            exclude_cn_from_sans: pulumi.Input[Optional[_builtins.bool]] = None,
+            format: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            key_ref: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            key_usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            locality: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            managed_key_name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            organization: pulumi.Input[Optional[_builtins.str]] = None,
+            other_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            ou: pulumi.Input[Optional[_builtins.str]] = None,
+            parameter_set: pulumi.Input[Optional[_builtins.str]] = None,
+            postal_code: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_format: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            province: pulumi.Input[Optional[_builtins.str]] = None,
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            signature_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            street_address: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            uri_sans: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["addBasicConstraints"] = add_basic_constraints
+        __props__["altNames"] = alt_names
+        __props__["backend"] = backend
+        __props__["commonName"] = common_name
+        __props__["country"] = country
+        __props__["csr"] = csr
+        __props__["excludeCnFromSans"] = exclude_cn_from_sans
+        __props__["format"] = format
+        __props__["ipSans"] = ip_sans
+        __props__["keyBits"] = key_bits
+        __props__["keyId"] = key_id
+        __props__["keyName"] = key_name
+        __props__["keyRef"] = key_ref
+        __props__["keyType"] = key_type
+        __props__["keyUsages"] = key_usages
+        __props__["locality"] = locality
+        __props__["managedKeyId"] = managed_key_id
+        __props__["managedKeyName"] = managed_key_name
+        __props__["namespace"] = namespace
+        __props__["organization"] = organization
+        __props__["otherSans"] = other_sans
+        __props__["ou"] = ou
+        __props__["parameterSet"] = parameter_set
+        __props__["postalCode"] = postal_code
+        __props__["privateKey"] = private_key
+        __props__["privateKeyFormat"] = private_key_format
+        __props__["privateKeyType"] = private_key_type
+        __props__["province"] = province
+        __props__["serialNumber"] = serial_number
+        __props__["signatureBits"] = signature_bits
+        __props__["streetAddress"] = street_address
+        __props__["type"] = type
+        __props__["uriSans"] = uri_sans
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/secretBackendIntermediateCertRequest:SecretBackendIntermediateCertRequest', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="addBasicConstraints")
     def add_basic_constraints(self) -> pulumi.Output[Optional[_builtins.bool]]:

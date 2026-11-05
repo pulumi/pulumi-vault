@@ -235,6 +235,12 @@ func (SecretBackendDnsProviderAwsRoute53State) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendDnsProviderAwsRoute53State)(nil)).Elem()
 }
 
+// SecretBackendDnsProviderAwsRoute53Exists checks whether an existing SecretBackendDnsProviderAwsRoute53 resource with the given ID exists.
+func SecretBackendDnsProviderAwsRoute53Exists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendDnsProviderAwsRoute53State, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendDnsProviderAwsRoute53:SecretBackendDnsProviderAwsRoute53", id, state, "", opts...)
+}
+
 type secretBackendDnsProviderAwsRoute53Args struct {
 	// AWS access key ID for Route53 API access. Optional when using IAM role assumption or instance profiles.
 	AccessKeyId *string `pulumi:"accessKeyId"`

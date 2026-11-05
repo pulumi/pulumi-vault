@@ -550,6 +550,24 @@ class GcpKms(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         return GcpKms(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            credentials_wo: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            credentials_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            key_collection: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["credentialsWo"] = credentials_wo
+        __props__["credentialsWoVersion"] = credentials_wo_version
+        __props__["keyCollection"] = key_collection
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        return pulumi.runtime.exists_resource(None, 'vault:keymgmt/gcpKms:GcpKms', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="credentialsWo")
     def credentials_wo(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

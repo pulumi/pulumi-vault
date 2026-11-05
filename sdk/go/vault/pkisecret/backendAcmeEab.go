@@ -191,6 +191,12 @@ func (BackendAcmeEabState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendAcmeEabState)(nil)).Elem()
 }
 
+// BackendAcmeEabExists checks whether an existing BackendAcmeEab resource with the given ID exists.
+func BackendAcmeEabExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendAcmeEabState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendAcmeEab:BackendAcmeEab", id, state, "", opts...)
+}
+
 type backendAcmeEabArgs struct {
 	// The path to the PKI secret backend to
 	// create the EAB token within, with no leading or trailing `/`s.

@@ -511,6 +511,26 @@ class SecretCaGenerated(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretCaGenerated(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            ca_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            key_bits: pulumi.Input[Optional[_builtins.int]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            ttl: pulumi.Input[Optional[_builtins.int]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["caPem"] = ca_pem
+        __props__["keyBits"] = key_bits
+        __props__["keyType"] = key_type
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:kmip/secretCaGenerated:SecretCaGenerated', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="caPem")
     def ca_pem(self) -> pulumi.Output[_builtins.str]:

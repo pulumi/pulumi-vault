@@ -713,6 +713,36 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["use_annotations_as_alias_metadata"] = use_annotations_as_alias_metadata
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_iss_validation: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_local_ca_jwt: pulumi.Input[Optional[_builtins.bool]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_ca_cert: pulumi.Input[Optional[_builtins.str]] = None,
+            kubernetes_host: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            pem_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            token_reviewer_jwt: pulumi.Input[Optional[_builtins.str]] = None,
+            token_reviewer_jwt_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            token_reviewer_jwt_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            use_annotations_as_alias_metadata: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["backend"] = backend
+        __props__["disableIssValidation"] = disable_iss_validation
+        __props__["disableLocalCaJwt"] = disable_local_ca_jwt
+        __props__["issuer"] = issuer
+        __props__["kubernetesCaCert"] = kubernetes_ca_cert
+        __props__["kubernetesHost"] = kubernetes_host
+        __props__["namespace"] = namespace
+        __props__["pemKeys"] = pem_keys
+        __props__["tokenReviewerJwt"] = token_reviewer_jwt
+        __props__["tokenReviewerJwtWo"] = token_reviewer_jwt_wo
+        __props__["tokenReviewerJwtWoVersion"] = token_reviewer_jwt_wo_version
+        __props__["useAnnotationsAsAliasMetadata"] = use_annotations_as_alias_metadata
+        return pulumi.runtime.exists_resource(None, 'vault:kubernetes/authBackendConfig:AuthBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def backend(self) -> pulumi.Output[Optional[_builtins.str]]:

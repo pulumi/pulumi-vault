@@ -286,6 +286,12 @@ func (SecretBackendOrderChallengeFulfilledState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendOrderChallengeFulfilledState)(nil)).Elem()
 }
 
+// SecretBackendOrderChallengeFulfilledExists checks whether an existing SecretBackendOrderChallengeFulfilled resource with the given ID exists.
+func SecretBackendOrderChallengeFulfilledExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendOrderChallengeFulfilledState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiexternalca/secretBackendOrderChallengeFulfilled:SecretBackendOrderChallengeFulfilled", id, state, "", opts...)
+}
+
 type secretBackendOrderChallengeFulfilledArgs struct {
 	// The type of ACME challenge that was fulfilled. Valid values are `http-01`, `dns-01`, `tls-alpn-01`.
 	ChallengeType string `pulumi:"challengeType"`

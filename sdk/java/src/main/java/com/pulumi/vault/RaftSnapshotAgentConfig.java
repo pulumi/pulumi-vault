@@ -322,11 +322,10 @@ public class RaftSnapshotAgentConfig extends com.pulumi.resources.CustomResource
     /**
      * AWS secret access key.
      * 
-     * @deprecated
-     * Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
+     * @deprecated Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state.
      * 
      */
-    @Deprecated /* Use awsSecretAccessKeyWo instead, which is a write-only attribute that is never stored in state. */
+    @Deprecated
     @Export(name="awsSecretAccessKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> awsSecretAccessKey;
 

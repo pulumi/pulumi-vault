@@ -1074,6 +1074,44 @@ class SecretBackendAccount(pulumi.CustomResource):
         __props__.__dict__["verify_connection"] = verify_connection
         return SecretBackendAccount(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            custom_metadata: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            host: pulumi.Input[Optional[_builtins.str]] = None,
+            last_vault_rotation: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            next_vault_rotation: pulumi.Input[Optional[_builtins.str]] = None,
+            parent_account_ref: pulumi.Input[Optional[_builtins.str]] = None,
+            password_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None,
+            verify_connection: pulumi.Input[Optional[_builtins.bool]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["customMetadata"] = custom_metadata
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["host"] = host
+        __props__["lastVaultRotation"] = last_vault_rotation
+        __props__["mount"] = mount
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["nextVaultRotation"] = next_vault_rotation
+        __props__["parentAccountRef"] = parent_account_ref
+        __props__["passwordPolicy"] = password_policy
+        __props__["passwordWo"] = password_wo
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["username"] = username
+        __props__["verifyConnection"] = verify_connection
+        return pulumi.runtime.exists_resource(None, 'vault:os/secretBackendAccount:SecretBackendAccount', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="customMetadata")
     def custom_metadata(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:

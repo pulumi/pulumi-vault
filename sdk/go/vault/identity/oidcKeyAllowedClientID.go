@@ -146,6 +146,12 @@ func (OidcKeyAllowedClientIDState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcKeyAllowedClientIDState)(nil)).Elem()
 }
 
+// OidcKeyAllowedClientIDExists checks whether an existing OidcKeyAllowedClientID resource with the given ID exists.
+func OidcKeyAllowedClientIDExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcKeyAllowedClientIDState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidcKeyAllowedClientID:OidcKeyAllowedClientID", id, state, "", opts...)
+}
+
 type oidcKeyAllowedClientIDArgs struct {
 	// Client ID to allow usage with the OIDC named key
 	AllowedClientId string `pulumi:"allowedClientId"`

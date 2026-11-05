@@ -150,6 +150,12 @@ func (OidcAssignmentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*oidcAssignmentState)(nil)).Elem()
 }
 
+// OidcAssignmentExists checks whether an existing OidcAssignment resource with the given ID exists.
+func OidcAssignmentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *OidcAssignmentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:identity/oidcAssignment:OidcAssignment", id, state, "", opts...)
+}
+
 type oidcAssignmentArgs struct {
 	// A set of Vault entity IDs.
 	EntityIds []string `pulumi:"entityIds"`

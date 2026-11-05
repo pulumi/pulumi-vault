@@ -14,7 +14,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Lists KV-V2 secrets at a given path in Vault.
         /// 
-        /// For more information on Vault's KV-V2 secret backend 
+        /// For more information on Vault's KV-V2 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -101,7 +101,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Lists KV-V2 secrets at a given path in Vault.
         /// 
-        /// For more information on Vault's KV-V2 secret backend 
+        /// For more information on Vault's KV-V2 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be
@@ -188,7 +188,7 @@ namespace Pulumi.Vault.kv
         /// <summary>
         /// Lists KV-V2 secrets at a given path in Vault.
         /// 
-        /// For more information on Vault's KV-V2 secret backend 
+        /// For more information on Vault's KV-V2 secret backend
         /// [see here](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
         /// 
         /// &gt; **Important** All data retrieved from Vault will be

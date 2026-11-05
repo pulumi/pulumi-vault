@@ -467,6 +467,30 @@ class BackendAcmeEab(pulumi.CustomResource):
         __props__.__dict__["role"] = role
         return BackendAcmeEab(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            acme_directory: pulumi.Input[Optional[_builtins.str]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            created_on: pulumi.Input[Optional[_builtins.str]] = None,
+            eab_id: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer: pulumi.Input[Optional[_builtins.str]] = None,
+            key: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            role: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["acmeDirectory"] = acme_directory
+        __props__["backend"] = backend
+        __props__["createdOn"] = created_on
+        __props__["eabId"] = eab_id
+        __props__["issuer"] = issuer
+        __props__["key"] = key
+        __props__["keyType"] = key_type
+        __props__["namespace"] = namespace
+        __props__["role"] = role
+        return pulumi.runtime.exists_resource(None, 'vault:pkiSecret/backendAcmeEab:BackendAcmeEab', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="acmeDirectory")
     def acme_directory(self) -> pulumi.Output[_builtins.str]:

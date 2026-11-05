@@ -146,6 +146,12 @@ func (PluginPinnedVersionState) ElementType() reflect.Type {
 	return reflect.TypeOf((*pluginPinnedVersionState)(nil)).Elem()
 }
 
+// PluginPinnedVersionExists checks whether an existing PluginPinnedVersion resource with the given ID exists.
+func PluginPinnedVersionExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PluginPinnedVersionState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/pluginPinnedVersion:PluginPinnedVersion", id, state, "", opts...)
+}
+
 type pluginPinnedVersionArgs struct {
 	// Name of the plugin.
 	Name *string `pulumi:"name"`

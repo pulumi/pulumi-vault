@@ -438,6 +438,12 @@ func (AuthBackendClientState) ElementType() reflect.Type {
 	return reflect.TypeOf((*authBackendClientState)(nil)).Elem()
 }
 
+// AuthBackendClientExists checks whether an existing AuthBackendClient resource with the given ID exists.
+func AuthBackendClientExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AuthBackendClientState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/authBackendClient:AuthBackendClient", id, state, "", opts...)
+}
+
 type authBackendClientArgs struct {
 	// The AWS access key that Vault should use for the
 	// auth backend. Mutually exclusive with `identityTokenAudience`.

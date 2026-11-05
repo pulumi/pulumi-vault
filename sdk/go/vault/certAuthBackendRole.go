@@ -417,6 +417,12 @@ func (CertAuthBackendRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*certAuthBackendRoleState)(nil)).Elem()
 }
 
+// CertAuthBackendRoleExists checks whether an existing CertAuthBackendRole resource with the given ID exists.
+func CertAuthBackendRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CertAuthBackendRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:index/certAuthBackendRole:CertAuthBackendRole", id, state, "", opts...)
+}
+
 type certAuthBackendRoleArgs struct {
 	// The metadata to be tied to generated entity alias.
 	//   This should be a list or map containing the metadata in key value pairs.

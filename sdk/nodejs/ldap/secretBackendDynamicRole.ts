@@ -70,6 +70,17 @@ export class SecretBackendDynamicRole extends pulumi.CustomResource {
         return new SecretBackendDynamicRole(name, <any>state, { ...opts, id: id });
     }
 
+    /**
+     * Check whether an existing SecretBackendDynamicRole resource with the given ID exists.
+     *
+     * @param id The _unique_ provider ID of the resource to check.
+     * @param state Any extra arguments used during the lookup.
+     * @param opts Optional settings to control the behavior of the CustomResource.
+     */
+    public static exists(id: pulumi.Input<string>, state?: SecretBackendDynamicRoleState, opts?: pulumi.CustomResourceOptions): pulumi.Output<boolean> {
+        return pulumi.runtime.existsResource("vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole", id, <any>state || {}, { ...opts }, undefined);
+    }
+
     /** @internal */
     public static readonly __pulumiType = 'vault:ldap/secretBackendDynamicRole:SecretBackendDynamicRole';
 

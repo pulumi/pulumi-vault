@@ -645,6 +645,26 @@ class KerberosAuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["service_account"] = service_account
         return KerberosAuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            add_group_aliases: pulumi.Input[Optional[_builtins.bool]] = None,
+            keytab_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            keytab_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            remove_instance_name: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_account: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["addGroupAliases"] = add_group_aliases
+        __props__["keytabWo"] = keytab_wo
+        __props__["keytabWoVersion"] = keytab_wo_version
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["removeInstanceName"] = remove_instance_name
+        __props__["serviceAccount"] = service_account
+        return pulumi.runtime.exists_resource(None, 'vault:index/kerberosAuthBackendConfig:KerberosAuthBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="addGroupAliases")
     def add_group_aliases(self) -> pulumi.Output[Optional[_builtins.bool]]:

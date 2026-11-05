@@ -615,6 +615,34 @@ class OciAuthBackend(pulumi.CustomResource):
         __props__.__dict__["tune"] = tune
         return OciAuthBackend(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            accessor: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            disable_automated_rotation: pulumi.Input[Optional[_builtins.bool]] = None,
+            disable_remount: pulumi.Input[Optional[_builtins.bool]] = None,
+            home_tenancy_id: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            path: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
+            rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            tune: pulumi.Input[Optional[Union['OciAuthBackendTuneArgs', 'OciAuthBackendTuneArgsDict', 'outputs.OciAuthBackendTune']]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["accessor"] = accessor
+        __props__["description"] = description
+        __props__["disableAutomatedRotation"] = disable_automated_rotation
+        __props__["disableRemount"] = disable_remount
+        __props__["homeTenancyId"] = home_tenancy_id
+        __props__["namespace"] = namespace
+        __props__["path"] = path
+        __props__["rotationPeriod"] = rotation_period
+        __props__["rotationSchedule"] = rotation_schedule
+        __props__["rotationWindow"] = rotation_window
+        __props__["tune"] = tune
+        return pulumi.runtime.exists_resource(None, 'vault:index/ociAuthBackend:OciAuthBackend', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def accessor(self) -> pulumi.Output[_builtins.str]:

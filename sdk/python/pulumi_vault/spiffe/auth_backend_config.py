@@ -669,6 +669,32 @@ class AuthBackendConfig(pulumi.CustomResource):
         __props__.__dict__["trust_domain"] = trust_domain
         return AuthBackendConfig(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            audiences: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            bundle: pulumi.Input[Optional[_builtins.str]] = None,
+            defer_bundle_fetch: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint_root_ca_truststore_pem: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint_spiffe_id: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
+            mount: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            profile: pulumi.Input[Optional[_builtins.str]] = None,
+            trust_domain: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["audiences"] = audiences
+        __props__["bundle"] = bundle
+        __props__["deferBundleFetch"] = defer_bundle_fetch
+        __props__["endpointRootCaTruststorePem"] = endpoint_root_ca_truststore_pem
+        __props__["endpointSpiffeId"] = endpoint_spiffe_id
+        __props__["endpointUrl"] = endpoint_url
+        __props__["mount"] = mount
+        __props__["namespace"] = namespace
+        __props__["profile"] = profile
+        __props__["trustDomain"] = trust_domain
+        return pulumi.runtime.exists_resource(None, 'vault:spiffe/authBackendConfig:AuthBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter
     def audiences(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

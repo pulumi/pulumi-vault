@@ -191,6 +191,12 @@ func (SecretLibraryState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretLibraryState)(nil)).Elem()
 }
 
+// SecretLibraryExists checks whether an existing SecretLibrary resource with the given ID exists.
+func SecretLibraryExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretLibraryState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:ad/secretLibrary:SecretLibrary", id, state, "", opts...)
+}
+
 type secretLibraryArgs struct {
 	// The path the AD secret backend is mounted at,
 	// with no leading or trailing `/`s.

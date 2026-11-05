@@ -233,6 +233,12 @@ func (SecretBackendStaticRoleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretBackendStaticRoleState)(nil)).Elem()
 }
 
+// SecretBackendStaticRoleExists checks whether an existing SecretBackendStaticRole resource with the given ID exists.
+func SecretBackendStaticRoleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretBackendStaticRoleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:aws/secretBackendStaticRole:SecretBackendStaticRole", id, state, "", opts...)
+}
+
 type secretBackendStaticRoleArgs struct {
 	// Specifies the ARN of the role that Vault should assume.
 	// When provided, Vault will use AWS STS to assume this role and generate temporary credentials.

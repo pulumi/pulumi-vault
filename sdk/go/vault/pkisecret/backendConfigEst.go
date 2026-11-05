@@ -261,6 +261,12 @@ func (BackendConfigEstState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backendConfigEstState)(nil)).Elem()
 }
 
+// BackendConfigEstExists checks whether an existing BackendConfigEst resource with the given ID exists.
+func BackendConfigEstExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackendConfigEstState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("vault:pkiSecret/backendConfigEst:BackendConfigEst", id, state, "", opts...)
+}
+
 type backendConfigEstArgs struct {
 	// Fields parsed from the CSR that appear in the audit and can be used by sentinel policies.
 	//

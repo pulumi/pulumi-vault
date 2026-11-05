@@ -238,7 +238,7 @@ namespace Pulumi.Vault.TerraformCloud
         public Output<bool> SealWrap { get; private set; } = null!;
 
         /// <summary>
-        /// The Terraform Cloud management token this backend should 
+        /// The Terraform Cloud management token this backend should
         /// use to issue new tokens.
         /// </summary>
         [Output("token")]
@@ -246,7 +246,7 @@ namespace Pulumi.Vault.TerraformCloud
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The Terraform Cloud management token this backend should 
+        /// The Terraform Cloud management token this backend should
         /// use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         /// </summary>
         [Output("tokenWo")]
@@ -538,7 +538,7 @@ namespace Pulumi.Vault.TerraformCloud
         private Input<string>? _token;
 
         /// <summary>
-        /// The Terraform Cloud management token this backend should 
+        /// The Terraform Cloud management token this backend should
         /// use to issue new tokens.
         /// </summary>
         public Input<string>? Token
@@ -556,7 +556,7 @@ namespace Pulumi.Vault.TerraformCloud
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The Terraform Cloud management token this backend should 
+        /// The Terraform Cloud management token this backend should
         /// use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         /// </summary>
         public Input<string>? TokenWo
@@ -818,7 +818,7 @@ namespace Pulumi.Vault.TerraformCloud
         private Input<string>? _token;
 
         /// <summary>
-        /// The Terraform Cloud management token this backend should 
+        /// The Terraform Cloud management token this backend should
         /// use to issue new tokens.
         /// </summary>
         public Input<string>? Token
@@ -836,7 +836,7 @@ namespace Pulumi.Vault.TerraformCloud
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The Terraform Cloud management token this backend should 
+        /// The Terraform Cloud management token this backend should
         /// use to issue new tokens. **Note**: This property is write-only and will not be read from the API.
         /// </summary>
         public Input<string>? TokenWo

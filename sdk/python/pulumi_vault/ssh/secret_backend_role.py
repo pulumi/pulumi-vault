@@ -1412,6 +1412,72 @@ class SecretBackendRole(pulumi.CustomResource):
         __props__.__dict__["ttl"] = ttl
         return SecretBackendRole(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            algorithm_signer: pulumi.Input[Optional[_builtins.str]] = None,
+            allow_bare_domains: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_empty_principals: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_host_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_subdomains: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_user_certificates: pulumi.Input[Optional[_builtins.bool]] = None,
+            allow_user_key_ids: pulumi.Input[Optional[_builtins.bool]] = None,
+            allowed_critical_options: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_domains: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_domains_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            allowed_extensions: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_user_key_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretBackendRoleAllowedUserKeyConfigArgs', 'SecretBackendRoleAllowedUserKeyConfigArgsDict', 'outputs.SecretBackendRoleAllowedUserKeyConfig']]]]] = None,
+            allowed_users: pulumi.Input[Optional[_builtins.str]] = None,
+            allowed_users_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            backend: pulumi.Input[Optional[_builtins.str]] = None,
+            cidr_list: pulumi.Input[Optional[_builtins.str]] = None,
+            default_critical_options: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            default_extensions: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            default_extensions_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            default_user: pulumi.Input[Optional[_builtins.str]] = None,
+            default_user_template: pulumi.Input[Optional[_builtins.bool]] = None,
+            exclude_cidr_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            key_id_format: pulumi.Input[Optional[_builtins.str]] = None,
+            key_type: pulumi.Input[Optional[_builtins.str]] = None,
+            max_ttl: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            namespace: pulumi.Input[Optional[_builtins.str]] = None,
+            not_before_duration: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            ttl: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        __props__["algorithmSigner"] = algorithm_signer
+        __props__["allowBareDomains"] = allow_bare_domains
+        __props__["allowEmptyPrincipals"] = allow_empty_principals
+        __props__["allowHostCertificates"] = allow_host_certificates
+        __props__["allowSubdomains"] = allow_subdomains
+        __props__["allowUserCertificates"] = allow_user_certificates
+        __props__["allowUserKeyIds"] = allow_user_key_ids
+        __props__["allowedCriticalOptions"] = allowed_critical_options
+        __props__["allowedDomains"] = allowed_domains
+        __props__["allowedDomainsTemplate"] = allowed_domains_template
+        __props__["allowedExtensions"] = allowed_extensions
+        __props__["allowedUserKeyConfigs"] = allowed_user_key_configs
+        __props__["allowedUsers"] = allowed_users
+        __props__["allowedUsersTemplate"] = allowed_users_template
+        __props__["backend"] = backend
+        __props__["cidrList"] = cidr_list
+        __props__["defaultCriticalOptions"] = default_critical_options
+        __props__["defaultExtensions"] = default_extensions
+        __props__["defaultExtensionsTemplate"] = default_extensions_template
+        __props__["defaultUser"] = default_user
+        __props__["defaultUserTemplate"] = default_user_template
+        __props__["excludeCidrLists"] = exclude_cidr_lists
+        __props__["keyIdFormat"] = key_id_format
+        __props__["keyType"] = key_type
+        __props__["maxTtl"] = max_ttl
+        __props__["name"] = name
+        __props__["namespace"] = namespace
+        __props__["notBeforeDuration"] = not_before_duration
+        __props__["port"] = port
+        __props__["ttl"] = ttl
+        return pulumi.runtime.exists_resource(None, 'vault:ssh/secretBackendRole:SecretBackendRole', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="algorithmSigner")
     def algorithm_signer(self) -> pulumi.Output[_builtins.str]:
