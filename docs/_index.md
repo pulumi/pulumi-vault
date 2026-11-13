@@ -524,15 +524,16 @@ The path-based `authLogin` configuration block accepts the following arguments:
   to see what can go here.
 ## Example Usage
 
-{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
-{{% choosable language typescript %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: nodejs
+Configure the provider through the `VAULT_ADDR` and `VAULT_TOKEN` environment variables, so that each user can keep separate credentials in their own environment.
+To log in with an auth method instead of a token, see the login examples below.
 
+```bash
+export VAULT_ADDR=https://vault.example.net:8200
+export VAULT_TOKEN=<token>
 ```
 
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
+{{% choosable language typescript %}}
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as vault from "@pulumi/vault";
@@ -548,13 +549,6 @@ const example = new vault.generic.Secret("example", {
 
 {{% /choosable %}}
 {{% choosable language python %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: python
-
-```
-
 ```python
 import pulumi
 import json
@@ -570,13 +564,6 @@ example = vault.generic.Secret("example",
 
 {{% /choosable %}}
 {{% choosable language csharp %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: dotnet
-
-```
-
 ```csharp
 using System.Collections.Generic;
 using System.Linq;
@@ -602,13 +589,6 @@ return await Deployment.RunAsync(() =>
 
 {{% /choosable %}}
 {{% choosable language go %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: go
-
-```
-
 ```go
 package main
 
@@ -644,13 +624,6 @@ func main() {
 {{% /choosable %}}
 {{% choosable language yaml %}}
 ```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: yaml
-
-```
-
-```yaml
 resources:
   example:
     type: vault:generic:Secret
@@ -664,13 +637,6 @@ resources:
 
 {{% /choosable %}}
 {{% choosable language java %}}
-```yaml
-# Pulumi.yaml provider configuration file
-name: configuration-example
-runtime: java
-
-```
-
 ```java
 package generated_program;
 
