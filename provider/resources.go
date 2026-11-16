@@ -599,13 +599,16 @@ var missingDocs = &tfbridge.DocInfo{AllowMissing: true}
 // indexDocsPath is the upstream docs file covering the provider overview page.
 const indexDocsPath = "index.html.markdown"
 
-// Pulumi does encrypt secrets, so redact TF specific warnings.
+// Replaces passages of the overview page that only make sense for Terraform: warnings about unencrypted
+// secrets, which Pulumi does encrypt, and an Example Usage provider block whose guidance lives only in HCL
+// comments, which code translation drops.
 var cleanUpSecretsWarnings = tfbridge.DocsEdit{
 	Path: indexDocsPath,
 	Edit: func(_ string, content []byte) ([]byte, error) {
 		files := []string{
 			"using-credentials",
 			"overview",
+			"example-usage",
 		}
 
 		replacesDir := "provider/installation-replaces/"
