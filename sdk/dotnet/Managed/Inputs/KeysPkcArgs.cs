@@ -97,6 +97,12 @@ namespace Pulumi.Vault.Managed.Inputs
         public Input<string> Pin { get; set; } = null!;
 
         /// <summary>
+        /// The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+        /// </summary>
+        [Input("rsaOaepHash")]
+        public Input<string>? RsaOaepHash { get; set; }
+
+        /// <summary>
         /// The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
         /// </summary>
         [Input("slot")]

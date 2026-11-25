@@ -6,6 +6,7 @@ package com.pulumi.vault.pkiexternalca;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.vault.pkiexternalca.inputs.SecretBackendOrderCertificateTimeoutsArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -82,6 +83,13 @@ public final class SecretBackendOrderCertificateArgs extends com.pulumi.resource
         return this.roleName;
     }
 
+    @Import(name="timeouts")
+    private @Nullable Output<SecretBackendOrderCertificateTimeoutsArgs> timeouts;
+
+    public Optional<Output<SecretBackendOrderCertificateTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
     private SecretBackendOrderCertificateArgs() {}
 
     private SecretBackendOrderCertificateArgs(SecretBackendOrderCertificateArgs $) {
@@ -89,6 +97,7 @@ public final class SecretBackendOrderCertificateArgs extends com.pulumi.resource
         this.namespace = $.namespace;
         this.orderId = $.orderId;
         this.roleName = $.roleName;
+        this.timeouts = $.timeouts;
     }
 
     public static Builder builder() {
@@ -197,6 +206,15 @@ public final class SecretBackendOrderCertificateArgs extends com.pulumi.resource
          */
         public Builder roleName(String roleName) {
             return roleName(Output.of(roleName));
+        }
+
+        public Builder timeouts(@Nullable Output<SecretBackendOrderCertificateTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        public Builder timeouts(SecretBackendOrderCertificateTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
         }
 
         public SecretBackendOrderCertificateArgs build() {

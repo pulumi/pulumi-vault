@@ -15,9 +15,12 @@ import com.pulumi.vault.transform.inputs.GetEncodeArgs;
 import com.pulumi.vault.transform.inputs.GetEncodePlainArgs;
 import com.pulumi.vault.transform.inputs.GetRewrapArgs;
 import com.pulumi.vault.transform.inputs.GetRewrapPlainArgs;
+import com.pulumi.vault.transform.inputs.GetWrappingKeyArgs;
+import com.pulumi.vault.transform.inputs.GetWrappingKeyPlainArgs;
 import com.pulumi.vault.transform.outputs.GetDecodeResult;
 import com.pulumi.vault.transform.outputs.GetEncodeResult;
 import com.pulumi.vault.transform.outputs.GetRewrapResult;
+import com.pulumi.vault.transform.outputs.GetWrappingKeyResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class TransformFunctions {
@@ -1185,5 +1188,265 @@ public final class TransformFunctions {
      */
     public static CompletableFuture<GetRewrapResult> getRewrapPlain(GetRewrapPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:transform/getRewrap:getRewrap", TypeShape.of(GetRewrapResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the public wrapping key of a Transform secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * &gt; **Vault Enterprise only** The Transform secrets engine requires Vault Enterprise.
+     * 
+     * For more information, please refer to [the Vault Transform documentation](https://developer.hashicorp.com/vault/api-docs/secret/transform).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransformFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transform.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWrappingKeyResult> getWrappingKey(GetWrappingKeyArgs args) {
+        return getWrappingKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the public wrapping key of a Transform secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * &gt; **Vault Enterprise only** The Transform secrets engine requires Vault Enterprise.
+     * 
+     * For more information, please refer to [the Vault Transform documentation](https://developer.hashicorp.com/vault/api-docs/secret/transform).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransformFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transform.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetWrappingKeyResult> getWrappingKeyPlain(GetWrappingKeyPlainArgs args) {
+        return getWrappingKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the public wrapping key of a Transform secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * &gt; **Vault Enterprise only** The Transform secrets engine requires Vault Enterprise.
+     * 
+     * For more information, please refer to [the Vault Transform documentation](https://developer.hashicorp.com/vault/api-docs/secret/transform).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransformFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transform.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWrappingKeyResult> getWrappingKey(GetWrappingKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:transform/getWrappingKey:getWrappingKey", TypeShape.of(GetWrappingKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the public wrapping key of a Transform secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * &gt; **Vault Enterprise only** The Transform secrets engine requires Vault Enterprise.
+     * 
+     * For more information, please refer to [the Vault Transform documentation](https://developer.hashicorp.com/vault/api-docs/secret/transform).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransformFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transform.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWrappingKeyResult> getWrappingKey(GetWrappingKeyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:transform/getWrappingKey:getWrappingKey", TypeShape.of(GetWrappingKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the public wrapping key of a Transform secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * &gt; **Vault Enterprise only** The Transform secrets engine requires Vault Enterprise.
+     * 
+     * For more information, please refer to [the Vault Transform documentation](https://developer.hashicorp.com/vault/api-docs/secret/transform).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transform.TransformFunctions;
+     * import com.pulumi.vault.transform.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transform = new Mount("transform", MountArgs.builder()
+     *             .path("transform")
+     *             .type("transform")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransformFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transform.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetWrappingKeyResult> getWrappingKeyPlain(GetWrappingKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:transform/getWrappingKey:getWrappingKey", TypeShape.of(GetWrappingKeyResult.class), args, Utilities.withVersion(options));
     }
 }

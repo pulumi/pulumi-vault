@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiexternalca.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.vault.pkiexternalca.inputs.SecretBackendOrderCertificateTimeoutsArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -142,6 +143,13 @@ public final class SecretBackendOrderCertificateState extends com.pulumi.resourc
         return Optional.ofNullable(this.serialNumber);
     }
 
+    @Import(name="timeouts")
+    private @Nullable Output<SecretBackendOrderCertificateTimeoutsArgs> timeouts;
+
+    public Optional<Output<SecretBackendOrderCertificateTimeoutsArgs>> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
+
     private SecretBackendOrderCertificateState() {}
 
     private SecretBackendOrderCertificateState(SecretBackendOrderCertificateState $) {
@@ -153,6 +161,7 @@ public final class SecretBackendOrderCertificateState extends com.pulumi.resourc
         this.privateKey = $.privateKey;
         this.roleName = $.roleName;
         this.serialNumber = $.serialNumber;
+        this.timeouts = $.timeouts;
     }
 
     public static Builder builder() {
@@ -355,6 +364,15 @@ public final class SecretBackendOrderCertificateState extends com.pulumi.resourc
          */
         public Builder serialNumber(String serialNumber) {
             return serialNumber(Output.of(serialNumber));
+        }
+
+        public Builder timeouts(@Nullable Output<SecretBackendOrderCertificateTimeoutsArgs> timeouts) {
+            $.timeouts = timeouts;
+            return this;
+        }
+
+        public Builder timeouts(SecretBackendOrderCertificateTimeoutsArgs timeouts) {
+            return timeouts(Output.of(timeouts));
         }
 
         public SecretBackendOrderCertificateState build() {

@@ -49,6 +49,12 @@ namespace Pulumi.Vault.Managed.Inputs
         public Input<string> ClientSecret { get; set; } = null!;
 
         /// <summary>
+        /// The encryption mode to use for the key. `Envelope` uses AES-GCM envelope encryption, `Raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+        /// </summary>
+        [Input("encryptionMode")]
+        public Input<string>? EncryptionMode { get; set; }
+
+        /// <summary>
         /// The Azure Cloud environment API endpoints to use
         /// </summary>
         [Input("environment")]

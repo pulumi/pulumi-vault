@@ -20,6 +20,7 @@ public final class GetEncryptResult {
      */
     private String ciphertext;
     private @Nullable String context;
+    private @Nullable String hashAlgorithm;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -28,6 +29,7 @@ public final class GetEncryptResult {
     private String key;
     private @Nullable Integer keyVersion;
     private @Nullable String namespace;
+    private @Nullable String paddingScheme;
     private String plaintext;
 
     private GetEncryptResult() {}
@@ -43,6 +45,9 @@ public final class GetEncryptResult {
     }
     public Optional<String> context() {
         return Optional.ofNullable(this.context);
+    }
+    public Optional<String> hashAlgorithm() {
+        return Optional.ofNullable(this.hashAlgorithm);
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -60,6 +65,9 @@ public final class GetEncryptResult {
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
     }
+    public Optional<String> paddingScheme() {
+        return Optional.ofNullable(this.paddingScheme);
+    }
     public String plaintext() {
         return this.plaintext;
     }
@@ -76,10 +84,12 @@ public final class GetEncryptResult {
         private String backend;
         private String ciphertext;
         private @Nullable String context;
+        private @Nullable String hashAlgorithm;
         private String id;
         private String key;
         private @Nullable Integer keyVersion;
         private @Nullable String namespace;
+        private @Nullable String paddingScheme;
         private String plaintext;
         public Builder() {}
         public Builder(GetEncryptResult defaults) {
@@ -87,10 +97,12 @@ public final class GetEncryptResult {
     	      this.backend = defaults.backend;
     	      this.ciphertext = defaults.ciphertext;
     	      this.context = defaults.context;
+    	      this.hashAlgorithm = defaults.hashAlgorithm;
     	      this.id = defaults.id;
     	      this.key = defaults.key;
     	      this.keyVersion = defaults.keyVersion;
     	      this.namespace = defaults.namespace;
+    	      this.paddingScheme = defaults.paddingScheme;
     	      this.plaintext = defaults.plaintext;
         }
 
@@ -114,6 +126,12 @@ public final class GetEncryptResult {
         public Builder context(@Nullable String context) {
 
             this.context = context;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder hashAlgorithm(@Nullable String hashAlgorithm) {
+
+            this.hashAlgorithm = hashAlgorithm;
             return this;
         }
         @CustomType.Setter
@@ -145,6 +163,12 @@ public final class GetEncryptResult {
             return this;
         }
         @CustomType.Setter
+        public Builder paddingScheme(@Nullable String paddingScheme) {
+
+            this.paddingScheme = paddingScheme;
+            return this;
+        }
+        @CustomType.Setter
         public Builder plaintext(String plaintext) {
             if (plaintext == null) {
               throw new MissingRequiredPropertyException("GetEncryptResult", "plaintext");
@@ -157,10 +181,12 @@ public final class GetEncryptResult {
             _resultValue.backend = backend;
             _resultValue.ciphertext = ciphertext;
             _resultValue.context = context;
+            _resultValue.hashAlgorithm = hashAlgorithm;
             _resultValue.id = id;
             _resultValue.key = key;
             _resultValue.keyVersion = keyVersion;
             _resultValue.namespace = namespace;
+            _resultValue.paddingScheme = paddingScheme;
             _resultValue.plaintext = plaintext;
             return _resultValue;
         }

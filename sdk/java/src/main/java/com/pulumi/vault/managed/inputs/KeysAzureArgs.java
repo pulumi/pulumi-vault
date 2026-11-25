@@ -109,6 +109,21 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+     * 
+     */
+    @Import(name="encryptionMode")
+    private @Nullable Output<String> encryptionMode;
+
+    /**
+     * @return The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+     * 
+     */
+    public Optional<Output<String>> encryptionMode() {
+        return Optional.ofNullable(this.encryptionMode);
+    }
+
+    /**
      * The Azure Cloud environment API endpoints to use
      * 
      */
@@ -267,6 +282,7 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
         this.anyMount = $.anyMount;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
+        this.encryptionMode = $.encryptionMode;
         this.environment = $.environment;
         this.keyBits = $.keyBits;
         this.keyName = $.keyName;
@@ -421,6 +437,27 @@ public final class KeysAzureArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder clientSecret(String clientSecret) {
             return clientSecret(Output.of(clientSecret));
+        }
+
+        /**
+         * @param encryptionMode The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionMode(@Nullable Output<String> encryptionMode) {
+            $.encryptionMode = encryptionMode;
+            return this;
+        }
+
+        /**
+         * @param encryptionMode The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder encryptionMode(String encryptionMode) {
+            return encryptionMode(Output.of(encryptionMode));
         }
 
         /**

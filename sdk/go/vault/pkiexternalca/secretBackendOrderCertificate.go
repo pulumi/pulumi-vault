@@ -170,6 +170,14 @@ import (
 //
 // ```
 //
+// ## Troubleshooting
+//
+// ### Common Timeout Scenarios
+//
+// If resource creation fails with an error indicating the order did not reach `completed` status within the configured timeout:
+//
+// * **DNS-01 Propagation Delays**: For DNS-01 challenges with slow propagation across public or authoritative nameservers, the ACME CA may take several minutes to successfully validate the challenge record. Increase `timeouts.create` to 5–10 minutes (e.g., `create = "10m"`) to allow sufficient time for propagation and validation
+//
 // ## Import
 //
 // PKI External CA order certificates can be imported using the format `<mount>/role/<role_name>/order/<order_id>/certificate`, e.g.
@@ -178,7 +186,7 @@ import (
 // $ pulumi import vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate example pki-external-ca/role/example-role/order/abc123/certificate
 // ```
 //
-// > **Note** This resource polls the order status with a timeout. If the order does not complete within the polling period, the resource creation will fail. Ensure all challenges are properly fulfilled before creating this resource.
+// > **Note** This resource polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.create` value (default `60s`). Ensure all challenges are properly fulfilled before creating this resource, otherwise the order will not complete within the timeout.
 type SecretBackendOrderCertificate struct {
 	pulumi.CustomResourceState
 
@@ -200,7 +208,8 @@ type SecretBackendOrderCertificate struct {
 	// Name of the role associated with the order.
 	RoleName pulumi.StringOutput `pulumi:"roleName"`
 	// The serial number of the issued certificate.
-	SerialNumber pulumi.StringOutput `pulumi:"serialNumber"`
+	SerialNumber pulumi.StringOutput                            `pulumi:"serialNumber"`
+	Timeouts     SecretBackendOrderCertificateTimeoutsPtrOutput `pulumi:"timeouts"`
 }
 
 // NewSecretBackendOrderCertificate registers a new resource with the given unique name, arguments, and options.
@@ -264,7 +273,8 @@ type secretBackendOrderCertificateState struct {
 	// Name of the role associated with the order.
 	RoleName *string `pulumi:"roleName"`
 	// The serial number of the issued certificate.
-	SerialNumber *string `pulumi:"serialNumber"`
+	SerialNumber *string                                `pulumi:"serialNumber"`
+	Timeouts     *SecretBackendOrderCertificateTimeouts `pulumi:"timeouts"`
 }
 
 type SecretBackendOrderCertificateState struct {
@@ -287,6 +297,7 @@ type SecretBackendOrderCertificateState struct {
 	RoleName pulumi.StringPtrInput
 	// The serial number of the issued certificate.
 	SerialNumber pulumi.StringPtrInput
+	Timeouts     SecretBackendOrderCertificateTimeoutsPtrInput
 }
 
 func (SecretBackendOrderCertificateState) ElementType() reflect.Type {
@@ -310,7 +321,8 @@ type secretBackendOrderCertificateArgs struct {
 	// The unique identifier for the ACME order.
 	OrderId string `pulumi:"orderId"`
 	// Name of the role associated with the order.
-	RoleName string `pulumi:"roleName"`
+	RoleName string                                 `pulumi:"roleName"`
+	Timeouts *SecretBackendOrderCertificateTimeouts `pulumi:"timeouts"`
 }
 
 // The set of arguments for constructing a SecretBackendOrderCertificate resource.
@@ -326,6 +338,7 @@ type SecretBackendOrderCertificateArgs struct {
 	OrderId pulumi.StringInput
 	// Name of the role associated with the order.
 	RoleName pulumi.StringInput
+	Timeouts SecretBackendOrderCertificateTimeoutsPtrInput
 }
 
 func (SecretBackendOrderCertificateArgs) ElementType() reflect.Type {
@@ -456,6 +469,12 @@ func (o SecretBackendOrderCertificateOutput) RoleName() pulumi.StringOutput {
 // The serial number of the issued certificate.
 func (o SecretBackendOrderCertificateOutput) SerialNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendOrderCertificate) pulumi.StringOutput { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+func (o SecretBackendOrderCertificateOutput) Timeouts() SecretBackendOrderCertificateTimeoutsPtrOutput {
+	return o.ApplyT(func(v *SecretBackendOrderCertificate) SecretBackendOrderCertificateTimeoutsPtrOutput {
+		return v.Timeouts
+	}).(SecretBackendOrderCertificateTimeoutsPtrOutput)
 }
 
 type SecretBackendOrderCertificateArrayOutput struct{ *pulumi.OutputState }

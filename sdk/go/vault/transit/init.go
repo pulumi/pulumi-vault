@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "vault:transit/secretBackendImportedKey:SecretBackendImportedKey":
+		r = &SecretBackendImportedKey{}
 	case "vault:transit/secretBackendKey:SecretBackendKey":
 		r = &SecretBackendKey{}
 	case "vault:transit/secretCacheConfig:SecretCacheConfig":
@@ -38,6 +40,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"vault",
+		"transit/secretBackendImportedKey",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"vault",
 		"transit/secretBackendKey",

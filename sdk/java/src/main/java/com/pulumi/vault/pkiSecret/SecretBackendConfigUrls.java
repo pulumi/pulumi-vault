@@ -105,6 +105,20 @@ public class SecretBackendConfigUrls extends com.pulumi.resources.CustomResource
         return Codegen.optional(this.crlDistributionPoints);
     }
     /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     * 
+     */
+    @Export(name="deltaCrlDistributionPoints", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> deltaCrlDistributionPoints;
+
+    /**
+     * @return Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     * 
+     */
+    public Output<Optional<List<String>>> deltaCrlDistributionPoints() {
+        return Codegen.optional(this.deltaCrlDistributionPoints);
+    }
+    /**
      * Specifies that templating of AIA fields is allowed.
      * 
      */

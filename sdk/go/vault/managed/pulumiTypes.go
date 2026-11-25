@@ -249,6 +249,8 @@ type KeysAzure struct {
 	ClientId string `pulumi:"clientId"`
 	// The client secret for credentials to query the Azure APIs
 	ClientSecret string `pulumi:"clientSecret"`
+	// The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+	EncryptionMode *string `pulumi:"encryptionMode"`
 	// The Azure Cloud environment API endpoints to use
 	Environment *string `pulumi:"environment"`
 	// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
@@ -295,6 +297,8 @@ type KeysAzureArgs struct {
 	ClientId pulumi.StringInput `pulumi:"clientId"`
 	// The client secret for credentials to query the Azure APIs
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+	EncryptionMode pulumi.StringPtrInput `pulumi:"encryptionMode"`
 	// The Azure Cloud environment API endpoints to use
 	Environment pulumi.StringPtrInput `pulumi:"environment"`
 	// The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
@@ -396,6 +400,11 @@ func (o KeysAzureOutput) ClientId() pulumi.StringOutput {
 // The client secret for credentials to query the Azure APIs
 func (o KeysAzureOutput) ClientSecret() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysAzure) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+func (o KeysAzureOutput) EncryptionMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeysAzure) *string { return v.EncryptionMode }).(pulumi.StringPtrOutput)
 }
 
 // The Azure Cloud environment API endpoints to use
@@ -711,6 +720,8 @@ type KeysPkc struct {
 	Name string `pulumi:"name"`
 	// The PIN for login
 	Pin string `pulumi:"pin"`
+	// The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+	RsaOaepHash *string `pulumi:"rsaOaepHash"`
 	// The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
 	Slot *string `pulumi:"slot"`
 	// The slot token label to use
@@ -761,6 +772,8 @@ type KeysPkcArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// The PIN for login
 	Pin pulumi.StringInput `pulumi:"pin"`
+	// The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+	RsaOaepHash pulumi.StringPtrInput `pulumi:"rsaOaepHash"`
 	// The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
 	Slot pulumi.StringPtrInput `pulumi:"slot"`
 	// The slot token label to use
@@ -890,6 +903,11 @@ func (o KeysPkcOutput) Name() pulumi.StringOutput {
 // The PIN for login
 func (o KeysPkcOutput) Pin() pulumi.StringOutput {
 	return o.ApplyT(func(v KeysPkc) string { return v.Pin }).(pulumi.StringOutput)
+}
+
+// The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+func (o KeysPkcOutput) RsaOaepHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeysPkc) *string { return v.RsaOaepHash }).(pulumi.StringPtrOutput)
 }
 
 // The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')

@@ -78,9 +78,9 @@ type SecretBackendKey struct {
 	KeyName pulumi.StringPtrOutput `pulumi:"keyName"`
 	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType pulumi.StringOutput `pulumi:"keyType"`
-	// The managed key's UUID.
+	// The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId pulumi.StringPtrOutput `pulumi:"managedKeyId"`
-	// The managed key's configured name.
+	// The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName pulumi.StringPtrOutput `pulumi:"managedKeyName"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -89,7 +89,7 @@ type SecretBackendKey struct {
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
 	ParameterSet pulumi.StringOutput `pulumi:"parameterSet"`
-	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -143,9 +143,9 @@ type secretBackendKeyState struct {
 	KeyName *string `pulumi:"keyName"`
 	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType *string `pulumi:"keyType"`
-	// The managed key's UUID.
+	// The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
-	// The managed key's configured name.
+	// The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -154,7 +154,7 @@ type secretBackendKeyState struct {
 	Namespace *string `pulumi:"namespace"`
 	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
 	ParameterSet *string `pulumi:"parameterSet"`
-	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
 	Type *string `pulumi:"type"`
 }
 
@@ -173,9 +173,9 @@ type SecretBackendKeyState struct {
 	KeyName pulumi.StringPtrInput
 	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType pulumi.StringPtrInput
-	// The managed key's UUID.
+	// The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId pulumi.StringPtrInput
-	// The managed key's configured name.
+	// The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -184,7 +184,7 @@ type SecretBackendKeyState struct {
 	Namespace pulumi.StringPtrInput
 	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
 	ParameterSet pulumi.StringPtrInput
-	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
 	Type pulumi.StringPtrInput
 }
 
@@ -211,9 +211,9 @@ type secretBackendKeyArgs struct {
 	KeyName *string `pulumi:"keyName"`
 	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType *string `pulumi:"keyType"`
-	// The managed key's UUID.
+	// The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
-	// The managed key's configured name.
+	// The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -222,7 +222,7 @@ type secretBackendKeyArgs struct {
 	Namespace *string `pulumi:"namespace"`
 	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
 	ParameterSet *string `pulumi:"parameterSet"`
-	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
 	Type string `pulumi:"type"`
 }
 
@@ -240,9 +240,9 @@ type SecretBackendKeyArgs struct {
 	KeyName pulumi.StringPtrInput
 	// Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
 	KeyType pulumi.StringPtrInput
-	// The managed key's UUID.
+	// The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId pulumi.StringPtrInput
-	// The managed key's configured name.
+	// The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName pulumi.StringPtrInput
 	// The namespace to provision the resource in.
 	// The value should not contain leading or trailing forward slashes.
@@ -251,7 +251,7 @@ type SecretBackendKeyArgs struct {
 	Namespace pulumi.StringPtrInput
 	// For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
 	ParameterSet pulumi.StringPtrInput
-	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+	// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
 	Type pulumi.StringInput
 }
 
@@ -371,12 +371,12 @@ func (o SecretBackendKeyOutput) KeyType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringOutput { return v.KeyType }).(pulumi.StringOutput)
 }
 
-// The managed key's UUID.
+// The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
 func (o SecretBackendKeyOutput) ManagedKeyId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.ManagedKeyId }).(pulumi.StringPtrOutput)
 }
 
-// The managed key's configured name.
+// The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
 func (o SecretBackendKeyOutput) ManagedKeyName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringPtrOutput { return v.ManagedKeyName }).(pulumi.StringPtrOutput)
 }
@@ -394,7 +394,7 @@ func (o SecretBackendKeyOutput) ParameterSet() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringOutput { return v.ParameterSet }).(pulumi.StringOutput)
 }
 
-// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+// Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
 func (o SecretBackendKeyOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendKey) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

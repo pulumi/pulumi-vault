@@ -154,28 +154,28 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return this.keyType;
     }
     /**
-     * The managed key&#39;s UUID.
+     * The managed key&#39;s UUID. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     @Export(name="managedKeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyId;
 
     /**
-     * @return The managed key&#39;s UUID.
+     * @return The managed key&#39;s UUID. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     public Output<Optional<String>> managedKeyId() {
         return Codegen.optional(this.managedKeyId);
     }
     /**
-     * The managed key&#39;s configured name.
+     * The managed key&#39;s configured name. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     @Export(name="managedKeyName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> managedKeyName;
 
     /**
-     * @return The managed key&#39;s configured name.
+     * @return The managed key&#39;s configured name. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     public Output<Optional<String>> managedKeyName() {
@@ -216,14 +216,14 @@ public class SecretBackendKey extends com.pulumi.resources.CustomResource {
         return this.parameterSet;
     }
     /**
-     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+     * @return Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
      * 
      */
     public Output<String> type() {

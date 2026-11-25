@@ -17,6 +17,21 @@ public final class TpmAuthBackendConfigState extends com.pulumi.resources.Resour
     public static final TpmAuthBackendConfigState Empty = new TpmAuthBackendConfigState();
 
     /**
+     * The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault&#39;s default.
+     * 
+     */
+    @Import(name="aliasMode")
+    private @Nullable Output<String> aliasMode;
+
+    /**
+     * @return The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault&#39;s default.
+     * 
+     */
+    public Optional<Output<String>> aliasMode() {
+        return Optional.ofNullable(this.aliasMode);
+    }
+
+    /**
      * How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault&#39;s default.
      * 
      */
@@ -98,6 +113,7 @@ public final class TpmAuthBackendConfigState extends com.pulumi.resources.Resour
     private TpmAuthBackendConfigState() {}
 
     private TpmAuthBackendConfigState(TpmAuthBackendConfigState $) {
+        this.aliasMode = $.aliasMode;
         this.caLifetime = $.caLifetime;
         this.caSoftExpiry = $.caSoftExpiry;
         this.defaultCertTtl = $.defaultCertTtl;
@@ -121,6 +137,27 @@ public final class TpmAuthBackendConfigState extends com.pulumi.resources.Resour
 
         public Builder(TpmAuthBackendConfigState defaults) {
             $ = new TpmAuthBackendConfigState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param aliasMode The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault&#39;s default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aliasMode(@Nullable Output<String> aliasMode) {
+            $.aliasMode = aliasMode;
+            return this;
+        }
+
+        /**
+         * @param aliasMode The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault&#39;s default.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aliasMode(String aliasMode) {
+            return aliasMode(Output.of(aliasMode));
         }
 
         /**

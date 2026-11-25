@@ -223,7 +223,16 @@ public final class PkiexternalcaFunctions {
      * 
      * This challenge type is more complex and typically requires custom TLS server configuration.
      * 
-     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+     * 
+     * ## Troubleshooting
+     * 
+     * ### Common Timeout Scenarios
+     * 
+     * If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+     * 
+     * * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = &#34;5m&#34;`).
+     * * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
      * 
      */
     public static Output<GetSecretBackendOrderChallengeResult> getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs args) {
@@ -437,7 +446,16 @@ public final class PkiexternalcaFunctions {
      * 
      * This challenge type is more complex and typically requires custom TLS server configuration.
      * 
-     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+     * 
+     * ## Troubleshooting
+     * 
+     * ### Common Timeout Scenarios
+     * 
+     * If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+     * 
+     * * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = &#34;5m&#34;`).
+     * * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
      * 
      */
     public static CompletableFuture<GetSecretBackendOrderChallengeResult> getSecretBackendOrderChallengePlain(GetSecretBackendOrderChallengePlainArgs args) {
@@ -651,7 +669,16 @@ public final class PkiexternalcaFunctions {
      * 
      * This challenge type is more complex and typically requires custom TLS server configuration.
      * 
-     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+     * 
+     * ## Troubleshooting
+     * 
+     * ### Common Timeout Scenarios
+     * 
+     * If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+     * 
+     * * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = &#34;5m&#34;`).
+     * * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
      * 
      */
     public static Output<GetSecretBackendOrderChallengeResult> getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs args, InvokeOptions options) {
@@ -865,7 +892,16 @@ public final class PkiexternalcaFunctions {
      * 
      * This challenge type is more complex and typically requires custom TLS server configuration.
      * 
-     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+     * 
+     * ## Troubleshooting
+     * 
+     * ### Common Timeout Scenarios
+     * 
+     * If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+     * 
+     * * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = &#34;5m&#34;`).
+     * * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
      * 
      */
     public static Output<GetSecretBackendOrderChallengeResult> getSecretBackendOrderChallenge(GetSecretBackendOrderChallengeArgs args, InvokeOutputOptions options) {
@@ -1079,7 +1115,16 @@ public final class PkiexternalcaFunctions {
      * 
      * This challenge type is more complex and typically requires custom TLS server configuration.
      * 
-     * &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+     * &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+     * 
+     * ## Troubleshooting
+     * 
+     * ### Common Timeout Scenarios
+     * 
+     * If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+     * 
+     * * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = &#34;5m&#34;`).
+     * * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
      * 
      */
     public static CompletableFuture<GetSecretBackendOrderChallengeResult> getSecretBackendOrderChallengePlain(GetSecretBackendOrderChallengePlainArgs args, InvokeOptions options) {

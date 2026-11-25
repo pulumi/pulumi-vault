@@ -108,7 +108,7 @@ type SecretBackendRootCert struct {
 	// the name for this. The global ref `default` may not be used as a name.
 	KeyName pulumi.StringOutput `pulumi:"keyName"`
 	// Specifies the key (either default, by name, or by identifier) to use
-	// for generating this request. Only suitable for `type=existing` requests.
+	// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
 	KeyRef pulumi.StringOutput `pulumi:"keyRef"`
 	// The desired key type
 	KeyType pulumi.StringPtrOutput `pulumi:"keyType"`
@@ -117,10 +117,10 @@ type SecretBackendRootCert struct {
 	// The locality
 	Locality pulumi.StringPtrOutput `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
-	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	// required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId pulumi.StringOutput `pulumi:"managedKeyId"`
 	// The name of the previously configured managed key. This field is
-	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName pulumi.StringOutput `pulumi:"managedKeyName"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrOutput `pulumi:"maxPathLength"`
@@ -170,7 +170,7 @@ type SecretBackendRootCert struct {
 	// Time to live
 	Ttl pulumi.StringPtrOutput `pulumi:"ttl"`
 	// Type of intermediate to create. Must be either \"exported\", \"internal\"
-	// or \"kms\"
+	// or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// List of alternative URIs
 	UriSans pulumi.StringArrayOutput `pulumi:"uriSans"`
@@ -260,7 +260,7 @@ type secretBackendRootCertState struct {
 	// the name for this. The global ref `default` may not be used as a name.
 	KeyName *string `pulumi:"keyName"`
 	// Specifies the key (either default, by name, or by identifier) to use
-	// for generating this request. Only suitable for `type=existing` requests.
+	// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
 	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
@@ -269,10 +269,10 @@ type secretBackendRootCertState struct {
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
-	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	// required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
 	// The name of the previously configured managed key. This field is
-	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength *int `pulumi:"maxPathLength"`
@@ -322,7 +322,7 @@ type secretBackendRootCertState struct {
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
 	// Type of intermediate to create. Must be either \"exported\", \"internal\"
-	// or \"kms\"
+	// or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
 	Type *string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
@@ -374,7 +374,7 @@ type SecretBackendRootCertState struct {
 	// the name for this. The global ref `default` may not be used as a name.
 	KeyName pulumi.StringPtrInput
 	// Specifies the key (either default, by name, or by identifier) to use
-	// for generating this request. Only suitable for `type=existing` requests.
+	// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
 	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
@@ -383,10 +383,10 @@ type SecretBackendRootCertState struct {
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The ID of the previously configured managed key. This field is
-	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	// required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId pulumi.StringPtrInput
 	// The name of the previously configured managed key. This field is
-	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrInput
@@ -436,7 +436,7 @@ type SecretBackendRootCertState struct {
 	// Time to live
 	Ttl pulumi.StringPtrInput
 	// Type of intermediate to create. Must be either \"exported\", \"internal\"
-	// or \"kms\"
+	// or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
 	Type pulumi.StringPtrInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
@@ -490,7 +490,7 @@ type secretBackendRootCertArgs struct {
 	// the name for this. The global ref `default` may not be used as a name.
 	KeyName *string `pulumi:"keyName"`
 	// Specifies the key (either default, by name, or by identifier) to use
-	// for generating this request. Only suitable for `type=existing` requests.
+	// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
 	KeyRef *string `pulumi:"keyRef"`
 	// The desired key type
 	KeyType *string `pulumi:"keyType"`
@@ -499,10 +499,10 @@ type secretBackendRootCertArgs struct {
 	// The locality
 	Locality *string `pulumi:"locality"`
 	// The ID of the previously configured managed key. This field is
-	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	// required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId *string `pulumi:"managedKeyId"`
 	// The name of the previously configured managed key. This field is
-	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName *string `pulumi:"managedKeyName"`
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength *int `pulumi:"maxPathLength"`
@@ -550,7 +550,7 @@ type secretBackendRootCertArgs struct {
 	// Time to live
 	Ttl *string `pulumi:"ttl"`
 	// Type of intermediate to create. Must be either \"exported\", \"internal\"
-	// or \"kms\"
+	// or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
 	Type string `pulumi:"type"`
 	// List of alternative URIs
 	UriSans []string `pulumi:"uriSans"`
@@ -595,7 +595,7 @@ type SecretBackendRootCertArgs struct {
 	// the name for this. The global ref `default` may not be used as a name.
 	KeyName pulumi.StringPtrInput
 	// Specifies the key (either default, by name, or by identifier) to use
-	// for generating this request. Only suitable for `type=existing` requests.
+	// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
 	KeyRef pulumi.StringPtrInput
 	// The desired key type
 	KeyType pulumi.StringPtrInput
@@ -604,10 +604,10 @@ type SecretBackendRootCertArgs struct {
 	// The locality
 	Locality pulumi.StringPtrInput
 	// The ID of the previously configured managed key. This field is
-	// required if `type` is `kms` and it conflicts with `managedKeyName`
+	// required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyId pulumi.StringPtrInput
 	// The name of the previously configured managed key. This field is
-	// required if `type` is `kms`  and it conflicts with `managedKeyId`
+	// required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
 	ManagedKeyName pulumi.StringPtrInput
 	// The maximum path length to encode in the generated certificate
 	MaxPathLength pulumi.IntPtrInput
@@ -655,7 +655,7 @@ type SecretBackendRootCertArgs struct {
 	// Time to live
 	Ttl pulumi.StringPtrInput
 	// Type of intermediate to create. Must be either \"exported\", \"internal\"
-	// or \"kms\"
+	// or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
 	Type pulumi.StringInput
 	// List of alternative URIs
 	UriSans pulumi.StringArrayInput
@@ -853,7 +853,7 @@ func (o SecretBackendRootCertOutput) KeyName() pulumi.StringOutput {
 }
 
 // Specifies the key (either default, by name, or by identifier) to use
-// for generating this request. Only suitable for `type=existing` requests.
+// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
 func (o SecretBackendRootCertOutput) KeyRef() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.KeyRef }).(pulumi.StringOutput)
 }
@@ -874,13 +874,13 @@ func (o SecretBackendRootCertOutput) Locality() pulumi.StringPtrOutput {
 }
 
 // The ID of the previously configured managed key. This field is
-// required if `type` is `kms` and it conflicts with `managedKeyName`
+// required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
 func (o SecretBackendRootCertOutput) ManagedKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.ManagedKeyId }).(pulumi.StringOutput)
 }
 
 // The name of the previously configured managed key. This field is
-// required if `type` is `kms`  and it conflicts with `managedKeyId`
+// required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
 func (o SecretBackendRootCertOutput) ManagedKeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.ManagedKeyName }).(pulumi.StringOutput)
 }
@@ -996,7 +996,7 @@ func (o SecretBackendRootCertOutput) Ttl() pulumi.StringPtrOutput {
 }
 
 // Type of intermediate to create. Must be either \"exported\", \"internal\"
-// or \"kms\"
+// or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
 func (o SecretBackendRootCertOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *SecretBackendRootCert) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

@@ -93,68 +93,7 @@ namespace Pulumi.Vault.Jwt
     /// });
     /// ```
     /// 
-    /// Configuring the auth backend with a `provider_config:
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var gsuite = new Vault.Jwt.AuthBackend("gsuite", new()
-    ///     {
-    ///         Description = "OIDC backend",
-    ///         OidcDiscoveryUrl = "https://accounts.google.com",
-    ///         Path = "oidc",
-    ///         Type = "oidc",
-    ///         ProviderConfig = 
-    ///         {
-    ///             { "provider", "gsuite" },
-    ///             { "fetch_groups", "true" },
-    ///             { "fetch_user_info", "true" },
-    ///             { "groups_recurse_max_depth", "1" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Vault = Pulumi.Vault;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var okta = new Vault.Jwt.AuthBackend("okta", new()
-    ///     {
-    ///         Description = "OIDC backend",
-    ///         OidcDiscoveryUrl = "https://mycompany.okta.com/oauth2/default",
-    ///         Path = "oidc",
-    ///         Type = "oidc",
-    ///         ProviderConfig = 
-    ///         {
-    ///             { "provider", "okta" },
-    ///             { "fetch_groups", "true" },
-    ///             { "org_url", "https://mycompany.okta.com" },
-    ///             { "api_token", "12345" },
-    ///             { "groups_cap", "200" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ## Ephemeral Attributes Reference
-    /// 
-    /// The following write-only attributes are supported:
-    /// 
-    /// * `OidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `OidcClientSecret`. Must be used with `OidcClientSecretWoVersion`. To rotate the secret, update the value and increment `OidcClientSecretWoVersion`.
+    /// Manage OIDC auth backend with write-only client ID and secret fed from an ephemeral KVv2 secret:
     /// 
     /// ## Import
     /// 
@@ -251,19 +190,28 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-        /// 
-        /// * tune - (Optional) Extra configuration block. Structure is documented below.
-        /// 
-        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Output("namespaceInState")]
         public Output<bool?> NamespaceInState { get; private set; } = null!;
 
         /// <summary>
-        /// Client ID used for OIDC backends
+        /// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `OidcClientIdWo` instead.
         /// </summary>
         [Output("oidcClientId")]
         public Output<string?> OidcClientId { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Client ID used for OIDC. Use this instead of OidcClientId to accept ephemeral values.
+        /// </summary>
+        [Output("oidcClientIdWo")]
+        public Output<string?> OidcClientIdWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Version counter for the write-only `OidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `OidcClientIdWo`.
+        /// </summary>
+        [Output("oidcClientIdWoVersion")]
+        public Output<int?> OidcClientIdWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `OidcClientSecretWo` instead.
@@ -329,6 +277,16 @@ namespace Pulumi.Vault.Jwt
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+        /// 
+        /// * tune - (Optional) Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        [Output("unsupportedCriticalCertExtensions")]
+        public Output<ImmutableArray<string>> UnsupportedCriticalCertExtensions { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -354,6 +312,7 @@ namespace Pulumi.Vault.Jwt
                 Version = Utilities.Version,
                 AdditionalSecretOutputs =
                 {
+                    "oidcClientIdWo",
                     "oidcClientSecret",
                     "oidcClientSecretWo",
                 },
@@ -470,19 +429,38 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-        /// 
-        /// * tune - (Optional) Extra configuration block. Structure is documented below.
-        /// 
-        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("namespaceInState")]
         public Input<bool>? NamespaceInState { get; set; }
 
         /// <summary>
-        /// Client ID used for OIDC backends
+        /// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `OidcClientIdWo` instead.
         /// </summary>
         [Input("oidcClientId")]
         public Input<string>? OidcClientId { get; set; }
+
+        [Input("oidcClientIdWo")]
+        private Input<string>? _oidcClientIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Client ID used for OIDC. Use this instead of OidcClientId to accept ephemeral values.
+        /// </summary>
+        public Input<string>? OidcClientIdWo
+        {
+            get => _oidcClientIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _oidcClientIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `OidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `OidcClientIdWo`.
+        /// </summary>
+        [Input("oidcClientIdWoVersion")]
+        public Input<int>? OidcClientIdWoVersion { get; set; }
 
         [Input("oidcClientSecret")]
         private Input<string>? _oidcClientSecret;
@@ -579,6 +557,22 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        [Input("unsupportedCriticalCertExtensions")]
+        private InputList<string>? _unsupportedCriticalCertExtensions;
+
+        /// <summary>
+        /// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+        /// 
+        /// * tune - (Optional) Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        public InputList<string> UnsupportedCriticalCertExtensions
+        {
+            get => _unsupportedCriticalCertExtensions ?? (_unsupportedCriticalCertExtensions = new InputList<string>());
+            set => _unsupportedCriticalCertExtensions = value;
+        }
 
         public AuthBackendArgs()
         {
@@ -684,19 +678,38 @@ namespace Pulumi.Vault.Jwt
 
         /// <summary>
         /// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-        /// 
-        /// * tune - (Optional) Extra configuration block. Structure is documented below.
-        /// 
-        /// The `Tune` block is used to tune the auth backend:
         /// </summary>
         [Input("namespaceInState")]
         public Input<bool>? NamespaceInState { get; set; }
 
         /// <summary>
-        /// Client ID used for OIDC backends
+        /// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `OidcClientIdWo` instead.
         /// </summary>
         [Input("oidcClientId")]
         public Input<string>? OidcClientId { get; set; }
+
+        [Input("oidcClientIdWo")]
+        private Input<string>? _oidcClientIdWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// Write-only Client ID used for OIDC. Use this instead of OidcClientId to accept ephemeral values.
+        /// </summary>
+        public Input<string>? OidcClientIdWo
+        {
+            get => _oidcClientIdWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _oidcClientIdWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Version counter for the write-only `OidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `OidcClientIdWo`.
+        /// </summary>
+        [Input("oidcClientIdWoVersion")]
+        public Input<int>? OidcClientIdWoVersion { get; set; }
 
         [Input("oidcClientSecret")]
         private Input<string>? _oidcClientSecret;
@@ -793,6 +806,22 @@ namespace Pulumi.Vault.Jwt
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        [Input("unsupportedCriticalCertExtensions")]
+        private InputList<string>? _unsupportedCriticalCertExtensions;
+
+        /// <summary>
+        /// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+        /// 
+        /// * tune - (Optional) Extra configuration block. Structure is documented below.
+        /// 
+        /// The `Tune` block is used to tune the auth backend:
+        /// </summary>
+        public InputList<string> UnsupportedCriticalCertExtensions
+        {
+            get => _unsupportedCriticalCertExtensions ?? (_unsupportedCriticalCertExtensions = new InputList<string>());
+            set => _unsupportedCriticalCertExtensions = value;
+        }
 
         public AuthBackendState()
         {

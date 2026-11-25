@@ -164,7 +164,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
     declare public readonly keyName: pulumi.Output<string>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
-     * for generating this request. Only suitable for `type=existing` requests.
+     * for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
      */
     declare public readonly keyRef: pulumi.Output<string>;
     /**
@@ -181,12 +181,12 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
     declare public readonly locality: pulumi.Output<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     declare public readonly managedKeyId: pulumi.Output<string>;
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     declare public readonly managedKeyName: pulumi.Output<string>;
     /**
@@ -280,7 +280,7 @@ export class SecretBackendRootCert extends pulumi.CustomResource {
     declare public readonly ttl: pulumi.Output<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\", \"internal\"
-     * or \"kms\"
+     * or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
      */
     declare public readonly type: pulumi.Output<string>;
     /**
@@ -510,7 +510,7 @@ export interface SecretBackendRootCertState {
     keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
-     * for generating this request. Only suitable for `type=existing` requests.
+     * for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
      */
     keyRef?: pulumi.Input<string | undefined>;
     /**
@@ -527,12 +527,12 @@ export interface SecretBackendRootCertState {
     locality?: pulumi.Input<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyName?: pulumi.Input<string | undefined>;
     /**
@@ -626,7 +626,7 @@ export interface SecretBackendRootCertState {
     ttl?: pulumi.Input<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\", \"internal\"
-     * or \"kms\"
+     * or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
      */
     type?: pulumi.Input<string | undefined>;
     /**
@@ -711,7 +711,7 @@ export interface SecretBackendRootCertArgs {
     keyName?: pulumi.Input<string | undefined>;
     /**
      * Specifies the key (either default, by name, or by identifier) to use
-     * for generating this request. Only suitable for `type=existing` requests.
+     * for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
      */
     keyRef?: pulumi.Input<string | undefined>;
     /**
@@ -728,12 +728,12 @@ export interface SecretBackendRootCertArgs {
     locality?: pulumi.Input<string | undefined>;
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyId?: pulumi.Input<string | undefined>;
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyName?: pulumi.Input<string | undefined>;
     /**
@@ -823,7 +823,7 @@ export interface SecretBackendRootCertArgs {
     ttl?: pulumi.Input<string | undefined>;
     /**
      * Type of intermediate to create. Must be either \"exported\", \"internal\"
-     * or \"kms\"
+     * or \"kms\". Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `"kms"`.
      */
     type: pulumi.Input<string>;
     /**

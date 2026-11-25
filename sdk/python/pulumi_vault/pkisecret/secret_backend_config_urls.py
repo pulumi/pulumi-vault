@@ -21,6 +21,7 @@ class SecretBackendConfigUrlsArgs:
     def __init__(__self__, *,
                  backend: pulumi.Input[_builtins.str],
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
                  issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -30,6 +31,7 @@ class SecretBackendConfigUrlsArgs:
 
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] enable_templating: Specifies that templating of AIA fields is allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -41,6 +43,8 @@ class SecretBackendConfigUrlsArgs:
         pulumi.set(__self__, "backend", backend)
         if crl_distribution_points is not None:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
+        if delta_crl_distribution_points is not None:
+            pulumi.set(__self__, "delta_crl_distribution_points", delta_crl_distribution_points)
         if enable_templating is not None:
             pulumi.set(__self__, "enable_templating", enable_templating)
         if issuing_certificates is not None:
@@ -73,6 +77,18 @@ class SecretBackendConfigUrlsArgs:
     @crl_distribution_points.setter
     def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deltaCrlDistributionPoints")
+    def delta_crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        """
+        return pulumi.get(self, "delta_crl_distribution_points")
+
+    @delta_crl_distribution_points.setter
+    def delta_crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "delta_crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="enableTemplating")
@@ -131,6 +147,7 @@ class _SecretBackendConfigUrlsState:
     def __init__(__self__, *,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
                  issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -140,6 +157,7 @@ class _SecretBackendConfigUrlsState:
 
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] enable_templating: Specifies that templating of AIA fields is allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -152,6 +170,8 @@ class _SecretBackendConfigUrlsState:
             pulumi.set(__self__, "backend", backend)
         if crl_distribution_points is not None:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
+        if delta_crl_distribution_points is not None:
+            pulumi.set(__self__, "delta_crl_distribution_points", delta_crl_distribution_points)
         if enable_templating is not None:
             pulumi.set(__self__, "enable_templating", enable_templating)
         if issuing_certificates is not None:
@@ -184,6 +204,18 @@ class _SecretBackendConfigUrlsState:
     @crl_distribution_points.setter
     def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deltaCrlDistributionPoints")
+    def delta_crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        """
+        return pulumi.get(self, "delta_crl_distribution_points")
+
+    @delta_crl_distribution_points.setter
+    def delta_crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "delta_crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="enableTemplating")
@@ -245,6 +277,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
                  issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -285,6 +318,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] enable_templating: Specifies that templating of AIA fields is allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -347,6 +381,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
                  issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -364,6 +399,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+            __props__.__dict__["delta_crl_distribution_points"] = delta_crl_distribution_points
             __props__.__dict__["enable_templating"] = enable_templating
             __props__.__dict__["issuing_certificates"] = issuing_certificates
             __props__.__dict__["namespace"] = namespace
@@ -380,6 +416,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
             issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -393,6 +430,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] enable_templating: Specifies that templating of AIA fields is allowed.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] issuing_certificates: Specifies the URL values for the Issuing Certificate field.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
@@ -407,6 +445,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+        __props__.__dict__["delta_crl_distribution_points"] = delta_crl_distribution_points
         __props__.__dict__["enable_templating"] = enable_templating
         __props__.__dict__["issuing_certificates"] = issuing_certificates
         __props__.__dict__["namespace"] = namespace
@@ -418,6 +457,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             enable_templating: pulumi.Input[Optional[_builtins.bool]] = None,
             issuing_certificates: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
@@ -425,6 +465,7 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         __props__: dict = {}
         __props__["backend"] = backend
         __props__["crlDistributionPoints"] = crl_distribution_points
+        __props__["deltaCrlDistributionPoints"] = delta_crl_distribution_points
         __props__["enableTemplating"] = enable_templating
         __props__["issuingCertificates"] = issuing_certificates
         __props__["namespace"] = namespace
@@ -446,6 +487,14 @@ class SecretBackendConfigUrls(pulumi.CustomResource):
         Specifies the URL values for the CRL Distribution Points field.
         """
         return pulumi.get(self, "crl_distribution_points")
+
+    @_builtins.property
+    @pulumi.getter(name="deltaCrlDistributionPoints")
+    def delta_crl_distribution_points(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        """
+        return pulumi.get(self, "delta_crl_distribution_points")
 
     @_builtins.property
     @pulumi.getter(name="enableTemplating")

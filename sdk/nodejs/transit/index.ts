@@ -30,6 +30,16 @@ export const getVerify: typeof import("./getVerify").getVerify = null as any;
 export const getVerifyOutput: typeof import("./getVerify").getVerifyOutput = null as any;
 utilities.lazyLoad(exports, ["getVerify","getVerifyOutput"], () => require("./getVerify"));
 
+export { GetWrappingKeyArgs, GetWrappingKeyResult, GetWrappingKeyOutputArgs } from "./getWrappingKey";
+export const getWrappingKey: typeof import("./getWrappingKey").getWrappingKey = null as any;
+export const getWrappingKeyOutput: typeof import("./getWrappingKey").getWrappingKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getWrappingKey","getWrappingKeyOutput"], () => require("./getWrappingKey"));
+
+export { SecretBackendImportedKeyArgs, SecretBackendImportedKeyState } from "./secretBackendImportedKey";
+export type SecretBackendImportedKey = import("./secretBackendImportedKey").SecretBackendImportedKey;
+export const SecretBackendImportedKey: typeof import("./secretBackendImportedKey").SecretBackendImportedKey = null as any;
+utilities.lazyLoad(exports, ["SecretBackendImportedKey"], () => require("./secretBackendImportedKey"));
+
 export { SecretBackendKeyArgs, SecretBackendKeyState } from "./secretBackendKey";
 export type SecretBackendKey = import("./secretBackendKey").SecretBackendKey;
 export const SecretBackendKey: typeof import("./secretBackendKey").SecretBackendKey = null as any;
@@ -45,6 +55,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "vault:transit/secretBackendImportedKey:SecretBackendImportedKey":
+                return new SecretBackendImportedKey(name, <any>undefined, { urn })
             case "vault:transit/secretBackendKey:SecretBackendKey":
                 return new SecretBackendKey(name, <any>undefined, { urn })
             case "vault:transit/secretCacheConfig:SecretCacheConfig":
@@ -54,5 +66,6 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("vault", "transit/secretBackendImportedKey", _module)
 pulumi.runtime.registerResourceModule("vault", "transit/secretBackendKey", _module)
 pulumi.runtime.registerResourceModule("vault", "transit/secretCacheConfig", _module)

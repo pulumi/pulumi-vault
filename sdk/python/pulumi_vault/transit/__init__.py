@@ -11,5 +11,7 @@ from .get_decrypt import *
 from .get_encrypt import *
 from .get_sign import *
 from .get_verify import *
+from .get_wrapping_key import *
+from .secret_backend_imported_key import *
 from .secret_backend_key import *
 from .secret_cache_config import *

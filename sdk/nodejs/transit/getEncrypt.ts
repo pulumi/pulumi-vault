@@ -12,9 +12,11 @@ export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): P
     return pulumi.runtime.invoke("vault:transit/getEncrypt:getEncrypt", {
         "backend": args.backend,
         "context": args.context,
+        "hashAlgorithm": args.hashAlgorithm,
         "key": args.key,
         "keyVersion": args.keyVersion,
         "namespace": args.namespace,
+        "paddingScheme": args.paddingScheme,
         "plaintext": args.plaintext,
     }, opts);
 }
@@ -25,9 +27,11 @@ export function getEncrypt(args: GetEncryptArgs, opts?: pulumi.InvokeOptions): P
 export interface GetEncryptArgs {
     backend: string;
     context?: string;
+    hashAlgorithm?: string;
     key: string;
     keyVersion?: number;
     namespace?: string;
+    paddingScheme?: string;
     plaintext: string;
 }
 
@@ -41,6 +45,7 @@ export interface GetEncryptResult {
      */
     readonly ciphertext: string;
     readonly context?: string;
+    readonly hashAlgorithm?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -48,6 +53,7 @@ export interface GetEncryptResult {
     readonly key: string;
     readonly keyVersion?: number;
     readonly namespace?: string;
+    readonly paddingScheme?: string;
     readonly plaintext: string;
 }
 /**
@@ -58,9 +64,11 @@ export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.Invok
     return pulumi.runtime.invokeOutput("vault:transit/getEncrypt:getEncrypt", {
         "backend": args.backend,
         "context": args.context,
+        "hashAlgorithm": args.hashAlgorithm,
         "key": args.key,
         "keyVersion": args.keyVersion,
         "namespace": args.namespace,
+        "paddingScheme": args.paddingScheme,
         "plaintext": args.plaintext,
     }, opts);
 }
@@ -71,8 +79,10 @@ export function getEncryptOutput(args: GetEncryptOutputArgs, opts?: pulumi.Invok
 export interface GetEncryptOutputArgs {
     backend: pulumi.Input<string>;
     context?: pulumi.Input<string | undefined>;
+    hashAlgorithm?: pulumi.Input<string | undefined>;
     key: pulumi.Input<string>;
     keyVersion?: pulumi.Input<number | undefined>;
     namespace?: pulumi.Input<string | undefined>;
+    paddingScheme?: pulumi.Input<string | undefined>;
     plaintext: pulumi.Input<string>;
 }

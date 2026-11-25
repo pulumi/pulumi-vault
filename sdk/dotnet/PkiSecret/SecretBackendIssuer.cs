@@ -77,6 +77,12 @@ namespace Pulumi.Vault.PkiSecret
         public Output<ImmutableArray<string>> CrlDistributionPoints { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        /// </summary>
+        [Output("deltaCrlDistributionPoints")]
+        public Output<ImmutableArray<string>> DeltaCrlDistributionPoints { get; private set; } = null!;
+
+        /// <summary>
         /// This determines whether this
         /// issuer is able to issue certificates where the chain of trust (including the
         /// issued certificate) contain critical extensions not processed by Vault.
@@ -251,6 +257,18 @@ namespace Pulumi.Vault.PkiSecret
             set => _crlDistributionPoints = value;
         }
 
+        [Input("deltaCrlDistributionPoints")]
+        private InputList<string>? _deltaCrlDistributionPoints;
+
+        /// <summary>
+        /// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        /// </summary>
+        public InputList<string> DeltaCrlDistributionPoints
+        {
+            get => _deltaCrlDistributionPoints ?? (_deltaCrlDistributionPoints = new InputList<string>());
+            set => _deltaCrlDistributionPoints = value;
+        }
+
         /// <summary>
         /// This determines whether this
         /// issuer is able to issue certificates where the chain of trust (including the
@@ -398,6 +416,18 @@ namespace Pulumi.Vault.PkiSecret
         {
             get => _crlDistributionPoints ?? (_crlDistributionPoints = new InputList<string>());
             set => _crlDistributionPoints = value;
+        }
+
+        [Input("deltaCrlDistributionPoints")]
+        private InputList<string>? _deltaCrlDistributionPoints;
+
+        /// <summary>
+        /// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        /// </summary>
+        public InputList<string> DeltaCrlDistributionPoints
+        {
+            get => _deltaCrlDistributionPoints ?? (_deltaCrlDistributionPoints = new InputList<string>());
+            set => _deltaCrlDistributionPoints = value;
         }
 
         /// <summary>

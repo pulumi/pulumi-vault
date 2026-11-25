@@ -84,6 +84,10 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
      */
     declare public readonly crlDistributionPoints: pulumi.Output<string[] | undefined>;
     /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     */
+    declare public readonly deltaCrlDistributionPoints: pulumi.Output<string[] | undefined>;
+    /**
      * Specifies that templating of AIA fields is allowed.
      */
     declare public readonly enableTemplating: pulumi.Output<boolean | undefined>;
@@ -118,6 +122,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendConfigUrlsState | undefined;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["crlDistributionPoints"] = state?.crlDistributionPoints;
+            resourceInputs["deltaCrlDistributionPoints"] = state?.deltaCrlDistributionPoints;
             resourceInputs["enableTemplating"] = state?.enableTemplating;
             resourceInputs["issuingCertificates"] = state?.issuingCertificates;
             resourceInputs["namespace"] = state?.namespace;
@@ -129,6 +134,7 @@ export class SecretBackendConfigUrls extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args?.backend;
             resourceInputs["crlDistributionPoints"] = args?.crlDistributionPoints;
+            resourceInputs["deltaCrlDistributionPoints"] = args?.deltaCrlDistributionPoints;
             resourceInputs["enableTemplating"] = args?.enableTemplating;
             resourceInputs["issuingCertificates"] = args?.issuingCertificates;
             resourceInputs["namespace"] = args?.namespace;
@@ -151,6 +157,10 @@ export interface SecretBackendConfigUrlsState {
      * Specifies the URL values for the CRL Distribution Points field.
      */
     crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     */
+    deltaCrlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies that templating of AIA fields is allowed.
      */
@@ -184,6 +194,10 @@ export interface SecretBackendConfigUrlsArgs {
      * Specifies the URL values for the CRL Distribution Points field.
      */
     crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     */
+    deltaCrlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specifies that templating of AIA fields is allowed.
      */

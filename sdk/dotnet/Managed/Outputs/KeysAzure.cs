@@ -38,6 +38,10 @@ namespace Pulumi.Vault.Managed.Outputs
         /// </summary>
         public readonly string ClientSecret;
         /// <summary>
+        /// The encryption mode to use for the key. `Envelope` uses AES-GCM envelope encryption, `Raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+        /// </summary>
+        public readonly string? EncryptionMode;
+        /// <summary>
         /// The Azure Cloud environment API endpoints to use
         /// </summary>
         public readonly string? Environment;
@@ -92,6 +96,8 @@ namespace Pulumi.Vault.Managed.Outputs
 
             string clientSecret,
 
+            string? encryptionMode,
+
             string? environment,
 
             string? keyBits,
@@ -118,6 +124,7 @@ namespace Pulumi.Vault.Managed.Outputs
             AnyMount = anyMount;
             ClientId = clientId;
             ClientSecret = clientSecret;
+            EncryptionMode = encryptionMode;
             Environment = environment;
             KeyBits = keyBits;
             KeyName = keyName;

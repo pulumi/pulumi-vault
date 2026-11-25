@@ -52,22 +52,26 @@ func GetDecrypt(ctx *pulumi.Context, args *GetDecryptArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getDecrypt.
 type GetDecryptArgs struct {
-	Backend    string  `pulumi:"backend"`
-	Ciphertext string  `pulumi:"ciphertext"`
-	Context    *string `pulumi:"context"`
-	Key        string  `pulumi:"key"`
-	Namespace  *string `pulumi:"namespace"`
+	Backend       string  `pulumi:"backend"`
+	Ciphertext    string  `pulumi:"ciphertext"`
+	Context       *string `pulumi:"context"`
+	HashAlgorithm *string `pulumi:"hashAlgorithm"`
+	Key           string  `pulumi:"key"`
+	Namespace     *string `pulumi:"namespace"`
+	PaddingScheme *string `pulumi:"paddingScheme"`
 }
 
 // A collection of values returned by getDecrypt.
 type GetDecryptResult struct {
-	Backend    string  `pulumi:"backend"`
-	Ciphertext string  `pulumi:"ciphertext"`
-	Context    *string `pulumi:"context"`
+	Backend       string  `pulumi:"backend"`
+	Ciphertext    string  `pulumi:"ciphertext"`
+	Context       *string `pulumi:"context"`
+	HashAlgorithm *string `pulumi:"hashAlgorithm"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string  `pulumi:"id"`
-	Key       string  `pulumi:"key"`
-	Namespace *string `pulumi:"namespace"`
+	Id            string  `pulumi:"id"`
+	Key           string  `pulumi:"key"`
+	Namespace     *string `pulumi:"namespace"`
+	PaddingScheme *string `pulumi:"paddingScheme"`
 	// Decrypted plaintext returned from Vault
 	Plaintext string `pulumi:"plaintext"`
 }
@@ -79,11 +83,13 @@ func GetDecryptOutput(ctx *pulumi.Context, args GetDecryptOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getDecrypt.
 type GetDecryptOutputArgs struct {
-	Backend    pulumi.StringInput    `pulumi:"backend"`
-	Ciphertext pulumi.StringInput    `pulumi:"ciphertext"`
-	Context    pulumi.StringPtrInput `pulumi:"context"`
-	Key        pulumi.StringInput    `pulumi:"key"`
-	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
+	Backend       pulumi.StringInput    `pulumi:"backend"`
+	Ciphertext    pulumi.StringInput    `pulumi:"ciphertext"`
+	Context       pulumi.StringPtrInput `pulumi:"context"`
+	HashAlgorithm pulumi.StringPtrInput `pulumi:"hashAlgorithm"`
+	Key           pulumi.StringInput    `pulumi:"key"`
+	Namespace     pulumi.StringPtrInput `pulumi:"namespace"`
+	PaddingScheme pulumi.StringPtrInput `pulumi:"paddingScheme"`
 }
 
 func (GetDecryptOutputArgs) ElementType() reflect.Type {
@@ -117,6 +123,10 @@ func (o GetDecryptResultOutput) Context() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDecryptResult) *string { return v.Context }).(pulumi.StringPtrOutput)
 }
 
+func (o GetDecryptResultOutput) HashAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDecryptResult) *string { return v.HashAlgorithm }).(pulumi.StringPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o GetDecryptResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDecryptResult) string { return v.Id }).(pulumi.StringOutput)
@@ -128,6 +138,10 @@ func (o GetDecryptResultOutput) Key() pulumi.StringOutput {
 
 func (o GetDecryptResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDecryptResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o GetDecryptResultOutput) PaddingScheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDecryptResult) *string { return v.PaddingScheme }).(pulumi.StringPtrOutput)
 }
 
 // Decrypted plaintext returned from Vault

@@ -431,7 +431,7 @@ class Plugin(pulumi.CustomResource):
         [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
         so the artifact does not need to be manually extracted into the server's
         `plugin_directory` beforehand. All Vault cluster nodes need outbound HTTPS
-        access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+        access to `releases.hashicorp.com` and `api.releases.hashicorp.com`. Automatic plugin downloads are currently
         a beta feature in Vault.
 
         ```python
@@ -538,7 +538,7 @@ class Plugin(pulumi.CustomResource):
         [releases.hashicorp.com](https://releases.hashicorp.com) during registration,
         so the artifact does not need to be manually extracted into the server's
         `plugin_directory` beforehand. All Vault cluster nodes need outbound HTTPS
-        access to `releases.hashicorp.com`. Automatic plugin downloads are currently
+        access to `releases.hashicorp.com` and `api.releases.hashicorp.com`. Automatic plugin downloads are currently
         a beta feature in Vault.
 
         ```python

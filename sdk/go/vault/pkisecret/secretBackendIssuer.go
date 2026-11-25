@@ -80,6 +80,8 @@ type SecretBackendIssuer struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayOutput `pulumi:"crlDistributionPoints"`
+	// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+	DeltaCrlDistributionPoints pulumi.StringArrayOutput `pulumi:"deltaCrlDistributionPoints"`
 	// This determines whether this
 	// issuer is able to issue certificates where the chain of trust (including the
 	// issued certificate) contain critical extensions not processed by Vault.
@@ -173,6 +175,8 @@ type secretBackendIssuerState struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
+	// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+	DeltaCrlDistributionPoints []string `pulumi:"deltaCrlDistributionPoints"`
 	// This determines whether this
 	// issuer is able to issue certificates where the chain of trust (including the
 	// issued certificate) contain critical extensions not processed by Vault.
@@ -231,6 +235,8 @@ type SecretBackendIssuerState struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayInput
+	// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+	DeltaCrlDistributionPoints pulumi.StringArrayInput
 	// This determines whether this
 	// issuer is able to issue certificates where the chain of trust (including the
 	// issued certificate) contain critical extensions not processed by Vault.
@@ -299,6 +305,8 @@ type secretBackendIssuerArgs struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints []string `pulumi:"crlDistributionPoints"`
+	// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+	DeltaCrlDistributionPoints []string `pulumi:"deltaCrlDistributionPoints"`
 	// This determines whether this
 	// issuer is able to issue certificates where the chain of trust (including the
 	// issued certificate) contain critical extensions not processed by Vault.
@@ -356,6 +364,8 @@ type SecretBackendIssuerArgs struct {
 	// Specifies the URL values for the CRL
 	// Distribution Points field.
 	CrlDistributionPoints pulumi.StringArrayInput
+	// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+	DeltaCrlDistributionPoints pulumi.StringArrayInput
 	// This determines whether this
 	// issuer is able to issue certificates where the chain of trust (including the
 	// issued certificate) contain critical extensions not processed by Vault.
@@ -502,6 +512,11 @@ func (o SecretBackendIssuerOutput) Backend() pulumi.StringOutput {
 // Distribution Points field.
 func (o SecretBackendIssuerOutput) CrlDistributionPoints() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecretBackendIssuer) pulumi.StringArrayOutput { return v.CrlDistributionPoints }).(pulumi.StringArrayOutput)
+}
+
+// Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+func (o SecretBackendIssuerOutput) DeltaCrlDistributionPoints() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *SecretBackendIssuer) pulumi.StringArrayOutput { return v.DeltaCrlDistributionPoints }).(pulumi.StringArrayOutput)
 }
 
 // This determines whether this

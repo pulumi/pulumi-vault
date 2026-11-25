@@ -1321,6 +1321,9 @@
                                 }
                             }
                         }
+                    },
+                    "unsupported_critical_cert_extensions": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2129,6 +2132,9 @@
                     "crl_distribution_points": {
                         "maxItemsOne": false
                     },
+                    "delta_crl_distribution_points": {
+                        "maxItemsOne": false
+                    },
                     "issuing_certificates": {
                         "maxItemsOne": false
                     },
@@ -2183,6 +2189,9 @@
                 "majorVersion": 7,
                 "fields": {
                     "crl_distribution_points": {
+                        "maxItemsOne": false
+                    },
+                    "delta_crl_distribution_points": {
                         "maxItemsOne": false
                     },
                     "issuing_certificates": {
@@ -2860,8 +2869,47 @@
                     }
                 }
             },
+            "vault_transform_transformation_fpe": {
+                "current": "vault:transform/transformationFpe:TransformationFpe",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_transform_transformation_fpe_imported_key": {
+                "current": "vault:transform/transformationFpeImportedKey:TransformationFpeImportedKey",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_transform_transformation_masking": {
+                "current": "vault:transform/transformationMasking:TransformationMasking",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "vault_transform_transformation_tokenization": {
                 "current": "vault:transform/transformationTokenization:TransformationTokenization",
+                "majorVersion": 7,
+                "fields": {
+                    "allowed_roles": {
+                        "maxItemsOne": false
+                    },
+                    "stores": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "vault_transform_transformation_tokenization_imported_key": {
+                "current": "vault:transform/transformationTokenizationImportedKey:TransformationTokenizationImportedKey",
                 "majorVersion": 7,
                 "fields": {
                     "allowed_roles": {
@@ -2880,6 +2928,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "vault_transit_secret_backend_imported_key": {
+                "current": "vault:transit/secretBackendImportedKey:SecretBackendImportedKey",
+                "majorVersion": 7
             },
             "vault_transit_secret_backend_key": {
                 "current": "vault:transit/secretBackendKey:SecretBackendKey",
@@ -3376,6 +3428,10 @@
                     }
                 }
             },
+            "vault_transform_wrapping_key": {
+                "current": "vault:transform/getWrappingKey:getWrappingKey",
+                "majorVersion": 7
+            },
             "vault_transit_cmac": {
                 "current": "vault:transit/getCmac:getCmac",
                 "majorVersion": 7,
@@ -3419,6 +3475,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "vault_transit_wrapping_key": {
+                "current": "vault:transit/getWrappingKey:getWrappingKey",
+                "majorVersion": 7
             }
         }
     },
@@ -3662,6 +3722,31 @@
                     "kind": "missing"
                 }
             },
+            "vault_transform_transformation_fpe": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_transform_transformation_fpe_imported_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_transform_transformation_masking": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_transform_transformation_tokenization_imported_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "vault_transit_secret_backend_imported_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "vault_userpass_auth_backend_user": {
                 "computeID": {
                     "kind": "missing"
@@ -3884,8 +3969,13 @@
             "vault:transform/role:Role": 0,
             "vault:transform/template:Template": 0,
             "vault:transform/transformation:Transformation": 0,
+            "vault:transform/transformationFpe:TransformationFpe": 1,
+            "vault:transform/transformationFpeImportedKey:TransformationFpeImportedKey": 1,
+            "vault:transform/transformationMasking:TransformationMasking": 1,
             "vault:transform/transformationTokenization:TransformationTokenization": 0,
+            "vault:transform/transformationTokenizationImportedKey:TransformationTokenizationImportedKey": 1,
             "vault:transform/transformationTokenizationStore:TransformationTokenizationStore": 0,
+            "vault:transit/secretBackendImportedKey:SecretBackendImportedKey": 1,
             "vault:transit/secretBackendKey:SecretBackendKey": 0,
             "vault:transit/secretCacheConfig:SecretCacheConfig": 0
         },
@@ -3936,11 +4026,13 @@
             "vault:transform/getDecode:getDecode": 0,
             "vault:transform/getEncode:getEncode": 0,
             "vault:transform/getRewrap:getRewrap": 0,
+            "vault:transform/getWrappingKey:getWrappingKey": 1,
             "vault:transit/getCmac:getCmac": 0,
             "vault:transit/getDecrypt:getDecrypt": 0,
             "vault:transit/getEncrypt:getEncrypt": 0,
             "vault:transit/getSign:getSign": 0,
-            "vault:transit/getVerify:getVerify": 0
+            "vault:transit/getVerify:getVerify": 0,
+            "vault:transit/getWrappingKey:getWrappingKey": 1
         }
     },
     "renames": {

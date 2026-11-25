@@ -5,6 +5,7 @@ package com.pulumi.vault.pkiexternalca.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.vault.pkiexternalca.outputs.GetSecretBackendOrderChallengeTimeouts;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -41,6 +42,7 @@ public final class GetSecretBackendOrderChallengeResult {
      * 
      */
     private String status;
+    private @Nullable GetSecretBackendOrderChallengeTimeouts timeouts;
     /**
      * @return The challenge token provided by the ACME server. For HTTP-01 challenges, this is used in the URL path.
      * 
@@ -97,6 +99,9 @@ public final class GetSecretBackendOrderChallengeResult {
     public String status() {
         return this.status;
     }
+    public Optional<GetSecretBackendOrderChallengeTimeouts> timeouts() {
+        return Optional.ofNullable(this.timeouts);
+    }
     /**
      * @return The challenge token provided by the ACME server. For HTTP-01 challenges, this is used in the URL path.
      * 
@@ -124,6 +129,7 @@ public final class GetSecretBackendOrderChallengeResult {
         private String orderId;
         private String roleName;
         private String status;
+        private @Nullable GetSecretBackendOrderChallengeTimeouts timeouts;
         private String token;
         public Builder() {}
         public Builder(GetSecretBackendOrderChallengeResult defaults) {
@@ -138,6 +144,7 @@ public final class GetSecretBackendOrderChallengeResult {
     	      this.orderId = defaults.orderId;
     	      this.roleName = defaults.roleName;
     	      this.status = defaults.status;
+    	      this.timeouts = defaults.timeouts;
     	      this.token = defaults.token;
         }
 
@@ -220,6 +227,12 @@ public final class GetSecretBackendOrderChallengeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder timeouts(@Nullable GetSecretBackendOrderChallengeTimeouts timeouts) {
+
+            this.timeouts = timeouts;
+            return this;
+        }
+        @CustomType.Setter
         public Builder token(String token) {
             if (token == null) {
               throw new MissingRequiredPropertyException("GetSecretBackendOrderChallengeResult", "token");
@@ -239,6 +252,7 @@ public final class GetSecretBackendOrderChallengeResult {
             _resultValue.orderId = orderId;
             _resultValue.roleName = roleName;
             _resultValue.status = status;
+            _resultValue.timeouts = timeouts;
             _resultValue.token = token;
             return _resultValue;
         }

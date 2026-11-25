@@ -230,6 +230,21 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when &#39;mechanism&#39; is set to &#39;CKM_RSA_PKCS_OAEP&#39;. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+     * 
+     */
+    @Import(name="rsaOaepHash")
+    private @Nullable Output<String> rsaOaepHash;
+
+    /**
+     * @return The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when &#39;mechanism&#39; is set to &#39;CKM_RSA_PKCS_OAEP&#39;. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+     * 
+     */
+    public Optional<Output<String>> rsaOaepHash() {
+        return Optional.ofNullable(this.rsaOaepHash);
+    }
+
+    /**
      * The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
      * 
      */
@@ -306,6 +321,7 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
         this.mechanism = $.mechanism;
         this.name = $.name;
         this.pin = $.pin;
+        this.rsaOaepHash = $.rsaOaepHash;
         this.slot = $.slot;
         this.tokenLabel = $.tokenLabel;
         this.usages = $.usages;
@@ -622,6 +638,27 @@ public final class KeysPkcArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder pin(String pin) {
             return pin(Output.of(pin));
+        }
+
+        /**
+         * @param rsaOaepHash The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when &#39;mechanism&#39; is set to &#39;CKM_RSA_PKCS_OAEP&#39;. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rsaOaepHash(@Nullable Output<String> rsaOaepHash) {
+            $.rsaOaepHash = rsaOaepHash;
+            return this;
+        }
+
+        /**
+         * @param rsaOaepHash The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when &#39;mechanism&#39; is set to &#39;CKM_RSA_PKCS_OAEP&#39;. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder rsaOaepHash(String rsaOaepHash) {
+            return rsaOaepHash(Output.of(rsaOaepHash));
         }
 
         /**

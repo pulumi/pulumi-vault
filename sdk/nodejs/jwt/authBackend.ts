@@ -67,52 +67,7 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * Configuring the auth backend with a `provider_config:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const gsuite = new vault.jwt.AuthBackend("gsuite", {
- *     description: "OIDC backend",
- *     oidcDiscoveryUrl: "https://accounts.google.com",
- *     path: "oidc",
- *     type: "oidc",
- *     providerConfig: {
- *         provider: "gsuite",
- *         fetch_groups: "true",
- *         fetch_user_info: "true",
- *         groups_recurse_max_depth: "1",
- *     },
- * });
- * ```
- *
- * Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as vault from "@pulumi/vault";
- *
- * const okta = new vault.jwt.AuthBackend("okta", {
- *     description: "OIDC backend",
- *     oidcDiscoveryUrl: "https://mycompany.okta.com/oauth2/default",
- *     path: "oidc",
- *     type: "oidc",
- *     providerConfig: {
- *         provider: "okta",
- *         fetch_groups: "true",
- *         org_url: "https://mycompany.okta.com",
- *         api_token: "12345",
- *         groups_cap: "200",
- *     },
- * });
- * ```
- *
- * ## Ephemeral Attributes Reference
- *
- * The following write-only attributes are supported:
- *
- * * `oidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidcClientSecret`. Must be used with `oidcClientSecretWoVersion`. To rotate the secret, update the value and increment `oidcClientSecretWoVersion`.
+ * Manage OIDC auth backend with write-only client ID and secret fed from an ephemeral KVv2 secret:
  *
  * ## Import
  *
@@ -221,16 +176,21 @@ export class AuthBackend extends pulumi.CustomResource {
     declare public readonly namespace: pulumi.Output<string | undefined>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-     *
-     * * tune - (Optional) Extra configuration block. Structure is documented below.
-     *
-     * The `tune` block is used to tune the auth backend:
      */
     declare public readonly namespaceInState: pulumi.Output<boolean | undefined>;
     /**
-     * Client ID used for OIDC backends
+     * Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
      */
     declare public readonly oidcClientId: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+     */
+    declare public readonly oidcClientIdWo: pulumi.Output<string | undefined>;
+    /**
+     * Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+     */
+    declare public readonly oidcClientIdWoVersion: pulumi.Output<number | undefined>;
     /**
      * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
@@ -273,6 +233,14 @@ export class AuthBackend extends pulumi.CustomResource {
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
      */
     declare public readonly type: pulumi.Output<string | undefined>;
+    /**
+     * A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+     *
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    declare public readonly unsupportedCriticalCertExtensions: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a AuthBackend resource with the given unique name, arguments, and options.
@@ -301,6 +269,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["namespace"] = state?.namespace;
             resourceInputs["namespaceInState"] = state?.namespaceInState;
             resourceInputs["oidcClientId"] = state?.oidcClientId;
+            resourceInputs["oidcClientIdWo"] = state?.oidcClientIdWo;
+            resourceInputs["oidcClientIdWoVersion"] = state?.oidcClientIdWoVersion;
             resourceInputs["oidcClientSecret"] = state?.oidcClientSecret;
             resourceInputs["oidcClientSecretWo"] = state?.oidcClientSecretWo;
             resourceInputs["oidcClientSecretWoVersion"] = state?.oidcClientSecretWoVersion;
@@ -312,6 +282,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["providerConfig"] = state?.providerConfig;
             resourceInputs["tune"] = state?.tune;
             resourceInputs["type"] = state?.type;
+            resourceInputs["unsupportedCriticalCertExtensions"] = state?.unsupportedCriticalCertExtensions;
         } else {
             const args = argsOrState as AuthBackendArgs | undefined;
             resourceInputs["boundIssuer"] = args?.boundIssuer;
@@ -327,6 +298,8 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["namespaceInState"] = args?.namespaceInState;
             resourceInputs["oidcClientId"] = args?.oidcClientId;
+            resourceInputs["oidcClientIdWo"] = args?.oidcClientIdWo ? pulumi.secret(args.oidcClientIdWo) : undefined;
+            resourceInputs["oidcClientIdWoVersion"] = args?.oidcClientIdWoVersion;
             resourceInputs["oidcClientSecret"] = args?.oidcClientSecret ? pulumi.secret(args.oidcClientSecret) : undefined;
             resourceInputs["oidcClientSecretWo"] = args?.oidcClientSecretWo ? pulumi.secret(args.oidcClientSecretWo) : undefined;
             resourceInputs["oidcClientSecretWoVersion"] = args?.oidcClientSecretWoVersion;
@@ -338,10 +311,11 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["providerConfig"] = args?.providerConfig;
             resourceInputs["tune"] = args?.tune;
             resourceInputs["type"] = args?.type;
+            resourceInputs["unsupportedCriticalCertExtensions"] = args?.unsupportedCriticalCertExtensions;
             resourceInputs["accessor"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["oidcClientSecret", "oidcClientSecretWo"] };
+        const secretOpts = { additionalSecretOutputs: ["oidcClientIdWo", "oidcClientSecret", "oidcClientSecretWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(AuthBackend.__pulumiType, name, resourceInputs, opts);
     }
@@ -405,16 +379,21 @@ export interface AuthBackendState {
     namespace?: pulumi.Input<string | undefined>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-     *
-     * * tune - (Optional) Extra configuration block. Structure is documented below.
-     *
-     * The `tune` block is used to tune the auth backend:
      */
     namespaceInState?: pulumi.Input<boolean | undefined>;
     /**
-     * Client ID used for OIDC backends
+     * Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
      */
     oidcClientId?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+     */
+    oidcClientIdWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+     */
+    oidcClientIdWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
@@ -457,6 +436,14 @@ export interface AuthBackendState {
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
      */
     type?: pulumi.Input<string | undefined>;
+    /**
+     * A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+     *
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    unsupportedCriticalCertExtensions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -513,16 +500,21 @@ export interface AuthBackendArgs {
     namespace?: pulumi.Input<string | undefined>;
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-     *
-     * * tune - (Optional) Extra configuration block. Structure is documented below.
-     *
-     * The `tune` block is used to tune the auth backend:
      */
     namespaceInState?: pulumi.Input<boolean | undefined>;
     /**
-     * Client ID used for OIDC backends
+     * Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
      */
     oidcClientId?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+     */
+    oidcClientIdWo?: pulumi.Input<string | undefined>;
+    /**
+     * Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+     */
+    oidcClientIdWoVersion?: pulumi.Input<number | undefined>;
     /**
      * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
      */
@@ -565,4 +557,12 @@ export interface AuthBackendArgs {
      * Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
      */
     type?: pulumi.Input<string | undefined>;
+    /**
+     * A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+     *
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     *
+     * The `tune` block is used to tune the auth backend:
+     */
+    unsupportedCriticalCertExtensions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

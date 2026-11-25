@@ -211,10 +211,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      * 
-     * * tune - (Optional) Extra configuration block. Structure is documented below.
-     * 
-     * The `tune` block is used to tune the auth backend:
-     * 
      */
     @Import(name="namespaceInState")
     private @Nullable Output<Boolean> namespaceInState;
@@ -222,28 +218,56 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      * 
-     * * tune - (Optional) Extra configuration block. Structure is documented below.
-     * 
-     * The `tune` block is used to tune the auth backend:
-     * 
      */
     public Optional<Output<Boolean>> namespaceInState() {
         return Optional.ofNullable(this.namespaceInState);
     }
 
     /**
-     * Client ID used for OIDC backends
+     * Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
      * 
      */
     @Import(name="oidcClientId")
     private @Nullable Output<String> oidcClientId;
 
     /**
-     * @return Client ID used for OIDC backends
+     * @return Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
      * 
      */
     public Optional<Output<String>> oidcClientId() {
         return Optional.ofNullable(this.oidcClientId);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+     * 
+     */
+    @Import(name="oidcClientIdWo")
+    private @Nullable Output<String> oidcClientIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+     * 
+     */
+    public Optional<Output<String>> oidcClientIdWo() {
+        return Optional.ofNullable(this.oidcClientIdWo);
+    }
+
+    /**
+     * Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+     * 
+     */
+    @Import(name="oidcClientIdWoVersion")
+    private @Nullable Output<Integer> oidcClientIdWoVersion;
+
+    /**
+     * @return Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+     * 
+     */
+    public Optional<Output<Integer>> oidcClientIdWoVersion() {
+        return Optional.ofNullable(this.oidcClientIdWoVersion);
     }
 
     /**
@@ -405,6 +429,29 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.type);
     }
 
+    /**
+     * A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+     * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    @Import(name="unsupportedCriticalCertExtensions")
+    private @Nullable Output<List<String>> unsupportedCriticalCertExtensions;
+
+    /**
+     * @return A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+     * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    public Optional<Output<List<String>>> unsupportedCriticalCertExtensions() {
+        return Optional.ofNullable(this.unsupportedCriticalCertExtensions);
+    }
+
     private AuthBackendState() {}
 
     private AuthBackendState(AuthBackendState $) {
@@ -422,6 +469,8 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.namespace = $.namespace;
         this.namespaceInState = $.namespaceInState;
         this.oidcClientId = $.oidcClientId;
+        this.oidcClientIdWo = $.oidcClientIdWo;
+        this.oidcClientIdWoVersion = $.oidcClientIdWoVersion;
         this.oidcClientSecret = $.oidcClientSecret;
         this.oidcClientSecretWo = $.oidcClientSecretWo;
         this.oidcClientSecretWoVersion = $.oidcClientSecretWoVersion;
@@ -433,6 +482,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         this.providerConfig = $.providerConfig;
         this.tune = $.tune;
         this.type = $.type;
+        this.unsupportedCriticalCertExtensions = $.unsupportedCriticalCertExtensions;
     }
 
     public static Builder builder() {
@@ -746,10 +796,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param namespaceInState Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
          * 
-         * * tune - (Optional) Extra configuration block. Structure is documented below.
-         * 
-         * The `tune` block is used to tune the auth backend:
-         * 
          * @return builder
          * 
          */
@@ -761,10 +807,6 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param namespaceInState Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
          * 
-         * * tune - (Optional) Extra configuration block. Structure is documented below.
-         * 
-         * The `tune` block is used to tune the auth backend:
-         * 
          * @return builder
          * 
          */
@@ -773,7 +815,7 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcClientId Client ID used for OIDC backends
+         * @param oidcClientId Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
          * 
          * @return builder
          * 
@@ -784,13 +826,57 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param oidcClientId Client ID used for OIDC backends
+         * @param oidcClientId Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
          * 
          * @return builder
          * 
          */
         public Builder oidcClientId(String oidcClientId) {
             return oidcClientId(Output.of(oidcClientId));
+        }
+
+        /**
+         * @param oidcClientIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientIdWo(@Nullable Output<String> oidcClientIdWo) {
+            $.oidcClientIdWo = oidcClientIdWo;
+            return this;
+        }
+
+        /**
+         * @param oidcClientIdWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientIdWo(String oidcClientIdWo) {
+            return oidcClientIdWo(Output.of(oidcClientIdWo));
+        }
+
+        /**
+         * @param oidcClientIdWoVersion Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientIdWoVersion(@Nullable Output<Integer> oidcClientIdWoVersion) {
+            $.oidcClientIdWoVersion = oidcClientIdWoVersion;
+            return this;
+        }
+
+        /**
+         * @param oidcClientIdWoVersion Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oidcClientIdWoVersion(Integer oidcClientIdWoVersion) {
+            return oidcClientIdWoVersion(Output.of(oidcClientIdWoVersion));
         }
 
         /**
@@ -1022,6 +1108,49 @@ public final class AuthBackendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        /**
+         * @param unsupportedCriticalCertExtensions A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+         * 
+         * * tune - (Optional) Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unsupportedCriticalCertExtensions(@Nullable Output<List<String>> unsupportedCriticalCertExtensions) {
+            $.unsupportedCriticalCertExtensions = unsupportedCriticalCertExtensions;
+            return this;
+        }
+
+        /**
+         * @param unsupportedCriticalCertExtensions A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+         * 
+         * * tune - (Optional) Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unsupportedCriticalCertExtensions(List<String> unsupportedCriticalCertExtensions) {
+            return unsupportedCriticalCertExtensions(Output.of(unsupportedCriticalCertExtensions));
+        }
+
+        /**
+         * @param unsupportedCriticalCertExtensions A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+         * 
+         * * tune - (Optional) Extra configuration block. Structure is documented below.
+         * 
+         * The `tune` block is used to tune the auth backend:
+         * 
+         * @return builder
+         * 
+         */
+        public Builder unsupportedCriticalCertExtensions(String... unsupportedCriticalCertExtensions) {
+            return unsupportedCriticalCertExtensions(List.of(unsupportedCriticalCertExtensions));
         }
 
         public AuthBackendState build() {

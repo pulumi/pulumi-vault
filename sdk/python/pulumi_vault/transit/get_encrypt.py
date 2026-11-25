@@ -26,7 +26,7 @@ class GetEncryptResult:
     """
     A collection of values returned by getEncrypt.
     """
-    def __init__(__self__, backend=None, ciphertext=None, context=None, id=None, key=None, key_version=None, namespace=None, plaintext=None):
+    def __init__(__self__, backend=None, ciphertext=None, context=None, hash_algorithm=None, id=None, key=None, key_version=None, namespace=None, padding_scheme=None, plaintext=None):
         if backend and not isinstance(backend, str):
             raise TypeError("Expected argument 'backend' to be a str")
         pulumi.set(__self__, "backend", backend)
@@ -36,6 +36,9 @@ class GetEncryptResult:
         if context and not isinstance(context, str):
             raise TypeError("Expected argument 'context' to be a str")
         pulumi.set(__self__, "context", context)
+        if hash_algorithm and not isinstance(hash_algorithm, str):
+            raise TypeError("Expected argument 'hash_algorithm' to be a str")
+        pulumi.set(__self__, "hash_algorithm", hash_algorithm)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -48,6 +51,9 @@ class GetEncryptResult:
         if namespace and not isinstance(namespace, str):
             raise TypeError("Expected argument 'namespace' to be a str")
         pulumi.set(__self__, "namespace", namespace)
+        if padding_scheme and not isinstance(padding_scheme, str):
+            raise TypeError("Expected argument 'padding_scheme' to be a str")
+        pulumi.set(__self__, "padding_scheme", padding_scheme)
         if plaintext and not isinstance(plaintext, str):
             raise TypeError("Expected argument 'plaintext' to be a str")
         pulumi.set(__self__, "plaintext", plaintext)
@@ -69,6 +75,11 @@ class GetEncryptResult:
     @pulumi.getter
     def context(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "context")
+
+    @_builtins.property
+    @pulumi.getter(name="hashAlgorithm")
+    def hash_algorithm(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "hash_algorithm")
 
     @_builtins.property
     @pulumi.getter
@@ -94,6 +105,11 @@ class GetEncryptResult:
         return pulumi.get(self, "namespace")
 
     @_builtins.property
+    @pulumi.getter(name="paddingScheme")
+    def padding_scheme(self) -> Optional[_builtins.str]:
+        return pulumi.get(self, "padding_scheme")
+
+    @_builtins.property
     @pulumi.getter
     def plaintext(self) -> _builtins.str:
         return pulumi.get(self, "plaintext")
@@ -108,18 +124,22 @@ class AwaitableGetEncryptResult(GetEncryptResult):
             backend=self.backend,
             ciphertext=self.ciphertext,
             context=self.context,
+            hash_algorithm=self.hash_algorithm,
             id=self.id,
             key=self.key,
             key_version=self.key_version,
             namespace=self.namespace,
+            padding_scheme=self.padding_scheme,
             plaintext=self.plaintext)
 
 
 def get_encrypt(backend: Optional[_builtins.str] = None,
                 context: Optional[_builtins.str] = None,
+                hash_algorithm: Optional[_builtins.str] = None,
                 key: Optional[_builtins.str] = None,
                 key_version: Optional[_builtins.int] = None,
                 namespace: Optional[_builtins.str] = None,
+                padding_scheme: Optional[_builtins.str] = None,
                 plaintext: Optional[_builtins.str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEncryptResult:
     """
@@ -128,9 +148,11 @@ def get_encrypt(backend: Optional[_builtins.str] = None,
     __args__ = dict()
     __args__['backend'] = backend
     __args__['context'] = context
+    __args__['hashAlgorithm'] = hash_algorithm
     __args__['key'] = key
     __args__['keyVersion'] = key_version
     __args__['namespace'] = namespace
+    __args__['paddingScheme'] = padding_scheme
     __args__['plaintext'] = plaintext
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts, typ=GetEncryptResult).value
@@ -139,16 +161,20 @@ def get_encrypt(backend: Optional[_builtins.str] = None,
         backend=pulumi.get(__ret__, 'backend'),
         ciphertext=pulumi.get(__ret__, 'ciphertext'),
         context=pulumi.get(__ret__, 'context'),
+        hash_algorithm=pulumi.get(__ret__, 'hash_algorithm'),
         id=pulumi.get(__ret__, 'id'),
         key=pulumi.get(__ret__, 'key'),
         key_version=pulumi.get(__ret__, 'key_version'),
         namespace=pulumi.get(__ret__, 'namespace'),
+        padding_scheme=pulumi.get(__ret__, 'padding_scheme'),
         plaintext=pulumi.get(__ret__, 'plaintext'))
 def get_encrypt_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
                        context: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       hash_algorithm: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        key: pulumi.Input[Optional[_builtins.str]] = None,
                        key_version: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                        namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       padding_scheme: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        plaintext: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptResult]:
     """
@@ -157,9 +183,11 @@ def get_encrypt_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
     __args__ = dict()
     __args__['backend'] = backend
     __args__['context'] = context
+    __args__['hashAlgorithm'] = hash_algorithm
     __args__['key'] = key
     __args__['keyVersion'] = key_version
     __args__['namespace'] = namespace
+    __args__['paddingScheme'] = padding_scheme
     __args__['plaintext'] = plaintext
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:transit/getEncrypt:getEncrypt', __args__, opts=opts, typ=GetEncryptResult)
@@ -167,8 +195,10 @@ def get_encrypt_output(backend: pulumi.Input[Optional[_builtins.str]] = None,
         backend=pulumi.get(__response__, 'backend'),
         ciphertext=pulumi.get(__response__, 'ciphertext'),
         context=pulumi.get(__response__, 'context'),
+        hash_algorithm=pulumi.get(__response__, 'hash_algorithm'),
         id=pulumi.get(__response__, 'id'),
         key=pulumi.get(__response__, 'key'),
         key_version=pulumi.get(__response__, 'key_version'),
         namespace=pulumi.get(__response__, 'namespace'),
+        padding_scheme=pulumi.get(__response__, 'padding_scheme'),
         plaintext=pulumi.get(__response__, 'plaintext')))

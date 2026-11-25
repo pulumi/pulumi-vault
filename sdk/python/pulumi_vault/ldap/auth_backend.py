@@ -52,6 +52,7 @@ class AuthBackendArgs:
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
                  tls_min_version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -116,6 +117,7 @@ class AuthBackendArgs:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
         :param pulumi.Input[_builtins.bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[_builtins.str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[_builtins.str] tls_min_version: Minimum acceptable version of TLS
@@ -200,6 +202,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
         if starttls is not None:
             pulumi.set(__self__, "starttls", starttls)
         if tls_max_version is not None:
@@ -620,6 +624,18 @@ class AuthBackendArgs:
 
     @_builtins.property
     @pulumi.getter
+    def schema(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+        """
+        return pulumi.get(self, "schema")
+
+    @schema.setter
+    def schema(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schema", value)
+
+    @_builtins.property
+    @pulumi.getter
     def starttls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Control use of TLS when conecting to LDAP
@@ -884,6 +900,7 @@ class _AuthBackendState:
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
                  tls_min_version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -949,6 +966,7 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
         :param pulumi.Input[_builtins.bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[_builtins.str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[_builtins.str] tls_min_version: Minimum acceptable version of TLS
@@ -1035,6 +1053,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "rotation_schedule", rotation_schedule)
         if rotation_window is not None:
             pulumi.set(__self__, "rotation_window", rotation_window)
+        if schema is not None:
+            pulumi.set(__self__, "schema", schema)
         if starttls is not None:
             pulumi.set(__self__, "starttls", starttls)
         if tls_max_version is not None:
@@ -1457,6 +1477,18 @@ class _AuthBackendState:
 
     @_builtins.property
     @pulumi.getter
+    def schema(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+        """
+        return pulumi.get(self, "schema")
+
+    @schema.setter
+    def schema(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schema", value)
+
+    @_builtins.property
+    @pulumi.getter
     def starttls(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Control use of TLS when conecting to LDAP
@@ -1735,6 +1767,7 @@ class AuthBackend(pulumi.CustomResource):
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
                  tls_min_version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1779,7 +1812,8 @@ class AuthBackend(pulumi.CustomResource):
             request_timeout=30,
             dereference_aliases="always",
             enable_samaccountname_login=False,
-            anonymous_group_search=False)
+            anonymous_group_search=False,
+            schema="ad")
         ```
 
         ## Ephemeral Attributes Reference
@@ -1841,6 +1875,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
         :param pulumi.Input[_builtins.bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[_builtins.str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[_builtins.str] tls_min_version: Minimum acceptable version of TLS
@@ -1894,7 +1929,8 @@ class AuthBackend(pulumi.CustomResource):
             request_timeout=30,
             dereference_aliases="always",
             enable_samaccountname_login=False,
-            anonymous_group_search=False)
+            anonymous_group_search=False,
+            schema="ad")
         ```
 
         ## Ephemeral Attributes Reference
@@ -1958,6 +1994,7 @@ class AuthBackend(pulumi.CustomResource):
                  rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
                  rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+                 schema: pulumi.Input[Optional[_builtins.str]] = None,
                  starttls: pulumi.Input[Optional[_builtins.bool]] = None,
                  tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
                  tls_min_version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -2017,6 +2054,7 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["rotation_period"] = rotation_period
             __props__.__dict__["rotation_schedule"] = rotation_schedule
             __props__.__dict__["rotation_window"] = rotation_window
+            __props__.__dict__["schema"] = schema
             __props__.__dict__["starttls"] = starttls
             __props__.__dict__["tls_max_version"] = tls_max_version
             __props__.__dict__["tls_min_version"] = tls_min_version
@@ -2083,6 +2121,7 @@ class AuthBackend(pulumi.CustomResource):
             rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            schema: pulumi.Input[Optional[_builtins.str]] = None,
             starttls: pulumi.Input[Optional[_builtins.bool]] = None,
             tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
             tls_min_version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -2152,6 +2191,7 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] rotation_window: The maximum amount of time in seconds allowed to complete
                a rotation when a scheduled token rotation occurs. The default rotation window is
                unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
+        :param pulumi.Input[_builtins.str] schema: The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
         :param pulumi.Input[_builtins.bool] starttls: Control use of TLS when conecting to LDAP
         :param pulumi.Input[_builtins.str] tls_max_version: Maximum acceptable version of TLS
         :param pulumi.Input[_builtins.str] tls_min_version: Minimum acceptable version of TLS
@@ -2211,6 +2251,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["rotation_period"] = rotation_period
         __props__.__dict__["rotation_schedule"] = rotation_schedule
         __props__.__dict__["rotation_window"] = rotation_window
+        __props__.__dict__["schema"] = schema
         __props__.__dict__["starttls"] = starttls
         __props__.__dict__["tls_max_version"] = tls_max_version
         __props__.__dict__["tls_min_version"] = tls_min_version
@@ -2267,6 +2308,7 @@ class AuthBackend(pulumi.CustomResource):
             rotation_period: pulumi.Input[Optional[_builtins.int]] = None,
             rotation_schedule: pulumi.Input[Optional[_builtins.str]] = None,
             rotation_window: pulumi.Input[Optional[_builtins.int]] = None,
+            schema: pulumi.Input[Optional[_builtins.str]] = None,
             starttls: pulumi.Input[Optional[_builtins.bool]] = None,
             tls_max_version: pulumi.Input[Optional[_builtins.str]] = None,
             tls_min_version: pulumi.Input[Optional[_builtins.str]] = None,
@@ -2319,6 +2361,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__["rotationPeriod"] = rotation_period
         __props__["rotationSchedule"] = rotation_schedule
         __props__["rotationWindow"] = rotation_window
+        __props__["schema"] = schema
         __props__["starttls"] = starttls
         __props__["tlsMaxVersion"] = tls_max_version
         __props__["tlsMinVersion"] = tls_min_version
@@ -2595,6 +2638,14 @@ class AuthBackend(pulumi.CustomResource):
         unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
         """
         return pulumi.get(self, "rotation_window")
+
+    @_builtins.property
+    @pulumi.getter
+    def schema(self) -> pulumi.Output[_builtins.str]:
+        """
+        The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+        """
+        return pulumi.get(self, "schema")
 
     @_builtins.property
     @pulumi.getter

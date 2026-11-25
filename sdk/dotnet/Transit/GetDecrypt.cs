@@ -102,11 +102,17 @@ namespace Pulumi.Vault.Transit
         [Input("context")]
         public string? Context { get; set; }
 
+        [Input("hashAlgorithm")]
+        public string? HashAlgorithm { get; set; }
+
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
         [Input("namespace")]
         public string? Namespace { get; set; }
+
+        [Input("paddingScheme")]
+        public string? PaddingScheme { get; set; }
 
         public GetDecryptArgs()
         {
@@ -125,11 +131,17 @@ namespace Pulumi.Vault.Transit
         [Input("context")]
         public Input<string>? Context { get; set; }
 
+        [Input("hashAlgorithm")]
+        public Input<string>? HashAlgorithm { get; set; }
+
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        [Input("paddingScheme")]
+        public Input<string>? PaddingScheme { get; set; }
 
         public GetDecryptInvokeArgs()
         {
@@ -144,12 +156,14 @@ namespace Pulumi.Vault.Transit
         public readonly string Backend;
         public readonly string Ciphertext;
         public readonly string? Context;
+        public readonly string? HashAlgorithm;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string Key;
         public readonly string? Namespace;
+        public readonly string? PaddingScheme;
         /// <summary>
         /// Decrypted plaintext returned from Vault
         /// </summary>
@@ -163,20 +177,26 @@ namespace Pulumi.Vault.Transit
 
             string? context,
 
+            string? hashAlgorithm,
+
             string id,
 
             string key,
 
             string? @namespace,
 
+            string? paddingScheme,
+
             string plaintext)
         {
             Backend = backend;
             Ciphertext = ciphertext;
             Context = context;
+            HashAlgorithm = hashAlgorithm;
             Id = id;
             Key = key;
             Namespace = @namespace;
+            PaddingScheme = paddingScheme;
             Plaintext = plaintext;
         }
     }

@@ -46,7 +46,7 @@ class TransformationArgs:
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
-        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -168,7 +168,7 @@ class TransformationArgs:
     @pulumi.getter(name="maxTweakLen")
     def max_tweak_len(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         """
         return pulumi.get(self, "max_tweak_len")
 
@@ -292,12 +292,12 @@ class _TransformationState:
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
-        :param pulumi.Input[_builtins.str] fpe_algorithm: The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+        :param pulumi.Input[_builtins.str] fpe_algorithm: The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe". Requires Vault 2.2.0+
         :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
-        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -385,7 +385,7 @@ class _TransformationState:
     @pulumi.getter(name="fpeAlgorithm")
     def fpe_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+        The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe". Requires Vault 2.2.0+
         """
         return pulumi.get(self, "fpe_algorithm")
 
@@ -423,7 +423,7 @@ class _TransformationState:
     @pulumi.getter(name="maxTweakLen")
     def max_tweak_len(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         """
         return pulumi.get(self, "max_tweak_len")
 
@@ -613,7 +613,7 @@ class Transformation(pulumi.CustomResource):
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
-        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -774,12 +774,12 @@ class Transformation(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] deletion_allowed: If true, this transform can be deleted.
                Otherwise, deletion is blocked while this value remains false. Default: `false`
                *Only supported on vault-1.12+*
-        :param pulumi.Input[_builtins.str] fpe_algorithm: The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+        :param pulumi.Input[_builtins.str] fpe_algorithm: The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe". Requires Vault 2.2.0+
         :param pulumi.Input[_builtins.str] mapping_mode: Specifies the mapping mode for stored values.
                Can be "default" or "exportable". Only used when `type` is "tokenization".
                **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
         :param pulumi.Input[_builtins.str] masking_character: The character used to replace data when in masking mode
-        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        :param pulumi.Input[_builtins.int] max_tweak_len: The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         :param pulumi.Input[_builtins.str] name: The name of the transformation.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -881,7 +881,7 @@ class Transformation(pulumi.CustomResource):
     @pulumi.getter(name="fpeAlgorithm")
     def fpe_algorithm(self) -> pulumi.Output[_builtins.str]:
         """
-        The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+        The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe". Requires Vault 2.2.0+
         """
         return pulumi.get(self, "fpe_algorithm")
 
@@ -907,7 +907,7 @@ class Transformation(pulumi.CustomResource):
     @pulumi.getter(name="maxTweakLen")
     def max_tweak_len(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         """
         return pulumi.get(self, "max_tweak_len")
 

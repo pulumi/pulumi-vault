@@ -116,82 +116,7 @@ import (
 //
 // ```
 //
-// Configuring the auth backend with a `provider_config:
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "gsuite", &jwt.AuthBackendArgs{
-//				Description:      pulumi.String("OIDC backend"),
-//				OidcDiscoveryUrl: pulumi.String("https://accounts.google.com"),
-//				Path:             pulumi.String("oidc"),
-//				Type:             pulumi.String("oidc"),
-//				ProviderConfig: pulumi.StringMap{
-//					"provider":                 pulumi.String("gsuite"),
-//					"fetch_groups":             pulumi.String("true"),
-//					"fetch_user_info":          pulumi.String("true"),
-//					"groups_recurse_max_depth": pulumi.String("1"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-vault/sdk/v7/go/vault/jwt"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := jwt.NewAuthBackend(ctx, "okta", &jwt.AuthBackendArgs{
-//				Description:      pulumi.String("OIDC backend"),
-//				OidcDiscoveryUrl: pulumi.String("https://mycompany.okta.com/oauth2/default"),
-//				Path:             pulumi.String("oidc"),
-//				Type:             pulumi.String("oidc"),
-//				ProviderConfig: pulumi.StringMap{
-//					"provider":     pulumi.String("okta"),
-//					"fetch_groups": pulumi.String("true"),
-//					"org_url":      pulumi.String("https://mycompany.okta.com"),
-//					"api_token":    pulumi.String("12345"),
-//					"groups_cap":   pulumi.String("200"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ## Ephemeral Attributes Reference
-//
-// The following write-only attributes are supported:
-//
-// * `oidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidcClientSecret`. Must be used with `oidcClientSecretWoVersion`. To rotate the secret, update the value and increment `oidcClientSecretWoVersion`.
+// Manage OIDC auth backend with write-only client ID and secret fed from an ephemeral KVv2 secret:
 //
 // ## Import
 //
@@ -238,13 +163,14 @@ type AuthBackend struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrOutput `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-	//
-	// * tune - (Optional) Extra configuration block. Structure is documented below.
-	//
-	// The `tune` block is used to tune the auth backend:
 	NamespaceInState pulumi.BoolPtrOutput `pulumi:"namespaceInState"`
-	// Client ID used for OIDC backends
+	// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
 	OidcClientId pulumi.StringPtrOutput `pulumi:"oidcClientId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+	OidcClientIdWo pulumi.StringPtrOutput `pulumi:"oidcClientIdWo"`
+	// Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+	OidcClientIdWoVersion pulumi.IntPtrOutput `pulumi:"oidcClientIdWoVersion"`
 	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret pulumi.StringPtrOutput `pulumi:"oidcClientSecret"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -267,6 +193,12 @@ type AuthBackend struct {
 	Tune           AuthBackendTuneOutput  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type pulumi.StringPtrOutput `pulumi:"type"`
+	// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	UnsupportedCriticalCertExtensions pulumi.StringArrayOutput `pulumi:"unsupportedCriticalCertExtensions"`
 }
 
 // NewAuthBackend registers a new resource with the given unique name, arguments, and options.
@@ -276,6 +208,9 @@ func NewAuthBackend(ctx *pulumi.Context,
 		args = &AuthBackendArgs{}
 	}
 
+	if args.OidcClientIdWo != nil {
+		args.OidcClientIdWo = pulumi.ToSecret(args.OidcClientIdWo).(pulumi.StringPtrInput)
+	}
 	if args.OidcClientSecret != nil {
 		args.OidcClientSecret = pulumi.ToSecret(args.OidcClientSecret).(pulumi.StringPtrInput)
 	}
@@ -283,6 +218,7 @@ func NewAuthBackend(ctx *pulumi.Context,
 		args.OidcClientSecretWo = pulumi.ToSecret(args.OidcClientSecretWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"oidcClientIdWo",
 		"oidcClientSecret",
 		"oidcClientSecretWo",
 	})
@@ -339,13 +275,14 @@ type authBackendState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-	//
-	// * tune - (Optional) Extra configuration block. Structure is documented below.
-	//
-	// The `tune` block is used to tune the auth backend:
 	NamespaceInState *bool `pulumi:"namespaceInState"`
-	// Client ID used for OIDC backends
+	// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
 	OidcClientId *string `pulumi:"oidcClientId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+	OidcClientIdWo *string `pulumi:"oidcClientIdWo"`
+	// Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+	OidcClientIdWoVersion *int `pulumi:"oidcClientIdWoVersion"`
 	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret *string `pulumi:"oidcClientSecret"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -368,6 +305,12 @@ type authBackendState struct {
 	Tune           *AuthBackendTune  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type *string `pulumi:"type"`
+	// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	UnsupportedCriticalCertExtensions []string `pulumi:"unsupportedCriticalCertExtensions"`
 }
 
 type AuthBackendState struct {
@@ -400,13 +343,14 @@ type AuthBackendState struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-	//
-	// * tune - (Optional) Extra configuration block. Structure is documented below.
-	//
-	// The `tune` block is used to tune the auth backend:
 	NamespaceInState pulumi.BoolPtrInput
-	// Client ID used for OIDC backends
+	// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
 	OidcClientId pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+	OidcClientIdWo pulumi.StringPtrInput
+	// Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+	OidcClientIdWoVersion pulumi.IntPtrInput
 	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -429,6 +373,12 @@ type AuthBackendState struct {
 	Tune           AuthBackendTunePtrInput
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type pulumi.StringPtrInput
+	// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	UnsupportedCriticalCertExtensions pulumi.StringArrayInput
 }
 
 func (AuthBackendState) ElementType() reflect.Type {
@@ -469,13 +419,14 @@ type authBackendArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace *string `pulumi:"namespace"`
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-	//
-	// * tune - (Optional) Extra configuration block. Structure is documented below.
-	//
-	// The `tune` block is used to tune the auth backend:
 	NamespaceInState *bool `pulumi:"namespaceInState"`
-	// Client ID used for OIDC backends
+	// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
 	OidcClientId *string `pulumi:"oidcClientId"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+	OidcClientIdWo *string `pulumi:"oidcClientIdWo"`
+	// Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+	OidcClientIdWoVersion *int `pulumi:"oidcClientIdWoVersion"`
 	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret *string `pulumi:"oidcClientSecret"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -498,6 +449,12 @@ type authBackendArgs struct {
 	Tune           *AuthBackendTune  `pulumi:"tune"`
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type *string `pulumi:"type"`
+	// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	UnsupportedCriticalCertExtensions []string `pulumi:"unsupportedCriticalCertExtensions"`
 }
 
 // The set of arguments for constructing a AuthBackend resource.
@@ -529,13 +486,14 @@ type AuthBackendArgs struct {
 	// *Available only for Vault Enterprise*.
 	Namespace pulumi.StringPtrInput
 	// Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-	//
-	// * tune - (Optional) Extra configuration block. Structure is documented below.
-	//
-	// The `tune` block is used to tune the auth backend:
 	NamespaceInState pulumi.BoolPtrInput
-	// Client ID used for OIDC backends
+	// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
 	OidcClientId pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+	OidcClientIdWo pulumi.StringPtrInput
+	// Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+	OidcClientIdWoVersion pulumi.IntPtrInput
 	// Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
 	OidcClientSecret pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
@@ -558,6 +516,12 @@ type AuthBackendArgs struct {
 	Tune           AuthBackendTunePtrInput
 	// Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 	Type pulumi.StringPtrInput
+	// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+	//
+	// * tune - (Optional) Extra configuration block. Structure is documented below.
+	//
+	// The `tune` block is used to tune the auth backend:
+	UnsupportedCriticalCertExtensions pulumi.StringArrayInput
 }
 
 func (AuthBackendArgs) ElementType() reflect.Type {
@@ -712,17 +676,24 @@ func (o AuthBackendOutput) Namespace() pulumi.StringPtrOutput {
 }
 
 // Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-//
-// * tune - (Optional) Extra configuration block. Structure is documented below.
-//
-// The `tune` block is used to tune the auth backend:
 func (o AuthBackendOutput) NamespaceInState() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.BoolPtrOutput { return v.NamespaceInState }).(pulumi.BoolPtrOutput)
 }
 
-// Client ID used for OIDC backends
+// Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
 func (o AuthBackendOutput) OidcClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcClientId }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+func (o AuthBackendOutput) OidcClientIdWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.OidcClientIdWo }).(pulumi.StringPtrOutput)
+}
+
+// Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+func (o AuthBackendOutput) OidcClientIdWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.OidcClientIdWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
@@ -778,6 +749,15 @@ func (o AuthBackendOutput) Tune() AuthBackendTuneOutput {
 // Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
 func (o AuthBackendOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+//
+// * tune - (Optional) Extra configuration block. Structure is documented below.
+//
+// The `tune` block is used to tune the auth backend:
+func (o AuthBackendOutput) UnsupportedCriticalCertExtensions() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringArrayOutput { return v.UnsupportedCriticalCertExtensions }).(pulumi.StringArrayOutput)
 }
 
 type AuthBackendArrayOutput struct{ *pulumi.OutputState }

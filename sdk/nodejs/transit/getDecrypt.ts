@@ -26,8 +26,10 @@ export function getDecrypt(args: GetDecryptArgs, opts?: pulumi.InvokeOptions): P
         "backend": args.backend,
         "ciphertext": args.ciphertext,
         "context": args.context,
+        "hashAlgorithm": args.hashAlgorithm,
         "key": args.key,
         "namespace": args.namespace,
+        "paddingScheme": args.paddingScheme,
     }, opts);
 }
 
@@ -38,8 +40,10 @@ export interface GetDecryptArgs {
     backend: string;
     ciphertext: string;
     context?: string;
+    hashAlgorithm?: string;
     key: string;
     namespace?: string;
+    paddingScheme?: string;
 }
 
 /**
@@ -49,12 +53,14 @@ export interface GetDecryptResult {
     readonly backend: string;
     readonly ciphertext: string;
     readonly context?: string;
+    readonly hashAlgorithm?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly key: string;
     readonly namespace?: string;
+    readonly paddingScheme?: string;
     /**
      * Decrypted plaintext returned from Vault
      */
@@ -82,8 +88,10 @@ export function getDecryptOutput(args: GetDecryptOutputArgs, opts?: pulumi.Invok
         "backend": args.backend,
         "ciphertext": args.ciphertext,
         "context": args.context,
+        "hashAlgorithm": args.hashAlgorithm,
         "key": args.key,
         "namespace": args.namespace,
+        "paddingScheme": args.paddingScheme,
     }, opts);
 }
 
@@ -94,6 +102,8 @@ export interface GetDecryptOutputArgs {
     backend: pulumi.Input<string>;
     ciphertext: pulumi.Input<string>;
     context?: pulumi.Input<string | undefined>;
+    hashAlgorithm?: pulumi.Input<string | undefined>;
     key: pulumi.Input<string>;
     namespace?: pulumi.Input<string | undefined>;
+    paddingScheme?: pulumi.Input<string | undefined>;
 }

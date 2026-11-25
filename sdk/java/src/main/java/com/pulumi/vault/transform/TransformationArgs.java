@@ -103,14 +103,14 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
     }
 
     /**
-     * The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
      * 
      */
     @Import(name="maxTweakLen")
     private @Nullable Output<Integer> maxTweakLen;
 
     /**
-     * @return The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * @return The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
      * 
      */
     public Optional<Output<Integer>> maxTweakLen() {
@@ -408,7 +408,7 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
          * 
          * @return builder
          * 
@@ -419,7 +419,7 @@ public final class TransformationArgs extends com.pulumi.resources.ResourceArgs 
         }
 
         /**
-         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+         * @param maxTweakLen The maximum length of a tweak value, in bytes. Only valid when `type` is &#34;fpe&#34;. **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
          * 
          * @return builder
          * 

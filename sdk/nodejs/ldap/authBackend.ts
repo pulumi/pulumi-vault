@@ -30,6 +30,7 @@ import * as utilities from "../utilities";
  *     dereferenceAliases: "always",
  *     enableSamaccountnameLogin: false,
  *     anonymousGroupSearch: false,
+ *     schema: "ad",
  * });
  * ```
  *
@@ -219,6 +220,10 @@ export class AuthBackend extends pulumi.CustomResource {
      */
     declare public readonly rotationWindow: pulumi.Output<number | undefined>;
     /**
+     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+     */
+    declare public readonly schema: pulumi.Output<string>;
+    /**
      * Control use of TLS when conecting to LDAP
      */
     declare public readonly starttls: pulumi.Output<boolean>;
@@ -346,6 +351,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["rotationPeriod"] = state?.rotationPeriod;
             resourceInputs["rotationSchedule"] = state?.rotationSchedule;
             resourceInputs["rotationWindow"] = state?.rotationWindow;
+            resourceInputs["schema"] = state?.schema;
             resourceInputs["starttls"] = state?.starttls;
             resourceInputs["tlsMaxVersion"] = state?.tlsMaxVersion;
             resourceInputs["tlsMinVersion"] = state?.tlsMinVersion;
@@ -401,6 +407,7 @@ export class AuthBackend extends pulumi.CustomResource {
             resourceInputs["rotationPeriod"] = args?.rotationPeriod;
             resourceInputs["rotationSchedule"] = args?.rotationSchedule;
             resourceInputs["rotationWindow"] = args?.rotationWindow;
+            resourceInputs["schema"] = args?.schema;
             resourceInputs["starttls"] = args?.starttls;
             resourceInputs["tlsMaxVersion"] = args?.tlsMaxVersion;
             resourceInputs["tlsMinVersion"] = args?.tlsMinVersion;
@@ -565,6 +572,10 @@ export interface AuthBackendState {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
     rotationWindow?: pulumi.Input<number | undefined>;
+    /**
+     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+     */
+    schema?: pulumi.Input<string | undefined>;
     /**
      * Control use of TLS when conecting to LDAP
      */
@@ -781,6 +792,10 @@ export interface AuthBackendArgs {
      * unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
      */
     rotationWindow?: pulumi.Input<number | undefined>;
+    /**
+     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+     */
+    schema?: pulumi.Input<string | undefined>;
     /**
      * Control use of TLS when conecting to LDAP
      */

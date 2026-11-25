@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetSecretBackendOrderChallengeResult',
@@ -26,7 +28,7 @@ class GetSecretBackendOrderChallengeResult:
     """
     A collection of values returned by getSecretBackendOrderChallenge.
     """
-    def __init__(__self__, challenge_type=None, expires=None, id=None, identifier=None, key_authorization=None, mount=None, namespace=None, order_id=None, role_name=None, status=None, token=None):
+    def __init__(__self__, challenge_type=None, expires=None, id=None, identifier=None, key_authorization=None, mount=None, namespace=None, order_id=None, role_name=None, status=None, timeouts=None, token=None):
         if challenge_type and not isinstance(challenge_type, str):
             raise TypeError("Expected argument 'challenge_type' to be a str")
         pulumi.set(__self__, "challenge_type", challenge_type)
@@ -57,6 +59,9 @@ class GetSecretBackendOrderChallengeResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if timeouts and not isinstance(timeouts, dict):
+            raise TypeError("Expected argument 'timeouts' to be a dict")
+        pulumi.set(__self__, "timeouts", timeouts)
         if token and not isinstance(token, str):
             raise TypeError("Expected argument 'token' to be a str")
         pulumi.set(__self__, "token", token)
@@ -128,6 +133,11 @@ class GetSecretBackendOrderChallengeResult:
 
     @_builtins.property
     @pulumi.getter
+    def timeouts(self) -> Optional['outputs.GetSecretBackendOrderChallengeTimeoutsResult']:
+        return pulumi.get(self, "timeouts")
+
+    @_builtins.property
+    @pulumi.getter
     def token(self) -> _builtins.str:
         """
         The challenge token provided by the ACME server. For HTTP-01 challenges, this is used in the URL path.
@@ -151,6 +161,7 @@ class AwaitableGetSecretBackendOrderChallengeResult(GetSecretBackendOrderChallen
             order_id=self.order_id,
             role_name=self.role_name,
             status=self.status,
+            timeouts=self.timeouts,
             token=self.token)
 
 
@@ -160,6 +171,7 @@ def get_secret_backend_order_challenge(challenge_type: Optional[_builtins.str] =
                                        namespace: Optional[_builtins.str] = None,
                                        order_id: Optional[_builtins.str] = None,
                                        role_name: Optional[_builtins.str] = None,
+                                       timeouts: Optional[Union['GetSecretBackendOrderChallengeTimeoutsArgs', 'GetSecretBackendOrderChallengeTimeoutsArgsDict', 'outputs.GetSecretBackendOrderChallengeTimeoutsResult']] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretBackendOrderChallengeResult:
     """
     Retrieves ACME challenge details for a specific identifier in an order. This data source provides the information needed to fulfill ACME challenges (HTTP-01, DNS-01, or TLS-ALPN-01) for domain validation.
@@ -276,7 +288,16 @@ def get_secret_backend_order_challenge(challenge_type: Optional[_builtins.str] =
 
     This challenge type is more complex and typically requires custom TLS server configuration.
 
-    > **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+    > **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+
+    ## Troubleshooting
+
+    ### Common Timeout Scenarios
+
+    If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+
+    * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+    * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
 
 
     :param _builtins.str challenge_type: The type of ACME challenge to retrieve. Valid values are:
@@ -299,6 +320,7 @@ def get_secret_backend_order_challenge(challenge_type: Optional[_builtins.str] =
     __args__['namespace'] = namespace
     __args__['orderId'] = order_id
     __args__['roleName'] = role_name
+    __args__['timeouts'] = timeouts
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('vault:pkiexternalca/getSecretBackendOrderChallenge:getSecretBackendOrderChallenge', __args__, opts=opts, typ=GetSecretBackendOrderChallengeResult).value
 
@@ -313,6 +335,7 @@ def get_secret_backend_order_challenge(challenge_type: Optional[_builtins.str] =
         order_id=pulumi.get(__ret__, 'order_id'),
         role_name=pulumi.get(__ret__, 'role_name'),
         status=pulumi.get(__ret__, 'status'),
+        timeouts=pulumi.get(__ret__, 'timeouts'),
         token=pulumi.get(__ret__, 'token'))
 def get_secret_backend_order_challenge_output(challenge_type: pulumi.Input[Optional[_builtins.str]] = None,
                                               identifier: pulumi.Input[Optional[_builtins.str]] = None,
@@ -320,6 +343,7 @@ def get_secret_backend_order_challenge_output(challenge_type: pulumi.Input[Optio
                                               namespace: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                               order_id: pulumi.Input[Optional[_builtins.str]] = None,
                                               role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                              timeouts: pulumi.Input[Optional[Optional[Union['GetSecretBackendOrderChallengeTimeoutsArgs', 'GetSecretBackendOrderChallengeTimeoutsArgsDict', 'outputs.GetSecretBackendOrderChallengeTimeoutsResult']]]] = None,
                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretBackendOrderChallengeResult]:
     """
     Retrieves ACME challenge details for a specific identifier in an order. This data source provides the information needed to fulfill ACME challenges (HTTP-01, DNS-01, or TLS-ALPN-01) for domain validation.
@@ -436,7 +460,16 @@ def get_secret_backend_order_challenge_output(challenge_type: pulumi.Input[Optio
 
     This challenge type is more complex and typically requires custom TLS server configuration.
 
-    > **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+    > **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+
+    ## Troubleshooting
+
+    ### Common Timeout Scenarios
+
+    If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+
+    * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+    * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
 
 
     :param _builtins.str challenge_type: The type of ACME challenge to retrieve. Valid values are:
@@ -459,6 +492,7 @@ def get_secret_backend_order_challenge_output(challenge_type: pulumi.Input[Optio
     __args__['namespace'] = namespace
     __args__['orderId'] = order_id
     __args__['roleName'] = role_name
+    __args__['timeouts'] = timeouts
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('vault:pkiexternalca/getSecretBackendOrderChallenge:getSecretBackendOrderChallenge', __args__, opts=opts, typ=GetSecretBackendOrderChallengeResult)
     return __ret__.apply(lambda __response__: GetSecretBackendOrderChallengeResult(
@@ -472,4 +506,5 @@ def get_secret_backend_order_challenge_output(challenge_type: pulumi.Input[Optio
         order_id=pulumi.get(__response__, 'order_id'),
         role_name=pulumi.get(__response__, 'role_name'),
         status=pulumi.get(__response__, 'status'),
+        timeouts=pulumi.get(__response__, 'timeouts'),
         token=pulumi.get(__response__, 'token')))

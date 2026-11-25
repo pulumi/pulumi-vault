@@ -3826,6 +3826,10 @@ export namespace managed {
          */
         clientSecret: string;
         /**
+         * The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+         */
+        encryptionMode?: string;
+        /**
          * The Azure Cloud environment API endpoints to use
          */
         environment: string;
@@ -3983,6 +3987,10 @@ export namespace managed {
          * The PIN for login
          */
         pin: string;
+        /**
+         * The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+         */
+        rsaOaepHash?: string;
         /**
          * The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
          */
@@ -4153,6 +4161,29 @@ export namespace pkiSecret {
          * The OID for the policy identifier
          */
         oid: string;
+    }
+
+}
+
+export namespace pkiexternalca {
+    export interface GetSecretBackendOrderChallengeTimeouts {
+        /**
+         * The maximum duration to wait for the order to reach the
+         * `awaiting-challenge-fulfillment` or `completed` state. Must be a string that can be
+         * [parsed as a duration](https://pkg.go.dev/time#ParseDuration) such as `"30s"` or `"5m"`.
+         * Defaults to `60s`. The order status is polled every 2 seconds until this duration elapses.
+         */
+        read?: string;
+    }
+
+    export interface SecretBackendOrderCertificateTimeouts {
+        /**
+         * The maximum duration to wait for the ACME order to reach
+         * the `completed` state. Must be a string that can be
+         * [parsed as a duration](https://pkg.go.dev/time#ParseDuration) such as `"30s"` or `"5m"`.
+         * Defaults to `60s`. The order status is polled every 2 seconds until this duration elapses.
+         */
+        create?: string;
     }
 
 }

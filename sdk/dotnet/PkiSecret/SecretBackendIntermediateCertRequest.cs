@@ -129,7 +129,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the key (either default, by name, or by identifier) to use
-        /// for generating this request. Only suitable for `type=existing` requests.
+        /// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         /// </summary>
         [Output("keyRef")]
         public Output<string> KeyRef { get; private set; } = null!;
@@ -154,14 +154,14 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// The ID of the previously configured managed key. This field is
-        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`
+        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Output("managedKeyId")]
         public Output<string?> ManagedKeyId { get; private set; } = null!;
 
         /// <summary>
         /// The name of the previously configured managed key. This field is
-        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`
+        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Output("managedKeyName")]
         public Output<string?> ManagedKeyName { get; private set; } = null!;
@@ -249,7 +249,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Type of intermediate to create. Must be either \"exported\" or \"internal\"
-        /// or \"kms\"
+        /// or \"kms\". Note that `ManagedKeyId` and `ManagedKeyName` are only supported when `Type` is `"kms"`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -387,7 +387,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the key (either default, by name, or by identifier) to use
-        /// for generating this request. Only suitable for `type=existing` requests.
+        /// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         /// </summary>
         [Input("keyRef")]
         public Input<string>? KeyRef { get; set; }
@@ -418,14 +418,14 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// The ID of the previously configured managed key. This field is
-        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`
+        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
         /// The name of the previously configured managed key. This field is
-        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`
+        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -507,7 +507,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Type of intermediate to create. Must be either \"exported\" or \"internal\"
-        /// or \"kms\"
+        /// or \"kms\". Note that `ManagedKeyId` and `ManagedKeyName` are only supported when `Type` is `"kms"`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -621,7 +621,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Specifies the key (either default, by name, or by identifier) to use
-        /// for generating this request. Only suitable for `type=existing` requests.
+        /// for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         /// </summary>
         [Input("keyRef")]
         public Input<string>? KeyRef { get; set; }
@@ -652,14 +652,14 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// The ID of the previously configured managed key. This field is
-        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`
+        /// required if `Type` is `Kms` and it conflicts with `ManagedKeyName`. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
         /// The name of the previously configured managed key. This field is
-        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`
+        /// required if `Type` is `Kms`  and it conflicts with `ManagedKeyId`. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -763,7 +763,7 @@ namespace Pulumi.Vault.PkiSecret
 
         /// <summary>
         /// Type of intermediate to create. Must be either \"exported\" or \"internal\"
-        /// or \"kms\"
+        /// or \"kms\". Note that `ManagedKeyId` and `ManagedKeyName` are only supported when `Type` is `"kms"`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

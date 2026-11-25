@@ -148,96 +148,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * Configuring the auth backend with a `provider_config:
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.jwt.AuthBackend;
- * import com.pulumi.vault.jwt.AuthBackendArgs;
- * import java.util.ArrayList;
- * import java.util.Arrays;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var gsuite = new AuthBackend("gsuite", AuthBackendArgs.builder()
- *             .description("OIDC backend")
- *             .oidcDiscoveryUrl("https://accounts.google.com")
- *             .path("oidc")
- *             .type("oidc")
- *             .providerConfig(Map.ofEntries(
- *                 Map.entry("provider", "gsuite"),
- *                 Map.entry("fetch_groups", "true"),
- *                 Map.entry("fetch_user_info", "true"),
- *                 Map.entry("groups_recurse_max_depth", "1")
- *             ))
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
- * 
- * <pre>
- * {@code
- * package generated_program;
- * 
- * import com.pulumi.Context;
- * import com.pulumi.Pulumi;
- * import com.pulumi.core.Output;
- * import com.pulumi.vault.jwt.AuthBackend;
- * import com.pulumi.vault.jwt.AuthBackendArgs;
- * import java.util.ArrayList;
- * import java.util.Arrays;
- * import java.util.Map;
- * import java.io.File;
- * import java.nio.file.Files;
- * import java.nio.file.Paths;
- * 
- * public class App {
- *     public static void main(String[] args) {
- *         Pulumi.run(App::stack);
- *     }
- * 
- *     public static void stack(Context ctx) {
- *         var okta = new AuthBackend("okta", AuthBackendArgs.builder()
- *             .description("OIDC backend")
- *             .oidcDiscoveryUrl("https://mycompany.okta.com/oauth2/default")
- *             .path("oidc")
- *             .type("oidc")
- *             .providerConfig(Map.ofEntries(
- *                 Map.entry("provider", "okta"),
- *                 Map.entry("fetch_groups", "true"),
- *                 Map.entry("org_url", "https://mycompany.okta.com"),
- *                 Map.entry("api_token", "12345"),
- *                 Map.entry("groups_cap", "200")
- *             ))
- *             .build());
- * 
- *     }
- * }
- * }
- * </pre>
- * 
- * ## Ephemeral Attributes Reference
- * 
- * The following write-only attributes are supported:
- * 
- * * `oidcClientSecretWo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidcClientSecret`. Must be used with `oidcClientSecretWoVersion`. To rotate the secret, update the value and increment `oidcClientSecretWoVersion`.
+ * Manage OIDC auth backend with write-only client ID and secret fed from an ephemeral KVv2 secret:
  * 
  * ## Import
  * 
@@ -435,10 +346,6 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     /**
      * Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      * 
-     * * tune - (Optional) Extra configuration block. Structure is documented below.
-     * 
-     * The `tune` block is used to tune the auth backend:
-     * 
      */
     @Export(name="namespaceInState", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> namespaceInState;
@@ -446,27 +353,53 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     /**
      * @return Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
      * 
-     * * tune - (Optional) Extra configuration block. Structure is documented below.
-     * 
-     * The `tune` block is used to tune the auth backend:
-     * 
      */
     public Output<Optional<Boolean>> namespaceInState() {
         return Codegen.optional(this.namespaceInState);
     }
     /**
-     * Client ID used for OIDC backends
+     * Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
      * 
      */
     @Export(name="oidcClientId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcClientId;
 
     /**
-     * @return Client ID used for OIDC backends
+     * @return Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidcClientIdWo` instead.
      * 
      */
     public Output<Optional<String>> oidcClientId() {
         return Codegen.optional(this.oidcClientId);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+     * 
+     */
+    @Export(name="oidcClientIdWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> oidcClientIdWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * Write-only Client ID used for OIDC. Use this instead of oidcClientId to accept ephemeral values.
+     * 
+     */
+    public Output<Optional<String>> oidcClientIdWo() {
+        return Codegen.optional(this.oidcClientIdWo);
+    }
+    /**
+     * Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+     * 
+     */
+    @Export(name="oidcClientIdWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> oidcClientIdWoVersion;
+
+    /**
+     * @return Version counter for the write-only `oidcClientIdWo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidcClientIdWo`.
+     * 
+     */
+    public Output<Optional<Integer>> oidcClientIdWoVersion() {
+        return Codegen.optional(this.oidcClientIdWoVersion);
     }
     /**
      * Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidcClientSecretWo` instead.
@@ -616,6 +549,28 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
     public Output<Optional<String>> type() {
         return Codegen.optional(this.type);
     }
+    /**
+     * A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+     * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    @Export(name="unsupportedCriticalCertExtensions", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> unsupportedCriticalCertExtensions;
+
+    /**
+     * @return A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+     * 
+     * * tune - (Optional) Extra configuration block. Structure is documented below.
+     * 
+     * The `tune` block is used to tune the auth backend:
+     * 
+     */
+    public Output<Optional<List<String>>> unsupportedCriticalCertExtensions() {
+        return Codegen.optional(this.unsupportedCriticalCertExtensions);
+    }
 
     /**
      *
@@ -657,6 +612,7 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
+                "oidcClientIdWo",
                 "oidcClientSecret",
                 "oidcClientSecretWo"
             ))

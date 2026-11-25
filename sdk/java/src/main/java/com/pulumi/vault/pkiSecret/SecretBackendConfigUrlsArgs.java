@@ -49,6 +49,21 @@ public final class SecretBackendConfigUrlsArgs extends com.pulumi.resources.Reso
     }
 
     /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     * 
+     */
+    @Import(name="deltaCrlDistributionPoints")
+    private @Nullable Output<List<String>> deltaCrlDistributionPoints;
+
+    /**
+     * @return Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     * 
+     */
+    public Optional<Output<List<String>>> deltaCrlDistributionPoints() {
+        return Optional.ofNullable(this.deltaCrlDistributionPoints);
+    }
+
+    /**
      * Specifies that templating of AIA fields is allowed.
      * 
      */
@@ -119,6 +134,7 @@ public final class SecretBackendConfigUrlsArgs extends com.pulumi.resources.Reso
     private SecretBackendConfigUrlsArgs(SecretBackendConfigUrlsArgs $) {
         this.backend = $.backend;
         this.crlDistributionPoints = $.crlDistributionPoints;
+        this.deltaCrlDistributionPoints = $.deltaCrlDistributionPoints;
         this.enableTemplating = $.enableTemplating;
         this.issuingCertificates = $.issuingCertificates;
         this.namespace = $.namespace;
@@ -193,6 +209,37 @@ public final class SecretBackendConfigUrlsArgs extends com.pulumi.resources.Reso
          */
         public Builder crlDistributionPoints(String... crlDistributionPoints) {
             return crlDistributionPoints(List.of(crlDistributionPoints));
+        }
+
+        /**
+         * @param deltaCrlDistributionPoints Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deltaCrlDistributionPoints(@Nullable Output<List<String>> deltaCrlDistributionPoints) {
+            $.deltaCrlDistributionPoints = deltaCrlDistributionPoints;
+            return this;
+        }
+
+        /**
+         * @param deltaCrlDistributionPoints Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deltaCrlDistributionPoints(List<String> deltaCrlDistributionPoints) {
+            return deltaCrlDistributionPoints(Output.of(deltaCrlDistributionPoints));
+        }
+
+        /**
+         * @param deltaCrlDistributionPoints Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder deltaCrlDistributionPoints(String... deltaCrlDistributionPoints) {
+            return deltaCrlDistributionPoints(List.of(deltaCrlDistributionPoints));
         }
 
         /**

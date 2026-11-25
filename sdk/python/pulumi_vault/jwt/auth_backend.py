@@ -34,6 +34,8 @@ class AuthBackendArgs:
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace_in_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  oidc_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  oidc_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -44,7 +46,8 @@ class AuthBackendArgs:
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None,
-                 type: pulumi.Input[Optional[_builtins.str]] = None):
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 unsupported_critical_cert_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a AuthBackend resource.
 
@@ -64,11 +67,10 @@ class AuthBackendArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-               
-               * tune - (Optional) Extra configuration block. Structure is documented below.
-               
-               The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidc_client_id_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client ID used for OIDC. Use this instead of oidc_client_id to accept ephemeral values.
+        :param pulumi.Input[_builtins.int] oidc_client_id_wo_version: Version counter for the write-only `oidc_client_id_wo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidc_client_id_wo`.
         :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
         :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
@@ -80,6 +82,11 @@ class AuthBackendArgs:
         :param pulumi.Input[_builtins.str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[_builtins.str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] unsupported_critical_cert_extensions: A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+               
+               * tune - (Optional) Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         if bound_issuer is not None:
             pulumi.set(__self__, "bound_issuer", bound_issuer)
@@ -107,6 +114,10 @@ class AuthBackendArgs:
             pulumi.set(__self__, "namespace_in_state", namespace_in_state)
         if oidc_client_id is not None:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
+        if oidc_client_id_wo is not None:
+            pulumi.set(__self__, "oidc_client_id_wo", oidc_client_id_wo)
+        if oidc_client_id_wo_version is not None:
+            pulumi.set(__self__, "oidc_client_id_wo_version", oidc_client_id_wo_version)
         if oidc_client_secret is not None:
             pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
         if oidc_client_secret_wo is not None:
@@ -129,6 +140,8 @@ class AuthBackendArgs:
             pulumi.set(__self__, "tune", tune)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if unsupported_critical_cert_extensions is not None:
+            pulumi.set(__self__, "unsupported_critical_cert_extensions", unsupported_critical_cert_extensions)
 
     @_builtins.property
     @pulumi.getter(name="boundIssuer")
@@ -271,10 +284,6 @@ class AuthBackendArgs:
     def namespace_in_state(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-
-        * tune - (Optional) Extra configuration block. Structure is documented below.
-
-        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "namespace_in_state")
 
@@ -286,13 +295,38 @@ class AuthBackendArgs:
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Client ID used for OIDC backends
+        Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidc_client_id_wo` instead.
         """
         return pulumi.get(self, "oidc_client_id")
 
     @oidc_client_id.setter
     def oidc_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oidc_client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientIdWo")
+    def oidc_client_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Client ID used for OIDC. Use this instead of oidc_client_id to accept ephemeral values.
+        """
+        return pulumi.get(self, "oidc_client_id_wo")
+
+    @oidc_client_id_wo.setter
+    def oidc_client_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "oidc_client_id_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientIdWoVersion")
+    def oidc_client_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only `oidc_client_id_wo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidc_client_id_wo`.
+        """
+        return pulumi.get(self, "oidc_client_id_wo_version")
+
+    @oidc_client_id_wo_version.setter
+    def oidc_client_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "oidc_client_id_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcClientSecret")
@@ -424,6 +458,22 @@ class AuthBackendArgs:
     def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
+    @_builtins.property
+    @pulumi.getter(name="unsupportedCriticalCertExtensions")
+    def unsupported_critical_cert_extensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+
+        * tune - (Optional) Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "unsupported_critical_cert_extensions")
+
+    @unsupported_critical_cert_extensions.setter
+    def unsupported_critical_cert_extensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "unsupported_critical_cert_extensions", value)
+
 
 @pulumi.input_type
 class _AuthBackendState:
@@ -442,6 +492,8 @@ class _AuthBackendState:
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace_in_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  oidc_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  oidc_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -452,7 +504,8 @@ class _AuthBackendState:
                  path: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tune: pulumi.Input[Optional['AuthBackendTuneArgs']] = None,
-                 type: pulumi.Input[Optional[_builtins.str]] = None):
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 unsupported_critical_cert_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering AuthBackend resources.
 
@@ -473,11 +526,10 @@ class _AuthBackendState:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-               
-               * tune - (Optional) Extra configuration block. Structure is documented below.
-               
-               The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidc_client_id_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client ID used for OIDC. Use this instead of oidc_client_id to accept ephemeral values.
+        :param pulumi.Input[_builtins.int] oidc_client_id_wo_version: Version counter for the write-only `oidc_client_id_wo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidc_client_id_wo`.
         :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
         :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
@@ -489,6 +541,11 @@ class _AuthBackendState:
         :param pulumi.Input[_builtins.str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[_builtins.str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] unsupported_critical_cert_extensions: A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+               
+               * tune - (Optional) Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         if accessor is not None:
             pulumi.set(__self__, "accessor", accessor)
@@ -518,6 +575,10 @@ class _AuthBackendState:
             pulumi.set(__self__, "namespace_in_state", namespace_in_state)
         if oidc_client_id is not None:
             pulumi.set(__self__, "oidc_client_id", oidc_client_id)
+        if oidc_client_id_wo is not None:
+            pulumi.set(__self__, "oidc_client_id_wo", oidc_client_id_wo)
+        if oidc_client_id_wo_version is not None:
+            pulumi.set(__self__, "oidc_client_id_wo_version", oidc_client_id_wo_version)
         if oidc_client_secret is not None:
             pulumi.set(__self__, "oidc_client_secret", oidc_client_secret)
         if oidc_client_secret_wo is not None:
@@ -540,6 +601,8 @@ class _AuthBackendState:
             pulumi.set(__self__, "tune", tune)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if unsupported_critical_cert_extensions is not None:
+            pulumi.set(__self__, "unsupported_critical_cert_extensions", unsupported_critical_cert_extensions)
 
     @_builtins.property
     @pulumi.getter
@@ -694,10 +757,6 @@ class _AuthBackendState:
     def namespace_in_state(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-
-        * tune - (Optional) Extra configuration block. Structure is documented below.
-
-        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "namespace_in_state")
 
@@ -709,13 +768,38 @@ class _AuthBackendState:
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Client ID used for OIDC backends
+        Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidc_client_id_wo` instead.
         """
         return pulumi.get(self, "oidc_client_id")
 
     @oidc_client_id.setter
     def oidc_client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oidc_client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientIdWo")
+    def oidc_client_id_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Client ID used for OIDC. Use this instead of oidc_client_id to accept ephemeral values.
+        """
+        return pulumi.get(self, "oidc_client_id_wo")
+
+    @oidc_client_id_wo.setter
+    def oidc_client_id_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "oidc_client_id_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientIdWoVersion")
+    def oidc_client_id_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only `oidc_client_id_wo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidc_client_id_wo`.
+        """
+        return pulumi.get(self, "oidc_client_id_wo_version")
+
+    @oidc_client_id_wo_version.setter
+    def oidc_client_id_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "oidc_client_id_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcClientSecret")
@@ -847,6 +931,22 @@ class _AuthBackendState:
     def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
+    @_builtins.property
+    @pulumi.getter(name="unsupportedCriticalCertExtensions")
+    def unsupported_critical_cert_extensions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+
+        * tune - (Optional) Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "unsupported_critical_cert_extensions")
+
+    @unsupported_critical_cert_extensions.setter
+    def unsupported_critical_cert_extensions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "unsupported_critical_cert_extensions", value)
+
 
 @pulumi.type_token("vault:jwt/authBackend:AuthBackend")
 class AuthBackend(pulumi.CustomResource):
@@ -867,6 +967,8 @@ class AuthBackend(pulumi.CustomResource):
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace_in_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  oidc_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  oidc_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -878,6 +980,7 @@ class AuthBackend(pulumi.CustomResource):
                  provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
+                 unsupported_critical_cert_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         Provides a resource for managing an
@@ -937,50 +1040,7 @@ class AuthBackend(pulumi.CustomResource):
             })
         ```
 
-        Configuring the auth backend with a `provider_config:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        gsuite = vault.jwt.AuthBackend("gsuite",
-            description="OIDC backend",
-            oidc_discovery_url="https://accounts.google.com",
-            path="oidc",
-            type="oidc",
-            provider_config={
-                "provider": "gsuite",
-                "fetch_groups": "true",
-                "fetch_user_info": "true",
-                "groups_recurse_max_depth": "1",
-            })
-        ```
-
-        Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        okta = vault.jwt.AuthBackend("okta",
-            description="OIDC backend",
-            oidc_discovery_url="https://mycompany.okta.com/oauth2/default",
-            path="oidc",
-            type="oidc",
-            provider_config={
-                "provider": "okta",
-                "fetch_groups": "true",
-                "org_url": "https://mycompany.okta.com",
-                "api_token": "12345",
-                "groups_cap": "200",
-            })
-        ```
-
-        ## Ephemeral Attributes Reference
-
-        The following write-only attributes are supported:
-
-        * `oidc_client_secret_wo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidc_client_secret`. Must be used with `oidc_client_secret_wo_version`. To rotate the secret, update the value and increment `oidc_client_secret_wo_version`.
+        Manage OIDC auth backend with write-only client ID and secret fed from an ephemeral KVv2 secret:
 
         ## Import
 
@@ -1015,11 +1075,10 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-               
-               * tune - (Optional) Extra configuration block. Structure is documented below.
-               
-               The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidc_client_id_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client ID used for OIDC. Use this instead of oidc_client_id to accept ephemeral values.
+        :param pulumi.Input[_builtins.int] oidc_client_id_wo_version: Version counter for the write-only `oidc_client_id_wo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidc_client_id_wo`.
         :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
         :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
@@ -1031,6 +1090,11 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[_builtins.str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] unsupported_critical_cert_extensions: A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+               
+               * tune - (Optional) Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         ...
     @overload
@@ -1096,50 +1160,7 @@ class AuthBackend(pulumi.CustomResource):
             })
         ```
 
-        Configuring the auth backend with a `provider_config:
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        gsuite = vault.jwt.AuthBackend("gsuite",
-            description="OIDC backend",
-            oidc_discovery_url="https://accounts.google.com",
-            path="oidc",
-            type="oidc",
-            provider_config={
-                "provider": "gsuite",
-                "fetch_groups": "true",
-                "fetch_user_info": "true",
-                "groups_recurse_max_depth": "1",
-            })
-        ```
-
-        Configuring the auth backend with Okta provider(requires Vault 2.1.1+):
-
-        ```python
-        import pulumi
-        import pulumi_vault as vault
-
-        okta = vault.jwt.AuthBackend("okta",
-            description="OIDC backend",
-            oidc_discovery_url="https://mycompany.okta.com/oauth2/default",
-            path="oidc",
-            type="oidc",
-            provider_config={
-                "provider": "okta",
-                "fetch_groups": "true",
-                "org_url": "https://mycompany.okta.com",
-                "api_token": "12345",
-                "groups_cap": "200",
-            })
-        ```
-
-        ## Ephemeral Attributes Reference
-
-        The following write-only attributes are supported:
-
-        * `oidc_client_secret_wo` - (Optional) Write-only Client Secret used for OIDC backends. This value will **never** be stored in Terraform state. Mutually exclusive with `oidc_client_secret`. Must be used with `oidc_client_secret_wo_version`. To rotate the secret, update the value and increment `oidc_client_secret_wo_version`.
+        Manage OIDC auth backend with write-only client ID and secret fed from an ephemeral KVv2 secret:
 
         ## Import
 
@@ -1184,6 +1205,8 @@ class AuthBackend(pulumi.CustomResource):
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  namespace_in_state: pulumi.Input[Optional[_builtins.bool]] = None,
                  oidc_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  oidc_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1195,6 +1218,7 @@ class AuthBackend(pulumi.CustomResource):
                  provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
+                 unsupported_critical_cert_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1217,6 +1241,8 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["namespace"] = namespace
             __props__.__dict__["namespace_in_state"] = namespace_in_state
             __props__.__dict__["oidc_client_id"] = oidc_client_id
+            __props__.__dict__["oidc_client_id_wo"] = None if oidc_client_id_wo is None else pulumi.Output.secret(oidc_client_id_wo)
+            __props__.__dict__["oidc_client_id_wo_version"] = oidc_client_id_wo_version
             __props__.__dict__["oidc_client_secret"] = None if oidc_client_secret is None else pulumi.Output.secret(oidc_client_secret)
             __props__.__dict__["oidc_client_secret_wo"] = None if oidc_client_secret_wo is None else pulumi.Output.secret(oidc_client_secret_wo)
             __props__.__dict__["oidc_client_secret_wo_version"] = oidc_client_secret_wo_version
@@ -1228,8 +1254,9 @@ class AuthBackend(pulumi.CustomResource):
             __props__.__dict__["provider_config"] = provider_config
             __props__.__dict__["tune"] = tune
             __props__.__dict__["type"] = type
+            __props__.__dict__["unsupported_critical_cert_extensions"] = unsupported_critical_cert_extensions
             __props__.__dict__["accessor"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["oidcClientSecret", "oidcClientSecretWo"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["oidcClientIdWo", "oidcClientSecret", "oidcClientSecretWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(AuthBackend, __self__).__init__(
             'vault:jwt/authBackend:AuthBackend',
@@ -1255,6 +1282,8 @@ class AuthBackend(pulumi.CustomResource):
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             namespace_in_state: pulumi.Input[Optional[_builtins.bool]] = None,
             oidc_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             oidc_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
             oidc_client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
             oidc_client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1265,7 +1294,8 @@ class AuthBackend(pulumi.CustomResource):
             path: pulumi.Input[Optional[_builtins.str]] = None,
             provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
-            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'AuthBackend':
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            unsupported_critical_cert_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'AuthBackend':
         """
         Get an existing AuthBackend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1290,11 +1320,10 @@ class AuthBackend(pulumi.CustomResource):
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.bool] namespace_in_state: Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-               
-               * tune - (Optional) Extra configuration block. Structure is documented below.
-               
-               The `tune` block is used to tune the auth backend:
-        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends
+        :param pulumi.Input[_builtins.str] oidc_client_id: Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidc_client_id_wo` instead.
+        :param pulumi.Input[_builtins.str] oidc_client_id_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               Write-only Client ID used for OIDC. Use this instead of oidc_client_id to accept ephemeral values.
+        :param pulumi.Input[_builtins.int] oidc_client_id_wo_version: Version counter for the write-only `oidc_client_id_wo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidc_client_id_wo`.
         :param pulumi.Input[_builtins.str] oidc_client_secret: Client Secret used for OIDC backends. **Note:** This field is stored in state. For enhanced security, use `oidc_client_secret_wo` instead.
         :param pulumi.Input[_builtins.str] oidc_client_secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
                Write-only Client Secret used for OIDC. This field is recommended over oidc_client_secret for enhanced security.
@@ -1306,6 +1335,11 @@ class AuthBackend(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] path: Path to mount the JWT/OIDC auth backend
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] provider_config: Provider specific handling configuration. All values may be strings, and the provider will convert to the appropriate type when configuring Vault.
         :param pulumi.Input[_builtins.str] type: Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] unsupported_critical_cert_extensions: A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+               
+               * tune - (Optional) Extra configuration block. Structure is documented below.
+               
+               The `tune` block is used to tune the auth backend:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1325,6 +1359,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["namespace"] = namespace
         __props__.__dict__["namespace_in_state"] = namespace_in_state
         __props__.__dict__["oidc_client_id"] = oidc_client_id
+        __props__.__dict__["oidc_client_id_wo"] = oidc_client_id_wo
+        __props__.__dict__["oidc_client_id_wo_version"] = oidc_client_id_wo_version
         __props__.__dict__["oidc_client_secret"] = oidc_client_secret
         __props__.__dict__["oidc_client_secret_wo"] = oidc_client_secret_wo
         __props__.__dict__["oidc_client_secret_wo_version"] = oidc_client_secret_wo_version
@@ -1336,6 +1372,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__.__dict__["provider_config"] = provider_config
         __props__.__dict__["tune"] = tune
         __props__.__dict__["type"] = type
+        __props__.__dict__["unsupported_critical_cert_extensions"] = unsupported_critical_cert_extensions
         return AuthBackend(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -1355,6 +1392,8 @@ class AuthBackend(pulumi.CustomResource):
             namespace: pulumi.Input[Optional[_builtins.str]] = None,
             namespace_in_state: pulumi.Input[Optional[_builtins.bool]] = None,
             oidc_client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_client_id_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_client_id_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             oidc_client_secret: pulumi.Input[Optional[_builtins.str]] = None,
             oidc_client_secret_wo: pulumi.Input[Optional[_builtins.str]] = None,
             oidc_client_secret_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
@@ -1365,7 +1404,8 @@ class AuthBackend(pulumi.CustomResource):
             path: pulumi.Input[Optional[_builtins.str]] = None,
             provider_config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             tune: pulumi.Input[Optional[Union['AuthBackendTuneArgs', 'AuthBackendTuneArgsDict', 'outputs.AuthBackendTune']]] = None,
-            type: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            unsupported_critical_cert_extensions: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["accessor"] = accessor
         __props__["boundIssuer"] = bound_issuer
@@ -1381,6 +1421,8 @@ class AuthBackend(pulumi.CustomResource):
         __props__["namespace"] = namespace
         __props__["namespaceInState"] = namespace_in_state
         __props__["oidcClientId"] = oidc_client_id
+        __props__["oidcClientIdWo"] = oidc_client_id_wo
+        __props__["oidcClientIdWoVersion"] = oidc_client_id_wo_version
         __props__["oidcClientSecret"] = oidc_client_secret
         __props__["oidcClientSecretWo"] = oidc_client_secret_wo
         __props__["oidcClientSecretWoVersion"] = oidc_client_secret_wo_version
@@ -1392,6 +1434,7 @@ class AuthBackend(pulumi.CustomResource):
         __props__["providerConfig"] = provider_config
         __props__["tune"] = tune
         __props__["type"] = type
+        __props__["unsupportedCriticalCertExtensions"] = unsupported_critical_cert_extensions
         return pulumi.runtime.exists_resource(None, 'vault:jwt/authBackend:AuthBackend', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -1499,10 +1542,6 @@ class AuthBackend(pulumi.CustomResource):
     def namespace_in_state(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Pass namespace in the OIDC state parameter instead of as a separate query parameter. With this setting, the allowed redirect URL(s) in Vault and on the provider side should not contain a namespace query parameter. This means only one redirect URL entry needs to be maintained on the OIDC provider side for all vault namespaces that will be authenticating against it. Defaults to true for new configs
-
-        * tune - (Optional) Extra configuration block. Structure is documented below.
-
-        The `tune` block is used to tune the auth backend:
         """
         return pulumi.get(self, "namespace_in_state")
 
@@ -1510,9 +1549,26 @@ class AuthBackend(pulumi.CustomResource):
     @pulumi.getter(name="oidcClientId")
     def oidc_client_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Client ID used for OIDC backends
+        Client ID used for OIDC backends. **Note:** This field is stored in state. To accept an ephemeral value, use `oidc_client_id_wo` instead.
         """
         return pulumi.get(self, "oidc_client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientIdWo")
+    def oidc_client_id_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        Write-only Client ID used for OIDC. Use this instead of oidc_client_id to accept ephemeral values.
+        """
+        return pulumi.get(self, "oidc_client_id_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="oidcClientIdWoVersion")
+    def oidc_client_id_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Version counter for the write-only `oidc_client_id_wo` field. Must be at least `1`. Increment this value to trigger an update of the client ID in Vault. Required when using `oidc_client_id_wo`.
+        """
+        return pulumi.get(self, "oidc_client_id_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="oidcClientSecret")
@@ -1599,4 +1655,16 @@ class AuthBackend(pulumi.CustomResource):
         Type of auth backend. Should be one of `jwt` or `oidc`. Default - `jwt`
         """
         return pulumi.get(self, "type")
+
+    @_builtins.property
+    @pulumi.getter(name="unsupportedCriticalCertExtensions")
+    def unsupported_critical_cert_extensions(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        A list of ASN1 OIDs of certificate extensions marked Critical that are unsupported by Vault and should be ignored. This option should very rarely be needed except in specialized PKI environments. Requires Vault 1.18+.
+
+        * tune - (Optional) Extra configuration block. Structure is documented below.
+
+        The `tune` block is used to tune the auth backend:
+        """
+        return pulumi.get(self, "unsupported_critical_cert_extensions")
 

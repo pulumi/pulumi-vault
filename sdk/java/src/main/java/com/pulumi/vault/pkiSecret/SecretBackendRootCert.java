@@ -366,7 +366,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
     }
     /**
      * Specifies the key (either default, by name, or by identifier) to use
-     * for generating this request. Only suitable for `type=existing` requests.
+     * for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
      * 
      */
     @Export(name="keyRef", refs={String.class}, tree="[0]")
@@ -374,7 +374,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specifies the key (either default, by name, or by identifier) to use
-     * for generating this request. Only suitable for `type=existing` requests.
+     * for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
      * 
      */
     public Output<String> keyRef() {
@@ -424,7 +424,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
     }
     /**
      * The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     @Export(name="managedKeyId", refs={String.class}, tree="[0]")
@@ -432,7 +432,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The ID of the previously configured managed key. This field is
-     * required if `type` is `kms` and it conflicts with `managedKeyName`
+     * required if `type` is `kms` and it conflicts with `managedKeyName`. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     public Output<String> managedKeyId() {
@@ -440,7 +440,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
     }
     /**
      * The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     @Export(name="managedKeyName", refs={String.class}, tree="[0]")
@@ -448,7 +448,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
 
     /**
      * @return The name of the previously configured managed key. This field is
-     * required if `type` is `kms`  and it conflicts with `managedKeyId`
+     * required if `type` is `kms`  and it conflicts with `managedKeyId`. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     public Output<String> managedKeyName() {
@@ -760,7 +760,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
     }
     /**
      * Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34;, &#92;&#34;internal&#92;&#34;
-     * or &#92;&#34;kms&#92;&#34;
+     * or &#92;&#34;kms&#92;&#34;. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `&#34;kms&#34;`.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
@@ -768,7 +768,7 @@ public class SecretBackendRootCert extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Type of intermediate to create. Must be either &#92;&#34;exported&#92;&#34;, &#92;&#34;internal&#92;&#34;
-     * or &#92;&#34;kms&#92;&#34;
+     * or &#92;&#34;kms&#92;&#34;. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `&#34;kms&#34;`.
      * 
      */
     public Output<String> type() {

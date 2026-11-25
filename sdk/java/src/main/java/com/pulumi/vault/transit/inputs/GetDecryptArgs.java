@@ -37,6 +37,13 @@ public final class GetDecryptArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.context);
     }
 
+    @Import(name="hashAlgorithm")
+    private @Nullable Output<String> hashAlgorithm;
+
+    public Optional<Output<String>> hashAlgorithm() {
+        return Optional.ofNullable(this.hashAlgorithm);
+    }
+
     @Import(name="key", required=true)
     private Output<String> key;
 
@@ -51,14 +58,23 @@ public final class GetDecryptArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.namespace);
     }
 
+    @Import(name="paddingScheme")
+    private @Nullable Output<String> paddingScheme;
+
+    public Optional<Output<String>> paddingScheme() {
+        return Optional.ofNullable(this.paddingScheme);
+    }
+
     private GetDecryptArgs() {}
 
     private GetDecryptArgs(GetDecryptArgs $) {
         this.backend = $.backend;
         this.ciphertext = $.ciphertext;
         this.context = $.context;
+        this.hashAlgorithm = $.hashAlgorithm;
         this.key = $.key;
         this.namespace = $.namespace;
+        this.paddingScheme = $.paddingScheme;
     }
 
     public static Builder builder() {
@@ -106,6 +122,15 @@ public final class GetDecryptArgs extends com.pulumi.resources.InvokeArgs {
             return context(Output.of(context));
         }
 
+        public Builder hashAlgorithm(@Nullable Output<String> hashAlgorithm) {
+            $.hashAlgorithm = hashAlgorithm;
+            return this;
+        }
+
+        public Builder hashAlgorithm(String hashAlgorithm) {
+            return hashAlgorithm(Output.of(hashAlgorithm));
+        }
+
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
@@ -122,6 +147,15 @@ public final class GetDecryptArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        public Builder paddingScheme(@Nullable Output<String> paddingScheme) {
+            $.paddingScheme = paddingScheme;
+            return this;
+        }
+
+        public Builder paddingScheme(String paddingScheme) {
+            return paddingScheme(Output.of(paddingScheme));
         }
 
         public GetDecryptArgs build() {
