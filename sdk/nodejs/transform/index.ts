@@ -25,6 +25,11 @@ export const getRewrap: typeof import("./getRewrap").getRewrap = null as any;
 export const getRewrapOutput: typeof import("./getRewrap").getRewrapOutput = null as any;
 utilities.lazyLoad(exports, ["getRewrap","getRewrapOutput"], () => require("./getRewrap"));
 
+export { GetWrappingKeyArgs, GetWrappingKeyResult, GetWrappingKeyOutputArgs } from "./getWrappingKey";
+export const getWrappingKey: typeof import("./getWrappingKey").getWrappingKey = null as any;
+export const getWrappingKeyOutput: typeof import("./getWrappingKey").getWrappingKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getWrappingKey","getWrappingKeyOutput"], () => require("./getWrappingKey"));
+
 export { KeyConfigurationArgs, KeyConfigurationState } from "./keyConfiguration";
 export type KeyConfiguration = import("./keyConfiguration").KeyConfiguration;
 export const KeyConfiguration: typeof import("./keyConfiguration").KeyConfiguration = null as any;
@@ -45,10 +50,30 @@ export type Transformation = import("./transformation").Transformation;
 export const Transformation: typeof import("./transformation").Transformation = null as any;
 utilities.lazyLoad(exports, ["Transformation"], () => require("./transformation"));
 
+export { TransformationFpeArgs, TransformationFpeState } from "./transformationFpe";
+export type TransformationFpe = import("./transformationFpe").TransformationFpe;
+export const TransformationFpe: typeof import("./transformationFpe").TransformationFpe = null as any;
+utilities.lazyLoad(exports, ["TransformationFpe"], () => require("./transformationFpe"));
+
+export { TransformationFpeImportedKeyArgs, TransformationFpeImportedKeyState } from "./transformationFpeImportedKey";
+export type TransformationFpeImportedKey = import("./transformationFpeImportedKey").TransformationFpeImportedKey;
+export const TransformationFpeImportedKey: typeof import("./transformationFpeImportedKey").TransformationFpeImportedKey = null as any;
+utilities.lazyLoad(exports, ["TransformationFpeImportedKey"], () => require("./transformationFpeImportedKey"));
+
+export { TransformationMaskingArgs, TransformationMaskingState } from "./transformationMasking";
+export type TransformationMasking = import("./transformationMasking").TransformationMasking;
+export const TransformationMasking: typeof import("./transformationMasking").TransformationMasking = null as any;
+utilities.lazyLoad(exports, ["TransformationMasking"], () => require("./transformationMasking"));
+
 export { TransformationTokenizationArgs, TransformationTokenizationState } from "./transformationTokenization";
 export type TransformationTokenization = import("./transformationTokenization").TransformationTokenization;
 export const TransformationTokenization: typeof import("./transformationTokenization").TransformationTokenization = null as any;
 utilities.lazyLoad(exports, ["TransformationTokenization"], () => require("./transformationTokenization"));
+
+export { TransformationTokenizationImportedKeyArgs, TransformationTokenizationImportedKeyState } from "./transformationTokenizationImportedKey";
+export type TransformationTokenizationImportedKey = import("./transformationTokenizationImportedKey").TransformationTokenizationImportedKey;
+export const TransformationTokenizationImportedKey: typeof import("./transformationTokenizationImportedKey").TransformationTokenizationImportedKey = null as any;
+utilities.lazyLoad(exports, ["TransformationTokenizationImportedKey"], () => require("./transformationTokenizationImportedKey"));
 
 export { TransformationTokenizationStoreArgs, TransformationTokenizationStoreState } from "./transformationTokenizationStore";
 export type TransformationTokenizationStore = import("./transformationTokenizationStore").TransformationTokenizationStore;
@@ -70,8 +95,16 @@ const _module = {
                 return new Template(name, <any>undefined, { urn })
             case "vault:transform/transformation:Transformation":
                 return new Transformation(name, <any>undefined, { urn })
+            case "vault:transform/transformationFpe:TransformationFpe":
+                return new TransformationFpe(name, <any>undefined, { urn })
+            case "vault:transform/transformationFpeImportedKey:TransformationFpeImportedKey":
+                return new TransformationFpeImportedKey(name, <any>undefined, { urn })
+            case "vault:transform/transformationMasking:TransformationMasking":
+                return new TransformationMasking(name, <any>undefined, { urn })
             case "vault:transform/transformationTokenization:TransformationTokenization":
                 return new TransformationTokenization(name, <any>undefined, { urn })
+            case "vault:transform/transformationTokenizationImportedKey:TransformationTokenizationImportedKey":
+                return new TransformationTokenizationImportedKey(name, <any>undefined, { urn })
             case "vault:transform/transformationTokenizationStore:TransformationTokenizationStore":
                 return new TransformationTokenizationStore(name, <any>undefined, { urn })
             default:
@@ -84,5 +117,9 @@ pulumi.runtime.registerResourceModule("vault", "transform/keyConfiguration", _mo
 pulumi.runtime.registerResourceModule("vault", "transform/role", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/template", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/transformation", _module)
+pulumi.runtime.registerResourceModule("vault", "transform/transformationFpe", _module)
+pulumi.runtime.registerResourceModule("vault", "transform/transformationFpeImportedKey", _module)
+pulumi.runtime.registerResourceModule("vault", "transform/transformationMasking", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/transformationTokenization", _module)
+pulumi.runtime.registerResourceModule("vault", "transform/transformationTokenizationImportedKey", _module)
 pulumi.runtime.registerResourceModule("vault", "transform/transformationTokenizationStore", _module)

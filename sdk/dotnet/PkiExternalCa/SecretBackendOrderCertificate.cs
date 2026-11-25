@@ -173,6 +173,14 @@ namespace Pulumi.Vault.PkiExternalCa
     /// });
     /// ```
     /// 
+    /// ## Troubleshooting
+    /// 
+    /// ### Common Timeout Scenarios
+    /// 
+    /// If resource creation fails with an error indicating the order did not reach `Completed` status within the configured timeout:
+    /// 
+    /// * **DNS-01 Propagation Delays**: For DNS-01 challenges with slow propagation across public or authoritative nameservers, the ACME CA may take several minutes to successfully validate the challenge record. Increase `timeouts.create` to 5–10 minutes (e.g., `create = "10m"`) to allow sufficient time for propagation and validation
+    /// 
     /// ## Import
     /// 
     /// PKI External CA order certificates can be imported using the format `&lt;mount&gt;/role/&lt;role_name&gt;/order/&lt;order_id&gt;/certificate`, e.g.
@@ -181,7 +189,7 @@ namespace Pulumi.Vault.PkiExternalCa
     /// $ pulumi import vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate example pki-external-ca/role/example-role/order/abc123/certificate
     /// ```
     /// 
-    /// &gt; **Note** This resource polls the order status with a timeout. If the order does not complete within the polling period, the resource creation will fail. Ensure all challenges are properly fulfilled before creating this resource.
+    /// &gt; **Note** This resource polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.create` value (default `60s`). Ensure all challenges are properly fulfilled before creating this resource, otherwise the order will not complete within the timeout.
     /// </summary>
     [VaultResourceType("vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate")]
     public partial class SecretBackendOrderCertificate : global::Pulumi.CustomResource
@@ -236,6 +244,9 @@ namespace Pulumi.Vault.PkiExternalCa
         /// </summary>
         [Output("serialNumber")]
         public Output<string> SerialNumber { get; private set; } = null!;
+
+        [Output("timeouts")]
+        public Output<Outputs.SecretBackendOrderCertificateTimeouts?> Timeouts { get; private set; } = null!;
 
 
         /// <summary>
@@ -314,6 +325,9 @@ namespace Pulumi.Vault.PkiExternalCa
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;
 
+        [Input("timeouts")]
+        public Input<Inputs.SecretBackendOrderCertificateTimeoutsArgs>? Timeouts { get; set; }
+
         public SecretBackendOrderCertificateArgs()
         {
         }
@@ -388,6 +402,9 @@ namespace Pulumi.Vault.PkiExternalCa
         /// </summary>
         [Input("serialNumber")]
         public Input<string>? SerialNumber { get; set; }
+
+        [Input("timeouts")]
+        public Input<Inputs.SecretBackendOrderCertificateTimeoutsGetArgs>? Timeouts { get; set; }
 
         public SecretBackendOrderCertificateState()
         {

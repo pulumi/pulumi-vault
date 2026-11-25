@@ -58,6 +58,7 @@ import javax.annotation.Nullable;
  *             .caLifetime(315360000)
  *             .caSoftExpiry(31536000)
  *             .defaultCertTtl(2592000)
+ *             .aliasMode("tpm_id")
  *             .build());
  * 
  *     }
@@ -78,6 +79,20 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig")
 public class TpmAuthBackendConfig extends com.pulumi.resources.CustomResource {
+    /**
+     * The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault&#39;s default.
+     * 
+     */
+    @Export(name="aliasMode", refs={String.class}, tree="[0]")
+    private Output<String> aliasMode;
+
+    /**
+     * @return The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault&#39;s default.
+     * 
+     */
+    public Output<String> aliasMode() {
+        return this.aliasMode;
+    }
     /**
      * How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault&#39;s default.
      * 

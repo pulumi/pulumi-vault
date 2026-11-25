@@ -70,7 +70,7 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] common_name: CN of intermediate to create
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] alt_names: List of alternative names
         :param pulumi.Input[_builtins.str] country: The country
         :param pulumi.Input[_builtins.bool] exclude_cn_from_sans: Flag to exclude CN from SANs
@@ -88,14 +88,14 @@ class SecretBackendRootCertArgs:
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -241,7 +241,7 @@ class SecretBackendRootCertArgs:
     def type(self) -> pulumi.Input[_builtins.str]:
         """
         Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
-        or \\"kms\\"
+        or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         """
         return pulumi.get(self, "type")
 
@@ -424,7 +424,7 @@ class SecretBackendRootCertArgs:
     def key_ref(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the key (either default, by name, or by identifier) to use
-        for generating this request. Only suitable for `type=existing` requests.
+        for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         """
         return pulumi.get(self, "key_ref")
 
@@ -473,7 +473,7 @@ class SecretBackendRootCertArgs:
     def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the previously configured managed key. This field is
-        required if `type` is `kms` and it conflicts with `managed_key_name`
+        required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -486,7 +486,7 @@ class SecretBackendRootCertArgs:
     def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the previously configured managed key. This field is
-        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -843,14 +843,14 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -878,7 +878,7 @@ class _SecretBackendRootCertState:
         :param pulumi.Input[_builtins.str] street_address: The street address
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[_builtins.bool] use_pss: When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
@@ -1230,7 +1230,7 @@ class _SecretBackendRootCertState:
     def key_ref(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the key (either default, by name, or by identifier) to use
-        for generating this request. Only suitable for `type=existing` requests.
+        for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         """
         return pulumi.get(self, "key_ref")
 
@@ -1279,7 +1279,7 @@ class _SecretBackendRootCertState:
     def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the previously configured managed key. This field is
-        required if `type` is `kms` and it conflicts with `managed_key_name`
+        required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -1292,7 +1292,7 @@ class _SecretBackendRootCertState:
     def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the previously configured managed key. This field is
-        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -1562,7 +1562,7 @@ class _SecretBackendRootCertState:
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
-        or \\"kms\\"
+        or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         """
         return pulumi.get(self, "type")
 
@@ -1704,14 +1704,14 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -1738,7 +1738,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] street_address: The street address
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[_builtins.bool] use_pss: When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
@@ -1999,14 +1999,14 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies the allowed key usage constraints for the certificate. This list of key usages will be added to the existing set of key usages (`CRLSign`, `CertSign`) on the generated certificate. Defaults to `["CRLSign", "CertSign"]` for root CA certificates. Requires Vault 1.19.2+.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.int] max_path_length: The maximum path length to encode in the generated certificate
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
@@ -2034,7 +2034,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] street_address: The street address
         :param pulumi.Input[_builtins.str] ttl: Time to live
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         :param pulumi.Input[_builtins.bool] use_pss: When `true`, uses PSS (Probabilistic Signature Scheme) for RSA signatures instead of PKCS#1 v1.5. PSS provides enhanced security but may have compatibility issues with older systems. Only applicable to RSA keys; ignored for ECDSA/Ed25519 keys. Defaults to `false`. Requires Vault 1.18.0+.
         """
@@ -2367,7 +2367,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     def key_ref(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the key (either default, by name, or by identifier) to use
-        for generating this request. Only suitable for `type=existing` requests.
+        for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         """
         return pulumi.get(self, "key_ref")
 
@@ -2400,7 +2400,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     def managed_key_id(self) -> pulumi.Output[_builtins.str]:
         """
         The ID of the previously configured managed key. This field is
-        required if `type` is `kms` and it conflicts with `managed_key_name`
+        required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -2409,7 +2409,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     def managed_key_name(self) -> pulumi.Output[_builtins.str]:
         """
         The name of the previously configured managed key. This field is
-        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -2591,7 +2591,7 @@ class SecretBackendRootCert(pulumi.CustomResource):
     def type(self) -> pulumi.Output[_builtins.str]:
         """
         Type of intermediate to create. Must be either \\"exported\\", \\"internal\\"
-        or \\"kms\\"
+        or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         """
         return pulumi.get(self, "type")
 

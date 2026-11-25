@@ -100,11 +100,11 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     declare public readonly keyType: pulumi.Output<string>;
     /**
-     * The managed key's UUID.
+     * The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     declare public readonly managedKeyId: pulumi.Output<string | undefined>;
     /**
-     * The managed key's configured name.
+     * The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     declare public readonly managedKeyName: pulumi.Output<string | undefined>;
     /**
@@ -119,7 +119,7 @@ export class SecretBackendKey extends pulumi.CustomResource {
      */
     declare public readonly parameterSet: pulumi.Output<string>;
     /**
-     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
      */
     declare public readonly type: pulumi.Output<string>;
 
@@ -199,11 +199,11 @@ export interface SecretBackendKeyState {
      */
     keyType?: pulumi.Input<string | undefined>;
     /**
-     * The managed key's UUID.
+     * The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyId?: pulumi.Input<string | undefined>;
     /**
-     * The managed key's configured name.
+     * The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyName?: pulumi.Input<string | undefined>;
     /**
@@ -218,7 +218,7 @@ export interface SecretBackendKeyState {
      */
     parameterSet?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
      */
     type?: pulumi.Input<string | undefined>;
 }
@@ -248,11 +248,11 @@ export interface SecretBackendKeyArgs {
      */
     keyType?: pulumi.Input<string | undefined>;
     /**
-     * The managed key's UUID.
+     * The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyId?: pulumi.Input<string | undefined>;
     /**
-     * The managed key's configured name.
+     * The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
      */
     managedKeyName?: pulumi.Input<string | undefined>;
     /**
@@ -267,7 +267,7 @@ export interface SecretBackendKeyArgs {
      */
     parameterSet?: pulumi.Input<string | undefined>;
     /**
-     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
      */
     type: pulumi.Input<string>;
 }

@@ -24,26 +24,30 @@ func GetEncrypt(ctx *pulumi.Context, args *GetEncryptArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getEncrypt.
 type GetEncryptArgs struct {
-	Backend    string  `pulumi:"backend"`
-	Context    *string `pulumi:"context"`
-	Key        string  `pulumi:"key"`
-	KeyVersion *int    `pulumi:"keyVersion"`
-	Namespace  *string `pulumi:"namespace"`
-	Plaintext  string  `pulumi:"plaintext"`
+	Backend       string  `pulumi:"backend"`
+	Context       *string `pulumi:"context"`
+	HashAlgorithm *string `pulumi:"hashAlgorithm"`
+	Key           string  `pulumi:"key"`
+	KeyVersion    *int    `pulumi:"keyVersion"`
+	Namespace     *string `pulumi:"namespace"`
+	PaddingScheme *string `pulumi:"paddingScheme"`
+	Plaintext     string  `pulumi:"plaintext"`
 }
 
 // A collection of values returned by getEncrypt.
 type GetEncryptResult struct {
 	Backend string `pulumi:"backend"`
 	// Encrypted ciphertext returned from Vault
-	Ciphertext string  `pulumi:"ciphertext"`
-	Context    *string `pulumi:"context"`
+	Ciphertext    string  `pulumi:"ciphertext"`
+	Context       *string `pulumi:"context"`
+	HashAlgorithm *string `pulumi:"hashAlgorithm"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	Key        string  `pulumi:"key"`
-	KeyVersion *int    `pulumi:"keyVersion"`
-	Namespace  *string `pulumi:"namespace"`
-	Plaintext  string  `pulumi:"plaintext"`
+	Id            string  `pulumi:"id"`
+	Key           string  `pulumi:"key"`
+	KeyVersion    *int    `pulumi:"keyVersion"`
+	Namespace     *string `pulumi:"namespace"`
+	PaddingScheme *string `pulumi:"paddingScheme"`
+	Plaintext     string  `pulumi:"plaintext"`
 }
 
 func GetEncryptOutput(ctx *pulumi.Context, args GetEncryptOutputArgs, opts ...pulumi.InvokeOption) GetEncryptResultOutput {
@@ -53,12 +57,14 @@ func GetEncryptOutput(ctx *pulumi.Context, args GetEncryptOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getEncrypt.
 type GetEncryptOutputArgs struct {
-	Backend    pulumi.StringInput    `pulumi:"backend"`
-	Context    pulumi.StringPtrInput `pulumi:"context"`
-	Key        pulumi.StringInput    `pulumi:"key"`
-	KeyVersion pulumi.IntPtrInput    `pulumi:"keyVersion"`
-	Namespace  pulumi.StringPtrInput `pulumi:"namespace"`
-	Plaintext  pulumi.StringInput    `pulumi:"plaintext"`
+	Backend       pulumi.StringInput    `pulumi:"backend"`
+	Context       pulumi.StringPtrInput `pulumi:"context"`
+	HashAlgorithm pulumi.StringPtrInput `pulumi:"hashAlgorithm"`
+	Key           pulumi.StringInput    `pulumi:"key"`
+	KeyVersion    pulumi.IntPtrInput    `pulumi:"keyVersion"`
+	Namespace     pulumi.StringPtrInput `pulumi:"namespace"`
+	PaddingScheme pulumi.StringPtrInput `pulumi:"paddingScheme"`
+	Plaintext     pulumi.StringInput    `pulumi:"plaintext"`
 }
 
 func (GetEncryptOutputArgs) ElementType() reflect.Type {
@@ -93,6 +99,10 @@ func (o GetEncryptResultOutput) Context() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetEncryptResult) *string { return v.Context }).(pulumi.StringPtrOutput)
 }
 
+func (o GetEncryptResultOutput) HashAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncryptResult) *string { return v.HashAlgorithm }).(pulumi.StringPtrOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o GetEncryptResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEncryptResult) string { return v.Id }).(pulumi.StringOutput)
@@ -108,6 +118,10 @@ func (o GetEncryptResultOutput) KeyVersion() pulumi.IntPtrOutput {
 
 func (o GetEncryptResultOutput) Namespace() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetEncryptResult) *string { return v.Namespace }).(pulumi.StringPtrOutput)
+}
+
+func (o GetEncryptResultOutput) PaddingScheme() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetEncryptResult) *string { return v.PaddingScheme }).(pulumi.StringPtrOutput)
 }
 
 func (o GetEncryptResultOutput) Plaintext() pulumi.StringOutput {

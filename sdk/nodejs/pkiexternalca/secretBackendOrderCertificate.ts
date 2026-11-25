@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -109,6 +111,14 @@ import * as utilities from "../utilities";
  * export const privateKey = exampleSecretBackendOrderCertificate.privateKey;
  * ```
  *
+ * ## Troubleshooting
+ *
+ * ### Common Timeout Scenarios
+ *
+ * If resource creation fails with an error indicating the order did not reach `completed` status within the configured timeout:
+ *
+ * * **DNS-01 Propagation Delays**: For DNS-01 challenges with slow propagation across public or authoritative nameservers, the ACME CA may take several minutes to successfully validate the challenge record. Increase `timeouts.create` to 5–10 minutes (e.g., `create = "10m"`) to allow sufficient time for propagation and validation
+ *
  * ## Import
  *
  * PKI External CA order certificates can be imported using the format `<mount>/role/<role_name>/order/<order_id>/certificate`, e.g.
@@ -117,7 +127,7 @@ import * as utilities from "../utilities";
  * $ pulumi import vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate example pki-external-ca/role/example-role/order/abc123/certificate
  * ```
  *
- * > **Note** This resource polls the order status with a timeout. If the order does not complete within the polling period, the resource creation will fail. Ensure all challenges are properly fulfilled before creating this resource.
+ * > **Note** This resource polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.create` value (default `60s`). Ensure all challenges are properly fulfilled before creating this resource, otherwise the order will not complete within the timeout.
  */
 export class SecretBackendOrderCertificate extends pulumi.CustomResource {
     /**
@@ -193,6 +203,7 @@ export class SecretBackendOrderCertificate extends pulumi.CustomResource {
      * The serial number of the issued certificate.
      */
     declare public /*out*/ readonly serialNumber: pulumi.Output<string>;
+    declare public readonly timeouts: pulumi.Output<outputs.pkiexternalca.SecretBackendOrderCertificateTimeouts | undefined>;
 
     /**
      * Create a SecretBackendOrderCertificate resource with the given unique name, arguments, and options.
@@ -215,6 +226,7 @@ export class SecretBackendOrderCertificate extends pulumi.CustomResource {
             resourceInputs["privateKey"] = state?.privateKey;
             resourceInputs["roleName"] = state?.roleName;
             resourceInputs["serialNumber"] = state?.serialNumber;
+            resourceInputs["timeouts"] = state?.timeouts;
         } else {
             const args = argsOrState as SecretBackendOrderCertificateArgs | undefined;
             if (args?.mount === undefined && !opts.urn) {
@@ -230,6 +242,7 @@ export class SecretBackendOrderCertificate extends pulumi.CustomResource {
             resourceInputs["namespace"] = args?.namespace;
             resourceInputs["orderId"] = args?.orderId;
             resourceInputs["roleName"] = args?.roleName;
+            resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["caChains"] = undefined /*out*/;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["privateKey"] = undefined /*out*/;
@@ -281,6 +294,7 @@ export interface SecretBackendOrderCertificateState {
      * The serial number of the issued certificate.
      */
     serialNumber?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.pkiexternalca.SecretBackendOrderCertificateTimeouts | undefined>;
 }
 
 /**
@@ -306,4 +320,5 @@ export interface SecretBackendOrderCertificateArgs {
      * Name of the role associated with the order.
      */
     roleName: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.pkiexternalca.SecretBackendOrderCertificateTimeouts | undefined>;
 }

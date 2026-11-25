@@ -54,7 +54,7 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[_builtins.str] backend: The PKI secret backend the resource belongs to.
         :param pulumi.Input[_builtins.str] common_name: CN of intermediate to create
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[_builtins.bool] add_basic_constraints: Adds a Basic Constraints extension with 'CA: true'.
                Only needed as a workaround in some compatibility scenarios with Active Directory
                Certificate Services
@@ -67,14 +67,14 @@ class SecretBackendIntermediateCertRequestArgs:
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -176,7 +176,7 @@ class SecretBackendIntermediateCertRequestArgs:
     def type(self) -> pulumi.Input[_builtins.str]:
         """
         Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
-        or \\"kms\\"
+        or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         """
         return pulumi.get(self, "type")
 
@@ -288,7 +288,7 @@ class SecretBackendIntermediateCertRequestArgs:
     def key_ref(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the key (either default, by name, or by identifier) to use
-        for generating this request. Only suitable for `type=existing` requests.
+        for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         """
         return pulumi.get(self, "key_ref")
 
@@ -337,7 +337,7 @@ class SecretBackendIntermediateCertRequestArgs:
     def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the previously configured managed key. This field is
-        required if `type` is `kms` and it conflicts with `managed_key_name`
+        required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -350,7 +350,7 @@ class SecretBackendIntermediateCertRequestArgs:
     def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the previously configured managed key. This field is
-        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -561,14 +561,14 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -586,7 +586,7 @@ class _SecretBackendIntermediateCertRequestState:
         :param pulumi.Input[_builtins.int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[_builtins.str] street_address: The street address
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         """
         if add_basic_constraints is not None:
@@ -808,7 +808,7 @@ class _SecretBackendIntermediateCertRequestState:
     def key_ref(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the key (either default, by name, or by identifier) to use
-        for generating this request. Only suitable for `type=existing` requests.
+        for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         """
         return pulumi.get(self, "key_ref")
 
@@ -857,7 +857,7 @@ class _SecretBackendIntermediateCertRequestState:
     def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the previously configured managed key. This field is
-        required if `type` is `kms` and it conflicts with `managed_key_name`
+        required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -870,7 +870,7 @@ class _SecretBackendIntermediateCertRequestState:
     def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the previously configured managed key. This field is
-        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -1042,7 +1042,7 @@ class _SecretBackendIntermediateCertRequestState:
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
-        or \\"kms\\"
+        or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         """
         return pulumi.get(self, "type")
 
@@ -1143,14 +1143,14 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1166,7 +1166,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[_builtins.str] street_address: The street address
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         """
         ...
@@ -1363,14 +1363,14 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies
                the name for this. The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_ref: Specifies the key (either default, by name, or by identifier) to use
-               for generating this request. Only suitable for `type=existing` requests.
+               for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         :param pulumi.Input[_builtins.str] key_type: The desired key type
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] key_usages: Specifies key_usage to encode in the generated certificate.
         :param pulumi.Input[_builtins.str] locality: The locality
         :param pulumi.Input[_builtins.str] managed_key_id: The ID of the previously configured managed key. This field is
-               required if `type` is `kms` and it conflicts with `managed_key_name`
+               required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] managed_key_name: The name of the previously configured managed key. This field is
-               required if `type` is `kms`  and it conflicts with `managed_key_id`
+               required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -1388,7 +1388,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] signature_bits: The number of bits to use in the signature algorithm
         :param pulumi.Input[_builtins.str] street_address: The street address
         :param pulumi.Input[_builtins.str] type: Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
-               or \\"kms\\"
+               or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] uri_sans: List of alternative URIs
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1606,7 +1606,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def key_ref(self) -> pulumi.Output[_builtins.str]:
         """
         Specifies the key (either default, by name, or by identifier) to use
-        for generating this request. Only suitable for `type=existing` requests.
+        for generating this request. Only suitable for `type=existing` requests, otherwise a warning is shown.
         """
         return pulumi.get(self, "key_ref")
 
@@ -1639,7 +1639,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def managed_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The ID of the previously configured managed key. This field is
-        required if `type` is `kms` and it conflicts with `managed_key_name`
+        required if `type` is `kms` and it conflicts with `managed_key_name`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -1648,7 +1648,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def managed_key_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The name of the previously configured managed key. This field is
-        required if `type` is `kms`  and it conflicts with `managed_key_id`
+        required if `type` is `kms`  and it conflicts with `managed_key_id`. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -1764,7 +1764,7 @@ class SecretBackendIntermediateCertRequest(pulumi.CustomResource):
     def type(self) -> pulumi.Output[_builtins.str]:
         """
         Type of intermediate to create. Must be either \\"exported\\" or \\"internal\\"
-        or \\"kms\\"
+        or \\"kms\\". Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `"kms"`.
         """
         return pulumi.get(self, "type")
 

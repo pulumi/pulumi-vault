@@ -26,6 +26,7 @@ import * as utilities from "./utilities";
  *     caLifetime: 315360000,
  *     caSoftExpiry: 31536000,
  *     defaultCertTtl: 2592000,
+ *     aliasMode: "tpm_id",
  * });
  * ```
  *
@@ -79,6 +80,10 @@ export class TpmAuthBackendConfig extends pulumi.CustomResource {
     }
 
     /**
+     * The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+     */
+    declare public readonly aliasMode: pulumi.Output<string>;
+    /**
      * How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
      */
     declare public readonly caLifetime: pulumi.Output<number>;
@@ -114,6 +119,7 @@ export class TpmAuthBackendConfig extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TpmAuthBackendConfigState | undefined;
+            resourceInputs["aliasMode"] = state?.aliasMode;
             resourceInputs["caLifetime"] = state?.caLifetime;
             resourceInputs["caSoftExpiry"] = state?.caSoftExpiry;
             resourceInputs["defaultCertTtl"] = state?.defaultCertTtl;
@@ -124,6 +130,7 @@ export class TpmAuthBackendConfig extends pulumi.CustomResource {
             if (args?.mount === undefined && !opts.urn) {
                 throw new Error("Missing required property 'mount'");
             }
+            resourceInputs["aliasMode"] = args?.aliasMode;
             resourceInputs["caLifetime"] = args?.caLifetime;
             resourceInputs["caSoftExpiry"] = args?.caSoftExpiry;
             resourceInputs["defaultCertTtl"] = args?.defaultCertTtl;
@@ -139,6 +146,10 @@ export class TpmAuthBackendConfig extends pulumi.CustomResource {
  * Input properties used for looking up and filtering TpmAuthBackendConfig resources.
  */
 export interface TpmAuthBackendConfigState {
+    /**
+     * The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+     */
+    aliasMode?: pulumi.Input<string | undefined>;
     /**
      * How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
      */
@@ -167,6 +178,10 @@ export interface TpmAuthBackendConfigState {
  * The set of arguments for constructing a TpmAuthBackendConfig resource.
  */
 export interface TpmAuthBackendConfigArgs {
+    /**
+     * The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+     */
+    aliasMode?: pulumi.Input<string | undefined>;
     /**
      * How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
      */

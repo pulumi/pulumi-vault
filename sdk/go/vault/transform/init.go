@@ -31,8 +31,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Template{}
 	case "vault:transform/transformation:Transformation":
 		r = &Transformation{}
+	case "vault:transform/transformationFpe:TransformationFpe":
+		r = &TransformationFpe{}
+	case "vault:transform/transformationFpeImportedKey:TransformationFpeImportedKey":
+		r = &TransformationFpeImportedKey{}
+	case "vault:transform/transformationMasking:TransformationMasking":
+		r = &TransformationMasking{}
 	case "vault:transform/transformationTokenization:TransformationTokenization":
 		r = &TransformationTokenization{}
+	case "vault:transform/transformationTokenizationImportedKey:TransformationTokenizationImportedKey":
+		r = &TransformationTokenizationImportedKey{}
 	case "vault:transform/transformationTokenizationStore:TransformationTokenizationStore":
 		r = &TransformationTokenizationStore{}
 	default:
@@ -75,7 +83,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"vault",
+		"transform/transformationFpe",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"transform/transformationFpeImportedKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"transform/transformationMasking",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
 		"transform/transformationTokenization",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"vault",
+		"transform/transformationTokenizationImportedKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

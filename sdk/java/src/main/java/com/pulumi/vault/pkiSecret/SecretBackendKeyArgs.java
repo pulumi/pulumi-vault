@@ -86,14 +86,14 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The managed key&#39;s UUID.
+     * The managed key&#39;s UUID. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     @Import(name="managedKeyId")
     private @Nullable Output<String> managedKeyId;
 
     /**
-     * @return The managed key&#39;s UUID.
+     * @return The managed key&#39;s UUID. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     public Optional<Output<String>> managedKeyId() {
@@ -101,14 +101,14 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The managed key&#39;s configured name.
+     * The managed key&#39;s configured name. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     @Import(name="managedKeyName")
     private @Nullable Output<String> managedKeyName;
 
     /**
-     * @return The managed key&#39;s configured name.
+     * @return The managed key&#39;s configured name. This field is ignored if `type` is not `kms` and a warning is shown.
      * 
      */
     public Optional<Output<String>> managedKeyName() {
@@ -152,14 +152,14 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+     * Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+     * @return Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
      * 
      */
     public Output<String> type() {
@@ -291,7 +291,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyId The managed key&#39;s UUID.
+         * @param managedKeyId The managed key&#39;s UUID. This field is ignored if `type` is not `kms` and a warning is shown.
          * 
          * @return builder
          * 
@@ -302,7 +302,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyId The managed key&#39;s UUID.
+         * @param managedKeyId The managed key&#39;s UUID. This field is ignored if `type` is not `kms` and a warning is shown.
          * 
          * @return builder
          * 
@@ -312,7 +312,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyName The managed key&#39;s configured name.
+         * @param managedKeyName The managed key&#39;s configured name. This field is ignored if `type` is not `kms` and a warning is shown.
          * 
          * @return builder
          * 
@@ -323,7 +323,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param managedKeyName The managed key&#39;s configured name.
+         * @param managedKeyName The managed key&#39;s configured name. This field is ignored if `type` is not `kms` and a warning is shown.
          * 
          * @return builder
          * 
@@ -381,7 +381,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+         * @param type Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
          * 
          * @return builder
          * 
@@ -392,7 +392,7 @@ public final class SecretBackendKeyArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param type Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+         * @param type Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managedKeyId` and `managedKeyName` are only supported when `type` is `kms`.
          * 
          * @return builder
          * 

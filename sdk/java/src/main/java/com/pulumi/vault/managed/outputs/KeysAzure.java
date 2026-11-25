@@ -45,6 +45,11 @@ public final class KeysAzure {
      */
     private String clientSecret;
     /**
+     * @return The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+     * 
+     */
+    private @Nullable String encryptionMode;
+    /**
      * @return The Azure Cloud environment API endpoints to use
      * 
      */
@@ -139,6 +144,13 @@ public final class KeysAzure {
         return this.clientSecret;
     }
     /**
+     * @return The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+     * 
+     */
+    public Optional<String> encryptionMode() {
+        return Optional.ofNullable(this.encryptionMode);
+    }
+    /**
      * @return The Azure Cloud environment API endpoints to use
      * 
      */
@@ -224,6 +236,7 @@ public final class KeysAzure {
         private @Nullable Boolean anyMount;
         private String clientId;
         private String clientSecret;
+        private @Nullable String encryptionMode;
         private @Nullable String environment;
         private @Nullable String keyBits;
         private String keyName;
@@ -243,6 +256,7 @@ public final class KeysAzure {
     	      this.anyMount = defaults.anyMount;
     	      this.clientId = defaults.clientId;
     	      this.clientSecret = defaults.clientSecret;
+    	      this.encryptionMode = defaults.encryptionMode;
     	      this.environment = defaults.environment;
     	      this.keyBits = defaults.keyBits;
     	      this.keyName = defaults.keyName;
@@ -293,6 +307,12 @@ public final class KeysAzure {
               throw new MissingRequiredPropertyException("KeysAzure", "clientSecret");
             }
             this.clientSecret = clientSecret;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder encryptionMode(@Nullable String encryptionMode) {
+
+            this.encryptionMode = encryptionMode;
             return this;
         }
         @CustomType.Setter
@@ -376,6 +396,7 @@ public final class KeysAzure {
             _resultValue.anyMount = anyMount;
             _resultValue.clientId = clientId;
             _resultValue.clientSecret = clientSecret;
+            _resultValue.encryptionMode = encryptionMode;
             _resultValue.environment = environment;
             _resultValue.keyBits = keyBits;
             _resultValue.keyName = keyName;

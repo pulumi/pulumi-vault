@@ -15,6 +15,7 @@ public final class GetDecryptResult {
     private String backend;
     private String ciphertext;
     private @Nullable String context;
+    private @Nullable String hashAlgorithm;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -22,6 +23,7 @@ public final class GetDecryptResult {
     private String id;
     private String key;
     private @Nullable String namespace;
+    private @Nullable String paddingScheme;
     /**
      * @return Decrypted plaintext returned from Vault
      * 
@@ -38,6 +40,9 @@ public final class GetDecryptResult {
     public Optional<String> context() {
         return Optional.ofNullable(this.context);
     }
+    public Optional<String> hashAlgorithm() {
+        return Optional.ofNullable(this.hashAlgorithm);
+    }
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
@@ -50,6 +55,9 @@ public final class GetDecryptResult {
     }
     public Optional<String> namespace() {
         return Optional.ofNullable(this.namespace);
+    }
+    public Optional<String> paddingScheme() {
+        return Optional.ofNullable(this.paddingScheme);
     }
     /**
      * @return Decrypted plaintext returned from Vault
@@ -71,9 +79,11 @@ public final class GetDecryptResult {
         private String backend;
         private String ciphertext;
         private @Nullable String context;
+        private @Nullable String hashAlgorithm;
         private String id;
         private String key;
         private @Nullable String namespace;
+        private @Nullable String paddingScheme;
         private String plaintext;
         public Builder() {}
         public Builder(GetDecryptResult defaults) {
@@ -81,9 +91,11 @@ public final class GetDecryptResult {
     	      this.backend = defaults.backend;
     	      this.ciphertext = defaults.ciphertext;
     	      this.context = defaults.context;
+    	      this.hashAlgorithm = defaults.hashAlgorithm;
     	      this.id = defaults.id;
     	      this.key = defaults.key;
     	      this.namespace = defaults.namespace;
+    	      this.paddingScheme = defaults.paddingScheme;
     	      this.plaintext = defaults.plaintext;
         }
 
@@ -110,6 +122,12 @@ public final class GetDecryptResult {
             return this;
         }
         @CustomType.Setter
+        public Builder hashAlgorithm(@Nullable String hashAlgorithm) {
+
+            this.hashAlgorithm = hashAlgorithm;
+            return this;
+        }
+        @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
               throw new MissingRequiredPropertyException("GetDecryptResult", "id");
@@ -132,6 +150,12 @@ public final class GetDecryptResult {
             return this;
         }
         @CustomType.Setter
+        public Builder paddingScheme(@Nullable String paddingScheme) {
+
+            this.paddingScheme = paddingScheme;
+            return this;
+        }
+        @CustomType.Setter
         public Builder plaintext(String plaintext) {
             if (plaintext == null) {
               throw new MissingRequiredPropertyException("GetDecryptResult", "plaintext");
@@ -144,9 +168,11 @@ public final class GetDecryptResult {
             _resultValue.backend = backend;
             _resultValue.ciphertext = ciphertext;
             _resultValue.context = context;
+            _resultValue.hashAlgorithm = hashAlgorithm;
             _resultValue.id = id;
             _resultValue.key = key;
             _resultValue.namespace = namespace;
+            _resultValue.paddingScheme = paddingScheme;
             _resultValue.plaintext = plaintext;
             return _resultValue;
         }

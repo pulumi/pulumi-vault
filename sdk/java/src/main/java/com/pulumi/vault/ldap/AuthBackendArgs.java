@@ -482,6 +482,21 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+     * 
+     */
+    @Import(name="schema")
+    private @Nullable Output<String> schema;
+
+    /**
+     * @return The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+     * 
+     */
+    public Optional<Output<String>> schema() {
+        return Optional.ofNullable(this.schema);
+    }
+
+    /**
      * Control use of TLS when conecting to LDAP
      * 
      */
@@ -820,6 +835,7 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
         this.rotationPeriod = $.rotationPeriod;
         this.rotationSchedule = $.rotationSchedule;
         this.rotationWindow = $.rotationWindow;
+        this.schema = $.schema;
         this.starttls = $.starttls;
         this.tlsMaxVersion = $.tlsMaxVersion;
         this.tlsMinVersion = $.tlsMinVersion;
@@ -1490,6 +1506,27 @@ public final class AuthBackendArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder rotationWindow(Integer rotationWindow) {
             return rotationWindow(Output.of(rotationWindow));
+        }
+
+        /**
+         * @param schema The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder schema(@Nullable Output<String> schema) {
+            $.schema = schema;
+            return this;
+        }
+
+        /**
+         * @param schema The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder schema(String schema) {
+            return schema(Output.of(schema));
         }
 
         /**

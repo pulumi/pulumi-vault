@@ -88,13 +88,13 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> KeyType { get; private set; } = null!;
 
         /// <summary>
-        /// The managed key's UUID.
+        /// The managed key's UUID. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Output("managedKeyId")]
         public Output<string?> ManagedKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The managed key's configured name.
+        /// The managed key's configured name. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Output("managedKeyName")]
         public Output<string?> ManagedKeyName { get; private set; } = null!;
@@ -115,7 +115,7 @@ namespace Pulumi.Vault.PkiSecret
         public Output<string> ParameterSet { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`.
+        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`. Note that `ManagedKeyId` and `ManagedKeyName` are only supported when `Type` is `Kms`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -195,13 +195,13 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// The managed key's UUID.
+        /// The managed key's UUID. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
-        /// The managed key's configured name.
+        /// The managed key's configured name. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -222,7 +222,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? ParameterSet { get; set; }
 
         /// <summary>
-        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`.
+        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`. Note that `ManagedKeyId` and `ManagedKeyName` are only supported when `Type` is `Kms`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -270,13 +270,13 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? KeyType { get; set; }
 
         /// <summary>
-        /// The managed key's UUID.
+        /// The managed key's UUID. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyId")]
         public Input<string>? ManagedKeyId { get; set; }
 
         /// <summary>
-        /// The managed key's configured name.
+        /// The managed key's configured name. This field is ignored if `Type` is not `Kms` and a warning is shown.
         /// </summary>
         [Input("managedKeyName")]
         public Input<string>? ManagedKeyName { get; set; }
@@ -297,7 +297,7 @@ namespace Pulumi.Vault.PkiSecret
         public Input<string>? ParameterSet { get; set; }
 
         /// <summary>
-        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`.
+        /// Specifies the type of the key to create. Can be `Exported`,`Internal` or `Kms`. Note that `ManagedKeyId` and `ManagedKeyName` are only supported when `Type` is `Kms`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

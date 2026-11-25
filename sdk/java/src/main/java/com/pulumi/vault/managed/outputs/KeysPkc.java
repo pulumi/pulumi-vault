@@ -86,6 +86,11 @@ public final class KeysPkc {
      */
     private String pin;
     /**
+     * @return The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when &#39;mechanism&#39; is set to &#39;CKM_RSA_PKCS_OAEP&#39;. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+     * 
+     */
+    private @Nullable String rsaOaepHash;
+    /**
      * @return The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
      * 
      */
@@ -206,6 +211,13 @@ public final class KeysPkc {
         return this.pin;
     }
     /**
+     * @return The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when &#39;mechanism&#39; is set to &#39;CKM_RSA_PKCS_OAEP&#39;. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+     * 
+     */
+    public Optional<String> rsaOaepHash() {
+        return Optional.ofNullable(this.rsaOaepHash);
+    }
+    /**
      * @return The slot number to use, specified as a string in a decimal format (e.g. &#39;2305843009213693953&#39;)
      * 
      */
@@ -257,6 +269,7 @@ public final class KeysPkc {
         private String mechanism;
         private String name;
         private String pin;
+        private @Nullable String rsaOaepHash;
         private @Nullable String slot;
         private @Nullable String tokenLabel;
         private @Nullable List<String> usages;
@@ -278,6 +291,7 @@ public final class KeysPkc {
     	      this.mechanism = defaults.mechanism;
     	      this.name = defaults.name;
     	      this.pin = defaults.pin;
+    	      this.rsaOaepHash = defaults.rsaOaepHash;
     	      this.slot = defaults.slot;
     	      this.tokenLabel = defaults.tokenLabel;
     	      this.usages = defaults.usages;
@@ -377,6 +391,12 @@ public final class KeysPkc {
             return this;
         }
         @CustomType.Setter
+        public Builder rsaOaepHash(@Nullable String rsaOaepHash) {
+
+            this.rsaOaepHash = rsaOaepHash;
+            return this;
+        }
+        @CustomType.Setter
         public Builder slot(@Nullable String slot) {
 
             this.slot = slot;
@@ -419,6 +439,7 @@ public final class KeysPkc {
             _resultValue.mechanism = mechanism;
             _resultValue.name = name;
             _resultValue.pin = pin;
+            _resultValue.rsaOaepHash = rsaOaepHash;
             _resultValue.slot = slot;
             _resultValue.tokenLabel = tokenLabel;
             _resultValue.usages = usages;

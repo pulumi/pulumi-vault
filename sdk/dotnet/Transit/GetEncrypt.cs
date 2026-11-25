@@ -39,6 +39,9 @@ namespace Pulumi.Vault.Transit
         [Input("context")]
         public string? Context { get; set; }
 
+        [Input("hashAlgorithm")]
+        public string? HashAlgorithm { get; set; }
+
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
@@ -47,6 +50,9 @@ namespace Pulumi.Vault.Transit
 
         [Input("namespace")]
         public string? Namespace { get; set; }
+
+        [Input("paddingScheme")]
+        public string? PaddingScheme { get; set; }
 
         [Input("plaintext", required: true)]
         private string? _plaintext;
@@ -70,6 +76,9 @@ namespace Pulumi.Vault.Transit
         [Input("context")]
         public Input<string>? Context { get; set; }
 
+        [Input("hashAlgorithm")]
+        public Input<string>? HashAlgorithm { get; set; }
+
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
@@ -78,6 +87,9 @@ namespace Pulumi.Vault.Transit
 
         [Input("namespace")]
         public Input<string>? Namespace { get; set; }
+
+        [Input("paddingScheme")]
+        public Input<string>? PaddingScheme { get; set; }
 
         [Input("plaintext", required: true)]
         private Input<string>? _plaintext;
@@ -107,6 +119,7 @@ namespace Pulumi.Vault.Transit
         /// </summary>
         public readonly string Ciphertext;
         public readonly string? Context;
+        public readonly string? HashAlgorithm;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -114,6 +127,7 @@ namespace Pulumi.Vault.Transit
         public readonly string Key;
         public readonly int? KeyVersion;
         public readonly string? Namespace;
+        public readonly string? PaddingScheme;
         public readonly string Plaintext;
 
         [OutputConstructor]
@@ -124,6 +138,8 @@ namespace Pulumi.Vault.Transit
 
             string? context,
 
+            string? hashAlgorithm,
+
             string id,
 
             string key,
@@ -132,15 +148,19 @@ namespace Pulumi.Vault.Transit
 
             string? @namespace,
 
+            string? paddingScheme,
+
             string plaintext)
         {
             Backend = backend;
             Ciphertext = ciphertext;
             Context = context;
+            HashAlgorithm = hashAlgorithm;
             Id = id;
             Key = key;
             KeyVersion = keyVersion;
             Namespace = @namespace;
+            PaddingScheme = paddingScheme;
             Plaintext = plaintext;
         }
     }

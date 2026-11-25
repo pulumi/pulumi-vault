@@ -22,6 +22,7 @@ class SecretBackendIssuerArgs:
                  backend: pulumi.Input[_builtins.str],
                  issuer_ref: pulumi.Input[_builtins.str],
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -43,6 +44,7 @@ class SecretBackendIssuerArgs:
         :param pulumi.Input[_builtins.str] issuer_ref: Reference to an existing issuer.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] disable_critical_extension_checks: This determines whether this
                issuer is able to issue certificates where the chain of trust (including the
                issued certificate) contain critical extensions not processed by Vault.
@@ -80,6 +82,8 @@ class SecretBackendIssuerArgs:
         pulumi.set(__self__, "issuer_ref", issuer_ref)
         if crl_distribution_points is not None:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
+        if delta_crl_distribution_points is not None:
+            pulumi.set(__self__, "delta_crl_distribution_points", delta_crl_distribution_points)
         if disable_critical_extension_checks is not None:
             pulumi.set(__self__, "disable_critical_extension_checks", disable_critical_extension_checks)
         if disable_name_checks is not None:
@@ -144,6 +148,18 @@ class SecretBackendIssuerArgs:
     @crl_distribution_points.setter
     def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deltaCrlDistributionPoints")
+    def delta_crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        """
+        return pulumi.get(self, "delta_crl_distribution_points")
+
+    @delta_crl_distribution_points.setter
+    def delta_crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "delta_crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="disableCriticalExtensionChecks")
@@ -326,6 +342,7 @@ class _SecretBackendIssuerState:
     def __init__(__self__, *,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -348,6 +365,7 @@ class _SecretBackendIssuerState:
                leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] disable_critical_extension_checks: This determines whether this
                issuer is able to issue certificates where the chain of trust (including the
                issued certificate) contain critical extensions not processed by Vault.
@@ -387,6 +405,8 @@ class _SecretBackendIssuerState:
             pulumi.set(__self__, "backend", backend)
         if crl_distribution_points is not None:
             pulumi.set(__self__, "crl_distribution_points", crl_distribution_points)
+        if delta_crl_distribution_points is not None:
+            pulumi.set(__self__, "delta_crl_distribution_points", delta_crl_distribution_points)
         if disable_critical_extension_checks is not None:
             pulumi.set(__self__, "disable_critical_extension_checks", disable_critical_extension_checks)
         if disable_name_checks is not None:
@@ -443,6 +463,18 @@ class _SecretBackendIssuerState:
     @crl_distribution_points.setter
     def crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "crl_distribution_points", value)
+
+    @_builtins.property
+    @pulumi.getter(name="deltaCrlDistributionPoints")
+    def delta_crl_distribution_points(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        """
+        return pulumi.get(self, "delta_crl_distribution_points")
+
+    @delta_crl_distribution_points.setter
+    def delta_crl_distribution_points(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "delta_crl_distribution_points", value)
 
     @_builtins.property
     @pulumi.getter(name="disableCriticalExtensionChecks")
@@ -652,6 +684,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -710,6 +743,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
                leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] disable_critical_extension_checks: This determines whether this
                issuer is able to issue certificates where the chain of trust (including the
                issued certificate) contain critical extensions not processed by Vault.
@@ -804,6 +838,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend: pulumi.Input[Optional[_builtins.str]] = None,
                  crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
                  disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -831,6 +866,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend'")
             __props__.__dict__["backend"] = backend
             __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+            __props__.__dict__["delta_crl_distribution_points"] = delta_crl_distribution_points
             __props__.__dict__["disable_critical_extension_checks"] = disable_critical_extension_checks
             __props__.__dict__["disable_name_checks"] = disable_name_checks
             __props__.__dict__["disable_name_constraint_checks"] = disable_name_constraint_checks
@@ -860,6 +896,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -886,6 +923,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
                leading or trailing `/`s.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] crl_distribution_points: Specifies the URL values for the CRL
                Distribution Points field.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] delta_crl_distribution_points: Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
         :param pulumi.Input[_builtins.bool] disable_critical_extension_checks: This determines whether this
                issuer is able to issue certificates where the chain of trust (including the
                issued certificate) contain critical extensions not processed by Vault.
@@ -927,6 +965,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
 
         __props__.__dict__["backend"] = backend
         __props__.__dict__["crl_distribution_points"] = crl_distribution_points
+        __props__.__dict__["delta_crl_distribution_points"] = delta_crl_distribution_points
         __props__.__dict__["disable_critical_extension_checks"] = disable_critical_extension_checks
         __props__.__dict__["disable_name_checks"] = disable_name_checks
         __props__.__dict__["disable_name_constraint_checks"] = disable_name_constraint_checks
@@ -949,6 +988,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backend: pulumi.Input[Optional[_builtins.str]] = None,
             crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            delta_crl_distribution_points: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             disable_critical_extension_checks: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_name_checks: pulumi.Input[Optional[_builtins.bool]] = None,
             disable_name_constraint_checks: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -967,6 +1007,7 @@ class SecretBackendIssuer(pulumi.CustomResource):
         __props__: dict = {}
         __props__["backend"] = backend
         __props__["crlDistributionPoints"] = crl_distribution_points
+        __props__["deltaCrlDistributionPoints"] = delta_crl_distribution_points
         __props__["disableCriticalExtensionChecks"] = disable_critical_extension_checks
         __props__["disableNameChecks"] = disable_name_checks
         __props__["disableNameConstraintChecks"] = disable_name_constraint_checks
@@ -1001,6 +1042,14 @@ class SecretBackendIssuer(pulumi.CustomResource):
         Distribution Points field.
         """
         return pulumi.get(self, "crl_distribution_points")
+
+    @_builtins.property
+    @pulumi.getter(name="deltaCrlDistributionPoints")
+    def delta_crl_distribution_points(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+        """
+        return pulumi.get(self, "delta_crl_distribution_points")
 
     @_builtins.property
     @pulumi.getter(name="disableCriticalExtensionChecks")

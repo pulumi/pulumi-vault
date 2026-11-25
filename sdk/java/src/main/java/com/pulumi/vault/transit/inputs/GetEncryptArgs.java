@@ -31,6 +31,13 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.context);
     }
 
+    @Import(name="hashAlgorithm")
+    private @Nullable Output<String> hashAlgorithm;
+
+    public Optional<Output<String>> hashAlgorithm() {
+        return Optional.ofNullable(this.hashAlgorithm);
+    }
+
     @Import(name="key", required=true)
     private Output<String> key;
 
@@ -52,6 +59,13 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.namespace);
     }
 
+    @Import(name="paddingScheme")
+    private @Nullable Output<String> paddingScheme;
+
+    public Optional<Output<String>> paddingScheme() {
+        return Optional.ofNullable(this.paddingScheme);
+    }
+
     @Import(name="plaintext", required=true)
     private Output<String> plaintext;
 
@@ -64,9 +78,11 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
     private GetEncryptArgs(GetEncryptArgs $) {
         this.backend = $.backend;
         this.context = $.context;
+        this.hashAlgorithm = $.hashAlgorithm;
         this.key = $.key;
         this.keyVersion = $.keyVersion;
         this.namespace = $.namespace;
+        this.paddingScheme = $.paddingScheme;
         this.plaintext = $.plaintext;
     }
 
@@ -106,6 +122,15 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
             return context(Output.of(context));
         }
 
+        public Builder hashAlgorithm(@Nullable Output<String> hashAlgorithm) {
+            $.hashAlgorithm = hashAlgorithm;
+            return this;
+        }
+
+        public Builder hashAlgorithm(String hashAlgorithm) {
+            return hashAlgorithm(Output.of(hashAlgorithm));
+        }
+
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
@@ -131,6 +156,15 @@ public final class GetEncryptArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder namespace(String namespace) {
             return namespace(Output.of(namespace));
+        }
+
+        public Builder paddingScheme(@Nullable Output<String> paddingScheme) {
+            $.paddingScheme = paddingScheme;
+            return this;
+        }
+
+        public Builder paddingScheme(String paddingScheme) {
+            return paddingScheme(Output.of(paddingScheme));
         }
 
         public Builder plaintext(Output<String> plaintext) {

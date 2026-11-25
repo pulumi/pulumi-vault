@@ -20,6 +20,7 @@ __all__ = ['TpmAuthBackendConfigArgs', 'TpmAuthBackendConfig']
 class TpmAuthBackendConfigArgs:
     def __init__(__self__, *,
                  mount: pulumi.Input[_builtins.str],
+                 alias_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  ca_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
                  ca_soft_expiry: pulumi.Input[Optional[_builtins.int]] = None,
                  default_cert_ttl: pulumi.Input[Optional[_builtins.int]] = None,
@@ -28,6 +29,7 @@ class TpmAuthBackendConfigArgs:
         The set of arguments for constructing a TpmAuthBackendConfig resource.
 
         :param pulumi.Input[_builtins.str] mount: Path of the enabled TPM auth backend mount to configure.
+        :param pulumi.Input[_builtins.str] alias_mode: The identity alias name mode used at login. Valid values are `tpm_id` and `role_id`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_lifetime: How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_soft_expiry: How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] default_cert_ttl: Default lifetime for issued client certificates, in seconds. If not specified, uses Vault's default.
@@ -36,6 +38,8 @@ class TpmAuthBackendConfigArgs:
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
         pulumi.set(__self__, "mount", mount)
+        if alias_mode is not None:
+            pulumi.set(__self__, "alias_mode", alias_mode)
         if ca_lifetime is not None:
             pulumi.set(__self__, "ca_lifetime", ca_lifetime)
         if ca_soft_expiry is not None:
@@ -56,6 +60,18 @@ class TpmAuthBackendConfigArgs:
     @mount.setter
     def mount(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "mount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMode")
+    def alias_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The identity alias name mode used at login. Valid values are `tpm_id` and `role_id`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+        """
+        return pulumi.get(self, "alias_mode")
+
+    @alias_mode.setter
+    def alias_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "alias_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="caLifetime")
@@ -111,6 +127,7 @@ class TpmAuthBackendConfigArgs:
 @pulumi.input_type
 class _TpmAuthBackendConfigState:
     def __init__(__self__, *,
+                 alias_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  ca_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
                  ca_soft_expiry: pulumi.Input[Optional[_builtins.int]] = None,
                  default_cert_ttl: pulumi.Input[Optional[_builtins.int]] = None,
@@ -119,6 +136,7 @@ class _TpmAuthBackendConfigState:
         """
         Input properties used for looking up and filtering TpmAuthBackendConfig resources.
 
+        :param pulumi.Input[_builtins.str] alias_mode: The identity alias name mode used at login. Valid values are `tpm_id` and `role_id`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_lifetime: How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_soft_expiry: How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] default_cert_ttl: Default lifetime for issued client certificates, in seconds. If not specified, uses Vault's default.
@@ -127,6 +145,8 @@ class _TpmAuthBackendConfigState:
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
         """
+        if alias_mode is not None:
+            pulumi.set(__self__, "alias_mode", alias_mode)
         if ca_lifetime is not None:
             pulumi.set(__self__, "ca_lifetime", ca_lifetime)
         if ca_soft_expiry is not None:
@@ -137,6 +157,18 @@ class _TpmAuthBackendConfigState:
             pulumi.set(__self__, "mount", mount)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMode")
+    def alias_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The identity alias name mode used at login. Valid values are `tpm_id` and `role_id`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+        """
+        return pulumi.get(self, "alias_mode")
+
+    @alias_mode.setter
+    def alias_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "alias_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="caLifetime")
@@ -207,6 +239,7 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  ca_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
                  ca_soft_expiry: pulumi.Input[Optional[_builtins.int]] = None,
                  default_cert_ttl: pulumi.Input[Optional[_builtins.int]] = None,
@@ -233,7 +266,8 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
             mount=tpm.path,
             ca_lifetime=315360000,
             ca_soft_expiry=31536000,
-            default_cert_ttl=2592000)
+            default_cert_ttl=2592000,
+            alias_mode="tpm_id")
         ```
 
         ## Import
@@ -249,6 +283,7 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] alias_mode: The identity alias name mode used at login. Valid values are `tpm_id` and `role_id`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_lifetime: How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_soft_expiry: How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] default_cert_ttl: Default lifetime for issued client certificates, in seconds. If not specified, uses Vault's default.
@@ -283,7 +318,8 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
             mount=tpm.path,
             ca_lifetime=315360000,
             ca_soft_expiry=31536000,
-            default_cert_ttl=2592000)
+            default_cert_ttl=2592000,
+            alias_mode="tpm_id")
         ```
 
         ## Import
@@ -312,6 +348,7 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alias_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  ca_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
                  ca_soft_expiry: pulumi.Input[Optional[_builtins.int]] = None,
                  default_cert_ttl: pulumi.Input[Optional[_builtins.int]] = None,
@@ -326,6 +363,7 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = TpmAuthBackendConfigArgs.__new__(TpmAuthBackendConfigArgs)
 
+            __props__.__dict__["alias_mode"] = alias_mode
             __props__.__dict__["ca_lifetime"] = ca_lifetime
             __props__.__dict__["ca_soft_expiry"] = ca_soft_expiry
             __props__.__dict__["default_cert_ttl"] = default_cert_ttl
@@ -343,6 +381,7 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alias_mode: pulumi.Input[Optional[_builtins.str]] = None,
             ca_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
             ca_soft_expiry: pulumi.Input[Optional[_builtins.int]] = None,
             default_cert_ttl: pulumi.Input[Optional[_builtins.int]] = None,
@@ -355,6 +394,7 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] alias_mode: The identity alias name mode used at login. Valid values are `tpm_id` and `role_id`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_lifetime: How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] ca_soft_expiry: How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
         :param pulumi.Input[_builtins.int] default_cert_ttl: Default lifetime for issued client certificates, in seconds. If not specified, uses Vault's default.
@@ -367,6 +407,7 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
 
         __props__ = _TpmAuthBackendConfigState.__new__(_TpmAuthBackendConfigState)
 
+        __props__.__dict__["alias_mode"] = alias_mode
         __props__.__dict__["ca_lifetime"] = ca_lifetime
         __props__.__dict__["ca_soft_expiry"] = ca_soft_expiry
         __props__.__dict__["default_cert_ttl"] = default_cert_ttl
@@ -377,18 +418,28 @@ class TpmAuthBackendConfig(pulumi.CustomResource):
     @staticmethod
     def exists(id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alias_mode: pulumi.Input[Optional[_builtins.str]] = None,
             ca_lifetime: pulumi.Input[Optional[_builtins.int]] = None,
             ca_soft_expiry: pulumi.Input[Optional[_builtins.int]] = None,
             default_cert_ttl: pulumi.Input[Optional[_builtins.int]] = None,
             mount: pulumi.Input[Optional[_builtins.str]] = None,
             namespace: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
+        __props__["aliasMode"] = alias_mode
         __props__["caLifetime"] = ca_lifetime
         __props__["caSoftExpiry"] = ca_soft_expiry
         __props__["defaultCertTtl"] = default_cert_ttl
         __props__["mount"] = mount
         __props__["namespace"] = namespace
         return pulumi.runtime.exists_resource(None, 'vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig', id, __props__, opts or pulumi.ResourceOptions())
+
+    @_builtins.property
+    @pulumi.getter(name="aliasMode")
+    def alias_mode(self) -> pulumi.Output[_builtins.str]:
+        """
+        The identity alias name mode used at login. Valid values are `tpm_id` and `role_id`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+        """
+        return pulumi.get(self, "alias_mode")
 
     @_builtins.property
     @pulumi.getter(name="caLifetime")

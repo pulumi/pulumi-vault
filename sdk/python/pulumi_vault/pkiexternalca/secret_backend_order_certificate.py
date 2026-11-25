@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SecretBackendOrderCertificateArgs', 'SecretBackendOrderCertificate']
 
@@ -22,7 +24,8 @@ class SecretBackendOrderCertificateArgs:
                  mount: pulumi.Input[_builtins.str],
                  order_id: pulumi.Input[_builtins.str],
                  role_name: pulumi.Input[_builtins.str],
-                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['SecretBackendOrderCertificateTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a SecretBackendOrderCertificate resource.
 
@@ -39,6 +42,8 @@ class SecretBackendOrderCertificateArgs:
         pulumi.set(__self__, "role_name", role_name)
         if namespace is not None:
             pulumi.set(__self__, "namespace", namespace)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
 
     @_builtins.property
     @pulumi.getter
@@ -91,6 +96,15 @@ class SecretBackendOrderCertificateArgs:
     def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "namespace", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Input[Optional['SecretBackendOrderCertificateTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: pulumi.Input[Optional['SecretBackendOrderCertificateTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
 
 @pulumi.input_type
 class _SecretBackendOrderCertificateState:
@@ -102,7 +116,8 @@ class _SecretBackendOrderCertificateState:
                  order_id: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 serial_number: pulumi.Input[Optional[_builtins.str]] = None):
+                 serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['SecretBackendOrderCertificateTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering SecretBackendOrderCertificate resources.
 
@@ -134,6 +149,8 @@ class _SecretBackendOrderCertificateState:
             pulumi.set(__self__, "role_name", role_name)
         if serial_number is not None:
             pulumi.set(__self__, "serial_number", serial_number)
+        if timeouts is not None:
+            pulumi.set(__self__, "timeouts", timeouts)
 
     @_builtins.property
     @pulumi.getter(name="caChains")
@@ -234,6 +251,15 @@ class _SecretBackendOrderCertificateState:
     def serial_number(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "serial_number", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Input[Optional['SecretBackendOrderCertificateTimeoutsArgs']]:
+        return pulumi.get(self, "timeouts")
+
+    @timeouts.setter
+    def timeouts(self, value: pulumi.Input[Optional['SecretBackendOrderCertificateTimeoutsArgs']]):
+        pulumi.set(self, "timeouts", value)
+
 
 @pulumi.type_token("vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate")
 class SecretBackendOrderCertificate(pulumi.CustomResource):
@@ -245,6 +271,7 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  order_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SecretBackendOrderCertificateTimeoutsArgs', 'SecretBackendOrderCertificateTimeoutsArgsDict', 'outputs.SecretBackendOrderCertificateTimeouts']]] = None,
                  __props__=None):
         """
         Polls the order status endpoint until the order is completed, then fetches the certificate. This resource waits for all ACME challenges to be validated and the certificate to be issued by the external CA.
@@ -338,6 +365,14 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         pulumi.export("privateKey", example_secret_backend_order_certificate.private_key)
         ```
 
+        ## Troubleshooting
+
+        ### Common Timeout Scenarios
+
+        If resource creation fails with an error indicating the order did not reach `completed` status within the configured timeout:
+
+        * **DNS-01 Propagation Delays**: For DNS-01 challenges with slow propagation across public or authoritative nameservers, the ACME CA may take several minutes to successfully validate the challenge record. Increase `timeouts.create` to 5–10 minutes (e.g., `create = "10m"`) to allow sufficient time for propagation and validation
+
         ## Import
 
         PKI External CA order certificates can be imported using the format `<mount>/role/<role_name>/order/<order_id>/certificate`, e.g.
@@ -346,7 +381,7 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         $ pulumi import vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate example pki-external-ca/role/example-role/order/abc123/certificate
         ```
 
-        > **Note** This resource polls the order status with a timeout. If the order does not complete within the polling period, the resource creation will fail. Ensure all challenges are properly fulfilled before creating this resource.
+        > **Note** This resource polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.create` value (default `60s`). Ensure all challenges are properly fulfilled before creating this resource, otherwise the order will not complete within the timeout.
 
 
         :param str resource_name: The name of the resource.
@@ -457,6 +492,14 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         pulumi.export("privateKey", example_secret_backend_order_certificate.private_key)
         ```
 
+        ## Troubleshooting
+
+        ### Common Timeout Scenarios
+
+        If resource creation fails with an error indicating the order did not reach `completed` status within the configured timeout:
+
+        * **DNS-01 Propagation Delays**: For DNS-01 challenges with slow propagation across public or authoritative nameservers, the ACME CA may take several minutes to successfully validate the challenge record. Increase `timeouts.create` to 5–10 minutes (e.g., `create = "10m"`) to allow sufficient time for propagation and validation
+
         ## Import
 
         PKI External CA order certificates can be imported using the format `<mount>/role/<role_name>/order/<order_id>/certificate`, e.g.
@@ -465,7 +508,7 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         $ pulumi import vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate example pki-external-ca/role/example-role/order/abc123/certificate
         ```
 
-        > **Note** This resource polls the order status with a timeout. If the order does not complete within the polling period, the resource creation will fail. Ensure all challenges are properly fulfilled before creating this resource.
+        > **Note** This resource polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.create` value (default `60s`). Ensure all challenges are properly fulfilled before creating this resource, otherwise the order will not complete within the timeout.
 
 
         :param str resource_name: The name of the resource.
@@ -487,6 +530,7 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
                  namespace: pulumi.Input[Optional[_builtins.str]] = None,
                  order_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SecretBackendOrderCertificateTimeoutsArgs', 'SecretBackendOrderCertificateTimeoutsArgsDict', 'outputs.SecretBackendOrderCertificateTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -506,6 +550,7 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
             if role_name is None and not opts.urn:
                 raise TypeError("Missing required property 'role_name'")
             __props__.__dict__["role_name"] = role_name
+            __props__.__dict__["timeouts"] = timeouts
             __props__.__dict__["ca_chains"] = None
             __props__.__dict__["certificate"] = None
             __props__.__dict__["private_key"] = None
@@ -529,7 +574,8 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
             order_id: pulumi.Input[Optional[_builtins.str]] = None,
             private_key: pulumi.Input[Optional[_builtins.str]] = None,
             role_name: pulumi.Input[Optional[_builtins.str]] = None,
-            serial_number: pulumi.Input[Optional[_builtins.str]] = None) -> 'SecretBackendOrderCertificate':
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['SecretBackendOrderCertificateTimeoutsArgs', 'SecretBackendOrderCertificateTimeoutsArgsDict', 'outputs.SecretBackendOrderCertificateTimeouts']]] = None) -> 'SecretBackendOrderCertificate':
         """
         Get an existing SecretBackendOrderCertificate resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -561,6 +607,7 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         __props__.__dict__["private_key"] = private_key
         __props__.__dict__["role_name"] = role_name
         __props__.__dict__["serial_number"] = serial_number
+        __props__.__dict__["timeouts"] = timeouts
         return SecretBackendOrderCertificate(resource_name, opts=opts, __props__=__props__)
 
     @staticmethod
@@ -573,7 +620,8 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
             order_id: pulumi.Input[Optional[_builtins.str]] = None,
             private_key: pulumi.Input[Optional[_builtins.str]] = None,
             role_name: pulumi.Input[Optional[_builtins.str]] = None,
-            serial_number: pulumi.Input[Optional[_builtins.str]] = None) -> pulumi.Output[bool]:
+            serial_number: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['SecretBackendOrderCertificateTimeoutsArgs', 'SecretBackendOrderCertificateTimeoutsArgsDict', 'outputs.SecretBackendOrderCertificateTimeouts']]] = None) -> pulumi.Output[bool]:
         __props__: dict = {}
         __props__["caChains"] = ca_chains
         __props__["certificate"] = certificate
@@ -583,6 +631,7 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         __props__["privateKey"] = private_key
         __props__["roleName"] = role_name
         __props__["serialNumber"] = serial_number
+        __props__["timeouts"] = timeouts
         return pulumi.runtime.exists_resource(None, 'vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate', id, __props__, opts or pulumi.ResourceOptions())
 
     @_builtins.property
@@ -651,4 +700,9 @@ class SecretBackendOrderCertificate(pulumi.CustomResource):
         The serial number of the issued certificate.
         """
         return pulumi.get(self, "serial_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def timeouts(self) -> pulumi.Output[Optional['outputs.SecretBackendOrderCertificateTimeouts']]:
+        return pulumi.get(self, "timeouts")
 

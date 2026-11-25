@@ -212,7 +212,16 @@ import (
 //
 // This challenge type is more complex and typically requires custom TLS server configuration.
 //
-// > **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+// > **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+//
+// ## Troubleshooting
+//
+// ### Common Timeout Scenarios
+//
+// If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+//
+// * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+// * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
 func GetSecretBackendOrderChallenge(ctx *pulumi.Context, args *GetSecretBackendOrderChallengeArgs, opts ...pulumi.InvokeOption) (*GetSecretBackendOrderChallengeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSecretBackendOrderChallengeResult
@@ -242,7 +251,8 @@ type GetSecretBackendOrderChallengeArgs struct {
 	// The unique identifier for the ACME order.
 	OrderId string `pulumi:"orderId"`
 	// Name of the role associated with the order.
-	RoleName string `pulumi:"roleName"`
+	RoleName string                                  `pulumi:"roleName"`
+	Timeouts *GetSecretBackendOrderChallengeTimeouts `pulumi:"timeouts"`
 }
 
 // A collection of values returned by getSecretBackendOrderChallenge.
@@ -263,7 +273,8 @@ type GetSecretBackendOrderChallengeResult struct {
 	OrderId          string  `pulumi:"orderId"`
 	RoleName         string  `pulumi:"roleName"`
 	// The current status of the challenge (e.g., `pending`, `valid`, `invalid`).
-	Status string `pulumi:"status"`
+	Status   string                                  `pulumi:"status"`
+	Timeouts *GetSecretBackendOrderChallengeTimeouts `pulumi:"timeouts"`
 	// The challenge token provided by the ACME server. For HTTP-01 challenges, this is used in the URL path.
 	Token string `pulumi:"token"`
 }
@@ -292,7 +303,8 @@ type GetSecretBackendOrderChallengeOutputArgs struct {
 	// The unique identifier for the ACME order.
 	OrderId pulumi.StringInput `pulumi:"orderId"`
 	// Name of the role associated with the order.
-	RoleName pulumi.StringInput `pulumi:"roleName"`
+	RoleName pulumi.StringInput                             `pulumi:"roleName"`
+	Timeouts GetSecretBackendOrderChallengeTimeoutsPtrInput `pulumi:"timeouts"`
 }
 
 func (GetSecretBackendOrderChallengeOutputArgs) ElementType() reflect.Type {
@@ -359,6 +371,12 @@ func (o GetSecretBackendOrderChallengeResultOutput) RoleName() pulumi.StringOutp
 // The current status of the challenge (e.g., `pending`, `valid`, `invalid`).
 func (o GetSecretBackendOrderChallengeResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSecretBackendOrderChallengeResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o GetSecretBackendOrderChallengeResultOutput) Timeouts() GetSecretBackendOrderChallengeTimeoutsPtrOutput {
+	return o.ApplyT(func(v GetSecretBackendOrderChallengeResult) *GetSecretBackendOrderChallengeTimeouts {
+		return v.Timeouts
+	}).(GetSecretBackendOrderChallengeTimeoutsPtrOutput)
 }
 
 // The challenge token provided by the ACME server. For HTTP-01 challenges, this is used in the URL path.

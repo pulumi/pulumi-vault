@@ -32,7 +32,7 @@ class SecretBackendKeyArgs:
         The set of arguments for constructing a SecretBackendKey resource.
 
         :param pulumi.Input[_builtins.str] backend: The path the PKI secret backend is mounted at, with no leading or trailing `/`s.
-        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `kms`.
         :param pulumi.Input[_builtins.int] key_bits: Specifies the number of bits to use for the generated keys.
                Allowed values are 0 (universal default); with `key_type=rsa`, allowed values are:
                2048 (default), 3072, or 4096; with `key_type=ec`, allowed values are: 224, 256 (default),
@@ -40,8 +40,8 @@ class SecretBackendKeyArgs:
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
-        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
+        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
+        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
@@ -81,7 +81,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `kms`.
         """
         return pulumi.get(self, "type")
 
@@ -133,7 +133,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="managedKeyId")
     def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The managed key's UUID.
+        The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -145,7 +145,7 @@ class SecretBackendKeyArgs:
     @pulumi.getter(name="managedKeyName")
     def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The managed key's configured name.
+        The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -206,14 +206,14 @@ class _SecretBackendKeyState:
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
-        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
+        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
+        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
-        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `kms`.
         """
         if backend is not None:
             pulumi.set(__self__, "backend", backend)
@@ -304,7 +304,7 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="managedKeyId")
     def managed_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The managed key's UUID.
+        The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -316,7 +316,7 @@ class _SecretBackendKeyState:
     @pulumi.getter(name="managedKeyName")
     def managed_key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The managed key's configured name.
+        The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -355,7 +355,7 @@ class _SecretBackendKeyState:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `kms`.
         """
         return pulumi.get(self, "type")
 
@@ -421,14 +421,14 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
-        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
+        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
+        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
-        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `kms`.
         """
         ...
     @overload
@@ -550,14 +550,14 @@ class SecretBackendKey(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] key_name: When a new key is created with this request, optionally specifies the name for this.
                The global ref `default` may not be used as a name.
         :param pulumi.Input[_builtins.str] key_type: Specifies the desired key type; must be `rsa`, `ed25519`, `ec`, or `ml-dsa`.
-        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID.
-        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name.
+        :param pulumi.Input[_builtins.str] managed_key_id: The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
+        :param pulumi.Input[_builtins.str] managed_key_name: The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
         :param pulumi.Input[_builtins.str] namespace: The namespace to provision the resource in.
                The value should not contain leading or trailing forward slashes.
                The `namespace` is always relative to the provider's configured [namespace](https://www.terraform.io/docs/providers/vault/index.html#namespace).
                *Available only for Vault Enterprise*.
         :param pulumi.Input[_builtins.str] parameter_set: For ML-DSA keys, specifies the parameter set; must be `ml-dsa-44` (default), `ml-dsa-65`, or `ml-dsa-87`
-        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        :param pulumi.Input[_builtins.str] type: Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `kms`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -649,7 +649,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="managedKeyId")
     def managed_key_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The managed key's UUID.
+        The managed key's UUID. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_id")
 
@@ -657,7 +657,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter(name="managedKeyName")
     def managed_key_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The managed key's configured name.
+        The managed key's configured name. This field is ignored if `type` is not `kms` and a warning is shown.
         """
         return pulumi.get(self, "managed_key_name")
 
@@ -684,7 +684,7 @@ class SecretBackendKey(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the type of the key to create. Can be `exported`,`internal` or `kms`.
+        Specifies the type of the key to create. Can be `exported`,`internal` or `kms`. Note that `managed_key_id` and `managed_key_name` are only supported when `type` is `kms`.
         """
         return pulumi.get(self, "type")
 

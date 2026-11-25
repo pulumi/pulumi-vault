@@ -30,6 +30,13 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.context);
     }
 
+    @Import(name="hashAlgorithm")
+    private @Nullable String hashAlgorithm;
+
+    public Optional<String> hashAlgorithm() {
+        return Optional.ofNullable(this.hashAlgorithm);
+    }
+
     @Import(name="key", required=true)
     private String key;
 
@@ -51,6 +58,13 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
         return Optional.ofNullable(this.namespace);
     }
 
+    @Import(name="paddingScheme")
+    private @Nullable String paddingScheme;
+
+    public Optional<String> paddingScheme() {
+        return Optional.ofNullable(this.paddingScheme);
+    }
+
     @Import(name="plaintext", required=true)
     private String plaintext;
 
@@ -63,9 +77,11 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetEncryptPlainArgs(GetEncryptPlainArgs $) {
         this.backend = $.backend;
         this.context = $.context;
+        this.hashAlgorithm = $.hashAlgorithm;
         this.key = $.key;
         this.keyVersion = $.keyVersion;
         this.namespace = $.namespace;
+        this.paddingScheme = $.paddingScheme;
         this.plaintext = $.plaintext;
     }
 
@@ -97,6 +113,11 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
             return this;
         }
 
+        public Builder hashAlgorithm(@Nullable String hashAlgorithm) {
+            $.hashAlgorithm = hashAlgorithm;
+            return this;
+        }
+
         public Builder key(String key) {
             $.key = key;
             return this;
@@ -109,6 +130,11 @@ public final class GetEncryptPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder namespace(@Nullable String namespace) {
             $.namespace = namespace;
+            return this;
+        }
+
+        public Builder paddingScheme(@Nullable String paddingScheme) {
+            $.paddingScheme = paddingScheme;
             return this;
         }
 

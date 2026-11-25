@@ -44,6 +44,7 @@ import (
 //				CaLifetime:     pulumi.Int(315360000),
 //				CaSoftExpiry:   pulumi.Int(31536000),
 //				DefaultCertTtl: pulumi.Int(2592000),
+//				AliasMode:      pulumi.String("tpm_id"),
 //			})
 //			if err != nil {
 //				return err
@@ -66,6 +67,8 @@ import (
 type TpmAuthBackendConfig struct {
 	pulumi.CustomResourceState
 
+	// The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+	AliasMode pulumi.StringOutput `pulumi:"aliasMode"`
 	// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
 	CaLifetime pulumi.IntOutput `pulumi:"caLifetime"`
 	// How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
@@ -113,6 +116,8 @@ func GetTpmAuthBackendConfig(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering TpmAuthBackendConfig resources.
 type tpmAuthBackendConfigState struct {
+	// The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+	AliasMode *string `pulumi:"aliasMode"`
 	// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
 	CaLifetime *int `pulumi:"caLifetime"`
 	// How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
@@ -128,6 +133,8 @@ type tpmAuthBackendConfigState struct {
 }
 
 type TpmAuthBackendConfigState struct {
+	// The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+	AliasMode pulumi.StringPtrInput
 	// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
 	CaLifetime pulumi.IntPtrInput
 	// How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
@@ -153,6 +160,8 @@ func TpmAuthBackendConfigExists(ctx *pulumi.Context,
 }
 
 type tpmAuthBackendConfigArgs struct {
+	// The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+	AliasMode *string `pulumi:"aliasMode"`
 	// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
 	CaLifetime *int `pulumi:"caLifetime"`
 	// How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
@@ -169,6 +178,8 @@ type tpmAuthBackendConfigArgs struct {
 
 // The set of arguments for constructing a TpmAuthBackendConfig resource.
 type TpmAuthBackendConfigArgs struct {
+	// The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+	AliasMode pulumi.StringPtrInput
 	// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
 	CaLifetime pulumi.IntPtrInput
 	// How long before hard expiry the active CA stops signing new certificates, in seconds. If not specified, uses Vault's default.
@@ -268,6 +279,11 @@ func (o TpmAuthBackendConfigOutput) ToTpmAuthBackendConfigOutput() TpmAuthBacken
 
 func (o TpmAuthBackendConfigOutput) ToTpmAuthBackendConfigOutputWithContext(ctx context.Context) TpmAuthBackendConfigOutput {
 	return o
+}
+
+// The identity alias name mode used at login. Valid values are `tpmId` and `roleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+func (o TpmAuthBackendConfigOutput) AliasMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *TpmAuthBackendConfig) pulumi.StringOutput { return v.AliasMode }).(pulumi.StringOutput)
 }
 
 // How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.

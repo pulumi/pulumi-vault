@@ -1878,6 +1878,30 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "transform/transformationFpe",
+  "fqn": "pulumi_vault.transform",
+  "classes": {
+   "vault:transform/transformationFpe:TransformationFpe": "TransformationFpe"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "transform/transformationFpeImportedKey",
+  "fqn": "pulumi_vault.transform",
+  "classes": {
+   "vault:transform/transformationFpeImportedKey:TransformationFpeImportedKey": "TransformationFpeImportedKey"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "transform/transformationMasking",
+  "fqn": "pulumi_vault.transform",
+  "classes": {
+   "vault:transform/transformationMasking:TransformationMasking": "TransformationMasking"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "transform/transformationTokenization",
   "fqn": "pulumi_vault.transform",
   "classes": {
@@ -1886,10 +1910,26 @@ _utilities.register(
  },
  {
   "pkg": "vault",
+  "mod": "transform/transformationTokenizationImportedKey",
+  "fqn": "pulumi_vault.transform",
+  "classes": {
+   "vault:transform/transformationTokenizationImportedKey:TransformationTokenizationImportedKey": "TransformationTokenizationImportedKey"
+  }
+ },
+ {
+  "pkg": "vault",
   "mod": "transform/transformationTokenizationStore",
   "fqn": "pulumi_vault.transform",
   "classes": {
    "vault:transform/transformationTokenizationStore:TransformationTokenizationStore": "TransformationTokenizationStore"
+  }
+ },
+ {
+  "pkg": "vault",
+  "mod": "transit/secretBackendImportedKey",
+  "fqn": "pulumi_vault.transit",
+  "classes": {
+   "vault:transit/secretBackendImportedKey:SecretBackendImportedKey": "SecretBackendImportedKey"
   }
  },
  {

@@ -109,7 +109,7 @@ export class Transformation extends pulumi.CustomResource {
      */
     declare public readonly deletionAllowed: pulumi.Output<boolean | undefined>;
     /**
-     * The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+     * The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe". Requires Vault 2.2.0+
      */
     declare public /*out*/ readonly fpeAlgorithm: pulumi.Output<string>;
     /**
@@ -123,7 +123,7 @@ export class Transformation extends pulumi.CustomResource {
      */
     declare public readonly maskingCharacter: pulumi.Output<string | undefined>;
     /**
-     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
      */
     declare public readonly maxTweakLen: pulumi.Output<number | undefined>;
     /**
@@ -237,7 +237,7 @@ export interface TransformationState {
      */
     deletionAllowed?: pulumi.Input<boolean | undefined>;
     /**
-     * The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe".
+     * The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `type` is "fpe". Requires Vault 2.2.0+
      */
     fpeAlgorithm?: pulumi.Input<string | undefined>;
     /**
@@ -251,7 +251,7 @@ export interface TransformationState {
      */
     maskingCharacter?: pulumi.Input<string | undefined>;
     /**
-     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
      */
     maxTweakLen?: pulumi.Input<number | undefined>;
     /**
@@ -322,7 +322,7 @@ export interface TransformationArgs {
      */
     maskingCharacter?: pulumi.Input<string | undefined>;
     /**
-     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+     * The maximum length of a tweak value, in bytes. Only valid when `type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
      */
     maxTweakLen?: pulumi.Input<number | undefined>;
     /**

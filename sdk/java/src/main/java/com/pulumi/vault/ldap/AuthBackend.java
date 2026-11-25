@@ -61,6 +61,7 @@ import javax.annotation.Nullable;
  *             .dereferenceAliases("always")
  *             .enableSamaccountnameLogin(false)
  *             .anonymousGroupSearch(false)
+ *             .schema("ad")
  *             .build());
  * 
  *     }
@@ -529,6 +530,20 @@ public class AuthBackend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> rotationWindow() {
         return Codegen.optional(this.rotationWindow);
+    }
+    /**
+     * The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+     * 
+     */
+    @Export(name="schema", refs={String.class}, tree="[0]")
+    private Output<String> schema;
+
+    /**
+     * @return The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+     * 
+     */
+    public Output<String> schema() {
+        return this.schema;
     }
     /**
      * Control use of TLS when conecting to LDAP

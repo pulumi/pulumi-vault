@@ -43,6 +43,7 @@ import (
 //				DereferenceAliases:        pulumi.String("always"),
 //				EnableSamaccountnameLogin: pulumi.Bool(false),
 //				AnonymousGroupSearch:      pulumi.Bool(false),
+//				Schema:                    pulumi.String("ad"),
 //			})
 //			if err != nil {
 //				return err
@@ -143,6 +144,8 @@ type AuthBackend struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrOutput `pulumi:"rotationWindow"`
+	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+	Schema pulumi.StringOutput `pulumi:"schema"`
 	// Control use of TLS when conecting to LDAP
 	Starttls pulumi.BoolOutput `pulumi:"starttls"`
 	// Maximum acceptable version of TLS
@@ -309,6 +312,8 @@ type authBackendState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+	Schema *string `pulumi:"schema"`
 	// Control use of TLS when conecting to LDAP
 	Starttls *bool `pulumi:"starttls"`
 	// Maximum acceptable version of TLS
@@ -428,6 +433,8 @@ type AuthBackendState struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
+	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+	Schema pulumi.StringPtrInput
 	// Control use of TLS when conecting to LDAP
 	Starttls pulumi.BoolPtrInput
 	// Maximum acceptable version of TLS
@@ -555,6 +562,8 @@ type authBackendArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow *int `pulumi:"rotationWindow"`
+	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+	Schema *string `pulumi:"schema"`
 	// Control use of TLS when conecting to LDAP
 	Starttls *bool `pulumi:"starttls"`
 	// Maximum acceptable version of TLS
@@ -673,6 +682,8 @@ type AuthBackendArgs struct {
 	// a rotation when a scheduled token rotation occurs. The default rotation window is
 	// unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 	RotationWindow pulumi.IntPtrInput
+	// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+	Schema pulumi.StringPtrInput
 	// Control use of TLS when conecting to LDAP
 	Starttls pulumi.BoolPtrInput
 	// Maximum acceptable version of TLS
@@ -970,6 +981,11 @@ func (o AuthBackendOutput) RotationSchedule() pulumi.StringPtrOutput {
 // unbound and the minimum allowable window is `3600`. Requires Vault Enterprise 1.19+.
 func (o AuthBackendOutput) RotationWindow() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AuthBackend) pulumi.IntPtrOutput { return v.RotationWindow }).(pulumi.IntPtrOutput)
+}
+
+// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+func (o AuthBackendOutput) Schema() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthBackend) pulumi.StringOutput { return v.Schema }).(pulumi.StringOutput)
 }
 
 // Control use of TLS when conecting to LDAP

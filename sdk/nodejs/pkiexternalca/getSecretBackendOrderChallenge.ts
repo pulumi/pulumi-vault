@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -131,7 +133,16 @@ import * as utilities from "../utilities";
  *
  * This challenge type is more complex and typically requires custom TLS server configuration.
  *
- * > **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+ * > **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+ *
+ * ## Troubleshooting
+ *
+ * ### Common Timeout Scenarios
+ *
+ * If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+ *
+ * * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+ * * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
  */
 export function getSecretBackendOrderChallenge(args: GetSecretBackendOrderChallengeArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretBackendOrderChallengeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -142,6 +153,7 @@ export function getSecretBackendOrderChallenge(args: GetSecretBackendOrderChalle
         "namespace": args.namespace,
         "orderId": args.orderId,
         "roleName": args.roleName,
+        "timeouts": args.timeouts,
     }, opts);
 }
 
@@ -179,6 +191,7 @@ export interface GetSecretBackendOrderChallengeArgs {
      * Name of the role associated with the order.
      */
     roleName: string;
+    timeouts?: inputs.pkiexternalca.GetSecretBackendOrderChallengeTimeouts;
 }
 
 /**
@@ -210,6 +223,7 @@ export interface GetSecretBackendOrderChallengeResult {
      * The current status of the challenge (e.g., `pending`, `valid`, `invalid`).
      */
     readonly status: string;
+    readonly timeouts?: outputs.pkiexternalca.GetSecretBackendOrderChallengeTimeouts;
     /**
      * The challenge token provided by the ACME server. For HTTP-01 challenges, this is used in the URL path.
      */
@@ -342,7 +356,16 @@ export interface GetSecretBackendOrderChallengeResult {
  *
  * This challenge type is more complex and typically requires custom TLS server configuration.
  *
- * > **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+ * > **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `completed` state within that duration, the read will fail.
+ *
+ * ## Troubleshooting
+ *
+ * ### Common Timeout Scenarios
+ *
+ * If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `completed` status within the timeout duration:
+ *
+ * * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+ * * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
  */
 export function getSecretBackendOrderChallengeOutput(args: GetSecretBackendOrderChallengeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretBackendOrderChallengeResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -353,6 +376,7 @@ export function getSecretBackendOrderChallengeOutput(args: GetSecretBackendOrder
         "namespace": args.namespace,
         "orderId": args.orderId,
         "roleName": args.roleName,
+        "timeouts": args.timeouts,
     }, opts);
 }
 
@@ -390,4 +414,5 @@ export interface GetSecretBackendOrderChallengeOutputArgs {
      * Name of the role associated with the order.
      */
     roleName: pulumi.Input<string>;
+    timeouts?: pulumi.Input<inputs.pkiexternalca.GetSecretBackendOrderChallengeTimeoutsArgs | undefined>;
 }

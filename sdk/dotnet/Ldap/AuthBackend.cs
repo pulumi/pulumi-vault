@@ -38,6 +38,7 @@ namespace Pulumi.Vault.Ldap
     ///         DereferenceAliases = "always",
     ///         EnableSamaccountnameLogin = false,
     ///         AnonymousGroupSearch = false,
+    ///         Schema = "ad",
     ///     });
     /// 
     /// });
@@ -253,6 +254,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Output("rotationWindow")]
         public Output<int?> RotationWindow { get; private set; } = null!;
+
+        /// <summary>
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+        /// </summary>
+        [Output("schema")]
+        public Output<string> Schema { get; private set; } = null!;
 
         /// <summary>
         /// Control use of TLS when conecting to LDAP
@@ -652,6 +659,12 @@ namespace Pulumi.Vault.Ldap
         public Input<int>? RotationWindow { get; set; }
 
         /// <summary>
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+        /// </summary>
+        [Input("schema")]
+        public Input<string>? Schema { get; set; }
+
+        /// <summary>
         /// Control use of TLS when conecting to LDAP
         /// </summary>
         [Input("starttls")]
@@ -1021,6 +1034,12 @@ namespace Pulumi.Vault.Ldap
         /// </summary>
         [Input("rotationWindow")]
         public Input<int>? RotationWindow { get; set; }
+
+        /// <summary>
+        /// The LDAP schema to use when storing entry passwords. Valid schemas include openldap and ad.
+        /// </summary>
+        [Input("schema")]
+        public Input<string>? Schema { get; set; }
 
         /// <summary>
         /// Control use of TLS when conecting to LDAP

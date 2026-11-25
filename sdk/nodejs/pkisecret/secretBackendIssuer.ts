@@ -93,6 +93,10 @@ export class SecretBackendIssuer extends pulumi.CustomResource {
      */
     declare public readonly crlDistributionPoints: pulumi.Output<string[] | undefined>;
     /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     */
+    declare public readonly deltaCrlDistributionPoints: pulumi.Output<string[] | undefined>;
+    /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
      * issued certificate) contain critical extensions not processed by Vault.
@@ -187,6 +191,7 @@ export class SecretBackendIssuer extends pulumi.CustomResource {
             const state = argsOrState as SecretBackendIssuerState | undefined;
             resourceInputs["backend"] = state?.backend;
             resourceInputs["crlDistributionPoints"] = state?.crlDistributionPoints;
+            resourceInputs["deltaCrlDistributionPoints"] = state?.deltaCrlDistributionPoints;
             resourceInputs["disableCriticalExtensionChecks"] = state?.disableCriticalExtensionChecks;
             resourceInputs["disableNameChecks"] = state?.disableNameChecks;
             resourceInputs["disableNameConstraintChecks"] = state?.disableNameConstraintChecks;
@@ -212,6 +217,7 @@ export class SecretBackendIssuer extends pulumi.CustomResource {
             }
             resourceInputs["backend"] = args?.backend;
             resourceInputs["crlDistributionPoints"] = args?.crlDistributionPoints;
+            resourceInputs["deltaCrlDistributionPoints"] = args?.deltaCrlDistributionPoints;
             resourceInputs["disableCriticalExtensionChecks"] = args?.disableCriticalExtensionChecks;
             resourceInputs["disableNameChecks"] = args?.disableNameChecks;
             resourceInputs["disableNameConstraintChecks"] = args?.disableNameConstraintChecks;
@@ -247,6 +253,10 @@ export interface SecretBackendIssuerState {
      * Distribution Points field.
      */
     crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     */
+    deltaCrlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the
@@ -342,6 +352,10 @@ export interface SecretBackendIssuerArgs {
      * Distribution Points field.
      */
     crlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Specifies the URL values for the Delta CRL Distribution Points field. Requires Vault 1.20+.
+     */
+    deltaCrlDistributionPoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * This determines whether this
      * issuer is able to issue certificates where the chain of trust (including the

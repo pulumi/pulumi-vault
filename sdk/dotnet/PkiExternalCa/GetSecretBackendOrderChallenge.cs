@@ -202,7 +202,16 @@ namespace Pulumi.Vault.PkiExternalCa
         /// 
         /// This challenge type is more complex and typically requires custom TLS server configuration.
         /// 
-        /// &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+        /// &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `Completed` state within that duration, the read will fail.
+        /// 
+        /// ## Troubleshooting
+        /// 
+        /// ### Common Timeout Scenarios
+        /// 
+        /// If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `Completed` status within the timeout duration:
+        /// 
+        /// * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+        /// * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
         /// </summary>
         public static Task<GetSecretBackendOrderChallengeResult> InvokeAsync(GetSecretBackendOrderChallengeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretBackendOrderChallengeResult>("vault:pkiexternalca/getSecretBackendOrderChallenge:getSecretBackendOrderChallenge", args ?? new GetSecretBackendOrderChallengeArgs(), options.WithDefaults());
@@ -398,7 +407,16 @@ namespace Pulumi.Vault.PkiExternalCa
         /// 
         /// This challenge type is more complex and typically requires custom TLS server configuration.
         /// 
-        /// &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+        /// &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `Completed` state within that duration, the read will fail.
+        /// 
+        /// ## Troubleshooting
+        /// 
+        /// ### Common Timeout Scenarios
+        /// 
+        /// If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `Completed` status within the timeout duration:
+        /// 
+        /// * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+        /// * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
         /// </summary>
         public static Output<GetSecretBackendOrderChallengeResult> Invoke(GetSecretBackendOrderChallengeInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretBackendOrderChallengeResult>("vault:pkiexternalca/getSecretBackendOrderChallenge:getSecretBackendOrderChallenge", args ?? new GetSecretBackendOrderChallengeInvokeArgs(), options.WithDefaults());
@@ -594,7 +612,16 @@ namespace Pulumi.Vault.PkiExternalCa
         /// 
         /// This challenge type is more complex and typically requires custom TLS server configuration.
         /// 
-        /// &gt; **Note** This data source polls the order status with a maximum of 5 attempts at 2-second intervals. If the order does not reach the appropriate state within this time, the data source read will fail.
+        /// &gt; **Note** This data source polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.read` value (default `60s`). If the order does not reach the `awaiting-challenge-fulfillment` or `Completed` state within that duration, the read will fail.
+        /// 
+        /// ## Troubleshooting
+        /// 
+        /// ### Common Timeout Scenarios
+        /// 
+        /// If the data source read fails with an error indicating the order did not reach the `awaiting-challenge-fulfillment` or `Completed` status within the timeout duration:
+        /// 
+        /// * **Upstream ACME CA Delays**: Some external ACME CAs or private CA servers may experience latency or rate limits when generating order challenges. If the ACME server takes longer to process the order, increase the `timeouts.read` duration (e.g., `read = "5m"`).
+        /// * **Order Processing Failures**: If the upstream ACME server rejected the order or entered an error state, inspect the Vault server logs and ACME account credentials.
         /// </summary>
         public static Output<GetSecretBackendOrderChallengeResult> Invoke(GetSecretBackendOrderChallengeInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretBackendOrderChallengeResult>("vault:pkiexternalca/getSecretBackendOrderChallenge:getSecretBackendOrderChallenge", args ?? new GetSecretBackendOrderChallengeInvokeArgs(), options.WithDefaults());
@@ -644,6 +671,9 @@ namespace Pulumi.Vault.PkiExternalCa
         /// </summary>
         [Input("roleName", required: true)]
         public string RoleName { get; set; } = null!;
+
+        [Input("timeouts")]
+        public Inputs.GetSecretBackendOrderChallengeTimeoutsArgs? Timeouts { get; set; }
 
         public GetSecretBackendOrderChallengeArgs()
         {
@@ -695,6 +725,9 @@ namespace Pulumi.Vault.PkiExternalCa
         [Input("roleName", required: true)]
         public Input<string> RoleName { get; set; } = null!;
 
+        [Input("timeouts")]
+        public Input<Inputs.GetSecretBackendOrderChallengeTimeoutsInputArgs>? Timeouts { get; set; }
+
         public GetSecretBackendOrderChallengeInvokeArgs()
         {
         }
@@ -730,6 +763,7 @@ namespace Pulumi.Vault.PkiExternalCa
         /// The current status of the challenge (e.g., `Pending`, `Valid`, `Invalid`).
         /// </summary>
         public readonly string Status;
+        public readonly Outputs.GetSecretBackendOrderChallengeTimeoutsResult? Timeouts;
         /// <summary>
         /// The challenge token provided by the ACME server. For HTTP-01 challenges, this is used in the URL path.
         /// </summary>
@@ -757,6 +791,8 @@ namespace Pulumi.Vault.PkiExternalCa
 
             string status,
 
+            Outputs.GetSecretBackendOrderChallengeTimeoutsResult? timeouts,
+
             string token)
         {
             ChallengeType = challengeType;
@@ -769,6 +805,7 @@ namespace Pulumi.Vault.PkiExternalCa
             OrderId = orderId;
             RoleName = roleName;
             Status = status;
+            Timeouts = timeouts;
             Token = token;
         }
     }

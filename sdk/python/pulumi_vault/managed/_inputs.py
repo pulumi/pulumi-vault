@@ -373,6 +373,10 @@ class KeysAzureArgsDict(TypedDict):
     """
     Allow usage from any mount point within the namespace if 'true'
     """
+    encryption_mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+    """
     environment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Azure Cloud environment API endpoints to use
@@ -408,6 +412,7 @@ class KeysAzureArgs:
                  allow_replace_key: pulumi.Input[Optional[_builtins.bool]] = None,
                  allow_store_key: pulumi.Input[Optional[_builtins.bool]] = None,
                  any_mount: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_mode: pulumi.Input[Optional[_builtins.str]] = None,
                  environment: pulumi.Input[Optional[_builtins.str]] = None,
                  key_bits: pulumi.Input[Optional[_builtins.str]] = None,
                  resource: pulumi.Input[Optional[_builtins.str]] = None,
@@ -425,6 +430,7 @@ class KeysAzureArgs:
         :param pulumi.Input[_builtins.bool] allow_replace_key: Controls the ability for Vault to replace through generation or importing a key into the configured backend even if a key is present, if set to false those operations are forbidden if a key exists.
         :param pulumi.Input[_builtins.bool] allow_store_key: Controls the ability for Vault to import a key to the configured backend, if 'false', those operations will be forbidden
         :param pulumi.Input[_builtins.bool] any_mount: Allow usage from any mount point within the namespace if 'true'
+        :param pulumi.Input[_builtins.str] encryption_mode: The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
         :param pulumi.Input[_builtins.str] environment: The Azure Cloud environment API endpoints to use
         :param pulumi.Input[_builtins.str] key_bits: The size in bits for an RSA key. This field is required when 'key_type' is 'RSA' or when 'allow_generate_key' is true
         :param pulumi.Input[_builtins.str] resource: The Azure Key Vault resource's DNS Suffix to connect to
@@ -446,6 +452,8 @@ class KeysAzureArgs:
             pulumi.set(__self__, "allow_store_key", allow_store_key)
         if any_mount is not None:
             pulumi.set(__self__, "any_mount", any_mount)
+        if encryption_mode is not None:
+            pulumi.set(__self__, "encryption_mode", encryption_mode)
         if environment is not None:
             pulumi.set(__self__, "environment", environment)
         if key_bits is not None:
@@ -588,6 +596,18 @@ class KeysAzureArgs:
     @any_mount.setter
     def any_mount(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "any_mount", value)
+
+    @_builtins.property
+    @pulumi.getter(name="encryptionMode")
+    def encryption_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The encryption mode to use for the key. `envelope` uses AES-GCM envelope encryption, `raw` encrypts directly with the KMS key. If not set, Vault defaults to envelope.
+        """
+        return pulumi.get(self, "encryption_mode")
+
+    @encryption_mode.setter
+    def encryption_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "encryption_mode", value)
 
     @_builtins.property
     @pulumi.getter
@@ -989,6 +1009,10 @@ class KeysPkcArgsDict(TypedDict):
     """
     The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
     """
+    rsa_oaep_hash: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+    """
     slot: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
@@ -1023,6 +1047,7 @@ class KeysPkcArgs:
                  key_id: pulumi.Input[Optional[_builtins.str]] = None,
                  key_label: pulumi.Input[Optional[_builtins.str]] = None,
                  max_parallel: pulumi.Input[Optional[_builtins.int]] = None,
+                 rsa_oaep_hash: pulumi.Input[Optional[_builtins.str]] = None,
                  slot: pulumi.Input[Optional[_builtins.str]] = None,
                  token_label: pulumi.Input[Optional[_builtins.str]] = None,
                  usages: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1042,6 +1067,7 @@ class KeysPkcArgs:
         :param pulumi.Input[_builtins.str] key_id: The id of a PKCS#11 key to use
         :param pulumi.Input[_builtins.str] key_label: The label of the key to use
         :param pulumi.Input[_builtins.int] max_parallel: The number of concurrent requests that may be in flight to the HSM at any given time. Default is 1
+        :param pulumi.Input[_builtins.str] rsa_oaep_hash: The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
         :param pulumi.Input[_builtins.str] slot: The slot number to use, specified as a string in a decimal format (e.g. '2305843009213693953')
         :param pulumi.Input[_builtins.str] token_label: The slot token label to use
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] usages: A list of the allowed usages of this key. Valid values are encrypt, decrypt, sign, verify, wrap, unwrap, mac, and generate_random. Default values are sign and verify.
@@ -1071,6 +1097,8 @@ class KeysPkcArgs:
             pulumi.set(__self__, "key_label", key_label)
         if max_parallel is not None:
             pulumi.set(__self__, "max_parallel", max_parallel)
+        if rsa_oaep_hash is not None:
+            pulumi.set(__self__, "rsa_oaep_hash", rsa_oaep_hash)
         if slot is not None:
             pulumi.set(__self__, "slot", slot)
         if token_label is not None:
@@ -1247,6 +1275,18 @@ class KeysPkcArgs:
     @max_parallel.setter
     def max_parallel(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_parallel", value)
+
+    @_builtins.property
+    @pulumi.getter(name="rsaOaepHash")
+    def rsa_oaep_hash(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        The hash algorithm to use for RSA-OAEP encryption with mechanism CKM_RSA_PKCS_OAEP. Only applies when 'mechanism' is set to 'CKM_RSA_PKCS_OAEP'. Supported values are: sha1, sha224, sha256, sha384, sha512. If not set, Vault defaults to sha256.
+        """
+        return pulumi.get(self, "rsa_oaep_hash")
+
+    @rsa_oaep_hash.setter
+    def rsa_oaep_hash(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "rsa_oaep_hash", value)
 
     @_builtins.property
     @pulumi.getter

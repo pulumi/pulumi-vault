@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.vault.Utilities;
 import com.pulumi.vault.pkiexternalca.SecretBackendOrderCertificateArgs;
 import com.pulumi.vault.pkiexternalca.inputs.SecretBackendOrderCertificateState;
+import com.pulumi.vault.pkiexternalca.outputs.SecretBackendOrderCertificateTimeouts;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -171,6 +172,14 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ## Troubleshooting
+ * 
+ * ### Common Timeout Scenarios
+ * 
+ * If resource creation fails with an error indicating the order did not reach `completed` status within the configured timeout:
+ * 
+ * * **DNS-01 Propagation Delays**: For DNS-01 challenges with slow propagation across public or authoritative nameservers, the ACME CA may take several minutes to successfully validate the challenge record. Increase `timeouts.create` to 5–10 minutes (e.g., `create = &#34;10m&#34;`) to allow sufficient time for propagation and validation
+ * 
  * ## Import
  * 
  * PKI External CA order certificates can be imported using the format `&lt;mount&gt;/role/&lt;role_name&gt;/order/&lt;order_id&gt;/certificate`, e.g.
@@ -179,7 +188,7 @@ import javax.annotation.Nullable;
  * $ pulumi import vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate example pki-external-ca/role/example-role/order/abc123/certificate
  * ```
  * 
- * &gt; **Note** This resource polls the order status with a timeout. If the order does not complete within the polling period, the resource creation will fail. Ensure all challenges are properly fulfilled before creating this resource.
+ * &gt; **Note** This resource polls the order status at a fixed 2-second interval for a total duration controlled by the `timeouts.create` value (default `60s`). Ensure all challenges are properly fulfilled before creating this resource, otherwise the order will not complete within the timeout.
  * 
  */
 @ResourceType(type="vault:pkiexternalca/secretBackendOrderCertificate:SecretBackendOrderCertificate")
@@ -301,6 +310,12 @@ public class SecretBackendOrderCertificate extends com.pulumi.resources.CustomRe
      */
     public Output<String> serialNumber() {
         return this.serialNumber;
+    }
+    @Export(name="timeouts", refs={SecretBackendOrderCertificateTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ SecretBackendOrderCertificateTimeouts> timeouts;
+
+    public Output<Optional<SecretBackendOrderCertificateTimeouts>> timeouts() {
+        return Codegen.optional(this.timeouts);
     }
 
     /**

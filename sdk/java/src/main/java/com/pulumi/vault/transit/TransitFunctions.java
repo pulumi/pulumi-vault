@@ -19,11 +19,14 @@ import com.pulumi.vault.transit.inputs.GetSignArgs;
 import com.pulumi.vault.transit.inputs.GetSignPlainArgs;
 import com.pulumi.vault.transit.inputs.GetVerifyArgs;
 import com.pulumi.vault.transit.inputs.GetVerifyPlainArgs;
+import com.pulumi.vault.transit.inputs.GetWrappingKeyArgs;
+import com.pulumi.vault.transit.inputs.GetWrappingKeyPlainArgs;
 import com.pulumi.vault.transit.outputs.GetCmacResult;
 import com.pulumi.vault.transit.outputs.GetDecryptResult;
 import com.pulumi.vault.transit.outputs.GetEncryptResult;
 import com.pulumi.vault.transit.outputs.GetSignResult;
 import com.pulumi.vault.transit.outputs.GetVerifyResult;
+import com.pulumi.vault.transit.outputs.GetWrappingKeyResult;
 import java.util.concurrent.CompletableFuture;
 
 public final class TransitFunctions {
@@ -906,5 +909,255 @@ public final class TransitFunctions {
      */
     public static CompletableFuture<GetVerifyResult> getVerifyPlain(GetVerifyPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("vault:transit/getVerify:getVerify", TypeShape.of(GetVerifyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the public wrapping key of a Transit secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * For more information, please refer to [the Vault Transit documentation](https://developer.hashicorp.com/vault/api-docs/secret/transit#get-wrapping-key).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transit = new Mount("transit", MountArgs.builder()
+     *             .path("transit")
+     *             .type("transit")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransitFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transit.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWrappingKeyResult> getWrappingKey(GetWrappingKeyArgs args) {
+        return getWrappingKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the public wrapping key of a Transit secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * For more information, please refer to [the Vault Transit documentation](https://developer.hashicorp.com/vault/api-docs/secret/transit#get-wrapping-key).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transit = new Mount("transit", MountArgs.builder()
+     *             .path("transit")
+     *             .type("transit")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransitFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transit.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetWrappingKeyResult> getWrappingKeyPlain(GetWrappingKeyPlainArgs args) {
+        return getWrappingKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Reads the public wrapping key of a Transit secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * For more information, please refer to [the Vault Transit documentation](https://developer.hashicorp.com/vault/api-docs/secret/transit#get-wrapping-key).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transit = new Mount("transit", MountArgs.builder()
+     *             .path("transit")
+     *             .type("transit")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransitFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transit.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWrappingKeyResult> getWrappingKey(GetWrappingKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("vault:transit/getWrappingKey:getWrappingKey", TypeShape.of(GetWrappingKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the public wrapping key of a Transit secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * For more information, please refer to [the Vault Transit documentation](https://developer.hashicorp.com/vault/api-docs/secret/transit#get-wrapping-key).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transit = new Mount("transit", MountArgs.builder()
+     *             .path("transit")
+     *             .type("transit")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransitFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transit.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetWrappingKeyResult> getWrappingKey(GetWrappingKeyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("vault:transit/getWrappingKey:getWrappingKey", TypeShape.of(GetWrappingKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Reads the public wrapping key of a Transit secrets engine mount. Use it to wrap key material
+     * before importing it (BYOK).
+     * 
+     * For more information, please refer to [the Vault Transit documentation](https://developer.hashicorp.com/vault/api-docs/secret/transit#get-wrapping-key).
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.vault.Mount;
+     * import com.pulumi.vault.MountArgs;
+     * import com.pulumi.vault.transit.TransitFunctions;
+     * import com.pulumi.vault.transit.inputs.GetWrappingKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var transit = new Mount("transit", MountArgs.builder()
+     *             .path("transit")
+     *             .type("transit")
+     *             .build());
+     * 
+     *         final var wrappingKey = TransitFunctions.getWrappingKey(GetWrappingKeyArgs.builder()
+     *             .mount(transit.path())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetWrappingKeyResult> getWrappingKeyPlain(GetWrappingKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("vault:transit/getWrappingKey:getWrappingKey", TypeShape.of(GetWrappingKeyResult.class), args, Utilities.withVersion(options));
     }
 }

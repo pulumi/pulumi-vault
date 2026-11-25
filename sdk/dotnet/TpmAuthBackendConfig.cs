@@ -38,6 +38,7 @@ namespace Pulumi.Vault
     ///         CaLifetime = 315360000,
     ///         CaSoftExpiry = 31536000,
     ///         DefaultCertTtl = 2592000,
+    ///         AliasMode = "tpm_id",
     ///     });
     /// 
     /// });
@@ -56,6 +57,12 @@ namespace Pulumi.Vault
     [VaultResourceType("vault:index/tpmAuthBackendConfig:TpmAuthBackendConfig")]
     public partial class TpmAuthBackendConfig : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The identity alias name mode used at login. Valid values are `TpmId` and `RoleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+        /// </summary>
+        [Output("aliasMode")]
+        public Output<string> AliasMode { get; private set; } = null!;
+
         /// <summary>
         /// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
         /// </summary>
@@ -135,6 +142,12 @@ namespace Pulumi.Vault
     public sealed class TpmAuthBackendConfigArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The identity alias name mode used at login. Valid values are `TpmId` and `RoleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+        /// </summary>
+        [Input("aliasMode")]
+        public Input<string>? AliasMode { get; set; }
+
+        /// <summary>
         /// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
         /// </summary>
         [Input("caLifetime")]
@@ -174,6 +187,12 @@ namespace Pulumi.Vault
 
     public sealed class TpmAuthBackendConfigState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The identity alias name mode used at login. Valid values are `TpmId` and `RoleId`. Requires Vault Enterprise 2.2.3 or later. If not specified, uses Vault's default.
+        /// </summary>
+        [Input("aliasMode")]
+        public Input<string>? AliasMode { get; set; }
+
         /// <summary>
         /// How long each CA is valid once it becomes active, in seconds. If not specified, uses Vault's default.
         /// </summary>

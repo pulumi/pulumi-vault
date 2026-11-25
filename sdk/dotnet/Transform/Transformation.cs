@@ -111,7 +111,7 @@ namespace Pulumi.Vault.Transform
         public Output<bool?> DeletionAllowed { get; private set; } = null!;
 
         /// <summary>
-        /// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `Type` is "fpe".
+        /// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `Type` is "fpe". Requires Vault 2.2.0+
         /// </summary>
         [Output("fpeAlgorithm")]
         public Output<string> FpeAlgorithm { get; private set; } = null!;
@@ -131,7 +131,7 @@ namespace Pulumi.Vault.Transform
         public Output<string?> MaskingCharacter { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum length of a tweak value, in bytes. Only valid when `Type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// The maximum length of a tweak value, in bytes. Only valid when `Type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         /// </summary>
         [Output("maxTweakLen")]
         public Output<int?> MaxTweakLen { get; private set; } = null!;
@@ -276,7 +276,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? MaskingCharacter { get; set; }
 
         /// <summary>
-        /// The maximum length of a tweak value, in bytes. Only valid when `Type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// The maximum length of a tweak value, in bytes. Only valid when `Type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         /// </summary>
         [Input("maxTweakLen")]
         public Input<int>? MaxTweakLen { get; set; }
@@ -381,7 +381,7 @@ namespace Pulumi.Vault.Transform
         public Input<bool>? DeletionAllowed { get; set; }
 
         /// <summary>
-        /// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `Type` is "fpe".
+        /// The FPE algorithm used by this transformation. Either `"ff1"` (default for new FPE transformations) or `"ff3-1"` (legacy). Only populated when `Type` is "fpe". Requires Vault 2.2.0+
         /// </summary>
         [Input("fpeAlgorithm")]
         public Input<string>? FpeAlgorithm { get; set; }
@@ -401,7 +401,7 @@ namespace Pulumi.Vault.Transform
         public Input<string>? MaskingCharacter { get; set; }
 
         /// <summary>
-        /// The maximum length of a tweak value, in bytes. Only valid when `Type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource.
+        /// The maximum length of a tweak value, in bytes. Only valid when `Type` is "fpe". **Note:** This field is immutable and cannot be changed after creation. Changing this value will force recreation of the resource. Requires Vault 2.2.0+
         /// </summary>
         [Input("maxTweakLen")]
         public Input<int>? MaxTweakLen { get; set; }
